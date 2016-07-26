@@ -19,6 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [My_ServicesManager test];//测试API函数😁
     
     dispatch_async(dispatch_get_main_queue(), ^{
         //此处填写各种key

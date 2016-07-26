@@ -48,6 +48,8 @@
 		5B25725A1D47178500CB4167 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572481D47178500CB4167 /* UIImageView+HighlightedWebCache.m */; };
 		5B25725B1D47178500CB4167 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25724A1D47178500CB4167 /* UIImageView+WebCache.m */; };
 		5B25725C1D47178500CB4167 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25724C1D47178500CB4167 /* UIView+WebCacheOperation.m */; };
+		5B25726D1D4738C600CB4167 /* ServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25726A1D4738C600CB4167 /* ServicesManager.m */; };
+		5B25726E1D4738C600CB4167 /* UDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25726C1D4738C600CB4167 /* UDManager.m */; };
 		5BFFCE3D1D41B9C40066B1B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE3C1D41B9C40066B1B9 /* main.m */; };
 		5BFFCE401D41B9C40066B1B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE3F1D41B9C40066B1B9 /* AppDelegate.m */; };
 		5BFFCE481D41B9C40066B1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE471D41B9C40066B1B9 /* Assets.xcassets */; };
@@ -140,6 +142,10 @@
 		5B25724A1D47178500CB4167 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		5B25724B1D47178500CB4167 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		5B25724C1D47178500CB4167 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		5B2572691D4738C600CB4167 /* ServicesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServicesManager.h; path = API/ServicesManager.h; sourceTree = "<group>"; };
+		5B25726A1D4738C600CB4167 /* ServicesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServicesManager.m; path = API/ServicesManager.m; sourceTree = "<group>"; };
+		5B25726B1D4738C600CB4167 /* UDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UDManager.h; path = API/UDManager.h; sourceTree = "<group>"; };
+		5B25726C1D4738C600CB4167 /* UDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UDManager.m; path = API/UDManager.m; sourceTree = "<group>"; };
 		5BFFCE381D41B9C40066B1B9 /* THWY_Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THWY_Server.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFFCE3C1D41B9C40066B1B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BFFCE3E1D41B9C40066B1B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -187,6 +193,10 @@
 		5B2571901D47148D00CB4167 /* uitil */ = {
 			isa = PBXGroup;
 			children = (
+				5B2572691D4738C600CB4167 /* ServicesManager.h */,
+				5B25726A1D4738C600CB4167 /* ServicesManager.m */,
+				5B25726B1D4738C600CB4167 /* UDManager.h */,
+				5B25726C1D4738C600CB4167 /* UDManager.m */,
 				5B2571911D4714A100CB4167 /* tools */,
 			);
 			name = uitil;
@@ -442,6 +452,7 @@
 				5B25725C1D47178500CB4167 /* UIView+WebCacheOperation.m in Sources */,
 				5B2571CA1D4714D100CB4167 /* RootVC.m in Sources */,
 				5B2571BD1D4714A100CB4167 /* UIImage+Extension.m in Sources */,
+				5B25726D1D4738C600CB4167 /* ServicesManager.m in Sources */,
 				5B2571BA1D4714A100CB4167 /* UIButton+Extension.m in Sources */,
 				5B2571B31D4714A100CB4167 /* NSArray+Extension.m in Sources */,
 				5B2571F51D4716F800CB4167 /* AFSecurityPolicy.m in Sources */,
@@ -482,6 +493,7 @@
 				5B25725A1D47178500CB4167 /* UIImageView+HighlightedWebCache.m in Sources */,
 				5B25724E1D47178500CB4167 /* NSData+ImageContentType.m in Sources */,
 				5B2571B21D4714A100CB4167 /* Foundation+Log.m in Sources */,
+				5B25726E1D4738C600CB4167 /* UDManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

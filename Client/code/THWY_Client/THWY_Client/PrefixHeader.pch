@@ -15,6 +15,7 @@
 
 #pragma mark - 头文件
 #import "BXExtensions.h"
+#import "ServicesManager.h"
 
 #endif
 
@@ -24,6 +25,9 @@
 #else
 #define NSLog(...)
 #endif
+
+//API
+#define My_ServicesManager [ServicesManager getAPI]
 
 //弱引用
 #define My_WeakSelf __weak typeof(self) weakSelf = self;
