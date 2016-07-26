@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserVO.h"
 
 @interface UDManager : NSObject
 
 +(UDManager *)getUD;
-
+-(UserVO *)getUser;
+-(void)saveUser:(UserVO *)newUser;
+-(void)removeUDUser;
 @end

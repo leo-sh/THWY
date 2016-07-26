@@ -8,6 +8,14 @@
 
 #import "UDManager.h"
 
+@interface UDManager ()
+
+{
+    UserVO *user;
+}
+
+@end
+
 @implementation UDManager
 
 +(UDManager *)getUD
@@ -20,4 +28,24 @@
     return ud;
 }
 
+-(UserVO *)getUser{
+    if (user == nil) {
+        user = [UserVO fromCodingObject];
+    }
+    return user;
+}
+
+-(void)saveUser:(UserVO *)newUser
+{
+    user = newUser;
+    [user saveToUD];
+}
+
+-(void)removeUDUser
+{
+    user = nil;
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud removeObjectForKey:THWY_USER];
+    [ud synchronize];
+}
 @end

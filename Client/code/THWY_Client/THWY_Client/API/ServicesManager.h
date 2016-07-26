@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AFNetworking.h"
 #import "UDManager.h"
+#import "UserVO.h"
 
 @interface ServicesManager : NSObject
 
 +(ServicesManager *)getAPI;
+
+#pragma mark 环境参数判定函数
+-(BOOL)isLogin;
 
 #pragma mark 测试用函数
 -(void)test;

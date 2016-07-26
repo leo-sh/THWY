@@ -50,6 +50,8 @@
 		5B25725F1D47376E00CB4167 /* ServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25725E1D47376E00CB4167 /* ServicesManager.m */; };
 		5B2572621D47378300CB4167 /* UDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572611D47378300CB4167 /* UDManager.m */; };
 		5B2572711D47475100CB4167 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572701D47475100CB4167 /* RootVC.m */; };
+		5B2572741D47545400CB4167 /* UserVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572731D47545400CB4167 /* UserVO.m */; };
+		5B2572771D4762CB00CB4167 /* HouseVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572761D4762CB00CB4167 /* HouseVO.m */; };
 		5BFFCE1A1D41B9A30066B1B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE191D41B9A30066B1B9 /* main.m */; };
 		5BFFCE1D1D41B9A30066B1B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE1C1D41B9A30066B1B9 /* AppDelegate.m */; };
 		5BFFCE251D41B9A30066B1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE241D41B9A30066B1B9 /* Assets.xcassets */; };
@@ -146,6 +148,10 @@
 		5B2572611D47378300CB4167 /* UDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UDManager.m; path = API/UDManager.m; sourceTree = "<group>"; };
 		5B25726F1D47475100CB4167 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
 		5B2572701D47475100CB4167 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
+		5B2572721D47545400CB4167 /* UserVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVO.h; sourceTree = "<group>"; };
+		5B2572731D47545400CB4167 /* UserVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVO.m; sourceTree = "<group>"; };
+		5B2572751D4762CB00CB4167 /* HouseVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseVO.h; sourceTree = "<group>"; };
+		5B2572761D4762CB00CB4167 /* HouseVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseVO.m; sourceTree = "<group>"; };
 		5BFFCE151D41B9A30066B1B9 /* THWY_Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THWY_Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFFCE191D41B9A30066B1B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BFFCE1B1D41B9A30066B1B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -180,6 +186,10 @@
 		5B25714C1D47105800CB4167 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				5B2572721D47545400CB4167 /* UserVO.h */,
+				5B2572731D47545400CB4167 /* UserVO.m */,
+				5B2572751D4762CB00CB4167 /* HouseVO.h */,
+				5B2572761D4762CB00CB4167 /* HouseVO.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -477,6 +487,7 @@
 				5B2571E41D4716EE00CB4167 /* AFURLSessionManager.m in Sources */,
 				5B25721D1D47177B00CB4167 /* SDImageCache.m in Sources */,
 				5B2571E31D4716EE00CB4167 /* AFURLResponseSerialization.m in Sources */,
+				5B2572771D4762CB00CB4167 /* HouseVO.m in Sources */,
 				5B2572221D47177B00CB4167 /* SDWebImageManager.m in Sources */,
 				5B2572271D47177B00CB4167 /* UIImage+WebP.m in Sources */,
 				5B2571E01D4716EE00CB4167 /* AFNetworkReachabilityManager.m in Sources */,
@@ -492,6 +503,7 @@
 				5B25721E1D47177B00CB4167 /* SDWebImageCompat.m in Sources */,
 				5B2572281D47177B00CB4167 /* UIImageView+HighlightedWebCache.m in Sources */,
 				5B25721C1D47177B00CB4167 /* NSData+ImageContentType.m in Sources */,
+				5B2572741D47545400CB4167 /* UserVO.m in Sources */,
 				5B2571871D47110B00CB4167 /* UIScreen+Extension.m in Sources */,
 				5B2572621D47378300CB4167 /* UDManager.m in Sources */,
 			);
