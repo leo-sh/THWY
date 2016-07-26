@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B2571521D47109B00CB4167 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2571511D47109B00CB4167 /* RootVC.m */; };
 		5B2571571D4710C100CB4167 /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2571561D4710C100CB4167 /* MainNavigationViewController.m */; };
 		5B2571791D47110B00CB4167 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25715A1D47110B00CB4167 /* Foundation+Log.m */; };
 		5B25717A1D47110B00CB4167 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25715C1D47110B00CB4167 /* NSArray+Extension.m */; };
@@ -50,6 +49,7 @@
 		5B25722A1D47177B00CB4167 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25721A1D47177B00CB4167 /* UIView+WebCacheOperation.m */; };
 		5B25725F1D47376E00CB4167 /* ServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25725E1D47376E00CB4167 /* ServicesManager.m */; };
 		5B2572621D47378300CB4167 /* UDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572611D47378300CB4167 /* UDManager.m */; };
+		5B2572711D47475100CB4167 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572701D47475100CB4167 /* RootVC.m */; };
 		5BFFCE1A1D41B9A30066B1B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE191D41B9A30066B1B9 /* main.m */; };
 		5BFFCE1D1D41B9A30066B1B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE1C1D41B9A30066B1B9 /* AppDelegate.m */; };
 		5BFFCE251D41B9A30066B1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE241D41B9A30066B1B9 /* Assets.xcassets */; };
@@ -58,8 +58,6 @@
 
 /* Begin PBXFileReference section */
 		5B25714A1D470E6800CB4167 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		5B2571501D47109B00CB4167 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootVC.h; path = ../../../../../Desktop/RootVC.h; sourceTree = "<group>"; };
-		5B2571511D47109B00CB4167 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootVC.m; path = ../../../../../Desktop/RootVC.m; sourceTree = "<group>"; };
 		5B2571551D4710C100CB4167 /* MainNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationViewController.h; sourceTree = "<group>"; };
 		5B2571561D4710C100CB4167 /* MainNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationViewController.m; sourceTree = "<group>"; };
 		5B2571591D47110B00CB4167 /* BXExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXExtensions.h; sourceTree = "<group>"; };
@@ -146,6 +144,8 @@
 		5B25725E1D47376E00CB4167 /* ServicesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServicesManager.m; path = API/ServicesManager.m; sourceTree = "<group>"; };
 		5B2572601D47378300CB4167 /* UDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UDManager.h; path = API/UDManager.h; sourceTree = "<group>"; };
 		5B2572611D47378300CB4167 /* UDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UDManager.m; path = API/UDManager.m; sourceTree = "<group>"; };
+		5B25726F1D47475100CB4167 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
+		5B2572701D47475100CB4167 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
 		5BFFCE151D41B9A30066B1B9 /* THWY_Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THWY_Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFFCE191D41B9A30066B1B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BFFCE1B1D41B9A30066B1B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -169,10 +169,10 @@
 		5B25714B1D47103100CB4167 /* MainController */ = {
 			isa = PBXGroup;
 			children = (
+				5B25726F1D47475100CB4167 /* RootVC.h */,
+				5B2572701D47475100CB4167 /* RootVC.m */,
 				5B2571551D4710C100CB4167 /* MainNavigationViewController.h */,
 				5B2571561D4710C100CB4167 /* MainNavigationViewController.m */,
-				5B2571501D47109B00CB4167 /* RootVC.h */,
-				5B2571511D47109B00CB4167 /* RootVC.m */,
 			);
 			name = MainController;
 			sourceTree = "<group>";
@@ -452,13 +452,13 @@
 				5B25722A1D47177B00CB4167 /* UIView+WebCacheOperation.m in Sources */,
 				5B2571861D47110B00CB4167 /* UILabel+Extension.m in Sources */,
 				5B2571801D47110B00CB4167 /* UIBarButtonItem+Extension.m in Sources */,
+				5B2572711D47475100CB4167 /* RootVC.m in Sources */,
 				5B25725F1D47376E00CB4167 /* ServicesManager.m in Sources */,
 				5B25717B1D47110B00CB4167 /* NSDate+Extension.m in Sources */,
 				5B25717A1D47110B00CB4167 /* NSArray+Extension.m in Sources */,
 				5B2571E11D4716EE00CB4167 /* AFSecurityPolicy.m in Sources */,
 				5B25717D1D47110B00CB4167 /* NSDictionary+Extension.m in Sources */,
 				5B2571DF1D4716EE00CB4167 /* AFHTTPSessionManager.m in Sources */,
-				5B2571521D47109B00CB4167 /* RootVC.m in Sources */,
 				5B2572211D47177B00CB4167 /* SDWebImageDownloaderOperation.m in Sources */,
 				5B2572231D47177B00CB4167 /* SDWebImagePrefetcher.m in Sources */,
 				5B2571851D47110B00CB4167 /* UIImage+ScreenShot.m in Sources */,
