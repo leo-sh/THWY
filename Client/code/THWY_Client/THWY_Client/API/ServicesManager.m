@@ -66,7 +66,7 @@
 -(void)getErrorMessage:(NSString *)code
             onComplete:(void (^)(NSString *errorMsg))onComplete
 {
-    AFHTTPSessionManager *manager = [self noCacheManager];
+    AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@get_op_msg_by_code",API_HOST];
     NSDictionary *params = @{@"k":code};
     [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -81,15 +81,15 @@
 #pragma mark 测试用函数
 -(void)test
 {
-    if (self.isLogin) {
-        UserVO *user = [[UDManager getUD] getUser];
-        NSLog(@"%@",user);
-    }else
-    {
-        [self login:@"123123" password:@"12345678" onComplete:^(NSString *errorMsg, UserVO *user) {
-            
-        }];
-    }
+//    if (self.isLogin) {
+//        UserVO *user = [[UDManager getUD] getUser];
+//        NSLog(@"%@",user);
+//    }else
+//    {
+//        [My_ServicesManager login:@"123123" password:@"12345678" onComplete:^(NSString *errorMsg, UserVO *user) {
+//            
+//        }];
+//    }
     
 }
 @end
