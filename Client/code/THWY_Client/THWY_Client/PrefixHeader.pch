@@ -1,0 +1,64 @@
+//
+//  PrefixHeader.pch
+//  THWY_Client
+//
+//  Created by 史秀泽 on 2016/7/26.
+//  Copyright © 2016年 SXZ. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#pragma mark - 头文件
+#import "BXExtensions.h"
+
+#endif
+
+//自定义NSLog
+#ifdef DEBUG
+#define NSLog(FORMAT, ...) fprintf(stderr,"%s:%d\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+#define NSLog(...)
+#endif
+
+//弱引用
+#define My_WeakSelf __weak typeof(self) weakSelf = self;
+
+#define My_NoteCenter [NSNotificationCenter defaultCenter]
+#define My_TapStatusBar @"statusBarTappedNotification"
+
+#define My_ScreenH [UIScreen mainScreen].bounds.size.height
+#define My_ScreenW [UIScreen mainScreen].bounds.size.width
+#define My_ScreenBounds [UIScreen mainScreen].bounds
+#define My_ScreenSize [UIScreen mainScreen].bounds.size
+#define My_KeyWindow [UIApplication sharedApplication].keyWindow
+
+#define My_NAV_BG_Color RGBColorFromX(0xF9F9F9)
+#define MainColor RGBColorFromX(0xEAB300)
+#define My_clearColor [UIColor clearColor]
+#define My_BlackColor RGBColorFromX(0x333333)
+#define My_redColor My_Color(209, 42, 44)
+#define My_grayColor RGBColorFromX(0x999999)
+#define My_LineColor RGBColorFromX(0xD6D6D6)
+
+// 随机色
+#define My_RandomColor My_Color(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+
+// 设置颜色
+#define My_Color(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+#define My_AlphaColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
+
+#define RGBColorFromX(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define RGBHexA(rgbValue, a)    [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
+
+//字体
+#define My_LightFontName @"PingFangSC-Light"
+#define My_RegularFontName @"PingFangSC-Regular"
+#define My_SemiboldFontName @"PingFangSC-Semibold"
+
+#endif /* PrefixHeader_pch */
