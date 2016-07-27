@@ -610,7 +610,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/Mr.S/THWY/Client/code/THWY_Client/THWY_Client/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/THWY_Client/PrefixHeader.pch";
 				INFOPLIST_FILE = THWY_Client/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -624,7 +624,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/Mr.S/THWY/Client/code/THWY_Client/THWY_Client/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/THWY_Client/PrefixHeader.pch";
 				INFOPLIST_FILE = THWY_Client/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
