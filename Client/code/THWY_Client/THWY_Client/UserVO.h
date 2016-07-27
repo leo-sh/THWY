@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "HouseVO.h"
 #define THWY_USER @"txwy_user"
+#define USER_NAME @"user_name"
+#define USER_PASSWORD @"user_password"
 
 @interface UserVO : NSObject <NSCoding>
 
