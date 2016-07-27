@@ -49,6 +49,32 @@
     return manager;
 }
 
+-(UIImage *)getFitImageData:(UIImage *)image{
+    
+    float imageRatio = image.size.width/image.size.height;
+    UIImage *newImage;
+    if (image.size.width > 500 ||
+        image.size.height > 500) {
+        if (image.size.width > image.size.height) {
+            newImage = [self imageWithImage:image scaledToSize:CGSizeMake(500, 500/imageRatio)];
+        }else{
+            newImage = [self imageWithImage:image scaledToSize:CGSizeMake(500*imageRatio, 500)];
+        }
+    }else{
+        newImage = image;
+    }
+    
+    return newImage;
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 #pragma mark 公共函数
 -(void)login:(NSString *)userName
     password:(NSString *)password
@@ -184,6 +210,91 @@
     }];
 }
 
+-(void)upLoadAvatar:(UIImage *)image OnComplete:(void (^)(NSString *errorMsg, NSString *avatar))onComplete
+{
+    UIImage *newImage = [self getFitImageData:image];
+    NSData *data = UIImagePNGRepresentation(newImage);
+    
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@avatar",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord};
+    [manager POST:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        // 设置时间格式
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
+        
+        [formData appendPartWithFileData:data name:@"pic" fileName:fileName mimeType:@"image/png"];
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            
+            onComplete(nil,responseObject[@"datas"]);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)getUserPoints:(void (^)(NSString *errorMsg,NSString *point))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@points",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            onComplete(nil,responseObject[@"datas"]);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)getUserPointsHistory:(int)pageNum onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@points_history",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"page":[NSString stringWithFormat:@"%d",pageNum]};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            for (NSDictionary* historyDic in responseObject[@"datas"][@"datas"]) {
+                PointHistoryVO *history = [[PointHistoryVO alloc]initWithJSON:historyDic];
+                [listArr addObject:history];
+            }
+            onComplete(nil,listArr);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
 #pragma mark 环境参数判定函数
 -(BOOL)isLogin{
     UserVO *user = [[UDManager getUD] getUser];
@@ -199,8 +310,10 @@
     [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject[@"datas"]);
         onComplete(responseObject[@"datas"]);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {\
+        NSLog(@"网络连接错误");
         onComplete(@"网络连接错误");
     }];
 }
@@ -209,12 +322,14 @@
 -(void)test
 {
     if (self.isLogin) {
-        [My_ServicesManager editUserInfo:@"13877776666" carNumber:nil newUserName:nil newPassWord:@"111111" onComplete:^(NSString *errorMsg) {
+
+        UserVO* user = [[UDManager getUD] getUser];
+        [My_ServicesManager getUserPointsHistory:1 onComplete:^(NSString *errorMsg, NSArray *list) {
             
         }];
     }else
     {
-        [My_ServicesManager login:@"zhanghao" password:@"123123" onComplete:^(NSString *errorMsg, UserVO *user) {
+        [My_ServicesManager login:@"233911" password:@"12345678" onComplete:^(NSString *errorMsg, UserVO *user) {
             
         }];
     }

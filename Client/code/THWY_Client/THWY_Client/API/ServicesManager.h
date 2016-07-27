@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "UDManager.h"
 #import "UserVO.h"
+#import "PointHistoryVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -30,7 +31,7 @@
 
 #pragma mark 用户相关API
 /**
- *  登陆API
+ *  登陆
  *
  *  @param userName   用户名
  *  @param password   密码
@@ -61,6 +62,32 @@
         newUserName:(NSString *)newUserName
         newPassWord:(NSString *)newPassWord
          onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+/**
+ *  上传用户头像
+ *
+ *  @param image      头像图片
+ *  @param onComplete 上传完成回调block
+ */
+-(void)upLoadAvatar:(UIImage *)image OnComplete:(void (^)(NSString *errorMsg, NSString *avatar))onComplete;
+
+/**
+ *  查询用户积分
+ *
+ *  @param onComplete 查询完成回调block
+ */
+-(void)getUserPoints:(void (^)(NSString *errorMsg,NSString *point))onComplete;
+
+/**
+ *  查询用户积分历史
+ *
+ *  @param pageNum    页数
+ *  @param onComplete 查询完成回调block
+ */
+-(void)getUserPointsHistory:(int)pageNum onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+#pragma mark 其他API
+
 
 #pragma mark 测试用函数
 -(void)test;
