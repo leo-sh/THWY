@@ -18,6 +18,8 @@
 #import "ComplaintVO.h"
 #import "NoteVO.h"
 #import "MerchantTypeVO.h"
+#import "MerchantVO.h"
+#import "AdVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -181,6 +183,70 @@
  *  @param onComplete 获取完成回调block
  */
 -(void)getMerchantTypes:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取推荐商家(滚动图用)
+ *
+ *  @param page       页数
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getRecommendMerchants:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取商家列表
+ *
+ *  @param page       页数
+ *  @param name       名称(可不传)
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getMerchants:(int)page name:(NSString* )name onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取一个商家
+ *
+ *  @param merchantId 商家ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getAMerchant:(NSString *)merchantId onComplete:(void (^)(NSString *errorMsg,MerchantVO *merchant))onComplete;
+
+/**
+ *  获取推荐商品
+ *
+ *  @param page       页数
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getRecommendGoods:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取一个商品
+ *
+ *  @param merchantId 商品ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getAGood:(NSString *)goodId onComplete:(void (^)(NSString *errorMsg,GoodVO *merchant))onComplete;
+
+/**
+ *  获取商圈公告列表
+ *
+ *  @param page       页数
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getAds:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取一条商圈公告
+ *
+ *  @param adId       公告id
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getAnAd:(NSString *)adId onComplete:(void (^)(NSString *errorMsg,AdVO *ad))onComplete;
+
+/**
+ *  获取推荐商圈公告列表
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getRecommendAds:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;

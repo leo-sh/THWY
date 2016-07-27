@@ -27,6 +27,9 @@
 		5B197EFF1D48A47800B95DE5 /* ComplaintVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EFE1D48A47800B95DE5 /* ComplaintVO.m */; };
 		5B197F021D48A86E00B95DE5 /* NoteVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197F011D48A86E00B95DE5 /* NoteVO.m */; };
 		5B197F051D48A9E600B95DE5 /* MerchantTypeVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197F041D48A9E600B95DE5 /* MerchantTypeVO.m */; };
+		5B197F081D48AD0300B95DE5 /* MerchantVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197F071D48AD0300B95DE5 /* MerchantVO.m */; };
+		5B197F0B1D48AD2C00B95DE5 /* GoodVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197F0A1D48AD2C00B95DE5 /* GoodVO.m */; };
+		5B197F0E1D48B73E00B95DE5 /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197F0D1D48B73E00B95DE5 /* AdVO.m */; };
 		5B2571571D4710C100CB4167 /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2571561D4710C100CB4167 /* MainNavigationViewController.m */; };
 		5B2571791D47110B00CB4167 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25715A1D47110B00CB4167 /* Foundation+Log.m */; };
 		5B25717A1D47110B00CB4167 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25715C1D47110B00CB4167 /* NSArray+Extension.m */; };
@@ -123,6 +126,12 @@
 		5B197F011D48A86E00B95DE5 /* NoteVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteVO.m; sourceTree = "<group>"; };
 		5B197F031D48A9E600B95DE5 /* MerchantTypeVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantTypeVO.h; sourceTree = "<group>"; };
 		5B197F041D48A9E600B95DE5 /* MerchantTypeVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantTypeVO.m; sourceTree = "<group>"; };
+		5B197F061D48AD0300B95DE5 /* MerchantVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantVO.h; sourceTree = "<group>"; };
+		5B197F071D48AD0300B95DE5 /* MerchantVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantVO.m; sourceTree = "<group>"; };
+		5B197F091D48AD2C00B95DE5 /* GoodVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodVO.h; sourceTree = "<group>"; };
+		5B197F0A1D48AD2C00B95DE5 /* GoodVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodVO.m; sourceTree = "<group>"; };
+		5B197F0C1D48B73E00B95DE5 /* AdVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdVO.h; sourceTree = "<group>"; };
+		5B197F0D1D48B73E00B95DE5 /* AdVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdVO.m; sourceTree = "<group>"; };
 		5B25714A1D470E6800CB4167 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		5B2571551D4710C100CB4167 /* MainNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationViewController.h; sourceTree = "<group>"; };
 		5B2571561D4710C100CB4167 /* MainNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationViewController.m; sourceTree = "<group>"; };
@@ -313,6 +322,12 @@
 				5B197F011D48A86E00B95DE5 /* NoteVO.m */,
 				5B197F031D48A9E600B95DE5 /* MerchantTypeVO.h */,
 				5B197F041D48A9E600B95DE5 /* MerchantTypeVO.m */,
+				5B197F061D48AD0300B95DE5 /* MerchantVO.h */,
+				5B197F071D48AD0300B95DE5 /* MerchantVO.m */,
+				5B197F091D48AD2C00B95DE5 /* GoodVO.h */,
+				5B197F0A1D48AD2C00B95DE5 /* GoodVO.m */,
+				5B197F0C1D48B73E00B95DE5 /* AdVO.h */,
+				5B197F0D1D48B73E00B95DE5 /* AdVO.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -611,6 +626,7 @@
 				5B2571851D47110B00CB4167 /* UIImage+ScreenShot.m in Sources */,
 				5B197EFF1D48A47800B95DE5 /* ComplaintVO.m in Sources */,
 				5B2571791D47110B00CB4167 /* Foundation+Log.m in Sources */,
+				5B197F0B1D48AD2C00B95DE5 /* GoodVO.m in Sources */,
 				5B25717C1D47110B00CB4167 /* NSDate+Helper.m in Sources */,
 				5B197EF91D48A0BD00B95DE5 /* ComplaintStateVO.m in Sources */,
 				5B2572261D47177B00CB4167 /* UIImage+MultiFormat.m in Sources */,
@@ -650,11 +666,13 @@
 				5B197EE91D487DAC00B95DE5 /* MASConstraintMaker.m in Sources */,
 				5B25721B1D47177B00CB4167 /* MKAnnotationView+WebCache.m in Sources */,
 				5B25717F1D47110B00CB4167 /* UIApplication+Extensions.m in Sources */,
+				5B197F081D48AD0300B95DE5 /* MerchantVO.m in Sources */,
 				5B25721F1D47177B00CB4167 /* SDWebImageDecoder.m in Sources */,
 				5B25721E1D47177B00CB4167 /* SDWebImageCompat.m in Sources */,
 				5B2572281D47177B00CB4167 /* UIImageView+HighlightedWebCache.m in Sources */,
 				5B25721C1D47177B00CB4167 /* NSData+ImageContentType.m in Sources */,
 				5B197EF01D487DAC00B95DE5 /* ViewController+MASAdditions.m in Sources */,
+				5B197F0E1D48B73E00B95DE5 /* AdVO.m in Sources */,
 				5B2572741D47545400CB4167 /* UserVO.m in Sources */,
 				5B197EF31D48924300B95DE5 /* FeedBackTypeVO.m in Sources */,
 				5B2571871D47110B00CB4167 /* UIScreen+Extension.m in Sources */,
