@@ -20,6 +20,13 @@
 		5B197EEE1D487DAC00B95DE5 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EE01D487DAC00B95DE5 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		5B197EEF1D487DAC00B95DE5 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EE21D487DAC00B95DE5 /* View+MASAdditions.m */; };
 		5B197EF01D487DAC00B95DE5 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EE51D487DAC00B95DE5 /* ViewController+MASAdditions.m */; };
+		5B197EF31D48924300B95DE5 /* FeedBackTypeVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EF21D48924300B95DE5 /* FeedBackTypeVO.m */; };
+		5B197EF61D4894D100B95DE5 /* FeedBackVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EF51D4894D100B95DE5 /* FeedBackVO.m */; };
+		5B197EF91D48A0BD00B95DE5 /* ComplaintStateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EF81D48A0BD00B95DE5 /* ComplaintStateVO.m */; };
+		5B197EFC1D48A32E00B95DE5 /* ComplaintTypeVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EFB1D48A32E00B95DE5 /* ComplaintTypeVO.m */; };
+		5B197EFF1D48A47800B95DE5 /* ComplaintVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EFE1D48A47800B95DE5 /* ComplaintVO.m */; };
+		5B197F021D48A86E00B95DE5 /* NoteVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197F011D48A86E00B95DE5 /* NoteVO.m */; };
+		5B197F051D48A9E600B95DE5 /* MerchantTypeVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197F041D48A9E600B95DE5 /* MerchantTypeVO.m */; };
 		5B2571571D4710C100CB4167 /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2571561D4710C100CB4167 /* MainNavigationViewController.m */; };
 		5B2571791D47110B00CB4167 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25715A1D47110B00CB4167 /* Foundation+Log.m */; };
 		5B25717A1D47110B00CB4167 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25715C1D47110B00CB4167 /* NSArray+Extension.m */; };
@@ -102,6 +109,20 @@
 		5B197EE31D487DAC00B95DE5 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		5B197EE41D487DAC00B95DE5 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		5B197EE51D487DAC00B95DE5 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		5B197EF11D48924300B95DE5 /* FeedBackTypeVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackTypeVO.h; sourceTree = "<group>"; };
+		5B197EF21D48924300B95DE5 /* FeedBackTypeVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackTypeVO.m; sourceTree = "<group>"; };
+		5B197EF41D4894D100B95DE5 /* FeedBackVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackVO.h; sourceTree = "<group>"; };
+		5B197EF51D4894D100B95DE5 /* FeedBackVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackVO.m; sourceTree = "<group>"; };
+		5B197EF71D48A0BD00B95DE5 /* ComplaintStateVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintStateVO.h; sourceTree = "<group>"; };
+		5B197EF81D48A0BD00B95DE5 /* ComplaintStateVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintStateVO.m; sourceTree = "<group>"; };
+		5B197EFA1D48A32E00B95DE5 /* ComplaintTypeVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintTypeVO.h; sourceTree = "<group>"; };
+		5B197EFB1D48A32E00B95DE5 /* ComplaintTypeVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintTypeVO.m; sourceTree = "<group>"; };
+		5B197EFD1D48A47800B95DE5 /* ComplaintVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintVO.h; sourceTree = "<group>"; };
+		5B197EFE1D48A47800B95DE5 /* ComplaintVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintVO.m; sourceTree = "<group>"; };
+		5B197F001D48A86E00B95DE5 /* NoteVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteVO.h; sourceTree = "<group>"; };
+		5B197F011D48A86E00B95DE5 /* NoteVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteVO.m; sourceTree = "<group>"; };
+		5B197F031D48A9E600B95DE5 /* MerchantTypeVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantTypeVO.h; sourceTree = "<group>"; };
+		5B197F041D48A9E600B95DE5 /* MerchantTypeVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantTypeVO.m; sourceTree = "<group>"; };
 		5B25714A1D470E6800CB4167 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		5B2571551D4710C100CB4167 /* MainNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationViewController.h; sourceTree = "<group>"; };
 		5B2571561D4710C100CB4167 /* MainNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationViewController.m; sourceTree = "<group>"; };
@@ -278,6 +299,20 @@
 				5B2572761D4762CB00CB4167 /* HouseVO.m */,
 				5B197EC81D48779B00B95DE5 /* PointHistoryVO.h */,
 				5B197EC91D48779B00B95DE5 /* PointHistoryVO.m */,
+				5B197EF41D4894D100B95DE5 /* FeedBackVO.h */,
+				5B197EF51D4894D100B95DE5 /* FeedBackVO.m */,
+				5B197EF11D48924300B95DE5 /* FeedBackTypeVO.h */,
+				5B197EF21D48924300B95DE5 /* FeedBackTypeVO.m */,
+				5B197EF71D48A0BD00B95DE5 /* ComplaintStateVO.h */,
+				5B197EF81D48A0BD00B95DE5 /* ComplaintStateVO.m */,
+				5B197EFA1D48A32E00B95DE5 /* ComplaintTypeVO.h */,
+				5B197EFB1D48A32E00B95DE5 /* ComplaintTypeVO.m */,
+				5B197EFD1D48A47800B95DE5 /* ComplaintVO.h */,
+				5B197EFE1D48A47800B95DE5 /* ComplaintVO.m */,
+				5B197F001D48A86E00B95DE5 /* NoteVO.h */,
+				5B197F011D48A86E00B95DE5 /* NoteVO.m */,
+				5B197F031D48A9E600B95DE5 /* MerchantTypeVO.h */,
+				5B197F041D48A9E600B95DE5 /* MerchantTypeVO.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -574,8 +609,10 @@
 				5B2572211D47177B00CB4167 /* SDWebImageDownloaderOperation.m in Sources */,
 				5B2572231D47177B00CB4167 /* SDWebImagePrefetcher.m in Sources */,
 				5B2571851D47110B00CB4167 /* UIImage+ScreenShot.m in Sources */,
+				5B197EFF1D48A47800B95DE5 /* ComplaintVO.m in Sources */,
 				5B2571791D47110B00CB4167 /* Foundation+Log.m in Sources */,
 				5B25717C1D47110B00CB4167 /* NSDate+Helper.m in Sources */,
+				5B197EF91D48A0BD00B95DE5 /* ComplaintStateVO.m in Sources */,
 				5B2572261D47177B00CB4167 /* UIImage+MultiFormat.m in Sources */,
 				5B25718B1D47120700CB4167 /* MainVC.m in Sources */,
 				5B2571841D47110B00CB4167 /* UIImage+Extension.m in Sources */,
@@ -587,11 +624,15 @@
 				5B197EEB1D487DAC00B95DE5 /* MASViewAttribute.m in Sources */,
 				5B2571831D47110B00CB4167 /* UIFont+Extension.m in Sources */,
 				5B25717E1D47110B00CB4167 /* NSString+BXExtension.m in Sources */,
+				5B197F021D48A86E00B95DE5 /* NoteVO.m in Sources */,
+				5B197F051D48A9E600B95DE5 /* MerchantTypeVO.m in Sources */,
 				5B197EED1D487DAC00B95DE5 /* NSArray+MASAdditions.m in Sources */,
 				5B2571E21D4716EE00CB4167 /* AFURLRequestSerialization.m in Sources */,
 				5B2571E41D4716EE00CB4167 /* AFURLSessionManager.m in Sources */,
 				5B25721D1D47177B00CB4167 /* SDImageCache.m in Sources */,
 				5B2571E31D4716EE00CB4167 /* AFURLResponseSerialization.m in Sources */,
+				5B197EFC1D48A32E00B95DE5 /* ComplaintTypeVO.m in Sources */,
+				5B197EF61D4894D100B95DE5 /* FeedBackVO.m in Sources */,
 				5B197ECA1D48779B00B95DE5 /* PointHistoryVO.m in Sources */,
 				5B2572771D4762CB00CB4167 /* HouseVO.m in Sources */,
 				5B2572221D47177B00CB4167 /* SDWebImageManager.m in Sources */,
@@ -615,6 +656,7 @@
 				5B25721C1D47177B00CB4167 /* NSData+ImageContentType.m in Sources */,
 				5B197EF01D487DAC00B95DE5 /* ViewController+MASAdditions.m in Sources */,
 				5B2572741D47545400CB4167 /* UserVO.m in Sources */,
+				5B197EF31D48924300B95DE5 /* FeedBackTypeVO.m in Sources */,
 				5B2571871D47110B00CB4167 /* UIScreen+Extension.m in Sources */,
 				5B2572621D47378300CB4167 /* UDManager.m in Sources */,
 			);

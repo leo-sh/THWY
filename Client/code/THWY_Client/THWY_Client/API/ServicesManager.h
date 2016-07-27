@@ -11,6 +11,13 @@
 #import "UDManager.h"
 #import "UserVO.h"
 #import "PointHistoryVO.h"
+#import "FeedBackTypeVO.h"
+#import "FeedBackVO.h"
+#import "ComplaintStateVO.h"
+#import "ComplaintTypeVO.h"
+#import "ComplaintVO.h"
+#import "NoteVO.h"
+#import "MerchantTypeVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -86,8 +93,94 @@
  */
 -(void)getUserPointsHistory:(int)pageNum onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
-#pragma mark 其他API
+#pragma mark 反馈相关API
+/**
+ *  获取反馈类型
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getFeedBackTypes:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
+/**
+ *  获取反馈列表
+ *
+ *  @param type       反馈类型
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getFeedBackList:(int)type onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  添加反馈
+ *
+ *  @param type       反馈类型
+ *  @param content    反馈内容
+ *  @param onComplete 反馈完成回调block
+ */
+-(void)addFeedBack:(int)type content:(NSString *)content onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+#pragma mark 投诉相关API
+/**
+ *  获取投诉状态
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getComplaintStates:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取投诉类型
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getComplaintTypes:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取投诉列表
+ *
+ *  @param page       页数
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getComplaints:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取单个投诉
+ *
+ *  @param complaintId 投诉Id
+ *  @param onComplete  获取完成回调block
+ */
+-(void)getAComplaint:(NSString *)complaintId onComplete:(void (^)(NSString *errorMsg,ComplaintVO *complaint))onComplete;
+
+/**
+ *  添加投诉
+ *
+ *  @param complaint  投诉实例对象
+ *  @param onComplete 添加完成回调block
+ */
+-(void)addComplaint:(ComplaintVO *)complaint onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+#pragma mark 业主公告相关API
+/**
+ *  获取业主公告
+ *
+ *  @param page       页数
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getNotes:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取一条公告
+ *
+ *  @param noteId     公告Id
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getANote:(NSString *)noteId onComplete:(void (^)(NSString *errorMsg,NoteVO *complaint))onComplete;
+
+#pragma mark -商家相关API
+/**
+ *  获取商家类型
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getMerchantTypes:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;
