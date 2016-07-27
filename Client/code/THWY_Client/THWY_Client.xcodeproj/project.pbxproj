@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B197EC11D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B197EBF1D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a */; };
 		5B2571571D4710C100CB4167 /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2571561D4710C100CB4167 /* MainNavigationViewController.m */; };
 		5B2571791D47110B00CB4167 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25715A1D47110B00CB4167 /* Foundation+Log.m */; };
 		5B25717A1D47110B00CB4167 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25715C1D47110B00CB4167 /* NSArray+Extension.m */; };
@@ -59,6 +60,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B197EBF1D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.3.0.a; sourceTree = "<group>"; };
+		5B197EC01D48527600B95DE5 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		5B25714A1D470E6800CB4167 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		5B2571551D4710C100CB4167 /* MainNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationViewController.h; sourceTree = "<group>"; };
 		5B2571561D4710C100CB4167 /* MainNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationViewController.m; sourceTree = "<group>"; };
@@ -166,12 +169,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B197EC11D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B197EBE1D48527600B95DE5 /* UMessage_Sdk_1.3.0 */ = {
+			isa = PBXGroup;
+			children = (
+				5B197EBF1D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a */,
+				5B197EC01D48527600B95DE5 /* UMessage.h */,
+			);
+			path = UMessage_Sdk_1.3.0;
+			sourceTree = "<group>";
+		};
 		5B25714B1D47103100CB4167 /* MainController */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +294,7 @@
 		5B2571CF1D47169600CB4167 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				5B197EBE1D48527600B95DE5 /* UMessage_Sdk_1.3.0 */,
 				5B2571F91D47177B00CB4167 /* SDWebImage */,
 				5B2571D11D4716EE00CB4167 /* AFNetworking */,
 			);
@@ -422,6 +436,14 @@
 					5BFFCE141D41B9A30066B1B9 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = XFDA7223K5;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -617,6 +639,10 @@
 				INFOPLIST_FILE = THWY_Client/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/THWY_Client/UMessage_Sdk_1.3.0",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.YTWY.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -634,6 +660,10 @@
 				INFOPLIST_FILE = THWY_Client/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/THWY_Client/UMessage_Sdk_1.3.0",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.YTWY.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
