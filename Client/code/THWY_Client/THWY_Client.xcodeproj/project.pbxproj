@@ -613,7 +613,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/Mr.S/THWY/Client/code/THWY_Client/THWY_Client/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/THWY_Client/PrefixHeader.pch";
 				INFOPLIST_FILE = THWY_Client/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -630,7 +630,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/Mr.S/THWY/Client/code/THWY_Client/THWY_Client/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/THWY_Client/PrefixHeader.pch";
 				INFOPLIST_FILE = THWY_Client/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
