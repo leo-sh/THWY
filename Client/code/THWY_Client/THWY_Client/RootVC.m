@@ -7,7 +7,7 @@
 //
 
 #import "RootVC.h"
-
+#import "LoginViewController.h"
 @interface RootVC ()
 
 @end
@@ -27,6 +27,8 @@
     // Do any additional setup after loading the view.
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
+    LoginViewController *presentView = [[LoginViewController alloc]init];
+    [self presentViewController:presentView animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
