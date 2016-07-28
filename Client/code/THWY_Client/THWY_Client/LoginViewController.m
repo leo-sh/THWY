@@ -11,6 +11,8 @@
 #import "UIView+Extension.h"
 #import "userAndPassWordTextField.h"
 #import "BlueCheckButton.h"
+#import "ServicesManager.h"
+#import "MainVC.h"
 @interface LoginViewController ()
 @property UIImageView *LogoView;
 @property userAndPassWordTextField *userTF;
@@ -78,8 +80,13 @@
     
     [self.userTF setLeftIcon:@"账号" placeholder:@"请输入账号" backgroundColor:[UIColor whiteColor]];
     
+    self.userTF.text = [[UDManager getUD]getUserName];
+    
+    NSLog(@"%@",[[UDManager getUD]getUserName]);
+    NSLog(@"%@",[[UDManager getUD]getPassWord]);
+    
     self.passWordTF =[[userAndPassWordTextField alloc]init];
-
+    [self.passWordTF setSecureTextEntry:YES];
     [self.view addSubview:self.passWordTF];
     
     CGFloat passWordTFTop = self.view.height * 0.001;
@@ -93,11 +100,15 @@
     
     [self.passWordTF setLeftIcon:@"密码" placeholder:@"请输入密码" backgroundColor:[UIColor whiteColor]];
     
+    self.passWordTF.text = [[UDManager getUD]getPassWord];
+
+    
 }
 
 - (void)createButton
 {
     self.rememberPassWordBtn = [[BlueCheckButton alloc]initDefaultImageName:@"框不带勾" choosedImageName:@"框带勾" title:@"忘记密码"];
+    
     [self.view addSubview:self.rememberPassWordBtn];
 
     CGFloat rememberPassWordBtnLeft = self.view.width *0.056;
@@ -170,6 +181,7 @@
 - (void)clickAdminLoginBtn
 {
     [self.adminLoginBtn click];
+    
 }
 
 - (void)clickRememberPassWordBtn
@@ -178,7 +190,28 @@
 }
 - (void)login
 {
-    NSLog(@"登录");
+    [[ServicesManager getAPI] login:self.userTF.text password:self.passWordTF.text onComplete:^(NSString *errorMsg, UserVO *user) {
+        NSLog(@"%@",user);
+        if (errorMsg) {
+            NSLog(@"%@",errorMsg);
+        }
+        else if (user) {
+            [[UDManager getUD] saveUser:user];
+            
+            [[UDManager getUD]saveUserName:self.userTF.text];
+            
+                if (self.rememberPassWordBtn.chooseStatu) {
+                    [[UDManager getUD]saveUserPassWord:self.passWordTF.text];
+                }
+            NSLog(@"%@",self.userTF.text);
+            NSLog(@"%@",self.passWordTF.text);
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        
+    }];
+    
+    NSLog(@"%@",[[UDManager getUD]getUserName]);
+    NSLog(@"%@",[[UDManager getUD]getPassWord]);
 }
 
 - (void)didReceiveMemoryWarning {

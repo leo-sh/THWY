@@ -10,7 +10,6 @@
 @interface BlueCheckButton ()
 @property UIImage *defualtImage;
 @property UIImage *choosedImage;
-@property BOOL chooseStatu;
 @end
 @implementation BlueCheckButton
 
@@ -59,6 +58,7 @@
 
 - (void)click
 {
+
     if (!self.chooseStatu) {
         [self setImage:self.choosedImage forState:UIControlStateNormal];
     }
