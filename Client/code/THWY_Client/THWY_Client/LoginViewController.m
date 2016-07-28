@@ -18,7 +18,7 @@
 @property userAndPassWordTextField *userTF;
 @property userAndPassWordTextField *passWordTF;
 @property BlueCheckButton *rememberPassWordBtn;
-@property BlueCheckButton *adminLoginBtn;
+@property BlueCheckButton *findPsdBtn;
 
 @end
 
@@ -128,24 +128,24 @@
     
     [self.rememberPassWordBtn addTarget:self action:@selector(clickRememberPassWordBtn) forControlEvents:UIControlEventTouchUpInside];
     
-    self.adminLoginBtn = [[BlueCheckButton alloc]initDefaultImageName:@"框不带勾" choosedImageName:@"框带勾" title:@"管理员登录"];
-    [self.view addSubview:self.adminLoginBtn];
+    self.findPsdBtn = [[BlueCheckButton alloc]initDefaultImageName:@"" choosedImageName:@"" title:@"密码找回"];
+    [self.view addSubview:self.findPsdBtn];
     
-    CGFloat adminLoginBtnRightOffset = -self.view.width *0.016;
-    CGFloat adminLoginBtnWidth = self.view.width *0.26;
+    CGFloat adminLoginBtnRightOffset = -self.view.width *0.036;
+    CGFloat adminLoginBtnWidth = self.view.width *0.2;
     CGFloat adminLoginBtnHeight = self.view.height *0.02;
     
-    [self.adminLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.findPsdBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.view.mas_right).with.offset(adminLoginBtnRightOffset);
         make.top.equalTo(self.passWordTF.mas_bottom).with.offset(topOffset);
         make.width.mas_equalTo(adminLoginBtnWidth);
         make.height.mas_equalTo(adminLoginBtnHeight);
     }];
     
-    self.adminLoginBtn.titleLabel.font = [UIFont systemFontOfSize:adminLoginBtnHeight];
+    self.findPsdBtn.titleLabel.font = [UIFont systemFontOfSize:adminLoginBtnHeight];
     
     
-    [self.adminLoginBtn addTarget:self action:@selector(clickAdminLoginBtn) forControlEvents:UIControlEventTouchUpInside];
+    [self.findPsdBtn addTarget:self action:@selector(clickAdminLoginBtn) forControlEvents:UIControlEventTouchUpInside];
     
     
     UIButton *LoginBtn = [[UIButton alloc]init];
@@ -180,8 +180,7 @@
 
 - (void)clickAdminLoginBtn
 {
-    [self.adminLoginBtn click];
-    
+    NSLog(@"密码找回");
 }
 
 - (void)clickRememberPassWordBtn

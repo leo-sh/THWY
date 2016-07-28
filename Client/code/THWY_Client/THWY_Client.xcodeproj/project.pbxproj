@@ -12,6 +12,7 @@
 		1E42BB581D4994E30021DA01 /* BlueCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E42BB571D4994E30021DA01 /* BlueCheckButton.m */; };
 		1E42BB591D49C3670021DA01 /* ServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25725E1D47376E00CB4167 /* ServicesManager.m */; };
 		1E42BB5B1D49C4B90021DA01 /* ComplaintStateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E42BB5A1D49C4B90021DA01 /* ComplaintStateVO.m */; };
+		1E42BB641D49E4240021DA01 /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E42BB631D49E4240021DA01 /* PersonInfoViewController.m */; };
 		5B197EC11D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B197EBF1D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a */; };
 		5B197ECA1D48779B00B95DE5 /* PointHistoryVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EC91D48779B00B95DE5 /* PointHistoryVO.m */; };
 		5B197EE61D487DAC00B95DE5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B197ECC1D487DAC00B95DE5 /* Info.plist */; };
@@ -97,6 +98,8 @@
 		1E42BB561D4994E30021DA01 /* BlueCheckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCheckButton.h; sourceTree = "<group>"; };
 		1E42BB571D4994E30021DA01 /* BlueCheckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCheckButton.m; sourceTree = "<group>"; };
 		1E42BB5A1D49C4B90021DA01 /* ComplaintStateVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ComplaintStateVO.m; path = THWY_Client/ComplaintStateVO.m; sourceTree = "<group>"; };
+		1E42BB621D49E4240021DA01 /* PersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoViewController.h; sourceTree = "<group>"; };
+		1E42BB631D49E4240021DA01 /* PersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoViewController.m; sourceTree = "<group>"; };
 		5B197EBF1D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.3.0.a; sourceTree = "<group>"; };
 		5B197EC01D48527600B95DE5 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		5B197EC81D48779B00B95DE5 /* PointHistoryVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointHistoryVO.h; sourceTree = "<group>"; };
@@ -271,13 +274,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1E42BB5C1D49DD3F0021DA01 /* loginViewController */ = {
+		1E42BB5C1D49DD3F0021DA01 /* loginView */ = {
 			isa = PBXGroup;
 			children = (
 				1E42BB5E1D49DD820021DA01 /* View */,
 				1E42BB5D1D49DD7A0021DA01 /* Controller */,
 			);
-			name = loginViewController;
+			name = loginView;
 			sourceTree = "<group>";
 		};
 		1E42BB5D1D49DD7A0021DA01 /* Controller */ = {
@@ -296,6 +299,31 @@
 				1E42BB541D498DEE0021DA01 /* userAndPassWordTextField.m */,
 				1E42BB561D4994E30021DA01 /* BlueCheckButton.h */,
 				1E42BB571D4994E30021DA01 /* BlueCheckButton.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1E42BB5F1D49E3D80021DA01 /* PersonInfo */ = {
+			isa = PBXGroup;
+			children = (
+				1E42BB611D49E4030021DA01 /* View */,
+				1E42BB601D49E3FA0021DA01 /* Controller */,
+			);
+			name = PersonInfo;
+			sourceTree = "<group>";
+		};
+		1E42BB601D49E3FA0021DA01 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1E42BB621D49E4240021DA01 /* PersonInfoViewController.h */,
+				1E42BB631D49E4240021DA01 /* PersonInfoViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		1E42BB611D49E4030021DA01 /* View */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -437,7 +465,8 @@
 		5B2571541D4710AD00CB4167 /* OtherController */ = {
 			isa = PBXGroup;
 			children = (
-				1E42BB5C1D49DD3F0021DA01 /* loginViewController */,
+				1E42BB5F1D49E3D80021DA01 /* PersonInfo */,
+				1E42BB5C1D49DD3F0021DA01 /* loginView */,
 			);
 			name = OtherController;
 			sourceTree = "<group>";
@@ -718,6 +747,7 @@
 				5B2571E41D4716EE00CB4167 /* AFURLSessionManager.m in Sources */,
 				5B25721D1D47177B00CB4167 /* SDImageCache.m in Sources */,
 				5B2571E31D4716EE00CB4167 /* AFURLResponseSerialization.m in Sources */,
+				1E42BB641D49E4240021DA01 /* PersonInfoViewController.m in Sources */,
 				5B197EFC1D48A32E00B95DE5 /* ComplaintTypeVO.m in Sources */,
 				5B197EF61D4894D100B95DE5 /* FeedBackVO.m in Sources */,
 				5B197ECA1D48779B00B95DE5 /* PointHistoryVO.m in Sources */,
