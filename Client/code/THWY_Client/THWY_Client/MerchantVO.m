@@ -28,6 +28,8 @@
         self.ctime = JSON[@"ctime"];
         self.is_tuijian = JSON[@"is_tuijian"];
         self.business_type_name = JSON[@"business_type_name"];
+        
+        self.products = [[NSMutableArray alloc]init];
         for (NSDictionary* foodDic in JSON[@"products"][@"datas"]) {
             GoodVO* food = [[GoodVO alloc]initWithJSON:foodDic];
             [self.products addObject:food];

@@ -75,6 +75,10 @@
 		5B2572711D47475100CB4167 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572701D47475100CB4167 /* RootVC.m */; };
 		5B2572741D47545400CB4167 /* UserVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572731D47545400CB4167 /* UserVO.m */; };
 		5B2572771D4762CB00CB4167 /* HouseVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572761D4762CB00CB4167 /* HouseVO.m */; };
+		5BED6BBB1D49963000C137C5 /* FeeVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BBA1D49963000C137C5 /* FeeVO.m */; };
+		5BED6BBE1D49964800C137C5 /* FeeHistoryVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BBD1D49964800C137C5 /* FeeHistoryVO.m */; };
+		5BED6BC11D499DB900C137C5 /* EstateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BC01D499DB900C137C5 /* EstateVO.m */; };
+		5BED6BC41D49A53F00C137C5 /* RepairStatuVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BC31D49A53F00C137C5 /* RepairStatuVO.m */; };
 		5BFFCE1A1D41B9A30066B1B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE191D41B9A30066B1B9 /* main.m */; };
 		5BFFCE1D1D41B9A30066B1B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE1C1D41B9A30066B1B9 /* AppDelegate.m */; };
 		5BFFCE251D41B9A30066B1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE241D41B9A30066B1B9 /* Assets.xcassets */; };
@@ -225,6 +229,14 @@
 		5B2572731D47545400CB4167 /* UserVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVO.m; sourceTree = "<group>"; };
 		5B2572751D4762CB00CB4167 /* HouseVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseVO.h; sourceTree = "<group>"; };
 		5B2572761D4762CB00CB4167 /* HouseVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseVO.m; sourceTree = "<group>"; };
+		5BED6BB91D49963000C137C5 /* FeeVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeeVO.h; sourceTree = "<group>"; };
+		5BED6BBA1D49963000C137C5 /* FeeVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeeVO.m; sourceTree = "<group>"; };
+		5BED6BBC1D49964800C137C5 /* FeeHistoryVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeeHistoryVO.h; sourceTree = "<group>"; };
+		5BED6BBD1D49964800C137C5 /* FeeHistoryVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeeHistoryVO.m; sourceTree = "<group>"; };
+		5BED6BBF1D499DB900C137C5 /* EstateVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EstateVO.h; sourceTree = "<group>"; };
+		5BED6BC01D499DB900C137C5 /* EstateVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EstateVO.m; sourceTree = "<group>"; };
+		5BED6BC21D49A53F00C137C5 /* RepairStatuVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatuVO.h; sourceTree = "<group>"; };
+		5BED6BC31D49A53F00C137C5 /* RepairStatuVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatuVO.m; sourceTree = "<group>"; };
 		5BFFCE151D41B9A30066B1B9 /* THWY_Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THWY_Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFFCE191D41B9A30066B1B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BFFCE1B1D41B9A30066B1B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -328,6 +340,14 @@
 				5B197F0A1D48AD2C00B95DE5 /* GoodVO.m */,
 				5B197F0C1D48B73E00B95DE5 /* AdVO.h */,
 				5B197F0D1D48B73E00B95DE5 /* AdVO.m */,
+				5BED6BB91D49963000C137C5 /* FeeVO.h */,
+				5BED6BBA1D49963000C137C5 /* FeeVO.m */,
+				5BED6BBC1D49964800C137C5 /* FeeHistoryVO.h */,
+				5BED6BBD1D49964800C137C5 /* FeeHistoryVO.m */,
+				5BED6BBF1D499DB900C137C5 /* EstateVO.h */,
+				5BED6BC01D499DB900C137C5 /* EstateVO.m */,
+				5BED6BC21D49A53F00C137C5 /* RepairStatuVO.h */,
+				5BED6BC31D49A53F00C137C5 /* RepairStatuVO.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -612,10 +632,12 @@
 				5B25722A1D47177B00CB4167 /* UIView+WebCacheOperation.m in Sources */,
 				5B2571861D47110B00CB4167 /* UILabel+Extension.m in Sources */,
 				5B2571801D47110B00CB4167 /* UIBarButtonItem+Extension.m in Sources */,
+				5BED6BBB1D49963000C137C5 /* FeeVO.m in Sources */,
 				5B2572711D47475100CB4167 /* RootVC.m in Sources */,
 				5B25725F1D47376E00CB4167 /* ServicesManager.m in Sources */,
 				5B25717B1D47110B00CB4167 /* NSDate+Extension.m in Sources */,
 				5B25717A1D47110B00CB4167 /* NSArray+Extension.m in Sources */,
+				5BED6BBE1D49964800C137C5 /* FeeHistoryVO.m in Sources */,
 				5B2571E11D4716EE00CB4167 /* AFSecurityPolicy.m in Sources */,
 				5B25717D1D47110B00CB4167 /* NSDictionary+Extension.m in Sources */,
 				5B197EEC1D487DAC00B95DE5 /* MASViewConstraint.m in Sources */,
@@ -623,6 +645,7 @@
 				5B197EE71D487DAC00B95DE5 /* MASCompositeConstraint.m in Sources */,
 				5B2572211D47177B00CB4167 /* SDWebImageDownloaderOperation.m in Sources */,
 				5B2572231D47177B00CB4167 /* SDWebImagePrefetcher.m in Sources */,
+				5BED6BC11D499DB900C137C5 /* EstateVO.m in Sources */,
 				5B2571851D47110B00CB4167 /* UIImage+ScreenShot.m in Sources */,
 				5B197EFF1D48A47800B95DE5 /* ComplaintVO.m in Sources */,
 				5B2571791D47110B00CB4167 /* Foundation+Log.m in Sources */,
@@ -633,6 +656,7 @@
 				5B25718B1D47120700CB4167 /* MainVC.m in Sources */,
 				5B2571841D47110B00CB4167 /* UIImage+Extension.m in Sources */,
 				5B2572241D47177B00CB4167 /* UIButton+WebCache.m in Sources */,
+				5BED6BC41D49A53F00C137C5 /* RepairStatuVO.m in Sources */,
 				5B2572251D47177B00CB4167 /* UIImage+GIF.m in Sources */,
 				5B2571881D47110B00CB4167 /* UIView+Extension.m in Sources */,
 				5B197EEE1D487DAC00B95DE5 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
