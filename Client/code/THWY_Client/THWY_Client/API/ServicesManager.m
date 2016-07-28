@@ -111,6 +111,12 @@
     }];
 }
 
+-(void)logOut:(void (^)())onComplete
+{
+    [[UDManager getUD] removeUDUser];
+    onComplete();
+}
+
 -(void)getUserInfoOnComplete:(void (^)(NSString *errorMsg,UserVO *user))onComplete
 {
     AFHTTPSessionManager *manager = [self getManager];

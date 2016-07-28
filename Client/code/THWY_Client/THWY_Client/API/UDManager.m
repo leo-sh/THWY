@@ -71,8 +71,6 @@
 {
     user = nil;
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    [ud removeObjectForKey:USER_NAME];
-    [ud removeObjectForKey:USER_PASSWORD];
     [ud removeObjectForKey:THWY_USER];
     [ud synchronize];
 }

@@ -41,6 +41,8 @@
  */
 -(BOOL)isLogin;
 
+-(void)logOut:(void (^)())onComplete;
+
 #pragma mark 用户相关API
 /**
  *  登陆
