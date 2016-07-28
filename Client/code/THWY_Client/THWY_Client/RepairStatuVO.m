@@ -13,8 +13,13 @@
 -(RepairStatuVO* )initWithJSON:(NSDictionary *)JSON
 {
     if (self = [super init]) {
-        self.st_id = JSON[@"st_id"];
+        if (JSON[@"st_id"]) {
+            self.st_id = JSON[@"st_id"];
+        }else{
+            self.st_id = JSON[@"st"];
+        }
         self.st_name = JSON[@"st_name"];
+        self.ctime = JSON[@"ctime"];
     }
     
     return self;

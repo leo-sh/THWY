@@ -12,6 +12,7 @@
 
 @property (nonatomic , copy) NSString              * st_id;
 @property (nonatomic , copy) NSString              * st_name;
+@property (nonatomic , copy) NSString              * ctime;
 
 -(RepairStatuVO* )initWithJSON:(NSDictionary *)JSON;
 @end

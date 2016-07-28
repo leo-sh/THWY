@@ -79,6 +79,7 @@
 		5BED6BBE1D49964800C137C5 /* FeeHistoryVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BBD1D49964800C137C5 /* FeeHistoryVO.m */; };
 		5BED6BC11D499DB900C137C5 /* EstateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BC01D499DB900C137C5 /* EstateVO.m */; };
 		5BED6BC41D49A53F00C137C5 /* RepairStatuVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BC31D49A53F00C137C5 /* RepairStatuVO.m */; };
+		5BED6BC71D49AA7F00C137C5 /* RepairVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BC61D49AA7F00C137C5 /* RepairVO.m */; };
 		5BFFCE1A1D41B9A30066B1B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE191D41B9A30066B1B9 /* main.m */; };
 		5BFFCE1D1D41B9A30066B1B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE1C1D41B9A30066B1B9 /* AppDelegate.m */; };
 		5BFFCE251D41B9A30066B1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE241D41B9A30066B1B9 /* Assets.xcassets */; };
@@ -237,6 +238,8 @@
 		5BED6BC01D499DB900C137C5 /* EstateVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EstateVO.m; sourceTree = "<group>"; };
 		5BED6BC21D49A53F00C137C5 /* RepairStatuVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatuVO.h; sourceTree = "<group>"; };
 		5BED6BC31D49A53F00C137C5 /* RepairStatuVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatuVO.m; sourceTree = "<group>"; };
+		5BED6BC51D49AA7F00C137C5 /* RepairVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairVO.h; sourceTree = "<group>"; };
+		5BED6BC61D49AA7F00C137C5 /* RepairVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairVO.m; sourceTree = "<group>"; };
 		5BFFCE151D41B9A30066B1B9 /* THWY_Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THWY_Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFFCE191D41B9A30066B1B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BFFCE1B1D41B9A30066B1B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -348,6 +351,8 @@
 				5BED6BC01D499DB900C137C5 /* EstateVO.m */,
 				5BED6BC21D49A53F00C137C5 /* RepairStatuVO.h */,
 				5BED6BC31D49A53F00C137C5 /* RepairStatuVO.m */,
+				5BED6BC51D49AA7F00C137C5 /* RepairVO.h */,
+				5BED6BC61D49AA7F00C137C5 /* RepairVO.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -678,6 +683,7 @@
 				5B2572221D47177B00CB4167 /* SDWebImageManager.m in Sources */,
 				5B197EEA1D487DAC00B95DE5 /* MASLayoutConstraint.m in Sources */,
 				5B2572271D47177B00CB4167 /* UIImage+WebP.m in Sources */,
+				5BED6BC71D49AA7F00C137C5 /* RepairVO.m in Sources */,
 				5B197EEF1D487DAC00B95DE5 /* View+MASAdditions.m in Sources */,
 				5B2571E01D4716EE00CB4167 /* AFNetworkReachabilityManager.m in Sources */,
 				5B197EE81D487DAC00B95DE5 /* MASConstraint.m in Sources */,
