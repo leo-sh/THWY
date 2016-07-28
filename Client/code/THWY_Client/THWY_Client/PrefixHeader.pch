@@ -28,7 +28,8 @@
 
 //API
 #define My_ServicesManager [ServicesManager getAPI]
-#define API_HOST @"http://112.126.75.77:7976/index.php/api/owner/"
+//#define API_HOST @"http://112.126.75.77:7976/index.php/api/owner/"
+#define API_HOST @"http://112.126.75.77:6699/index.php/api/owner/"
 
 //弱引用
 #define My_WeakSelf __weak typeof(self) weakSelf = self;
