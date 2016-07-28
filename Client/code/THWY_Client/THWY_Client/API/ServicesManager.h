@@ -20,6 +20,9 @@
 #import "MerchantTypeVO.h"
 #import "MerchantVO.h"
 #import "AdVO.h"
+#import "FeeVO.h"
+#import "EstateVO.h"
+#import "RepairStatuVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -247,6 +250,68 @@
  *  @param onComplete 获取完成回调block
  */
 -(void)getRecommendAds:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+#pragma mark 台账相关API
+/**
+ *  获取缴费台账
+ *
+ *  @param page       页数
+ *  @param year       年份(不想传请填0)
+ *  @param state      缴费状态
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getFees:(int)page year:(int)year feeState:(FeeState)state onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取一个缴费台账
+ *
+ *  @param feeId      缴费台账ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getAFee:(NSString *)feeId onComplete:(void (^)(NSString *errorMsg,FeeVO *ad))onComplete;
+
+#pragma mark 楼盘相关API
+/**
+ *  获取所有楼盘
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getEstates:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  根据楼盘获取楼栋
+ *
+ *  @param estateId   楼盘ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getBlock:(NSString *)estateId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  根据楼盘、楼栋获取单元
+ *
+ *  @param estateId   楼盘ID
+ *  @param block      楼栋
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getUnit:(NSString *)estateId block:(NSString *)block onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  根据楼盘、楼栋、单元获取楼层
+ *
+ *  @param estateId   楼盘ID
+ *  @param block      楼栋
+ *  @param unit       单元
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getLayer:(NSString *)estateId block:(NSString *)block unit:(NSString *)unit onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+#pragma mark 保修相关API
+/**
+ *  获取保修状态
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getRepairStatus:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;
