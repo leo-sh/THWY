@@ -15,8 +15,10 @@
     if (self = [super init]) {
         if (JSON[@"st_id"]) {
             self.st_id = JSON[@"st_id"];
-        }else{
+        }else if(JSON[@"st"]){
             self.st_id = JSON[@"st"];
+        }else if(JSON[@"id"]){
+            self.st_id = JSON[@"id"];
         }
         self.st_name = JSON[@"st_name"];
         self.ctime = JSON[@"ctime"];

@@ -22,7 +22,7 @@
 #import "AdVO.h"
 #import "FeeVO.h"
 #import "EstateVO.h"
-#import "RepairStatuVO.h"
+#import "RepairVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -311,7 +311,31 @@
  *
  *  @param onComplete 获取完成回调block
  */
--(void)getRepairStatus:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+-(void)getRepairStatus:(RepairType)type onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取报修记录
+ *
+ *  @param page       页数
+ *  @param statuId    状态ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getRepairs:(RepairType)type page:(int)page repairStatu:(NSString *)statuId :(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取单个报修
+ *
+ *  @param repairId   报修ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getARepair:(RepairType)type repairId:(NSString *)repairId onComplete:(void (^)(NSString *errorMsg,RepairVO *list))onComplete;
+
+/**
+ *  获取报修类别
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getRepairClasses:(RepairType)type onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;

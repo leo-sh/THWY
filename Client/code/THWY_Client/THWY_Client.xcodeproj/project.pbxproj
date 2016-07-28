@@ -80,6 +80,7 @@
 		5BED6BC11D499DB900C137C5 /* EstateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BC01D499DB900C137C5 /* EstateVO.m */; };
 		5BED6BC41D49A53F00C137C5 /* RepairStatuVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BC31D49A53F00C137C5 /* RepairStatuVO.m */; };
 		5BED6BC71D49AA7F00C137C5 /* RepairVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BC61D49AA7F00C137C5 /* RepairVO.m */; };
+		5BED6BCA1D49CCC500C137C5 /* RepairClassVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BC91D49CCC500C137C5 /* RepairClassVO.m */; };
 		5BFFCE1A1D41B9A30066B1B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE191D41B9A30066B1B9 /* main.m */; };
 		5BFFCE1D1D41B9A30066B1B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE1C1D41B9A30066B1B9 /* AppDelegate.m */; };
 		5BFFCE251D41B9A30066B1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE241D41B9A30066B1B9 /* Assets.xcassets */; };
@@ -240,6 +241,8 @@
 		5BED6BC31D49A53F00C137C5 /* RepairStatuVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatuVO.m; sourceTree = "<group>"; };
 		5BED6BC51D49AA7F00C137C5 /* RepairVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairVO.h; sourceTree = "<group>"; };
 		5BED6BC61D49AA7F00C137C5 /* RepairVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairVO.m; sourceTree = "<group>"; };
+		5BED6BC81D49CCC500C137C5 /* RepairClassVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairClassVO.h; sourceTree = "<group>"; };
+		5BED6BC91D49CCC500C137C5 /* RepairClassVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairClassVO.m; sourceTree = "<group>"; };
 		5BFFCE151D41B9A30066B1B9 /* THWY_Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THWY_Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFFCE191D41B9A30066B1B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BFFCE1B1D41B9A30066B1B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -353,6 +356,8 @@
 				5BED6BC31D49A53F00C137C5 /* RepairStatuVO.m */,
 				5BED6BC51D49AA7F00C137C5 /* RepairVO.h */,
 				5BED6BC61D49AA7F00C137C5 /* RepairVO.m */,
+				5BED6BC81D49CCC500C137C5 /* RepairClassVO.h */,
+				5BED6BC91D49CCC500C137C5 /* RepairClassVO.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -706,6 +711,7 @@
 				5B2572741D47545400CB4167 /* UserVO.m in Sources */,
 				5B197EF31D48924300B95DE5 /* FeedBackTypeVO.m in Sources */,
 				5B2571871D47110B00CB4167 /* UIScreen+Extension.m in Sources */,
+				5BED6BCA1D49CCC500C137C5 /* RepairClassVO.m in Sources */,
 				5B2572621D47378300CB4167 /* UDManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -624,7 +624,7 @@
         dic[@"merchant_name_like"] = name;
     }
     
-    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager GET:urlString parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
@@ -815,7 +815,7 @@
         dic[@"st"] = [NSString stringWithFormat:@"%d",state];
     }
     
-    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager GET:urlString parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
@@ -971,10 +971,21 @@
     }];
 }
 
--(void)getRepairStatus:(void (^)(NSString *errorMsg,NSArray *list))onComplete
+-(void)getRepairStatus:(RepairType)type onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
     AFHTTPSessionManager *manager = [self getManager];
-    NSString *urlString = [NSString stringWithFormat:@"%@get_estates",API_HOST];
+    NSString *urlString = @"";
+    
+    if (type == Owner) {
+        urlString = [NSString stringWithFormat:@"%@get_estates",API_HOST];
+    }else if (type == Public){
+        urlString = [NSString stringWithFormat:@"%@get_public_repair_status",API_HOST];
+    }else{
+        onComplete(@"请填写type",nil);
+        NSLog(@"请填写type");
+        return;
+    }
+    
     NSDictionary *params = @{@"login_name":_userName,
                              @"login_password":_passWord};
     [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -997,6 +1008,124 @@
         onComplete(@"网络连接错误",nil);
     }];
 }
+
+-(void)getRepairs:(RepairType)type page:(int)page repairStatu:(NSString *)statuId :(void (^)(NSString *errorMsg,NSArray *list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = @"";
+    if (type == Owner) {
+        urlString = [NSString stringWithFormat:@"%@repairs",API_HOST];
+    }else if (type == Public){
+        urlString = [NSString stringWithFormat:@"%@public_repairs",API_HOST];
+    }else{
+        onComplete(@"请填写type",nil);
+        NSLog(@"请填写type");
+        return;
+    }
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"page":[NSString stringWithFormat:@"%d",page]};
+    NSMutableDictionary* dic = [[NSMutableDictionary alloc]initWithDictionary:params];
+    if (statuId.length > 0) {
+        dic[@"repair_status"] = statuId;
+    }
+    
+    [manager GET:urlString parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            for (NSDictionary* estateDic in responseObject[@"datas"][@"datas"]) {
+                RepairVO *estate = [[RepairVO alloc]initWithJSON:estateDic];
+                [listArr addObject:estate];
+            }
+            onComplete(nil,listArr);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)getARepair:(RepairType)type repairId:(NSString *)repairId onComplete:(void (^)(NSString *errorMsg,RepairVO *list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    
+    NSString *urlString = @"";
+    if (type == Owner) {
+        urlString = [NSString stringWithFormat:@"%@repair",API_HOST];
+    }else if (type == Public){
+        urlString = [NSString stringWithFormat:@"%@public_repair",API_HOST];
+    }else{
+        onComplete(@"请填写type",nil);
+        NSLog(@"请填写type");
+        return;
+    }
+    
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"id":repairId};
+    
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            RepairVO *estate = [[RepairVO alloc]initWithJSON:responseObject[@"datas"]];
+            onComplete(nil,estate);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)getRepairClasses:(RepairType)type onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = @"";
+    if (type == Owner) {
+        urlString = [NSString stringWithFormat:@"%@get_repair_cls",API_HOST];
+    }else if (type == Public){
+        urlString = [NSString stringWithFormat:@"%@get_public_repair_cls",API_HOST];
+    }else{
+        onComplete(@"请填写type",nil);
+        NSLog(@"请填写type");
+        return;
+    }
+    
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord};
+    
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                RepairClassVO *estate = [[RepairClassVO alloc]initWithJSON:estateDic];
+                [listArr addObject:estate];
+            }
+            onComplete(nil,listArr);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+
 
 #pragma mark 环境参数判定函数
 -(BOOL)isLogin{
