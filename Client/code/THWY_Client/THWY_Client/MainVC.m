@@ -10,6 +10,8 @@
 #import "Masonry/Masonry.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UserVO.h"
+#import "UDManager.h"
+#import "DTKDropdownMenuView.h"
 
 @interface MainVC ()
 
@@ -26,6 +28,8 @@
     [self initNVBar];
     [self initUserInfoView];
     [self initModuleViews];
+    [self initDownMenu];
+    
 }
 
 - (void)initNVBar{
@@ -34,12 +38,55 @@
     
 }
 
+#pragma mark - drownMenu
+- (void)initDownMenu{
+    UIButton *button = [[UIButton alloc] init];
+    button.tag = 0;
+    DTKDropdownItem *item0 = [DTKDropdownItem itemWithTitle:@"我要报修" callBack:^(NSUInteger index, id info) {
+        button.tag = 101;
+        [self showVC:button];
+    }];
+    item0.iconName = @"1";
+    DTKDropdownItem *item1 = [DTKDropdownItem itemWithTitle:@"我要投诉" callBack:^(NSUInteger index, id info) {
+        button.tag = 105;
+        [self showVC:button];
+    }];
+    item1.iconName = @"2";
+    DTKDropdownItem *item2 = [DTKDropdownItem itemWithTitle:@"业务公告" callBack:^(NSUInteger index, id info) {
+        button.tag = 108;
+        [self showVC:button];
+    }];
+    item2.iconName = @"3";
+    DTKDropdownItem *item3 = [DTKDropdownItem itemWithTitle:@"推送设置" callBack:^(NSUInteger index, id info) {
+        button.tag = 109;
+        [self showVC:button];
+    }];
+    item3.iconName = @"4";
+    DTKDropdownItem *item4 = [DTKDropdownItem itemWithTitle:@"技术支持" callBack:^(NSUInteger index, id info) {
+        button.tag = 110;
+        [self showVC:button];
+    }];
+    item4.iconName = @"5";
+    DTKDropdownMenuView *menuView = [DTKDropdownMenuView dropdownMenuViewWithType:dropDownTypeLeftItem frame:CGRectMake(0, 0, 44.f, 44.f) dropdownItems:@[item0,item1,item2,item3,item4] icon:@"menu"];
+    
+    menuView.dropWidth = 130.f;
+//    menuView.titleFont = [UIFont systemFontOfSize:18.f];
+    menuView.textColor = [UIColor whiteColor];
+    menuView.textFont = [UIFont systemFontOfSize:13.f];
+    menuView.cellSeparatorColor = My_Color(229.f, 229.f, 229.f);
+    menuView.animationDuration = 0.3f;
+    menuView.cellColor = My_NAV_BG_Color;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:menuView];
+
+}
+
+#pragma mark - UserInfo
 //用户信息
 - (void)initUserInfoView{
     
     self.userInfoView = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, My_ScreenW, 1/4.0 * (My_ScreenH-64) - 20)];
     [self.userInfoView setBackgroundImage:[UIImage imageNamed:@"beijing"] forState:UIControlStateNormal];
-    
+    [self.userInfoView addTarget:self action:@selector(showUserInfoVC) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *headImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
     headImage.image = [UIImage imageNamed:@"头像1"];
     headImage.userInteractionEnabled = YES;
@@ -90,7 +137,7 @@
     }];
     
     [self.view addSubview:self.userInfoView];
-    UserVO *user = [UserVO fromCodingObject];
+    UserVO *user = [[UDManager getUD] getUser];
     if (user) {
         [headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
         username.text = user.real_name;
@@ -98,9 +145,10 @@
     }
 }
 
-//各模块控件
+#pragma mark - 各模块控件
 - (void)initModuleViews{
     UIButton *woyaobaoxiu = [[UIButton alloc] init];
+    woyaobaoxiu.tag = 101;
     [woyaobaoxiu setBackgroundImage:[UIImage imageNamed:@"我要保修"] forState:UIControlStateNormal];
     [self.view addSubview:woyaobaoxiu];
     [woyaobaoxiu mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -110,6 +158,7 @@
     }];
     
     UIButton *baoxiujilu = [[UIButton alloc] init];
+    baoxiujilu.tag = 102;
     [baoxiujilu setBackgroundImage:[UIImage imageNamed:@"保修记录"] forState:UIControlStateNormal];
     [self.view addSubview:baoxiujilu];
     [baoxiujilu mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -119,6 +168,7 @@
     }];
     
     UIButton *shequshangquan = [[UIButton alloc] init];
+    shequshangquan.tag = 103;
     [shequshangquan setBackgroundImage:[UIImage imageNamed:@"社区商圈"] forState:UIControlStateNormal];
     [self.view addSubview:shequshangquan];
     [shequshangquan mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -129,6 +179,7 @@
     }];
     
     UIButton *jiaofeitaizhang = [[UIButton alloc] init];
+    jiaofeitaizhang.tag = 104;
     [jiaofeitaizhang setBackgroundImage:[UIImage imageNamed:@"缴费台账"] forState:UIControlStateNormal];
     [self.view addSubview:jiaofeitaizhang];
     [jiaofeitaizhang mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -138,6 +189,7 @@
     }];
     
     UIButton *woyaotousu = [[UIButton alloc] init];
+    woyaotousu.tag = 105;
     [woyaotousu setBackgroundImage:[UIImage imageNamed:@"我要投诉"] forState:UIControlStateNormal];
     [self.view addSubview:woyaotousu];
     [woyaotousu mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -148,6 +200,7 @@
     }];
     
     UIButton *zhanghaoxinxi = [[UIButton alloc] init];
+    zhanghaoxinxi.tag = 106;
     [zhanghaoxinxi setBackgroundImage:[UIImage imageNamed:@"账号信息"] forState:UIControlStateNormal];
     [self.view addSubview:zhanghaoxinxi];
     [zhanghaoxinxi mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -157,6 +210,7 @@
     }];
     
     UIButton *jianyiyijian = [[UIButton alloc] init];
+    jianyiyijian.tag = 107;
     [jianyiyijian setBackgroundImage:[UIImage imageNamed:@"建议意见"] forState:UIControlStateNormal];
     [self.view addSubview:jianyiyijian];
     [jianyiyijian mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -166,6 +220,7 @@
     }];
     
     UIButton *yezhugonggao = [[UIButton alloc] init];
+    yezhugonggao.tag = 108;
     [yezhugonggao setBackgroundImage:[UIImage imageNamed:@"业主公告"] forState:UIControlStateNormal];
     [self.view addSubview:yezhugonggao];
     [yezhugonggao mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -174,21 +229,39 @@
         make.width.and.height.mas_equalTo(jiaofeitaizhang);
     }];
     
+    NSArray *buttons = @[woyaobaoxiu, baoxiujilu, shequshangquan, jiaofeitaizhang, woyaotousu, zhanghaoxinxi, jianyiyijian, yezhugonggao];
+    for (UIButton *button in buttons) {
+        [button addTarget:self action:@selector(showVC:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+}
+//pushVC
+- (void)showVC:(UIButton *)button{
+
+    NSArray *VCNames = @[@"WantRepairesVC",//我要报修
+                         @"RepairRecordsVC",//报修记录
+                         @"BussnessCircleVC",//社区商圈
+                         @"",//缴费台账
+                         @"",//我要投诉
+                         @"",//账号信息
+                         @"",//建议意见
+                         @"",//业主和公告
+                         @"PushSettingVC",//推送设置
+                         @"TechSupportVC"];//技术支持
+    id vc = [[NSClassFromString(VCNames[button.tag-101]) alloc]init];
+    [self.navigationController pushViewController:(UIViewController *)vc animated:YES];
 }
 
+- (void)showUserInfoVC{
+    UIButton *button = [[UIButton alloc] init];
+    button.tag = 106;
+    [self showVC:button];
+}
+
+#pragma  mark - MemoryWarning
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

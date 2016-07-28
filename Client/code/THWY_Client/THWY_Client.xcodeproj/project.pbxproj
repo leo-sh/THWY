@@ -85,6 +85,13 @@
 		5BFFCE1D1D41B9A30066B1B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE1C1D41B9A30066B1B9 /* AppDelegate.m */; };
 		5BFFCE251D41B9A30066B1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE241D41B9A30066B1B9 /* Assets.xcassets */; };
 		5BFFCE281D41B9A30066B1B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE261D41B9A30066B1B9 /* LaunchScreen.storyboard */; };
+		794E73D91D4A3A5100267C84 /* WantRepairesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73D81D4A3A5100267C84 /* WantRepairesVC.m */; };
+		794E73DC1D4A3A8800267C84 /* RepairRecordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73DB1D4A3A8800267C84 /* RepairRecordsVC.m */; };
+		794E73DF1D4A3AB700267C84 /* BussnessCircleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73DE1D4A3AB700267C84 /* BussnessCircleVC.m */; };
+		794E73E41D4A454700267C84 /* DTKDropdownMenuView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 794E73E11D4A454700267C84 /* DTKDropdownMenuView.bundle */; };
+		794E73E51D4A454700267C84 /* DTKDropdownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E31D4A454700267C84 /* DTKDropdownMenuView.m */; };
+		794E73E81D4A4F3E00267C84 /* PushSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E71D4A4F3E00267C84 /* PushSettingVC.m */; };
+		794E73EB1D4A4F6200267C84 /* TechSupportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73EA1D4A4F6200267C84 /* TechSupportVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -250,6 +257,19 @@
 		5BFFCE241D41B9A30066B1B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BFFCE271D41B9A30066B1B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BFFCE291D41B9A30066B1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		794E73D71D4A3A5100267C84 /* WantRepairesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairesVC.h; sourceTree = "<group>"; };
+		794E73D81D4A3A5100267C84 /* WantRepairesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantRepairesVC.m; sourceTree = "<group>"; };
+		794E73DA1D4A3A8800267C84 /* RepairRecordsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairRecordsVC.h; sourceTree = "<group>"; };
+		794E73DB1D4A3A8800267C84 /* RepairRecordsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairRecordsVC.m; sourceTree = "<group>"; };
+		794E73DD1D4A3AB700267C84 /* BussnessCircleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BussnessCircleVC.h; sourceTree = "<group>"; };
+		794E73DE1D4A3AB700267C84 /* BussnessCircleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BussnessCircleVC.m; sourceTree = "<group>"; };
+		794E73E11D4A454700267C84 /* DTKDropdownMenuView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DTKDropdownMenuView.bundle; sourceTree = "<group>"; };
+		794E73E21D4A454700267C84 /* DTKDropdownMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTKDropdownMenuView.h; sourceTree = "<group>"; };
+		794E73E31D4A454700267C84 /* DTKDropdownMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTKDropdownMenuView.m; sourceTree = "<group>"; };
+		794E73E61D4A4F3E00267C84 /* PushSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushSettingVC.h; sourceTree = "<group>"; };
+		794E73E71D4A4F3E00267C84 /* PushSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushSettingVC.m; sourceTree = "<group>"; };
+		794E73E91D4A4F6200267C84 /* TechSupportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TechSupportVC.h; sourceTree = "<group>"; };
+		794E73EA1D4A4F6200267C84 /* TechSupportVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TechSupportVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,6 +416,16 @@
 			children = (
 				5B2571891D47120700CB4167 /* MainVC.h */,
 				5B25718A1D47120700CB4167 /* MainVC.m */,
+				794E73D71D4A3A5100267C84 /* WantRepairesVC.h */,
+				794E73D81D4A3A5100267C84 /* WantRepairesVC.m */,
+				794E73DA1D4A3A8800267C84 /* RepairRecordsVC.h */,
+				794E73DB1D4A3A8800267C84 /* RepairRecordsVC.m */,
+				794E73DD1D4A3AB700267C84 /* BussnessCircleVC.h */,
+				794E73DE1D4A3AB700267C84 /* BussnessCircleVC.m */,
+				794E73E61D4A4F3E00267C84 /* PushSettingVC.h */,
+				794E73E71D4A4F3E00267C84 /* PushSettingVC.m */,
+				794E73E91D4A4F6200267C84 /* TechSupportVC.h */,
+				794E73EA1D4A4F6200267C84 /* TechSupportVC.m */,
 			);
 			name = ChildController;
 			sourceTree = "<group>";
@@ -449,6 +479,7 @@
 		5B2571CF1D47169600CB4167 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				794E73E01D4A454700267C84 /* DTKDropdownMenuView */,
 				5B197ECB1D487DAC00B95DE5 /* Masonry */,
 				5B197EBE1D48527600B95DE5 /* UMessage_Sdk_1.3.0 */,
 				5B2571F91D47177B00CB4167 /* SDWebImage */,
@@ -560,6 +591,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		794E73E01D4A454700267C84 /* DTKDropdownMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				794E73E11D4A454700267C84 /* DTKDropdownMenuView.bundle */,
+				794E73E21D4A454700267C84 /* DTKDropdownMenuView.h */,
+				794E73E31D4A454700267C84 /* DTKDropdownMenuView.m */,
+			);
+			path = DTKDropdownMenuView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -628,6 +669,7 @@
 			files = (
 				5B197EE61D487DAC00B95DE5 /* Info.plist in Resources */,
 				5BFFCE281D41B9A30066B1B9 /* LaunchScreen.storyboard in Resources */,
+				794E73E41D4A454700267C84 /* DTKDropdownMenuView.bundle in Resources */,
 				5BFFCE251D41B9A30066B1B9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -653,6 +695,7 @@
 				5B197EEC1D487DAC00B95DE5 /* MASViewConstraint.m in Sources */,
 				5B2571DF1D4716EE00CB4167 /* AFHTTPSessionManager.m in Sources */,
 				5B197EE71D487DAC00B95DE5 /* MASCompositeConstraint.m in Sources */,
+				794E73E81D4A4F3E00267C84 /* PushSettingVC.m in Sources */,
 				5B2572211D47177B00CB4167 /* SDWebImageDownloaderOperation.m in Sources */,
 				5B2572231D47177B00CB4167 /* SDWebImagePrefetcher.m in Sources */,
 				5BED6BC11D499DB900C137C5 /* EstateVO.m in Sources */,
@@ -682,11 +725,13 @@
 				5B25721D1D47177B00CB4167 /* SDImageCache.m in Sources */,
 				5B2571E31D4716EE00CB4167 /* AFURLResponseSerialization.m in Sources */,
 				5B197EFC1D48A32E00B95DE5 /* ComplaintTypeVO.m in Sources */,
+				794E73D91D4A3A5100267C84 /* WantRepairesVC.m in Sources */,
 				5B197EF61D4894D100B95DE5 /* FeedBackVO.m in Sources */,
 				5B197ECA1D48779B00B95DE5 /* PointHistoryVO.m in Sources */,
 				5B2572771D4762CB00CB4167 /* HouseVO.m in Sources */,
 				5B2572221D47177B00CB4167 /* SDWebImageManager.m in Sources */,
 				5B197EEA1D487DAC00B95DE5 /* MASLayoutConstraint.m in Sources */,
+				794E73DF1D4A3AB700267C84 /* BussnessCircleVC.m in Sources */,
 				5B2572271D47177B00CB4167 /* UIImage+WebP.m in Sources */,
 				5BED6BC71D49AA7F00C137C5 /* RepairVO.m in Sources */,
 				5B197EEF1D487DAC00B95DE5 /* View+MASAdditions.m in Sources */,
@@ -696,6 +741,7 @@
 				5BFFCE1A1D41B9A30066B1B9 /* main.m in Sources */,
 				5B2571821D47110B00CB4167 /* UIDevice+DeviceType.m in Sources */,
 				5B2572291D47177B00CB4167 /* UIImageView+WebCache.m in Sources */,
+				794E73DC1D4A3A8800267C84 /* RepairRecordsVC.m in Sources */,
 				5B2572201D47177B00CB4167 /* SDWebImageDownloader.m in Sources */,
 				5B2571811D47110B00CB4167 /* UIButton+Extension.m in Sources */,
 				5B197EE91D487DAC00B95DE5 /* MASConstraintMaker.m in Sources */,
@@ -703,9 +749,11 @@
 				5B25717F1D47110B00CB4167 /* UIApplication+Extensions.m in Sources */,
 				5B197F081D48AD0300B95DE5 /* MerchantVO.m in Sources */,
 				5B25721F1D47177B00CB4167 /* SDWebImageDecoder.m in Sources */,
+				794E73EB1D4A4F6200267C84 /* TechSupportVC.m in Sources */,
 				5B25721E1D47177B00CB4167 /* SDWebImageCompat.m in Sources */,
 				5B2572281D47177B00CB4167 /* UIImageView+HighlightedWebCache.m in Sources */,
 				5B25721C1D47177B00CB4167 /* NSData+ImageContentType.m in Sources */,
+				794E73E51D4A454700267C84 /* DTKDropdownMenuView.m in Sources */,
 				5B197EF01D487DAC00B95DE5 /* ViewController+MASAdditions.m in Sources */,
 				5B197F0E1D48B73E00B95DE5 /* AdVO.m in Sources */,
 				5B2572741D47545400CB4167 /* UserVO.m in Sources */,

@@ -41,7 +41,22 @@
 }
 
 - (void)signOut{
-    NSLog(@"signout");
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"退出登录" message:@"您确定要退出吗?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+#pragma TODO 退出登录
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:sure];
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:^{
+        
+    }];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
