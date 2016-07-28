@@ -311,6 +311,7 @@
 /**
  *  获取保修状态
  *
+ *  @param type       报修类型
  *  @param onComplete 获取完成回调block
  */
 -(void)getRepairStatus:(RepairType)type onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
@@ -318,6 +319,7 @@
 /**
  *  获取报修记录
  *
+ *  @param type       报修类型
  *  @param page       页数
  *  @param statuId    状态ID
  *  @param onComplete 获取完成回调block
@@ -327,6 +329,7 @@
 /**
  *  获取单个报修
  *
+ *  @param type       报修类型
  *  @param repairId   报修ID
  *  @param onComplete 获取完成回调block
  */
@@ -335,6 +338,7 @@
 /**
  *  获取报修类别
  *
+ *  @param type       报修类型
  *  @param onComplete 获取完成回调block
  */
 -(void)getRepairClasses:(RepairType)type onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
