@@ -1131,8 +1131,6 @@
     }];
 }
 
-
-
 #pragma mark 环境参数判定函数
 -(BOOL)isLogin{
     UserVO *user = [[UDManager getUD] getUser];

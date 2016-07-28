@@ -49,7 +49,9 @@
 		5B25725B1D47178500CB4167 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25724A1D47178500CB4167 /* UIImageView+WebCache.m */; };
 		5B25725C1D47178500CB4167 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25724C1D47178500CB4167 /* UIView+WebCacheOperation.m */; };
 		5B25726D1D4738C600CB4167 /* ServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25726A1D4738C600CB4167 /* ServicesManager.m */; };
-		5B25726E1D4738C600CB4167 /* UDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25726C1D4738C600CB4167 /* UDManager.m */; };
+		5BED6BD91D49F02100C137C5 /* UserVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BD81D49F02100C137C5 /* UserVO.m */; };
+		5BED6BDF1D49F05400C137C5 /* UDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BDE1D49F05400C137C5 /* UDManager.m */; };
+		5BED6BE21D49F9E100C137C5 /* GroupVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BE11D49F9E100C137C5 /* GroupVO.m */; };
 		5BFFCE3D1D41B9C40066B1B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE3C1D41B9C40066B1B9 /* main.m */; };
 		5BFFCE401D41B9C40066B1B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE3F1D41B9C40066B1B9 /* AppDelegate.m */; };
 		5BFFCE481D41B9C40066B1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE471D41B9C40066B1B9 /* Assets.xcassets */; };
@@ -144,8 +146,12 @@
 		5B25724C1D47178500CB4167 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		5B2572691D4738C600CB4167 /* ServicesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServicesManager.h; path = API/ServicesManager.h; sourceTree = "<group>"; };
 		5B25726A1D4738C600CB4167 /* ServicesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServicesManager.m; path = API/ServicesManager.m; sourceTree = "<group>"; };
-		5B25726B1D4738C600CB4167 /* UDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UDManager.h; path = API/UDManager.h; sourceTree = "<group>"; };
-		5B25726C1D4738C600CB4167 /* UDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UDManager.m; path = API/UDManager.m; sourceTree = "<group>"; };
+		5BED6BD71D49F02100C137C5 /* UserVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVO.h; sourceTree = "<group>"; };
+		5BED6BD81D49F02100C137C5 /* UserVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVO.m; sourceTree = "<group>"; };
+		5BED6BDD1D49F05400C137C5 /* UDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDManager.h; sourceTree = "<group>"; };
+		5BED6BDE1D49F05400C137C5 /* UDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDManager.m; sourceTree = "<group>"; };
+		5BED6BE01D49F9E100C137C5 /* GroupVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupVO.h; sourceTree = "<group>"; };
+		5BED6BE11D49F9E100C137C5 /* GroupVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupVO.m; sourceTree = "<group>"; };
 		5BFFCE381D41B9C40066B1B9 /* THWY_Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THWY_Server.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFFCE3C1D41B9C40066B1B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BFFCE3E1D41B9C40066B1B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -186,6 +192,10 @@
 		5B25718F1D47148800CB4167 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				5BED6BD71D49F02100C137C5 /* UserVO.h */,
+				5BED6BD81D49F02100C137C5 /* UserVO.m */,
+				5BED6BE01D49F9E100C137C5 /* GroupVO.h */,
+				5BED6BE11D49F9E100C137C5 /* GroupVO.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -195,8 +205,8 @@
 			children = (
 				5B2572691D4738C600CB4167 /* ServicesManager.h */,
 				5B25726A1D4738C600CB4167 /* ServicesManager.m */,
-				5B25726B1D4738C600CB4167 /* UDManager.h */,
-				5B25726C1D4738C600CB4167 /* UDManager.m */,
+				5BED6BDD1D49F05400C137C5 /* UDManager.h */,
+				5BED6BDE1D49F05400C137C5 /* UDManager.m */,
 				5B2571911D4714A100CB4167 /* tools */,
 			);
 			name = uitil;
@@ -457,6 +467,7 @@
 				5B2571B31D4714A100CB4167 /* NSArray+Extension.m in Sources */,
 				5B2571F51D4716F800CB4167 /* AFSecurityPolicy.m in Sources */,
 				5B2571B61D4714A100CB4167 /* NSDictionary+Extension.m in Sources */,
+				5BED6BE21D49F9E100C137C5 /* GroupVO.m in Sources */,
 				5B2571F31D4716F800CB4167 /* AFHTTPSessionManager.m in Sources */,
 				5B2571B41D4714A100CB4167 /* NSDate+Extension.m in Sources */,
 				5B2572531D47178500CB4167 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -479,6 +490,7 @@
 				5B2571F71D4716F800CB4167 /* AFURLResponseSerialization.m in Sources */,
 				5B2572541D47178500CB4167 /* SDWebImageManager.m in Sources */,
 				5B2572591D47178500CB4167 /* UIImage+WebP.m in Sources */,
+				5BED6BDF1D49F05400C137C5 /* UDManager.m in Sources */,
 				5B2571F41D4716F800CB4167 /* AFNetworkReachabilityManager.m in Sources */,
 				5BFFCE3D1D41B9C40066B1B9 /* main.m in Sources */,
 				5B2571BF1D4714A100CB4167 /* UILabel+Extension.m in Sources */,
@@ -492,8 +504,8 @@
 				5B2572501D47178500CB4167 /* SDWebImageCompat.m in Sources */,
 				5B25725A1D47178500CB4167 /* UIImageView+HighlightedWebCache.m in Sources */,
 				5B25724E1D47178500CB4167 /* NSData+ImageContentType.m in Sources */,
+				5BED6BD91D49F02100C137C5 /* UserVO.m in Sources */,
 				5B2571B21D4714A100CB4167 /* Foundation+Log.m in Sources */,
-				5B25726E1D4738C600CB4167 /* UDManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
