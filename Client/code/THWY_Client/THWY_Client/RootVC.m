@@ -27,6 +27,21 @@
     // Do any additional setup after loading the view.
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
+    [self customNVBar];
+}
+
+- (void)customNVBar{
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
+    [button setBackgroundImage:[UIImage imageNamed:@"注销按钮"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(signOut)];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    
+    self.navigationItem.rightBarButtonItem = rightItem;
+}
+
+- (void)signOut{
+    NSLog(@"signout");
 }
 
 - (void)didReceiveMemoryWarning {
