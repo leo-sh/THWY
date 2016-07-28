@@ -38,7 +38,7 @@
     // 设置文字
     NSMutableDictionary *att = [NSMutableDictionary dictionary];
     att[NSFontAttributeName] = [UIFont fontWithDeviceName:My_RegularFontName size:17];
-    att[NSForegroundColorAttributeName] = My_BlackColor;
+    att[NSForegroundColorAttributeName] = [UIColor whiteColor];
     [appearance setTitleTextAttributes:att];
     
     appearance.tintColor = My_BlackColor;
