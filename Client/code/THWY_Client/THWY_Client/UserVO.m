@@ -20,7 +20,7 @@
         self.gender = JSON[@"gender"];
         self.cellphone = JSON[@"cellphone"];
         self.car_number = JSON[@"car_number"];
-        self.avatar = JSON[@"avatar"];
+        self.avatar = [NSString stringWithFormat:@"%@%@",API_Prefix,JSON[@"avatar"]];
         self.points = JSON[@"points"];
         self.estate = JSON[@"estate"];
         
