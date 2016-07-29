@@ -262,6 +262,108 @@
     onComplete();
 }
 
+-(void)getIpAllows:(void (^)(NSString *errorMsg,NSArray* list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@ip_allow_list",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            for (NSDictionary* ipDic in responseObject[@"datas"]) {
+                IPAllowVO* ip = [[IPAllowVO alloc]initWithJSON:ipDic];
+                [listArr addObject:ip];
+            }
+            
+            onComplete(nil,listArr);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)getAIpAllow:(NSString *)ipId onComplete:(void (^)(NSString *errorMsg,IPAllowVO* list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@get_ip_allow_by_id",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"id":ipId};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            IPAllowVO* ip = [[IPAllowVO alloc]initWithJSON:responseObject[@"datas"]];
+            
+            onComplete(nil,ip);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)addAIpAllow:(IPAllowVO *)ip onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@add_ip_allow",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"ip":ip.ip,
+                             @"the_user":ip.the_user};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg);
+            }];
+        }else
+        {
+            onComplete(nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误");
+    }];
+}
+
+-(void)editAIpAllow:(IPAllowVO *)ip onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@edit_ip_allow",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"ip":ip.ip,
+                             @"the_user":ip.the_user,
+                             @"id":ip.Id};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg);
+            }];
+        }else
+        {
+            onComplete(nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误");
+    }];
+}
+
 #pragma mark 环境参数判定函数
 -(BOOL)isLogin{
     UserVO *user = [[UDManager getUD] getUser];

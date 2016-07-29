@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "UDManager.h"
 #import "UserVO.h"
+#import "IPAllowVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -71,6 +72,38 @@
         newPassWord:(NSString *)newPassWord
                 pic:(UIImage *)image
          onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+#pragma mark 白名单相关API
+/**
+ *  获取白名单列表
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getIpAllows:(void (^)(NSString *errorMsg,NSArray* list))onComplete;
+
+/**
+ *  获取单个白名单
+ *
+ *  @param ipId       白名单ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getAIpAllow:(NSString *)ipId onComplete:(void (^)(NSString *errorMsg,IPAllowVO* list))onComplete;
+
+/**
+ *  增加一个白名单
+ *
+ *  @param ip         白名单实例对象
+ *  @param onComplete 增加完成回调block
+ */
+-(void)addAIpAllow:(IPAllowVO *)ip onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+/**
+ *  修改一个白名单
+ *
+ *  @param ip         白名单实例对象
+ *  @param onComplete 增加完成回调block
+ */
+-(void)editAIpAllow:(IPAllowVO *)ip onComplete:(void (^)(NSString *errorMsg))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;
