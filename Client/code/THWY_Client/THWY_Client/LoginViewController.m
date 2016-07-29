@@ -48,7 +48,7 @@
 {
     self.LogoView = [[UIImageView alloc]init];
     
-    self.LogoView.backgroundColor = [UIColor greenColor];
+    self.LogoView.image = [UIImage imageNamed:@"yitailogo"];
     
     [self.view addSubview:self.LogoView];
     
@@ -56,7 +56,7 @@
         make.centerX.equalTo(self.view.mas_centerX);
         make.top.mas_equalTo(self.view.height * 0.1);
         make.width.mas_equalTo(self.view.width *0.6);
-        make.height.equalTo(@40);
+        make.height.equalTo(@28);
     }];
 }
 

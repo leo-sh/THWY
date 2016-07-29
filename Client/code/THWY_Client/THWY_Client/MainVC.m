@@ -10,7 +10,7 @@
 #import "Masonry/Masonry.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UserVO.h"
-
+#import "PersonInfoViewController.h"
 @interface MainVC ()
 
 @property UIButton *userInfoView;
@@ -156,6 +156,8 @@
         make.width.and.height.mas_equalTo(woyaotousu);
     }];
     
+    [zhanghaoxinxi addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
+    
     UIButton *jianyiyijian = [[UIButton alloc] init];
     [jianyiyijian setBackgroundImage:[UIImage imageNamed:@"建议意见"] forState:UIControlStateNormal];
     [self.view addSubview:jianyiyijian];
@@ -174,6 +176,12 @@
         make.width.and.height.mas_equalTo(jiaofeitaizhang);
     }];
     
+}
+
+- (void)click
+{
+    PersonInfoViewController *vc = [[PersonInfoViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

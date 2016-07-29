@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1E0489ED1D48818B00D6B0CC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E0489EC1D48818B00D6B0CC /* LoginViewController.m */; };
+		1E3BA3911D4AFF2B00633D0B /* PersonInfoLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3BA3901D4AFF2B00633D0B /* PersonInfoLabel.m */; };
+		1E3BA3B61D4B249200633D0B /* yitailogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E3BA3B51D4B249200633D0B /* yitailogo.png */; };
 		1E42BB551D498DEE0021DA01 /* userAndPassWordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E42BB541D498DEE0021DA01 /* userAndPassWordTextField.m */; };
 		1E42BB581D4994E30021DA01 /* BlueCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E42BB571D4994E30021DA01 /* BlueCheckButton.m */; };
 		1E42BB591D49C3670021DA01 /* ServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25725E1D47376E00CB4167 /* ServicesManager.m */; };
@@ -93,6 +95,9 @@
 /* Begin PBXFileReference section */
 		1E0489EB1D48818B00D6B0CC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		1E0489EC1D48818B00D6B0CC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		1E3BA38F1D4AFF2B00633D0B /* PersonInfoLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoLabel.h; sourceTree = "<group>"; };
+		1E3BA3901D4AFF2B00633D0B /* PersonInfoLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoLabel.m; sourceTree = "<group>"; };
+		1E3BA3B51D4B249200633D0B /* yitailogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yitailogo.png; sourceTree = "<group>"; };
 		1E42BB531D498DEE0021DA01 /* userAndPassWordTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userAndPassWordTextField.h; sourceTree = "<group>"; };
 		1E42BB541D498DEE0021DA01 /* userAndPassWordTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userAndPassWordTextField.m; sourceTree = "<group>"; };
 		1E42BB561D4994E30021DA01 /* BlueCheckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCheckButton.h; sourceTree = "<group>"; };
@@ -324,6 +329,8 @@
 		1E42BB611D49E4030021DA01 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1E3BA38F1D4AFF2B00633D0B /* PersonInfoLabel.h */,
+				1E3BA3901D4AFF2B00633D0B /* PersonInfoLabel.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -609,6 +616,7 @@
 				5BFFCE1B1D41B9A30066B1B9 /* AppDelegate.h */,
 				5BFFCE1C1D41B9A30066B1B9 /* AppDelegate.m */,
 				5BFFCE241D41B9A30066B1B9 /* Assets.xcassets */,
+				1E3BA3B51D4B249200633D0B /* yitailogo.png */,
 				5BFFCE261D41B9A30066B1B9 /* LaunchScreen.storyboard */,
 				5BFFCE181D41B9A30066B1B9 /* Supporting Files */,
 			);
@@ -692,6 +700,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B197EE61D487DAC00B95DE5 /* Info.plist in Resources */,
+				1E3BA3B61D4B249200633D0B /* yitailogo.png in Resources */,
 				5BFFCE281D41B9A30066B1B9 /* LaunchScreen.storyboard in Resources */,
 				5BFFCE251D41B9A30066B1B9 /* Assets.xcassets in Resources */,
 			);
@@ -723,6 +732,7 @@
 				5B2572231D47177B00CB4167 /* SDWebImagePrefetcher.m in Sources */,
 				5BED6BC11D499DB900C137C5 /* EstateVO.m in Sources */,
 				5B2571851D47110B00CB4167 /* UIImage+ScreenShot.m in Sources */,
+				1E3BA3911D4AFF2B00633D0B /* PersonInfoLabel.m in Sources */,
 				5B197EFF1D48A47800B95DE5 /* ComplaintVO.m in Sources */,
 				5B2571791D47110B00CB4167 /* Foundation+Log.m in Sources */,
 				5B197F0B1D48AD2C00B95DE5 /* GoodVO.m in Sources */,
