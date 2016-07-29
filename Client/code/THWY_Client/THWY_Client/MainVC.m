@@ -249,7 +249,11 @@
                          @"PushSettingVC",//推送设置
                          @"TechSupportVC"];//技术支持
     id vc = [[NSClassFromString(VCNames[button.tag-101]) alloc]init];
-    [self.navigationController pushViewController:(UIViewController *)vc animated:YES];
+    if (vc) {
+        [self.navigationController pushViewController:(UIViewController *)vc animated:YES];
+    }else{
+        NSLog(@"vc  is  nill");
+    }
 }
 
 - (void)showUserInfoVC{
