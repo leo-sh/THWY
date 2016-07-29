@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum : NSUInteger {
+    Owner = 1,
+    Public,
+} RepairType;
+
 @interface RepairStatuVO : NSObject
 
 @property (nonatomic , copy) NSString              * st_id;

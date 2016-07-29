@@ -54,7 +54,10 @@
         negativeSpacer.width = -5;
         
         //设置导航栏的按钮
-        UIBarButtonItem *backButton = [UIBarButtonItem itemWithImageName:@"navigationbar_back_image" highImageName:@"navigationbar_back_image" target:self action:@selector(back)];
+        UIButton *back = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
+        [back setBackgroundImage:[UIImage imageNamed:@"back_icon"] forState:UIControlStateNormal];
+        [back addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:back];
         viewController.navigationItem.leftBarButtonItems = @[negativeSpacer, backButton];
         
         // 就有滑动返回功能

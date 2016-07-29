@@ -12,6 +12,7 @@
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 #pragma mark - 头文件
 #import "BXExtensions.h"
@@ -28,7 +29,11 @@
 
 //API
 #define My_ServicesManager [ServicesManager getAPI]
-#define API_HOST @"http://112.126.75.77:7976/index.php/api/owner/"
+#define API_Address @"http://112.126.75.77"
+//#define API_Port @"7976"
+#define API_Port @"6699"
+#define API_Prefix [NSString stringWithFormat:@"%@:%@",API_Address,API_Port]
+#define API_HOST [NSString stringWithFormat:@"%@/index.php/api/owner/",API_Prefix]
 
 //弱引用
 #define My_WeakSelf __weak typeof(self) weakSelf = self;

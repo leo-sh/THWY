@@ -22,7 +22,9 @@
 #import "AdVO.h"
 #import "FeeVO.h"
 #import "EstateVO.h"
-#import "RepairStatuVO.h"
+#import "RepairVO.h"
+#import "AddRepairVO.h"
+#import "AddPublicRepairVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -40,6 +42,8 @@
  *  @return 是否登陆
  */
 -(BOOL)isLogin;
+
+-(void)logOut:(void (^)())onComplete;
 
 #pragma mark 用户相关API
 /**
@@ -309,9 +313,53 @@
 /**
  *  获取保修状态
  *
+ *  @param type       报修类型
  *  @param onComplete 获取完成回调block
  */
--(void)getRepairStatus:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+-(void)getRepairStatus:(RepairType)type onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取报修记录
+ *
+ *  @param type       报修类型
+ *  @param page       页数
+ *  @param statuId    状态ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getRepairs:(RepairType)type page:(int)page repairStatu:(NSString *)statuId :(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取单个报修
+ *
+ *  @param type       报修类型
+ *  @param repairId   报修ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getARepair:(RepairType)type repairId:(NSString *)repairId onComplete:(void (^)(NSString *errorMsg,RepairVO *list))onComplete;
+
+/**
+ *  获取报修类别
+ *
+ *  @param type       报修类型
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getRepairClasses:(RepairType)type onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  添加业主报修
+ *
+ *  @param repair     报修实例对象
+ *  @param onComplete 添加完成回调block
+ */
+-(void)addRepair:(AddRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+/**
+ *  添加公共报修
+ *
+ *  @param repair     报修实例对象
+ *  @param onComplete 添加完成回调block
+ */
+-(void)addPublicRepair:(AddPublicRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;

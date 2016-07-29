@@ -81,15 +81,26 @@
 		5B2572711D47475100CB4167 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572701D47475100CB4167 /* RootVC.m */; };
 		5B2572741D47545400CB4167 /* UserVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572731D47545400CB4167 /* UserVO.m */; };
 		5B2572771D4762CB00CB4167 /* HouseVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572761D4762CB00CB4167 /* HouseVO.m */; };
+		5B3631F91D4AED8100D276D1 /* AddRepairVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3631F81D4AED8100D276D1 /* AddRepairVO.m */; };
+		5B3631FC1D4AED9B00D276D1 /* AddPublicRepairVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3631FB1D4AED9B00D276D1 /* AddPublicRepairVO.m */; };
+		5B3631FF1D4AFEC700D276D1 /* Repair_RootVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3631FE1D4AFEC700D276D1 /* Repair_RootVO.m */; };
 		5BED6BBB1D49963000C137C5 /* FeeVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BBA1D49963000C137C5 /* FeeVO.m */; };
 		5BED6BBE1D49964800C137C5 /* FeeHistoryVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BBD1D49964800C137C5 /* FeeHistoryVO.m */; };
 		5BED6BC11D499DB900C137C5 /* EstateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BC01D499DB900C137C5 /* EstateVO.m */; };
 		5BED6BC41D49A53F00C137C5 /* RepairStatuVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BC31D49A53F00C137C5 /* RepairStatuVO.m */; };
 		5BED6BC71D49AA7F00C137C5 /* RepairVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BC61D49AA7F00C137C5 /* RepairVO.m */; };
+		5BED6BCA1D49CCC500C137C5 /* RepairClassVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BC91D49CCC500C137C5 /* RepairClassVO.m */; };
 		5BFFCE1A1D41B9A30066B1B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE191D41B9A30066B1B9 /* main.m */; };
 		5BFFCE1D1D41B9A30066B1B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE1C1D41B9A30066B1B9 /* AppDelegate.m */; };
 		5BFFCE251D41B9A30066B1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE241D41B9A30066B1B9 /* Assets.xcassets */; };
 		5BFFCE281D41B9A30066B1B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE261D41B9A30066B1B9 /* LaunchScreen.storyboard */; };
+		794E73D91D4A3A5100267C84 /* WantRepairesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73D81D4A3A5100267C84 /* WantRepairesVC.m */; };
+		794E73DC1D4A3A8800267C84 /* RepairRecordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73DB1D4A3A8800267C84 /* RepairRecordsVC.m */; };
+		794E73DF1D4A3AB700267C84 /* BussnessCircleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73DE1D4A3AB700267C84 /* BussnessCircleVC.m */; };
+		794E73E41D4A454700267C84 /* DTKDropdownMenuView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 794E73E11D4A454700267C84 /* DTKDropdownMenuView.bundle */; };
+		794E73E51D4A454700267C84 /* DTKDropdownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E31D4A454700267C84 /* DTKDropdownMenuView.m */; };
+		794E73E81D4A4F3E00267C84 /* PushSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E71D4A4F3E00267C84 /* PushSettingVC.m */; };
+		794E73EB1D4A4F6200267C84 /* TechSupportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73EA1D4A4F6200267C84 /* TechSupportVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -248,6 +259,12 @@
 		5B2572731D47545400CB4167 /* UserVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVO.m; sourceTree = "<group>"; };
 		5B2572751D4762CB00CB4167 /* HouseVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseVO.h; sourceTree = "<group>"; };
 		5B2572761D4762CB00CB4167 /* HouseVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseVO.m; sourceTree = "<group>"; };
+		5B3631F71D4AED8100D276D1 /* AddRepairVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRepairVO.h; sourceTree = "<group>"; };
+		5B3631F81D4AED8100D276D1 /* AddRepairVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRepairVO.m; sourceTree = "<group>"; };
+		5B3631FA1D4AED9B00D276D1 /* AddPublicRepairVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPublicRepairVO.h; sourceTree = "<group>"; };
+		5B3631FB1D4AED9B00D276D1 /* AddPublicRepairVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPublicRepairVO.m; sourceTree = "<group>"; };
+		5B3631FD1D4AFEC700D276D1 /* Repair_RootVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repair_RootVO.h; sourceTree = "<group>"; };
+		5B3631FE1D4AFEC700D276D1 /* Repair_RootVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repair_RootVO.m; sourceTree = "<group>"; };
 		5BED6BB91D49963000C137C5 /* FeeVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeeVO.h; sourceTree = "<group>"; };
 		5BED6BBA1D49963000C137C5 /* FeeVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeeVO.m; sourceTree = "<group>"; };
 		5BED6BBC1D49964800C137C5 /* FeeHistoryVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeeHistoryVO.h; sourceTree = "<group>"; };
@@ -258,6 +275,8 @@
 		5BED6BC31D49A53F00C137C5 /* RepairStatuVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatuVO.m; sourceTree = "<group>"; };
 		5BED6BC51D49AA7F00C137C5 /* RepairVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairVO.h; sourceTree = "<group>"; };
 		5BED6BC61D49AA7F00C137C5 /* RepairVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairVO.m; sourceTree = "<group>"; };
+		5BED6BC81D49CCC500C137C5 /* RepairClassVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairClassVO.h; sourceTree = "<group>"; };
+		5BED6BC91D49CCC500C137C5 /* RepairClassVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairClassVO.m; sourceTree = "<group>"; };
 		5BFFCE151D41B9A30066B1B9 /* THWY_Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THWY_Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFFCE191D41B9A30066B1B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BFFCE1B1D41B9A30066B1B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -265,6 +284,19 @@
 		5BFFCE241D41B9A30066B1B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BFFCE271D41B9A30066B1B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BFFCE291D41B9A30066B1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		794E73D71D4A3A5100267C84 /* WantRepairesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairesVC.h; sourceTree = "<group>"; };
+		794E73D81D4A3A5100267C84 /* WantRepairesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantRepairesVC.m; sourceTree = "<group>"; };
+		794E73DA1D4A3A8800267C84 /* RepairRecordsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairRecordsVC.h; sourceTree = "<group>"; };
+		794E73DB1D4A3A8800267C84 /* RepairRecordsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairRecordsVC.m; sourceTree = "<group>"; };
+		794E73DD1D4A3AB700267C84 /* BussnessCircleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BussnessCircleVC.h; sourceTree = "<group>"; };
+		794E73DE1D4A3AB700267C84 /* BussnessCircleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BussnessCircleVC.m; sourceTree = "<group>"; };
+		794E73E11D4A454700267C84 /* DTKDropdownMenuView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DTKDropdownMenuView.bundle; sourceTree = "<group>"; };
+		794E73E21D4A454700267C84 /* DTKDropdownMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTKDropdownMenuView.h; sourceTree = "<group>"; };
+		794E73E31D4A454700267C84 /* DTKDropdownMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTKDropdownMenuView.m; sourceTree = "<group>"; };
+		794E73E61D4A4F3E00267C84 /* PushSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushSettingVC.h; sourceTree = "<group>"; };
+		794E73E71D4A4F3E00267C84 /* PushSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushSettingVC.m; sourceTree = "<group>"; };
+		794E73E91D4A4F6200267C84 /* TechSupportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TechSupportVC.h; sourceTree = "<group>"; };
+		794E73EA1D4A4F6200267C84 /* TechSupportVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TechSupportVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -427,6 +459,14 @@
 				5BED6BC31D49A53F00C137C5 /* RepairStatuVO.m */,
 				5BED6BC51D49AA7F00C137C5 /* RepairVO.h */,
 				5BED6BC61D49AA7F00C137C5 /* RepairVO.m */,
+				5BED6BC81D49CCC500C137C5 /* RepairClassVO.h */,
+				5BED6BC91D49CCC500C137C5 /* RepairClassVO.m */,
+				5B3631FD1D4AFEC700D276D1 /* Repair_RootVO.h */,
+				5B3631FE1D4AFEC700D276D1 /* Repair_RootVO.m */,
+				5B3631F71D4AED8100D276D1 /* AddRepairVO.h */,
+				5B3631F81D4AED8100D276D1 /* AddRepairVO.m */,
+				5B3631FA1D4AED9B00D276D1 /* AddPublicRepairVO.h */,
+				5B3631FB1D4AED9B00D276D1 /* AddPublicRepairVO.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -465,6 +505,16 @@
 			children = (
 				5B2571891D47120700CB4167 /* MainVC.h */,
 				5B25718A1D47120700CB4167 /* MainVC.m */,
+				794E73D71D4A3A5100267C84 /* WantRepairesVC.h */,
+				794E73D81D4A3A5100267C84 /* WantRepairesVC.m */,
+				794E73DA1D4A3A8800267C84 /* RepairRecordsVC.h */,
+				794E73DB1D4A3A8800267C84 /* RepairRecordsVC.m */,
+				794E73DD1D4A3AB700267C84 /* BussnessCircleVC.h */,
+				794E73DE1D4A3AB700267C84 /* BussnessCircleVC.m */,
+				794E73E61D4A4F3E00267C84 /* PushSettingVC.h */,
+				794E73E71D4A4F3E00267C84 /* PushSettingVC.m */,
+				794E73E91D4A4F6200267C84 /* TechSupportVC.h */,
+				794E73EA1D4A4F6200267C84 /* TechSupportVC.m */,
 			);
 			name = ChildController;
 			sourceTree = "<group>";
@@ -520,6 +570,7 @@
 		5B2571CF1D47169600CB4167 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				794E73E01D4A454700267C84 /* DTKDropdownMenuView */,
 				5B197ECB1D487DAC00B95DE5 /* Masonry */,
 				5B197EBE1D48527600B95DE5 /* UMessage_Sdk_1.3.0 */,
 				5B2571F91D47177B00CB4167 /* SDWebImage */,
@@ -633,6 +684,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		794E73E01D4A454700267C84 /* DTKDropdownMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				794E73E11D4A454700267C84 /* DTKDropdownMenuView.bundle */,
+				794E73E21D4A454700267C84 /* DTKDropdownMenuView.h */,
+				794E73E31D4A454700267C84 /* DTKDropdownMenuView.m */,
+			);
+			path = DTKDropdownMenuView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -702,6 +763,7 @@
 				5B197EE61D487DAC00B95DE5 /* Info.plist in Resources */,
 				1E3BA3B61D4B249200633D0B /* yitailogo.png in Resources */,
 				5BFFCE281D41B9A30066B1B9 /* LaunchScreen.storyboard in Resources */,
+				794E73E41D4A454700267C84 /* DTKDropdownMenuView.bundle in Resources */,
 				5BFFCE251D41B9A30066B1B9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -728,6 +790,7 @@
 				5B197EEC1D487DAC00B95DE5 /* MASViewConstraint.m in Sources */,
 				5B2571DF1D4716EE00CB4167 /* AFHTTPSessionManager.m in Sources */,
 				5B197EE71D487DAC00B95DE5 /* MASCompositeConstraint.m in Sources */,
+				794E73E81D4A4F3E00267C84 /* PushSettingVC.m in Sources */,
 				5B2572211D47177B00CB4167 /* SDWebImageDownloaderOperation.m in Sources */,
 				5B2572231D47177B00CB4167 /* SDWebImagePrefetcher.m in Sources */,
 				5BED6BC11D499DB900C137C5 /* EstateVO.m in Sources */,
@@ -748,6 +811,7 @@
 				5B197EEE1D487DAC00B95DE5 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				5B2571571D4710C100CB4167 /* MainNavigationViewController.m in Sources */,
 				5B197EEB1D487DAC00B95DE5 /* MASViewAttribute.m in Sources */,
+				5B3631FF1D4AFEC700D276D1 /* Repair_RootVO.m in Sources */,
 				5B2571831D47110B00CB4167 /* UIFont+Extension.m in Sources */,
 				5B25717E1D47110B00CB4167 /* NSString+BXExtension.m in Sources */,
 				5B197F021D48A86E00B95DE5 /* NoteVO.m in Sources */,
@@ -759,21 +823,26 @@
 				5B2571E31D4716EE00CB4167 /* AFURLResponseSerialization.m in Sources */,
 				1E42BB641D49E4240021DA01 /* PersonInfoViewController.m in Sources */,
 				5B197EFC1D48A32E00B95DE5 /* ComplaintTypeVO.m in Sources */,
+				794E73D91D4A3A5100267C84 /* WantRepairesVC.m in Sources */,
 				5B197EF61D4894D100B95DE5 /* FeedBackVO.m in Sources */,
+				5B3631FC1D4AED9B00D276D1 /* AddPublicRepairVO.m in Sources */,
 				5B197ECA1D48779B00B95DE5 /* PointHistoryVO.m in Sources */,
 				5B2572771D4762CB00CB4167 /* HouseVO.m in Sources */,
 				5B2572221D47177B00CB4167 /* SDWebImageManager.m in Sources */,
 				5B197EEA1D487DAC00B95DE5 /* MASLayoutConstraint.m in Sources */,
+				794E73DF1D4A3AB700267C84 /* BussnessCircleVC.m in Sources */,
 				5B2572271D47177B00CB4167 /* UIImage+WebP.m in Sources */,
 				5BED6BC71D49AA7F00C137C5 /* RepairVO.m in Sources */,
 				5B197EEF1D487DAC00B95DE5 /* View+MASAdditions.m in Sources */,
 				5B2571E01D4716EE00CB4167 /* AFNetworkReachabilityManager.m in Sources */,
 				5B197EE81D487DAC00B95DE5 /* MASConstraint.m in Sources */,
+				5B3631F91D4AED8100D276D1 /* AddRepairVO.m in Sources */,
 				5BFFCE1D1D41B9A30066B1B9 /* AppDelegate.m in Sources */,
 				1E42BB551D498DEE0021DA01 /* userAndPassWordTextField.m in Sources */,
 				5BFFCE1A1D41B9A30066B1B9 /* main.m in Sources */,
 				5B2571821D47110B00CB4167 /* UIDevice+DeviceType.m in Sources */,
 				5B2572291D47177B00CB4167 /* UIImageView+WebCache.m in Sources */,
+				794E73DC1D4A3A8800267C84 /* RepairRecordsVC.m in Sources */,
 				5B2572201D47177B00CB4167 /* SDWebImageDownloader.m in Sources */,
 				5B2571811D47110B00CB4167 /* UIButton+Extension.m in Sources */,
 				5B197EE91D487DAC00B95DE5 /* MASConstraintMaker.m in Sources */,
@@ -785,11 +854,13 @@
 				5B25721E1D47177B00CB4167 /* SDWebImageCompat.m in Sources */,
 				5B2572281D47177B00CB4167 /* UIImageView+HighlightedWebCache.m in Sources */,
 				5B25721C1D47177B00CB4167 /* NSData+ImageContentType.m in Sources */,
+				794E73E51D4A454700267C84 /* DTKDropdownMenuView.m in Sources */,
 				5B197EF01D487DAC00B95DE5 /* ViewController+MASAdditions.m in Sources */,
 				5B197F0E1D48B73E00B95DE5 /* AdVO.m in Sources */,
 				5B2572741D47545400CB4167 /* UserVO.m in Sources */,
 				5B197EF31D48924300B95DE5 /* FeedBackTypeVO.m in Sources */,
 				5B2571871D47110B00CB4167 /* UIScreen+Extension.m in Sources */,
+				5BED6BCA1D49CCC500C137C5 /* RepairClassVO.m in Sources */,
 				5B2572621D47378300CB4167 /* UDManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
