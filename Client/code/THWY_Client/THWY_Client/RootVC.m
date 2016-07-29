@@ -7,7 +7,7 @@
 //
 
 #import "RootVC.h"
-
+#import "LoginViewController.h"
 @interface RootVC ()
 
 @end
@@ -28,6 +28,12 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     [self customNVBar];
+    
+    if (![[ServicesManager getAPI]isLogin]) {
+        LoginViewController *presentView = [[LoginViewController alloc]init];
+        [self presentViewController:presentView animated:YES completion:nil];
+    }
+
 }
 
 - (void)customNVBar{

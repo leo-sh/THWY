@@ -10,9 +10,7 @@
 #import "Masonry/Masonry.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UserVO.h"
-#import "UDManager.h"
-#import "DTKDropdownMenuView.h"
-
+#import "PersonInfoViewController.h"
 @interface MainVC ()
 
 @property UIButton *userInfoView;
@@ -209,6 +207,8 @@
         make.width.and.height.mas_equalTo(woyaotousu);
     }];
     
+    [zhanghaoxinxi addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
+    
     UIButton *jianyiyijian = [[UIButton alloc] init];
     jianyiyijian.tag = 107;
     [jianyiyijian setBackgroundImage:[UIImage imageNamed:@"建议意见"] forState:UIControlStateNormal];
@@ -254,6 +254,16 @@
     }else{
         NSLog(@"vc  is  nill");
     }
+
+- (void)click
+{
+    PersonInfoViewController *vc = [[PersonInfoViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)showUserInfoVC{

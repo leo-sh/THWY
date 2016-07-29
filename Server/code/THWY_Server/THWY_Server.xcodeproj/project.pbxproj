@@ -49,6 +49,7 @@
 		5B25725B1D47178500CB4167 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25724A1D47178500CB4167 /* UIImageView+WebCache.m */; };
 		5B25725C1D47178500CB4167 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25724C1D47178500CB4167 /* UIView+WebCacheOperation.m */; };
 		5B25726D1D4738C600CB4167 /* ServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25726A1D4738C600CB4167 /* ServicesManager.m */; };
+		5B3632021D4B0E5800D276D1 /* IPAllowVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3632011D4B0E5800D276D1 /* IPAllowVO.m */; };
 		5BED6BD91D49F02100C137C5 /* UserVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BD81D49F02100C137C5 /* UserVO.m */; };
 		5BED6BDF1D49F05400C137C5 /* UDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BDE1D49F05400C137C5 /* UDManager.m */; };
 		5BED6BE21D49F9E100C137C5 /* GroupVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BE11D49F9E100C137C5 /* GroupVO.m */; };
@@ -146,6 +147,8 @@
 		5B25724C1D47178500CB4167 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		5B2572691D4738C600CB4167 /* ServicesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServicesManager.h; path = API/ServicesManager.h; sourceTree = "<group>"; };
 		5B25726A1D4738C600CB4167 /* ServicesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServicesManager.m; path = API/ServicesManager.m; sourceTree = "<group>"; };
+		5B3632001D4B0E5800D276D1 /* IPAllowVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPAllowVO.h; sourceTree = "<group>"; };
+		5B3632011D4B0E5800D276D1 /* IPAllowVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPAllowVO.m; sourceTree = "<group>"; };
 		5BED6BD71D49F02100C137C5 /* UserVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVO.h; sourceTree = "<group>"; };
 		5BED6BD81D49F02100C137C5 /* UserVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVO.m; sourceTree = "<group>"; };
 		5BED6BDD1D49F05400C137C5 /* UDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDManager.h; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				5BED6BD81D49F02100C137C5 /* UserVO.m */,
 				5BED6BE01D49F9E100C137C5 /* GroupVO.h */,
 				5BED6BE11D49F9E100C137C5 /* GroupVO.m */,
+				5B3632001D4B0E5800D276D1 /* IPAllowVO.h */,
+				5B3632011D4B0E5800D276D1 /* IPAllowVO.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -478,6 +483,7 @@
 				5B2572581D47178500CB4167 /* UIImage+MultiFormat.m in Sources */,
 				5BFFCE401D41B9C40066B1B9 /* AppDelegate.m in Sources */,
 				5B2571C01D4714A100CB4167 /* UIScreen+Extension.m in Sources */,
+				5B3632021D4B0E5800D276D1 /* IPAllowVO.m in Sources */,
 				5B2572561D47178500CB4167 /* UIButton+WebCache.m in Sources */,
 				5B2572571D47178500CB4167 /* UIImage+GIF.m in Sources */,
 				5B2571BE1D4714A100CB4167 /* UIImage+ScreenShot.m in Sources */,
@@ -609,6 +615,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = /Users/Mr.S/THWY/Server/code/THWY_Server/THWY_Server/PrefixHeader.pch;
 				INFOPLIST_FILE = THWY_Server/Info.plist;
@@ -623,6 +630,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = /Users/Mr.S/THWY/Server/code/THWY_Server/THWY_Server/PrefixHeader.pch;
 				INFOPLIST_FILE = THWY_Server/Info.plist;
