@@ -75,6 +75,151 @@
     return newImage;
 }
 
+- (void)convertVideoQuailtyWithInputURL:(NSString*)inputStr
+                               outputURL:(NSURL*)outputURL
+                         completeHandler:(void (^)(AVAssetExportSession*))handler
+{
+    NSURL* inputURL = nil;
+    if (inputStr.length != 0) {
+        inputURL = [NSURL URLWithString:inputStr];
+    }else
+    {
+        handler(nil);
+        return;
+    }
+    
+    AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:inputURL options:nil];
+    
+    AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:avAsset presetName:AVAssetExportPresetMediumQuality];
+    exportSession.outputURL = outputURL;
+    exportSession.outputFileType = AVFileTypeMPEG4;
+    exportSession.shouldOptimizeForNetworkUse= YES;
+    [exportSession exportAsynchronouslyWithCompletionHandler:^(void)
+     {
+         handler(exportSession);
+     }];
+    
+}
+
+- (CGFloat) getFileSize:(NSString *)path
+{
+    NSLog(@"%@",path);
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    float filesize = -1.0;
+    if ([fileManager fileExistsAtPath:path]) {
+        NSDictionary *fileDic = [fileManager attributesOfItemAtPath:path error:nil];//获取文件的属性
+        unsigned long long size = [[fileDic objectForKey:NSFileSize] longLongValue];
+        filesize = 1.0*size/1024;
+    }else{
+        NSLog(@"找不到文件");
+    }
+    return filesize;
+}//此方法可以获取文件的大小，返回的是单位是KB。
+- (CGFloat) getVideoLength:(NSURL *)URL
+{
+    
+    AVURLAsset *avUrl = [AVURLAsset assetWithURL:URL];
+    CMTime time = [avUrl duration];
+    int second = ceil(time.value/time.timescale);
+    return second;
+}//此方法可以获取视频文件的时长。
+
+
+-(void)handleRepair:(Repair_RootVO *)repair params:(NSDictionary* )params urlStr:(NSString* )urlString onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    NSData *imageData = nil;
+    if (repair.image) {
+        imageData = UIImagePNGRepresentation(repair.image);
+    }
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // 设置时间格式
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString *str = [formatter stringFromDate:[NSDate date]];
+    
+    NSURL *newVideoUrl = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4", str]] ;
+    
+    [self convertVideoQuailtyWithInputURL:repair.videoPath outputURL:newVideoUrl completeHandler:^(AVAssetExportSession * exportSession) {
+        
+        switch (exportSession.status) {
+            case AVAssetExportSessionStatusCancelled:
+            {
+                onComplete(@"Cancelled");
+                NSLog(@"AVAssetExportSessionStatusCancelled");
+            }
+                break;
+            case AVAssetExportSessionStatusUnknown:
+            {
+                onComplete(@"Unknown");
+                NSLog(@"AVAssetExportSessionStatusUnknown");
+            }
+                break;
+            case AVAssetExportSessionStatusWaiting:
+            {
+                onComplete(@"Waiting");
+                NSLog(@"AVAssetExportSessionStatusWaiting");
+            }
+                break;
+            case AVAssetExportSessionStatusExporting:
+            {
+                onComplete(@"Exporting");
+                NSLog(@"AVAssetExportSessionStatusExporting");
+            }
+                break;
+            case AVAssetExportSessionStatusCompleted:
+            {
+                NSLog(@"AVAssetExportSessionStatusCompleted");
+                NSLog(@"%@",[NSString stringWithFormat:@"%f s", [self getVideoLength:newVideoUrl]]);
+                NSLog(@"%@", [NSString stringWithFormat:@"%.2f kb", [self getFileSize:[newVideoUrl path]]]);
+                NSData *videoData = [NSData dataWithContentsOfURL:newVideoUrl];
+                [self subMitRepair:params image:imageData video:videoData urlString:urlString onComplete:onComplete];
+            }
+                break;
+            case AVAssetExportSessionStatusFailed:
+            {
+                onComplete(@"Failed");
+                NSLog(@"AVAssetExportSessionStatusFailed");
+            }
+                break;
+            default:
+                break;
+        }
+    }];
+}
+
+-(void)subMitRepair:(NSDictionary* )params image:(NSData* )imageData video:(NSData *)videoData urlString:(NSString *)urlString onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    [manager POST:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        // 设置时间格式
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        if (imageData) {
+            NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
+            [formData appendPartWithFileData:imageData name:@"pic" fileName:fileName mimeType:@"image/png"];
+        }
+        if (videoData) {
+            NSString *fileName = [NSString stringWithFormat:@"%@.mp4", str];
+            [formData appendPartWithFileData:videoData name:@"VDO" fileName:fileName mimeType:@"video/mp4"];
+        }
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg);
+            }];
+        }else
+        {
+            onComplete(nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误");
+    }];
+}
+
 #pragma mark 公共函数
 -(void)login:(NSString *)userName
     password:(NSString *)password
@@ -1131,6 +1276,40 @@
     }];
 }
 
+-(void)addRepair:(AddRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@add_repair",API_HOST];
+    NSMutableDictionary* params = [[NSMutableDictionary alloc]init];
+    params[@"login_name"] = _userName;
+    params[@"login_password"] = _passWord;
+    params[@"call_person"] = repair.call_person;
+    params[@"call_phone"] = repair.call_phone;
+    params[@"house_id"] = repair.house_id;
+    params[@"cls"] = repair.cls;
+    params[@"detail"] = repair.detail;
+    
+    [self handleRepair:repair params:params urlStr:urlString onComplete:onComplete];
+}
+
+-(void)addPublicRepair:(AddPublicRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@add_public_repair",API_HOST];
+    NSMutableDictionary* params = [[NSMutableDictionary alloc]init];
+    params[@"login_name"] = _userName;
+    params[@"login_password"] = _passWord;
+    params[@"kb"] = [NSString stringWithFormat:@"%d",repair.kb];
+    params[@"estate_id"] = repair.estate_id;
+    params[@"block"] = repair.block;
+    params[@"unit"] = repair.unit;
+    params[@"layer"] = repair.layer;
+    params[@"call_name"] = repair.call_name;
+    params[@"call_phone"] = repair.call_phone;
+    params[@"cls"] = repair.cls;
+    params[@"repair_detail"] = repair.repair_detail;
+    
+    [self handleRepair:repair params:params urlStr:urlString onComplete:onComplete];
+}
+
 #pragma mark 环境参数判定函数
 -(BOOL)isLogin{
     UserVO *user = [[UDManager getUD] getUser];
@@ -1157,6 +1336,10 @@
 #pragma mark 测试用函数
 -(void)test
 {
+    if ([self isLogin]) {
+        UserVO* user = [[UDManager getUD] getUser];
+        NSLog(@"%@",user);
+    }
     
 }
 @end

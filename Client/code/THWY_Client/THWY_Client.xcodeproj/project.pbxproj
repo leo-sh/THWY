@@ -75,6 +75,9 @@
 		5B2572711D47475100CB4167 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572701D47475100CB4167 /* RootVC.m */; };
 		5B2572741D47545400CB4167 /* UserVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572731D47545400CB4167 /* UserVO.m */; };
 		5B2572771D4762CB00CB4167 /* HouseVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2572761D4762CB00CB4167 /* HouseVO.m */; };
+		5B3631F91D4AED8100D276D1 /* AddRepairVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3631F81D4AED8100D276D1 /* AddRepairVO.m */; };
+		5B3631FC1D4AED9B00D276D1 /* AddPublicRepairVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3631FB1D4AED9B00D276D1 /* AddPublicRepairVO.m */; };
+		5B3631FF1D4AFEC700D276D1 /* Repair_RootVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3631FE1D4AFEC700D276D1 /* Repair_RootVO.m */; };
 		5BED6BBB1D49963000C137C5 /* FeeVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BBA1D49963000C137C5 /* FeeVO.m */; };
 		5BED6BBE1D49964800C137C5 /* FeeHistoryVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BBD1D49964800C137C5 /* FeeHistoryVO.m */; };
 		5BED6BC11D499DB900C137C5 /* EstateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BED6BC01D499DB900C137C5 /* EstateVO.m */; };
@@ -238,6 +241,12 @@
 		5B2572731D47545400CB4167 /* UserVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVO.m; sourceTree = "<group>"; };
 		5B2572751D4762CB00CB4167 /* HouseVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseVO.h; sourceTree = "<group>"; };
 		5B2572761D4762CB00CB4167 /* HouseVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseVO.m; sourceTree = "<group>"; };
+		5B3631F71D4AED8100D276D1 /* AddRepairVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRepairVO.h; sourceTree = "<group>"; };
+		5B3631F81D4AED8100D276D1 /* AddRepairVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRepairVO.m; sourceTree = "<group>"; };
+		5B3631FA1D4AED9B00D276D1 /* AddPublicRepairVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPublicRepairVO.h; sourceTree = "<group>"; };
+		5B3631FB1D4AED9B00D276D1 /* AddPublicRepairVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPublicRepairVO.m; sourceTree = "<group>"; };
+		5B3631FD1D4AFEC700D276D1 /* Repair_RootVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repair_RootVO.h; sourceTree = "<group>"; };
+		5B3631FE1D4AFEC700D276D1 /* Repair_RootVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repair_RootVO.m; sourceTree = "<group>"; };
 		5BED6BB91D49963000C137C5 /* FeeVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeeVO.h; sourceTree = "<group>"; };
 		5BED6BBA1D49963000C137C5 /* FeeVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeeVO.m; sourceTree = "<group>"; };
 		5BED6BBC1D49964800C137C5 /* FeeHistoryVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeeHistoryVO.h; sourceTree = "<group>"; };
@@ -378,6 +387,12 @@
 				5BED6BC61D49AA7F00C137C5 /* RepairVO.m */,
 				5BED6BC81D49CCC500C137C5 /* RepairClassVO.h */,
 				5BED6BC91D49CCC500C137C5 /* RepairClassVO.m */,
+				5B3631FD1D4AFEC700D276D1 /* Repair_RootVO.h */,
+				5B3631FE1D4AFEC700D276D1 /* Repair_RootVO.m */,
+				5B3631F71D4AED8100D276D1 /* AddRepairVO.h */,
+				5B3631F81D4AED8100D276D1 /* AddRepairVO.m */,
+				5B3631FA1D4AED9B00D276D1 /* AddPublicRepairVO.h */,
+				5B3631FB1D4AED9B00D276D1 /* AddPublicRepairVO.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -715,6 +730,7 @@
 				5B197EEE1D487DAC00B95DE5 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				5B2571571D4710C100CB4167 /* MainNavigationViewController.m in Sources */,
 				5B197EEB1D487DAC00B95DE5 /* MASViewAttribute.m in Sources */,
+				5B3631FF1D4AFEC700D276D1 /* Repair_RootVO.m in Sources */,
 				5B2571831D47110B00CB4167 /* UIFont+Extension.m in Sources */,
 				5B25717E1D47110B00CB4167 /* NSString+BXExtension.m in Sources */,
 				5B197F021D48A86E00B95DE5 /* NoteVO.m in Sources */,
@@ -727,6 +743,7 @@
 				5B197EFC1D48A32E00B95DE5 /* ComplaintTypeVO.m in Sources */,
 				794E73D91D4A3A5100267C84 /* WantRepairesVC.m in Sources */,
 				5B197EF61D4894D100B95DE5 /* FeedBackVO.m in Sources */,
+				5B3631FC1D4AED9B00D276D1 /* AddPublicRepairVO.m in Sources */,
 				5B197ECA1D48779B00B95DE5 /* PointHistoryVO.m in Sources */,
 				5B2572771D4762CB00CB4167 /* HouseVO.m in Sources */,
 				5B2572221D47177B00CB4167 /* SDWebImageManager.m in Sources */,
@@ -737,6 +754,7 @@
 				5B197EEF1D487DAC00B95DE5 /* View+MASAdditions.m in Sources */,
 				5B2571E01D4716EE00CB4167 /* AFNetworkReachabilityManager.m in Sources */,
 				5B197EE81D487DAC00B95DE5 /* MASConstraint.m in Sources */,
+				5B3631F91D4AED8100D276D1 /* AddRepairVO.m in Sources */,
 				5BFFCE1D1D41B9A30066B1B9 /* AppDelegate.m in Sources */,
 				5BFFCE1A1D41B9A30066B1B9 /* main.m in Sources */,
 				5B2571821D47110B00CB4167 /* UIDevice+DeviceType.m in Sources */,

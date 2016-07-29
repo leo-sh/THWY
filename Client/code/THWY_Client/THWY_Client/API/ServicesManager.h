@@ -23,6 +23,8 @@
 #import "FeeVO.h"
 #import "EstateVO.h"
 #import "RepairVO.h"
+#import "AddRepairVO.h"
+#import "AddPublicRepairVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -342,6 +344,22 @@
  *  @param onComplete 获取完成回调block
  */
 -(void)getRepairClasses:(RepairType)type onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  添加业主报修
+ *
+ *  @param repair     报修实例对象
+ *  @param onComplete 添加完成回调block
+ */
+-(void)addRepair:(AddRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+/**
+ *  添加公共报修
+ *
+ *  @param repair     报修实例对象
+ *  @param onComplete 添加完成回调block
+ */
+-(void)addPublicRepair:(AddPublicRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;
