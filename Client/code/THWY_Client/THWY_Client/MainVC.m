@@ -7,6 +7,7 @@
 //
 
 #import "MainVC.h"
+#import "DTKDropdownMenuView.h"
 #import "Masonry/Masonry.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UserVO.h"
@@ -14,6 +15,8 @@
 #import "DTKDropdownMenuView.h"
 
 #import "PersonInfoViewController.h"
+#import "DTKDropdownMenuView.h"
+
 @interface MainVC ()
 
 @property UIButton *userInfoView;
@@ -47,27 +50,27 @@
         button.tag = 101;
         [self showVC:button];
     }];
-    item0.iconName = @"1";
+    item0.iconName = @"main_1";
     DTKDropdownItem *item1 = [DTKDropdownItem itemWithTitle:@"我要投诉" callBack:^(NSUInteger index, id info) {
         button.tag = 105;
         [self showVC:button];
     }];
-    item1.iconName = @"2";
+    item1.iconName = @"main_2";
     DTKDropdownItem *item2 = [DTKDropdownItem itemWithTitle:@"业务公告" callBack:^(NSUInteger index, id info) {
         button.tag = 108;
         [self showVC:button];
     }];
-    item2.iconName = @"3";
+    item2.iconName = @"main_3";
     DTKDropdownItem *item3 = [DTKDropdownItem itemWithTitle:@"推送设置" callBack:^(NSUInteger index, id info) {
         button.tag = 109;
         [self showVC:button];
     }];
-    item3.iconName = @"4";
+    item3.iconName = @"main_4";
     DTKDropdownItem *item4 = [DTKDropdownItem itemWithTitle:@"技术支持" callBack:^(NSUInteger index, id info) {
         button.tag = 110;
         [self showVC:button];
     }];
-    item4.iconName = @"5";
+    item4.iconName = @"main_5";
     DTKDropdownMenuView *menuView = [DTKDropdownMenuView dropdownMenuViewWithType:dropDownTypeLeftItem frame:CGRectMake(0, 0, 44.f, 44.f) dropdownItems:@[item0,item1,item2,item3,item4] icon:@"menu"];
     
     menuView.dropWidth = 130.f;
@@ -91,6 +94,10 @@
     UIImageView *headImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
     headImage.image = [UIImage imageNamed:@"头像1"];
     headImage.userInteractionEnabled = YES;
+    headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/4;
+    headImage.layer.borderWidth = 3;
+    headImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    headImage.clipsToBounds = YES;
     [self.userInfoView addSubview:headImage];
     
     [headImage mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -99,6 +106,7 @@
         make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.5);
         make.width.mas_equalTo(headImage.mas_height);
     }];
+    
     
     UILabel *username = [[UILabel alloc] init];
     username.text = @"name";
