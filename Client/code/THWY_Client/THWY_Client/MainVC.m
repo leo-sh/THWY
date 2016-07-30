@@ -10,6 +10,9 @@
 #import "Masonry/Masonry.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UserVO.h"
+#import "UDManager.h"
+#import "DTKDropdownMenuView.h"
+
 #import "PersonInfoViewController.h"
 @interface MainVC ()
 
@@ -207,7 +210,7 @@
         make.width.and.height.mas_equalTo(woyaotousu);
     }];
     
-    [zhanghaoxinxi addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
+    [zhanghaoxinxi addTarget:self action:@selector(showVC:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *jianyiyijian = [[UIButton alloc] init];
     jianyiyijian.tag = 107;
@@ -238,15 +241,18 @@
 //pushVC
 - (void)showVC:(UIButton *)button{
 
-- (void)click
-{
-    PersonInfoViewController *vc = [[PersonInfoViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSArray *VCNames = @[@"WantRepairesVC",//我要报修
+                         @"RepairRecordsVC",//报修记录
+                         @"BussnessCircleVC",//社区商圈
+                         @"",//缴费台账
+                         @"",//我要投诉
+                         @"PersonInfoViewController",//账号信息
+                         @"",//建议意见
+                         @"",//业主和公告
+                         @"PushSettingVC",//推送设置
+                         @"TechSupportVC"];//技术支持
+    id vc = [[NSClassFromString(VCNames[button.tag-101]) alloc]init];
+    [self.navigationController pushViewController:(UIViewController *)vc animated:YES];
 }
 
 - (void)showUserInfoVC{

@@ -13,7 +13,7 @@
 #import "BlueCheckButton.h"
 #import "ServicesManager.h"
 #import "MainVC.h"
-@interface LoginViewController ()
+@interface LoginViewController ()<UITextFieldDelegate>
 @property UIImageView *LogoView;
 @property userAndPassWordTextField *userTF;
 @property userAndPassWordTextField *passWordTF;
@@ -63,7 +63,7 @@
 - (void)createUserAndPasswordTextfiled
 {
     self.userTF =[[userAndPassWordTextField alloc]init];
-    
+    self.userTF.delegate = self;
     [self.view addSubview:self.userTF];
     
     CGFloat userAndPassWordTFWidth = self.view.width *0.9;
@@ -86,6 +86,7 @@
     NSLog(@"%@",[[UDManager getUD]getPassWord]);
     
     self.passWordTF =[[userAndPassWordTextField alloc]init];
+    self.passWordTF.delegate = self;
     [self.passWordTF setSecureTextEntry:YES];
     [self.view addSubview:self.passWordTF];
     
@@ -218,6 +219,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark --文本框代理方法
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 /*
 #pragma mark - Navigation
 
