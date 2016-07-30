@@ -102,6 +102,7 @@
 		794E73E41D4A454700267C84 /* DTKDropdownMenuView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 794E73E11D4A454700267C84 /* DTKDropdownMenuView.bundle */; };
 		794E73E51D4A454700267C84 /* DTKDropdownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E31D4A454700267C84 /* DTKDropdownMenuView.m */; };
 		794E73E81D4A4F3E00267C84 /* PushSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E71D4A4F3E00267C84 /* PushSettingVC.m */; };
+		94D708931D4C68EE00C5009D /* ComplaintStateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EF81D48A0BD00B95DE5 /* ComplaintStateVO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
