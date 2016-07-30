@@ -7,6 +7,7 @@
 //
 
 #import "MainVC.h"
+#import "DTKDropdownMenuView.h"
 #import "Masonry/Masonry.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UserVO.h"
@@ -254,16 +255,12 @@
     }else{
         NSLog(@"vc  is  nill");
     }
+}
 
 - (void)click
 {
     PersonInfoViewController *vc = [[PersonInfoViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)showUserInfoVC{
