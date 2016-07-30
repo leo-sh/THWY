@@ -11,6 +11,8 @@
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UserVO.h"
 #import "PersonInfoViewController.h"
+#import "DTKDropdownMenuView.h"
+
 @interface MainVC ()
 
 @property UIButton *userInfoView;
@@ -88,6 +90,10 @@
     UIImageView *headImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
     headImage.image = [UIImage imageNamed:@"头像1"];
     headImage.userInteractionEnabled = YES;
+    headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/4;
+    headImage.layer.borderWidth = 3;
+    headImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    headImage.clipsToBounds = YES;
     [self.userInfoView addSubview:headImage];
     
     [headImage mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -96,6 +102,7 @@
         make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.5);
         make.width.mas_equalTo(headImage.mas_height);
     }];
+    
     
     UILabel *username = [[UILabel alloc] init];
     username.text = @"name";
@@ -207,8 +214,6 @@
         make.width.and.height.mas_equalTo(woyaotousu);
     }];
     
-    [zhanghaoxinxi addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
-    
     UIButton *jianyiyijian = [[UIButton alloc] init];
     jianyiyijian.tag = 107;
     [jianyiyijian setBackgroundImage:[UIImage imageNamed:@"建议意见"] forState:UIControlStateNormal];
@@ -243,7 +248,7 @@
                          @"BussnessCircleVC",//社区商圈
                          @"",//缴费台账
                          @"",//我要投诉
-                         @"",//账号信息
+                         @"PersonInfoViewController",//账号信息
                          @"",//建议意见
                          @"",//业主和公告
                          @"PushSettingVC",//推送设置
@@ -254,16 +259,6 @@
     }else{
         NSLog(@"vc  is  nill");
     }
-
-- (void)click
-{
-    PersonInfoViewController *vc = [[PersonInfoViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)showUserInfoVC{
