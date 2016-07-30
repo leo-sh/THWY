@@ -13,7 +13,6 @@
 		1E42BB551D498DEE0021DA01 /* userAndPassWordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E42BB541D498DEE0021DA01 /* userAndPassWordTextField.m */; };
 		1E42BB581D4994E30021DA01 /* BlueCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E42BB571D4994E30021DA01 /* BlueCheckButton.m */; };
 		1E42BB591D49C3670021DA01 /* ServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25725E1D47376E00CB4167 /* ServicesManager.m */; };
-		1E42BB5B1D49C4B90021DA01 /* ComplaintStateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E42BB5A1D49C4B90021DA01 /* ComplaintStateVO.m */; };
 		1E42BB641D49E4240021DA01 /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E42BB631D49E4240021DA01 /* PersonInfoViewController.m */; };
 		5B197EC11D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B197EBF1D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a */; };
 		5B197ECA1D48779B00B95DE5 /* PointHistoryVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EC91D48779B00B95DE5 /* PointHistoryVO.m */; };
@@ -100,7 +99,7 @@
 		794E73E41D4A454700267C84 /* DTKDropdownMenuView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 794E73E11D4A454700267C84 /* DTKDropdownMenuView.bundle */; };
 		794E73E51D4A454700267C84 /* DTKDropdownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E31D4A454700267C84 /* DTKDropdownMenuView.m */; };
 		794E73E81D4A4F3E00267C84 /* PushSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E71D4A4F3E00267C84 /* PushSettingVC.m */; };
-		794E73EB1D4A4F6200267C84 /* TechSupportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73EA1D4A4F6200267C84 /* TechSupportVC.m */; };
+		94D708931D4C68EE00C5009D /* ComplaintStateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EF81D48A0BD00B95DE5 /* ComplaintStateVO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,7 +112,6 @@
 		1E42BB541D498DEE0021DA01 /* userAndPassWordTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userAndPassWordTextField.m; sourceTree = "<group>"; };
 		1E42BB561D4994E30021DA01 /* BlueCheckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCheckButton.h; sourceTree = "<group>"; };
 		1E42BB571D4994E30021DA01 /* BlueCheckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCheckButton.m; sourceTree = "<group>"; };
-		1E42BB5A1D49C4B90021DA01 /* ComplaintStateVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ComplaintStateVO.m; path = THWY_Client/ComplaintStateVO.m; sourceTree = "<group>"; };
 		1E42BB621D49E4240021DA01 /* PersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoViewController.h; sourceTree = "<group>"; };
 		1E42BB631D49E4240021DA01 /* PersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoViewController.m; sourceTree = "<group>"; };
 		5B197EBF1D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.3.0.a; sourceTree = "<group>"; };
@@ -642,7 +640,6 @@
 		5BFFCE0C1D41B9A30066B1B9 = {
 			isa = PBXGroup;
 			children = (
-				1E42BB5A1D49C4B90021DA01 /* ComplaintStateVO.m */,
 				5BFFCE171D41B9A30066B1B9 /* THWY_Client */,
 				5BFFCE161D41B9A30066B1B9 /* Products */,
 			);
@@ -779,7 +776,6 @@
 				5B25722A1D47177B00CB4167 /* UIView+WebCacheOperation.m in Sources */,
 				5B2571861D47110B00CB4167 /* UILabel+Extension.m in Sources */,
 				5B2571801D47110B00CB4167 /* UIBarButtonItem+Extension.m in Sources */,
-				1E42BB5B1D49C4B90021DA01 /* ComplaintStateVO.m in Sources */,
 				5BED6BBB1D49963000C137C5 /* FeeVO.m in Sources */,
 				5B2572711D47475100CB4167 /* RootVC.m in Sources */,
 				5B25717B1D47110B00CB4167 /* NSDate+Extension.m in Sources */,
@@ -853,6 +849,7 @@
 				1E42BB581D4994E30021DA01 /* BlueCheckButton.m in Sources */,
 				5B25721E1D47177B00CB4167 /* SDWebImageCompat.m in Sources */,
 				5B2572281D47177B00CB4167 /* UIImageView+HighlightedWebCache.m in Sources */,
+				94D708931D4C68EE00C5009D /* ComplaintStateVO.m in Sources */,
 				5B25721C1D47177B00CB4167 /* NSData+ImageContentType.m in Sources */,
 				794E73E51D4A454700267C84 /* DTKDropdownMenuView.m in Sources */,
 				5B197EF01D487DAC00B95DE5 /* ViewController+MASAdditions.m in Sources */,
