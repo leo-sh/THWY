@@ -60,4 +60,10 @@
 + (BOOL)validateEmail:(NSString *)email;
 
 - (BOOL)isEmptyString;
+
+//获得到指定时间的时间差字符串,传入目标时间字符串和格式
++(NSString*)stringNowToDate:(NSString*)toDate formater:(NSString*)formatStr;
+
+//获得到指定时间的时间差字符串,格式在此方法内返回前自己根据需要格式化
++(NSString*)stringNowToDate:(NSDate*)toDate;
 @end

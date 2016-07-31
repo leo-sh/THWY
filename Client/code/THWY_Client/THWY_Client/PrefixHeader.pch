@@ -17,6 +17,8 @@
 #pragma mark - 头文件
 #import "BXExtensions.h"
 #import "ServicesManager.h"
+#import "Masonry.h"
+#import "UIImageView+WebCache.h"
 
 #endif
 

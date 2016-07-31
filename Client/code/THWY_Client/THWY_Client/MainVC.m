@@ -88,7 +88,7 @@
     self.userInfoView = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, My_ScreenW, 1/4.0 * (My_ScreenH-64) - 20)];
     [self.userInfoView setBackgroundImage:[UIImage imageNamed:@"beijing"] forState:UIControlStateNormal];
     [self.userInfoView addTarget:self action:@selector(showUserInfoVC) forControlEvents:UIControlEventTouchUpInside];
-    UIImageView *headImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+    UIImageView *headImage = [[UIImageView alloc] init];
     headImage.image = [UIImage imageNamed:@"头像1"];
     headImage.userInteractionEnabled = YES;
     headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/4;
@@ -112,7 +112,7 @@
     [self.userInfoView addSubview:username];
     
     [username mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(headImage.mas_top).offset(10);
+        make.centerY.mas_equalTo(headImage.mas_centerY).multipliedBy(0.75);
         make.left.mas_equalTo(headImage.mas_right).offset(15);
     }];
     
@@ -147,7 +147,7 @@
     if (user) {
         [headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
         username.text = user.real_name;
-        addr.text = @"";
+        addr.text = user.estate;
     }
 }
 

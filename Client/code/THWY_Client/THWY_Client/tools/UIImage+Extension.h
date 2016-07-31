@@ -45,4 +45,16 @@
  *  @return UIImageView
  */
 + (instancetype)imageViewWithImageName:(NSString *)imageName;
+
+
+/**
+ *  缩放图片大小
+ *
+ *  @param image     原始图片
+ *  @param scaleSize 缩放比例
+ *
+ *  @return 修改后的图片
+ */
++ (UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize;
+
 @end
