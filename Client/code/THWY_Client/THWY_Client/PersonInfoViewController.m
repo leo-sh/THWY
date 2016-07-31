@@ -11,7 +11,8 @@
 #import "ServicesManager.h"
 #import "UIImageView+WebCache.h"
 #import "PersonInfoLabel.h"
-@interface PersonInfoViewController ()
+#import "ReviseBtn.h"
+@interface PersonInfoViewController ()<UITextFieldDelegate>
 @property UIView *topView;
 @property UIView *bottomView;
 @property UserVO *userInfo;
@@ -35,6 +36,8 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"背景2"]];
     
     self.canUpdateInfo = [NSMutableArray array];
+    
+    self.title = @"账号信息";
     
 }
 
@@ -72,11 +75,11 @@
     icon.layer.borderColor = [UIColor whiteColor].CGColor;
     icon.clipsToBounds = YES;
     
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:icon.frame];
+    UIImageView *imageView = [[UIImageView alloc]init];
     
-    [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",API_HOST,self.userInfo.avatar]]];
-
-    [icon addSubview:imageView];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userInfo.avatar]]];
+    
+    [icon setImage:imageView.image forState:UIControlStateNormal];
     
     NSLog(@"%@",self.userInfo.avatar);
     
@@ -145,7 +148,7 @@
     NSArray *labelTitleArry = @[@"业主姓名",@"联系电话",@"所在项目",@"房源信息",@"车牌号",@"登录账号",@"账号密码"];
     HouseVO *house = [self.userInfo.houses firstObject];
     NSString *houseAddress = [NSString stringWithFormat:@"%@",house.estate];
-    NSArray *tfTextArray = @[self.userInfo.real_name,self.userInfo.cellphone,self.userInfo.estate,self.userInfo.car_number,self.userInfo.oname,[[UDManager getUD]getPassWord]];
+    NSArray *tfTextArray = @[self.userInfo.real_name,self.userInfo.cellphone,self.userInfo.estate,houseAddress,self.userInfo.car_number,self.userInfo.oname,[[UDManager getUD]getPassWord]];
     CGFloat labelHeight = self.bottomView.height/(imageNameArray.count + 3);
     CGFloat labelLeft = self.view.width * 0.02;
     CGFloat labelWidth = self.view.width - 2 *labelLeft;
@@ -155,8 +158,8 @@
         
         PersonInfoLabel *label = [[PersonInfoLabel alloc]initWithFrame:CGRectMake(labelLeft, labelY , labelWidth , labelHeight)];
         
-        [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] TextField:@"王璐璐" isEnable:YES];
-        
+        [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] TextField:tfTextArray[i] isEnable:YES];
+        label.textField.delegate = self;
         label.layer.borderWidth = 1;
         label.layer.borderColor = [UIColor lightGrayColor].CGColor;
         
@@ -185,17 +188,25 @@
     CGFloat reviseBtnW = self.view.width - reviseBtnX * 2;
     CGFloat reviseBtnH = labelHeight;
     
-    UIButton *reviseBtn = [[UIButton alloc]initWithFrame:CGRectMake(reviseBtnX, revieseBtnY, reviseBtnW, reviseBtnH)];
+    ReviseBtn *reviseBtn = [[ReviseBtn alloc]initWithFrame:CGRectMake(reviseBtnX, revieseBtnY, reviseBtnW, reviseBtnH)];
     
-    reviseBtn.backgroundColor = [UIColor blueColor];
+    reviseBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage createImageWithColor:My_NAV_BG_Color]];
     [reviseBtn setImage:[UIImage imageNamed:@"修改"] forState:UIControlStateNormal];
     [reviseBtn setTitle:@"修改" forState:UIControlStateNormal];
-    
     [self.bottomView addSubview:reviseBtn];
     
+    [reviseBtn addTarget:self action:@selector(clickReviseBtn) forControlEvents:UIControlEventTouchUpInside];
     
+}
 
-
+#pragma mark --点击修改按钮
+- (void)clickReviseBtn
+{
+    [[ServicesManager getAPI]editUserInfo:[[self.canUpdateInfo[0] textField] text] carNumber:[[self.canUpdateInfo[1] textField] text] newUserName:[[self.canUpdateInfo[2] textField] text] newPassWord:[[self.canUpdateInfo[3] textField] text] onComplete:^(NSString *errorMsg) {
+        if (errorMsg) {
+            NSLog(@"%@",errorMsg);
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -203,6 +214,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 /*
 #pragma mark - Navigation

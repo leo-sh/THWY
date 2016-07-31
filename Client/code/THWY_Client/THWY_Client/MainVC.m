@@ -11,6 +11,9 @@
 #import "Masonry/Masonry.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UserVO.h"
+#import "UDManager.h"
+#import "DTKDropdownMenuView.h"
+
 #import "PersonInfoViewController.h"
 #import "DTKDropdownMenuView.h"
 
@@ -214,6 +217,8 @@
         make.top.mas_equalTo(woyaotousu.mas_top);
         make.width.and.height.mas_equalTo(woyaotousu);
     }];
+    
+    [zhanghaoxinxi addTarget:self action:@selector(showVC:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *jianyiyijian = [[UIButton alloc] init];
     jianyiyijian.tag = 107;

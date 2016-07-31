@@ -16,6 +16,9 @@
 - (instancetype)init
 {
     if (self = [super init]) {
+        
+        [self.textField addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+        
         self.imageView = [[UIImageView alloc]init];
         
         self.label = [[UILabel alloc]init];
@@ -32,6 +35,8 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        
+        [self.textField addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
         
         self.backgroundColor = [UIColor whiteColor];
         
@@ -101,6 +106,19 @@
     else
     {
         self.textField.enabled = NO;
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    NSLog(@"收到通知");
+    if ([change[@"new"] integerValue]) {
+        self.textField.clearButtonMode = UITextFieldViewModeAlways;
+    }
+    else
+    {
+        self.textField.clearButtonMode = UITextFieldViewModeNever;
+
     }
 }
 
