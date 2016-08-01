@@ -116,7 +116,7 @@
  *  @param type       反馈类型
  *  @param onComplete 获取完成回调block
  */
--(void)getFeedBackList:(int)type onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+-(void)getFeedBackList:(NSString* )typeId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
 /**
  *  添加反馈

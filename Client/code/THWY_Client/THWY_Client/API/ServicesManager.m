@@ -473,13 +473,13 @@
     }];
 }
 
--(void)getFeedBackList:(int)type onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
+-(void)getFeedBackList:(NSString* )typeId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@guest_book",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
                              @"login_password":_passWord,
-                             @"category":[NSString stringWithFormat:@"%d",type]};
+                             @"category":typeId};
     [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -490,10 +490,13 @@
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* feedBackDic in responseObject[@"datas"][@"datas"]) {
-                FeedBackVO *feedBack = [[FeedBackVO alloc]initWithJSON:feedBackDic];
-                [listArr addObject:feedBack];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* feedBackDic in responseObject[@"datas"][@"datas"]) {
+                    FeedBackVO *feedBack = [[FeedBackVO alloc]initWithJSON:feedBackDic];
+                    [listArr addObject:feedBack];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -1339,7 +1342,9 @@
 {
     if ([self isLogin]) {
         [My_ServicesManager getFeedBackTypes:^(NSString *errorMsg, NSArray *list) {
-            
+            [self getFeedBackList:2 onComplete:^(NSString *errorMsg, NSArray *list) {
+                
+            }];
         }];
     }
     
