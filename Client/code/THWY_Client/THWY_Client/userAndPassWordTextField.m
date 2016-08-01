@@ -44,6 +44,8 @@
     self.leftViewMode = UITextFieldViewModeAlways;
     self.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:iconName]];
     self.placeholder = placeholder;
+    [self setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [self setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     
 }
 
