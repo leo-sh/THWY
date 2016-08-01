@@ -98,12 +98,12 @@
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         //    cell.textLabel.textColor = [UIColor grayColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        if (indexPath.row != 4) {
+//        if (indexPath.row != 4) {
             cell.preservesSuperviewLayoutMargins = NO;
             cell.separatorInset = UIEdgeInsetsZero;
             cell.layoutMargins = UIEdgeInsetsZero;
-        }
-        
+//        }
+    
         if (self.data && indexPath.section < self.data.count) {
             cell.textLabel.text = [NSString stringWithFormat:@"%@%@",self.contentHead[indexPath.row],self.contentEnd[indexPath.section][indexPath.row]];
         }
