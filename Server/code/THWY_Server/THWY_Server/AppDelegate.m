@@ -16,7 +16,6 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [My_ServicesManager test];//测试API函数😁
@@ -27,9 +26,8 @@
     
     self.window = [[UIWindow alloc]initWithFrame:My_ScreenBounds];
     self.window.backgroundColor = My_Color(238, 238, 238);
-    MainVC* mainVC = [[MainVC alloc]init];
-    MainNavigationViewController* mainNav = [[MainNavigationViewController alloc]initWithRootViewController:mainVC];
-    self.window.rootViewController = mainNav;
+    self.window.rootViewController = [[MainNavigationViewController alloc]
+                                      initWithRootViewController:[[MainVC alloc]init]];
     [self.window makeKeyAndVisible];
     
     return YES;

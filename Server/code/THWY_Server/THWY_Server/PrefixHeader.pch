@@ -44,6 +44,7 @@
 #define My_ScreenBounds [UIScreen mainScreen].bounds
 #define My_ScreenSize [UIScreen mainScreen].bounds.size
 #define My_KeyWindow [UIApplication sharedApplication].keyWindow
+#define My_ServicesManager [ServicesManager getAPI]
 
 #define My_NAV_BG_Color RGBColorFromX(0xF9F9F9)
 #define MainColor RGBColorFromX(0xEAB300)

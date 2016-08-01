@@ -610,7 +610,7 @@
 -(void)getAComplaint:(NSString *)complaintId onComplete:(void (^)(NSString *errorMsg,ComplaintVO *complaint))onComplete
 {
     AFHTTPSessionManager *manager = [self getManager];
-    NSString *urlString = [NSString stringWithFormat:@"%@complaints",API_HOST];
+    NSString *urlString = [NSString stringWithFormat:@"%@complaint",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
                              @"login_password":_passWord,
                              @"id":complaintId};
@@ -634,7 +634,7 @@
 -(void)addComplaint:(ComplaintVO *)complaint onComplete:(void (^)(NSString *errorMsg))onComplete
 {
     AFHTTPSessionManager *manager = [self getManager];
-    NSString *urlString = [NSString stringWithFormat:@"%@complaints",API_HOST];
+    NSString *urlString = [NSString stringWithFormat:@"%@add_complain",API_HOST];
     NSMutableDictionary *params = [complaint toDic];
     params[@"login_name"] = _userName;
     params[@"login_password"] = _passWord;
@@ -686,7 +686,7 @@
 -(void)getANote:(NSString *)noteId onComplete:(void (^)(NSString *errorMsg,NoteVO *complaint))onComplete
 {
     AFHTTPSessionManager *manager = [self getManager];
-    NSString *urlString = [NSString stringWithFormat:@"%@complaints",API_HOST];
+    NSString *urlString = [NSString stringWithFormat:@"%@get_note",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
                              @"login_password":_passWord,
                              @"id":noteId};
@@ -1337,8 +1337,11 @@
 -(void)test
 {
     if ([self isLogin]) {
-        UserVO* user = [[UDManager getUD] getUser];
-        NSLog(@"%@",user);
+        [My_ServicesManager getComplaints:0 onComplete:^(NSString *errorMsg, NSArray *list) {
+            [My_ServicesManager getAComplaint:@"18" onComplete:^(NSString *errorMsg, ComplaintVO *complaint) {
+                
+            }];
+        }];
     }
     
 }

@@ -105,6 +105,10 @@
  */
 -(void)editAIpAllow:(IPAllowVO *)ip onComplete:(void (^)(NSString *errorMsg))onComplete;
 
+#pragma mark 好友相关API
+
+-(void)getFriends:(void (^)(NSString *errorMsg,NSArray* list))onComplete;
+
 #pragma mark 测试用函数
 -(void)test;
 @end
