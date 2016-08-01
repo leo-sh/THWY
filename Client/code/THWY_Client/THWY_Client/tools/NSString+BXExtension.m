@@ -243,18 +243,18 @@
  *
  *  @return <#return value description#>
  */
-+ (NSString *)stringDateFromTimeInterval:(unsigned long long)timeInterval withFormat:(NSString *)format{
++ (NSString *)stringDateFromTimeInterval:(long long)timeInterval withFormat:(NSString *)format{
    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
-    if (format) {
+    if (format != nil) {
         [formatter setDateFormat:format];
     }else{
-        [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+        [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     }
     //    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:-[merchant.ctime intValue]];
-    NSDate *date = [[NSDate alloc] initWithTimeIntervalSinceNow:-timeInterval/1000];
+    NSDate *date = [[NSDate alloc] initWithTimeIntervalSinceNow:-(timeInterval/1000)];
     return [formatter stringFromDate:date];
 
 }

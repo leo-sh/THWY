@@ -39,13 +39,8 @@
     
     self.title.text = merchant.title;
     self.advo = merchant;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
-    [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
-//    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:-[merchant.ctime intValue]];
-    NSDate *date = [[NSDate alloc] initWithTimeIntervalSinceNow:-[merchant.ctime intValue]/1000];
-    self.timeLabel.text = [formatter stringFromDate:date];
+
+    self.timeLabel.text = [NSString stringDateFromTimeInterval:[merchant.ctime integerValue] withFormat:@"YYYY-MM-dd HH:mm"];
     [[ServicesManager getAPI] getAnAd:merchant.Id onComplete:^(NSString *errorMsg, AdVO *ad) {
         self.desc.text = ad.title;
     }];
