@@ -462,7 +462,7 @@
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* typeDic in responseObject[@"datas"][@"datas"]) {
+            for (NSDictionary* typeDic in responseObject[@"datas"]) {
                 FeedBackTypeVO *type = [[FeedBackTypeVO alloc]initWithJSON:typeDic];
                 [listArr addObject:type];
             }
@@ -1338,10 +1338,8 @@
 -(void)test
 {
     if ([self isLogin]) {
-        [My_ServicesManager getComplaints:0 onComplete:^(NSString *errorMsg, NSArray *list) {
-            [My_ServicesManager getAComplaint:@"18" onComplete:^(NSString *errorMsg, ComplaintVO *complaint) {
-                
-            }];
+        [My_ServicesManager getFeedBackTypes:^(NSString *errorMsg, NSArray *list) {
+            
         }];
     }
     

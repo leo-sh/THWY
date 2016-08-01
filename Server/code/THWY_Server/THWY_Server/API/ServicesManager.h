@@ -165,6 +165,9 @@
  */
 -(void)getAnAd:(NSString *)adId onComplete:(void (^)(NSString *errorMsg,AdVO *notic))onComplete;
 
+#pragma mark 个人日志相关API
+
+
 #pragma mark 测试用函数
 -(void)test;
 @end
