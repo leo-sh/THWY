@@ -66,4 +66,7 @@
 
 //获得到指定时间的时间差字符串,格式在此方法内返回前自己根据需要格式化
 +(NSString*)stringNowToDate:(NSDate*)toDate;
+
++ (NSString *)stringDateFromTimeInterval:(long long)timeInterval withFormat:(NSString *)format;
+
 @end
