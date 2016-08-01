@@ -12,6 +12,7 @@
 #import "UserVO.h"
 #import "IPAllowVO.h"
 #import "NoticVO.h"
+#import "AdVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -139,6 +140,30 @@
  *  @param onComplete 获取完成回调block
  */
 -(void)getNotice:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray* list))onComplete;
+
+/**
+ *  获取物业公告－行政公告内容
+ *
+ *  @param noticeId   公告ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getANotice:(NSString *)noticeId onComplete:(void (^)(NSString *errorMsg,NoticVO *notic))onComplete;
+
+/**
+ *  获取物业公告－商圈公告
+ *
+ *  @param page       页数
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getAds:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray* list))onComplete;
+
+/**
+ *  获取物业公告－商圈公告内容
+ *
+ *  @param adId       公告ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getAnAd:(NSString *)adId onComplete:(void (^)(NSString *errorMsg,AdVO *notic))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;

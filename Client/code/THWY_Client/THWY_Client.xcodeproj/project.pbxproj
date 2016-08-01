@@ -114,6 +114,11 @@
 		794E73E41D4A454700267C84 /* DTKDropdownMenuView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 794E73E11D4A454700267C84 /* DTKDropdownMenuView.bundle */; };
 		794E73E51D4A454700267C84 /* DTKDropdownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E31D4A454700267C84 /* DTKDropdownMenuView.m */; };
 		794E73E81D4A4F3E00267C84 /* PushSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E71D4A4F3E00267C84 /* PushSettingVC.m */; };
+		79D2D2701D4F530400463CC5 /* MerchargeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F2B6B41D4E011C00AA94E0 /* MerchargeListCell.xib */; };
+		79D2D2711D4F532400463CC5 /* PaigongCatogerysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F2B6901D4D9E7F00AA94E0 /* PaigongCatogerysCell.xib */; };
+		79D2D2721D4F533000463CC5 /* DescribeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 790506611D4CE93C00072AAC /* DescribeCell.xib */; };
+		79D2D2731D4F533A00463CC5 /* RepaireCategorysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 790506571D4CE2B100072AAC /* RepaireCategorysCell.xib */; };
+		79D2D2741D4F534B00463CC5 /* UploadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7905065C1D4CE51A00072AAC /* UploadCell.xib */; };
 		79F2B6911D4D9E7F00AA94E0 /* PaigongCatogerysCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F2B68F1D4D9E7F00AA94E0 /* PaigongCatogerysCell.m */; };
 		79F2B6961D4D9E9700AA94E0 /* ProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F2B6941D4D9E9700AA94E0 /* ProjectCell.m */; };
 		79F2B6971D4D9E9700AA94E0 /* ProjectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F2B6951D4D9E9700AA94E0 /* ProjectCell.xib */; };
@@ -1084,6 +1089,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D2D2741D4F534B00463CC5 /* UploadCell.xib in Resources */,
+				79D2D2731D4F533A00463CC5 /* RepaireCategorysCell.xib in Resources */,
+				79D2D2721D4F533000463CC5 /* DescribeCell.xib in Resources */,
+				79D2D2711D4F532400463CC5 /* PaigongCatogerysCell.xib in Resources */,
+				79D2D2701D4F530400463CC5 /* MerchargeListCell.xib in Resources */,
 				5B197EE61D487DAC00B95DE5 /* Info.plist in Resources */,
 				5BFFCE281D41B9A30066B1B9 /* LaunchScreen.storyboard in Resources */,
 				790506541D4CDB3500072AAC /* HouseSourceCell.xib in Resources */,
