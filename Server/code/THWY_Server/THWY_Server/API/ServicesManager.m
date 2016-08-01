@@ -454,7 +454,7 @@
 -(void)getNotice:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray* list))onComplete
 {
     AFHTTPSessionManager *manager = [self getManager];
-    NSString *urlString = [NSString stringWithFormat:@"%@friends",API_HOST];
+    NSString *urlString = [NSString stringWithFormat:@"%@notice",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
                              @"login_password":_passWord,
                              @"page":[NSString stringWithFormat:@"%d",page]};
@@ -480,6 +480,83 @@
     }];
 }
 
+-(void)getANotice:(NSString *)noticeId onComplete:(void (^)(NSString *errorMsg,NoticVO *notic))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@notice_detail",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"id":noticeId};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NoticVO* notic = [[NoticVO alloc]initWithJSON:responseObject[@"datas"]];
+            onComplete(nil,notic);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)getAds:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray* list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@ads",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"page":[NSString stringWithFormat:@"%d",page]};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            for (NSDictionary* adDic in responseObject[@"datas"][@"datas"]) {
+                AdVO* ad = [[AdVO alloc]initWithJSON:adDic];
+                [listArr addObject:ad];
+            }
+            
+            onComplete(nil,listArr);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)getAnAd:(NSString *)adId onComplete:(void (^)(NSString *errorMsg,AdVO *notic))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@ad_detail",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"id":adId};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            AdVO* ad = [[AdVO alloc]initWithJSON:responseObject[@"datas"]];
+            onComplete(nil,ad);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
 #pragma mark 环境参数判定函数
 -(BOOL)isLogin{
     UserVO *user = [[UDManager getUD] getUser];
@@ -491,7 +568,15 @@
 {
     if ([self isLogin]) {
         UserVO *user = [[UDManager getUD] getUser];
-        NSLog(@"%@",user.admin_id);
+        NSLog(@"admin_id:%@",user.admin_id);
+        [self getNotice:0 onComplete:^(NSString *errorMsg, NSArray *list) {
+            
+        }];
+    }else
+    {
+        [self login:@"gyg" password:@"123456" onComplete:^(NSString *errorMsg, UserVO *user) {
+            [self test];
+        }];
     }
 }
 @end

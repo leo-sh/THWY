@@ -614,6 +614,7 @@
     NSDictionary *params = @{@"login_name":_userName,
                              @"login_password":_passWord,
                              @"id":complaintId};
+    
     [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

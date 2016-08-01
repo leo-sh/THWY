@@ -1,5 +1,5 @@
 //
-//  NoticVO.h
+//  AdVO.h
 //  THWY_Server
 //
 //  Created by Mr.S on 16/8/1.
@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NoticVO : NSObject
+@interface AdVO : NSObject
 
 @property NSString              * Id;
-@property NSString              * note_txt_type_id;
 @property NSString              * title;
 @property NSString              * content;
+@property NSString              * estate_ids;
 @property NSString              * ctime;
-@property NSString              * note_type;
-@property NSString              * files;
+@property NSString              * admin_view;
+@property BOOL is_tuijian;
 
--(NoticVO* )initWithJSON:(NSDictionary *)JSON;
+-(AdVO* )initWithJSON:(NSDictionary *)JSON;
 
 @end

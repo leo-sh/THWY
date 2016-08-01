@@ -1,25 +1,25 @@
 //
-//  NoticVO.m
+//  AdVO.m
 //  THWY_Server
 //
 //  Created by Mr.S on 16/8/1.
 //  Copyright © 2016年 SXZ. All rights reserved.
 //
 
-#import "NoticVO.h"
+#import "AdVO.h"
 
-@implementation NoticVO
+@implementation AdVO
 
--(NoticVO* )initWithJSON:(NSDictionary *)JSON
+-(AdVO* )initWithJSON:(NSDictionary *)JSON
 {
     if (self = [super init]) {
         self.Id = JSON[@"id"];
-        self.note_txt_type_id = JSON[@"note_txt_type_id"];
         self.title = JSON[@"title"];
         self.content = JSON[@"content"];
+        self.estate_ids = JSON[@"estate_ids"];
         self.ctime = JSON[@"ctime"];
-        self.note_type = JSON[@"note_type"];
-        self.files = JSON[@"files"];
+        self.admin_view = JSON[@"admin_view"];
+        self.is_tuijian = [JSON[@"is_tuijian"] boolValue];
     }
     
     return self;

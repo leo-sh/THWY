@@ -58,6 +58,7 @@
 		5BFFCE481D41B9C40066B1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE471D41B9C40066B1B9 /* Assets.xcassets */; };
 		5BFFCE4B1D41B9C40066B1B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE491D41B9C40066B1B9 /* LaunchScreen.storyboard */; };
 		94C040C81D4EEAC300E23969 /* NoticVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C040C71D4EEAC300E23969 /* NoticVO.m */; };
+		94C040CB1D4F128B00E23969 /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C040CA1D4F128B00E23969 /* AdVO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -165,6 +166,8 @@
 		5BFFCE4C1D41B9C40066B1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94C040C61D4EEAC300E23969 /* NoticVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticVO.h; sourceTree = "<group>"; };
 		94C040C71D4EEAC300E23969 /* NoticVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticVO.m; sourceTree = "<group>"; };
+		94C040C91D4F128B00E23969 /* AdVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdVO.h; sourceTree = "<group>"; };
+		94C040CA1D4F128B00E23969 /* AdVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdVO.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +209,8 @@
 				5B3632011D4B0E5800D276D1 /* IPAllowVO.m */,
 				94C040C61D4EEAC300E23969 /* NoticVO.h */,
 				94C040C71D4EEAC300E23969 /* NoticVO.m */,
+				94C040C91D4F128B00E23969 /* AdVO.h */,
+				94C040CA1D4F128B00E23969 /* AdVO.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -494,6 +499,7 @@
 				5B2571BE1D4714A100CB4167 /* UIImage+ScreenShot.m in Sources */,
 				5B2571CD1D4714D600CB4167 /* MainVC.m in Sources */,
 				5B2571B91D4714A100CB4167 /* UIBarButtonItem+Extension.m in Sources */,
+				94C040CB1D4F128B00E23969 /* AdVO.m in Sources */,
 				5B2571C91D4714D100CB4167 /* MainNavigationViewController.m in Sources */,
 				5B2571F61D4716F800CB4167 /* AFURLRequestSerialization.m in Sources */,
 				5B2571F81D4716F800CB4167 /* AFURLSessionManager.m in Sources */,
