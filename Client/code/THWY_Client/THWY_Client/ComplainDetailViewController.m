@@ -71,6 +71,7 @@
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.bounces = NO;
     [self.tableView setSeparatorColor:My_Color(241, 244, 244)];
+//    [self.tableView setSeparatorColor:[UIColor lightGrayColor]];
     [self.view addSubview: self.tableView];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -140,7 +141,7 @@
     }
     else
     {
-        return 2;
+        return 1;
     }
 }
 
@@ -153,11 +154,13 @@
     }
     else
     {
-//        UIImageView *imageView = [[UIImageView alloc]init];
-//        imageView.image = [UIImage imageNamed:@"虚线"];
-//        imageView.contentMode = UIViewContentModeScaleAspectFit;
-////        imageView.backgroundColor = [UIColor whiteColor];
-//        ResultView = imageView;
+        UIView *view = [[UIView alloc]init];
+        view.backgroundColor = [UIColor whiteColor];
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, tableView.width, 1)];
+        imageView.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"虚线"]];
+//        imageView.backgroundColor = [UIColor whiteColor];
+        [view addSubview:imageView];
+        ResultView = view;
     }
     return ResultView;
 }

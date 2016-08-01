@@ -99,7 +99,7 @@
         make.height.mas_equalTo(userAndPassWordHeight);
     }];
     
-    [self.passWordTF setLeftIcon:@"密码" placeholder:@"请输入密码" backgroundColor:[UIColor whiteColor]];
+    [self.passWordTF setLeftIcon:@"登录密码" placeholder:@"请输入密码" backgroundColor:[UIColor whiteColor]];
     
     self.passWordTF.text = [[UDManager getUD]getPassWord];
 

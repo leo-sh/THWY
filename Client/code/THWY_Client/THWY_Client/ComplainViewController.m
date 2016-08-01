@@ -107,6 +107,7 @@
         if (self.data && indexPath.section < self.data.count) {
             cell.textLabel.text = [NSString stringWithFormat:@"%@%@",self.contentHead[indexPath.row],self.contentEnd[indexPath.section][indexPath.row]];
         }
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
     return cell;
 }
 
@@ -135,6 +136,7 @@
         [btn setTitle:@"添加" forState:UIControlStateNormal];
         btn.backgroundColor = My_NAV_BG_Color;
         [view addSubview: btn];
+        [btn addTarget:self action:@selector(clickAdd) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return view;
@@ -164,7 +166,7 @@
     }
     else
     {
-        return 30;
+        return 40;
     }
 }
 
@@ -176,6 +178,21 @@
     
     [self.navigationController pushViewController:pushView animated:YES];
 }
+
+- (void)clickAdd
+{
+    
+}
+
+//#pragma mark --设置sectionHeaderView固定
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    CGFloat sectionHeaderHeight = 6;
+//    if(scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0,0);
+//    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+//    }
+//}
 
 /*
 #pragma mark - Navigation

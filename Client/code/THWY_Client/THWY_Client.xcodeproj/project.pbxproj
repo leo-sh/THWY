@@ -11,6 +11,8 @@
 		1E3BA3911D4AFF2B00633D0B /* PersonInfoLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3BA3901D4AFF2B00633D0B /* PersonInfoLabel.m */; };
 		1E3BA3B91D4B4FC600633D0B /* ReviseBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3BA3B81D4B4FC600633D0B /* ReviseBtn.m */; };
 		1E3BA3BF1D4B759C00633D0B /* ComplainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3BA3BE1D4B759C00633D0B /* ComplainViewController.m */; };
+		1E3CBD491D4F1574000080A5 /* PayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3CBD481D4F1574000080A5 /* PayTableViewCell.m */; };
+		1E3CBD4C1D4F4F5A000080A5 /* PayInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3CBD4B1D4F4F5A000080A5 /* PayInfoViewController.m */; };
 		1E42BB551D498DEE0021DA01 /* userAndPassWordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E42BB541D498DEE0021DA01 /* userAndPassWordTextField.m */; };
 		1E42BB581D4994E30021DA01 /* BlueCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E42BB571D4994E30021DA01 /* BlueCheckButton.m */; };
 		1E42BB591D49C3670021DA01 /* ServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25725E1D47376E00CB4167 /* ServicesManager.m */; };
@@ -145,6 +147,10 @@
 		1E3BA3B81D4B4FC600633D0B /* ReviseBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviseBtn.m; sourceTree = "<group>"; };
 		1E3BA3BD1D4B759C00633D0B /* ComplainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplainViewController.h; sourceTree = "<group>"; };
 		1E3BA3BE1D4B759C00633D0B /* ComplainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplainViewController.m; sourceTree = "<group>"; };
+		1E3CBD471D4F1574000080A5 /* PayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayTableViewCell.h; sourceTree = "<group>"; };
+		1E3CBD481D4F1574000080A5 /* PayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayTableViewCell.m; sourceTree = "<group>"; };
+		1E3CBD4A1D4F4F5A000080A5 /* PayInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayInfoViewController.h; sourceTree = "<group>"; };
+		1E3CBD4B1D4F4F5A000080A5 /* PayInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayInfoViewController.m; sourceTree = "<group>"; };
 		1E42BB531D498DEE0021DA01 /* userAndPassWordTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userAndPassWordTextField.h; sourceTree = "<group>"; };
 		1E42BB541D498DEE0021DA01 /* userAndPassWordTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userAndPassWordTextField.m; sourceTree = "<group>"; };
 		1E42BB561D4994E30021DA01 /* BlueCheckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCheckButton.h; sourceTree = "<group>"; };
@@ -502,6 +508,8 @@
 			children = (
 				1EE2841D1D4D037D008D5305 /* PayViewController.h */,
 				1EE2841E1D4D037D008D5305 /* PayViewController.m */,
+				1E3CBD4A1D4F4F5A000080A5 /* PayInfoViewController.h */,
+				1E3CBD4B1D4F4F5A000080A5 /* PayInfoViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -509,6 +517,8 @@
 		1EE2841C1D4D0365008D5305 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1E3CBD471D4F1574000080A5 /* PayTableViewCell.h */,
+				1E3CBD481D4F1574000080A5 /* PayTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1120,6 +1130,7 @@
 				5B2571DF1D4716EE00CB4167 /* AFHTTPSessionManager.m in Sources */,
 				5B197EE71D487DAC00B95DE5 /* MASCompositeConstraint.m in Sources */,
 				794E73E81D4A4F3E00267C84 /* PushSettingVC.m in Sources */,
+				1E3CBD4C1D4F4F5A000080A5 /* PayInfoViewController.m in Sources */,
 				5B2572211D47177B00CB4167 /* SDWebImageDownloaderOperation.m in Sources */,
 				5B2572231D47177B00CB4167 /* SDWebImagePrefetcher.m in Sources */,
 				5BED6BC11D499DB900C137C5 /* EstateVO.m in Sources */,
@@ -1140,6 +1151,7 @@
 				1EE284251D4D0548008D5305 /* ProclamationViewController.m in Sources */,
 				5B2572251D47177B00CB4167 /* UIImage+GIF.m in Sources */,
 				5B2571881D47110B00CB4167 /* UIView+Extension.m in Sources */,
+				1E3CBD491D4F1574000080A5 /* PayTableViewCell.m in Sources */,
 				5B197EEE1D487DAC00B95DE5 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				5B2571571D4710C100CB4167 /* MainNavigationViewController.m in Sources */,
 				79F2B6C51D4E3CC000AA94E0 /* RecommandBussnessADVC.m in Sources */,
