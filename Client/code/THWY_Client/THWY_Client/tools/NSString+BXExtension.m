@@ -236,5 +236,26 @@
     
 }
 
+/**
+ *  根据时差换算NSDate
+ *
+ *  @param timeInterval <#timeInterval description#>
+ *
+ *  @return <#return value description#>
+ */
++ (NSString *)stringDateFromTimeInterval:(unsigned long long)timeInterval withFormat:(NSString *)format{
+   
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    if (format) {
+        [formatter setDateFormat:format];
+    }else{
+        [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+    }
+    //    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:-[merchant.ctime intValue]];
+    NSDate *date = [[NSDate alloc] initWithTimeIntervalSinceNow:-timeInterval/1000];
+    return [formatter stringFromDate:date];
 
+}
 @end
