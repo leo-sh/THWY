@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#define CONTENT_FONT 13
 @interface ProclamationTableViewCell : UITableViewCell
 @property UILabel *title;
 @property UILabel *time;
