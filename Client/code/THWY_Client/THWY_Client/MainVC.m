@@ -252,11 +252,11 @@
     NSArray *VCNames = @[@"WantRepairesVC",//我要报修
                          @"RepairRecordsVC",//报修记录
                          @"BussnessCircleVC",//社区商圈
-                         @"",//缴费台账
-                         @"",//我要投诉
+                         @"PayViewController",//缴费台账
+                         @"ComplainViewController",//我要投诉
                          @"PersonInfoViewController",//账号信息
-                         @"",//建议意见
-                         @"",//业主和公告
+                         @"SuggestViewController",//建议意见
+                         @"ProclamationViewController",//业主和公告
                          @"PushSettingVC",//推送设置
                          @"TechSupportVC"];//技术支持
     id vc = [[NSClassFromString(VCNames[button.tag-101]) alloc]init];

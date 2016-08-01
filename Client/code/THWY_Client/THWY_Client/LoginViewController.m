@@ -108,7 +108,7 @@
 
 - (void)createButton
 {
-    self.rememberPassWordBtn = [[BlueCheckButton alloc]initDefaultImageName:@"框不带勾" choosedImageName:@"框带勾" title:@"忘记密码"];
+    self.rememberPassWordBtn = [[BlueCheckButton alloc]initDefaultImageName:@"框不带勾" choosedImageName:@"框带勾" title:@"记住密码"];
     
     [self.view addSubview:self.rememberPassWordBtn];
 
@@ -194,6 +194,8 @@
         NSLog(@"%@",user);
         if (errorMsg) {
             NSLog(@"%@",errorMsg);
+            [[NSNotificationCenter defaultCenter] postNotificationName:Login_Fail object:nil];
+
         }
         else if (user) {
             [[UDManager getUD] saveUser:user];
@@ -205,6 +207,9 @@
                 }
             NSLog(@"%@",self.userTF.text);
             NSLog(@"%@",self.passWordTF.text);
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:Login_Success object:nil];
+            
             [self dismissViewControllerAnimated:YES completion:nil];
         }
         

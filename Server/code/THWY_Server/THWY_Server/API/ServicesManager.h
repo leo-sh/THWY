@@ -11,6 +11,7 @@
 #import "UDManager.h"
 #import "UserVO.h"
 #import "IPAllowVO.h"
+#import "NoticVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -104,6 +105,40 @@
  *  @param onComplete 增加完成回调block
  */
 -(void)editAIpAllow:(IPAllowVO *)ip onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+#pragma mark 好友相关API
+/**
+ *  获取好友列表
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getFriends:(void (^)(NSString *errorMsg,NSArray* list))onComplete;
+
+/**
+ *  查找一个人(至少一个参数不为空)
+ *
+ *  @param phoneNum   手机号码
+ *  @param name       姓名
+ *  @param onComplete 查找完成回调block
+ */
+-(void)findFriends:(NSString* )phoneNum name:(NSString *)name onComplete:(void (^)(NSString *errorMsg,NSArray* list))onComplete;
+
+/**
+ *  添加一个好友
+ *
+ *  @param adminId    好友adminID
+ *  @param onComplete 添加完成回调block
+ */
+-(void)addFriend:(NSString *)adminId onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+#pragma mark 物业公告相关API
+/**
+ *  获取物业公告－行政公告
+ *
+ *  @param page       页数
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getNotice:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray* list))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;
