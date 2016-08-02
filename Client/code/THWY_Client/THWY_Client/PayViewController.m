@@ -29,7 +29,7 @@
 - (void)ViewInitSetting
 {
     self.title = @"缴费台账";
-    [self.navigationController pushViewController:[[PayInfoViewController alloc]init] animated:YES];
+    //    [self.navigationController pushViewController:[[PayInfoViewController alloc]init] animated:YES];
 }
 
 - (void)getData
@@ -42,7 +42,7 @@
         self.data = list;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-           
+            
             [self.tableView reloadData];
             
         });
@@ -56,13 +56,13 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
+    //    self.tableView.rowHeight = 200;
     [self.view addSubview:self.tableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.data.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,9 +73,25 @@
         cell = [[PayTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     FeeVO *item = self.data[indexPath.row];
+    [cell giveData:item];
+    [cell updateFrame:CGSizeMake(tableView.width, 100)];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PayInfoViewController *pushView = [[PayInfoViewController alloc]init];
+    
+    pushView.feeId = [self.data[indexPath.row] Id];
+    
+    [self.navigationController pushViewController:pushView animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -85,13 +101,13 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

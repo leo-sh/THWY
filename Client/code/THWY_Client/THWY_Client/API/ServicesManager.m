@@ -1342,7 +1342,7 @@
 {
     if ([self isLogin]) {
         [My_ServicesManager getFeedBackTypes:^(NSString *errorMsg, NSArray *list) {
-            [self getFeedBackList:2 onComplete:^(NSString *errorMsg, NSArray *list) {
+            [self getFeedBackList:@"2" onComplete:^(NSString *errorMsg, NSArray *list) {
                 
             }];
         }];

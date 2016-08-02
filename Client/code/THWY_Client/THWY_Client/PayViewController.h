@@ -2,7 +2,7 @@
 //  PayViewController.h
 //  THWY_Client
 //
-//  Created by HuangYiZhe on 16/7/30.
+//  Created by HuangYiZhe on 16/8/2.
 //  Copyright © 2016年 SXZ. All rights reserved.
 //
 
