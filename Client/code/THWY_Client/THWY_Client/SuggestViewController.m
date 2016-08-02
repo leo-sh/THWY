@@ -163,12 +163,7 @@
     UIView *view = [[UIView alloc]init];
     if (section == self.data.count - 1) {
         ReviseBtn *reviseBtn = [[ReviseBtn alloc]initWithFrame:CGRectMake(40, 5, tableView.width - 80 , 40)];
-        reviseBtn.backgroundColor = [UIColor clearColor];
-        [reviseBtn setImage:[UIImage imageNamed:@"建议意见 添加"] forState:UIControlStateNormal];
-        [reviseBtn setTitle:@"添加" forState:UIControlStateNormal];
-        [reviseBtn setBackgroundImage:[UIImage imageNamed:@"信息修改按钮"] forState:UIControlStateNormal];
-        [reviseBtn setBackgroundImage:[UIImage imageNamed:@"信息修改按钮按下"] forState:UIControlStateHighlighted];    [reviseBtn addTarget:self action:@selector(clickAddBtn) forControlEvents:UIControlEventTouchUpInside];
-        reviseBtn.adjustsImageWhenHighlighted = NO;
+        [reviseBtn setLeftImageView:@"建议意见 添加" andTitle:@"添加"];
         [view addSubview:reviseBtn];
     }
     return view;

@@ -146,7 +146,7 @@
     NSString *endT = [NSString stringDateFromTimeInterval:[FeeVO.end_time intValue] withFormat:@"YYYY/MM/dd"];
     self.timeLabel.text = [NSString stringWithFormat:@"%@~%@",beginT,endT];
     self.payTypeLabel.text = FeeVO.cls_name;
-    self.priceLabel.text = [NSString stringWithFormat:@"%f",[FeeVO.how_much floatValue]];
+    self.priceLabel.text = [NSString stringConvertFloatString:FeeVO.how_much addEndString:@"元"];
     self.AddressLabel.text = [NSString stringWithFormat:@"%@栋%@单元%@室",FeeVO.block,FeeVO.unit,FeeVO.mph];
 }
 

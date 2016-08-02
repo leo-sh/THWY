@@ -87,7 +87,8 @@
         cell = [[ProclamationTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         self.topHeight = CGRectGetMaxY(cell.time.frame);
     }
-    [cell setTitle:[self.data[indexPath.section] category]  time:[self.data[indexPath.section] ctime] content:[self.data[indexPath.section] content] width:tableView.width];
+    NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd"];
+    [cell setTitle:[self.data[indexPath.section] category]  time:time content:[self.data[indexPath.section] content] width:tableView.width];
     return cell;
 }
 

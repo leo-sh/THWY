@@ -189,10 +189,7 @@
     CGFloat reviseBtnH = labelHeight;
     
     ReviseBtn *reviseBtn = [[ReviseBtn alloc]initWithFrame:CGRectMake(reviseBtnX, revieseBtnY, reviseBtnW, reviseBtnH)];
-    
-    reviseBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage createImageWithColor:My_NAV_BG_Color]];
-    [reviseBtn setImage:[UIImage imageNamed:@"修改"] forState:UIControlStateNormal];
-    [reviseBtn setTitle:@"修改" forState:UIControlStateNormal];
+    [reviseBtn setLeftImageView:@"修改" andTitle:@"修改"];
     [self.bottomView addSubview:reviseBtn];
     
     [reviseBtn addTarget:self action:@selector(clickReviseBtn) forControlEvents:UIControlEventTouchUpInside];

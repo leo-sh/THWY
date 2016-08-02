@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ReviseBtn : UIButton
-
+- (void)setLeftImageView:(NSString *)imageName andTitle:(NSString *)title;
 @end

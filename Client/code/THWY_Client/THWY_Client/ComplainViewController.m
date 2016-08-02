@@ -9,6 +9,7 @@
 #import "ComplainViewController.h"
 #import "ServicesManager.h"
 #import "Masonry.h"
+#import "ReviseBtn.h"
 @interface ComplainViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property UITableView *tableView;
 @property NSArray *data;
@@ -132,11 +133,10 @@
 {
     UIView *view = [[UIView alloc]init];
     if (section == self.data.count - 1) {
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(40, 5, tableView.width - 80, 40)];
-        [btn setTitle:@"添加" forState:UIControlStateNormal];
-        btn.backgroundColor = My_NAV_BG_Color;
-        [view addSubview: btn];
+        ReviseBtn *btn = [[ReviseBtn alloc]initWithFrame:CGRectMake(40, 5, tableView.width - 80, 40)];
+        [btn setLeftImageView:@"建议意见 添加" andTitle:@"添加"];
         [btn addTarget:self action:@selector(clickAdd) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:btn];
     }
     
     return view;

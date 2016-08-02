@@ -45,8 +45,13 @@
         
         NSString *sourceInfo = [NSString stringWithFormat:@"%@栋%@单元%@室",ad.block,ad.unit,ad.mph];
         NSString *feeScale = [NSString stringWithFormat:@"%@%@",ad.cls_fee,ad.cls_unit];
-        NSArray *sectionOneData = @[ad.real_name,ad.estate_name,sourceInfo,ad.house_size,ad.cls_name,feeScale,ad.how_much,@"",ad.actual,ad.qian_fei];
-        NSArray *sectionTwoData = @[@"",ad.actual,@"",@""];
+        NSString *totalPrice = [NSString stringConvertFloatString:ad.how_much addEndString:@"元"];
+        NSString *actualString = [NSString stringConvertFloatString:ad.actual addEndString:@"元"];
+        NSString *qianfeiString = [NSString stringWithFormat:@"%@元",ad.qian_fei];
+        NSString *houseSizeString = [NSString stringConvertFloatString:ad.house_size addEndString:@"平方米"];
+        
+        NSArray *sectionOneData = @[ad.real_name,ad.estate_name,sourceInfo,houseSizeString,ad.cls_name,feeScale,totalPrice,@"",actualString,qianfeiString];
+        NSArray *sectionTwoData = @[@"",actualString,@"",@""];
         self.data = @[sectionOneData,sectionTwoData];
         dispatch_async(dispatch_get_main_queue(), ^{
             

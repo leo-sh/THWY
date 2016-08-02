@@ -45,6 +45,8 @@
         self.label = [[UILabel alloc]init];
         
         self.textField = [[UITextField alloc]init];
+        self.textField.font = [UIFont systemFontOfSize:CONTENT_FONT];
+        
         
         [self addSubview:self.imageView];
         [self addSubview:self.label];
