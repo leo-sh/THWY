@@ -59,4 +59,6 @@
  */
 + (instancetype)labelWithTitle:(NSString *)title color:(UIColor *)color font:(UIFont *)font alignment:(NSTextAlignment)alignment;
 
+
++ (instancetype)labelWithTitle:(NSString *)title frameX:(CGFloat)x Height:(CGFloat)height;
 @end

@@ -12,7 +12,9 @@
 #import "UIImageView+WebCache.h"
 #import "PersonInfoLabel.h"
 #import "ReviseBtn.h"
-@interface PersonInfoViewController ()<UITextFieldDelegate>
+#import "TYAlertController.h"
+#import "TYAlertView.h"
+@interface PersonInfoViewController ()<UITextFieldDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property UIView *topView;
 @property UIView *bottomView;
 @property UserVO *userInfo;
@@ -74,16 +76,18 @@
     icon.layer.borderWidth = 3;
     icon.layer.borderColor = [UIColor whiteColor].CGColor;
     icon.clipsToBounds = YES;
+    [icon addTarget:self action:@selector(clickIcon) forControlEvents:UIControlEventTouchUpInside];
     
-    UIImageView *imageView = [[UIImageView alloc]init];
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, iconWidth, iconHeight)];
+    
+    [icon addSubview:imageView];
     
     [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userInfo.avatar]]];
+
     
-    [icon setImage:imageView.image forState:UIControlStateNormal];
-    
-    NSLog(@"%@",self.userInfo.avatar);
-    
-    NSLog(@"%@",self.userInfo.houses[0]);
+//    NSLog(@"%@",self.userInfo.avatar);
+//    
+//    NSLog(@"%@",self.userInfo.houses[0]);
     
     
     
@@ -106,9 +110,9 @@
     NSLog(@"%@",self.userInfo);
     nameLabel.text = self.userInfo.real_name;
     
-    CGFloat font = namelabelHeight * 0.65;
+//    CGFloat font = namelabelHeight * 0.65;
     
-    nameLabel.font = [UIFont systemFontOfSize: font];
+    nameLabel.font = [UIFont systemFontOfSize: CONTENT_FONT];
     
     
     UILabel *addressLabel = [[UILabel alloc]init];
@@ -127,11 +131,10 @@
         make.right.mas_equalTo(addressLabelRight);
         make.height.mas_equalTo(addressLabelHeight);
     }];
-    
-    NSString *addressString = [NSString stringWithFormat:@"%@",self.userInfo.estate];
-    
+    HouseVO *house = self.userInfo.houses[0];
+    NSString *addressString = [NSString stringWithFormat:@"%@%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
     addressLabel.text = addressString;
-    addressLabel.font = [UIFont systemFontOfSize:font];
+    addressLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
 
 }
 
@@ -147,8 +150,8 @@
     NSArray *imageNameArray = @[@"姓名",@"电话",@"项目",@"部门",@"车牌号",@"登录账号",@"密码"];
     NSArray *labelTitleArry = @[@"业主姓名",@"联系电话",@"所在项目",@"房源信息",@"车牌号",@"登录账号",@"账号密码"];
     HouseVO *house = [self.userInfo.houses firstObject];
-    NSString *houseAddress = [NSString stringWithFormat:@"%@",house.estate];
-    NSArray *tfTextArray = @[self.userInfo.real_name,self.userInfo.cellphone,self.userInfo.estate,houseAddress,self.userInfo.car_number,self.userInfo.oname,[[UDManager getUD]getPassWord]];
+    NSString *addressString = [NSString stringWithFormat:@"%@%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
+    NSArray *tfTextArray = @[self.userInfo.real_name,self.userInfo.cellphone,self.userInfo.estate,addressString,self.userInfo.car_number,self.userInfo.oname,[[UDManager getUD]getPassWord]];
     CGFloat labelHeight = self.bottomView.height/(imageNameArray.count + 3);
     CGFloat labelLeft = self.view.width * 0.02;
     CGFloat labelWidth = self.view.width - 2 *labelLeft;
@@ -206,6 +209,54 @@
     }];
 }
 
+#pragma mark --点击头像
+- (void)clickIcon
+{
+    
+    
+    TYAlertView *alertView = [[TYAlertView alloc]init];
+    
+    [alertView addAction:[TYAlertAction actionWithTitle:@"拍照" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
+        [self loadImageWithType:UIImagePickerControllerSourceTypeCamera];
+    }]];
+    
+    [alertView addAction:[TYAlertAction actionWithTitle:@"从相册选择" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
+        [self loadImageWithType:UIImagePickerControllerSourceTypePhotoLibrary];
+    }]];
+    
+    [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancle handler:^(TYAlertAction *action) {
+        NSLog(@"%@",action.title);
+    }]];
+    
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:alertView preferredStyle:TYAlertControllerStyleActionSheet];
+    [self presentViewController:alertController animated:YES completion:nil];
+
+}
+
+- (void)loadImageWithType:(UIImagePickerControllerSourceType)type
+{
+    //创建容器
+    UIImagePickerController *ipc = [[UIImagePickerController alloc]init];
+    //设置操作类型
+    ipc.sourceType = type;
+    //设置代理对象
+    ipc.delegate = self;
+    
+    [self presentViewController:ipc animated:NO completion:nil];
+}
+//实现选取图片结束后的代理方法
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    //获取选取的图片
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    
+    [[ServicesManager getAPI]upLoadAvatar:image OnComplete:^(NSString *errorMsg, NSString *avatar) {
+        NSLog(@"%@",avatar);
+        NSLog(@"%@",errorMsg);
+    }];
+    
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -13,11 +13,11 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="291"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="290.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="290"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="repaire_具体描述" translatesAutoresizingMaskIntoConstraints="NO" id="jgn-c2-MyG">
-                        <rect key="frame" x="10" y="18" width="24.5" height="24.5"/>
+                        <rect key="frame" x="10" y="18" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="jgn-c2-MyG" secondAttribute="height" multiplier="1:1" id="1lz-TQ-gqL"/>
                             <constraint firstAttribute="width" constant="22" id="MCJ-e2-3vI"/>
@@ -29,18 +29,18 @@
                         </variation>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="具体描述 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGe-ak-RYA">
-                        <rect key="frame" x="42.5" y="20" width="73" height="19.5"/>
+                        <rect key="frame" x="43" y="20" width="73" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="r2x-z1-5VT">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="r2x-z1-5VT">
                         <rect key="frame" x="14" y="52" width="384" height="160"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCh-Nc-YUS">
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCh-Nc-YUS">
                         <rect key="frame" x="62" y="227" width="290" height="34"/>
                         <color key="backgroundColor" red="0.12628173828125" green="0.64699685573577881" blue="0.88424164056777954" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" title="      提 交"/>
@@ -48,7 +48,7 @@
                             <action selector="commit:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fZ7-wI-DZU"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="repaire_提交" translatesAutoresizingMaskIntoConstraints="NO" id="6Yv-PO-FaP">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="repaire_提交" translatesAutoresizingMaskIntoConstraints="NO" id="6Yv-PO-FaP">
                         <rect key="frame" x="153" y="232" width="24" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="6Yv-PO-FaP" secondAttribute="height" multiplier="1:1" id="AeI-NQ-mTg"/>

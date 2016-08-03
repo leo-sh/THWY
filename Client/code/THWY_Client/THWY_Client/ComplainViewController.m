@@ -10,6 +10,7 @@
 #import "ServicesManager.h"
 #import "Masonry.h"
 #import "ReviseBtn.h"
+#import "ComplainAlertView.h"
 @interface ComplainViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property UITableView *tableView;
 @property NSArray *data;
@@ -181,7 +182,9 @@
 
 - (void)clickAdd
 {
-    
+    ComplainAlertView *alertview = [[ComplainAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
+    [alertview updateWithComplainVo:[[UDManager getUD]getUser]];
+    [alertview show];
 }
 
 //#pragma mark --设置sectionHeaderView固定
