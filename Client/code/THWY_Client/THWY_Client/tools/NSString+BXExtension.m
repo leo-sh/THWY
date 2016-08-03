@@ -258,4 +258,11 @@
     return [formatter stringFromDate:date];
 
 }
+
++ (NSString *)stringConvertFloatString:(NSString *)string addEndString:(NSString *)endString
+{
+    return [NSString stringWithFormat:@"%.2f%@",[string floatValue],endString];
+    
+}
+
 @end

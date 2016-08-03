@@ -28,4 +28,16 @@
     
     return rect;
 }
+
+- (void)setLeftImageView:(NSString *)imageName andTitle:(NSString *)title
+{
+    self.backgroundColor = [UIColor clearColor];
+    [self setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    [self setTitle:title forState:UIControlStateNormal];
+    [self setBackgroundImage:[UIImage imageNamed:@"信息修改按钮"] forState:UIControlStateNormal];
+    [self setBackgroundImage:[UIImage imageNamed:@"信息修改按钮按下"] forState:UIControlStateHighlighted];
+    self.adjustsImageWhenHighlighted = NO;
+}
+
+
 @end

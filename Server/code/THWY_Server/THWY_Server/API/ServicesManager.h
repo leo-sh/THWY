@@ -13,6 +13,13 @@
 #import "IPAllowVO.h"
 #import "NoticVO.h"
 #import "AdVO.h"
+#import "DocTypeVO.h"
+#import "DocVO.h"
+#import "EstateVO.h"
+#import "RepairStatuVO.h"
+#import "RepairClassVO.h"
+#import "AddPublicRepairVO.h"
+#import "AddRepairVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -166,7 +173,120 @@
 -(void)getAnAd:(NSString *)adId onComplete:(void (^)(NSString *errorMsg,AdVO *notic))onComplete;
 
 #pragma mark 个人日志相关API
+/**
+ *  获取个人日志文档分类
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getDocTypes:(void (^)(NSString *errorMsg,NSArray* list))onComplete;
 
+/**
+ *  获取个人日志
+ *
+ *  @param page       页数
+ *  @param typeId     分类ID(可选)
+ *  @param isPublic   0:私人 1:公开 >1:不选
+ *  @param belong     0:自己的文档 1:他人的文档 >1:不选
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getDocs:(int)page docTypeId:(NSString *)typeId public:(int)isPublic belong:(int)belong onComplete:(void (^)(NSString *errorMsg,NSArray* list))onComplete;
+
+/**
+ *  获取日志详细
+ *
+ *  @param docId      日志ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getADoc:(NSString *)docId onComplete:(void (^)(NSString *errorMsg,DocVO* doc))onComplete;
+
+/**
+ *  增加工作日志
+ *
+ *  @param typeId     类型ID
+ *  @param public     是否公开
+ *  @param title      标题
+ *  @param content    内容
+ *  @param onComplete 增加完成回调block
+ */
+-(void)addDoc:(NSString *)typeId public:(BOOL)public title:(NSString* )title content:(NSString* )content onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+/**
+ *  编辑工作日志
+ *
+ *  @param docId      日志ID
+ *  @param typeId     类型ID
+ *  @param public     是否公开
+ *  @param title      标题
+ *  @param content    内容
+ *  @param onComplete 编辑完成回调block
+ */
+-(void)editDoc:(NSString* )docId typeId:(NSString *)typeId public:(BOOL)public title:(NSString* )title content:(NSString* )content onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+/**
+ *  删除工作日志
+ *
+ *  @param docId      日志ID
+ *  @param onComplete 删除完成回调block
+ */
+-(void)delDoc:(NSString* )docId onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+#pragma mark 楼盘相关API
+/**
+ *  获取所有楼盘
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getEstates:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  根据楼盘获取楼栋
+ *
+ *  @param estateId   楼盘ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getBlock:(NSString *)estateId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  根据楼盘、楼栋获取单元
+ *
+ *  @param estateId   楼盘ID
+ *  @param block      楼栋
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getUnit:(NSString *)estateId block:(NSString *)block onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  根据楼盘、楼栋、单元获取楼层
+ *
+ *  @param estateId   楼盘ID
+ *  @param block      楼栋
+ *  @param unit       单元
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getLayer:(NSString *)estateId block:(NSString *)block unit:(NSString *)unit onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+#pragma mark 保修相关API
+/**
+ *  获取公共保修类别
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getPublicRepairClasses:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取公共保修状态
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getPublicRepairStatus:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  添加公共报修
+ *
+ *  @param repair     报修实例对象
+ *  @param onComplete 添加完成回调block
+ */
+-(void)addPublicRepair:(AddPublicRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;

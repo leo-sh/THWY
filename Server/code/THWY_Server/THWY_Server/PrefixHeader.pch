@@ -12,6 +12,7 @@
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 #pragma mark - 头文件
 #import "BXExtensions.h"

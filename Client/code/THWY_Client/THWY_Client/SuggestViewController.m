@@ -10,6 +10,8 @@
 #import "Masonry/Masonry.h"
 #import "ProclamationTableViewCell.h"
 #import "ReviseBtn.h"
+#import "AlertView.h"
+#import "SuggestAlertView.h"
 #define TopViewH 70
 @interface SuggestViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property UITableView *tableView;
@@ -163,12 +165,8 @@
     UIView *view = [[UIView alloc]init];
     if (section == self.data.count - 1) {
         ReviseBtn *reviseBtn = [[ReviseBtn alloc]initWithFrame:CGRectMake(40, 5, tableView.width - 80 , 40)];
-        reviseBtn.backgroundColor = [UIColor clearColor];
-        [reviseBtn setImage:[UIImage imageNamed:@"建议意见 添加"] forState:UIControlStateNormal];
-        [reviseBtn setTitle:@"添加" forState:UIControlStateNormal];
-        [reviseBtn setBackgroundImage:[UIImage imageNamed:@"信息修改按钮"] forState:UIControlStateNormal];
-        [reviseBtn setBackgroundImage:[UIImage imageNamed:@"信息修改按钮按下"] forState:UIControlStateHighlighted];    [reviseBtn addTarget:self action:@selector(clickAddBtn) forControlEvents:UIControlEventTouchUpInside];
-        reviseBtn.adjustsImageWhenHighlighted = NO;
+        [reviseBtn setLeftImageView:@"建议意见 添加" andTitle:@"添加"];
+        [reviseBtn addTarget:self action:@selector(clickAddBtn) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:reviseBtn];
     }
     return view;
@@ -188,12 +186,23 @@
     NSLog(@"%@ld",self.FeedBackTypeArray);
     [self getData:[self.FeedBackTypeArray[self.segmentedControl.selectedSegmentIndex] Id]];
     
+//    UILabel * houseLabel = [UILabel labelWithTitle:@"房源" frameX:10 Height:30];
+//    houseLabel.textColor = [UIColor yellowColor];
+//    NSLog(@"%f",houseLabel.width)
+//    UILabel *houseLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
+//    houseLabel.backgroundColor = [UIColor blackColor];
+//    [self.view addSubview:houseLabel];
+    
 }
 
 - (void)clickAddBtn
 {
+    SuggestAlertView *alertView = [[SuggestAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
     
+    alertView.backgroundColor = [UIColor whiteColor];
+    [alertView show];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

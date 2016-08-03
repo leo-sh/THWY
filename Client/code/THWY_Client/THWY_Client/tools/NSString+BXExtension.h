@@ -68,5 +68,6 @@
 +(NSString*)stringNowToDate:(NSDate*)toDate;
 
 + (NSString *)stringDateFromTimeInterval:(long long)timeInterval withFormat:(NSString *)format;
-
+//保留两位小数点
++ (NSString *)stringConvertFloatString:(NSString *)string addEndString:(NSString *)endString;
 @end
