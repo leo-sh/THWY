@@ -201,7 +201,7 @@
         }
         if (videoData) {
             NSString *fileName = [NSString stringWithFormat:@"%@.mp4", str];
-            [formData appendPartWithFileData:videoData name:@"VDO" fileName:fileName mimeType:@"video/mp4"];
+            [formData appendPartWithFileData:videoData name:@"vdo" fileName:fileName mimeType:@"video/mp4"];
         }
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {

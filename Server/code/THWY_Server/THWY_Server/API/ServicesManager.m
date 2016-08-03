@@ -75,6 +75,117 @@
     return newImage;
 }
 
+- (void)convertVideoQuailtyWithInputURL:(NSString*)inputStr
+                              outputURL:(NSURL*)outputURL
+                        completeHandler:(void (^)(AVAssetExportSession*))handler
+{
+    NSURL* inputURL = nil;
+    if (inputStr.length != 0) {
+        inputURL = [NSURL URLWithString:inputStr];
+    }else
+    {
+        handler(nil);
+        return;
+    }
+    
+    AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:inputURL options:nil];
+    
+    AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:avAsset presetName:AVAssetExportPresetMediumQuality];
+    exportSession.outputURL = outputURL;
+    exportSession.outputFileType = AVFileTypeMPEG4;
+    exportSession.shouldOptimizeForNetworkUse= YES;
+    [exportSession exportAsynchronouslyWithCompletionHandler:^(void)
+     {
+         handler(exportSession);
+     }];
+    
+}
+
+- (CGFloat) getFileSize:(NSString *)path
+{
+    NSLog(@"%@",path);
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    float filesize = -1.0;
+    if ([fileManager fileExistsAtPath:path]) {
+        NSDictionary *fileDic = [fileManager attributesOfItemAtPath:path error:nil];//获取文件的属性
+        unsigned long long size = [[fileDic objectForKey:NSFileSize] longLongValue];
+        filesize = 1.0*size/1024;
+    }else{
+        NSLog(@"找不到文件");
+    }
+    return filesize;
+}//此方法可以获取文件的大小，返回的是单位是KB。
+- (CGFloat) getVideoLength:(NSURL *)URL
+{
+    
+    AVURLAsset *avUrl = [AVURLAsset assetWithURL:URL];
+    CMTime time = [avUrl duration];
+    int second = ceil(time.value/time.timescale);
+    return second;
+}//此方法可以获取视频文件的时长。
+
+-(void)handleRepair:(Repair_RootVO *)repair params:(NSDictionary* )params urlStr:(NSString* )urlString onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    NSData *imageData = nil;
+    if (repair.image) {
+        imageData = UIImagePNGRepresentation(repair.image);
+    }
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // 设置时间格式
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString *str = [formatter stringFromDate:[NSDate date]];
+    
+    NSURL *newVideoUrl = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4", str]] ;
+    
+    [self convertVideoQuailtyWithInputURL:repair.videoPath outputURL:newVideoUrl completeHandler:^(AVAssetExportSession * exportSession) {
+        
+        switch (exportSession.status) {
+            case AVAssetExportSessionStatusCancelled:
+            {
+                onComplete(@"Cancelled");
+                NSLog(@"AVAssetExportSessionStatusCancelled");
+            }
+                break;
+            case AVAssetExportSessionStatusUnknown:
+            {
+                onComplete(@"Unknown");
+                NSLog(@"AVAssetExportSessionStatusUnknown");
+            }
+                break;
+            case AVAssetExportSessionStatusWaiting:
+            {
+                onComplete(@"Waiting");
+                NSLog(@"AVAssetExportSessionStatusWaiting");
+            }
+                break;
+            case AVAssetExportSessionStatusExporting:
+            {
+                onComplete(@"Exporting");
+                NSLog(@"AVAssetExportSessionStatusExporting");
+            }
+                break;
+            case AVAssetExportSessionStatusCompleted:
+            {
+                NSLog(@"AVAssetExportSessionStatusCompleted");
+                NSLog(@"%@",[NSString stringWithFormat:@"%f s", [self getVideoLength:newVideoUrl]]);
+                NSLog(@"%@", [NSString stringWithFormat:@"%.2f kb", [self getFileSize:[newVideoUrl path]]]);
+                NSData *videoData = [NSData dataWithContentsOfURL:newVideoUrl];
+                [self subMitRepair:params image:imageData video:videoData urlString:urlString onComplete:onComplete];
+            }
+                break;
+            case AVAssetExportSessionStatusFailed:
+            {
+                onComplete(@"Failed");
+                NSLog(@"AVAssetExportSessionStatusFailed");
+            }
+                break;
+            default:
+                break;
+        }
+    }];
+}
+
 -(void)getErrorMessage:(NSString *)code
             onComplete:(void (^)(NSString *errorMsg))onComplete
 {
@@ -557,6 +668,396 @@
     }];
 }
 
+-(void)getDocTypes:(void (^)(NSString *errorMsg,NSArray* list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@get_doc_type",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            for (NSDictionary* typeDic in responseObject[@"datas"]) {
+                DocTypeVO* type = [[DocTypeVO alloc]initWithJSON:typeDic];
+                [listArr addObject:type];
+            }
+            
+            onComplete(nil,listArr);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)getDocs:(int)page docTypeId:(NSString *)typeId public:(int)isPublic belong:(int)belong onComplete:(void (^)(NSString *errorMsg,NSArray* list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@get_docs",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"page":[NSString stringWithFormat:@"%d",page]};
+    NSMutableDictionary* dic = [[NSMutableDictionary alloc]initWithDictionary:params];
+    if (typeId.length > 0) {
+        dic[@"doc_type_id"] = typeId;
+    }
+    
+    if (isPublic < 2) {
+        dic[@"is_public"] = [NSString stringWithFormat:@"%d",isPublic];
+    }
+    
+    if (belong < 2) {
+        dic[@"belong"] = [NSString stringWithFormat:@"%d",belong];
+    }
+    
+    [manager GET:urlString parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            for (NSDictionary* docDic in responseObject[@"datas"][@"datas"]) {
+                DocVO* doc = [[DocVO alloc]initWithJSON:docDic];
+                [listArr addObject:doc];
+            }
+            
+            onComplete(nil,listArr);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)getADoc:(NSString *)docId onComplete:(void (^)(NSString *errorMsg,DocVO* doc))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@get_doc",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"id":docId};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            DocVO* doc = [[DocVO alloc]initWithJSON:responseObject[@"datas"]];
+            
+            onComplete(nil,doc);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)addDoc:(NSString *)typeId public:(BOOL)public title:(NSString* )title content:(NSString* )content onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@add_doc",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"doc_type_id":typeId,
+                             @"is_public":[NSNumber numberWithBool:public],
+                             @"title":title,
+                             @"content":content};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg);
+            }];
+        }else
+        {
+            onComplete(nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误");
+    }];
+}
+
+-(void)editDoc:(NSString* )docId typeId:(NSString *)typeId public:(BOOL)public title:(NSString* )title content:(NSString* )content onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@edit_doc",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"id":docId,
+                             @"doc_type_id":typeId,
+                             @"is_public":[NSNumber numberWithBool:public],
+                             @"title":title,
+                             @"content":content};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg);
+            }];
+        }else
+        {
+            onComplete(nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误");
+    }];
+}
+
+-(void)delDoc:(NSString* )docId onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@del_doc",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"id":docId};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg);
+            }];
+        }else
+        {
+            onComplete(nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误");
+    }];
+}
+
+-(void)getEstates:(void (^)(NSString *errorMsg,NSArray *list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@get_estates",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            for (NSDictionary* estateDic in responseObject[@"datas"][@"datas"]) {
+                EstateVO *estate = [[EstateVO alloc]initWithJSON:estateDic];
+                [listArr addObject:estate];
+            }
+            onComplete(nil,listArr);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)getBlock:(NSString *)estateId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@get_estate_block",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"estate_id":estateId};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                [listArr addObject:estateDic[@"block"]];
+            }
+            onComplete(nil,listArr);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)getUnit:(NSString *)estateId block:(NSString *)block onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@get_estate_block_unit",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"estate_id":estateId,
+                             @"block":block};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                [listArr addObject:estateDic[@"unit"]];
+            }
+            onComplete(nil,listArr);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)getLayer:(NSString *)estateId block:(NSString *)block unit:(NSString *)unit onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@get_estate_block_unit_layer",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"estate_id":estateId,
+                             @"block":block,
+                             @"unit":unit};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                [listArr addObject:estateDic[@"layer"]];
+            }
+            onComplete(nil,listArr);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)getPublicRepairClasses:(void (^)(NSString *errorMsg,NSArray *list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@get_public_repair_cls",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord};
+    
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                RepairClassVO *estate = [[RepairClassVO alloc]initWithJSON:estateDic];
+                [listArr addObject:estate];
+            }
+            onComplete(nil,listArr);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)getPublicRepairStatus:(void (^)(NSString *errorMsg,NSArray *list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@get_public_repair_status",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord};
+    
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                RepairStatuVO *estate = [[RepairStatuVO alloc]initWithJSON:estateDic];
+                [listArr addObject:estate];
+            }
+            onComplete(nil,listArr);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
+-(void)addPublicRepair:(AddPublicRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@add_public_repair",API_HOST];
+    NSMutableDictionary* params = [[NSMutableDictionary alloc]init];
+    params[@"login_name"] = _userName;
+    params[@"login_password"] = _passWord;
+    params[@"kb"] = [NSString stringWithFormat:@"%d",repair.kb];
+    params[@"estate_id"] = repair.estate_id;
+    params[@"block"] = repair.block;
+    params[@"unit"] = repair.unit;
+    params[@"layer"] = repair.layer;
+    params[@"call_name"] = repair.call_name;
+    params[@"call_phone"] = repair.call_phone;
+    params[@"cls"] = repair.cls;
+    params[@"repair_detail"] = repair.repair_detail;
+    
+    [self handleRepair:repair params:params urlStr:urlString onComplete:onComplete];
+}
+
+-(void)subMitRepair:(NSDictionary* )params image:(NSData* )imageData video:(NSData *)videoData urlString:(NSString *)urlString onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    [manager POST:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        // 设置时间格式
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        if (imageData) {
+            NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
+            [formData appendPartWithFileData:imageData name:@"pic" fileName:fileName mimeType:@"image/png"];
+        }
+        if (videoData) {
+            NSString *fileName = [NSString stringWithFormat:@"%@.mp4", str];
+            [formData appendPartWithFileData:videoData name:@"vdo" fileName:fileName mimeType:@"video/mp4"];
+        }
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg);
+            }];
+        }else
+        {
+            onComplete(nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误");
+    }];
+}
+
 #pragma mark 环境参数判定函数
 -(BOOL)isLogin{
     UserVO *user = [[UDManager getUD] getUser];
@@ -569,13 +1070,13 @@
     if ([self isLogin]) {
         UserVO *user = [[UDManager getUD] getUser];
         NSLog(@"admin_id:%@",user.admin_id);
-        [self getNotice:0 onComplete:^(NSString *errorMsg, NSArray *list) {
-            
-        }];
+        
     }else
     {
         [self login:@"gyg" password:@"123456" onComplete:^(NSString *errorMsg, UserVO *user) {
-            [self test];
+            if (errorMsg == nil) {
+                [self test];
+            }
         }];
     }
 }
