@@ -326,7 +326,7 @@
  *  @param statuId    状态ID
  *  @param onComplete 获取完成回调block
  */
--(void)getRepairs:(RepairType)type page:(int)page repairStatu:(NSString *)statuId :(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+-(void)getRepairs:(RepairType)type page:(int)page repairStatu:(NSString *)statuId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
 /**
  *  获取单个报修

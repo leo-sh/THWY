@@ -1164,7 +1164,7 @@
     }];
 }
 
--(void)getRepairs:(RepairType)type page:(int)page repairStatu:(NSString *)statuId :(void (^)(NSString *errorMsg,NSArray *list))onComplete
+-(void)getRepairs:(RepairType)type page:(int)page repairStatu:(NSString *)statuId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = @"";
@@ -1195,10 +1195,13 @@
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"][@"datas"]) {
-                RepairVO *estate = [[RepairVO alloc]initWithJSON:estateDic];
-                [listArr addObject:estate];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* estateDic in responseObject[@"datas"][@"datas"]) {
+                    RepairVO *estate = [[RepairVO alloc]initWithJSON:estateDic];
+                    [listArr addObject:estate];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -1341,8 +1344,8 @@
 -(void)test
 {
     if ([self isLogin]) {
-        [My_ServicesManager getFeedBackTypes:^(NSString *errorMsg, NSArray *list) {
-            [self getFeedBackList:@"2" onComplete:^(NSString *errorMsg, NSArray *list) {
+        [My_ServicesManager getRepairStatus:Public onComplete:^(NSString *errorMsg, NSArray *list) {
+            [My_ServicesManager getRepairs:Public page:0 repairStatu:@"0" onComplete:^(NSString *errorMsg, NSArray *list) {
                 
             }];
         }];
