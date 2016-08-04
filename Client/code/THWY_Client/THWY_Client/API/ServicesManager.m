@@ -1245,7 +1245,7 @@
     }];
 }
 
--(void)getRepairClasses:(RepairType)type onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
+-(void)getRepairClasses:(RepairType)type onComplete:(void (^)(NSString *errorMsg,NSDictionary *list))onComplete
 {
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = @"";
@@ -1271,12 +1271,10 @@
             }];
         }else
         {
-            NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"]) {
-                RepairClassVO *estate = [[RepairClassVO alloc]initWithJSON:estateDic];
-                [listArr addObject:estate];
-            }
-            onComplete(nil,listArr);
+            RepairClassVO *estate1 = [[RepairClassVO alloc]initWithJSON:responseObject[@"datas"][@"for_pay"]];
+            RepairClassVO *estate2 = [[RepairClassVO alloc]initWithJSON:responseObject[@"datas"][@"for_free"]];
+            onComplete(nil,@{@"for_pay":estate1,
+                             @"for_free":estate2});
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         onComplete(@"网络连接错误",nil);
@@ -1344,10 +1342,8 @@
 -(void)test
 {
     if ([self isLogin]) {
-        [My_ServicesManager getRepairStatus:Public onComplete:^(NSString *errorMsg, NSArray *list) {
-            [My_ServicesManager getRepairs:Public page:0 repairStatu:@"0" onComplete:^(NSString *errorMsg, NSArray *list) {
-                
-            }];
+        [My_ServicesManager getRepairClasses:Owner onComplete:^(NSString *errorMsg, NSDictionary *list) {
+            
         }];
     }
     

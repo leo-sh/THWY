@@ -338,12 +338,12 @@
 -(void)getARepair:(RepairType)type repairId:(NSString *)repairId onComplete:(void (^)(NSString *errorMsg,RepairVO *list))onComplete;
 
 /**
- *  获取报修类别
+ *  获取报修类别 for_pay付费 for_free免费
  *
  *  @param type       报修类型
  *  @param onComplete 获取完成回调block
  */
--(void)getRepairClasses:(RepairType)type onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+-(void)getRepairClasses:(RepairType)type onComplete:(void (^)(NSString *errorMsg,NSDictionary *list))onComplete;
 
 /**
  *  添加业主报修
