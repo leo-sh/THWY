@@ -288,6 +288,13 @@
  */
 -(void)addPublicRepair:(AddPublicRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete;
 
+/**
+ *  获取业主保修状态
+ *
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getRepairStatus:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
 #pragma mark 测试用函数
 -(void)test;
 @end

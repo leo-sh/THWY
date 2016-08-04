@@ -13,8 +13,17 @@
 -(RepairStatuVO* )initWithJSON:(NSDictionary *)JSON
 {
     if (self = [super init]) {
-        self.Id = JSON[@"id"];
-        self.repair_status_name = JSON[@"repair_status_name"];
+        if (JSON[@"id"]) {
+            self.Id = JSON[@"id"];
+        }else if (JSON[@"st_id"]){
+            self.Id = JSON[@"st_id"];
+        }
+        
+        if (JSON[@"repair_status_name"]) {
+            self.repair_status_name = JSON[@"repair_status_name"];
+        }else if (JSON[@"st_name"]){
+            self.repair_status_name = JSON[@"st_name"];
+        }
     }
     
     return self;
