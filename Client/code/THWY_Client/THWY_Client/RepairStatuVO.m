@@ -13,27 +13,20 @@
 -(RepairStatuVO* )initWithJSON:(NSDictionary *)JSON
 {
     if (self = [super init]) {
-        if(JSON[@"id"]){
+        if (JSON[@"st_id"]) {
+            self.st_id = JSON[@"st_id"];
+        }else if(JSON[@"st"]){
+            self.st_id = JSON[@"st"];
+        }else if(JSON[@"id"]){
             self.st_id = JSON[@"id"];
-        }else if (JSON[@"estate_id"]){
-            self.st_id = JSON[@"estate_id"];
         }
         
-        if (JSON[@"estate_name"]) {
-            self.st_name = JSON[@"estate_name"];
+        if (JSON[@"st_name"]) {
+            self.st_name = JSON[@"st_name"];
         }else if(JSON[@"repair_status_name"]){
             self.st_name = JSON[@"repair_status_name"];
         }
-        
-        if (JSON[@"wyf_date"]) {
-            self.ctime = JSON[@"wyf_date"];
-        }else if(JSON[@"ctime"]){
-            self.ctime = JSON[@"ctime"];
-        }
-        
-        if (JSON[@"pic"]) {
-            self.pic = [NSString stringWithFormat:@"%@%@",API_Prefix,JSON[@"pic"]];
-        }
+        self.ctime = JSON[@"ctime"];
     }
     
     return self;

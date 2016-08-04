@@ -1132,7 +1132,7 @@
     NSString *urlString = @"";
     
     if (type == Owner) {
-        urlString = [NSString stringWithFormat:@"%@get_estates",API_HOST];
+        urlString = [NSString stringWithFormat:@"%@get_repair_status",API_HOST];
     }else if (type == Public){
         urlString = [NSString stringWithFormat:@"%@get_public_repair_status",API_HOST];
     }else{
