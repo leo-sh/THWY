@@ -7,8 +7,14 @@
 //
 
 #import "RepairDetailController.h"
+#import "RecordsDetailCell.h"
+#import "RecordImageCell.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
-@interface RepairDetailController ()
+
+@interface RepairDetailController ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) UITableView *tableView;
 
 @end
 
@@ -19,6 +25,97 @@
     // Do any additional setup after loading the view.
     
     self.title = @"报修记录详情";
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景2"]]];
+    
+}
+
+- (void)initViews{
+    CGFloat topMargrin = 10.0/375*My_ScreenW;
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(topMargrin, topMargrin, My_ScreenW-topMargrin*2.0, 2)];
+    imageView.image = [UIImage imageNamed:@"records_彩条"];
+    [self.view addSubview:imageView];
+    
+    //tableView
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(topMargrin, topMargrin+2, My_ScreenW-topMargrin*2.0, My_ScreenH-topMargrin*2.0-2)];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+//    self.tableView.rowHeight = 360/667*My_ScreenH;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorColor = [UIColor grayColor];
+    self.tableView.bounces = NO;
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
+    self.tableView.showsVerticalScrollIndicator = NO;
+    [self.view addSubview:self.tableView];
+
+    [self.tableView registerClass:[RecordsDetailCell class] forCellReuseIdentifier:@"RecordsDetailCell"];
+    [self.tableView registerClass:[RecordsDetailCell class] forCellReuseIdentifier:@"RecordImageCell"];
+
+}
+
+#pragma mark - UITableViewDelegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 5;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    switch (section) {
+        case 0:{
+            return 4;
+            break;
+        }
+        case 1:{
+            return 3;
+            break;
+        }
+        case 2:{
+            return 2;
+            break;
+        }
+        case 3:{
+            return 3;
+            break;
+        }
+        case 4:{
+            return 1;
+            break;
+        }
+    }
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 4) {
+        RecordImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordImageCell" forIndexPath:indexPath];
+        [cell loadDataWithModel:self.model];
+        return cell;
+    }else{
+        RecordsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordsDetailCell" forIndexPath:indexPath];
+        [cell loadDataWithModel:self.model indexpath:indexPath];
+        return cell;
+    }
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == 4) {
+        return [tableView fd_heightForCellWithIdentifier:@"RecordImageCell" cacheByIndexPath:indexPath configuration:^(id cell) {
+            [cell loadDataWithModel:self.model];
+        }];
+    }else{
+        return [tableView fd_heightForCellWithIdentifier:@"RecordsDetailCell" cacheByIndexPath:indexPath configuration:^(id cell) {
+            
+            [cell loadDataWithModel:self.model indexpath:indexPath];
+        }];
+        
+    }
+    
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIImageView *head = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 1)];
+    head.image = [UIImage imageNamed:@"records_虚线"];
+    return head;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,14 +123,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -9,13 +9,14 @@
 #import "RepairRecordsVC.h"
 #import "RecordeRepairingCell.h"
 #import "RepairStatuVO.h"
+#import "RepairDetailController.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 @interface RepairRecordsVC ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIButton *switchButton;
 @property (strong, nonatomic) UILabel *leftLabel;
 @property (strong, nonatomic) UILabel *rightLabel;
-@property (assign, nonatomic) NSInteger switchFlag;
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 
@@ -30,7 +31,10 @@
 @property (strong, nonatomic) NSMutableArray *repairDataArray;
 @property (strong, nonatomic) NSMutableArray *repairStatusArray;
 
+@property (assign, nonatomic) NSInteger switchFlag;
 @property (assign, nonatomic) NSInteger selectIndex;
+@property (assign, nonatomic) int page;
+
 @end
 
 @implementation RepairRecordsVC
@@ -42,28 +46,63 @@
     self.title = @"报修记录";
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景2"]]];
     self.selectIndex = 0;
-    self.labelNames = @[@"未处理", @"处理中", @"处理完成", @"回访完毕"];
+    self.page = 1;
+    self.labelNames = @[@"未处理", @"处理中", @"处理完成", @"回访完毕"];//1, 2, 3, 4
     [self initViews];
-    [self getDataType:self.switchFlag statusID:@"1" page:1];
+    [self getDataType:self.switchFlag statusID:@"0" page:self.page more:NO];
     
 }
 
-- (void)getDataType:(NSInteger)type statusID:(NSString *)statusID page:(int)page{
+- (void)getDataType:(NSInteger)type statusID:(NSString *)statusID page:(int)page more:(BOOL)more{
     self.repairDataArray = [NSMutableArray array];
-    [My_ServicesManager getRepairStatus:type onComplete:^(NSString *errorMsg, NSArray *list) {
-        for (RepairStatuVO *repaireStatus in list) {
-            
-        }
-    }];
+//    [My_ServicesManager getRepairStatus:type onComplete:^(NSString *errorMsg, NSArray *list) {
+//        for (RepairStatuVO *repaireStatus in list) {
+//            
+//        }
+//    }];
     
     [My_ServicesManager getRepairs:type page:page repairStatu:statusID onComplete:^(NSString *errorMsg, NSArray *list) {
-        for (RepairVO *model in list) {
-            [self.repairDataArray addObject:model];
+       
+        if (errorMsg) {
+            [SVProgressHUD setMinimumDismissTimeInterval:1.5];
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+            
+        }else {
+            
+            if (list.count == 0) {
+                [SVProgressHUD setMinimumDismissTimeInterval:1.5];
+                [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
+                
+                if (self.switchFlag == 1) {
+                    [self.tableView.mj_header endRefreshing];
+                }else{
+                    [self.tableView2.mj_header endRefreshing];
+                }
+                return ;
+            }
+            
+            if (!more) {
+                //非加载更多
+                [self.repairDataArray removeAllObjects];
+            }else{
+                self.page++;
+            }
+            
+            for (RepairVO *model in list) {
+                [self.repairDataArray addObject:model];
+            }
+            if (self.switchFlag == 1) {
+                [self.tableView reloadData];
+            }else if (self.switchFlag == 2){
+                [self.tableView2 reloadData];
+            }
+            
         }
+        
         if (self.switchFlag == 1) {
-            [self.tableView reloadData];
-        }else if (self.switchFlag == 2){
-            [self.tableView2 reloadData];
+            [self.tableView.mj_header endRefreshing];
+        }else{
+            [self.tableView2.mj_header endRefreshing];
         }
         
     }];
@@ -204,6 +243,8 @@
     [self.scrollView addSubview:self.tableView];
     [self.scrollView addSubview:self.tableView2];
     
+    [self initRefreshView];
+    
     [self.tableView registerClass:[RecordeRepairingCell class] forCellReuseIdentifier:@"RecordeRepeiringCell"];
     [self.tableView2 registerClass:[RecordeRepairingCell class] forCellReuseIdentifier:@"RecordeRepeiringCell"];
 }
@@ -235,7 +276,38 @@
         [self btnOnclicked:[self.bgView viewWithTag:300]];
     }
     
-    [self getDataType:self.switchFlag statusID:@"1" page:1];
+    [self getDataType:self.switchFlag statusID:@"0" page:1 more:NO];
+    
+}
+//设置上拉下拉刷新
+- (void)initRefreshView{
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
+    //自动更改透明度
+    self.tableView.mj_header.automaticallyChangeAlpha = YES;
+    self.tableView.mj_footer.automaticallyChangeAlpha = YES;
+    
+    
+    self.tableView2.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView2.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
+    //自动更改透明度
+    self.tableView2.mj_header.automaticallyChangeAlpha = YES;
+    self.tableView2.mj_footer.automaticallyChangeAlpha = YES;
+    
+
+}
+
+- (void)loadMoreData{
+    
+    if (self.switchFlag == 1) {
+        [self.tableView.mj_header beginRefreshing];
+    }else{
+        [self.tableView2.mj_header beginRefreshing];
+    }
+    [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%ld", self.selectIndex+1] page:self.page+1 more:YES];
     
 }
 
@@ -252,6 +324,7 @@
     [btn setImage:nil forState:UIControlStateNormal];
     [sender setImage:[UIImage imageNamed:@"records_按下"] forState:UIControlStateNormal];
     
+    [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%ld",self.selectIndex+1] page:1 more:NO];
 }
 
 #pragma mark - tabelViewDelegate
@@ -272,7 +345,6 @@
     newcell.vc = self;
     [newcell loadDataFromModel:self.repairDataArray[indexPath.row]];
     
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -284,6 +356,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 360;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 30)];
+    [button setTitle:@"查看更多" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(loadMoreData) forControlEvents:UIControlEventTouchUpInside];
+    return button;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    RepairVO *model = self.repairDataArray[indexPath.row];
+    RepairDetailController *detail = [[RepairDetailController alloc] init];
+    detail.model = model;
+    [self.navigationController pushViewController:detail animated:YES];
+    
 }
 
 #pragma  mark - MemoryWarning

@@ -16,6 +16,7 @@
 #import "DescribeCell.h"
 #import "PaigongCatogerysCell.h"
 #import "ProjectCell.h"
+#import "RepairClassVO.h"
 
 @interface WantRepairesVC ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -32,6 +33,8 @@
 @property (strong, nonatomic) NSArray *iconCellNames;
 @property (strong, nonatomic) NSArray *identityStrings;
 
+@property (strong, nonatomic) NSMutableArray *repaireClassArray;
+
 @end
 
 @implementation WantRepairesVC
@@ -42,6 +45,7 @@
     
     [self initNVBar];
     [self initViews];
+    self.repaireClassArray = [[NSMutableArray alloc] init];
 }
 
 - (void)initNVBar{
@@ -263,6 +267,28 @@
         return 300.0/713*My_ScreenH;
     }
     return 60.0/713*My_ScreenH;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [My_ServicesManager getRepairClasses:self.switchFlag onComplete:^(NSString *errorMsg, NSArray *list) {
+        for (RepairClassVO * model in list) {
+            [self.repaireClassArray addObject:model];
+        }
+    }];
+    switch (indexPath.row) {
+        case 3:{
+            
+            break;
+        }
+        case 4:{
+            
+            break;
+        }
+        default:
+            break;
+    }
+    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

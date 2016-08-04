@@ -278,11 +278,12 @@
 
 - (void)callNumber{
     NSString *phoneNum = @"";// 电话号码
-    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
-    if ( !self.phoneCallWebView ) {
-        self.phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的View 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
-    }
-    [self.phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]];
+//    if ( !self.phoneCallWebView ) {
+//        self.phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的View 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
+//    }
+//    [self.phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+    [[UIApplication sharedApplication] openURL:phoneURL];
 
 }
 
