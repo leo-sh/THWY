@@ -9,7 +9,6 @@
 #import "RepairRecordsVC.h"
 #import "RecordeRepairingCell.h"
 #import "RepairStatuVO.h"
-#import "UITableView+FDTemplateLayoutCell.h"
 
 @interface RepairRecordsVC ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -28,7 +27,8 @@
 
 @property (strong, nonatomic) NSArray *labelNames;
 
-@property (strong, nonatomic) NSMutableArray *repairingArray;
+@property (strong, nonatomic) NSMutableArray *repairDataArray;
+@property (strong, nonatomic) NSMutableArray *repairStatusArray;
 
 @property (assign, nonatomic) NSInteger selectIndex;
 @end
@@ -44,28 +44,30 @@
     self.selectIndex = 0;
     self.labelNames = @[@"未处理", @"处理中", @"处理完成", @"回访完毕"];
     [self initViews];
-    [self getData:0];
+    [self getDataType:self.switchFlag statusID:@"1" page:1];
     
 }
 
-- (void)getData:(NSInteger)type{
-    self.repairingArray = [NSMutableArray array];
-    [My_ServicesManager getRepairStatus:2 onComplete:^(NSString *errorMsg, NSArray *list) {
+- (void)getDataType:(NSInteger)type statusID:(NSString *)statusID page:(int)page{
+    self.repairDataArray = [NSMutableArray array];
+    [My_ServicesManager getRepairStatus:type onComplete:^(NSString *errorMsg, NSArray *list) {
         for (RepairStatuVO *repaireStatus in list) {
             
         }
     }];
     
-    [My_ServicesManager getRepairs:1 page:1 repairStatu:@"" :^(NSString *errorMsg, NSArray *list) {
+    [My_ServicesManager getRepairs:type page:page repairStatu:statusID onComplete:^(NSString *errorMsg, NSArray *list) {
         for (RepairVO *model in list) {
-            [self.repairingArray addObject:model];
+            [self.repairDataArray addObject:model];
         }
         if (self.switchFlag == 1) {
             [self.tableView reloadData];
         }else if (self.switchFlag == 2){
             [self.tableView2 reloadData];
         }
+        
     }];
+
 }
 
 - (void)initViews{
@@ -233,6 +235,8 @@
         [self btnOnclicked:[self.bgView viewWithTag:300]];
     }
     
+    [self getDataType:self.switchFlag statusID:@"1" page:1];
+    
 }
 
 - (void)btnOnclicked:(UIButton *)sender{
@@ -252,15 +256,13 @@
 
 #pragma mark - tabelViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.repairingArray.count;
+    return self.repairDataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 //    NSInteger row = indexPath.row;
     RecordeRepairingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordeRepeiringCell" forIndexPath:indexPath];
-    cell.fd_enforceFrameLayout = YES;
     cell.vc = self;
-    [cell loadDataFromModel:self.repairingArray[indexPath.row]];
     return cell;
 }
 
@@ -268,16 +270,15 @@
     
     RecordeRepairingCell * newcell = (RecordeRepairingCell *)cell;
     newcell.vc = self;
+    [newcell loadDataFromModel:self.repairDataArray[indexPath.row]];
     
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [tableView fd_heightForCellWithIdentifier:@"RecordeRepeiringCell" cacheByIndexPath:indexPath configuration:^(id cell) {
-//        // 配置 cell 的数据源，和 "cellForRow" 干的事一致，比如：
-        [cell loadDataFromModel:self.repairingArray[indexPath.row]];
-////        cell.entity = self.feedEntities[indexPath.row];
-    }];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    RecordeRepairingCell * newcell = (RecordeRepairingCell *)cell;
+    return [newcell heightForCell];
 //    return 360;
 }
 

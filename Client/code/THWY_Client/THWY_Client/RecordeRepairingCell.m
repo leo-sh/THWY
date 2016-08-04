@@ -286,6 +286,14 @@
 
 }
 
+- (CGFloat)heightForCell{
+    self.bounds = CGRectMake(0, 0, CGRectGetWidth(self.bounds), 0);
+    [self setNeedsLayout];
+    [self layoutSubviews];
+    CGSize size = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height;
+}
+
 - (void)showDetail{
     
     RepairDetailController *detail = [[RepairDetailController alloc] init];
