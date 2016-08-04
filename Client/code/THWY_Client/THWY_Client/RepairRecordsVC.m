@@ -8,6 +8,8 @@
 
 #import "RepairRecordsVC.h"
 #import "RecordeRepairingCell.h"
+#import "RepairStatuVO.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 @interface RepairRecordsVC ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -48,8 +50,8 @@
 
 - (void)getData:(NSInteger)type{
     self.repairingArray = [NSMutableArray array];
-    [My_ServicesManager getRepairStatus:1 onComplete:^(NSString *errorMsg, NSArray *list) {
-        for (NSString *repaireStatus in list) {
+    [My_ServicesManager getRepairStatus:2 onComplete:^(NSString *errorMsg, NSArray *list) {
+        for (RepairStatuVO *repaireStatus in list) {
             
         }
     }];
@@ -256,6 +258,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 //    NSInteger row = indexPath.row;
     RecordeRepairingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordeRepeiringCell" forIndexPath:indexPath];
+    cell.fd_enforceFrameLayout = YES;
+    cell.vc = self;
+    [cell loadDataFromModel:self.repairingArray[indexPath.row]];
     return cell;
 }
 
@@ -263,13 +268,17 @@
     
     RecordeRepairingCell * newcell = (RecordeRepairingCell *)cell;
     newcell.vc = self;
-    [newcell loadDataFromModel:self.repairingArray[indexPath.row]];
     
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 360;
+    return [tableView fd_heightForCellWithIdentifier:@"RecordeRepeiringCell" cacheByIndexPath:indexPath configuration:^(id cell) {
+//        // 配置 cell 的数据源，和 "cellForRow" 干的事一致，比如：
+        [cell loadDataFromModel:self.repairingArray[indexPath.row]];
+////        cell.entity = self.feedEntities[indexPath.row];
+    }];
+//    return 360;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{

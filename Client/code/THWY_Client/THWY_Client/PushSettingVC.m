@@ -15,7 +15,7 @@
 @property (strong, nonatomic) UIButton *button2;
 @property (strong, nonatomic) UIButton *button3;
 
-@property (strong, nonatomic) NSArray *bools;
+@property (strong, nonatomic) NSMutableArray *bools;
 
 @end
 
@@ -28,7 +28,7 @@
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
     [self initViews];
     
-    self.bools = @[@YES, @NO, @NO];
+    self.bools = [NSMutableArray arrayWithArray:@[@YES, @NO, @NO]];
 }
 
 - (void)initViews{
@@ -40,7 +40,7 @@
     [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.mas_top).offset(10);
         make.left.mas_equalTo(self.view.mas_left).offset(10);
-        make.right.mas_equalTo(self.view.mas_right).offset(10);
+        make.right.mas_equalTo(self.view.mas_right).offset(-10);
         make.height.mas_equalTo(self.view.mas_height).multipliedBy(0.5);
     }];
     
@@ -61,17 +61,6 @@
         make.top.mas_equalTo(bgView.mas_top);
     }];
     
-    self.button1 = [[UIButton alloc] init];
-    self.button1.tag = 11;
-    [self.button1 setBackgroundImage:[UIImage imageNamed:@"pushsetting_开"] forState:UIControlStateNormal];
-    [self.button1 addTarget:self action:@selector(btnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
-    [accept addSubview:self.button1];
-    [self.button1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(accept.mas_right).offset(-15);
-        make.centerY.mas_equalTo(accept.mas_centerY);
-        make.height.mas_equalTo(accept.mas_height).multipliedBy(0.5);
-    }];
-    
     UILabel *lisheng = [[UILabel alloc] init];
     lisheng.text = @"  铃声提醒";
     lisheng.textAlignment = NSTextAlignmentLeft;
@@ -89,19 +78,8 @@
         make.top.mas_equalTo(accept.mas_bottom).offset(-1);
     }];
     
-    self.button2 = [[UIButton alloc] init];
-    self.button2.tag = 12;
-    [self.button2 setBackgroundImage:[UIImage imageNamed:@"pushsetting_关"] forState:UIControlStateNormal];
-    [self.button2 addTarget:self action:@selector(btnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
-    [accept addSubview:self.button2];
-    [self.button2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(accept.mas_right).offset(-15);
-        make.centerY.mas_equalTo(lisheng.mas_centerY);
-        make.height.mas_equalTo(accept.mas_height).multipliedBy(0.5);
-    }];
-
     UILabel *zhendong = [[UILabel alloc] init];
-    zhendong.text = @"  接受推送";
+    zhendong.text = @"  震动提醒";
     zhendong.textAlignment = NSTextAlignmentLeft;
     zhendong.textColor = [UIColor blackColor];
     zhendong.layer.borderWidth = 1;
@@ -117,17 +95,49 @@
         make.top.mas_equalTo(lisheng.mas_bottom).offset(-1);
     }];
     
+    self.button1 = [[UIButton alloc] init];
+    self.button1.tag = 11;
+    [self.button1 setBackgroundImage:[UIImage imageNamed:@"pushsetting_开"] forState:UIControlStateNormal];
+    [self.button1 addTarget:self action:@selector(btnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
+    [accept addSubview:self.button1];
+    [self.button1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(accept.mas_right).offset(-15);
+        make.centerY.mas_equalTo(accept.mas_centerY);
+        make.height.mas_equalTo(accept.mas_height).multipliedBy(0.4);
+        make.width.mas_equalTo(self.button1.mas_height).multipliedBy(2.5);
+    }];
+    
+    self.button2 = [[UIButton alloc] init];
+    self.button2.tag = 12;
+    [self.button2 setBackgroundImage:[UIImage imageNamed:@"pushsetting_关"] forState:UIControlStateNormal];
+    [self.button2 addTarget:self action:@selector(btnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
+    [lisheng addSubview:self.button2];
+    [self.button2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(accept.mas_right).offset(-15);
+        make.centerY.mas_equalTo(lisheng.mas_centerY);
+        make.height.mas_equalTo(accept.mas_height).multipliedBy(0.4);
+        make.width.mas_equalTo(self.button2.mas_height).multipliedBy(2.5);
+
+    }];
+
     self.button3 = [[UIButton alloc] init];
-    self.button3.tag = 11;
-    [self.button3 setBackgroundImage:[UIImage imageNamed:@"pushsetting_开"] forState:UIControlStateNormal];
+    self.button3.tag = 13;
+    [self.button3 setBackgroundImage:[UIImage imageNamed:@"pushsetting_关"] forState:UIControlStateNormal];
     [self.button3 addTarget:self action:@selector(btnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
-    [accept addSubview:self.button3];
+    [zhendong addSubview:self.button3];
+    
     [self.button3 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(accept.mas_right).offset(-15);
         make.centerY.mas_equalTo(zhendong.mas_centerY);
-        make.height.mas_equalTo(accept.mas_height).multipliedBy(0.5);
+        make.height.mas_equalTo(accept.mas_height).multipliedBy(0.4);
+        make.width.mas_equalTo(self.button3.mas_height).multipliedBy(2.5);
+
     }];
     
+    [bgView bringSubviewToFront:self.button1];
+    [bgView bringSubviewToFront:self.button2];
+    [bgView bringSubviewToFront:self.button3];
+
 }
 
 - (void)btnOnclicked:(UIButton *)sender{
@@ -138,6 +148,7 @@
     }else{
         [sender setBackgroundImage:[UIImage imageNamed:@"pushsetting_开"] forState:UIControlStateNormal];
     }
+    self.bools[index] = @(![self.bools[index] boolValue]);
     
     __block UIRemoteNotificationType types7 = UIRemoteNotificationTypeAlert| UIRemoteNotificationTypeSound;
     __block UIUserNotificationType types8 = UIUserNotificationTypeAlert|UIUserNotificationTypeSound|UIUserNotificationTypeBadge;
@@ -145,9 +156,11 @@
     switch (index) {
         case 0:{//接受推送
             if (([self.bools[index] boolValue])) {
-                [UMessage unregisterForRemoteNotifications];
+//                [UMessage unregisterForRemoteNotifications];
+                [[UIApplication sharedApplication] unregisterForRemoteNotifications];
             }else{
-                [UMessage registerForRemoteNotifications];
+//                [UMessage registerForRemoteNotifications];
+                [[UIApplication sharedApplication] registerForRemoteNotifications];
             }
             break;
         }
@@ -163,7 +176,15 @@
             break;
         }
         case 2:{//震动提醒
-            
+            if ([self.bools[index] boolValue]) {
+                types7 = UIRemoteNotificationTypeNone;
+                types8 = UIUserNotificationTypeNone;
+            }else{
+                types7 = UIRemoteNotificationTypeAlert| UIRemoteNotificationTypeSound;
+                types8 = UIUserNotificationTypeAlert|UIUserNotificationTypeSound|UIUserNotificationTypeBadge;
+            }
+            [UMessage registerForRemoteNotifications:nil withTypesForIos7:types7 withTypesForIos8:types8];
+
             break;
         }
         default:
