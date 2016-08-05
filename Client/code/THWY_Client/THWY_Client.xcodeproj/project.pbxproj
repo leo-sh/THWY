@@ -139,6 +139,7 @@
 		790506621D4CE93C00072AAC /* DescribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790506601D4CE93C00072AAC /* DescribeCell.m */; };
 		792824281D541D74001764EB /* WantRepairTableView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 792824271D541D74001764EB /* WantRepairTableView1.m */; };
 		7928242B1D541D8F001764EB /* WantRepairTableView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7928242A1D541D8F001764EB /* WantRepairTableView2.m */; };
+		7928242F1D544130001764EB /* AlertEstateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7928242E1D544130001764EB /* AlertEstateTableView.m */; };
 		792A24621D5300D10005B085 /* RecordsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A24611D5300D10005B085 /* RecordsDetailCell.m */; };
 		792A24661D5314700005B085 /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A24651D5314700005B085 /* UITableView+FDIndexPathHeightCache.m */; };
 		792A24691D5314A80005B085 /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A24681D5314A80005B085 /* UITableView+FDTemplateLayoutCell.m */; };
@@ -468,6 +469,8 @@
 		792824291D541D8F001764EB /* WantRepairTableView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableView2.h; sourceTree = "<group>"; };
 		7928242A1D541D8F001764EB /* WantRepairTableView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantRepairTableView2.m; sourceTree = "<group>"; };
 		7928242C1D5434EE001764EB /* WantRepairTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableViewDelegate.h; sourceTree = "<group>"; };
+		7928242D1D544130001764EB /* AlertEstateTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertEstateTableView.h; sourceTree = "<group>"; };
+		7928242E1D544130001764EB /* AlertEstateTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertEstateTableView.m; sourceTree = "<group>"; };
 		792A24601D5300D10005B085 /* RecordsDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsDetailCell.h; sourceTree = "<group>"; };
 		792A24611D5300D10005B085 /* RecordsDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsDetailCell.m; sourceTree = "<group>"; };
 		792A24641D5314700005B085 /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
@@ -1217,6 +1220,8 @@
 				79F2B6951D4D9E9700AA94E0 /* ProjectCell.xib */,
 				792E8B491D5325C500D70FB7 /* AlertTableView.h */,
 				792E8B4A1D5325C500D70FB7 /* AlertTableView.m */,
+				7928242D1D544130001764EB /* AlertEstateTableView.h */,
+				7928242E1D544130001764EB /* AlertEstateTableView.m */,
 				7928242C1D5434EE001764EB /* WantRepairTableViewDelegate.h */,
 				792824261D541D74001764EB /* WantRepairTableView1.h */,
 				792824271D541D74001764EB /* WantRepairTableView1.m */,
@@ -1560,6 +1565,7 @@
 				793296681D50826A000FD426 /* TYAlertController+BlurEffects.m in Sources */,
 				5B2571851D47110B00CB4167 /* UIImage+ScreenShot.m in Sources */,
 				1E3BA3911D4AFF2B00633D0B /* PersonInfoLabel.m in Sources */,
+				7928242F1D544130001764EB /* AlertEstateTableView.m in Sources */,
 				1E60484A1D4D0E51007CDE32 /* ProclamationTableViewCell.m in Sources */,
 				5B197EFF1D48A47800B95DE5 /* ComplaintVO.m in Sources */,
 				5B2571791D47110B00CB4167 /* Foundation+Log.m in Sources */,

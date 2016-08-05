@@ -131,7 +131,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 5 || indexPath.row == 6) {
+    if (indexPath.row == 1){
+        return 130.0/713*My_ScreenH;
+    }else if (indexPath.row == 5 || indexPath.row == 6) {
         return 90.0/713*My_ScreenH;
     }else if (indexPath.row == 7){
         return 300.0/713*My_ScreenH;
@@ -202,8 +204,10 @@
             }
             case 1:{
                 ProjectCell *newcell = (ProjectCell *)cell;
-//                self.repairVO.call_phone = newcell.textField.text;
-                
+                self.repairVO.estate_id = @"";
+                self.repairVO.unit = newcell.btn_unit.titleLabel.text;
+                self.repairVO.block = newcell.btn_block.titleLabel.text;
+                self.repairVO.layer = newcell.btn_layer.titleLabel.text;
                 break;
             }
             case 2:{

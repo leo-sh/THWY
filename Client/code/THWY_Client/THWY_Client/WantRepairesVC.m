@@ -170,8 +170,10 @@
             return ;
         }
         
-        RepairClassVO *public = list[@""];
-        
+        RepairClassVO *public = list[@"public"];
+        for (RepairClassVO *publicVO in public.child) {
+            [self.repaireClassArrayPublic addObject:publicVO];
+        }
         self.tableView2.repaireClassArrayPublic = self.repaireClassArrayPublic;
         [self.tableView2 reloadData];
     }];

@@ -10,4 +10,9 @@
 
 @interface ProjectCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *btn_project;
+@property (weak, nonatomic) IBOutlet UIButton *btn_block;
+@property (weak, nonatomic) IBOutlet UIButton *btn_unit;
+@property (weak, nonatomic) IBOutlet UIButton *btn_layer;
+
 @end

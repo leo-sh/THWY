@@ -1031,7 +1031,7 @@
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"][@"datas"]) {
+            for (NSDictionary* estateDic in responseObject[@"datas"]) {
                 EstateVO *estate = [[EstateVO alloc]initWithJSON:estateDic];
                 [listArr addObject:estate];
             }
