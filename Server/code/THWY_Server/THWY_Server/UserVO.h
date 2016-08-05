@@ -19,6 +19,7 @@
 @property NSString              * admin_group_id;
 @property NSString              * admin_name;
 @property NSString              * admin_acl;
+@property NSString              * admin_password;
 @property NSString              * login_count;
 @property NSString              * ctime;
 @property NSString              * status;
