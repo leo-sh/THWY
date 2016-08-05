@@ -1059,9 +1059,12 @@
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"]) {
-                [listArr addObject:estateDic[@"block"]];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                    [listArr addObject:estateDic[@"block"]];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -1348,7 +1351,6 @@
 -(void)test
 {
     if ([self isLogin]) {
-        
     }
     
 }
