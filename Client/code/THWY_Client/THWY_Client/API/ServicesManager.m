@@ -1271,10 +1271,16 @@
             }];
         }else
         {
-            RepairClassVO *estate1 = [[RepairClassVO alloc]initWithJSON:responseObject[@"datas"][@"for_pay"]];
-            RepairClassVO *estate2 = [[RepairClassVO alloc]initWithJSON:responseObject[@"datas"][@"for_free"]];
-            onComplete(nil,@{@"for_pay":estate1,
-                             @"for_free":estate2});
+            if (type == Owner) {
+                RepairClassVO *class1 = [[RepairClassVO alloc]initWithJSON:responseObject[@"datas"][@"for_pay"]];
+                RepairClassVO *class2 = [[RepairClassVO alloc]initWithJSON:responseObject[@"datas"][@"for_free"]];
+                onComplete(nil,@{@"for_pay":class1,
+                                 @"for_free":class2});
+            }else if (type == Public){
+                RepairClassVO *class = [[RepairClassVO alloc]initWithJSON:responseObject[@"datas"]];
+                onComplete(nil,@{@"public":class});
+            }
+            
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         onComplete(@"网络连接错误",nil);
@@ -1342,9 +1348,7 @@
 -(void)test
 {
     if ([self isLogin]) {
-        [My_ServicesManager getRepairClasses:Owner onComplete:^(NSString *errorMsg, NSDictionary *list) {
-            
-        }];
+        
     }
     
 }
