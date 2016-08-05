@@ -35,6 +35,7 @@
     
     [self.btn_kaidan setImage:self.selectedImage forState:UIControlStateNormal];
     [self.btn_budan setImage:self.unselectedImage forState:UIControlStateNormal];
+    self.flag = 1;
     
 }
 
@@ -42,6 +43,7 @@
     
     [self.btn_kaidan setImage:self.unselectedImage forState:UIControlStateNormal];
     [self.btn_budan setImage:self.selectedImage forState:UIControlStateNormal];
+    self.flag = 2;
     
 }
 

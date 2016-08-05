@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol AlertTableViewDelegate <NSObject>
+
+- (void)confirm:(NSMutableArray *)reslult flag:(NSInteger)flag;
+
+@end
+
 @interface AlertTableView : UITableView
+
+@property (assign, nonatomic) NSInteger flag;
+
+@property (strong, nonatomic) NSArray *data;
+
+@property (weak, nonatomic) id<AlertTableViewDelegate> AlertDelegate;
 
 @end

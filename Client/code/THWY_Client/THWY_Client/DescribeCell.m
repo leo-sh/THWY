@@ -11,7 +11,6 @@
 
 @interface DescribeCell ()
 
-@property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @end
 
@@ -27,6 +26,8 @@
 }
 
 - (IBAction)commit:(UIButton *)sender {
+    
+    [self.delegate commit];
 }
 
 

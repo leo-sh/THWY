@@ -176,6 +176,9 @@
 }
 static int flag = 0;
 - (void)runloopAdLabel{
+    if (!self.adLabels){
+        return;
+    }
     if (flag<self.adLabels.count-1) {
         AdVO *model = self.adLabels[flag];
         [UIView animateWithDuration:2.0 animations:^{

@@ -137,6 +137,8 @@
 		790506581D4CE2B100072AAC /* RepaireCategorysCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790506561D4CE2B100072AAC /* RepaireCategorysCell.m */; };
 		7905065D1D4CE51A00072AAC /* UploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7905065B1D4CE51A00072AAC /* UploadCell.m */; };
 		790506621D4CE93C00072AAC /* DescribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790506601D4CE93C00072AAC /* DescribeCell.m */; };
+		792824281D541D74001764EB /* WantRepairTableView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 792824271D541D74001764EB /* WantRepairTableView1.m */; };
+		7928242B1D541D8F001764EB /* WantRepairTableView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7928242A1D541D8F001764EB /* WantRepairTableView2.m */; };
 		792A24621D5300D10005B085 /* RecordsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A24611D5300D10005B085 /* RecordsDetailCell.m */; };
 		792A24661D5314700005B085 /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A24651D5314700005B085 /* UITableView+FDIndexPathHeightCache.m */; };
 		792A24691D5314A80005B085 /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A24681D5314A80005B085 /* UITableView+FDTemplateLayoutCell.m */; };
@@ -144,6 +146,9 @@
 		792A246F1D531A070005B085 /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A246E1D531A070005B085 /* UITableView+FDKeyedHeightCache.m */; };
 		792A24721D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A24711D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.m */; };
 		792E8B4B1D5325C500D70FB7 /* AlertTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 792E8B4A1D5325C500D70FB7 /* AlertTableView.m */; };
+		792E8B5A1D534BF900D70FB7 /* WCLRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 792E8B521D534BF800D70FB7 /* WCLRecordProgressView.m */; };
+		792E8B5B1D534BF900D70FB7 /* WCLRecordEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 792E8B561D534BF800D70FB7 /* WCLRecordEncoder.m */; };
+		792E8B5C1D534BF900D70FB7 /* WCLRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 792E8B591D534BF900D70FB7 /* WCLRecordEngine.m */; };
 		793296681D50826A000FD426 /* TYAlertController+BlurEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 793296511D50826A000FD426 /* TYAlertController+BlurEffects.m */; };
 		793296691D50826A000FD426 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 793296531D50826A000FD426 /* UIImage+ImageEffects.m */; };
 		7932966A1D50826A000FD426 /* TYAlertController+TransitionAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 793296551D50826A000FD426 /* TYAlertController+TransitionAnimate.m */; };
@@ -458,6 +463,11 @@
 		7905065F1D4CE93C00072AAC /* DescribeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescribeCell.h; sourceTree = "<group>"; };
 		790506601D4CE93C00072AAC /* DescribeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescribeCell.m; sourceTree = "<group>"; };
 		790506611D4CE93C00072AAC /* DescribeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescribeCell.xib; sourceTree = "<group>"; };
+		792824261D541D74001764EB /* WantRepairTableView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableView1.h; sourceTree = "<group>"; };
+		792824271D541D74001764EB /* WantRepairTableView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantRepairTableView1.m; sourceTree = "<group>"; };
+		792824291D541D8F001764EB /* WantRepairTableView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableView2.h; sourceTree = "<group>"; };
+		7928242A1D541D8F001764EB /* WantRepairTableView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantRepairTableView2.m; sourceTree = "<group>"; };
+		7928242C1D5434EE001764EB /* WantRepairTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableViewDelegate.h; sourceTree = "<group>"; };
 		792A24601D5300D10005B085 /* RecordsDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsDetailCell.h; sourceTree = "<group>"; };
 		792A24611D5300D10005B085 /* RecordsDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsDetailCell.m; sourceTree = "<group>"; };
 		792A24641D5314700005B085 /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
@@ -472,6 +482,12 @@
 		792A24711D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCellDebug.m"; sourceTree = "<group>"; };
 		792E8B491D5325C500D70FB7 /* AlertTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTableView.h; sourceTree = "<group>"; };
 		792E8B4A1D5325C500D70FB7 /* AlertTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTableView.m; sourceTree = "<group>"; };
+		792E8B511D534BF800D70FB7 /* WCLRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLRecordProgressView.h; sourceTree = "<group>"; };
+		792E8B521D534BF800D70FB7 /* WCLRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordProgressView.m; sourceTree = "<group>"; };
+		792E8B551D534BF800D70FB7 /* WCLRecordEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLRecordEncoder.h; sourceTree = "<group>"; };
+		792E8B561D534BF800D70FB7 /* WCLRecordEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEncoder.m; sourceTree = "<group>"; };
+		792E8B581D534BF900D70FB7 /* WCLRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLRecordEngine.h; sourceTree = "<group>"; };
+		792E8B591D534BF900D70FB7 /* WCLRecordEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEngine.m; sourceTree = "<group>"; };
 		793296501D50826A000FD426 /* TYAlertController+BlurEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TYAlertController+BlurEffects.h"; sourceTree = "<group>"; };
 		793296511D50826A000FD426 /* TYAlertController+BlurEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TYAlertController+BlurEffects.m"; sourceTree = "<group>"; };
 		793296521D50826A000FD426 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -1043,6 +1059,7 @@
 		5B2571CF1D47169600CB4167 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				792E8B4F1D534BF800D70FB7 /* VideoRecord */,
 				792A24631D5314700005B085 /* FDTableviewHeightCell */,
 				1E7527BC1D52356700AEDEC0 /* SVProgressHUD */,
 				1E7527791D52349E00AEDEC0 /* MJRefresh */,
@@ -1200,6 +1217,11 @@
 				79F2B6951D4D9E9700AA94E0 /* ProjectCell.xib */,
 				792E8B491D5325C500D70FB7 /* AlertTableView.h */,
 				792E8B4A1D5325C500D70FB7 /* AlertTableView.m */,
+				7928242C1D5434EE001764EB /* WantRepairTableViewDelegate.h */,
+				792824261D541D74001764EB /* WantRepairTableView1.h */,
+				792824271D541D74001764EB /* WantRepairTableView1.m */,
+				792824291D541D8F001764EB /* WantRepairTableView2.h */,
+				7928242A1D541D8F001764EB /* WantRepairTableView2.m */,
 			);
 			name = WantRepaireViews;
 			sourceTree = "<group>";
@@ -1217,6 +1239,51 @@
 				792A24711D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.m */,
 			);
 			path = FDTableviewHeightCell;
+			sourceTree = "<group>";
+		};
+		792E8B4F1D534BF800D70FB7 /* VideoRecord */ = {
+			isa = PBXGroup;
+			children = (
+				792E8B501D534BF800D70FB7 /* WCLRecordProgressView */,
+				792E8B531D534BF800D70FB7 /* WCLRecordVideo */,
+			);
+			path = VideoRecord;
+			sourceTree = "<group>";
+		};
+		792E8B501D534BF800D70FB7 /* WCLRecordProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				792E8B511D534BF800D70FB7 /* WCLRecordProgressView.h */,
+				792E8B521D534BF800D70FB7 /* WCLRecordProgressView.m */,
+			);
+			path = WCLRecordProgressView;
+			sourceTree = "<group>";
+		};
+		792E8B531D534BF800D70FB7 /* WCLRecordVideo */ = {
+			isa = PBXGroup;
+			children = (
+				792E8B541D534BF800D70FB7 /* WCLRecordEncoder */,
+				792E8B571D534BF900D70FB7 /* WCLRecordEngine */,
+			);
+			path = WCLRecordVideo;
+			sourceTree = "<group>";
+		};
+		792E8B541D534BF800D70FB7 /* WCLRecordEncoder */ = {
+			isa = PBXGroup;
+			children = (
+				792E8B551D534BF800D70FB7 /* WCLRecordEncoder.h */,
+				792E8B561D534BF800D70FB7 /* WCLRecordEncoder.m */,
+			);
+			path = WCLRecordEncoder;
+			sourceTree = "<group>";
+		};
+		792E8B571D534BF900D70FB7 /* WCLRecordEngine */ = {
+			isa = PBXGroup;
+			children = (
+				792E8B581D534BF900D70FB7 /* WCLRecordEngine.h */,
+				792E8B591D534BF900D70FB7 /* WCLRecordEngine.m */,
+			);
+			path = WCLRecordEngine;
 			sourceTree = "<group>";
 		};
 		7932964E1D50826A000FD426 /* TYAlertController */ = {
@@ -1489,6 +1556,7 @@
 				5B2572211D47177B00CB4167 /* SDWebImageDownloaderOperation.m in Sources */,
 				5B2572231D47177B00CB4167 /* SDWebImagePrefetcher.m in Sources */,
 				5BED6BC11D499DB900C137C5 /* EstateVO.m in Sources */,
+				792E8B5B1D534BF900D70FB7 /* WCLRecordEncoder.m in Sources */,
 				793296681D50826A000FD426 /* TYAlertController+BlurEffects.m in Sources */,
 				5B2571851D47110B00CB4167 /* UIImage+ScreenShot.m in Sources */,
 				1E3BA3911D4AFF2B00633D0B /* PersonInfoLabel.m in Sources */,
@@ -1573,6 +1641,7 @@
 				1E75274B1D519A8500AEDEC0 /* AlertView.m in Sources */,
 				793296691D50826A000FD426 /* UIImage+ImageEffects.m in Sources */,
 				794E73DF1D4A3AB700267C84 /* BussnessCircleVC.m in Sources */,
+				792E8B5C1D534BF900D70FB7 /* WCLRecordEngine.m in Sources */,
 				5B2572271D47177B00CB4167 /* UIImage+WebP.m in Sources */,
 				5BED6BC71D49AA7F00C137C5 /* RepairVO.m in Sources */,
 				5B197EEF1D487DAC00B95DE5 /* View+MASAdditions.m in Sources */,
@@ -1585,7 +1654,9 @@
 				1E3BA3BF1D4B759C00633D0B /* ComplainViewController.m in Sources */,
 				5BFFCE1D1D41B9A30066B1B9 /* AppDelegate.m in Sources */,
 				1E42BB551D498DEE0021DA01 /* userAndPassWordTextField.m in Sources */,
+				7928242B1D541D8F001764EB /* WantRepairTableView2.m in Sources */,
 				79F2B6BC1D4E22CC00AA94E0 /* RecommandMerchantCell.m in Sources */,
+				792E8B5A1D534BF900D70FB7 /* WCLRecordProgressView.m in Sources */,
 				5BFFCE1A1D41B9A30066B1B9 /* main.m in Sources */,
 				792A24661D5314700005B085 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				5B2571821D47110B00CB4167 /* UIDevice+DeviceType.m in Sources */,
@@ -1606,6 +1677,7 @@
 				5B25721B1D47177B00CB4167 /* MKAnnotationView+WebCache.m in Sources */,
 				1E3BA3B91D4B4FC600633D0B /* ReviseBtn.m in Sources */,
 				793296701D50826A000FD426 /* TYBaseAnimation.m in Sources */,
+				792824281D541D74001764EB /* WantRepairTableView1.m in Sources */,
 				5B25717F1D47110B00CB4167 /* UIApplication+Extensions.m in Sources */,
 				5B197F081D48AD0300B95DE5 /* MerchantVO.m in Sources */,
 				5B25721F1D47177B00CB4167 /* SDWebImageDecoder.m in Sources */,

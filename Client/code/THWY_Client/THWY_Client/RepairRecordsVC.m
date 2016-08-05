@@ -55,11 +55,6 @@
 
 - (void)getDataType:(NSInteger)type statusID:(NSString *)statusID page:(int)page more:(BOOL)more{
     self.repairDataArray = [NSMutableArray array];
-//    [My_ServicesManager getRepairStatus:type onComplete:^(NSString *errorMsg, NSArray *list) {
-//        for (RepairStatuVO *repaireStatus in list) {
-//            
-//        }
-//    }];
     
     [My_ServicesManager getRepairs:type page:page repairStatu:statusID onComplete:^(NSString *errorMsg, NSArray *list) {
        
@@ -70,14 +65,15 @@
         }else {
             
             if (list.count == 0) {
-                [SVProgressHUD setMinimumDismissTimeInterval:1.5];
-                [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
-                
                 if (self.switchFlag == 1) {
                     [self.tableView.mj_header endRefreshing];
                 }else{
                     [self.tableView2.mj_header endRefreshing];
                 }
+                
+                [SVProgressHUD setMinimumDismissTimeInterval:1.0];
+                [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
+                
                 return ;
             }
             
@@ -101,8 +97,12 @@
         
         if (self.switchFlag == 1) {
             [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
+
         }else{
             [self.tableView2.mj_header endRefreshing];
+            [self.tableView2.mj_footer endRefreshing];
+
         }
         
     }];
@@ -226,7 +226,7 @@
     self.tableView.rowHeight = 360/667*My_ScreenH;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorColor = [UIColor grayColor];
-    self.tableView.bounces = NO;
+    self.tableView.bounces = YES;
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     self.tableView.showsVerticalScrollIndicator = NO;
     
@@ -236,7 +236,7 @@
     self.tableView2.rowHeight = 360/667*My_ScreenH;
     self.tableView2.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView2.separatorColor = [UIColor grayColor];
-    self.tableView2.bounces = NO;
+    self.tableView2.bounces = YES;
     [self.tableView2 setBackgroundColor:[UIColor clearColor]];
     self.tableView2.showsVerticalScrollIndicator = NO;
     
@@ -283,19 +283,19 @@
 - (void)initRefreshView{
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+ //   self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
     //自动更改透明度
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
-    self.tableView.mj_footer.automaticallyChangeAlpha = YES;
+// self.tableView.mj_footer.automaticallyChangeAlpha = YES;
     
     
     self.tableView2.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-    self.tableView2.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+ //   self.tableView2.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
     //自动更改透明度
     self.tableView2.mj_header.automaticallyChangeAlpha = YES;
-    self.tableView2.mj_footer.automaticallyChangeAlpha = YES;
+//    self.tableView2.mj_footer.automaticallyChangeAlpha = YES;
     
 
 }
@@ -361,8 +361,14 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 30)];
     [button setTitle:@"查看更多" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(loadMoreData) forControlEvents:UIControlEventTouchUpInside];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont fontWithName:My_RegularFontName size:15.0];
+    [button addTarget:self action:@selector(loadMoreData:) forControlEvents:UIControlEventTouchUpInside];
     return button;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 30;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -371,6 +377,12 @@
     RepairDetailController *detail = [[RepairDetailController alloc] init];
     detail.model = model;
     [self.navigationController pushViewController:detail animated:YES];
+    
+}
+
+- (void)loadMoreData:(UIButton *)button{
+    
+     [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%ld", self.selectIndex+1] page:self.page+1 more:YES];
     
 }
 
