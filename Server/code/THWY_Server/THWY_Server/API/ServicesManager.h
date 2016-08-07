@@ -20,6 +20,8 @@
 #import "RepairClassVO.h"
 #import "AddPublicRepairVO.h"
 #import "AddRepairVO.h"
+#import "RepairStatisticVO.h"
+#import "RepairVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -281,6 +283,14 @@
 -(void)getPublicRepairStatus:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
 /**
+ *  获取公共保修统计
+ *
+ *  @param estateId   楼盘id
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getPublicRepairStatistic:(NSString *)estateId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
  *  添加公共报修
  *
  *  @param repair     报修实例对象
@@ -294,6 +304,31 @@
  *  @param onComplete 获取完成回调block
  */
 -(void)getRepairStatus:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取业主保修统计
+ *
+ *  @param estateId   楼盘id
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getRepairStatistic:(NSString *)estateId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取业主保修
+ *
+ *  @param page          页数
+ *  @param repairStatuId 保修状态
+ *  @param onComplete    获取完成回调block
+ */
+-(void)getRepairs:(NSString *)page repairStatu:(NSString *)repairStatuId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取单个业主保修
+ *
+ *  @param repairId   保修ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getARepair:(NSString *)repairId onComplete:(void (^)(NSString *errorMsg,RepairVO *repair))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;

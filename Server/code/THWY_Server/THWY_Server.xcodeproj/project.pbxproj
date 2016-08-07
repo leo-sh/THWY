@@ -69,6 +69,8 @@
 		94BF711C1D5446A500EF1A8D /* RepairTaskVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF711B1D5446A500EF1A8D /* RepairTaskVO.m */; };
 		94C040C81D4EEAC300E23969 /* NoticVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C040C71D4EEAC300E23969 /* NoticVO.m */; };
 		94C040CB1D4F128B00E23969 /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C040CA1D4F128B00E23969 /* AdVO.m */; };
+		94F2356A1D572B2900B829FB /* RepairStatisticVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F235691D572B2900B829FB /* RepairStatisticVO.m */; };
+		94F2356D1D57339C00B829FB /* TaskVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F2356C1D57339C00B829FB /* TaskVO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -198,6 +200,10 @@
 		94C040C71D4EEAC300E23969 /* NoticVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticVO.m; sourceTree = "<group>"; };
 		94C040C91D4F128B00E23969 /* AdVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdVO.h; sourceTree = "<group>"; };
 		94C040CA1D4F128B00E23969 /* AdVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdVO.m; sourceTree = "<group>"; };
+		94F235681D572B2900B829FB /* RepairStatisticVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticVO.h; sourceTree = "<group>"; };
+		94F235691D572B2900B829FB /* RepairStatisticVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatisticVO.m; sourceTree = "<group>"; };
+		94F2356B1D57339C00B829FB /* TaskVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskVO.h; sourceTree = "<group>"; };
+		94F2356C1D57339C00B829FB /* TaskVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskVO.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +267,10 @@
 				940D69E61D51968700E1159D /* AddRepairVO.m */,
 				940D69E71D51968700E1159D /* Repair_RootVO.h */,
 				940D69E81D51968700E1159D /* Repair_RootVO.m */,
+				94F235681D572B2900B829FB /* RepairStatisticVO.h */,
+				94F235691D572B2900B829FB /* RepairStatisticVO.m */,
+				94F2356B1D57339C00B829FB /* TaskVO.h */,
+				94F2356C1D57339C00B829FB /* TaskVO.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -540,6 +550,7 @@
 				5B2572531D47178500CB4167 /* SDWebImageDownloaderOperation.m in Sources */,
 				940D69E21D518FD900E1159D /* RepairClassVO.m in Sources */,
 				5B2572551D47178500CB4167 /* SDWebImagePrefetcher.m in Sources */,
+				94F2356A1D572B2900B829FB /* RepairStatisticVO.m in Sources */,
 				5B2571C11D4714A100CB4167 /* UIView+Extension.m in Sources */,
 				5B2571B71D4714A100CB4167 /* NSString+BXExtension.m in Sources */,
 				5B2571BB1D4714A100CB4167 /* UIDevice+DeviceType.m in Sources */,
@@ -556,6 +567,7 @@
 				94C040CB1D4F128B00E23969 /* AdVO.m in Sources */,
 				5B2571C91D4714D100CB4167 /* MainNavigationViewController.m in Sources */,
 				5B2571F61D4716F800CB4167 /* AFURLRequestSerialization.m in Sources */,
+				94F2356D1D57339C00B829FB /* TaskVO.m in Sources */,
 				940D69D41D51811400E1159D /* DocTypeVO.m in Sources */,
 				5B2571F81D4716F800CB4167 /* AFURLSessionManager.m in Sources */,
 				940D69EA1D51968700E1159D /* AddRepairVO.m in Sources */,

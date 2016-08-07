@@ -1349,10 +1349,19 @@
 #pragma mark 测试用函数
 -(void)test
 {
-
-    [self getRepairs:2 page:1 repairStatu:@"4" onComplete:^(NSString *errorMsg, NSArray *list) {
-        NSLog(@"");
-    }];
+//    if ([self isLogin]) {
+//        [self getRepairs:Owner page:0 repairStatu:nil onComplete:^(NSString *errorMsg, NSArray *list) {
+//            
+//        }];
+//    }else
+//    {
+//        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {
+//            if (errorMsg == nil) {
+//                [self test];
+//            }
+//        }];
+//    }
+    
     
 }
 @end
