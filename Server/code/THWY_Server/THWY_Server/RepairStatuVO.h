@@ -17,6 +17,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic , copy) NSString              * Id;
 @property (nonatomic , copy) NSString              * repair_status_name;
+@property (nonatomic , copy) NSString              * ctime;
 
 -(RepairStatuVO* )initWithJSON:(NSDictionary *)JSON;
 @end

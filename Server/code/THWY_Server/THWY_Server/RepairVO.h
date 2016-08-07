@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "RepairTaskVO.h"
+#import "RepairStatuVO.h"
+#import "RepairClassVO.h"
 
 @interface RepairVO : NSObject
 
@@ -22,7 +24,6 @@
 @property (nonatomic , copy) NSString              * repair_class_ids;
 @property (nonatomic , copy) NSString              * detail;
 @property (nonatomic , copy) NSString              * pic;
-@property (nonatomic , copy) NSString              * vdo;
 @property (nonatomic , copy) NSString              * st;
 @property (nonatomic , copy) NSString              * st_0_time;
 @property (nonatomic , copy) NSString              * st_1_time;
@@ -52,8 +53,14 @@
 @property (nonatomic , copy) NSString              * estate;
 @property (nonatomic , copy) NSString              * phone;
 @property (nonatomic , copy) NSString              * addr;
+@property (nonatomic , copy) NSString              * vdo;
+@property (nonatomic , copy) NSString              * now_status;
 @property RepairTaskVO                             * repair_task;
 @property NSArray                                  * repair_admin_id_arr;
+@property NSArray                                  * classes_ids;
+@property NSArray                                  * class_names;
+@property NSArray<RepairStatuVO *>                 * repair_status;
+@property NSArray<RepairClassVO *>                 * classes;
 @property (nonatomic , copy) NSString              * classes_str;
 
 -(RepairVO* )initWithJSON:(NSDictionary *)JSON;

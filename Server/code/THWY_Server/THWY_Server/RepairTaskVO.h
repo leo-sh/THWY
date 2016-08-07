@@ -19,4 +19,5 @@
 @property (nonatomic , copy) NSString              * group_name;
 @property NSArray<UserVO *>                        * admins;
 
+-(RepairTaskVO* )initWithJSON:(NSDictionary *)JSON;
 @end

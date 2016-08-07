@@ -20,6 +20,9 @@
 #import "RepairClassVO.h"
 #import "AddPublicRepairVO.h"
 #import "AddRepairVO.h"
+#import "RepairStatisticVO.h"
+#import "RepairVO.h"
+#import "TaskVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -281,6 +284,14 @@
 -(void)getPublicRepairStatus:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
 /**
+ *  获取公共保修统计
+ *
+ *  @param estateId   楼盘id
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getPublicRepairStatistic:(NSString *)estateId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
  *  添加公共报修
  *
  *  @param repair     报修实例对象
@@ -294,6 +305,68 @@
  *  @param onComplete 获取完成回调block
  */
 -(void)getRepairStatus:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取业主保修统计
+ *
+ *  @param estateId   楼盘id
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getRepairStatistic:(NSString *)estateId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取业主保修
+ *
+ *  @param page          页数
+ *  @param repairStatuId 保修状态
+ *  @param onComplete    获取完成回调block
+ */
+-(void)getRepairs:(int)page repairStatu:(NSString *)repairStatuId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取单个业主保修
+ *
+ *  @param repairId   保修ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getARepair:(NSString *)repairId onComplete:(void (^)(NSString *errorMsg,RepairVO *repair))onComplete;
+
+#pragma mark 接单相关API
+/**
+ *  获取接单列表
+ *
+ *  @param type       类型
+ *  @param page       页数
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getTaskList:(TaskType )type page:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取接单详细
+ *
+ *  @param taskId     接单id
+ *  @param isPublic   是否是公共
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getATask:(NSString *)taskId isPublic:(BOOL)isPublic onComplete:(void (^)(NSString *errorMsg,RepairVO *repair))onComplete;
+
+/**
+ *  接单
+ *
+ *  @param taskId     接单id
+ *  @param isPublic   是否是公共
+ *  @param onComplete 获取完成回调block
+ */
+-(void)takeTask:(NSString *)taskId isPublic:(BOOL)isPublic onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+/**
+ *  结单
+ *
+ *  @param taskId     接单id
+ *  @param isPublic   是否是公共
+ *  @param onComplete 获取完成回调block
+ */
+-(void)endTask:(NSString *)taskId isPublic:(BOOL)isPublic onComplete:(void (^)(NSString *errorMsg))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;
