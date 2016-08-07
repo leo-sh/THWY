@@ -22,6 +22,7 @@
 #import "AddRepairVO.h"
 #import "RepairStatisticVO.h"
 #import "RepairVO.h"
+#import "TaskVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -320,7 +321,7 @@
  *  @param repairStatuId 保修状态
  *  @param onComplete    获取完成回调block
  */
--(void)getRepairs:(NSString *)page repairStatu:(NSString *)repairStatuId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+-(void)getRepairs:(int)page repairStatu:(NSString *)repairStatuId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
 /**
  *  获取单个业主保修
@@ -329,6 +330,43 @@
  *  @param onComplete 获取完成回调block
  */
 -(void)getARepair:(NSString *)repairId onComplete:(void (^)(NSString *errorMsg,RepairVO *repair))onComplete;
+
+#pragma mark 接单相关API
+/**
+ *  获取接单列表
+ *
+ *  @param type       类型
+ *  @param page       页数
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getTaskList:(TaskType )type page:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取接单详细
+ *
+ *  @param taskId     接单id
+ *  @param isPublic   是否是公共
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getATask:(NSString *)taskId isPublic:(BOOL)isPublic onComplete:(void (^)(NSString *errorMsg,RepairVO *repair))onComplete;
+
+/**
+ *  接单
+ *
+ *  @param taskId     接单id
+ *  @param isPublic   是否是公共
+ *  @param onComplete 获取完成回调block
+ */
+-(void)takeTask:(NSString *)taskId isPublic:(BOOL)isPublic onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+/**
+ *  结单
+ *
+ *  @param taskId     接单id
+ *  @param isPublic   是否是公共
+ *  @param onComplete 获取完成回调block
+ */
+-(void)endTask:(NSString *)taskId isPublic:(BOOL)isPublic onComplete:(void (^)(NSString *errorMsg))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;
