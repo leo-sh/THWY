@@ -15,4 +15,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn_unit;
 @property (weak, nonatomic) IBOutlet UIButton *btn_layer;
 
+@property (copy, nonatomic) NSString *selectEstate_id;
+
 @end

@@ -35,6 +35,8 @@
 @property (assign, nonatomic) NSInteger selectIndex;
 @property (assign, nonatomic) int page;
 
+@property (strong, nonatomic) NSMutableArray *cells;
+
 @end
 
 @implementation RepairRecordsVC
@@ -44,6 +46,7 @@
     // Do any additional setup after loading the view.
     
     self.title = @"报修记录";
+    self.cells = [NSMutableArray array];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景2"]]];
     self.selectIndex = 0;
     self.page = 1;
@@ -220,20 +223,22 @@
     }
     
     //tableView
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.bgView.height+20, My_ScreenW-20, My_ScreenH-94-40-self.bgView.height)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.bgView.height+20, My_ScreenW-20, My_ScreenH-94-40-self.bgView.height) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = 360/667*My_ScreenH;
+    self.tableView.rowHeight = 300/667*My_ScreenH;
+    self.tableView.sectionHeaderHeight = 0;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorColor = [UIColor grayColor];
     self.tableView.bounces = YES;
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     self.tableView.showsVerticalScrollIndicator = NO;
     
-    self.tableView2 = [[UITableView alloc] initWithFrame:CGRectMake(My_ScreenW-20, self.bgView2.height+20, My_ScreenW-20, self.tableView.height)];
+    self.tableView2 = [[UITableView alloc] initWithFrame:CGRectMake(My_ScreenW-20, self.bgView2.height+20, My_ScreenW-20, self.tableView.height)  style:UITableViewStyleGrouped];
     self.tableView2.delegate = self;
     self.tableView2.dataSource = self;
-    self.tableView2.rowHeight = 360/667*My_ScreenH;
+    self.tableView2.rowHeight = 300/667*My_ScreenH;
+//    self.tableView2.sectionHeaderHeight = 0;
     self.tableView2.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView2.separatorColor = [UIColor grayColor];
     self.tableView2.bounces = YES;
@@ -328,6 +333,10 @@
 }
 
 #pragma mark - tabelViewDelegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.repairDataArray.count;
 }
@@ -335,6 +344,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 //    NSInteger row = indexPath.row;
     RecordeRepairingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordeRepeiringCell" forIndexPath:indexPath];
+//    [cell loadDataFromModel:self.repairDataArray[indexPath.row]];
     cell.vc = self;
     return cell;
 }
@@ -347,16 +357,16 @@
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    RecordeRepairingCell * newcell = (RecordeRepairingCell *)cell;
-    return [newcell heightForCell];
-//    return 360;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+////    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+////    RecordeRepairingCell * newcell = (RecordeRepairingCell *)cell;
+////    return [newcell heightForCell];
+//    return 300/667*My_ScreenH;
+//}
 
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 360;
-}
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 360;
+//}
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 30)];

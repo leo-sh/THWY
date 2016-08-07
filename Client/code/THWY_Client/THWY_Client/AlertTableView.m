@@ -51,12 +51,17 @@
     
     self.tableHeaderView = headerView;
     
-    self.sectionHeaderHeight = headerView.height;
+    if (self.flag == 3) {
+        self.sectionHeaderHeight = 0;
+    }else{
+        self.sectionHeaderHeight = headerView.height;
+    }
     
 }
 
 - (void)confirm{
     [self.AlertDelegate confirm:self.flags flag:self.flag];
+    [self hideView];
 }
 
 - (void)cancel{
@@ -64,24 +69,37 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    for (int i = 0; i<self.data.count; i++) {
-        [self.folded addObject:@(YES)];
+    if (self.flag == 3) {
+        return 1;
+    }else{
+        for (int i = 0; i<self.data.count; i++) {
+            [self.folded addObject:@(YES)];
+        }
+        return self.data.count;
     }
-    return self.data.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if ([self.folded[section] boolValue]) {
-        return 0;
+    if (self.flag == 3) {
+        return self.data.count;
     }else{
-        return [[self.data[section] child] count];
+        if ([self.folded[section] boolValue]) {
+            return 0;
+        }else{
+            return [[self.data[section] child] count];
+        }
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.imageView.image = [UIImage scaleImage:[UIImage imageNamed:@"repaire_不代勾"] toScale:0.7];
-    RepairClassVO *model = [self.data[indexPath.section] child][indexPath.row];
+    RepairClassVO *model = nil;
+    if (self.flag == 3) {
+        model = self.data[indexPath.row];
+    }else{
+        model = [self.data[indexPath.section] child][indexPath.row];
+    }
     cell.textLabel.text = [NSString stringWithFormat:@"%@ (￥%@)",model.class_name, model.class_price];
     cell.textLabel.font = [UIFont fontWithName:My_RegularFontName size:14.0];
     cell.textLabel.textColor = [UIColor darkGrayColor];

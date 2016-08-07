@@ -1195,10 +1195,9 @@
             [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
-        }else
-        {
+        }else{
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
                 for (NSDictionary* estateDic in responseObject[@"datas"][@"datas"]) {
                     RepairVO *estate = [[RepairVO alloc]initWithJSON:estateDic];
                     [listArr addObject:estate];
@@ -1350,8 +1349,10 @@
 #pragma mark 测试用函数
 -(void)test
 {
-    if ([self isLogin]) {
-    }
+
+    [self getRepairs:2 page:1 repairStatu:@"4" onComplete:^(NSString *errorMsg, NSArray *list) {
+        NSLog(@"");
+    }];
     
 }
 @end

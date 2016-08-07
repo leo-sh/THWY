@@ -24,6 +24,8 @@
 
 @property (strong, nonatomic) AddPublicRepairVO *repairVO;
 
+@property (strong, nonatomic) NSMutableArray *cells;
+
 @end
 
 @implementation WantRepairTableView2
@@ -31,6 +33,10 @@
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
     
     if (self = [super initWithFrame:frame style:style]) {
+        
+        self.repairVO = [[AddPublicRepairVO alloc] init];
+        self.repairVO.cls = @"";
+        self.cells = [NSMutableArray arrayWithArray:@[@"",@"",@"",@"",@"",@"",@"",@""]];
         
         [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         //[self initTableHeaderView];
@@ -66,13 +72,18 @@
         case 0:{
             
             PaigongCatogerysCell *cell = (PaigongCatogerysCell *)[tableView dequeueReusableCellWithIdentifier:@"PaigongCatogerysCell" forIndexPath:indexPath];
+//            [cell addObserver:self forKeyPath:@"flag" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"0"];
+            self.cells[row] = cell;
             return cell;
-            
             break;
         }
         case 1:{
-
             ProjectCell *cell = (ProjectCell *)[tableView dequeueReusableCellWithIdentifier:@"ProjectCell" forIndexPath:indexPath];
+//            [cell addObserver:self forKeyPath:@"selectEstate_id" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"1"];
+//            [cell addObserver:self forKeyPath:@"btn_unit.titleLabel.text" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"1"];
+//            [cell addObserver:self forKeyPath:@"btn_block.titleLabel.text" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"1"];
+//            [cell addObserver:self forKeyPath:@"btn_layer.titleLabel.text" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"1"];
+            self.cells[row] = cell;
             return cell;
             break;
         }
@@ -82,7 +93,8 @@
             cell.icon.image = [UIImage imageNamed:@"repaire_姓名"];
             cell.label.text = @"报修人姓名:";
             cell.textField.text = [[[UDManager getUD] getUser] real_name];
-
+//            [cell addObserver:self forKeyPath:@"textField.text" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"2"];
+            self.cells[row] = cell;
             return cell;
             
         }
@@ -91,7 +103,8 @@
             cell.icon.image = [UIImage imageNamed:@"repaire_call"];
             cell.label.text = @"报修人电话:";
             cell.textField.text = [[[UDManager getUD] getUser] cellphone];
-
+//            [cell addObserver:self forKeyPath:@"textField.text" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"3"];
+            self.cells[row] = cell;
             return cell;
             
         }
@@ -99,6 +112,8 @@
             RepaireCategorysCell *cell = (RepaireCategorysCell *)[tableView dequeueReusableCellWithIdentifier:@"RepaireCategorysCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_保修类别"];
             cell.label.text = @"报修类别:";
+//            [cell addObserver:self forKeyPath:@"detailLabel.text" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"4"];
+            self.cells[row] = cell;
             return cell;
         }
         case 5:{
@@ -107,6 +122,7 @@
             cell.label.text = @"上传图片:";
             cell.descLabel.text = @"上传图片不能超过2M, 图片格式为jpg, png";
             cell.delegate = self;
+            self.cells[row] = cell;
             return cell;
         }
         case 6:{
@@ -115,11 +131,14 @@
             cell.label.text = @"上传视频:";
             cell.descLabel.text = @"上传视频不能超过8M, 视频格式为avi, pge, swf";
             cell.delegate = self;
+            self.cells[row] = cell;
             return cell;
         }
         case 7:{
             DescribeCell *cell = (DescribeCell *)[tableView dequeueReusableCellWithIdentifier:@"DescribeCell" forIndexPath:indexPath];
             cell.delegate = self;
+//            [cell addObserver:self forKeyPath:@"textView.text" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"7"];
+            self.cells[row] = cell;
             return cell;
         }
         default:
@@ -132,7 +151,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 1){
-        return 130.0/713*My_ScreenH;
+        return 140.0;
     }else if (indexPath.row == 5 || indexPath.row == 6) {
         return 90.0/713*My_ScreenH;
     }else if (indexPath.row == 7){
@@ -148,6 +167,7 @@
             //弹框
             [self initAlertView];
             self.alertView.data = self.repaireClassArrayPublic;
+            self.alertView.flag = 3;
             [self.alertView showInWindow];
             
             break;
@@ -173,7 +193,7 @@
 
     
     for (NSIndexPath *indexpath in reslult) {
-        [cls appendString:[[self.repaireClassArrayPublic[indexpath.section] child][indexpath.row] class_name]];
+        [cls appendString:[self.repaireClassArrayPublic[indexpath.row] class_name]];
     }
     UITableViewCell *cell = [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
     RepaireCategorysCell *newcell = (RepaireCategorysCell *)cell;
@@ -190,54 +210,76 @@
     }
 }
 
+
+
 //提交报修对象
 - (void)commit{
     
-    for (int i = 0; i < 8; i++) {
-        
-        UITableViewCell *cell = [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+    for (int i = 0; i < self.cells.count; i++) {
+        if ([self.cells [i] isKindOfClass:[NSString class]]) {
+            continue;
+        }
+
+        UITableViewCell *cell = self.cells[i];
         switch (i) {
             case 0:{
-                PaigongCatogerysCell *newcell = (PaigongCatogerysCell *)cell;
-                self.repairVO.kb = newcell.flag;
+                self.repairVO.kb = [(PaigongCatogerysCell *)cell flag];
                 break;
             }
             case 1:{
-                ProjectCell *newcell = (ProjectCell *)cell;
-                self.repairVO.estate_id = @"";
-                self.repairVO.unit = newcell.btn_unit.titleLabel.text;
-                self.repairVO.block = newcell.btn_block.titleLabel.text;
-                self.repairVO.layer = newcell.btn_layer.titleLabel.text;
+                self.repairVO.estate_id = [(ProjectCell *)cell selectEstate_id];
+                self.repairVO.block = [(ProjectCell *)cell btn_block].titleLabel.text;
+                self.repairVO.unit = [(ProjectCell *)cell btn_unit].titleLabel.text;
+                self.repairVO.layer = [(ProjectCell *)cell btn_layer].titleLabel.text;
                 break;
             }
             case 2:{
-                TextFieldCell *newcell = (TextFieldCell *)cell;
-                self.repairVO.call_name = newcell.textField.text;
+                self.repairVO.call_name = [(TextFieldCell *)cell textField].text;
                 break;
             }
             case 3:{
-                TextFieldCell *newcell = (TextFieldCell *)cell;
-                self.repairVO.call_phone = newcell.textField.text;
+                self.repairVO.call_phone = [(TextFieldCell *)cell textField].text;
                 break;
             }
             case 4:{
-                RepaireCategorysCell *newcell = (RepaireCategorysCell *)cell;
-                if (![newcell.detailLabel.text isEqualToString:@""] && newcell.detailLabel != nil) {
-                    self.repairVO.cls = [NSString stringWithFormat:@"%@%@", self.repairVO.cls, newcell.detailLabel.text];
+                if (![[[(RepaireCategorysCell *)cell detailLabel] text] isEqualToString:@""] && [[(RepaireCategorysCell *)cell detailLabel] text] != nil) {
+                    self.repairVO.cls = [NSString stringWithFormat:@"%@%@", self.repairVO.cls, [[(RepaireCategorysCell *)cell detailLabel] text]];
                 }
-                
                 break;
             }
             case 7:{
-                DescribeCell *newcell = (DescribeCell *)cell;
-                self.repairVO.repair_detail = newcell.textView.text;
+                self.repairVO.repair_detail = [(DescribeCell *)cell textView].text;
                 break;
             }
             default:
                 break;
         }
-        
+
     }
+
+    
+    NSString *errorMsg = @"";
+    
+    if ([self.repairVO.call_name isEqualToString:@""]) {
+        errorMsg = @"请输入业主名字";
+    }else if ([self.repairVO.call_phone isEqualToString:@""]){
+        errorMsg = @"请输入业主联系方式";
+    }else if ([self.repairVO.estate_id isEqualToString:@""] || [self.repairVO.block isEqualToString:@""] || [self.repairVO.unit isEqualToString:@""] || [self.repairVO.layer isEqualToString:@""]){
+        errorMsg = @"请选择房源";
+    }else if ([self.repairVO.cls isEqualToString:@""]){
+        errorMsg = @"请选择报修类型";
+    }else if ([self.repairVO.image isEqual:nil]){
+        errorMsg = @"请选择图片";
+    }else if ([self.repairVO.videoPath isEqualToString:@""]){
+        errorMsg = @"请选择视频";
+    }
+    
+    if (![errorMsg isEqualToString:@""]){
+        [SVProgressHUD setMinimumDismissTimeInterval:1.4];
+        [SVProgressHUD showErrorWithStatus:errorMsg];
+        return;
+    }
+
     
     [My_ServicesManager addPublicRepair:self.repairVO onComplete:^(NSString *errorMsg) {
         
@@ -247,5 +289,6 @@
     
     
 }
+
 
 @end

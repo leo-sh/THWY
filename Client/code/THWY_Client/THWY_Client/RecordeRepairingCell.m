@@ -252,7 +252,7 @@
         make.centerY.mas_equalTo(self.cellPhone.mas_centerY);
     }];
     
-
+    [self layoutIfNeeded];
 }
 
 - (void)setLabelAttributes:(UILabel *)label{

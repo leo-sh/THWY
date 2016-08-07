@@ -35,7 +35,7 @@
     }]];
     
     [alertView addAction:[TYAlertAction actionWithTitle:@"从相册选择" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
-        [self loadImageWithType:UIImagePickerControllerSourceTypePhotoLibrary];
+        [self loadImageWithType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
     }]];
     
     [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancle handler:^(TYAlertAction *action) {
@@ -43,9 +43,22 @@
     }]];
     
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:alertView preferredStyle:TYAlertControllerStyleActionSheet];
-    UIViewController *vc = (UIViewController *)self.delegate;
+    
+    
+    
+    UIViewController *vc = [self vc:self.delegate] ;
     [vc presentViewController:alertController animated:YES completion:nil];
     
+}
+
+- (UIViewController *)vc:(UIView *)view{
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder* nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController*)nextResponder;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - 选择上传图片
@@ -71,11 +84,13 @@
         //设置摄像头模式（拍照，录制视频）为录像模式
         _imagePickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
         
-    }else if (type == UIImagePickerControllerSourceTypePhotoLibrary){
+    }else {
+        
     }
 
-    UIViewController *vc = (UIViewController *)self.delegate;
+    UIViewController *vc = [self vc:self.delegate] ;
     [vc presentViewController:_imagePickerController animated:YES completion:nil];
+    
 }
 
 //实现选取图片结束后的代理方法
@@ -89,11 +104,14 @@
         UIImage *image = info[UIImagePickerControllerEditedImage];
         //压缩图片
 //        NSData *fileData = UIImageJPEGRepresentation(self.imageView.image, 1.0);
-        //保存图片至相册
-        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+        if (_imagePickerController.sourceType == UIImagePickerControllerSourceTypeCamera) {
+            //保存图片至相册
+            UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+        }
         //上传图片
 //        [self uploadImageWithData:fileData];
         [self.delegate select:image type:ImageType];
+        self.textField.text = mediaType;
         
     }else{
         //如果是视频
@@ -103,20 +121,23 @@
 //        [_moviePlayer play];
         //保存视频至相册（异步线程）
         NSString *urlStr = [url path];
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(urlStr)) {
-                
-                UISaveVideoAtPathToSavedPhotosAlbum(urlStr, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
-            }
-        });
+#pragma mark - URL
+        NSLog(@"path ::  %@", url);
+        if (_imagePickerController.sourceType == UIImagePickerControllerSourceTypeCamera) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(urlStr)) {
+                    
+                    UISaveVideoAtPathToSavedPhotosAlbum(urlStr, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
+                }
+            });
+        }
 //        NSData *videoData = [NSData dataWithContentsOfURL:url];
         //视频上传
-        [self.delegate select:urlStr type:VideoType];
+        self.textField.text = urlStr;
+        [self.delegate select:[NSString stringWithFormat:@"file://%@",urlStr] type:VideoType];
     }
     
-    
-    UIViewController *vc = (UIViewController *)self.delegate;
+    UIViewController *vc = [self vc:self.delegate] ;
     [vc dismissViewControllerAnimated:NO completion:nil];
   
 }

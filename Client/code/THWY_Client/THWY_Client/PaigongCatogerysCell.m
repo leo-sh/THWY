@@ -22,6 +22,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.flag = 1;
     UIImage *imageselect = [UIImage imageNamed:@"repaire_selected"] ;
     self.selectedImage = [UIImage scaleImage:imageselect toScale:22/33.0];
     [self.btn_kaidan setImage:self.selectedImage forState:UIControlStateNormal];

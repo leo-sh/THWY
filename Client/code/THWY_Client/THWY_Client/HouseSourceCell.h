@@ -11,8 +11,10 @@
 
 @interface HouseSourceCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *label_houseSource;
+@property (strong, nonatomic) NSMutableArray *housesArray;
 
-@property (strong, nonatomic) HouseVO *model;
+@property (assign, nonatomic) NSInteger selectedIndex;
+
+- (void)updateFrame;
 
 @end

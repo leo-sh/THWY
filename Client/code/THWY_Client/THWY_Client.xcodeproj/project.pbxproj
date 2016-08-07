@@ -133,7 +133,6 @@
 		7905064E1D4CD07900072AAC /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7905064C1D4CD07900072AAC /* TextFieldCell.m */; };
 		7905064F1D4CD07900072AAC /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7905064D1D4CD07900072AAC /* TextFieldCell.xib */; };
 		790506531D4CDB3500072AAC /* HouseSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790506511D4CDB3500072AAC /* HouseSourceCell.m */; };
-		790506541D4CDB3500072AAC /* HouseSourceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 790506521D4CDB3500072AAC /* HouseSourceCell.xib */; };
 		790506581D4CE2B100072AAC /* RepaireCategorysCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790506561D4CE2B100072AAC /* RepaireCategorysCell.m */; };
 		7905065D1D4CE51A00072AAC /* UploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7905065B1D4CE51A00072AAC /* UploadCell.m */; };
 		790506621D4CE93C00072AAC /* DescribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790506601D4CE93C00072AAC /* DescribeCell.m */; };
@@ -454,7 +453,6 @@
 		7905064D1D4CD07900072AAC /* TextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		790506501D4CDB3500072AAC /* HouseSourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseSourceCell.h; sourceTree = "<group>"; };
 		790506511D4CDB3500072AAC /* HouseSourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseSourceCell.m; sourceTree = "<group>"; };
-		790506521D4CDB3500072AAC /* HouseSourceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseSourceCell.xib; sourceTree = "<group>"; };
 		790506551D4CE2B100072AAC /* RepaireCategorysCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepaireCategorysCell.h; sourceTree = "<group>"; };
 		790506561D4CE2B100072AAC /* RepaireCategorysCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepaireCategorysCell.m; sourceTree = "<group>"; };
 		790506571D4CE2B100072AAC /* RepaireCategorysCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepaireCategorysCell.xib; sourceTree = "<group>"; };
@@ -1202,7 +1200,6 @@
 				7905064D1D4CD07900072AAC /* TextFieldCell.xib */,
 				790506501D4CDB3500072AAC /* HouseSourceCell.h */,
 				790506511D4CDB3500072AAC /* HouseSourceCell.m */,
-				790506521D4CDB3500072AAC /* HouseSourceCell.xib */,
 				790506551D4CE2B100072AAC /* RepaireCategorysCell.h */,
 				790506561D4CE2B100072AAC /* RepaireCategorysCell.m */,
 				790506571D4CE2B100072AAC /* RepaireCategorysCell.xib */,
@@ -1520,7 +1517,6 @@
 				79D2D2701D4F530400463CC5 /* MerchargeListCell.xib in Resources */,
 				5B197EE61D487DAC00B95DE5 /* Info.plist in Resources */,
 				5BFFCE281D41B9A30066B1B9 /* LaunchScreen.storyboard in Resources */,
-				790506541D4CDB3500072AAC /* HouseSourceCell.xib in Resources */,
 				1E7527B61D52349F00AEDEC0 /* MJRefresh.bundle in Resources */,
 				794E73E41D4A454700267C84 /* DTKDropdownMenuView.bundle in Resources */,
 				79F2B6BD1D4E22CC00AA94E0 /* RecommandMerchantCell.xib in Resources */,

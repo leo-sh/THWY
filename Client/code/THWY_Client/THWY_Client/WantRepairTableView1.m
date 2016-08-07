@@ -24,6 +24,10 @@
 
 @property (strong, nonatomic) AddRepairVO *repairVO;
 
+@property (strong, nonatomic) NSMutableArray *housesArray;
+
+@property (strong, nonatomic) NSMutableArray *cells;
+
 @end
 
 @implementation WantRepairTableView1
@@ -31,6 +35,12 @@
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
     
     if (self = [super initWithFrame:frame style:style]) {
+        
+        self.repairVO = [[AddRepairVO alloc] init];
+        self.repairVO.cls = @"";
+        self.cells = [NSMutableArray arrayWithArray:@[@"",@"",@"",@"",@"",@"",@"",@""]];
+        
+        [self getHouses];
         
         [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         //[self initTableHeaderView];
@@ -43,7 +53,7 @@
         self.sectionFooterHeight = 0;
         
         [self registerNib:[UINib nibWithNibName:@"TextFieldCell" bundle:nil] forCellReuseIdentifier:@"textFieldCell"];
-        [self registerNib:[UINib nibWithNibName:@"HouseSourceCell" bundle:nil] forCellReuseIdentifier:@"HouseSourceCell"];
+        [self registerClass:[HouseSourceCell class] forCellReuseIdentifier:@"HouseSourceCell"];
         [self registerNib:[UINib nibWithNibName:@"RepaireCategorysCell" bundle:nil] forCellReuseIdentifier:@"RepaireCategorysCell"];
         [self registerNib:[UINib nibWithNibName:@"UploadCell" bundle:nil] forCellReuseIdentifier:@"UploadCell"];
         [self registerNib:[UINib nibWithNibName:@"DescribeCell" bundle:nil] forCellReuseIdentifier:@"DescribeCell"];
@@ -52,6 +62,10 @@
     }
     return self;
     
+}
+
+- (void)getHouses{
+    self.housesArray = [NSMutableArray arrayWithArray:[[[UDManager getUD] getUser] houses]];
 }
 
 #pragma mark - tabelViewDelegate
@@ -68,6 +82,7 @@
             cell.icon.image = [UIImage imageNamed:@"repaire_姓名"];
             cell.label.text = @"业主名称:";
             cell.textField.text = [[[UDManager getUD] getUser] real_name];
+            self.cells[row] = cell;
             return cell;
             
             break;
@@ -78,6 +93,7 @@
             cell.icon.image = [UIImage imageNamed:@"repaire_call"];
             cell.label.text = @"联系电话:";
             cell.textField.text = [[[UDManager getUD] getUser] cellphone];
+            self.cells[row] = cell;
             return cell;
         
             break;
@@ -85,6 +101,9 @@
         case 2:{
 
             HouseSourceCell *cell = (HouseSourceCell *)[tableView dequeueReusableCellWithIdentifier:@"HouseSourceCell" forIndexPath:indexPath];
+            cell.housesArray = self.housesArray;
+            [cell updateFrame];
+            self.cells[row] = cell;
             return cell;
             
         }
@@ -92,6 +111,7 @@
             RepaireCategorysCell *cell = (RepaireCategorysCell *)[tableView dequeueReusableCellWithIdentifier:@"RepaireCategorysCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_有偿保修"];
             cell.label.text = @"有偿报修类别:";
+            self.cells[row] = cell;
             return cell;
             
         }
@@ -99,6 +119,7 @@
             RepaireCategorysCell *cell = (RepaireCategorysCell *)[tableView dequeueReusableCellWithIdentifier:@"RepaireCategorysCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_保修类别"];
             cell.label.text = @"无偿报修类别:";
+            self.cells[row] = cell;
             return cell;
         }
         case 5:{
@@ -107,6 +128,7 @@
             cell.label.text = @"上传图片:";
             cell.descLabel.text = @"上传图片不能超过2M, 图片格式为jpg, png";
             cell.delegate = self;
+            self.cells[row] = cell;
             return cell;
         }
         case 6:{
@@ -115,11 +137,13 @@
             cell.label.text = @"上传视频:";
             cell.descLabel.text = @"上传视频不能超过8M, 视频格式为avi, pge, swf";
             cell.delegate = self;
+            self.cells[row] = cell;
             return cell;
         }
         case 7:{
             DescribeCell *cell = (DescribeCell *)[tableView dequeueReusableCellWithIdentifier:@"DescribeCell" forIndexPath:indexPath];
             cell.delegate = self;
+            self.cells[row] = cell;
             return cell;
         }
         default:
@@ -131,7 +155,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 5 || indexPath.row == 6) {
+    if (indexPath.row == 2) {
+        return (60.0+self.housesArray.count*30)/713*My_ScreenH;
+    }else if (indexPath.row == 5 || indexPath.row == 6) {
         return 90.0/713*My_ScreenH;
     }else if (indexPath.row == 7){
         return 300.0/713*My_ScreenH;
@@ -152,11 +178,9 @@
         case 4:{
             //无偿弹框
             [self initAlertView];
-
             self.alertView.data = self.repaireClassArrayFree;
             self.alertView.flag = 2;
             [self.alertView showInWindow];
-
             break;
         }
         default:
@@ -170,7 +194,7 @@
     
     self.alertView = [[AlertTableView alloc] initWithFrame:CGRectMake(30/375.0*My_ScreenW, 30/375.0*My_ScreenW, 317/375.0*My_ScreenW, My_ScreenH*2/3.0) style:UITableViewStyleGrouped];
     self.alertView.AlertDelegate = self;
-    
+
 }
 
 //弹出框代理函数
@@ -198,7 +222,7 @@
     
 }
 
-//选择图片和视频
+//选择图片和视频结果
 - (void)select:(id)content type:(SelectType)type{
     if (type == ImageType) {
         self.repairVO.image = (UIImage *)content;
@@ -207,54 +231,78 @@
     }
 }
 
+
 //提交报修对象
 - (void)commit{
+    
+    for (int i = 0; i < self.cells.count; i++) {
+        if ([self.cells [i] isKindOfClass:[NSString class]]) {
+            continue;
+        }
 
-    for (int i = 0; i < 8; i++) {
-        
-        UITableViewCell *cell = [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        UITableViewCell *cell = self.cells[i];
         switch (i) {
             case 0:{
-                TextFieldCell *newcell = (TextFieldCell *)cell;
-                self.repairVO.call_person = newcell.textField.text;
+                self.repairVO.call_person = [((TextFieldCell *)cell) textField].text;
                 break;
             }
             case 1:{
-                TextFieldCell *newcell = (TextFieldCell *)cell;
-                self.repairVO.call_phone = newcell.textField.text;
-                
+                self.repairVO.call_phone = [((TextFieldCell *)cell) textField].text;
                 break;
             }
             case 2:{
-                HouseSourceCell *newcell = (HouseSourceCell *)cell;
-                self.repairVO.house_id = newcell.model.Id;
+                if ([(HouseSourceCell *)cell selectedIndex] == -1) {
+                    [SVProgressHUD setMinimumDismissTimeInterval:1.2];
+                    [SVProgressHUD showErrorWithStatus:@"请选择房源"];
+                    return;
+                }
+                self.repairVO.house_id = [self.housesArray[[(HouseSourceCell *)cell selectedIndex]] Id];
                 break;
             }
             case 3:{
-                RepaireCategorysCell *newcell = (RepaireCategorysCell *)cell;
-                if (![newcell.detailLabel.text isEqualToString:@""] && newcell.detailLabel != nil) {
-                    self.repairVO.cls = [NSString stringWithFormat:@"%@%@", self.repairVO.cls, newcell.detailLabel.text];
+                if (![[[(RepaireCategorysCell *)cell detailLabel] text] isEqualToString:@""] && [[(RepaireCategorysCell *)cell detailLabel] text] != nil) {
+                    self.repairVO.cls = [NSString stringWithFormat:@"%@%@", self.repairVO.cls, [[(RepaireCategorysCell *)cell detailLabel] text]];
                 }
                 break;
             }
             case 4:{
-                RepaireCategorysCell *newcell = (RepaireCategorysCell *)cell;
-                if (![newcell.detailLabel.text isEqualToString:@""] && newcell.detailLabel != nil) {
-                    self.repairVO.cls = [NSString stringWithFormat:@"%@%@", self.repairVO.cls, newcell.detailLabel.text];
+                if (![[[(RepaireCategorysCell *)cell detailLabel] text] isEqualToString:@""] && [[(RepaireCategorysCell *)cell detailLabel] text] != nil) {
+                    self.repairVO.cls = [NSString stringWithFormat:@"%@%@", self.repairVO.cls, [[(RepaireCategorysCell *)cell detailLabel] text]];
                 }
-                
                 break;
             }
-
             case 7:{
-                DescribeCell *newcell = (DescribeCell *)cell;
-                self.repairVO.detail = newcell.textView.text;
+                self.repairVO.detail = [[(DescribeCell *)cell textView] text];
                 break;
             }
             default:
                 break;
         }
         
+    }
+
+    
+    NSString *errorMsg = @"";
+    
+    if ([self.repairVO.call_person isEqualToString:@""]) {
+        errorMsg = @"请输入业主名字";
+    }else if ([self.repairVO.call_phone isEqualToString:@""]){
+        errorMsg = @"请输入业主联系方式";
+    }else if ([self.repairVO.house_id isEqualToString:@""]){
+        errorMsg = @"请选择房源";
+    }else if ([self.repairVO.cls isEqualToString:@""]){
+        errorMsg = @"请选择报修类型";
+    }else if ([self.repairVO.image isEqual:nil]){
+        errorMsg = @"请选择图片";
+    }
+//    else if ([self.repairVO.videoPath isEqualToString:@""]){
+//        errorMsg = @"请选择视频";
+//    }
+    
+    if (![errorMsg isEqualToString:@""]){
+        [SVProgressHUD setMinimumDismissTimeInterval:1.4];
+        [SVProgressHUD showErrorWithStatus:errorMsg];
+        return;
     }
     
     [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
