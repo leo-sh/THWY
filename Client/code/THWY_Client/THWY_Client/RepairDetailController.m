@@ -27,6 +27,7 @@
     self.title = @"报修记录详情";
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景2"]]];
     
+    [self initViews];
 }
 
 - (void)initViews{
@@ -36,7 +37,7 @@
     [self.view addSubview:imageView];
     
     //tableView
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(topMargrin, topMargrin+2, My_ScreenW-topMargrin*2.0, My_ScreenH-topMargrin*2.0-2)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(topMargrin, topMargrin+2, My_ScreenW-topMargrin*2.0, My_ScreenH-topMargrin*2.0-74)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 //    self.tableView.rowHeight = 360/667*My_ScreenH;
@@ -48,7 +49,7 @@
     [self.view addSubview:self.tableView];
 
     [self.tableView registerClass:[RecordsDetailCell class] forCellReuseIdentifier:@"RecordsDetailCell"];
-    [self.tableView registerClass:[RecordsDetailCell class] forCellReuseIdentifier:@"RecordImageCell"];
+    [self.tableView registerClass:[RecordImageCell class] forCellReuseIdentifier:@"RecordImageCell"];
 
 }
 
@@ -99,12 +100,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 4) {
-        return [tableView fd_heightForCellWithIdentifier:@"RecordImageCell" cacheByIndexPath:indexPath configuration:^(id cell) {
-            [cell loadDataWithModel:self.model];
-        }];
+        return My_ScreenH*0.4+40;
+//        return [tableView fd_heightForCellWithIdentifier:@"RecordImageCell" cacheByIndexPath:indexPath configuration:^(id cell) {
+//            [cell loadDataWithModel:self.model];
+//        }];
     }else{
         return [tableView fd_heightForCellWithIdentifier:@"RecordsDetailCell" cacheByIndexPath:indexPath configuration:^(id cell) {
-            
             [cell loadDataWithModel:self.model indexpath:indexPath];
         }];
         
@@ -112,11 +113,16 @@
     
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIImageView *head = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 1)];
     head.image = [UIImage imageNamed:@"records_虚线"];
     return head;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 1;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

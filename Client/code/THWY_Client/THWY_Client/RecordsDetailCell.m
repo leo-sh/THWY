@@ -29,15 +29,18 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        self.contentView.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
         self.leftLabel = [[UILabel alloc] init];
         self.detailLabel = [[UILabel alloc] init];
+        [self setLabelAttributes:self.leftLabel];
+        [self setLabelAttributes:self.detailLabel];
         self.line = [[UILabel alloc] init];
+        self.line.backgroundColor = [UIColor lightGrayColor];
         
         [self.contentView addSubview:self.leftLabel];
         [self.contentView addSubview:self.detailLabel];
         [self.contentView addSubview:self.line];
-        
         
         CGFloat topMargin = 8.0/375*My_ScreenW;
         [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -46,14 +49,16 @@
             make.height.mas_equalTo(20);
         }];
         [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.leftLabel.mas_left).offset(topMargin);
+            make.left.mas_equalTo(self.leftLabel.mas_right).offset(topMargin);
             make.centerY.mas_equalTo(self.leftLabel.mas_centerY);
             make.height.mas_equalTo(20);
         }];
+        
         [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.contentView.mas_left).offset(topMargin);
             make.height.mas_equalTo(1);
             make.right.mas_equalTo(self.contentView.mas_right).offset(-topMargin);
+            make.bottom.mas_equalTo(self.contentView.mas_bottom);
         }];
         
     }
@@ -79,6 +84,7 @@
                 }
                 case 3:{
                     self.detailLabel.text = model.call_phone;
+                    [self.line setHidden:YES];
                     break;
                 }
                 default:
@@ -94,10 +100,13 @@
                 }
                 case 1:{
                     self.detailLabel.text = model.classes_str;
+                    self.detailLabel.numberOfLines = 0;
+                    [self.detailLabel sizeToFit];
                     break;
                 }
                 case 2:{
                     self.detailLabel.text = model.detail;
+                    [self.line setHidden:YES];
                     break;
                 }
                 default:
@@ -114,6 +123,7 @@
                 }
                 case 1:{
                     self.detailLabel.text = model._st;
+                    [self.line setHidden:YES];
                     break;
                 }
                 default:
@@ -134,6 +144,7 @@
                 }
                 case 2:{
                     self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_3_time intValue] withFormat:nil];
+                    [self.line setHidden:YES];
                     break;
                 }
   
@@ -147,6 +158,15 @@
         default:
             break;
     }
+    
+}
+
+- (void)setLabelAttributes:(UILabel *)label{
+    
+    label.numberOfLines = 0;
+    label.font = [UIFont fontWithName:My_RegularFontName size:16.0];
+    label.textColor = [UIColor darkGrayColor];
+    //    [label sizeToFit];
     
 }
 
