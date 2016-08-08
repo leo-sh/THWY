@@ -13,9 +13,10 @@
 #import "ComplainAlertView.h"
 @interface ComplainViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property UITableView *tableView;
-@property NSArray *data;
+@property NSMutableArray *data;
 @property NSArray *contentHead;
 @property NSMutableArray *contentEnd;
+@property int pageNumber;
 @end
 
 @implementation ComplainViewController
@@ -36,44 +37,69 @@
     
     self.contentHead = @[@"投诉类型：",@"所在项目：",@"投诉人：",@"联系电话：",@"投诉日期："];
     self.contentEnd = [NSMutableArray array];
+    self.data = [NSMutableArray array];
+    
 }
 
 - (void)getData
-{
+{    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+
     [[ServicesManager getAPI] getComplaints:1 onComplete:^(NSString *errorMsg, NSArray *list) {
-        self.data = list;
+        [self.data addObjectsFromArray:list];
         for (ComplaintVO *temp in list) {
             NSArray *array = @[temp.complaint_type_name,temp.estate,temp.complaint_person,temp.complaint_phone,temp.ctime,temp.Id];
             [self.contentEnd addObject:array];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-           
             [self.tableView reloadData];
-            
+            [SVProgressHUD dismiss];
+            [self.tableView.mj_footer endRefreshing];
+            [self.tableView.mj_header endRefreshing];
+
         });
     }];
 }
 
 - (void)createUI
 {
-    self.tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    if (self.data) {
+        self.tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+        
+        self.tableView.backgroundColor = [UIColor clearColor];
+        
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+//        self.tableView.bounces = NO;
+        [self.tableView setSeparatorColor:My_Color(241, 244, 244)];
+        
+        if (self.data) {
+            self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                self.pageNumber = 1;
+                [self getData];
+            }];
+            self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                self.pageNumber++;
+                [self getData];
+            }];
+            
+        }
+        
+        [self.view addSubview:self.tableView];
+        
+        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(10);
+            make.left.mas_equalTo(10);
+            make.right.mas_equalTo(-10);
+            make.bottom.mas_equalTo(-10);
+        }];
+    }
+    else
+    {
+        [self.view addSubview:[self createAddBtn:self.view]];
+    }
     
-    self.tableView.backgroundColor = [UIColor clearColor];
-    
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.bounces = NO;
-    [self.tableView setSeparatorColor:My_Color(241, 244, 244)];
-    [self.view addSubview:self.tableView];
-    
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-    
-        make.top.mas_equalTo(10);
-        make.left.mas_equalTo(10);
-        make.right.mas_equalTo(-10);
-        make.bottom.mas_equalTo(-10);
-    }];
-}
+    }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -107,7 +133,15 @@
 //        }
     
         if (self.data && indexPath.section < self.data.count) {
-            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",self.contentHead[indexPath.row],self.contentEnd[indexPath.section][indexPath.row]];
+            if (indexPath.row < 4) {
+                cell.textLabel.text = [NSString stringWithFormat:@"%@%@",self.contentHead[indexPath.row],self.contentEnd[indexPath.section][indexPath.row]];
+            }
+            else
+            {
+                NSString *time = [NSString stringDateFromTimeInterval:[self.contentEnd[indexPath.section][indexPath.row] intValue] withFormat:@"YYYY-MM-dd HH:mm"];
+                
+                cell.textLabel.text = [NSString stringWithFormat:@"%@%@",self.contentHead[indexPath.row],time];
+            }
         }
         cell.textLabel.font = [UIFont systemFontOfSize:15];
     return cell;
@@ -134,10 +168,8 @@
 {
     UIView *view = [[UIView alloc]init];
     if (section == self.data.count - 1) {
-        ReviseBtn *btn = [[ReviseBtn alloc]initWithFrame:CGRectMake(40, 5, tableView.width - 80, 40)];
-        [btn setLeftImageView:@"建议意见 添加" andTitle:@"添加"];
-        [btn addTarget:self action:@selector(clickAdd) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:btn];
+        
+        [view addSubview:[self createAddBtn:tableView]];
     }
     
     return view;
@@ -185,6 +217,15 @@
     ComplainAlertView *alertview = [[ComplainAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
     [alertview updateWithComplainVo:[[UDManager getUD]getUser]];
     [alertview show];
+}
+
+- (UIButton *)createAddBtn:(UIView *)view
+{
+    ReviseBtn *btn = [[ReviseBtn alloc]initWithFrame:CGRectMake(40, 5, view.width - 80, 40)];
+    [btn setLeftImageView:@"建议意见 添加" andTitle:@"添加"];
+    [btn addTarget:self action:@selector(clickAdd) forControlEvents:UIControlEventTouchUpInside];
+    
+    return btn;
 }
 
 //#pragma mark --设置sectionHeaderView固定

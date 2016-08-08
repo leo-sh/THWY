@@ -17,8 +17,6 @@
 {
     if (self = [super init]) {
         
-        [self.textField addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-        
         self.imageView = [[UIImageView alloc]init];
         
         self.label = [[UILabel alloc]init];
@@ -36,18 +34,26 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        [self.textField addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-        
         self.backgroundColor = [UIColor whiteColor];
         
         self.imageView = [[UIImageView alloc]init];
-        
+
         self.label = [[UILabel alloc]init];
-        
         self.textField = [[UITextField alloc]init];
         self.textField.font = [UIFont systemFontOfSize:CONTENT_FONT];
+        self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        self.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        self.textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        self.textField.rightViewMode = UITextFieldViewModeAlways;
+        self.textField.clipsToBounds = NO;
+
+        UIView *right = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 20)];
         
-        
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [btn setImage:[UIImage imageNamed:@"删除"] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(clickClear) forControlEvents:UIControlEventTouchUpInside];
+        [right addSubview:btn];
+        self.textField.rightView = right;
         [self addSubview:self.imageView];
         [self addSubview:self.label];
         [self addSubview:self.textField];
@@ -90,9 +96,12 @@
         make.size.mas_equalTo(CGSizeMake(tfWidht, tfHeight));
         make.left.equalTo(self.label.mas_right).with.offset(0);
     }];
+    
+    self.clipsToBounds = NO;
+
 }
 
-- (void)setImageName:(NSString *)imageName Label:(NSString *)title TextField:(NSString *)placeholder isEnable:(BOOL)isEnable
+- (void)setImageName:(NSString *)imageName Label:(NSString *)title TextField:(NSString *)placeholder
 {
     [self updateFrame];
     
@@ -102,28 +111,18 @@
     
     self.textField.placeholder = placeholder;
     
-    if (isEnable) {
-        self.textField.enabled = YES;
-    }
-    else
-    {
-        self.textField.enabled = NO;
-    }
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+- (void)setNoEnable
 {
-    NSLog(@"收到通知");
-    if ([change[@"new"] integerValue]) {
-        self.textField.clearButtonMode = UITextFieldViewModeAlways;
-    }
-    else
-    {
-        self.textField.clearButtonMode = UITextFieldViewModeNever;
-
-    }
+    [self.textField setUserInteractionEnabled:NO];
+    self.textField.rightView = nil;
 }
 
+- (void)clickClear
+{
+    self.textField.text = @"";
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

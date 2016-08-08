@@ -56,10 +56,10 @@
 
 - (void)click
 {
+    self.chooseStatu =!self.chooseStatu;
+    
     [self statuChange];
     
-    self.chooseStatu =!self.chooseStatu;
-
     for (UIView *temp in self.superview.subviews) {
         if([temp isKindOfClass:[BlueRedioButton class]])
         {

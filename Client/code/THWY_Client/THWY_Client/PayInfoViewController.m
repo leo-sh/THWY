@@ -21,7 +21,6 @@
     [super viewDidLoad];
     [self ViewInitSetting];
     [self getData];
-    [self createUI];
     
     // Do any additional setup after loading the view.
 }
@@ -35,6 +34,8 @@
 
 - (void)getData
 {
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+
     NSArray *sectionOneHead = @[@"业主姓名",@"所在楼层",@"房源信息",@"面积",@"缴费科目",@"收费标准",@"应缴金额",@"月数",@"实收金额",@"欠费金额"];
     NSArray *sectionTwoHead = @[@"缴纳时间",@"金额",@"操作人",@"备注"];
     self.sectionHead = @[sectionOneHead,sectionTwoHead];
@@ -54,9 +55,9 @@
         NSArray *sectionTwoData = @[@"",actualString,@"",@""];
         self.data = @[sectionOneData,sectionTwoData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            [self createUI];
             [self.tableView reloadData];
-            
+            [SVProgressHUD dismiss];
         });
     }];
 }

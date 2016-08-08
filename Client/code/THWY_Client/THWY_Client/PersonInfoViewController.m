@@ -45,7 +45,10 @@
 
 - (void)getData
 {
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
     self.userInfo = [[UDManager getUD]getUser];
+    [SVProgressHUD dismiss];
+
 }
 
 #pragma mark --创建头像和简要信息
@@ -161,7 +164,7 @@
         
         PersonInfoLabel *label = [[PersonInfoLabel alloc]initWithFrame:CGRectMake(labelLeft, labelY , labelWidth , labelHeight)];
         
-        [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] TextField:tfTextArray[i] isEnable:YES];
+        [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] TextField:tfTextArray[i]];
         label.textField.delegate = self;
         label.layer.borderWidth = 1;
         label.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -172,11 +175,12 @@
         
         switch (i) {
                 
-            case 1:
-            case 4:
-            case 5:
+            case 0:
+            case 2:
+            case 3:
             case 6:
                 [self.canUpdateInfo addObject:label];
+                [label setNoEnable];
                 break;
             default:
                 break;

@@ -12,7 +12,8 @@
 
 @property UITextField *textField;
 
-- (void)setImageName:(NSString *)imageName Label:(NSString *)title TextField:(NSString *)placeholder isEnable:(BOOL)isEnable;
+- (void)setImageName:(NSString *)imageName Label:(NSString *)title TextField:(NSString *)placeholder;
 
 - (void)updateFrame;
+- (void)setNoEnable;
 @end
