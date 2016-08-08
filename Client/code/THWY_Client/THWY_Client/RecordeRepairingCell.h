@@ -14,6 +14,4 @@
 
 - (void)loadDataFromModel:(RepairVO *)repaireVO;
 
-- (CGFloat)heightForCell;
-
 @end

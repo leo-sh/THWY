@@ -17,6 +17,8 @@
 #import "PersonInfoViewController.h"
 #import "DTKDropdownMenuView.h"
 
+#define topMargin  8.0/375*My_ScreenW
+
 @interface MainVC ()
 
 @property UIButton *userInfoView;
@@ -88,7 +90,7 @@
 //用户信息
 - (void)initUserInfoView{
     
-    self.userInfoView = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, My_ScreenW, 1/4.0 * (My_ScreenH-64) - 20)];
+    self.userInfoView = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, My_ScreenW, 1/4.0 * (My_ScreenH-64) - topMargin*2)];
     [self.userInfoView setBackgroundImage:[UIImage imageNamed:@"beijing"] forState:UIControlStateNormal];
     [self.userInfoView addTarget:self action:@selector(showUserInfoVC) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *headImage = [[UIImageView alloc] init];
@@ -161,9 +163,9 @@
     [woyaobaoxiu setBackgroundImage:[UIImage imageNamed:@"我要保修"] forState:UIControlStateNormal];
     [self.view addSubview:woyaobaoxiu];
     [woyaobaoxiu mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).offset(10);
-        make.top.mas_equalTo(self.userInfoView.mas_bottom).offset(10);
-        make.size.mas_equalTo(CGSizeMake((My_ScreenW-30)*0.5, (((My_ScreenH-64)*3.0/4.0-10)*0.5-10)*0.5));
+        make.left.mas_equalTo(self.view.mas_left).offset(topMargin);
+        make.top.mas_equalTo(self.userInfoView.mas_bottom).offset(topMargin);
+        make.size.mas_equalTo(CGSizeMake((My_ScreenW-3*topMargin)*0.5, (((My_ScreenH-64)*3.0/4.0-topMargin)*0.5-topMargin)*0.5));
     }];
     
     UIButton *baoxiujilu = [[UIButton alloc] init];
@@ -172,7 +174,7 @@
     [self.view addSubview:baoxiujilu];
     [baoxiujilu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(woyaobaoxiu.mas_left);
-        make.top.mas_equalTo(woyaobaoxiu.mas_bottom).offset(10);
+        make.top.mas_equalTo(woyaobaoxiu.mas_bottom).offset(topMargin);
         make.width.and.height.mas_equalTo(woyaobaoxiu);
     }];
     
@@ -182,9 +184,9 @@
     [self.view addSubview:shequshangquan];
     [shequshangquan mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(baoxiujilu.mas_left);
-        make.top.mas_equalTo(baoxiujilu.mas_bottom).offset(10);
+        make.top.mas_equalTo(baoxiujilu.mas_bottom).offset(topMargin);
         make.width.mas_equalTo(woyaobaoxiu.mas_width);
-        make.height.mas_equalTo(baoxiujilu.mas_height).multipliedBy(2.0).offset(10);
+        make.height.mas_equalTo(baoxiujilu.mas_height).multipliedBy(2.0).offset(topMargin);
     }];
     
     UIButton *jiaofeitaizhang = [[UIButton alloc] init];
@@ -192,7 +194,7 @@
     [jiaofeitaizhang setBackgroundImage:[UIImage imageNamed:@"缴费台账"] forState:UIControlStateNormal];
     [self.view addSubview:jiaofeitaizhang];
     [jiaofeitaizhang mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(woyaobaoxiu.mas_right).offset(10);
+        make.left.mas_equalTo(woyaobaoxiu.mas_right).offset(topMargin);
         make.top.mas_equalTo(woyaobaoxiu.mas_top);
         make.width.and.height.mas_equalTo(woyaobaoxiu);
     }];
@@ -202,10 +204,10 @@
     [woyaotousu setBackgroundImage:[UIImage imageNamed:@"我要投诉"] forState:UIControlStateNormal];
     [self.view addSubview:woyaotousu];
     [woyaotousu mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(baoxiujilu.mas_right).offset(10);
+        make.left.mas_equalTo(baoxiujilu.mas_right).offset(topMargin);
         make.top.mas_equalTo(baoxiujilu.mas_top);
         make.height.mas_equalTo(baoxiujilu);
-        make.width.mas_equalTo(baoxiujilu.mas_width).multipliedBy(0.5).offset(-5);
+        make.width.mas_equalTo(baoxiujilu.mas_width).multipliedBy(0.5).offset(-topMargin*0.5);
     }];
     
     UIButton *zhanghaoxinxi = [[UIButton alloc] init];
@@ -213,7 +215,7 @@
     [zhanghaoxinxi setBackgroundImage:[UIImage imageNamed:@"账号信息"] forState:UIControlStateNormal];
     [self.view addSubview:zhanghaoxinxi];
     [zhanghaoxinxi mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(woyaotousu.mas_right).offset(10);
+        make.left.mas_equalTo(woyaotousu.mas_right).offset(topMargin);
         make.top.mas_equalTo(woyaotousu.mas_top);
         make.width.and.height.mas_equalTo(woyaotousu);
     }];
@@ -236,7 +238,7 @@
     [self.view addSubview:yezhugonggao];
     [yezhugonggao mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(jianyiyijian.mas_left);
-        make.top.mas_equalTo(jianyiyijian.mas_bottom).offset(10);
+        make.top.mas_equalTo(jianyiyijian.mas_bottom).offset(topMargin);
         make.width.and.height.mas_equalTo(jiaofeitaizhang);
     }];
     

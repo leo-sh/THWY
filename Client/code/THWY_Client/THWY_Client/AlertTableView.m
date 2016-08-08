@@ -94,6 +94,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.imageView.image = [UIImage scaleImage:[UIImage imageNamed:@"repaire_不代勾"] toScale:0.7];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     RepairClassVO *model = nil;
     if (self.flag == 3) {
         model = self.data[indexPath.row];

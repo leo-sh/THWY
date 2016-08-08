@@ -1,48 +1,30 @@
 //
-//  RecommandBussnessListVC.m
+//  GoodsVC.m
 //  THWY_Client
 //
-//  Created by wei on 16/7/31.
+//  Created by wei on 16/8/8.
 //  Copyright © 2016年 SXZ. All rights reserved.
 //
 
-#import "RecommandBussnessListVC.h"
-#import "RecommandMerchantCell.h"
-#import "BussnessDetailVC.h"
-#import "GoodVO.h"
 #import "GoodsVC.h"
+#import "RecommandMerchantCell.h"
 
-@interface RecommandBussnessListVC ()<UITableViewDelegate, UITableViewDataSource>
+@interface GoodsVC ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) NSMutableArray *bussnessModels;
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *bussnessModels;
 
 @end
 
-@implementation RecommandBussnessListVC
+@implementation GoodsVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-    self.title = @"推荐商品";
-    self.bussnessModels = [NSMutableArray array];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
-
+    self.title = @"商品详情";
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]];
     [self initViews];
     [self getBussnessData];
-}
-
-- (void)getBussnessData{
-    [[ServicesManager getAPI] getRecommendGoods:1 onComplete:^(NSString *errorMsg, NSArray *list) {
-        
-        for (GoodVO *model in list) {
-            [self.bussnessModels addObject:model];
-        }
-        
-        [self.tableView reloadData];
-        
-    }];
     
 }
 
@@ -57,6 +39,20 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"RecommandMerchantCell" bundle:nil]forCellReuseIdentifier:@"RecommandMerchantCell"];
     [self.view addSubview:self.tableView];
+
+    
+}
+
+- (void)getBussnessData{
+    
+    self.bussnessModels = [NSMutableArray array];
+    [My_ServicesManager getAGood:self.good.Id onComplete:^(NSString *errorMsg, GoodVO *merchant) {
+//        for (GoodVO *model in list) {
+            [self.bussnessModels addObject:merchant];
+//        }
+        
+        [self.tableView reloadData];
+    }];
     
 }
 
@@ -75,17 +71,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    BussnessDetailVC *detail = [[BussnessDetailVC alloc] init];
-//    detail.merchant = self.bussnessModels[indexPath.row];
+    //    BussnessDetailVC *detail = [[BussnessDetailVC alloc] init];
+    //    detail.merchant = self.bussnessModels[indexPath.row];
     GoodsVC *detail = [[GoodsVC alloc] init];
     detail.good = self.bussnessModels[indexPath.row];
     [self .navigationController pushViewController:detail animated:YES];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

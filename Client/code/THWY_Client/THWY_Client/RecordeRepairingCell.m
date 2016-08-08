@@ -51,12 +51,18 @@
     // Initialization code
 }
 
+- (void)setFrame:(CGRect)frame {
+    frame.origin.y -= 5;      // 让cell的y值增加1(根据自己需要分割线的高度来进行调整)
+    frame.size.height -= 10;   // 让cell的高度减1
+    [super setFrame:frame];   // 别忘了重写父类方法
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+                
         CGFloat topMagrin = 5.0/375*My_ScreenW;
         self.caiTiaoImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, 2)];
         self.caiTiaoImage.image = [UIImage imageNamed:@"records_彩条"];
@@ -65,7 +71,7 @@
             make.height.mas_equalTo(2);
             make.left.mas_equalTo(self.contentView.mas_left);
             make.right.mas_equalTo(self.contentView.mas_right);
-            make.top.mas_equalTo(self.contentView.mas_top).offset(topMagrin);
+            make.top.mas_equalTo(self.contentView.mas_top);
         }];
         
         self.detail = [[UIButton alloc] init];
@@ -73,11 +79,10 @@
         [self.detail addTarget:self action:@selector(showDetail) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.detail];
         [self.detail mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.caiTiaoImage.mas_bottom).offset(topMagrin);
+            make.top.mas_equalTo(self.caiTiaoImage.mas_bottom).offset(topMagrin*0.5);
             make.right.mas_equalTo(self.contentView.mas_right).offset(-4.0/375*My_ScreenW);
             make.width.mas_equalTo(self.detail.mas_height);
-//            make.height.mas_equalTo(self.paiGongNumber.mas_height).multipliedBy(2.0);
-            make.height.mas_equalTo(50.0/667*My_ScreenH);
+            make.height.mas_equalTo(40.0/667*My_ScreenH);
         }];
 
         self.paiGongNumber = [[UIImageView alloc] init];
@@ -92,23 +97,19 @@
         [self.paiGongNumber mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.contentView.mas_left).offset(4.0/375*My_ScreenW);
             make.width.mas_equalTo(self.paiGongNumber.mas_height);
-            make.height.mas_equalTo(self.contentView.mas_height).multipliedBy(25.0/667.0);
+            make.height.mas_equalTo(self.detail.mas_height).multipliedBy(0.6);
             make.centerY.mas_equalTo(self.detail.mas_centerY);
         }];
         
         self.paiGongLabel.text = @"派工单号: ";
-        self.paiGongLabel.font = [UIFont fontWithName:My_RegularFontName size:16.0];
-        self.paiGongLabel.textColor = [UIColor blackColor];
-        [self.paiGongLabel sizeToFit];
+        [self setLabelAttributes:self.paiGongLabel];
         [self.paiGongLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.paiGongNumber.mas_centerY);
             make.left.mas_equalTo(self.paiGongNumber.mas_right).offset(10.0/375*My_ScreenW);
         }];
         
         self.numberLabel.text = @"WX1223";
-        self.numberLabel.font = [UIFont fontWithName:My_RegularFontName size:16.0];
-        self.numberLabel.textColor = [UIColor blackColor];
-        [self.numberLabel sizeToFit];
+        [self setLabelAttributes:self.numberLabel];
         [self.numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.paiGongLabel.mas_centerY);
             make.left.mas_equalTo(self.paiGongLabel.mas_right).offset(10.0/375*My_ScreenW);
@@ -120,7 +121,7 @@
         [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(1);
             make.left.and.right.equalTo(self.contentView);
-            make.top.mas_equalTo(self.detail.mas_bottom).offset(topMagrin);
+            make.top.mas_equalTo(self.detail.mas_bottom).offset(topMagrin*0.5);
         }];
 
         
@@ -213,7 +214,7 @@
         [self.line3 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(1);
             make.left.and.right.equalTo(self.contentView);
-            make.top.mas_equalTo(self.repairDescLabel.mas_bottom).offset(0);
+            make.top.mas_equalTo(self.repairDescLabel.mas_bottom).offset(topMagrin);
             
         }];
         
@@ -269,7 +270,7 @@
     self.cellPhoneLabel.text = repaireVO.call_phone;
     
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
-    CGRect rect = [self.repairCatogeryLabel.text boundingRectWithSize:CGSizeMake(300, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+    CGRect rect = [self.repairCatogeryLabel.text boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     
     [self.repairCatogeryLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         
@@ -280,7 +281,7 @@
 
     [self layoutIfNeeded];
 
-    CGRect rect2 = [self.repairDescLabel.text boundingRectWithSize:CGSizeMake(300, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+    CGRect rect2 = [self.repairDescLabel.text boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     [self.repairDescLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(rect2.size.width);
         make.height.mas_equalTo(rect2.size.height);
@@ -291,12 +292,8 @@
 }
 
 - (void)callNumber{
-    NSString *phoneNum = @"";// 电话号码
+    NSString *phoneNum = self.cellPhoneLabel.text;// 电话号码
     NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]];
-//    if ( !self.phoneCallWebView ) {
-//        self.phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的View 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
-//    }
-//    [self.phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
     [[UIApplication sharedApplication] openURL:phoneURL];
 
 }

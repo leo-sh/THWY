@@ -169,6 +169,7 @@
 		794E73E41D4A454700267C84 /* DTKDropdownMenuView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 794E73E11D4A454700267C84 /* DTKDropdownMenuView.bundle */; };
 		794E73E51D4A454700267C84 /* DTKDropdownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E31D4A454700267C84 /* DTKDropdownMenuView.m */; };
 		794E73E81D4A4F3E00267C84 /* PushSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E71D4A4F3E00267C84 /* PushSettingVC.m */; };
+		79A653E01D586CE100D03025 /* GoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A653DF1D586CE100D03025 /* GoodsVC.m */; };
 		79D2D2701D4F530400463CC5 /* MerchargeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F2B6B41D4E011C00AA94E0 /* MerchargeListCell.xib */; };
 		79D2D2711D4F532400463CC5 /* PaigongCatogerysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F2B6901D4D9E7F00AA94E0 /* PaigongCatogerysCell.xib */; };
 		79D2D2721D4F533000463CC5 /* DescribeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 790506611D4CE93C00072AAC /* DescribeCell.xib */; };
@@ -529,6 +530,8 @@
 		794E73E71D4A4F3E00267C84 /* PushSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushSettingVC.m; sourceTree = "<group>"; };
 		794E73E91D4A4F6200267C84 /* TechSupportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TechSupportVC.h; sourceTree = "<group>"; };
 		794E73EA1D4A4F6200267C84 /* TechSupportVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TechSupportVC.m; sourceTree = "<group>"; };
+		79A653DE1D586CE100D03025 /* GoodsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsVC.h; sourceTree = "<group>"; };
+		79A653DF1D586CE100D03025 /* GoodsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsVC.m; sourceTree = "<group>"; };
 		79F2B68E1D4D9E7F00AA94E0 /* PaigongCatogerysCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaigongCatogerysCell.h; sourceTree = "<group>"; };
 		79F2B68F1D4D9E7F00AA94E0 /* PaigongCatogerysCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaigongCatogerysCell.m; sourceTree = "<group>"; };
 		79F2B6901D4D9E7F00AA94E0 /* PaigongCatogerysCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaigongCatogerysCell.xib; sourceTree = "<group>"; };
@@ -1398,12 +1401,14 @@
 				794E73DE1D4A3AB700267C84 /* BussnessCircleVC.m */,
 				79F2B6AC1D4DF86A00AA94E0 /* BussnessListVC.h */,
 				79F2B6AD1D4DF86A00AA94E0 /* BussnessListVC.m */,
-				79F2B6B61D4E21D600AA94E0 /* RecommandBussnessListVC.h */,
-				79F2B6B71D4E21D600AA94E0 /* RecommandBussnessListVC.m */,
-				79F2B6C31D4E3CC000AA94E0 /* RecommandBussnessADVC.h */,
-				79F2B6C41D4E3CC000AA94E0 /* RecommandBussnessADVC.m */,
 				79F2B6A91D4DF18500AA94E0 /* BussnessDetailVC.h */,
 				79F2B6AA1D4DF18500AA94E0 /* BussnessDetailVC.m */,
+				79F2B6B61D4E21D600AA94E0 /* RecommandBussnessListVC.h */,
+				79F2B6B71D4E21D600AA94E0 /* RecommandBussnessListVC.m */,
+				79A653DE1D586CE100D03025 /* GoodsVC.h */,
+				79A653DF1D586CE100D03025 /* GoodsVC.m */,
+				79F2B6C31D4E3CC000AA94E0 /* RecommandBussnessADVC.h */,
+				79F2B6C41D4E3CC000AA94E0 /* RecommandBussnessADVC.m */,
 				79F2B6C61D4E3DE900AA94E0 /* ADDetailVC.h */,
 				79F2B6C71D4E3DE900AA94E0 /* ADDetailVC.m */,
 			);
@@ -1679,6 +1684,7 @@
 				5B25721B1D47177B00CB4167 /* MKAnnotationView+WebCache.m in Sources */,
 				1E3BA3B91D4B4FC600633D0B /* ReviseBtn.m in Sources */,
 				793296701D50826A000FD426 /* TYBaseAnimation.m in Sources */,
+				79A653E01D586CE100D03025 /* GoodsVC.m in Sources */,
 				792824281D541D74001764EB /* WantRepairTableView1.m in Sources */,
 				5B25717F1D47110B00CB4167 /* UIApplication+Extensions.m in Sources */,
 				5B197F081D48AD0300B95DE5 /* MerchantVO.m in Sources */,
