@@ -14,6 +14,8 @@
     NSString* _passWord;
 }
 
+@property (nonatomic, strong) Reachability* baiduReach;
+
 @end
 
 @implementation ServicesManager
@@ -31,6 +33,16 @@
 -(instancetype)init
 {
     if (self = [super init]) {
+        self.baiduReach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
+        
+        [My_NoteCenter addObserver:self
+                          selector:@selector(reachabilityChanged)
+                              name:kReachabilityChangedNotification
+                            object:nil];
+        
+        self.status = 3;
+        [self.baiduReach startNotifier];
+        
         if ([self isLogin]) {
             _userName = [[UDManager getUD] getUserName];
             _passWord = [[UDManager getUD] getPassWord];
@@ -39,10 +51,26 @@
     return self;
 }
 
+//检测到网络状态改变
+-(void)reachabilityChanged
+{
+    if (self.baiduReach.currentReachabilityStatus != self.status) {
+        self.status = self.baiduReach.currentReachabilityStatus;
+        
+        [My_NoteCenter postNotificationName:NetWorkChanged object:[NSNumber numberWithInteger:self.status]];
+    }
+}
+
 #pragma mark 私有函数
 - (AFHTTPSessionManager *)getManager
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    if (self.status == 0) {
+//        [manager.requestSerializer setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
+//    }else
+//    {
+//        [manager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData];
+//    }
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.requestSerializer.timeoutInterval = 10.f;
@@ -581,8 +609,8 @@
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
-                for (NSDictionary* complaintTypeDic in responseObject[@"datas"][@"datas"]) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* complaintTypeDic in responseObject[@"datas"]) {
                     ComplaintTypeVO *type = [[ComplaintTypeVO alloc]initWithJSON:complaintTypeDic];
                     [listArr addObject:type];
                 }
@@ -1384,8 +1412,8 @@
 -(void)getErrorMessage:(NSDictionary *)responseObject
             onComplete:(void (^)(NSString *errorMsg))onComplete
 {
-    NSString* code = responseObject[@"code"];
-    if ([code isEqualToString:@"-1"]) {
+    NSNumber* code = responseObject[@"code"];
+    if ([code intValue] == -1) {
         if ([responseObject[@"datas"] isKindOfClass:[NSString class]] && [responseObject[@"datas"] length]>0) {
             NSLog(@"%@",responseObject[@"datas"]);
             onComplete(responseObject[@"datas"]);
@@ -1411,14 +1439,16 @@
 -(void)test
 {
     if ([self isLogin]) {
-        
+        [self getComplaintTypes:^(NSString *errorMsg, NSArray *list) {
+            
+        }];
     }else
     {
-        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {
-            if (errorMsg == nil) {
-                [self test];
-            }
-        }];
+//        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {
+//            if (errorMsg == nil) {
+//                [self test];
+//            }
+//        }];
     }
     
     

@@ -193,6 +193,7 @@
 		79F2B6C51D4E3CC000AA94E0 /* RecommandBussnessADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F2B6C41D4E3CC000AA94E0 /* RecommandBussnessADVC.m */; };
 		79F2B6C81D4E3DE900AA94E0 /* ADDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F2B6C71D4E3DE900AA94E0 /* ADDetailVC.m */; };
 		94D708931D4C68EE00C5009D /* ComplaintStateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EF81D48A0BD00B95DE5 /* ComplaintStateVO.m */; };
+		94E5DAD31D58731900300585 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5DAD21D58731900300585 /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -567,6 +568,8 @@
 		79F2B6C41D4E3CC000AA94E0 /* RecommandBussnessADVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommandBussnessADVC.m; sourceTree = "<group>"; };
 		79F2B6C61D4E3DE900AA94E0 /* ADDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADDetailVC.h; sourceTree = "<group>"; };
 		79F2B6C71D4E3DE900AA94E0 /* ADDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADDetailVC.m; sourceTree = "<group>"; };
+		94E5DAD11D58731900300585 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		94E5DAD21D58731900300585 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1068,6 +1071,7 @@
 		5B2571CF1D47169600CB4167 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				94E5DAD01D58731900300585 /* Reachability */,
 				792E8B4F1D534BF800D70FB7 /* VideoRecord */,
 				792A24631D5314700005B085 /* FDTableviewHeightCell */,
 				1E7527BC1D52356700AEDEC0 /* SVProgressHUD */,
@@ -1454,6 +1458,15 @@
 			name = BussnessCircleViews;
 			sourceTree = "<group>";
 		};
+		94E5DAD01D58731900300585 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				94E5DAD11D58731900300585 /* Reachability.h */,
+				94E5DAD21D58731900300585 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1629,6 +1642,7 @@
 				7932966F1D50826A000FD426 /* TYAlertView.m in Sources */,
 				5B25721D1D47177B00CB4167 /* SDImageCache.m in Sources */,
 				1E7527B91D52349F00AEDEC0 /* UIScrollView+MJExtension.m in Sources */,
+				94E5DAD31D58731900300585 /* Reachability.m in Sources */,
 				5B2571E31D4716EE00CB4167 /* AFURLResponseSerialization.m in Sources */,
 				1E42BB641D49E4240021DA01 /* PersonInfoViewController.m in Sources */,
 				5B197EFC1D48A32E00B95DE5 /* ComplaintTypeVO.m in Sources */,
