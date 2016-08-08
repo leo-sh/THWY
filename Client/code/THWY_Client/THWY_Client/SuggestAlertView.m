@@ -9,8 +9,7 @@
 #import "SuggestAlertView.h"
 #import "BlueRedioButton.h"
 @interface SuggestAlertView()
-@property BlueRedioButton *suggestOne;
-@property BlueRedioButton *suggestTwo;
+
 @end
 @implementation SuggestAlertView
 - (instancetype)initWithFrame:(CGRect)frame
@@ -37,14 +36,14 @@
     CGFloat suggestBtn_W = self.width - CGRectGetMaxX(suggestLabel.frame)/2;
     
     self.suggestOne = [[BlueRedioButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(suggestLabel.frame), 0, suggestBtn_W , 30)];
-    
+    self.suggestOne.tag = 101;
     [self.suggestOne initDefaultImageName:@"repaire_unselected" choosedImageName:@"repaire_selected" title:@"建议"];
     [self.suggestOne setChoosed];
     self.suggestOne.chooseStatu = YES;
     [suggestView addSubview:self.suggestOne];
     
     self.suggestTwo = [[BlueRedioButton alloc]initWithFrame:CGRectMake(150, 0, suggestBtn_W , 30)];
-    
+    self.suggestTwo.tag = 102;
     [self.suggestTwo initDefaultImageName:@"repaire_unselected" choosedImageName:@"repaire_selected" title:@"意见"];
     
     [suggestView addSubview:self.suggestTwo];

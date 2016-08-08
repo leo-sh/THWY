@@ -12,8 +12,10 @@
 #import "ReviseBtn.h"
 #import "AlertView.h"
 #import "SuggestAlertView.h"
+#import "BlueRedioButton.h"
 #define TopViewH 70
 @interface SuggestViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property SuggestAlertView *alertView;
 @property UITableView *tableView;
 @property UISegmentedControl *segmentedControl;
 @property NSMutableArray *FeedBackTypeArray;
@@ -200,10 +202,34 @@
 
 - (void)clickAddBtn
 {
-    SuggestAlertView *alertView = [[SuggestAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
+    self.alertView = [[SuggestAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
     
-    alertView.backgroundColor = [UIColor whiteColor];
-    [alertView show];
+    self.alertView.backgroundColor = [UIColor whiteColor];
+    [self.alertView show];
+    [self.alertView addLeftBtnTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)submit
+{
+    int back;
+    if (self.alertView.suggestOne.chooseStatu) {
+        back = 1;
+    }
+    else
+    {
+        back = 2;
+    }
+    [[ServicesManager getAPI]addFeedBack:back content:self.alertView.textView.text onComplete:^(NSString *errorMsg) {
+        if (errorMsg) {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
+        else
+        {
+            [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+        }
+        
+    }];
+
 }
 
 - (UIButton *)createAddBtn:(UIView *)view

@@ -101,7 +101,7 @@
 
 }
 
-- (void)setImageName:(NSString *)imageName Label:(NSString *)title TextField:(NSString *)placeholder
+- (void)setImageName:(NSString *)imageName Label:(NSString *)title TextField:(NSString *)text
 {
     [self updateFrame];
     
@@ -109,7 +109,7 @@
     
     self.label.text = title;
     
-    self.textField.placeholder = placeholder;
+    self.textField.text = text;
     
 }
 

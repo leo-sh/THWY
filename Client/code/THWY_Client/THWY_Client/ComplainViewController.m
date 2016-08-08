@@ -17,6 +17,7 @@
 @property NSArray *contentHead;
 @property NSMutableArray *contentEnd;
 @property int pageNumber;
+@property ComplainAlertView *alertview;
 @end
 
 @implementation ComplainViewController
@@ -214,9 +215,10 @@
 
 - (void)clickAdd
 {
-    ComplainAlertView *alertview = [[ComplainAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
-    [alertview updateWithComplainVo:[[UDManager getUD]getUser]];
-    [alertview show];
+    self.alertview = [[ComplainAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
+    [self.alertview updateWithComplainVo:[[UDManager getUD]getUser]];
+    [self.alertview show];
+    [self.alertview addLeftBtnTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (UIButton *)createAddBtn:(UIView *)view
@@ -227,6 +229,34 @@
     
     return btn;
 }
+
+- (void)submit
+{
+    if (self.alertview.houseSourceBtn.chooseStatu) {
+        
+        ComplaintVO *postItem = [[ComplaintVO alloc]init];
+        UserVO *user = [[UDManager getUD] getUser];
+        postItem.complaint_person = user.real_name;
+        postItem.complaint_type = @"房屋管理类";
+        postItem.complaint_phone = user.cellphone;
+        postItem.estate = user.estate;
+        postItem.complaint_content = self.alertview.textView.text;
+        postItem.ctime = [NSDate stringFromDate:[NSDate date]];
+        [[ServicesManager getAPI] addComplaint:postItem onComplete:^(NSString *errorMsg) {
+          
+            if (errorMsg) {
+                [SVProgressHUD showErrorWithStatus:errorMsg];
+                
+            }
+            else
+            {
+                [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+            }
+            
+        }];
+    }
+}
+
 
 //#pragma mark --设置sectionHeaderView固定
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
