@@ -284,20 +284,37 @@
 -(void)getPublicRepairStatus:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
 /**
- *  获取公共保修统计
- *
- *  @param estateId   楼盘id
- *  @param onComplete 获取完成回调block
- */
--(void)getPublicRepairStatistic:(NSString *)estateId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
-
-/**
  *  添加公共报修
  *
  *  @param repair     报修实例对象
  *  @param onComplete 添加完成回调block
  */
 -(void)addPublicRepair:(AddPublicRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+/**
+ *  获取公共保修
+ *
+ *  @param page          页数
+ *  @param repairStatuId 保修状态ID
+ *  @param onComplete    获取完成回调block
+ */
+-(void)getPublicRepairs:(int)page repairStatu:(NSString *)repairStatuId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+
+/**
+ *  获取单个公共保修
+ *
+ *  @param repairId   保修ID
+ *  @param onComplete 获取完成block
+ */
+-(void)getAPublicRepair:(NSString *)repairId onComplete:(void (^)(NSString *errorMsg,RepairVO *repair))onComplete;
+
+/**
+ *  获取公共保修统计
+ *
+ *  @param estateId   楼盘id
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getPublicRepairStatistic:(NSString *)estateId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
 /**
  *  获取业主保修状态
