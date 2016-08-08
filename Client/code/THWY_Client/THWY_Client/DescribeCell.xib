@@ -38,7 +38,7 @@
                         <rect key="frame" x="14" y="53" width="384" height="160"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
                     </textView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCh-Nc-YUS">
                         <rect key="frame" x="62" y="228" width="290" height="34"/>
@@ -90,7 +90,7 @@
             <connections>
                 <outlet property="textView" destination="r2x-z1-5VT" id="H0b-z4-2i4"/>
             </connections>
-            <point key="canvasLocation" x="266" y="335.5"/>
+            <point key="canvasLocation" x="22" y="338.5"/>
         </tableViewCell>
     </objects>
     <resources>

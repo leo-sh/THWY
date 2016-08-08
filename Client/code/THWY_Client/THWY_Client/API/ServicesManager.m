@@ -208,7 +208,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg);
             }];
         }else
@@ -233,7 +233,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -272,7 +272,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -334,7 +334,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg);
             }];
         }else
@@ -383,7 +383,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -406,7 +406,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -429,7 +429,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -459,7 +459,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -490,7 +490,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -522,7 +522,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg);
             }];
         }else
@@ -544,7 +544,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -574,7 +574,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -605,7 +605,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -637,7 +637,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -662,7 +662,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg);
             }];
         }else
@@ -685,7 +685,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -716,7 +716,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -739,7 +739,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -771,7 +771,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -807,7 +807,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -838,7 +838,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -862,7 +862,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -893,7 +893,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -917,7 +917,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -948,7 +948,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -971,7 +971,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -1010,7 +1010,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -1041,7 +1041,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -1064,7 +1064,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -1095,7 +1095,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -1126,7 +1126,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -1158,7 +1158,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -1198,7 +1198,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -1243,7 +1243,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else{
@@ -1285,7 +1285,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -1319,7 +1319,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -1380,9 +1380,18 @@
     return user != nil;
 }
 
--(void)getErrorMessage:(NSString *)code
+-(void)getErrorMessage:(NSDictionary *)responseObject
             onComplete:(void (^)(NSString *errorMsg))onComplete
 {
+    NSString* code = responseObject[@"code"];
+    if ([code isEqualToString:@"-1"]) {
+        if ([responseObject[@"datas"] isKindOfClass:[NSString class]] && [responseObject[@"datas"] length]>0) {
+            NSLog(@"%@",responseObject[@"datas"]);
+            onComplete(responseObject[@"datas"]);
+            return;
+        }
+    }
+    
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@get_op_msg_by_code",API_HOST];
     NSDictionary *params = @{@"k":code};
@@ -1401,9 +1410,7 @@
 -(void)test
 {
     if ([self isLogin]) {
-        [self getFees:0 year:0 feeState:Part onComplete:^(NSString *errorMsg, NSArray *list) {
-            
-        }];
+        
     }else
     {
         [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {

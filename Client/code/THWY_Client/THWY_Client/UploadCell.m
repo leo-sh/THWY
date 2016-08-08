@@ -69,15 +69,14 @@
     _imagePickerController.sourceType = type;
     _imagePickerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     _imagePickerController.allowsEditing = YES;
+    //相机类型（拍照、录像...）字符串需要做相应的类型转换
+    _imagePickerController.mediaTypes = @[(NSString *)kUTTypeMovie,(NSString *)kUTTypeImage];
     
     if (type == UIImagePickerControllerSourceTypeCamera) {
 
         //录制视频时长，默认10s
         _imagePickerController.videoMaximumDuration = 15;
-        
-        //相机类型（拍照、录像...）字符串需要做相应的类型转换
-        _imagePickerController.mediaTypes = @[(NSString *)kUTTypeMovie,(NSString *)kUTTypeImage];
-        
+    
         //视频上传质量
         _imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
         
