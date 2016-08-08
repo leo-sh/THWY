@@ -21,7 +21,7 @@
         self.fee_year = JSON[@"fee_year"];
         self.how_much = JSON[@"how_much"];
         self.actual = JSON[@"actual"];
-        self.st = JSON[@"st"];
+        self.st = [JSON[@"st"] intValue];
         self.ctime = JSON[@"ctime"];
         self.remark = JSON[@"remark"];
         self.zc_type = JSON[@"zc_type"];

@@ -30,7 +30,7 @@ typedef enum : int {
 @property (nonatomic , copy) NSString              * layer;
 @property (nonatomic , copy) NSString              * fee_type;
 @property (nonatomic , copy) NSString              * house_type;
-@property (nonatomic , copy) NSString              * st;
+@property FeeState                                  st;
 @property (nonatomic , copy) NSString              * zc_type;
 @property (nonatomic , copy) NSString              * real_name;
 @property (nonatomic , copy) NSString              * is_year_charge;
