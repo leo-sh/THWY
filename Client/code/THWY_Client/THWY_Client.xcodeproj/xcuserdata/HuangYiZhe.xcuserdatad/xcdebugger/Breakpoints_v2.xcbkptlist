@@ -372,11 +372,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/PersonInfoViewController.m"
-            timestampString = "492271131.09658"
+            timestampString = "492315165.566503"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "-createDetailedInfoAndUpdateBtn"
             landmarkType = "5">
          </BreakpointContent>
@@ -394,6 +394,38 @@
             startingLineNumber = "118"
             endingLineNumber = "118"
             landmarkName = "-setNoEnable"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "THWY_Client/PayInfoViewController.m"
+            timestampString = "492312197.437665"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "-getData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "THWY_Client/PayViewController.m"
+            timestampString = "492314669.705028"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

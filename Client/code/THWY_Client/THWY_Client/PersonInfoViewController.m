@@ -178,7 +178,6 @@
             case 0:
             case 2:
             case 3:
-            case 6:
                 [self.canUpdateInfo addObject:label];
                 [label setNoEnable];
                 break;
