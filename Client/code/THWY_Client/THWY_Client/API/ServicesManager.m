@@ -608,8 +608,8 @@
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
-                for (NSDictionary* complaintTypeDic in responseObject[@"datas"][@"datas"]) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* complaintTypeDic in responseObject[@"datas"]) {
                     ComplaintTypeVO *type = [[ComplaintTypeVO alloc]initWithJSON:complaintTypeDic];
                     [listArr addObject:type];
                 }
@@ -1438,7 +1438,9 @@
 -(void)test
 {
     if ([self isLogin]) {
-        
+        [self getComplaintTypes:^(NSString *errorMsg, NSArray *list) {
+            
+        }];
     }else
     {
 //        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {
