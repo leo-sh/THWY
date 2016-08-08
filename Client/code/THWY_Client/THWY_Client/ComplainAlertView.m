@@ -10,7 +10,6 @@
 #import "BlueRedioButton.h"
 #import "AlertButton.h"
 @interface ComplainAlertView()
-@property BlueRedioButton *houseSourceBtn;
 @property UILabel *person;
 @property UILabel *phone;
 @end
