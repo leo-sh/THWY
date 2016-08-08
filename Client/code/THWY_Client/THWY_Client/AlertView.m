@@ -9,6 +9,7 @@
 #import "AlertView.h"
 #import "UIView+TYAlertView.h"
 #import "Masonry.h"
+#define NavigationBarMaxY 66
 @interface AlertView()
 @property UIButton *left;
 @property UIButton *right;
@@ -39,9 +40,13 @@
         label.backgroundColor = [UIColor blackColor];
         [self addSubview:label];
         
+        self.textView = [[UITextView alloc]init];
         self.textView.autocorrectionType = UITextAutocorrectionTypeNo;
         self.textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
         self.textView.textAlignment = NSTextAlignmentLeft;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide) name:UIKeyboardDidHideNotification object:nil];
 
         
     }
@@ -106,6 +111,47 @@
     }
     
     return YES;
+    
+}
+
+- (void)keyboardShow:(NSNotification *)notification
+{
+    NSLog(@"弹出键盘");
+    
+    NSDictionary *info = notification.userInfo;
+    
+    NSValue *value = [info valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    
+    CGRect rect = [value CGRectValue];
+    
+    CGRect selfFrameRect = self.frame;
+    
+    NSLog(@"------------keyboradHeight%f,self.frame.y%f",rect.size.height,self.y);
+    
+    
+    
+    if (selfFrameRect.origin.y - rect.size.height >= 0) {
+        
+        selfFrameRect.origin.y -=rect.size.height;
+    }
+    else
+    {
+        selfFrameRect.origin.y = NavigationBarMaxY;
+    }
+    
+    self.frame = selfFrameRect;
+    
+    
+    
+}
+
+- (void)keyboardHide
+{
+    NSLog(@"收回键盘");
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        self.center = [self superview].center;
+    }];
     
     
 }

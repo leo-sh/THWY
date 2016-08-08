@@ -21,7 +21,6 @@
     [super viewDidLoad];
     [self ViewInitSetting];
     [self getData];
-    [self createUI];
     
     // Do any additional setup after loading the view.
 }
@@ -35,6 +34,8 @@
 
 - (void)getData
 {
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+
     NSArray *sectionOneHead = @[@"业主姓名",@"所在楼层",@"房源信息",@"面积",@"缴费科目",@"收费标准",@"应缴金额",@"月数",@"实收金额",@"欠费金额"];
     NSArray *sectionTwoHead = @[@"缴纳时间",@"金额",@"操作人",@"备注"];
     self.sectionHead = @[sectionOneHead,sectionTwoHead];
@@ -44,19 +45,25 @@
         NSLog(@"213213")
         
         NSString *sourceInfo = [NSString stringWithFormat:@"%@栋%@单元%@室",ad.block,ad.unit,ad.mph];
-        NSString *feeScale = [NSString stringWithFormat:@"%@%@",ad.cls_fee,ad.cls_unit];
+        NSString *feeScale = [NSString stringConvertFloatString:ad.cls_fee addEndString:ad.cls_unit];
         NSString *totalPrice = [NSString stringConvertFloatString:ad.how_much addEndString:@"元"];
         NSString *actualString = [NSString stringConvertFloatString:ad.actual addEndString:@"元"];
         NSString *qianfeiString = [NSString stringWithFormat:@"%@元",ad.qian_fei];
         NSString *houseSizeString = [NSString stringConvertFloatString:ad.house_size addEndString:@"平方米"];
         
         NSArray *sectionOneData = @[ad.real_name,ad.estate_name,sourceInfo,houseSizeString,ad.cls_name,feeScale,totalPrice,@"",actualString,qianfeiString];
-        NSArray *sectionTwoData = @[@"",actualString,@"",@""];
+        
+        FeeHistoryVO *item = [ad.fee_history firstObject];
+        NSString *time = [NSString stringDateFromTimeInterval:[item.fee_time intValue] withFormat:@"YYYY-MM-dd HH:mm:ss"];
+        
+        NSString *fee = [NSString stringConvertFloatString:item.fee addEndString:@"元"];
+        
+        NSArray *sectionTwoData = @[time,fee,item.real_name,item.remark];
         self.data = @[sectionOneData,sectionTwoData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            [self createUI];
             [self.tableView reloadData];
-            
+            [SVProgressHUD dismiss];
         });
     }];
 }

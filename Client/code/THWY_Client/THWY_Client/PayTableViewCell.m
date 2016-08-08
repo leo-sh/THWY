@@ -85,19 +85,19 @@
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.AddressLabel.mas_bottom).with.offset(0);
         make.left.equalTo(self.icon.mas_right).with.offset(left);
-        make.size.mas_equalTo(CGSizeMake(center_W, Height));
+        make.size.mas_equalTo(CGSizeMake(center_W + 10, Height));
     }];
     
     [self.stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.timeLabel.mas_centerY);
+        make.centerY.equalTo(self.timeLabel.mas_centerY);
         make.left.equalTo(self.timeLabel.mas_right).with.offset(0);
-        make.size.mas_equalTo(CGSizeMake(right_W, Height));
+        make.size.mas_equalTo(CGSizeMake(right_W - 10, Height));
     }];
     
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.timeLabel.mas_bottom).with.offset(0);
         make.left.equalTo(self.icon.mas_right).with.offset(left);
-        make.size.mas_equalTo(CGSizeMake(center_W, Height));
+        make.size.mas_equalTo(CGSizeMake(center_W - 40, Height));
     }];
     
     [self.estateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -109,10 +109,11 @@
     [self.payTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.priceLabel.mas_centerY);
         make.left.equalTo(self.priceLabel.mas_right).with.offset(0);
-        make.size.mas_equalTo(CGSizeMake(right_W, Height));
+        make.size.mas_equalTo(CGSizeMake(right_W + 40, Height));
     }];
     
     self.icon.layer.borderWidth = 1;
+    self.icon.layer.borderColor = [UIColor whiteColor].CGColor;
     self.icon.clipsToBounds = YES;
     self.icon.layer.cornerRadius = image_H_W/2;
     
@@ -124,7 +125,7 @@
     
     self.payTypeLabel.font = self.estateLabel.font;
     self.priceLabel.font = self.estateLabel.font;
-    
+    self.stateLabel.font = self.estateLabel.font;
     self.houseOwnerLabel.textAlignment = NSTextAlignmentRight;
     self.payTypeLabel.textAlignment = NSTextAlignmentRight;
     self.stateLabel.textAlignment = NSTextAlignmentRight;
@@ -148,6 +149,36 @@
     self.payTypeLabel.text = FeeVO.cls_name;
     self.priceLabel.text = [NSString stringConvertFloatString:FeeVO.how_much addEndString:@"元"];
     self.AddressLabel.text = [NSString stringWithFormat:@"%@栋%@单元%@室",FeeVO.block,FeeVO.unit,FeeVO.mph];
+    
+    switch (FeeVO.st) {
+        case All:
+        {
+            self.stateLabel.text = @"全部";
+        }
+            break;
+        case NonPayment:
+        {
+            self.stateLabel.text = @"未支付";
+        }
+            break;
+        case Part:
+        {
+            self.stateLabel.text = @"部分支付";
+        }
+            break;
+        case Paid:
+        {
+            self.stateLabel.text = @"已支付";
+        }
+            break;
+        case Refund:
+        {
+            self.stateLabel.text = @"退款";
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)awakeFromNib {

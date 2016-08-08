@@ -11,6 +11,7 @@
 #import "Masonry.h"
 #import "PayTableViewCell.h"
 #import "PayInfoViewController.h"
+#import "AlertButton.h"
 @interface PayViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property UITableView *tableView;
 @property NSArray *data;
@@ -22,7 +23,6 @@
     [super viewDidLoad];
     [self ViewInitSetting];
     [self getData];
-    [self createUI];
     // Do any additional setup after loading the view.
 }
 
@@ -33,7 +33,8 @@
 }
 
 - (void)getData
-{
+{    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+
     [[ServicesManager getAPI]getFees:1 year:0 feeState:All onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg) {
@@ -42,9 +43,10 @@
         self.data = list;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            [self createUI];
             [self.tableView reloadData];
-            
+            [SVProgressHUD dismiss];
+
         });
         
     }];
@@ -52,7 +54,32 @@
 
 - (void)createUI
 {
-    self.tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    //创建搜索视图
+    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width,40)];
+    
+    AlertButton *chooseYearBtn = [[AlertButton alloc]initWithFrame:CGRectMake(5, 5, self.view.width * 0.35 , 30)];
+    
+    [chooseYearBtn setTitle:@"选择年份" forState:UIControlStateNormal];
+    
+    [searchView addSubview:chooseYearBtn];
+    
+    AlertButton *chooseStatuBtn = [[AlertButton alloc]initWithFrame:CGRectMake(chooseYearBtn.right + 5, 5, self.view.width * 0.35, 30)];
+    
+    [chooseStatuBtn setTitle:@"选择状态" forState:UIControlStateNormal];
+    
+    [searchView addSubview:chooseStatuBtn];
+    
+    UIButton *search = [[UIButton alloc]initWithFrame:CGRectMake(chooseStatuBtn.right + 5, 5, self.view.width - chooseStatuBtn.right - 10, 30)];
+    
+    search.backgroundColor = My_NAV_BG_Color;
+    
+    [search setTitle:@"查询" forState:UIControlStateNormal];
+    
+    [searchView addSubview:search];
+    
+    [self.view addSubview:searchView];
+    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, searchView.bottom, self.view.width, self.view.height - searchView.height) style:UITableViewStylePlain];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;

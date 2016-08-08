@@ -48,6 +48,7 @@
 		1E7527C91D52356700AEDEC0 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1E7527C21D52356700AEDEC0 /* SVProgressHUD.bundle */; };
 		1E7527CA1D52356700AEDEC0 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7527C41D52356700AEDEC0 /* SVProgressHUD.m */; };
 		1E7527CB1D52356700AEDEC0 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7527C61D52356700AEDEC0 /* SVRadialGradientLayer.m */; };
+		1E7527CE1D56D68100AEDEC0 /* AlertButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7527CD1D56D68100AEDEC0 /* AlertButton.m */; };
 		1EE2841F1D4D037D008D5305 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2841E1D4D037D008D5305 /* PayViewController.m */; };
 		1EE284251D4D0548008D5305 /* ProclamationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE284241D4D0548008D5305 /* ProclamationViewController.m */; };
 		1EE2842B1D4D05D1008D5305 /* SuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2842A1D4D05D1008D5305 /* SuggestViewController.m */; };
@@ -275,6 +276,8 @@
 		1E7527C41D52356700AEDEC0 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		1E7527C51D52356700AEDEC0 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		1E7527C61D52356700AEDEC0 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		1E7527CC1D56D68100AEDEC0 /* AlertButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertButton.h; sourceTree = "<group>"; };
+		1E7527CD1D56D68100AEDEC0 /* AlertButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertButton.m; sourceTree = "<group>"; };
 		1EE2841D1D4D037D008D5305 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
 		1EE2841E1D4D037D008D5305 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
 		1EE284231D4D0548008D5305 /* ProclamationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProclamationViewController.h; sourceTree = "<group>"; };
@@ -1017,6 +1020,8 @@
 				1E42BB5C1D49DD3F0021DA01 /* loginView */,
 				1E7527491D519A8500AEDEC0 /* AlertView.h */,
 				1E75274A1D519A8500AEDEC0 /* AlertView.m */,
+				1E7527CC1D56D68100AEDEC0 /* AlertButton.h */,
+				1E7527CD1D56D68100AEDEC0 /* AlertButton.m */,
 			);
 			name = OtherController;
 			sourceTree = "<group>";
@@ -1480,7 +1485,6 @@
 				TargetAttributes = {
 					5BFFCE141D41B9A30066B1B9 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = XFDA7223K5;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1585,6 +1589,7 @@
 				5B2572241D47177B00CB4167 /* UIButton+WebCache.m in Sources */,
 				5BED6BC41D49A53F00C137C5 /* RepairStatuVO.m in Sources */,
 				1EE284251D4D0548008D5305 /* ProclamationViewController.m in Sources */,
+				1E7527CE1D56D68100AEDEC0 /* AlertButton.m in Sources */,
 				1E7527AB1D52349F00AEDEC0 /* MJRefreshFooter.m in Sources */,
 				1E7527AC1D52349F00AEDEC0 /* MJRefreshHeader.m in Sources */,
 				5B2572251D47177B00CB4167 /* UIImage+GIF.m in Sources */,

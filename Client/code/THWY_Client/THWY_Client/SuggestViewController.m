@@ -12,8 +12,10 @@
 #import "ReviseBtn.h"
 #import "AlertView.h"
 #import "SuggestAlertView.h"
+#import "BlueRedioButton.h"
 #define TopViewH 70
 @interface SuggestViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property SuggestAlertView *alertView;
 @property UITableView *tableView;
 @property UISegmentedControl *segmentedControl;
 @property NSMutableArray *FeedBackTypeArray;
@@ -27,7 +29,6 @@
     [self ViewInitSetting];
     [self getData:@"1"];
     [self createUI];
-    
     // Do any additional setup after loading the view.
 }
 
@@ -47,6 +48,7 @@
 
 - (void)getData:(NSString *)type
 {
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
     [[ServicesManager getAPI] getFeedBackTypes:^(NSString *errorMsg, NSArray *list) {
         
         for (FeedBackTypeVO *temp in list) {
@@ -60,7 +62,12 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
+                if (!self.data) {
+                    [self.view addSubview:[self createAddBtn:self.view]];
+                }
                 [self.tableView reloadData];
+                [SVProgressHUD dismiss];
+
                 
             });
             
@@ -72,11 +79,11 @@
 - (void)createUI
 {
     
-    
     self.tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.tableView.alpha = 1;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.clipsToBounds = NO;
+    self.tableView.bounces = NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -164,10 +171,8 @@
 {
     UIView *view = [[UIView alloc]init];
     if (section == self.data.count - 1) {
-        ReviseBtn *reviseBtn = [[ReviseBtn alloc]initWithFrame:CGRectMake(40, 5, tableView.width - 80 , 40)];
-        [reviseBtn setLeftImageView:@"建议意见 添加" andTitle:@"添加"];
-        [reviseBtn addTarget:self action:@selector(clickAddBtn) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:reviseBtn];
+        
+        [view addSubview:[self createAddBtn:tableView]];
     }
     return view;
 }
@@ -197,10 +202,43 @@
 
 - (void)clickAddBtn
 {
-    SuggestAlertView *alertView = [[SuggestAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
+    self.alertView = [[SuggestAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
     
-    alertView.backgroundColor = [UIColor whiteColor];
-    [alertView show];
+    self.alertView.backgroundColor = [UIColor whiteColor];
+    [self.alertView show];
+    [self.alertView addLeftBtnTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)submit
+{
+    int back;
+    if (self.alertView.suggestOne.chooseStatu) {
+        back = 1;
+    }
+    else
+    {
+        back = 2;
+    }
+    [[ServicesManager getAPI]addFeedBack:back content:self.alertView.textView.text onComplete:^(NSString *errorMsg) {
+        if (errorMsg) {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
+        else
+        {
+            [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+        }
+        
+    }];
+
+}
+
+- (UIButton *)createAddBtn:(UIView *)view
+{
+    ReviseBtn *reviseBtn = [[ReviseBtn alloc]initWithFrame:CGRectMake(40, 5, view.width - 80 , 40)];
+    [reviseBtn setLeftImageView:@"建议意见 添加" andTitle:@"添加"];
+    [reviseBtn addTarget:self action:@selector(clickAddBtn) forControlEvents:UIControlEventTouchUpInside];
+    
+    return reviseBtn;
 }
 
 

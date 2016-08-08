@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self ViewInitSetting];
+    [self getData];
     [self createUI];
     // Do any additional setup after loading the view.
 }
@@ -35,6 +36,11 @@
     self.cellOneData = @[@"投诉类型",@"所在项目",@"投诉人",@"联系电话"];
     self.cellThreeData = @[@"投诉状态",@"投诉日期"];
     
+}
+
+- (void)getData
+{    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+
     [[ServicesManager getAPI] getAComplaint:self.complianId onComplete:^(NSString *errorMsg, ComplaintVO *complaint) {
         if (errorMsg) {
             NSLog(@"%@",errorMsg);
@@ -50,17 +56,20 @@
         else
         {
             sectionThreeData = @[@"失败",complaint.ctime];
-
+            
         }
         self.data = @[sectionOneData,sectionTwoData,sectionThreeData];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+            [SVProgressHUD dismiss];
+
         });
         
         
     }];
     NSLog(@"%@",self.data);
+
 }
 
 - (void)createUI
@@ -105,9 +114,24 @@
         if (indexPath.section == 0) {
             cell.textLabel.text = [NSString stringWithFormat:@"%@：%@",self.cellOneData[indexPath.row],self.data[indexPath.section][indexPath.row]];
         }
+
         else
         {
-            cell.textLabel.text = [NSString stringWithFormat:@"%@：%@",self.cellThreeData[indexPath.row],self.data[indexPath.section][indexPath.row]];
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@：%@",self.cellThreeData[indexPath.row],self.data[indexPath.section][indexPath.row]];
+                    break;
+                case 1:
+                {
+                    NSString *time = [NSString stringDateFromTimeInterval:[self.data[indexPath.section][indexPath.row] intValue] withFormat:@"YYYY-MM-dd HH:mm"];
+
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@：%@",self.cellThreeData[indexPath.row],time];
+                }
+                    
+                default:
+                    break;
+            }
+            
         }
         resultCell = cell;
     }

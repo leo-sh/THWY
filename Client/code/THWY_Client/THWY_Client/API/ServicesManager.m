@@ -208,7 +208,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg);
             }];
         }else
@@ -233,7 +233,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -272,7 +272,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -334,7 +334,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg);
             }];
         }else
@@ -383,7 +383,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -406,7 +406,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -429,16 +429,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* historyDic in responseObject[@"datas"][@"datas"]) {
-                PointHistoryVO *history = [[PointHistoryVO alloc]initWithJSON:historyDic];
-                [listArr addObject:history];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* historyDic in responseObject[@"datas"][@"datas"]) {
+                    PointHistoryVO *history = [[PointHistoryVO alloc]initWithJSON:historyDic];
+                    [listArr addObject:history];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -456,16 +459,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* typeDic in responseObject[@"datas"]) {
-                FeedBackTypeVO *type = [[FeedBackTypeVO alloc]initWithJSON:typeDic];
-                [listArr addObject:type];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* typeDic in responseObject[@"datas"]) {
+                    FeedBackTypeVO *type = [[FeedBackTypeVO alloc]initWithJSON:typeDic];
+                    [listArr addObject:type];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -484,7 +490,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -516,7 +522,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg);
             }];
         }else
@@ -538,16 +544,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* complaintStateDic in responseObject[@"datas"][@"datas"]) {
-                ComplaintStateVO *state = [[ComplaintStateVO alloc]initWithJSON:complaintStateDic];
-                [listArr addObject:state];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* complaintStateDic in responseObject[@"datas"][@"datas"]) {
+                    ComplaintStateVO *state = [[ComplaintStateVO alloc]initWithJSON:complaintStateDic];
+                    [listArr addObject:state];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -565,16 +574,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* complaintTypeDic in responseObject[@"datas"][@"datas"]) {
-                ComplaintTypeVO *type = [[ComplaintTypeVO alloc]initWithJSON:complaintTypeDic];
-                [listArr addObject:type];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* complaintTypeDic in responseObject[@"datas"][@"datas"]) {
+                    ComplaintTypeVO *type = [[ComplaintTypeVO alloc]initWithJSON:complaintTypeDic];
+                    [listArr addObject:type];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -593,16 +605,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* complaintDic in responseObject[@"datas"][@"datas"]) {
-                ComplaintVO *complaint = [[ComplaintVO alloc]initWithJSON:complaintDic];
-                [listArr addObject:complaint];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* complaintDic in responseObject[@"datas"][@"datas"]) {
+                    ComplaintVO *complaint = [[ComplaintVO alloc]initWithJSON:complaintDic];
+                    [listArr addObject:complaint];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -622,7 +637,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -647,7 +662,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg);
             }];
         }else
@@ -670,16 +685,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* noteDic in responseObject[@"datas"][@"datas"]) {
-                NoteVO *note = [[NoteVO alloc]initWithJSON:noteDic];
-                [listArr addObject:note];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* noteDic in responseObject[@"datas"][@"datas"]) {
+                    NoteVO *note = [[NoteVO alloc]initWithJSON:noteDic];
+                    [listArr addObject:note];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -698,7 +716,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -721,16 +739,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* merchantTypeDic in responseObject[@"datas"][@"datas"]) {
-                MerchantTypeVO *type = [[MerchantTypeVO alloc]initWithJSON:merchantTypeDic];
-                [listArr addObject:type];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* merchantTypeDic in responseObject[@"datas"][@"datas"]) {
+                    MerchantTypeVO *type = [[MerchantTypeVO alloc]initWithJSON:merchantTypeDic];
+                    [listArr addObject:type];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -750,16 +771,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* merchantDic in responseObject[@"datas"][@"datas"]) {
-                MerchantVO *merchant = [[MerchantVO alloc]initWithJSON:merchantDic];
-                [listArr addObject:merchant];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* merchantDic in responseObject[@"datas"][@"datas"]) {
+                    MerchantVO *merchant = [[MerchantVO alloc]initWithJSON:merchantDic];
+                    [listArr addObject:merchant];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -783,16 +807,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* merchantDic in responseObject[@"datas"][@"datas"]) {
-                MerchantVO *merchant = [[MerchantVO alloc]initWithJSON:merchantDic];
-                [listArr addObject:merchant];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* merchantDic in responseObject[@"datas"][@"datas"]) {
+                    MerchantVO *merchant = [[MerchantVO alloc]initWithJSON:merchantDic];
+                    [listArr addObject:merchant];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -811,7 +838,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -835,16 +862,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* goodDic in responseObject[@"datas"][@"datas"]) {
-                GoodVO *good = [[GoodVO alloc]initWithJSON:goodDic];
-                [listArr addObject:good];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* goodDic in responseObject[@"datas"][@"datas"]) {
+                    GoodVO *good = [[GoodVO alloc]initWithJSON:goodDic];
+                    [listArr addObject:good];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -863,7 +893,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -887,16 +917,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* adDic in responseObject[@"datas"][@"datas"]) {
-                AdVO *ad = [[AdVO alloc]initWithJSON:adDic];
-                [listArr addObject:ad];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* adDic in responseObject[@"datas"][@"datas"]) {
+                    AdVO *ad = [[AdVO alloc]initWithJSON:adDic];
+                    [listArr addObject:ad];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -915,7 +948,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -938,16 +971,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* adDic in responseObject[@"datas"][@"datas"]) {
-                AdVO *ad = [[AdVO alloc]initWithJSON:adDic];
-                [listArr addObject:ad];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* adDic in responseObject[@"datas"][@"datas"]) {
+                    AdVO *ad = [[AdVO alloc]initWithJSON:adDic];
+                    [listArr addObject:ad];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -974,16 +1010,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* feeDic in responseObject[@"datas"][@"datas"]) {
-                FeeVO *fee = [[FeeVO alloc]initWithJSON:feeDic];
-                [listArr addObject:fee];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* feeDic in responseObject[@"datas"][@"datas"]) {
+                    FeeVO *fee = [[FeeVO alloc]initWithJSON:feeDic];
+                    [listArr addObject:fee];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -1002,7 +1041,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -1025,16 +1064,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"]) {
-                EstateVO *estate = [[EstateVO alloc]initWithJSON:estateDic];
-                [listArr addObject:estate];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                    EstateVO *estate = [[EstateVO alloc]initWithJSON:estateDic];
+                    [listArr addObject:estate];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -1053,7 +1095,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -1084,15 +1126,18 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"]) {
-                [listArr addObject:estateDic[@"unit"]];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                    [listArr addObject:estateDic[@"unit"]];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -1113,15 +1158,18 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"]) {
-                [listArr addObject:estateDic[@"layer"]];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                    [listArr addObject:estateDic[@"layer"]];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -1150,16 +1198,19 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"]) {
-                RepairStatuVO *estate = [[RepairStatuVO alloc]initWithJSON:estateDic];
-                [listArr addObject:estate];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                    RepairStatuVO *estate = [[RepairStatuVO alloc]initWithJSON:estateDic];
+                    [listArr addObject:estate];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -1192,7 +1243,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else{
@@ -1234,7 +1285,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -1268,7 +1319,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,nil);
             }];
         }else
@@ -1329,9 +1380,18 @@
     return user != nil;
 }
 
--(void)getErrorMessage:(NSString *)code
+-(void)getErrorMessage:(NSDictionary *)responseObject
             onComplete:(void (^)(NSString *errorMsg))onComplete
 {
+    NSString* code = responseObject[@"code"];
+    if ([code isEqualToString:@"-1"]) {
+        if ([responseObject[@"datas"] isKindOfClass:[NSString class]] && [responseObject[@"datas"] length]>0) {
+            NSLog(@"%@",responseObject[@"datas"]);
+            onComplete(responseObject[@"datas"]);
+            return;
+        }
+    }
+    
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@get_op_msg_by_code",API_HOST];
     NSDictionary *params = @{@"k":code};
@@ -1349,18 +1409,16 @@
 #pragma mark 测试用函数
 -(void)test
 {
-//    if ([self isLogin]) {
-//        [self getRepairs:Owner page:0 repairStatu:nil onComplete:^(NSString *errorMsg, NSArray *list) {
-//            
-//        }];
-//    }else
-//    {
-//        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {
-//            if (errorMsg == nil) {
-//                [self test];
-//            }
-//        }];
-//    }
+    if ([self isLogin]) {
+        
+    }else
+    {
+        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {
+            if (errorMsg == nil) {
+                [self test];
+            }
+        }];
+    }
     
     
 }

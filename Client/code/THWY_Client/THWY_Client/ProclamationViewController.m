@@ -11,9 +11,10 @@
 #import "ServicesManager.h"
 #import "Masonry/Masonry.h"
 @interface ProclamationViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property NSArray *data;
+@property NSMutableArray *data;
 @property CGFloat topHeight;
 @property UITableView *tableView;
+@property int pageNumber;
 @end
 
 @implementation ProclamationViewController
@@ -32,19 +33,24 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"公告背景"]];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = YES;
+    self.data = [NSMutableArray array];
+    self.pageNumber = 1;
 }
 
 - (void)getData
-{
-    [[ServicesManager getAPI] getNotes:1 onComplete:^(NSString *errorMsg, NSArray *list) {
+{    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+
+    [[ServicesManager getAPI] getNotes:self.pageNumber onComplete:^(NSString *errorMsg, NSArray *list) {
         
         NSLog(@"%@",list);
         
-        self.data = list;
+        [self.data addObjectsFromArray:list];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
             [self.tableView reloadData];
+            [SVProgressHUD dismiss];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         });
     }];
 }
@@ -57,6 +63,18 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    if (self.data) {
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            self.pageNumber = 1;
+            [self getData];
+        }];
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            self.pageNumber++;
+            [self getData];
+        }];
+
+    }
     
     [self.view addSubview:self.tableView];
     TableViewFram

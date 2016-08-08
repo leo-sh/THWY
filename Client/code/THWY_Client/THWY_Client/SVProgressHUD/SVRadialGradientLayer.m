@@ -20,6 +20,7 @@
     float radius = MIN(self.bounds.size.width , self.bounds.size.height);
     CGContextDrawRadialGradient (context, gradient, self.gradientCenter, 0, self.gradientCenter, radius, kCGGradientDrawsAfterEndLocation);
     CGGradientRelease(gradient);
+
 }
 
 @end

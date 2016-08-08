@@ -41,11 +41,17 @@
     
     self.title = @"账号信息";
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardHide) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)getData
 {
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
     self.userInfo = [[UDManager getUD]getUser];
+    [SVProgressHUD dismiss];
+
 }
 
 #pragma mark --创建头像和简要信息
@@ -161,7 +167,7 @@
         
         PersonInfoLabel *label = [[PersonInfoLabel alloc]initWithFrame:CGRectMake(labelLeft, labelY , labelWidth , labelHeight)];
         
-        [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] TextField:tfTextArray[i] isEnable:YES];
+        [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] TextField:tfTextArray[i]];
         label.textField.delegate = self;
         label.layer.borderWidth = 1;
         label.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -172,15 +178,18 @@
         
         switch (i) {
                 
-            case 1:
-            case 4:
-            case 5:
-            case 6:
-                [self.canUpdateInfo addObject:label];
+            case 0:
+            case 2:
+            case 3:
+                [label setNoEnable];
+                label.textField.text = @"";
+                label.textField.placeholder = tfTextArray[i];
                 break;
             default:
                 break;
         }
+        [self.canUpdateInfo addObject:label];
+
         
     }
     
@@ -202,9 +211,14 @@
 #pragma mark --点击修改按钮
 - (void)clickReviseBtn
 {
-    [[ServicesManager getAPI]editUserInfo:[[self.canUpdateInfo[0] textField] text] carNumber:[[self.canUpdateInfo[1] textField] text] newUserName:[[self.canUpdateInfo[2] textField] text] newPassWord:[[self.canUpdateInfo[3] textField] text] onComplete:^(NSString *errorMsg) {
+    [[ServicesManager getAPI]editUserInfo:[[self.canUpdateInfo[1] textField] text] carNumber:[[self.canUpdateInfo[4] textField] text] newUserName:[[self.canUpdateInfo[5] textField] text] newPassWord:[[self.canUpdateInfo[6] textField] text] onComplete:^(NSString *errorMsg) {
         if (errorMsg) {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
             NSLog(@"%@",errorMsg);
+        }
+        else
+        {
+            [SVProgressHUD showSuccessWithStatus:@"修改成功"];
         }
     }];
 }
@@ -251,8 +265,14 @@
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     
     [[ServicesManager getAPI]upLoadAvatar:image OnComplete:^(NSString *errorMsg, NSString *avatar) {
-        NSLog(@"%@",avatar);
-        NSLog(@"%@",errorMsg);
+        
+        if (errorMsg) {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
+        else
+        {
+            [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+        }
     }];
     
     [self dismissViewControllerAnimated:NO completion:nil];
@@ -269,6 +289,7 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    [[NSNotificationCenter defaultCenter]postNotificationName:UIKeyboardWillShowNotification object:textField];
     return YES;
 }
 
@@ -278,6 +299,40 @@
     return YES;
 }
 
+- (void)keyboardShow:(NSNotification *)notifation
+{
+    NSDictionary *info = notifation.userInfo;
+    
+    NSValue *value = [info valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    
+    CGRect rect = [value CGRectValue];
+    
+    UITextField *textfield = notifation.object;
+    
+    NSLog(@"selfView bottom = %f keyboardHeight = %f textfield.bottom = %f",self.view.bottom,rect.size.height,textfield.bounds.origin.y);
+    
+    if (textfield.bottom + rect.size.height > self.view.bottom) {
+        CGRect selfViewFrame = self.view.frame;
+        
+        selfViewFrame.origin.y -= self.view.bottom - rect.size.height;
+        
+        self.view.frame = selfViewFrame;
+    }
+    
+}
+
+- (void)keyboardHide
+{
+    [UIView animateWithDuration:0.2 animations:^{
+        CGRect selfViewFrame = self.view.frame;
+        
+        selfViewFrame.origin.y = 66;
+        
+        self.view.frame = selfViewFrame;
+    }];
+    
+
+}
 /*
 #pragma mark - Navigation
 
