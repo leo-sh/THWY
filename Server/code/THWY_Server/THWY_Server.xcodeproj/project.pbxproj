@@ -69,6 +69,7 @@
 		94BF711C1D5446A500EF1A8D /* RepairTaskVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF711B1D5446A500EF1A8D /* RepairTaskVO.m */; };
 		94C040C81D4EEAC300E23969 /* NoticVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C040C71D4EEAC300E23969 /* NoticVO.m */; };
 		94C040CB1D4F128B00E23969 /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C040CA1D4F128B00E23969 /* AdVO.m */; };
+		94E5DAD61D588A7000300585 /* MsgVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5DAD51D588A7000300585 /* MsgVO.m */; };
 		94F2356A1D572B2900B829FB /* RepairStatisticVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F235691D572B2900B829FB /* RepairStatisticVO.m */; };
 		94F2356D1D57339C00B829FB /* TaskVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F2356C1D57339C00B829FB /* TaskVO.m */; };
 /* End PBXBuildFile section */
@@ -200,6 +201,8 @@
 		94C040C71D4EEAC300E23969 /* NoticVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticVO.m; sourceTree = "<group>"; };
 		94C040C91D4F128B00E23969 /* AdVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdVO.h; sourceTree = "<group>"; };
 		94C040CA1D4F128B00E23969 /* AdVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdVO.m; sourceTree = "<group>"; };
+		94E5DAD41D588A7000300585 /* MsgVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgVO.h; sourceTree = "<group>"; };
+		94E5DAD51D588A7000300585 /* MsgVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgVO.m; sourceTree = "<group>"; };
 		94F235681D572B2900B829FB /* RepairStatisticVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticVO.h; sourceTree = "<group>"; };
 		94F235691D572B2900B829FB /* RepairStatisticVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatisticVO.m; sourceTree = "<group>"; };
 		94F2356B1D57339C00B829FB /* TaskVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskVO.h; sourceTree = "<group>"; };
@@ -271,6 +274,8 @@
 				94F235691D572B2900B829FB /* RepairStatisticVO.m */,
 				94F2356B1D57339C00B829FB /* TaskVO.h */,
 				94F2356C1D57339C00B829FB /* TaskVO.m */,
+				94E5DAD41D588A7000300585 /* MsgVO.h */,
+				94E5DAD51D588A7000300585 /* MsgVO.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -555,6 +560,7 @@
 				5B2571B71D4714A100CB4167 /* NSString+BXExtension.m in Sources */,
 				5B2571BB1D4714A100CB4167 /* UIDevice+DeviceType.m in Sources */,
 				5B2572581D47178500CB4167 /* UIImage+MultiFormat.m in Sources */,
+				94E5DAD61D588A7000300585 /* MsgVO.m in Sources */,
 				940D69EB1D51968700E1159D /* Repair_RootVO.m in Sources */,
 				5BFFCE401D41B9C40066B1B9 /* AppDelegate.m in Sources */,
 				5B2571C01D4714A100CB4167 /* UIScreen+Extension.m in Sources */,

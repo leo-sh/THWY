@@ -1445,6 +1445,61 @@
     }];
 }
 
+-(void)sendMsg:(NSString *)friendId msg:(NSString *)msg onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@send_msg",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"friend_id":friendId,
+                             @"the_msg":msg};
+    
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg);
+            }];
+        }else
+        {
+            onComplete(nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误");
+    }];
+}
+
+-(void)getMsgs:(NSString *)friendId endId:(NSString *)endId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@get_my_msg",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"friend_id":friendId,
+                             @"end_id":endId};
+    
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* msgList = [[NSMutableArray alloc]init];
+            for (NSDictionary* msgDic in responseObject[@"datas"][@"msg"]) {
+                MsgVO *msgs = [[MsgVO alloc]initWithJSON:msgDic];
+                [msgList addObject:msgs];
+            }
+            onComplete(nil,msgList);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
 #pragma mark 环境参数判定函数
 -(BOOL)isLogin{
     UserVO *user = [[UDManager getUD] getUser];
@@ -1457,7 +1512,9 @@
     if ([self isLogin]) {
         UserVO *user = [[UDManager getUD] getUser];
         NSLog(@"admin_id:%@",user.admin_id);
-        
+        [self getMsgs:@"13" endId:@"1" onComplete:^(NSString *errorMsg, NSArray *list) {
+            
+        }];
     }else
     {
         [self login:@"fzq" password:@"123456" onComplete:^(NSString *errorMsg, UserVO *user) {
