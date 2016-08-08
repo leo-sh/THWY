@@ -27,7 +27,11 @@
 #import "AddPublicRepairVO.h"
 #import "SVProgressHUD.h"
 #import "MJRefresh.h"
+#import "Reachability.h"
+
 @interface ServicesManager : NSObject
+
+@property NetworkStatus status;
 
 /**
  *  单例

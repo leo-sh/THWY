@@ -76,6 +76,8 @@
 #define My_LightFontName @"PingFangSC-Light"
 #define My_RegularFontName @"PingFangSC-Regular"
 #define My_SemiboldFontName @"PingFangSC-Semibold"
+
+#define NetWorkChanged @"netWorkChanged"
 //登录页面通知
 #define Login_Success @"LoginSuccess"
 #define Login_Fail @"Login_Fail"

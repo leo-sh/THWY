@@ -17,7 +17,7 @@
 -(instancetype)init
 {
     if (self = [super init]) {
-        
+        [My_NoteCenter addObserver:self selector:@selector(netWorkChanged:) name:NetWorkChanged object:nil];
     }
     return self;
 }
@@ -44,6 +44,11 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     
     self.navigationItem.rightBarButtonItem = rightItem;
+}
+
+-(void)netWorkChanged:(NSNotification*)noti
+{
+    
 }
 
 - (void)signOut{
