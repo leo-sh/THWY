@@ -226,7 +226,8 @@
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 300.0/667*My_ScreenH;
     self.tableView.sectionHeaderHeight = 0;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 4, 0);
     self.tableView.separatorColor = [UIColor grayColor];
     self.tableView.bounces = YES;
     [self.tableView setBackgroundColor:[UIColor clearColor]];
@@ -237,7 +238,8 @@
     self.tableView2.dataSource = self;
     self.tableView2.rowHeight = 300.0/667*My_ScreenH;
 //    self.tableView2.sectionHeaderHeight = 0;
-    self.tableView2.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView2.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
+    self.tableView2.separatorInset = UIEdgeInsetsMake(0, 0, 4, 0);
     self.tableView2.separatorColor = [UIColor grayColor];
     self.tableView2.bounces = YES;
     [self.tableView2 setBackgroundColor:[UIColor clearColor]];
@@ -355,11 +357,11 @@
 //        [cell loadDataFromModel:self.repairDataArray[indexPath.row]];
 //    }];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
-    CGRect rect = [[self.repairDataArray[indexPath.row] detail] boundingRectWithSize:CGSizeMake(300, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+    CGRect rect = [[self.repairDataArray[indexPath.row] detail] boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     
-    CGRect rect2 = [[self.repairDataArray[indexPath.row] classes_str] boundingRectWithSize:CGSizeMake(300, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+    CGRect rect2 = [[self.repairDataArray[indexPath.row] classes_str] boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     
-    return 220.0/667*My_ScreenH + rect.size.height +rect2.size.height;
+    return 210.0/667*My_ScreenH + rect.size.height +rect2.size.height;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{

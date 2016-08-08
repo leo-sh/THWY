@@ -328,6 +328,8 @@
         return;
     }
     
+    [SVProgressHUD showWithStatus:@"数据上传中..."];
+    
     [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
         
         [self.repairDelegate commitComplete:errorMsg];

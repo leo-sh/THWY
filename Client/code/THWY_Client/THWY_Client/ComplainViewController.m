@@ -239,9 +239,11 @@
         postItem.complaint_person = user.real_name;
         postItem.complaint_type = @"房屋管理类";
         postItem.complaint_phone = user.cellphone;
-        postItem.estate = user.estate;
+        NSLog(@"%@",self.alertview.houseSourceBtn.house)
+        postItem.house_id = self.alertview.houseSourceBtn.house.Id;
+        postItem.estate_id = self.alertview.houseSourceBtn.house.estate_id;
         postItem.complaint_content = self.alertview.textView.text;
-        postItem.ctime = [NSDate stringFromDate:[NSDate date]];
+        
         [[ServicesManager getAPI] addComplaint:postItem onComplete:^(NSString *errorMsg) {
           
             if (errorMsg) {

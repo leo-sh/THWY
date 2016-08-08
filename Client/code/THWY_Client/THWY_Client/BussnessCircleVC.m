@@ -38,6 +38,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"社区商圈";
+    self.adLabels = [NSMutableArray array];
+//    self.adDataArray = [NSMutableArray array];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
     [self getData];
     [self getADLabels];
@@ -50,7 +52,7 @@
     [[ServicesManager getAPI] getRecommendMerchants:1 onComplete:^(NSString *errorMsg, NSArray *list) {
         for (MerchantVO * model in list) {
             if (model) {
-                [self.adDataArray addObject:model.pic];
+                [self.adDataArray addObject:model];
             }
         }
         [self initADScrollView];
@@ -90,7 +92,7 @@
 
     // 创建将要显示控件
     UIImageView *imageView = [[UIImageView alloc] init];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:self.adDataArray[index]] placeholderImage:[UIImage imageNamed:@"beijing"]];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:[self.adDataArray[index] pic]] placeholderImage:[UIImage imageNamed:@"beijing"]];
     
     return imageView;
 }
@@ -163,15 +165,16 @@
 
 #pragma mark - ADViews
 - (void)getADLabels{
-    self.adLabels = [NSMutableArray array];
+
     [[ServicesManager getAPI] getAds:1 onComplete:^(NSString *errorMsg, NSArray *list) {
         for (AdVO *model in list) {
             if (model) {
                 [self.adLabels addObject:model];
             }
         }
-        
-        self.adLabelTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(runloopAdLabel) userInfo:nil repeats:YES];
+        if (self.adLabels) {
+            self.adLabelTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(runloopAdLabel) userInfo:nil repeats:YES];
+        }
     }];
 }
 static int flag = 0;
@@ -179,7 +182,7 @@ static int flag = 0;
     if (!self.adLabels){
         return;
     }
-    if (flag<self.adLabels.count-1) {
+    if (flag<self.adLabels.count) {
         AdVO *model = self.adLabels[flag];
         [UIView animateWithDuration:2.0 animations:^{
             self.ADLabel.text = model.title;
