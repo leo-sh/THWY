@@ -26,29 +26,43 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.contentView.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
         
         self.leftLabel = [[UILabel alloc] init];
-        self.picImage = [[UIImageView alloc] init];
+        self.leftLabel.text = @"图片:";
+        [self setLabelAttributes:self.leftLabel];
         
+        self.picImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"beijing"]];
+    
         [self.contentView addSubview:self.leftLabel];
         [self.contentView addSubview:self.picImage];
         
         CGFloat topMargin = 8.0/375*My_ScreenW;
         [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.contentView.mas_left).offset(topMargin);
-            make.centerY.mas_equalTo(self.contentView.mas_centerY);
+            make.top.mas_equalTo(self.contentView.mas_top).offset(topMargin);
             make.height.mas_equalTo(20);
         }];
         
         [self.picImage mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.leftLabel.mas_left);
+            make.right.mas_equalTo(self.contentView.mas_right).offset(-topMargin);
             make.top.mas_equalTo(self.leftLabel.mas_bottom).offset(topMargin);
-            make.height.mas_equalTo(My_ScreenH*0.2);
+            make.height.mas_equalTo(My_ScreenH*0.4);
         }];
-        
         
     }
     return self;
+}
+
+- (void)setLabelAttributes:(UILabel *)label{
+    
+    label.numberOfLines = 0;
+    label.font = [UIFont fontWithName:My_RegularFontName size:16.0];
+    label.textColor = [UIColor darkGrayColor];
+    [label sizeToFit];
+    
 }
 
 - (void)loadDataWithModel:(RepairVO *)model{

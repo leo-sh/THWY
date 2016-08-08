@@ -189,15 +189,26 @@
 //弹出框代理函数
 - (void)confirm:(NSMutableArray *)reslult flag:(NSInteger)flag{
     
-    NSMutableString *cls = [NSMutableString string];
-
+    NSMutableString *clsName = [NSMutableString string];
+    NSMutableString *clsPath = [NSMutableString stringWithString:@""];
     
     for (NSIndexPath *indexpath in reslult) {
-        [cls appendString:[self.repaireClassArrayPublic[indexpath.row] class_name]];
+        if (![clsName isEqualToString:@""]) {
+            [clsName appendString:@","];
+            [clsPath appendString:@","];
+        }
+        [clsName appendString:[self.repaireClassArrayPublic[indexpath.row] class_name]];
+        [clsPath appendString:[self.repaireClassArrayPublic[indexpath.row] Id]];
     }
     UITableViewCell *cell = [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
     RepaireCategorysCell *newcell = (RepaireCategorysCell *)cell;
-    newcell.detailLabel.text = cls;
+    newcell.detailLabel.text = clsName;
+//    if ([self.repairVO.cls isEqualToString:@""]) {
+//        self.repairVO.cls = [NSString stringWithFormat:@"%@%@", self.repairVO.cls, clsPath];
+//    }else {
+//        self.repairVO.cls = [NSString stringWithFormat:@"%@,%@", self.repairVO.cls, clsPath];
+//    }
+    self.repairVO.cls = [NSString stringWithFormat:@"%@%@", self.repairVO.cls, clsPath];
     
 }
 
@@ -241,12 +252,12 @@
                 self.repairVO.call_phone = [(TextFieldCell *)cell textField].text;
                 break;
             }
-            case 4:{
-                if (![[[(RepaireCategorysCell *)cell detailLabel] text] isEqualToString:@""] && [[(RepaireCategorysCell *)cell detailLabel] text] != nil) {
-                    self.repairVO.cls = [NSString stringWithFormat:@"%@%@", self.repairVO.cls, [[(RepaireCategorysCell *)cell detailLabel] text]];
-                }
-                break;
-            }
+//            case 4:{
+//                if (![[[(RepaireCategorysCell *)cell detailLabel] text] isEqualToString:@""] && [[(RepaireCategorysCell *)cell detailLabel] text] != nil) {
+//                    self.repairVO.cls = [NSString stringWithFormat:@"%@%@", self.repairVO.cls, [[(RepaireCategorysCell *)cell detailLabel] text]];
+//                }
+//                break;
+//            }
             case 7:{
                 self.repairVO.repair_detail = [(DescribeCell *)cell textView].text;
                 break;

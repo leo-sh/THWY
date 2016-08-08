@@ -56,7 +56,13 @@
         self.phone = JSON[@"phone"];
         self.addr = JSON[@"addr"];
         self._st = JSON[@"_st"];
-        self.repair_task = [JSON[@"repair_task"] boolValue];
+        
+        if ([JSON[@"repair_task"] isKindOfClass:[NSDictionary class]]) {
+#pragma - mark TODO 字典类型解析
+        }else {
+            self.repair_task = [JSON[@"repair_task"] boolValue];
+        }
+        
         self.repair_admin_id_arr = JSON[@"repair_admin_id_arr"];
         self.classes_ids = JSON[@"classes_ids"];
         self.class_names = JSON[@"class_names"];

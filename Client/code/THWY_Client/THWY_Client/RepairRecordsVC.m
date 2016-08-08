@@ -35,8 +35,6 @@
 @property (assign, nonatomic) NSInteger selectIndex;
 @property (assign, nonatomic) int page;
 
-@property (strong, nonatomic) NSMutableArray *cells;
-
 @end
 
 @implementation RepairRecordsVC
@@ -46,7 +44,7 @@
     // Do any additional setup after loading the view.
     
     self.title = @"报修记录";
-    self.cells = [NSMutableArray array];
+    self.repairDataArray = [NSMutableArray array];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景2"]]];
     self.selectIndex = 0;
     self.page = 1;
@@ -57,7 +55,6 @@
 }
 
 - (void)getDataType:(NSInteger)type statusID:(NSString *)statusID page:(int)page more:(BOOL)more{
-    self.repairDataArray = [NSMutableArray array];
     
     [My_ServicesManager getRepairs:type page:page repairStatu:statusID onComplete:^(NSString *errorMsg, NSArray *list) {
        
@@ -90,6 +87,7 @@
             for (RepairVO *model in list) {
                 [self.repairDataArray addObject:model];
             }
+            
             if (self.switchFlag == 1) {
                 [self.tableView reloadData];
             }else if (self.switchFlag == 2){
@@ -223,10 +221,10 @@
     }
     
     //tableView
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.bgView.height+20, My_ScreenW-20, My_ScreenH-94-40-self.bgView.height) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.bgView.height+20, My_ScreenW-20, My_ScreenH-104-40-self.bgView.height) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = 300/667*My_ScreenH;
+    self.tableView.rowHeight = 300.0/667*My_ScreenH;
     self.tableView.sectionHeaderHeight = 0;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorColor = [UIColor grayColor];
@@ -237,7 +235,7 @@
     self.tableView2 = [[UITableView alloc] initWithFrame:CGRectMake(My_ScreenW-20, self.bgView2.height+20, My_ScreenW-20, self.tableView.height)  style:UITableViewStyleGrouped];
     self.tableView2.delegate = self;
     self.tableView2.dataSource = self;
-    self.tableView2.rowHeight = 300/667*My_ScreenH;
+    self.tableView2.rowHeight = 300.0/667*My_ScreenH;
 //    self.tableView2.sectionHeaderHeight = 0;
     self.tableView2.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView2.separatorColor = [UIColor grayColor];
@@ -252,6 +250,9 @@
     
     [self.tableView registerClass:[RecordeRepairingCell class] forCellReuseIdentifier:@"RecordeRepeiringCell"];
     [self.tableView2 registerClass:[RecordeRepairingCell class] forCellReuseIdentifier:@"RecordeRepeiringCell"];
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [self.tableView2 registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }
 
 - (void)switchLeftRight{
@@ -342,31 +343,24 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    NSInteger row = indexPath.row;
+    NSInteger row = indexPath.row;
     RecordeRepairingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordeRepeiringCell" forIndexPath:indexPath];
-//    [cell loadDataFromModel:self.repairDataArray[indexPath.row]];
     cell.vc = self;
+    [cell loadDataFromModel:self.repairDataArray[row]];
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return [tableView fd_heightForCellWithIdentifier:@"RecordeRepeiringCell" cacheByIndexPath:indexPath configuration:^(id cell) {
+//        [cell loadDataFromModel:self.repairDataArray[indexPath.row]];
+//    }];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
+    CGRect rect = [[self.repairDataArray[indexPath.row] detail] boundingRectWithSize:CGSizeMake(300, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     
-    RecordeRepairingCell * newcell = (RecordeRepairingCell *)cell;
-    newcell.vc = self;
-    [newcell loadDataFromModel:self.repairDataArray[indexPath.row]];
+    CGRect rect2 = [[self.repairDataArray[indexPath.row] classes_str] boundingRectWithSize:CGSizeMake(300, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     
+    return 220.0/667*My_ScreenH + rect.size.height +rect2.size.height;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-////    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-////    RecordeRepairingCell * newcell = (RecordeRepairingCell *)cell;
-////    return [newcell heightForCell];
-//    return 300/667*My_ScreenH;
-//}
-
-//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 360;
-//}
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 30)];
