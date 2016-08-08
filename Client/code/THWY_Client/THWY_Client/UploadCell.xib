@@ -52,12 +52,12 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传图片不能超过2M, 图片格式为jpg、png" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AI8-vG-UZk">
-                        <rect key="frame" x="22" y="59" width="250.5" height="16"/>
+                        <rect key="frame" x="22" y="60" width="232" height="14.5"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="100" constant="17" id="GaQ-Wv-GY3"/>
                             <constraint firstAttribute="width" priority="100" constant="394" id="bD8-5B-U3u"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>

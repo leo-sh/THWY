@@ -34,7 +34,6 @@
         self.payTypeLabel = [[UILabel alloc]init];
         self.priceLabel = [[UILabel alloc]init];
         
-        
         [self.contentView addSubview:self.estateLabel];
         [self.contentView addSubview:self.houseOwnerLabel];
         [self.contentView addSubview:self.AddressLabel];

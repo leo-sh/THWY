@@ -17,9 +17,25 @@
         self.owner_id = JSON[@"owner_id"];
         self.estate_id = JSON[@"estate_id"];
         self.house_id = JSON[@"house_id"];
-        self.pic = JSON[@"pic"];
-        self.vdo = JSON[@"vdo"];
-        self.detail = JSON[@"detail"];
+        if ([JSON[@"pic"] rangeOfString:@"http"].location != NSNotFound) {
+            self.pic = JSON[@"pic"];
+        }else
+        {
+            self.pic = [NSString stringWithFormat:@"%@%@",API_Prefix,JSON[@"pic"]];
+        }
+        
+        if ([JSON[@"vdo"] rangeOfString:@"http"].location != NSNotFound) {
+            self.vdo = JSON[@"vdo"];
+        }else
+        {
+            self.vdo = [NSString stringWithFormat:@"%@%@",API_Prefix,JSON[@"vdo"]];
+        }
+        if (JSON[@"repair_detail"]) {
+            self.detail = JSON[@"repair_detail"];
+        }else
+        {
+            self.detail = JSON[@"detail"];
+        }
         self.from_type = JSON[@"from_type"];
         
         self.repair_status = [[NSMutableArray alloc]init];
@@ -56,7 +72,13 @@
         self.phone = JSON[@"phone"];
         self.addr = JSON[@"addr"];
         self._st = JSON[@"_st"];
-        self.repair_task = [JSON[@"repair_task"] boolValue];
+        
+        if ([JSON[@"repair_task"] isKindOfClass:[NSDictionary class]]) {
+#pragma - mark TODO 字典类型解析
+        }else {
+            self.repair_task = [JSON[@"repair_task"] boolValue];
+        }
+        
         self.repair_admin_id_arr = JSON[@"repair_admin_id_arr"];
         self.classes_ids = JSON[@"classes_ids"];
         self.class_names = JSON[@"class_names"];

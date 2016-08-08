@@ -20,7 +20,12 @@
         }else if(JSON[@"id"]){
             self.st_id = JSON[@"id"];
         }
-        self.st_name = JSON[@"st_name"];
+        
+        if (JSON[@"st_name"]) {
+            self.st_name = JSON[@"st_name"];
+        }else if(JSON[@"repair_status_name"]){
+            self.st_name = JSON[@"repair_status_name"];
+        }
         self.ctime = JSON[@"ctime"];
     }
     

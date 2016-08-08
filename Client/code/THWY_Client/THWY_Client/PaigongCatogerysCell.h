@@ -10,4 +10,6 @@
 
 @interface PaigongCatogerysCell : UITableViewCell
 
+@property (assign, nonatomic) int flag;
+
 @end

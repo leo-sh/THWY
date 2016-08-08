@@ -40,6 +40,11 @@
     self.window.rootViewController = mainNav;
     [self.window makeKeyAndVisible];
     
+    
+    //设置svp默认样式
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleLight];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    
     return YES;
 }
 

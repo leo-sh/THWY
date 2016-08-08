@@ -13,9 +13,23 @@
 -(GroupVO* )initWithJSON:(NSDictionary *)JSON
 {
     if (self = [super init]) {
-        self.sector = JSON[@"sector"];
-        self.project = JSON[@"project"];
-        self.group = JSON[@"group"];
+        if (JSON[@"sector"]) {
+            self.sector = JSON[@"sector"];
+        }else if (JSON[@"9"]){
+            self.sector = JSON[@"9"];
+        }
+        
+        if (JSON[@"project"]) {
+            self.project = JSON[@"project"];
+        }else if (JSON[@"10"]){
+            self.project = JSON[@"10"];
+        }
+        
+        if (JSON[@"group"]) {
+            self.group = JSON[@"group"];
+        }else if (JSON[@"33"]){
+            self.group = JSON[@"33"];
+        }
     }
     
     return self;

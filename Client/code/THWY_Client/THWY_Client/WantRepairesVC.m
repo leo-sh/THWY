@@ -7,17 +7,16 @@
 //
 
 #import "WantRepairesVC.h"
-#import "Masonry.h"
-#import "UDManager.h"
-#import "TextFieldCell.h"
-#import "HouseSourceCell.h"
-#import "RepaireCategorysCell.h"
-#import "UploadCell.h"
-#import "DescribeCell.h"
-#import "PaigongCatogerysCell.h"
-#import "ProjectCell.h"
 
-@interface WantRepairesVC ()<UITableViewDelegate, UITableViewDataSource>
+#import "WantRepairTableViewDelegate.h"
+#import "WantRepairTableView1.h"
+#import "WantRepairTableView2.h"
+
+#import "AlertTableView.h"
+#import "RepairClassVO.h"
+#import "AddRepairVO.h"
+
+@interface WantRepairesVC ()<WantRepairTableViewDelegate>
 
 @property (strong, nonatomic) UIButton *switchButton;
 @property (strong, nonatomic) UILabel *leftLabel;
@@ -26,12 +25,17 @@
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 
-@property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) UITableView *tableView2;
+@property (strong, nonatomic) WantRepairTableView1 *tableView;
+@property (strong, nonatomic) WantRepairTableView2 *tableView2;
+@property (strong, nonatomic) AlertTableView *alertView;
 
 @property (strong, nonatomic) NSArray *iconCellNames;
 @property (strong, nonatomic) NSArray *identityStrings;
 
+@property (strong, nonatomic) NSMutableArray *repaireClassArrayPay;
+@property (strong, nonatomic) NSMutableArray *repaireClassArrayFree;
+
+@property (strong, nonatomic) NSMutableArray *repaireClassArrayPublic;
 @end
 
 @implementation WantRepairesVC
@@ -40,6 +44,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.switchFlag = 1;
+    [self getData];
     [self initNVBar];
     [self initViews];
 }
@@ -52,7 +58,6 @@
 
 - (void)initViews{
     
-    self.switchFlag = 1;
     self.switchButton = [[UIButton alloc] init];
     [self.switchButton setBackgroundImage:[UIImage imageNamed:@"repaire_切换标签左"] forState:UIControlStateNormal];
     [self.switchButton addTarget:self action:@selector(switchLeftRight) forControlEvents:UIControlEventTouchUpInside];
@@ -87,23 +92,12 @@
         make.centerY.mas_equalTo(self.switchButton.mas_centerY);
     }];
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-20, My_ScreenH-94-40)];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.tableView.separatorColor = [UIColor grayColor];
-    self.tableView.bounces = NO;
-    self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView = [[WantRepairTableView1 alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-20, My_ScreenH-94-40) style:UITableViewStylePlain];
+    self.tableView.repairDelegate = self;
     
-    self.tableView2 = [[UITableView alloc] initWithFrame:CGRectMake(My_ScreenW-20, 0, My_ScreenW-20, My_ScreenH-94-40)];
-    self.tableView2.delegate = self;
-    self.tableView2.dataSource = self;
-    self.tableView2.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.tableView2.separatorColor = [UIColor grayColor];
-    self.tableView2.bounces = NO;
-    self.tableView2.showsVerticalScrollIndicator = NO;
-    
-    
+    self.tableView2 = [[WantRepairTableView2 alloc] initWithFrame:CGRectMake(My_ScreenW-20, 0, My_ScreenW-20, My_ScreenH-94-40) style:UITableViewStylePlain];
+    self.tableView2.repairDelegate = self;
+
     self.scrollView = [[UIScrollView alloc] init];
     self.scrollView.contentSize = CGSizeMake((My_ScreenW-20)*2.0, My_ScreenH-94);
     self.scrollView.showsVerticalScrollIndicator = NO;
@@ -121,23 +115,9 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-10);
     }];
     
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"TextFieldCell" bundle:nil] forCellReuseIdentifier:@"textFieldCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"HouseSourceCell" bundle:nil] forCellReuseIdentifier:@"HouseSourceCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"RepaireCategorysCell" bundle:nil] forCellReuseIdentifier:@"RepaireCategorysCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"UploadCell" bundle:nil] forCellReuseIdentifier:@"UploadCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"DescribeCell" bundle:nil] forCellReuseIdentifier:@"DescribeCell"];
-    
-    [self.tableView2 registerNib:[UINib nibWithNibName:@"PaigongCatogerysCell" bundle:nil] forCellReuseIdentifier:@"PaigongCatogerysCell"];
-    [self.tableView2 registerNib:[UINib nibWithNibName:@"ProjectCell" bundle:nil] forCellReuseIdentifier:@"ProjectCell"];
-    [self.tableView2 registerNib:[UINib nibWithNibName:@"TextFieldCell" bundle:nil] forCellReuseIdentifier:@"textFieldCell"];
-    [self.tableView2 registerNib:[UINib nibWithNibName:@"HouseSourceCell" bundle:nil] forCellReuseIdentifier:@"HouseSourceCell"];
-    [self.tableView2 registerNib:[UINib nibWithNibName:@"UploadCell" bundle:nil] forCellReuseIdentifier:@"UploadCell"];
-    [self.tableView2 registerNib:[UINib nibWithNibName:@"DescribeCell" bundle:nil] forCellReuseIdentifier:@"DescribeCell"];
-    [self.tableView2 registerNib:[UINib nibWithNibName:@"RepaireCategorysCell" bundle:nil] forCellReuseIdentifier:@"RepaireCategorysCell"];
-    
 }
 
+//业主,公共转换
 - (void)switchLeftRight{
 
     if (self.switchFlag == 1) {
@@ -158,115 +138,86 @@
 
 }
 
-#pragma mark - tabelViewDelegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 8;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSInteger row = indexPath.row;
-    switch (row) {
-        case 0:{
-            if ([tableView isEqual:self.tableView2]) {
-                PaigongCatogerysCell *cell = (PaigongCatogerysCell *)[tableView dequeueReusableCellWithIdentifier:@"PaigongCatogerysCell" forIndexPath:indexPath];
-                return cell;
-            } else {
-                TextFieldCell *cell = (TextFieldCell *)[tableView dequeueReusableCellWithIdentifier:@"textFieldCell" forIndexPath:indexPath];
-                cell.icon.image = [UIImage imageNamed:@"repaire_姓名"];
-                cell.label.text = @"业主名称:";
-                cell.textField.text = [[[UDManager getUD] getUser] real_name];
-                return cell;
-            }
-            break;
+//获取维修类型
+- (void)getData{
+    [My_ServicesManager getRepairClasses:1 onComplete:^(NSString *errorMsg, NSDictionary *list) {
+        
+        if (errorMsg) {
+            [SVProgressHUD setMinimumDismissTimeInterval:1.5];
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+            return ;
         }
-        case 1:{
-            if ([tableView isEqual:self.tableView2]) {
-                ProjectCell *cell = (ProjectCell *)[tableView dequeueReusableCellWithIdentifier:@"ProjectCell" forIndexPath:indexPath];
-                return cell;
-            } else {
-                TextFieldCell *cell = (TextFieldCell *)[tableView dequeueReusableCellWithIdentifier:@"textFieldCell" forIndexPath:indexPath];
-                cell.icon.image = [UIImage imageNamed:@"repaire_call"];
-                cell.label.text = @"联系电话:";
-                cell.textField.text = [[[UDManager getUD] getUser] cellphone];
-                return cell;
-            }
-            break;
+        
+        RepairClassVO *pay = list[@"for_pay"];
+        RepairClassVO *free = list[@"for_free"];
+        
+        for (RepairClassVO *model in pay.child) {
+            [self.repaireClassArrayPay addObject:model];
         }
-        case 2:{
-            if ([tableView isEqual:self.tableView2]) {
-                TextFieldCell *cell = (TextFieldCell *)[tableView dequeueReusableCellWithIdentifier:@"textFieldCell" forIndexPath:indexPath];
-                cell.icon.image = [UIImage imageNamed:@"repaire_姓名"];
-                cell.label.text = @"报修人姓名:";
-                cell.textField.text = [[[UDManager getUD] getUser] real_name];
-                return cell;
-            } else {
-                HouseSourceCell *cell = (HouseSourceCell *)[tableView dequeueReusableCellWithIdentifier:@"HouseSourceCell" forIndexPath:indexPath];
-                return cell;
-            }
+        
+        for (RepairClassVO *model in free.child) {
+            [self.repaireClassArrayFree addObject:model];
         }
-        case 3:{
-            if ([tableView isEqual:self.tableView2]) {
-                TextFieldCell *cell = (TextFieldCell *)[tableView dequeueReusableCellWithIdentifier:@"textFieldCell" forIndexPath:indexPath];
-                cell.icon.image = [UIImage imageNamed:@"repaire_call"];
-                cell.label.text = @"报修人电话:";
-                cell.textField.text = [[[UDManager getUD] getUser] cellphone];
-                return cell;
-            } else {
-                
-                RepaireCategorysCell *cell = (RepaireCategorysCell *)[tableView dequeueReusableCellWithIdentifier:@"RepaireCategorysCell" forIndexPath:indexPath];
-                cell.icon.image = [UIImage imageNamed:@"repaire_有偿保修"];
-                cell.label.text = @"有偿报修类别:";
-                return cell;
-            }
-        }
-        case 4:{
-            RepaireCategorysCell *cell = (RepaireCategorysCell *)[tableView dequeueReusableCellWithIdentifier:@"RepaireCategorysCell" forIndexPath:indexPath];
-            cell.icon.image = [UIImage imageNamed:@"repaire_保修类别"];
-            if ([tableView isEqual:self.tableView2]) {
-                cell.label.text = @"报修类别:";
-            } else {
-                cell.label.text = @"无偿报修类别:";
-            }
-            return cell;
-        }
-        case 5:{
-            UploadCell *cell = (UploadCell *)[tableView dequeueReusableCellWithIdentifier:@"UploadCell" forIndexPath:indexPath];
-            cell.icon.image = [UIImage imageNamed:@"repaire_图片"];
-            cell.label.text = @"上传图片:";
-            cell.descLabel.text = @"上传图片不能超过2M, 图片格式为jpg, png";
-            return cell;
-        }
-        case 6:{
-            UploadCell *cell = (UploadCell *)[tableView dequeueReusableCellWithIdentifier:@"UploadCell" forIndexPath:indexPath];
-            cell.icon.image = [UIImage imageNamed:@"repaire_视频"];
-            cell.label.text = @"上传视频:";
-            cell.descLabel.text = @"上传视频不能超过8M, 视频格式为avi, pge, swf";
-            return cell;
-        }
-        case 7:{
-            DescribeCell *cell = (DescribeCell *)[tableView dequeueReusableCellWithIdentifier:@"DescribeCell" forIndexPath:indexPath];
-            return cell;
-        }
-        default:
-            break;
-    }
-   
+        self.tableView.repaireClassArrayPay = self.repaireClassArrayPay;
+        self.tableView.repaireClassArrayFree = self.repaireClassArrayFree;
+        [self.tableView reloadData];
+    }];
     
-    return nil;
+    [My_ServicesManager getRepairClasses:2 onComplete:^(NSString *errorMsg, NSDictionary *list) {
+        if (errorMsg) {
+            [SVProgressHUD setMinimumDismissTimeInterval:1.5];
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+            return ;
+        }
+        
+        RepairClassVO *public = list[@"public"];
+        for (RepairClassVO *publicVO in public.child) {
+            [self.repaireClassArrayPublic addObject:publicVO];
+        }
+        self.tableView2.repaireClassArrayPublic = self.repaireClassArrayPublic;
+        [self.tableView2 reloadData];
+    }];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-   
-    if (indexPath.row == 5 || indexPath.row == 6) {
-        return 90.0/713*My_ScreenH;
-    }else if (indexPath.row == 7){
-        return 300.0/713*My_ScreenH;
+#pragma mark - getters
+- (NSMutableArray *)repaireClassArrayFree{
+    
+    if (!_repaireClassArrayFree) {
+        _repaireClassArrayFree = [NSMutableArray array];
     }
-    return 60.0/713*My_ScreenH;
+    return _repaireClassArrayFree;
 }
 
+- (NSMutableArray *)repaireClassArrayPay{
+    
+    if (!_repaireClassArrayPay) {
+        _repaireClassArrayPay = [NSMutableArray array];
+    }
+    return _repaireClassArrayPay;
+}
+
+- (NSMutableArray *)repaireClassArrayPublic{
+    if (!_repaireClassArrayPublic) {
+        _repaireClassArrayPublic = [NSMutableArray array];
+    }
+    return _repaireClassArrayPublic;
+}
+
+#pragma mark - 键盘隐藏
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
+}
+
+#pragma mark - WantRepairDelegate
+- (void)commitComplete:(NSString *)errorMsg{
+    
+    [SVProgressHUD setMinimumDismissTimeInterval:1.0];
+    if (errorMsg) {
+        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"报修提交失败\n%@",errorMsg]];
+    }else{
+        [SVProgressHUD showSuccessWithStatus:@"报修提交成功"];
+    }
+    
 }
 
 #pragma mark - MemoryWarning
