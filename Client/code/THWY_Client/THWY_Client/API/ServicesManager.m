@@ -1400,18 +1400,18 @@
 #pragma mark 测试用函数
 -(void)test
 {
-//    if ([self isLogin]) {
-//        [self getRepairs:Owner page:0 repairStatu:nil onComplete:^(NSString *errorMsg, NSArray *list) {
-//            
-//        }];
-//    }else
-//    {
-//        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {
-//            if (errorMsg == nil) {
-//                [self test];
-//            }
-//        }];
-//    }
+    if ([self isLogin]) {
+        [self getFees:0 year:0 feeState:Part onComplete:^(NSString *errorMsg, NSArray *list) {
+            
+        }];
+    }else
+    {
+        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {
+            if (errorMsg == nil) {
+                [self test];
+            }
+        }];
+    }
     
     
 }
