@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class HouseVO;
 @interface BlueRedioButton : UIButton
 @property BOOL chooseStatu;
-
+@property HouseVO *house;
 - (void)initDefaultImageName:(NSString *)defaultImageName choosedImageName:(NSString *)choosedImageName title:(NSString *)title;
+- (void)initDefaultImageName:(NSString *)defaultImageName choosedImageName:(NSString *)choosedImageName;
 - (void)setChoosed;
 - (void)click;
 @end

@@ -46,8 +46,7 @@
     [houseSource addSubview:houseLabel];
     
     self.houseSourceBtn = [[BlueRedioButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(houseLabel.frame), 0, self.width - CGRectGetMaxX(houseLabel.frame), 30)];
-    
-    [self.houseSourceBtn initDefaultImageName:@"repaire_unselected" choosedImageName:@"repaire_selected" title:@""];
+    [self.houseSourceBtn initDefaultImageName:@"repaire_unselected"  choosedImageName:@"repaire_selected"];
     [houseSource addSubview:self.houseSourceBtn];
     
     self.person = [[UILabel alloc]initWithFrame:CGRectMake(10,houseSource.bottom, self.width, 30)];
@@ -105,6 +104,7 @@
     self.phone.text = [NSString stringWithFormat:@"投诉人电话：%@",UserVO.cellphone];
     HouseVO * house = [UserVO.houses firstObject];
     NSString *addressString = [NSString stringWithFormat:@"%@%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
+    self.houseSourceBtn.house = house;
     [self.houseSourceBtn setTitle:addressString forState:UIControlStateNormal];
 }
 
