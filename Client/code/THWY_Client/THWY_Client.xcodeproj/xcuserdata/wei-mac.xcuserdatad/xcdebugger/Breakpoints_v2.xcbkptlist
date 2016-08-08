@@ -57,7 +57,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1323"
             endingLineNumber = "1323"
-            landmarkName = "-addPublicRepair:onComplete:"
+            landmarkName = "-getRepairClasses:onComplete:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

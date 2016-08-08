@@ -328,13 +328,48 @@
         return;
     }
     
-    [SVProgressHUD showWithStatus:@"数据上传中..."];
+    if (![self.repairVO.videoPath isEqualToString:@""]){
     
-    [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
-        
-        [self.repairDelegate commitComplete:errorMsg];
-        
-    }];
+        [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+        [[AFNetworkReachabilityManager sharedManager ] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+            switch (status) {
+                case -1:
+                    NSLog(@"未知网络");
+                    break;
+                case 0:
+                    NSLog(@"网络不可达");
+                    break;
+                case 1:{
+                    NSLog(@"GPRS网络");
+                    TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"当前处于非WiFi状态" message:@"你确定上传视频吗?"];
+                    [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancle handler:^(TYAlertAction *action) {
+                        
+                    }]];
+                    
+                    [alertView addAction:[TYAlertAction actionWithTitle:@"确定" style:TYAlertActionStyleDestructive handler:^(TYAlertAction *action) {
+                        [SVProgressHUD showWithStatus:@"数据上传中..."];
+                        
+                        [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
+                            
+                            [self.repairDelegate commitComplete:errorMsg];
+                            
+                        }];
+                        
+                    }]];
+                    
+                    // first way to show ,use UIView Category
+                    [alertView showInWindowWithOriginY:200 backgoundTapDismissEnable:YES];
+                    
+                    break;
+                }
+                case 2:
+                    NSLog(@"wifi网络");
+                    break;
+                default:
+                    break;
+            }
+        }];
+    }
 
     
 }
