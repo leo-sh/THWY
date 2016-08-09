@@ -69,6 +69,7 @@
 		94BF711C1D5446A500EF1A8D /* RepairTaskVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF711B1D5446A500EF1A8D /* RepairTaskVO.m */; };
 		94C040C81D4EEAC300E23969 /* NoticVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C040C71D4EEAC300E23969 /* NoticVO.m */; };
 		94C040CB1D4F128B00E23969 /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C040CA1D4F128B00E23969 /* AdVO.m */; };
+		94DED18B1D596BE7004AA1CD /* libUMessage_Sdk_1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DED1891D596BE7004AA1CD /* libUMessage_Sdk_1.3.0.a */; };
 		94E5DAD61D588A7000300585 /* MsgVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5DAD51D588A7000300585 /* MsgVO.m */; };
 		94F2356A1D572B2900B829FB /* RepairStatisticVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F235691D572B2900B829FB /* RepairStatisticVO.m */; };
 		94F2356D1D57339C00B829FB /* TaskVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F2356C1D57339C00B829FB /* TaskVO.m */; };
@@ -201,6 +202,8 @@
 		94C040C71D4EEAC300E23969 /* NoticVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticVO.m; sourceTree = "<group>"; };
 		94C040C91D4F128B00E23969 /* AdVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdVO.h; sourceTree = "<group>"; };
 		94C040CA1D4F128B00E23969 /* AdVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdVO.m; sourceTree = "<group>"; };
+		94DED1891D596BE7004AA1CD /* libUMessage_Sdk_1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.3.0.a; sourceTree = "<group>"; };
+		94DED18A1D596BE7004AA1CD /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		94E5DAD41D588A7000300585 /* MsgVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgVO.h; sourceTree = "<group>"; };
 		94E5DAD51D588A7000300585 /* MsgVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgVO.m; sourceTree = "<group>"; };
 		94F235681D572B2900B829FB /* RepairStatisticVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticVO.h; sourceTree = "<group>"; };
@@ -214,6 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94DED18B1D596BE7004AA1CD /* libUMessage_Sdk_1.3.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +365,8 @@
 		5B2571D01D47169E00CB4167 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				94DED1891D596BE7004AA1CD /* libUMessage_Sdk_1.3.0.a */,
+				94DED18A1D596BE7004AA1CD /* UMessage.h */,
 				5B25722B1D47178500CB4167 /* SDWebImage */,
 				5B2571E51D4716F800CB4167 /* AFNetworking */,
 			);
@@ -501,6 +507,12 @@
 				TargetAttributes = {
 					5BFFCE371D41B9C40066B1B9 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = XFDA7223K5;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -711,7 +723,11 @@
 				INFOPLIST_FILE = THWY_Server/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "SXZ.THWY-Server";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/THWY_Server",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.YTWY.sever;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -726,7 +742,11 @@
 				INFOPLIST_FILE = THWY_Server/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "SXZ.THWY-Server";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/THWY_Server",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.YTWY.sever;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
