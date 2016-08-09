@@ -56,27 +56,14 @@
 
 - (void)getDataType:(NSInteger)type statusID:(NSString *)statusID page:(int)page more:(BOOL)more{
     
+    [SVProgressHUD showWithStatus:@"数据加载中..."];
     [My_ServicesManager getRepairs:type page:page repairStatu:statusID onComplete:^(NSString *errorMsg, NSArray *list) {
-       
+        
         if (errorMsg) {
             [SVProgressHUD setMinimumDismissTimeInterval:1.5];
             [SVProgressHUD showErrorWithStatus:errorMsg];
             
         }else {
-            
-            if (list.count == 0) {
-                if (self.switchFlag == 1) {
-                    [self.tableView.mj_header endRefreshing];
-                }else{
-                    [self.tableView2.mj_header endRefreshing];
-                }
-                
-                [SVProgressHUD setMinimumDismissTimeInterval:1.0];
-                [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
-                
-                return ;
-            }
-            
             if (!more) {
                 //非加载更多
                 [self.repairDataArray removeAllObjects];
@@ -84,6 +71,18 @@
                 self.page++;
             }
             
+            if (list && list.count == 0) {
+//                if (self.switchFlag == 1) {
+//                    [self.tableView.mj_header endRefreshing];
+//                }else{
+//                    [self.tableView2.mj_header endRefreshing];
+//                }
+                
+                [SVProgressHUD setMinimumDismissTimeInterval:1.0];
+                [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
+            
+            }
+
             for (RepairVO *model in list) {
                 [self.repairDataArray addObject:model];
             }
@@ -94,15 +93,16 @@
                 [self.tableView2 reloadData];
             }
             
+            [SVProgressHUD dismiss];
         }
-        
+      
         if (self.switchFlag == 1) {
             [self.tableView.mj_header endRefreshing];
-            [self.tableView.mj_footer endRefreshing];
+//            [self.tableView.mj_footer endRefreshing];
 
         }else{
             [self.tableView2.mj_header endRefreshing];
-            [self.tableView2.mj_footer endRefreshing];
+//            [self.tableView2.mj_footer endRefreshing];
 
         }
         
@@ -308,6 +308,7 @@
 
 }
 
+//下拉刷新
 - (void)loadMoreData{
     
     if (self.switchFlag == 1) {
@@ -315,10 +316,17 @@
     }else{
         [self.tableView2.mj_header beginRefreshing];
     }
-    [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%ld", self.selectIndex+1] page:self.page+1 more:YES];
+    
+    if (self.selectIndex == 0){
+        [self getDataType:self.switchFlag statusID:@"0" page:self.page+1 more:YES];
+    }else{
+        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%ld", self.selectIndex+1] page:self.page+1 more:YES];
+    }
+    
     
 }
 
+//更换状态
 - (void)btnOnclicked:(UIButton *)sender{
     UIButton *btn = nil;
     if (self.switchFlag == 1){
@@ -332,7 +340,12 @@
     [btn setImage:nil forState:UIControlStateNormal];
     [sender setImage:[UIImage imageNamed:@"records_按下"] forState:UIControlStateNormal];
     
-    [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%ld",self.selectIndex+1] page:1 more:NO];
+    if (self.selectIndex == 0){
+        [self getDataType:self.switchFlag statusID:@"0" page:1 more:NO];
+    }else{
+        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%ld", self.selectIndex+1] page:1 more:NO];
+    }
+
 }
 
 #pragma mark - tabelViewDelegate
@@ -353,9 +366,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return [tableView fd_heightForCellWithIdentifier:@"RecordeRepeiringCell" cacheByIndexPath:indexPath configuration:^(id cell) {
-//        [cell loadDataFromModel:self.repairDataArray[indexPath.row]];
-//    }];
+
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
     CGRect rect = [[self.repairDataArray[indexPath.row] detail] boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     
@@ -386,9 +397,14 @@
     
 }
 
+//查看更多
 - (void)loadMoreData:(UIButton *)button{
     
-     [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%ld", self.selectIndex+1] page:self.page+1 more:YES];
+    if (self.selectIndex == 0){
+        [self getDataType:self.switchFlag statusID:@"0" page:self.page+1 more:YES];
+    }else{
+        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%ld", self.selectIndex+1] page:self.page+1 more:YES];
+    }
     
 }
 
