@@ -23,6 +23,7 @@
 #import "RepairStatisticVO.h"
 #import "RepairVO.h"
 #import "TaskVO.h"
+#import "MsgVO.h"
 
 @interface ServicesManager : NSObject
 
@@ -384,6 +385,25 @@
  *  @param onComplete 获取完成回调block
  */
 -(void)endTask:(NSString *)taskId isPublic:(BOOL)isPublic onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+#pragma mark 聊天相关API
+/**
+ *  发送消息
+ *
+ *  @param friendId   对方ID
+ *  @param msg        消息内容
+ *  @param onComplete 发送完成回调block
+ */
+-(void)sendMsg:(NSString *)friendId msg:(NSString *)msg onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+/**
+ *  获取聊天内容
+ *
+ *  @param friendId   对方ID
+ *  @param endId      聊天ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getMsgs:(NSString *)friendId endId:(NSString *)endId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;
