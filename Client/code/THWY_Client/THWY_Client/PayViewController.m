@@ -86,7 +86,7 @@
     search.backgroundColor = My_NAV_BG_Color;
     
     [search setTitle:@"查询" forState:UIControlStateNormal];
-    [search addTarget:search action:@selector(clickSearchBtn) forControlEvents:UIControlEventTouchUpInside];
+    [search addTarget:self action:@selector(clickSearchBtn) forControlEvents:UIControlEventTouchUpInside];
     [searchView addSubview:search];
     
     [self.view addSubview:searchView];
