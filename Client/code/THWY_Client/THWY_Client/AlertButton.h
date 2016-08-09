@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AlertTableView2.h"
 @interface AlertButton : UIButton
 @property BOOL openStatu;
+@property AlertTableView2 *alertView;
+@property NSString *postID;
+- (void)setGetDataMethod:(GetDataMethod)method OriginY:(CGFloat)y OriginX:(CGFloat)x;
 @end

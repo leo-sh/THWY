@@ -8,7 +8,9 @@
 
 #import "AlertView.h"
 #import "BlueRedioButton.h"
+#import "AlertButton.h"
 @interface ComplainAlertView : AlertView
 @property BlueRedioButton *houseSourceBtn;
+@property AlertButton *typeBtn;
 - (void)updateWithComplainVo:(UserVO *)UserVO;
 @end

@@ -7,9 +7,12 @@
 //
 
 #import "AlertButton.h"
-@interface AlertButton()
+@interface AlertButton()<AlertTabelViewDelegate>
 @property UIImage *defualtImage;
 @property UIImage *openedImage;
+@property int method;
+@property CGFloat frameY;
+@property CGFloat frameX;
 @end
 @implementation AlertButton
 
@@ -47,6 +50,7 @@
         
         self.titleLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
         [self setImage:[UIImage imageNamed:@"repaire_下"] forState:UIControlStateNormal];
         self.layer.borderWidth = 1;
         self.adjustsImageWhenHighlighted = NO;
@@ -57,14 +61,41 @@
 
 - (void)click
 {
-    if (self.openStatu) {
-        [self setImage:self.openedImage forState:UIControlStateNormal];
+//    if (self.openStatu) {
+//        [self setImage:self.openedImage forState:UIControlStateNormal];
+//    }
+//    else
+//    {
+//        [self setImage:self.defualtImage forState:UIControlStateNormal];
+//    }
+//    self.openStatu = !self.openStatu;
+    
+    self.alertView = [[AlertTableView2 alloc]initWithNumber:self.method];
+    
+    self.alertView.AlertDelegate = self;
+    
+    if (self.frameY == 0 && self.frameX == 0) {
+        
+        [self.alertView showCenter];
     }
     else
     {
-        [self setImage:self.defualtImage forState:UIControlStateNormal];
+        [self.alertView showOriginY:self.frameY OriginX:self.frameX];
     }
-    self.openStatu = !self.openStatu;
+    
+}
+
+- (void)setGetDataMethod:(GetDataMethod)method OriginY:(CGFloat)y OriginX:(CGFloat)x
+{
+    self.method = method;
+    self.frameX = x;
+    self.frameY = y;
+}
+
+- (void)returnData:(NSArray *)array
+{
+    [self setTitle:array[0] forState:UIControlStateNormal];
+    self.postID = array[1];
     
 }
 

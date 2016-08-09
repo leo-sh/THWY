@@ -7,8 +7,6 @@
 //
 
 #import "ComplainAlertView.h"
-#import "BlueRedioButton.h"
-#import "AlertButton.h"
 @interface ComplainAlertView()
 @property UILabel *person;
 @property UILabel *phone;
@@ -70,10 +68,12 @@
     
     CGFloat boderspace = 2;
     
-    AlertButton *typeBtn = [[AlertButton alloc]initWithFrame:CGRectMake(complainLabel.right + boderspace , boderspace, 150, 26)];
-    [typeBtn setTitle:@"请选择投诉类型" forState:UIControlStateNormal];
+    self.typeBtn = [[AlertButton alloc]initWithFrame:CGRectMake(complainLabel.right + boderspace , boderspace, 150, 26)];
+    [self.typeBtn setTitle:@"请选择投诉类型" forState:UIControlStateNormal];
     
-    [complainTypeView addSubview:typeBtn];
+    [self.typeBtn setGetDataMethod:GetComplainType OriginY:0 OriginX:0];
+    
+    [complainTypeView addSubview:self.typeBtn];
     
 //    self.textView = [[UITextView alloc]initWithFrame:
     self.textView.frame = CGRectMake(10, complainTypeView.bottom, self.width - 20, 100);

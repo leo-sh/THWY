@@ -15,6 +15,11 @@
 @interface PayViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property UITableView *tableView;
 @property NSArray *data;
+@property AlertButton *chooseYearBtn;
+@property AlertButton *chooseStatuBtn;
+@property int page;
+@property int year;
+@property int statu;
 @end
 
 @implementation PayViewController
@@ -23,19 +28,23 @@
     [super viewDidLoad];
     [self ViewInitSetting];
     [self getData];
+    [self createUI];
     // Do any additional setup after loading the view.
 }
 
 - (void)ViewInitSetting
 {
     self.title = @"缴费台账";
+    self.page = 1;
+    self.year = 0;
+    self.statu = All;
     //    [self.navigationController pushViewController:[[PayInfoViewController alloc]init] animated:YES];
 }
 
 - (void)getData
 {    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
 
-    [[ServicesManager getAPI]getFees:1 year:0 feeState:All onComplete:^(NSString *errorMsg, NSArray *list) {
+    [[ServicesManager getAPI]getFees:self.page year:self.year feeState:self.statu onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg) {
             NSLog(@"%@",errorMsg);
@@ -43,7 +52,6 @@
         self.data = list;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self createUI];
             [self.tableView reloadData];
             [SVProgressHUD dismiss];
 
@@ -57,24 +65,28 @@
     //创建搜索视图
     UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width,40)];
     
-    AlertButton *chooseYearBtn = [[AlertButton alloc]initWithFrame:CGRectMake(5, 5, self.view.width * 0.35 , 30)];
+    self.chooseYearBtn = [[AlertButton alloc]initWithFrame:CGRectMake(5, 5, self.view.width * 0.35 , 30)];
     
-    [chooseYearBtn setTitle:@"选择年份" forState:UIControlStateNormal];
+    [self.chooseYearBtn setTitle:@"选择年份" forState:UIControlStateNormal];
     
-    [searchView addSubview:chooseYearBtn];
+    [self.chooseYearBtn setGetDataMethod:GetYear OriginY:66 OriginX:20];
     
-    AlertButton *chooseStatuBtn = [[AlertButton alloc]initWithFrame:CGRectMake(chooseYearBtn.right + 5, 5, self.view.width * 0.35, 30)];
+    [searchView addSubview:self.chooseYearBtn];
     
-    [chooseStatuBtn setTitle:@"选择状态" forState:UIControlStateNormal];
+    self.chooseStatuBtn = [[AlertButton alloc]initWithFrame:CGRectMake(self.chooseYearBtn.right + 5, 5, self.view.width * 0.35, 30)];
     
-    [searchView addSubview:chooseStatuBtn];
+    [self.chooseStatuBtn setGetDataMethod:GetPayStatu OriginY:66 OriginX:self.chooseStatuBtn.left + 20];
     
-    UIButton *search = [[UIButton alloc]initWithFrame:CGRectMake(chooseStatuBtn.right + 5, 5, self.view.width - chooseStatuBtn.right - 10, 30)];
+    [self.chooseStatuBtn setTitle:@"选择状态" forState:UIControlStateNormal];
+    
+    [searchView addSubview:self.chooseStatuBtn];
+    
+    UIButton *search = [[UIButton alloc]initWithFrame:CGRectMake(self.chooseStatuBtn.right + 5, 5, self.view.width - self.chooseStatuBtn.right - 10, 30)];
     
     search.backgroundColor = My_NAV_BG_Color;
     
     [search setTitle:@"查询" forState:UIControlStateNormal];
-    
+    [search addTarget:search action:@selector(clickSearchBtn) forControlEvents:UIControlEventTouchUpInside];
     [searchView addSubview:search];
     
     [self.view addSubview:searchView];
@@ -125,7 +137,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void)clickSearchBtn
+{
+    self.year = [self.chooseYearBtn.postID intValue];
+    self.statu = [self.chooseStatuBtn.postID intValue];
+    
+    [self getData];
+}
 
 /*
  #pragma mark - Navigation

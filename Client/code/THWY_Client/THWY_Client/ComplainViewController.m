@@ -76,6 +76,7 @@
         if (self.data) {
             self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
                 self.pageNumber = 1;
+                [self.data removeAllObjects];
                 [self getData];
             }];
             self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
@@ -237,7 +238,7 @@
         ComplaintVO *postItem = [[ComplaintVO alloc]init];
         UserVO *user = [[UDManager getUD] getUser];
         postItem.complaint_person = user.real_name;
-        postItem.complaint_type = @"房屋管理类";
+        postItem.complaint_type = self.alertview.typeBtn.postID;
         postItem.complaint_phone = user.cellphone;
         NSLog(@"%@",self.alertview.houseSourceBtn.house)
         postItem.house_id = self.alertview.houseSourceBtn.house.Id;
