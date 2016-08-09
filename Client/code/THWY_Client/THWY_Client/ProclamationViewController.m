@@ -42,16 +42,25 @@
 
     [[ServicesManager getAPI] getNotes:self.pageNumber onComplete:^(NSString *errorMsg, NSArray *list) {
         
-        NSLog(@"%@",list);
-        
-        [self.data addObjectsFromArray:list];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
+        if (list.count == 0 && errorMsg == nil) {
             [SVProgressHUD dismiss];
-            [self.tableView.mj_header endRefreshing];
-            [self.tableView.mj_footer endRefreshing];
-        });
+            [SVProgressHUD setMinimumDismissTimeInterval:1];
+            [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
+
+        }
+        else
+        {
+            NSLog(@"%@",list);
+            
+            [self.data addObjectsFromArray:list];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [SVProgressHUD dismiss];
+                [self.tableView.mj_header endRefreshing];
+                [self.tableView.mj_footer endRefreshing];
+            });
+        }
     }];
 }
 
@@ -67,6 +76,7 @@
     if (self.data) {
         self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             self.pageNumber = 1;
+            [self.data removeAllObjects];
             [self getData];
         }];
         self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{

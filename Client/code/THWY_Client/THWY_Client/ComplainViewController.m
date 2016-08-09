@@ -45,7 +45,7 @@
 - (void)getData
 {    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
 
-    [[ServicesManager getAPI] getComplaints:1 onComplete:^(NSString *errorMsg, NSArray *list) {
+    [[ServicesManager getAPI] getComplaints:self.pageNumber onComplete:^(NSString *errorMsg, NSArray *list) {
         [self.data addObjectsFromArray:list];
         for (ComplaintVO *temp in list) {
             NSArray *array = @[temp.complaint_type_name,temp.estate,temp.complaint_person,temp.complaint_phone,temp.ctime,temp.Id];
@@ -93,16 +93,35 @@
             make.top.mas_equalTo(10);
             make.left.mas_equalTo(10);
             make.right.mas_equalTo(-10);
-            make.bottom.mas_equalTo(-10);
+            make.bottom.mas_equalTo(-80);
         }];
-    }
-    else
-    {
-        [self.view addSubview:[self createAddBtn:self.view]];
-    }
-    
-    }
+        
+        UIView *view = [[UIView alloc]init];
+        
+        
+        view.backgroundColor = [UIColor whiteColor];
+        view.alpha = 0.8;
+        [self.view addSubview:view];
 
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.equalTo(self.tableView.mas_bottom).with.offset(10);
+            make.bottom.mas_equalTo(0);
+            make.left.mas_equalTo(0);
+            make.right.mas_equalTo(0);
+            
+        }];
+        
+        ReviseBtn *btn = [[ReviseBtn alloc]initWithFrame:CGRectMake(40, 15, self.view.width - 80, 40)];
+        [btn setLeftImageView:@"建议意见 添加" andTitle:@"添加"];
+        [btn addTarget:self action:@selector(clickAdd) forControlEvents:UIControlEventTouchUpInside];
+
+        [view addSubview:btn];
+        
+
+        
+    }
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == self.data.count) {
@@ -157,26 +176,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == self.data.count - 1) {
-        return 50;
-    }
-    else
-    {
-        return 0.01;
-    }
-}
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc]init];
-    if (section == self.data.count - 1) {
-        
-        [view addSubview:[self createAddBtn:tableView]];
-    }
-    
-    return view;
+    return 0.01;
 }
-
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -220,15 +222,6 @@
     [self.alertview updateWithComplainVo:[[UDManager getUD]getUser]];
     [self.alertview show];
     [self.alertview addLeftBtnTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (UIButton *)createAddBtn:(UIView *)view
-{
-    ReviseBtn *btn = [[ReviseBtn alloc]initWithFrame:CGRectMake(40, 5, view.width - 80, 40)];
-    [btn setLeftImageView:@"建议意见 添加" andTitle:@"添加"];
-    [btn addTarget:self action:@selector(clickAdd) forControlEvents:UIControlEventTouchUpInside];
-    
-    return btn;
 }
 
 - (void)submit
