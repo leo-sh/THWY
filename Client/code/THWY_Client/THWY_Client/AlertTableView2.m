@@ -39,6 +39,7 @@
                     self.data = array;
                     
                     self.frame = CGRectMake(0, 0, 105, 30 * self.data.count);
+                    self.center = kCurrentWindow.center;
                     
                     [self reloadData];
                     

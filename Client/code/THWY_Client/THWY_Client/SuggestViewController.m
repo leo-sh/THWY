@@ -79,31 +79,19 @@
 - (void)createUI
 {
     
-    self.tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
-    self.tableView.alpha = 1;
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.clipsToBounds = NO;
-    self.tableView.bounces = NO;
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.view addSubview:self.tableView];
+    UIView *topView = [[UIImageView alloc]init];
     
-    
-    
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(TopViewH);
-        make.left.mas_equalTo(10);
-        make.right.mas_equalTo(-10);
-        make.bottom.mas_equalTo(-10);
-    }];
-    
-    UIImageView *topView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0,My_ScreenW, TopViewH)];
-    topView.contentMode = UIViewContentModeBottomRight;
-    topView.image = [UIImage imageNamed:@"背景2"];
-    topView.clipsToBounds = YES;
+    topView.backgroundColor = [UIColor clearColor];
+
     [self.view addSubview:topView];
-    topView.userInteractionEnabled = YES;
-    topView.backgroundColor = [UIColor whiteColor];
+    
+    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.mas_equalTo(0);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.height.mas_equalTo(TopViewH);
+    }];
     self.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"建议",@"意见"]];
     self.segmentedControl.selectedSegmentIndex = 0;
     self.segmentedControl.frame = CGRectMake(40, 15,My_ScreenW - 80 ,  40);
@@ -113,6 +101,24 @@
     
     [self.segmentedControl addTarget:self action:@selector(change) forControlEvents:UIControlEventValueChanged];
     
+    
+    self.tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    self.tableView.alpha = 1;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.bounces = NO;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    
+    
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(topView.mas_bottom).with.offset(10);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(-10);
+    }];
 }
 
 #pragma mark --tableViewDelegate与tableViewDataSource方法的实现
@@ -181,6 +187,8 @@
 {
     
     CGFloat contenHeight = [[self.data[indexPath.section] content] sizeWithFont:[UIFont systemFontOfSize:CONTENT_FONT] maxSize:CGSizeMake(tableView.width, 4000)].height;
+    NSArray *cellArray = @[[NSNumber numberWithFloat:contenHeight + 52 + 8 + 10],[NSNumber numberWithFloat:tableView.width]];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"cellHeight" object:cellArray];
     //添加上面固定内容的高度 + 下面内容的高度 + 与下边界的距离
     return contenHeight + 52 + 8 + 10;
 }

@@ -67,7 +67,6 @@
 - (void)createUI
 {
     self.tableView = [[UITableView alloc]initWithFrame:self.view.frame];
-    self.tableView.clipsToBounds = NO;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.delegate = self;
@@ -142,9 +141,18 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    CGFloat contenHeight = [[self.data[indexPath.section] content] sizeWithFont:[UIFont systemFontOfSize:CONTENT_FONT] maxSize:CGSizeMake(tableView.width, 4000)].height;
-    //添加上面固定内容的高度 + 下面内容的高度 + 与下边界的距离
-    return contenHeight + 52 + 8 + 10;
+    if (self.data) {
+        CGFloat contenHeight = [[self.data[indexPath.section] content] sizeWithFont:[UIFont systemFontOfSize:CONTENT_FONT] maxSize:CGSizeMake(tableView.width, 4000)].height;
+//        NSLog(@"%f",tableView.width);
+        NSArray *cellArray = @[[NSNumber numberWithFloat:contenHeight + 52 + 8 + 10],[NSNumber numberWithFloat:tableView.width]];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"cellHeight" object:cellArray];
+        //添加上面固定内容的高度 + 下面内容的高度 + 与下边界的距离
+        return contenHeight + 52 + 8 + 10;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
