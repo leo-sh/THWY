@@ -34,7 +34,7 @@
 - (void)initViews{
     
     UIView *bgView = [[UIView alloc] init];
-    [bgView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"pushsetting_bg_bai"]]];
+    [bgView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
     [self.view addSubview:bgView];
     
     [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
