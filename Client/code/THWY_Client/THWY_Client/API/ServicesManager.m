@@ -1251,23 +1251,27 @@
 {
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = @"";
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"page":[NSString stringWithFormat:@"%d",page]};
+    NSMutableDictionary* dic = [[NSMutableDictionary alloc]initWithDictionary:params];
+    NSString* key = @"";
+    
     if (type == Owner) {
+        key = @"repair_status";
         urlString = [NSString stringWithFormat:@"%@repairs",API_HOST];
     }else if (type == Public){
+        key = @"st";
         urlString = [NSString stringWithFormat:@"%@public_repairs",API_HOST];
     }else{
         onComplete(@"请填写type",nil);
         NSLog(@"请填写type");
         return;
     }
-    NSDictionary *params = @{@"login_name":_userName,
-                             @"login_password":_passWord,
-                             @"page":[NSString stringWithFormat:@"%d",page]};
-    NSMutableDictionary* dic = [[NSMutableDictionary alloc]initWithDictionary:params];
-    if (statuId.length > 0) {
-        dic[@"repair_status"] = statuId;
-    }
     
+    if (statuId.length > 0) {
+        dic[key] = statuId;
+    }
     [manager GET:urlString parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -1439,9 +1443,7 @@
 -(void)test
 {
     if ([self isLogin]) {
-        [self getComplaintTypes:^(NSString *errorMsg, NSArray *list) {
-            
-        }];
+        
     }else
     {
 //        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {
