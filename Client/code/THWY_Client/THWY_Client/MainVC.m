@@ -16,12 +16,19 @@
 
 #import "PersonInfoViewController.h"
 #import "DTKDropdownMenuView.h"
+#import "DropMenuTableView.h"
 
 #define topMargin  8.0/375*My_ScreenW
 
-@interface MainVC ()
+@interface MainVC ()<DropTableMenuDelegate>
 
-@property UIButton *userInfoView;
+@property (strong, nonatomic) UIButton *userInfoView;
+
+@property (strong, nonatomic) DropMenuTableView *dropView;
+
+@property (strong, nonatomic) UIButton *leftButton;
+
+@property (assign, nonatomic) NSInteger flag;
 
 @end
 
@@ -40,49 +47,118 @@
 
 - (void)initNVBar{
 
+    self.flag = -1;
     self.title = @"业主客服系统";
+    self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [self.leftButton setImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
+    [self.leftButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [self.leftButton addTarget:self action:@selector(leftItemOnclicked:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithCustomView:self.leftButton];
+    self.navigationItem.leftBarButtonItem  = left;
     
+    self.dropView = [[DropMenuTableView alloc] initWithWidth:130.f itemHeight:40.f itemNames:@[@"我要报修", @"我要投诉", @"业务公告", @"推送设置", @"技术支持"] ItemImages:@[@"main_1", @"main_2", @"main_3", @"main_4", @"main_5"]];
+    self.dropView.fontSize = 15.0;
+    self.dropView.backColor = My_NAV_BG_Color;
+    self.dropView.textColor = [UIColor whiteColor];
+    
+    self.dropView.dropDelegate = self;
+}
+
+- (void)leftItemOnclicked:(UIButton *)button{
+    
+    if (self.flag == -1) {
+        [button setBackgroundImage:[UIImage imageNamed:@"anxia"] forState:UIControlStateNormal];
+        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+        
+        [window addSubview:self.dropView];
+        self.flag = 1;
+    }else{
+        [button setBackgroundImage:nil forState:UIControlStateNormal];
+        [self.dropView removeFromSuperview];
+        self.flag = -1;
+    }
+    
+}
+
+- (void)itemSelected:(NSInteger)index{
+    UIButton *button = [[UIButton alloc] init];
+    button.tag = 0;
+    switch (index) {
+        case 0:{
+            button.tag = 101;
+            [self showVC:button];
+            break;
+        }
+        case 1:{
+            button.tag = 105;
+            [self showVC:button];
+            break;
+        }
+        case 2:{
+            button.tag = 108;
+            [self showVC:button];
+            break;
+        }
+        case 3:{
+            button.tag = 109;
+            [self showVC:button];
+            break;
+        }
+        case 4:{
+            button.tag = 110;
+            [self showVC:button];
+            break;
+        }
+        default:
+            break;
+    }
+    [self.dropView removeFromSuperview];
+    [self.leftButton setBackgroundImage:nil forState:UIControlStateNormal];
+
+}
+
+- (void)dropMenuHidden{
+    [self.leftButton setBackgroundImage:nil forState:UIControlStateNormal];
 }
 
 #pragma mark - drownMenu
 - (void)initDownMenu{
-    UIButton *button = [[UIButton alloc] init];
-    button.tag = 0;
-    DTKDropdownItem *item0 = [DTKDropdownItem itemWithTitle:@"我要报修" callBack:^(NSUInteger index, id info) {
-        button.tag = 101;
-        [self showVC:button];
-    }];
-    item0.iconName = @"main_1";
-    DTKDropdownItem *item1 = [DTKDropdownItem itemWithTitle:@"我要投诉" callBack:^(NSUInteger index, id info) {
-        button.tag = 105;
-        [self showVC:button];
-    }];
-    item1.iconName = @"main_2";
-    DTKDropdownItem *item2 = [DTKDropdownItem itemWithTitle:@"业务公告" callBack:^(NSUInteger index, id info) {
-        button.tag = 108;
-        [self showVC:button];
-    }];
-    item2.iconName = @"main_3";
-    DTKDropdownItem *item3 = [DTKDropdownItem itemWithTitle:@"推送设置" callBack:^(NSUInteger index, id info) {
-        button.tag = 109;
-        [self showVC:button];
-    }];
-    item3.iconName = @"main_4";
-    DTKDropdownItem *item4 = [DTKDropdownItem itemWithTitle:@"技术支持" callBack:^(NSUInteger index, id info) {
-        button.tag = 110;
-        [self showVC:button];
-    }];
-    item4.iconName = @"main_5";
-    DTKDropdownMenuView *menuView = [DTKDropdownMenuView dropdownMenuViewWithType:dropDownTypeLeftItem frame:CGRectMake(0, 0, 44.f, 44.f) dropdownItems:@[item0,item1,item2,item3,item4] icon:@"menu"];
     
-    menuView.dropWidth = 130.f;
-//    menuView.titleFont = [UIFont systemFontOfSize:18.f];
-    menuView.textColor = [UIColor whiteColor];
-    menuView.textFont = [UIFont systemFontOfSize:13.f];
-    menuView.cellSeparatorColor = My_Color(229.f, 229.f, 229.f);
-    menuView.animationDuration = 0.3f;
-    menuView.cellColor = My_NAV_BG_Color;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:menuView];
+//    DTKDropdownItem *item0 = [DTKDropdownItem itemWithTitle:@"我要报修" callBack:^(NSUInteger index, id info) {
+//        button.tag = 101;
+//        [self showVC:button];
+//    }];
+//    item0.iconName = @"main_1";
+//    DTKDropdownItem *item1 = [DTKDropdownItem itemWithTitle:@"我要投诉" callBack:^(NSUInteger index, id info) {
+//        button.tag = 105;
+//        [self showVC:button];
+//    }];
+//    item1.iconName = @"main_2";
+//    DTKDropdownItem *item2 = [DTKDropdownItem itemWithTitle:@"业务公告" callBack:^(NSUInteger index, id info) {
+//        button.tag = 108;
+//        [self showVC:button];
+//    }];
+//    item2.iconName = @"main_3";
+//    DTKDropdownItem *item3 = [DTKDropdownItem itemWithTitle:@"推送设置" callBack:^(NSUInteger index, id info) {
+//        button.tag = 109;
+//        [self showVC:button];
+//    }];
+//    item3.iconName = @"main_4";
+//    DTKDropdownItem *item4 = [DTKDropdownItem itemWithTitle:@"技术支持" callBack:^(NSUInteger index, id info) {
+//        button.tag = 110;
+//        [self showVC:button];
+//    }];
+//    item4.iconName = @"main_5";
+//    DTKDropdownMenuView *menuView = [DTKDropdownMenuView dropdownMenuViewWithType:dropDownTypeLeftItem frame:CGRectMake(0, 0, 44.f, 44.f) dropdownItems:@[item0,item1,item2,item3,item4] icon:@"menu"];
+//    
+//    menuView.dropWidth = 130.f;
+////    menuView.titleFont = [UIFont systemFontOfSize:18.f];
+//    menuView.textColor = [UIColor whiteColor];
+//    menuView.textFont = [UIFont systemFontOfSize:13.f];
+//    menuView.cellSeparatorColor = My_Color(229.f, 229.f, 229.f);
+//    menuView.animationDuration = 0.3f;
+//    menuView.cellColor = My_NAV_BG_Color;
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:menuView];
 
 }
 

@@ -47,9 +47,8 @@
     
     self.bussnessModels = [NSMutableArray array];
     [My_ServicesManager getAGood:self.good.Id onComplete:^(NSString *errorMsg, GoodVO *merchant) {
-//        for (GoodVO *model in list) {
-            [self.bussnessModels addObject:merchant];
-//        }
+
+        [self.bussnessModels addObject:merchant];
         
         [self.tableView reloadData];
     }];
@@ -73,9 +72,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //    BussnessDetailVC *detail = [[BussnessDetailVC alloc] init];
     //    detail.merchant = self.bussnessModels[indexPath.row];
-    GoodsVC *detail = [[GoodsVC alloc] init];
-    detail.good = self.bussnessModels[indexPath.row];
-    [self .navigationController pushViewController:detail animated:YES];
+    
 }
 
 
