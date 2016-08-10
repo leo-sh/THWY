@@ -53,6 +53,8 @@
         [self addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
         [self setImage:[UIImage imageNamed:@"repaire_下"] forState:UIControlStateNormal];
         self.layer.borderWidth = 1;
+        self.layer.borderColor = My_Color(236, 236, 236).CGColor;
+        self.backgroundColor = [UIColor whiteColor];
         self.adjustsImageWhenHighlighted = NO;
     }
     return self;

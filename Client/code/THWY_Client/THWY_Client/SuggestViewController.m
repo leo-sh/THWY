@@ -20,6 +20,7 @@
 @property UISegmentedControl *segmentedControl;
 @property NSMutableArray *FeedBackTypeArray;
 @property NSArray *data;
+@property UIView *topView;
 @end
 
 @implementation SuggestViewController
@@ -63,7 +64,15 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 if (!self.data) {
-                    [self.view addSubview:[self createAddBtn:self.view]];
+                    static dispatch_once_t onceToken;
+                    dispatch_once(&onceToken, ^{
+                        ReviseBtn *addBtn = [self createAddBtn:self.view];
+                        
+                        addBtn.y = self.topView.bottom + 5;
+                        
+                        [self.view addSubview:addBtn];
+                        
+                    });
                 }
                 [self.tableView reloadData];
                 [SVProgressHUD dismiss];
@@ -79,13 +88,15 @@
 - (void)createUI
 {
     
-    UIView *topView = [[UIImageView alloc]init];
+    self.topView = [[UIImageView alloc]init];
     
-    topView.backgroundColor = [UIColor clearColor];
-
-    [self.view addSubview:topView];
+    self.topView.backgroundColor = [UIColor clearColor];
     
-    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.topView.userInteractionEnabled = YES;
+    
+    [self.view addSubview:self.topView];
+    
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(0);
         make.left.mas_equalTo(0);
@@ -97,7 +108,7 @@
     self.segmentedControl.frame = CGRectMake(40, 15,My_ScreenW - 80 ,  40);
     
     self.segmentedControl.tintColor = My_NAV_BG_Color;
-    [topView addSubview:self.segmentedControl];
+    [self.topView addSubview:self.segmentedControl];
     
     [self.segmentedControl addTarget:self action:@selector(change) forControlEvents:UIControlEventValueChanged];
     
@@ -114,7 +125,7 @@
     
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(topView.mas_bottom).with.offset(10);
+        make.top.equalTo(self.topView.mas_bottom).with.offset(10);
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(-10);
@@ -240,7 +251,7 @@
 
 }
 
-- (UIButton *)createAddBtn:(UIView *)view
+- (ReviseBtn *)createAddBtn:(UIView *)view
 {
     ReviseBtn *reviseBtn = [[ReviseBtn alloc]initWithFrame:CGRectMake(40, 5, view.width - 80 , 40)];
     [reviseBtn setLeftImageView:@"建议意见 添加" andTitle:@"添加"];
