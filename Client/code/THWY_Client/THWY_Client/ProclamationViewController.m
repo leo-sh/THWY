@@ -43,6 +43,7 @@
     [[ServicesManager getAPI] getNotes:self.pageNumber onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (list.count == 0 && errorMsg == nil) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
             [SVProgressHUD dismiss];
             [SVProgressHUD setMinimumDismissTimeInterval:1];
             [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
