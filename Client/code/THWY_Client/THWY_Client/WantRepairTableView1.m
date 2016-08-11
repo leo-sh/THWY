@@ -128,6 +128,7 @@
             cell.label.text = @"上传图片:";
             cell.descLabel.text = @"上传图片不能超过2M, 图片格式为jpg, png";
             cell.delegate = self;
+            cell.selectType = ImageType;
             self.cells[row] = cell;
             return cell;
         }
@@ -137,6 +138,7 @@
             cell.label.text = @"上传视频:";
             cell.descLabel.text = @"上传视频不能超过8M, 视频格式为avi, pge, swf";
             cell.delegate = self;
+            cell.selectType = VideoType;
             self.cells[row] = cell;
             return cell;
         }

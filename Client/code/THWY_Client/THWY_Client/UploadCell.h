@@ -30,4 +30,6 @@ typedef NS_ENUM(NSInteger, SelectType){
 
 @property (weak, nonatomic) id<UploadCellDelegate> delegate;
 
+@property (assign, nonatomic) SelectType selectType;
+
 @end

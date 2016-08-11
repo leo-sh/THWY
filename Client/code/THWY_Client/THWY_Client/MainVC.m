@@ -40,6 +40,7 @@
     [self initNVBar];
     [self initUserInfoView];
     [self initModuleViews];
+   
     [My_NoteCenter addObserver:self selector:@selector(refreshUserInfo) name:Login_Success object:nil];
     
 }
@@ -60,7 +61,6 @@
             }
         }];
     }
-    
 }
 
 - (void)initNVBar{
