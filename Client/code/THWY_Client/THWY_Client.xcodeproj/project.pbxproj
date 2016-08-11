@@ -194,6 +194,7 @@
 		79F2B6C21D4E2ECF00AA94E0 /* BussnessADCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F2B6C01D4E2ECF00AA94E0 /* BussnessADCell.xib */; };
 		79F2B6C51D4E3CC000AA94E0 /* RecommandBussnessADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F2B6C41D4E3CC000AA94E0 /* RecommandBussnessADVC.m */; };
 		79F2B6C81D4E3DE900AA94E0 /* ADDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F2B6C71D4E3DE900AA94E0 /* ADDetailVC.m */; };
+		9449430D1D5C320200AD2B00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */; };
 		94D708931D4C68EE00C5009D /* ComplaintStateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EF81D48A0BD00B95DE5 /* ComplaintStateVO.m */; };
 		94E5DAD31D58731900300585 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5DAD21D58731900300585 /* Reachability.m */; };
 /* End PBXBuildFile section */
@@ -574,6 +575,8 @@
 		79F2B6C41D4E3CC000AA94E0 /* RecommandBussnessADVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommandBussnessADVC.m; sourceTree = "<group>"; };
 		79F2B6C61D4E3DE900AA94E0 /* ADDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADDetailVC.h; sourceTree = "<group>"; };
 		79F2B6C71D4E3DE900AA94E0 /* ADDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADDetailVC.m; sourceTree = "<group>"; };
+		9449430B1D5C320200AD2B00 /* ZYKeyboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYKeyboardUtil.h; sourceTree = "<group>"; };
+		9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
 		94E5DAD11D58731900300585 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		94E5DAD21D58731900300585 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1080,6 +1083,7 @@
 		5B2571CF1D47169600CB4167 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				9449430A1D5C320200AD2B00 /* Keyboard */,
 				94E5DAD01D58731900300585 /* Reachability */,
 				792E8B4F1D534BF800D70FB7 /* VideoRecord */,
 				792A24631D5314700005B085 /* FDTableviewHeightCell */,
@@ -1476,6 +1480,15 @@
 			name = BussnessCircleViews;
 			sourceTree = "<group>";
 		};
+		9449430A1D5C320200AD2B00 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9449430B1D5C320200AD2B00 /* ZYKeyboardUtil.h */,
+				9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
 		94E5DAD01D58731900300585 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -1593,6 +1606,7 @@
 				5B2571E11D4716EE00CB4167 /* AFSecurityPolicy.m in Sources */,
 				5B25717D1D47110B00CB4167 /* NSDictionary+Extension.m in Sources */,
 				5B197EEC1D487DAC00B95DE5 /* MASViewConstraint.m in Sources */,
+				9449430D1D5C320200AD2B00 /* ZYKeyboardUtil.m in Sources */,
 				5B2571DF1D4716EE00CB4167 /* AFHTTPSessionManager.m in Sources */,
 				5B197EE71D487DAC00B95DE5 /* MASCompositeConstraint.m in Sources */,
 				794E73E81D4A4F3E00267C84 /* PushSettingVC.m in Sources */,

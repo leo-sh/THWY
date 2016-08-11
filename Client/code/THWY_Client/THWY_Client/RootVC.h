@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZYKeyboardUtil.h"
 @interface RootVC : UIViewController
+
+@property ZYKeyboardUtil* keyboardUtil;
+
+/**
+ *  网络状态改变
+ *
+ *  @param noti 当前网络状态
+ */
+-(void)netWorkChanged:(NSNotification*)noti;
 
 @end
