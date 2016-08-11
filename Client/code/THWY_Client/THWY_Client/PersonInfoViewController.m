@@ -19,6 +19,7 @@
 @property UIView *bottomView;
 @property UserVO *userInfo;
 @property NSMutableArray *canUpdateInfo;
+@property UIImageView *iconImageView;
 @end
 
 @implementation PersonInfoViewController
@@ -89,11 +90,11 @@
     icon.clipsToBounds = YES;
     [icon addTarget:self action:@selector(clickIcon) forControlEvents:UIControlEventTouchUpInside];
     
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, iconWidth, iconHeight)];
+    self.iconImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, iconWidth, iconHeight)];
     
-    [icon addSubview:imageView];
+    [icon addSubview:self.iconImageView];
     
-    [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userInfo.avatar]]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userInfo.avatar]]];
 
     
 //    NSLog(@"%@",self.userInfo.avatar);
@@ -277,6 +278,7 @@
         else
         {
             [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+            self.iconImageView.image = image;
         }
     }];
     
