@@ -24,6 +24,9 @@
         self.title.text = @"";
         self.title.textAlignment = NSTextAlignmentCenter;
         self.title.font = [UIFont systemFontOfSize:20];
+        
+        self.textView.text = @"";
+        
         [self addSubview:self.title];
         
         self.left = [[UIButton alloc]initWithFrame:CGRectMake(15, 10, 20, 20)];

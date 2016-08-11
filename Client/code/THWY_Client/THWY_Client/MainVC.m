@@ -49,6 +49,11 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self refreshUserInfo];
+}
+
 - (void)refreshUserInfo{
     UserVO *user = [[UDManager getUD] getUser];
     if (user) {
@@ -361,10 +366,6 @@
 
 - (void)dealloc{
     [My_NoteCenter removeObserver:self name:Login_Success object:nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [self refreshUserInfo];
 }
 
 #pragma  mark - MemoryWarning

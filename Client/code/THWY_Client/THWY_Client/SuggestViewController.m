@@ -208,7 +208,15 @@
 {
     
     NSLog(@"%@ld",self.FeedBackTypeArray);
-    [self getData:[self.FeedBackTypeArray[self.segmentedControl.selectedSegmentIndex] Id]];
+    
+    if ([ServicesManager getAPI].status != NotReachable) {
+        [self getData:[self.FeedBackTypeArray[self.segmentedControl.selectedSegmentIndex] Id]];
+    }
+    else
+    {
+        [SVProgressHUD showInfoWithStatus:@"网络访问错误"];
+    }
+    
     
 //    UILabel * houseLabel = [UILabel labelWithTitle:@"房源" frameX:10 Height:30];
 //    houseLabel.textColor = [UIColor yellowColor];
@@ -238,16 +246,22 @@
     {
         back = 2;
     }
-    [[ServicesManager getAPI]addFeedBack:back content:self.alertView.textView.text onComplete:^(NSString *errorMsg) {
-        if (errorMsg) {
-            [SVProgressHUD showErrorWithStatus:errorMsg];
-        }
-        else
-        {
-            [SVProgressHUD showSuccessWithStatus:@"添加成功"];
-        }
-        
-    }];
+    if (self.alertView.textView.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
+    }
+    else
+    {
+        [[ServicesManager getAPI]addFeedBack:back content:self.alertView.textView.text onComplete:^(NSString *errorMsg) {
+            if (errorMsg) {
+                [SVProgressHUD showErrorWithStatus:errorMsg];
+            }
+            else
+            {
+                [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+            }
+            
+        }];
+    }
 
 }
 

@@ -63,6 +63,9 @@
         btn.house = house;
         
         [btn initDefaultImageName:@"repaire_unselected"  choosedImageName:@"repaire_selected" title:addressString];
+        if (i == 0) {
+            [btn setChoosed];
+        }
         
         [self.houseSourceBtnArray addObject:btn];
         

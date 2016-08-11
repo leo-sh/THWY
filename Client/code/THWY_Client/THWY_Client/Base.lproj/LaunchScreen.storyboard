@@ -15,12 +15,26 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yitai加载" translatesAutoresizingMaskIntoConstraints="NO" id="VJT-qB-veZ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VJT-qB-veZ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="5im-dZ-rTH"/>
+                            <constraint firstAttribute="trailing" secondItem="VJT-qB-veZ" secondAttribute="trailing" id="qng-1W-oMA"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="VJT-qB-veZ" secondAttribute="bottom" id="tfI-pa-mGA"/>
+                            <constraint firstItem="VJT-qB-veZ" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="-20" id="xGy-uh-O9h"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="333" y="347"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="yitai加载" width="640" height="1136"/>
+    </resources>
 </document>

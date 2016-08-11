@@ -54,6 +54,7 @@
         
         else if (list.count == 0)
         {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
             [SVProgressHUD dismiss];
             [SVProgressHUD setMinimumDismissTimeInterval:1];
             [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
@@ -94,6 +95,7 @@
             self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
                 self.pageNumber = 1;
                 [self.data removeAllObjects];
+                [self.contentEnd removeAllObjects];
                 [self getData];
             }];
             self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
@@ -259,23 +261,34 @@
             postItem.estate_id = btn.house.estate_id;
             postItem.complaint_content = self.alertview.textView.text;
             
-            [[ServicesManager getAPI] addComplaint:postItem onComplete:^(NSString *errorMsg) {
+            if(self.alertview.textView.text.length == 0)
+            {
+                [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
+            }
+            else{
                 
-                if (errorMsg) {
-                    [SVProgressHUD showErrorWithStatus:errorMsg];
+                [[ServicesManager getAPI] addComplaint:postItem onComplete:^(NSString *errorMsg) {
                     
-                }
-                else
-                {
-                    [SVProgressHUD showSuccessWithStatus:@"添加成功"];
-                }
-                
-            }];
-            
-            break;
+                    if (errorMsg) {
+                        [SVProgressHUD showErrorWithStatus:errorMsg];
+                        
+                    }
+                    else
+                    {
+                        [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+                        [self.alertview hideInWindow];
+                        self.pageNumber = 1;
+                        [self.data removeAllObjects];
+                        [self.contentEnd removeAllObjects];
+                        [self getData];
+                    }
+                    
+                }];
+
+                break;
+            }
         }
 
-        
     }
     
 }

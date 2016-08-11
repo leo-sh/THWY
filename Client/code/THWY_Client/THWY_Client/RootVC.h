@@ -19,4 +19,6 @@
  */
 -(void)netWorkChanged:(NSNotification*)noti;
 
+-(void)showLogin:(BOOL)animated;
+
 @end
