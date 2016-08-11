@@ -72,17 +72,12 @@
         case 0:{
             
             PaigongCatogerysCell *cell = (PaigongCatogerysCell *)[tableView dequeueReusableCellWithIdentifier:@"PaigongCatogerysCell" forIndexPath:indexPath];
-//            [cell addObserver:self forKeyPath:@"flag" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"0"];
             self.cells[row] = cell;
             return cell;
             break;
         }
         case 1:{
             ProjectCell *cell = (ProjectCell *)[tableView dequeueReusableCellWithIdentifier:@"ProjectCell" forIndexPath:indexPath];
-//            [cell addObserver:self forKeyPath:@"selectEstate_id" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"1"];
-//            [cell addObserver:self forKeyPath:@"btn_unit.titleLabel.text" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"1"];
-//            [cell addObserver:self forKeyPath:@"btn_block.titleLabel.text" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"1"];
-//            [cell addObserver:self forKeyPath:@"btn_layer.titleLabel.text" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"1"];
             self.cells[row] = cell;
             return cell;
             break;
@@ -93,7 +88,6 @@
             cell.icon.image = [UIImage imageNamed:@"repaire_姓名"];
             cell.label.text = @"报修人姓名:";
             cell.textField.text = [[[UDManager getUD] getUser] real_name];
-//            [cell addObserver:self forKeyPath:@"textField.text" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"2"];
             self.cells[row] = cell;
             return cell;
             
@@ -103,7 +97,6 @@
             cell.icon.image = [UIImage imageNamed:@"repaire_call"];
             cell.label.text = @"报修人电话:";
             cell.textField.text = [[[UDManager getUD] getUser] cellphone];
-//            [cell addObserver:self forKeyPath:@"textField.text" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"3"];
             self.cells[row] = cell;
             return cell;
             
@@ -112,7 +105,6 @@
             RepaireCategorysCell *cell = (RepaireCategorysCell *)[tableView dequeueReusableCellWithIdentifier:@"RepaireCategorysCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_保修类别"];
             cell.label.text = @"报修类别:";
-//            [cell addObserver:self forKeyPath:@"detailLabel.text" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"4"];
             self.cells[row] = cell;
             return cell;
         }
@@ -137,7 +129,6 @@
         case 7:{
             DescribeCell *cell = (DescribeCell *)[tableView dequeueReusableCellWithIdentifier:@"DescribeCell" forIndexPath:indexPath];
             cell.delegate = self;
-//            [cell addObserver:self forKeyPath:@"textView.text" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"7"];
             self.cells[row] = cell;
             return cell;
         }
@@ -173,6 +164,7 @@
             break;
         }
         default:
+            [[(UIViewController *)self.repairDelegate view] endEditing:YES];
             break;
     }
     

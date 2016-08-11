@@ -11,8 +11,6 @@
 
 @interface AlertEstateTableView ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (assign, nonatomic) NSInteger selectedIndex;
-
 
 @end
 
@@ -79,7 +77,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.imageView.image = [UIImage scaleImage:[UIImage imageNamed:@"repaire_unselected"] toScale:0.7];
+    
+    if (indexPath.row == self.selectedIndex) {
+         cell.imageView.image = [UIImage scaleImage:[UIImage imageNamed:@"repaire_selected"] toScale:0.7];
+    }else{
+        cell.imageView.image = [UIImage scaleImage:[UIImage imageNamed:@"repaire_unselected"] toScale:0.7];
+    }
 
     switch (self.type) {
         case 1:{
