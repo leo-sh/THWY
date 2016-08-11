@@ -13,7 +13,9 @@
 #import "BlueCheckButton.h"
 #import "ServicesManager.h"
 #import "MainVC.h"
-@interface LoginViewController ()<UITextFieldDelegate>
+@interface LoginViewController ()<UITextFieldDelegate,UIScrollViewDelegate>
+
+@property (strong, nonatomic) UIScrollView* introScrollView;
 @property UIImageView *LogoView;
 @property userAndPassWordTextField *userTF;
 @property userAndPassWordTextField *passWordTF;
@@ -27,10 +29,58 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self showIntroView];
+    
     [self ViewInitSetting];
     [self createLogoImageView];
     [self createUserAndPasswordTextfiled];
     [self createButton];
+}
+
+
+-(void)showIntroView
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    if ([ud objectForKey:@"DidLaunch"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [ud setObject:[NSNumber numberWithBool:YES] forKey:@"DidLaunch"];
+            [ud synchronize];
+        });
+        self.introScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, My_ScreenW, My_ScreenH)];
+        self.introScrollView.bounces = NO;
+        self.introScrollView.backgroundColor = self.view.backgroundColor;
+        self.introScrollView.contentSize = CGSizeMake(My_ScreenW * 4, My_ScreenH);
+        self.introScrollView.delegate = self;
+        self.introScrollView.pagingEnabled = YES;
+        
+        for (int i = 0; i<4; i++) {
+            NSString* imageName = [NSString stringWithFormat:@"yitai引导页%d",i+1];
+            UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i*self.introScrollView.width, 0, self.introScrollView.width, self.introScrollView.height)];
+            imageView.image = [UIImage imageNamed:imageName];
+            
+            if (i == 3) {
+                imageView.userInteractionEnabled = YES;
+                UIButton* button = [[UIButton alloc]initWithFrame:CGRectMake(0, imageView.height/9*7, imageView.width/2, imageView.height/10)];
+                button.backgroundColor = My_AlphaColor(0.1, 0.1, 0.1, 0.0001);
+                button.x = imageView.width/2 - button.width/2;
+                [button addTarget:self action:@selector(tapOnLastImage:) forControlEvents:UIControlEventTouchUpInside];
+                [imageView addSubview:button];
+            }
+            [self.introScrollView addSubview:imageView];
+            
+        }
+        [My_KeyWindow addSubview:self.introScrollView];
+    }
+}
+
+-(void)tapOnLastImage:(UIButton* )sender
+{
+    sender.enabled = NO;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.introScrollView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self.introScrollView removeFromSuperview];
+    }];
 }
 
 - (void)ViewInitSetting
