@@ -47,12 +47,12 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
     [self refreshUserInfo];
 }
 
 - (void)refreshUserInfo{
-    
-    if([My_ServicesManager isLogin]){
+    if ([My_ServicesManager isLogin]) {
         [My_ServicesManager getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
             if (user) {
                 [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
