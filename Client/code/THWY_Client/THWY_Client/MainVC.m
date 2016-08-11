@@ -46,7 +46,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self refreshUserInfo];
+    if ([My_ServicesManager isLogin]) {
+        [self refreshUserInfo];
+    }
 }
 
 - (void)refreshUserInfo{
