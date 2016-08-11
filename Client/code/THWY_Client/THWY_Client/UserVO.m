@@ -20,7 +20,12 @@
         self.gender = JSON[@"gender"];
         self.cellphone = JSON[@"cellphone"];
         self.car_number = JSON[@"car_number"];
-        self.avatar = [NSString stringWithFormat:@"%@%@",API_Prefix,JSON[@"avatar"]];
+        if ([JSON[@"avatar"] rangeOfString:@"http"].location != NSNotFound) {
+            self.avatar = JSON[@"avatar"];
+        }else
+        {
+            self.avatar = [NSString stringWithFormat:@"%@%@",API_Prefix,JSON[@"avatar"]];
+        }
         self.points = JSON[@"points"];
         self.estate = JSON[@"estate"];
         
