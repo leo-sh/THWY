@@ -194,6 +194,9 @@
         NSLog(@"%@",user);
         if (errorMsg) {
             NSLog(@"%@",errorMsg);
+            
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:Login_Fail object:nil];
 
         }
