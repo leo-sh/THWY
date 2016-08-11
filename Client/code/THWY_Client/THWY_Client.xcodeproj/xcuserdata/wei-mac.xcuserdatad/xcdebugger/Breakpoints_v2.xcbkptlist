@@ -59,53 +59,6 @@
             endingLineNumber = "1323"
             landmarkName = "-getARepair:repairId:onComplete:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__50-[ServicesManager getARepair:repairId:onComplete:]_block_invoke_3"
-                  moduleName = "THWY_Client"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wei-mac/Repos/THWY/Client/code/THWY_Client/THWY_Client/API/ServicesManager.m"
-                  timestampString = "492584325.261659"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1323"
-                  endingLineNumber = "1323"
-                  offsetFromSymbolStart = "93">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_.833"
-                  moduleName = "THWY_Client"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wei-mac/Repos/THWY/Client/code/THWY_Client/THWY_Client/API/ServicesManager.m"
-                  timestampString = "492584325.26197"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1323"
-                  endingLineNumber = "1323"
-                  offsetFromSymbolStart = "42">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.834"
-                  moduleName = "THWY_Client"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wei-mac/Repos/THWY/Client/code/THWY_Client/THWY_Client/API/ServicesManager.m"
-                  timestampString = "492584325.262334"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1323"
-                  endingLineNumber = "1323"
-                  offsetFromSymbolStart = "29">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
