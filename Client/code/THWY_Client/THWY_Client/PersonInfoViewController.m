@@ -27,8 +27,7 @@
     [super viewDidLoad];
     [self ViewInitSetting];
     [self getData];
-    [self createIconAndBriefInfo];
-    [self createDetailedInfoAndUpdateBtn];
+
     
     // Do any additional setup after loading the view.
 }
@@ -49,7 +48,13 @@
 - (void)getData
 {
     [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
-    self.userInfo = [[UDManager getUD]getUser];
+    [[ServicesManager getAPI]getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
+        self.userInfo = user;
+        
+        [self createIconAndBriefInfo];
+        [self createDetailedInfoAndUpdateBtn];
+        
+    }];
     [SVProgressHUD dismiss];
 
 }
@@ -219,12 +224,6 @@
         else
         {
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
-            
-            [[ServicesManager getAPI]getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
-                
-                [[UDManager getUD]saveUser:user];
-                
-            }];
         }
     }];
 }
