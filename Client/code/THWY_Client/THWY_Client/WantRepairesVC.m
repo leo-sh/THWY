@@ -49,9 +49,7 @@
     [self initNVBar];
     [self initViews];
     
-    [My_NoteCenter addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [My_NoteCenter addObserver:self selector:@selector(keyBoardWillHidden:) name:UIKeyboardWillHideNotification object:nil];
-}
+ }
 
 - (void)initNVBar{
     
@@ -209,71 +207,6 @@
 #pragma mark - 键盘隐藏
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
-}
-
-- (void)keyBoardWillHidden:(NSNotification *)notification{
-    NSDictionary *info = notification.userInfo;
-    
-    //改变发送view的高度约束
-    if (self.switchFlag == 1) {
-        //        [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
-        //            make.bottom.mas_equalTo(self.view.mas_bottom).offset(-height);
-        //        }];
-        self.tableView.frame = CGRectMake(0, 0, self.tableView.width, self.tableView.height);
-    }else{
-        //        [self.tableView2 mas_updateConstraints:^(MASConstraintMaker *make) {
-        //            make.bottom.mas_equalTo(self.view.mas_bottom).offset(-height);
-        //        }];
-        self.tableView2.frame = CGRectMake(self.tableView2.frame.origin.x, 0, self.tableView.width, self.tableView.height);
-    }
-    //定义存放键盘动画时间用来让发送的view进行动画效果
-    NSTimeInterval time = 1.2;
-    
-    //获取键盘动画时长
-    NSNumber *timeDur = info[UIKeyboardAnimationDurationUserInfoKey];
-    
-    //把值放给time
-    [timeDur getValue:&time];
-
-    //因为view会改变  所以layoutIfNeeded  刷新布局
-    [UIView animateWithDuration:time animations:^{
-        [self.view layoutIfNeeded];
-    }];
-
-}
-
-- (void)keyBoardWillShow:(NSNotification *)notification{
-    
-    NSDictionary *info = notification.userInfo;
-    
-    //获取键盘开始的frame
-    NSValue *heightValue = info[UIKeyboardFrameBeginUserInfoKey];
-    
-    //将heightValue转化成cgRectValue   在获取size  在获取高度
-    CGFloat height = [heightValue CGRectValue].size.height;
-    
-    //改变发送view的高度约束
-    if (self.switchFlag == 1) {
-        self.tableView.frame = CGRectMake(0, -height, self.tableView.width, self.tableView.height);
-    }else{
-        self.tableView2.frame = CGRectMake(self.tableView2.origin.x, -height, self.tableView2.width, self.tableView2.height);
-    }
-    
-    
-    //定义存放键盘动画时间用来让发送的view进行动画效果
-    NSTimeInterval time = 1.2;
-    
-    //获取键盘动画时长
-    NSNumber *timeDur = info[UIKeyboardAnimationDurationUserInfoKey];
-    
-    //把值放给time
-    [timeDur getValue:&time];
-    
-    //因为view会改变  所以layoutIfNeeded  刷新布局
-    [UIView animateWithDuration:time animations:^{
-        [self.view layoutIfNeeded];
-    }];
-    
 }
 
 #pragma mark - WantRepairDelegate
