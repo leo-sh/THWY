@@ -41,7 +41,7 @@
 -(void)showIntroView
 {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    if ([ud objectForKey:@"DidLaunch"]) {
+    if (![ud objectForKey:@"DidLaunch"]) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [ud setObject:[NSNumber numberWithBool:YES] forKey:@"DidLaunch"];
             [ud synchronize];
