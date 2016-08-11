@@ -7,6 +7,7 @@
 //
 
 #import "BussnessDetailVC.h"
+#import "GoodsVC.h"
 
 @interface BussnessDetailVC ()
 
@@ -118,7 +119,7 @@
     [self.btnShowDetail setTitle:@"进入商家" forState:UIControlStateNormal];
     [self.btnShowDetail setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.btnShowDetail setBackgroundColor:My_NAV_BG_Color];
-    [self.btnContact addTarget:self action:@selector(showDetail:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnShowDetail addTarget:self action:@selector(showDetail:) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.btnShowDetail];
     [self.btnShowDetail mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.bgView.mas_centerX).multipliedBy(1.5);
@@ -141,7 +142,12 @@
 }
 
 - (void)showDetail:(UIButton *)btn{
-
+//    GoodsVC *detail = [[GoodsVC alloc] init];
+//    detail.good = [[GoodVO alloc] init];
+//    detail.good.pic = self.merchant.pic;
+//    detail.good.goods_name = self.merchant.business_name;
+//    detail.good.goods_intro = self.merchant.intro;
+//    [self .navigationController pushViewController:detail animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

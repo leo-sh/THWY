@@ -138,6 +138,7 @@
 		790506581D4CE2B100072AAC /* RepaireCategorysCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790506561D4CE2B100072AAC /* RepaireCategorysCell.m */; };
 		7905065D1D4CE51A00072AAC /* UploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7905065B1D4CE51A00072AAC /* UploadCell.m */; };
 		790506621D4CE93C00072AAC /* DescribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790506601D4CE93C00072AAC /* DescribeCell.m */; };
+		790FBEBE1D5B726100C00509 /* DropMenuTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 790FBEBD1D5B726100C00509 /* DropMenuTableView.m */; };
 		792824281D541D74001764EB /* WantRepairTableView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 792824271D541D74001764EB /* WantRepairTableView1.m */; };
 		7928242B1D541D8F001764EB /* WantRepairTableView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7928242A1D541D8F001764EB /* WantRepairTableView2.m */; };
 		7928242F1D544130001764EB /* AlertEstateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7928242E1D544130001764EB /* AlertEstateTableView.m */; };
@@ -470,6 +471,8 @@
 		7905065F1D4CE93C00072AAC /* DescribeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescribeCell.h; sourceTree = "<group>"; };
 		790506601D4CE93C00072AAC /* DescribeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescribeCell.m; sourceTree = "<group>"; };
 		790506611D4CE93C00072AAC /* DescribeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescribeCell.xib; sourceTree = "<group>"; };
+		790FBEBC1D5B726100C00509 /* DropMenuTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropMenuTableView.h; sourceTree = "<group>"; };
+		790FBEBD1D5B726100C00509 /* DropMenuTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropMenuTableView.m; sourceTree = "<group>"; };
 		792824261D541D74001764EB /* WantRepairTableView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableView1.h; sourceTree = "<group>"; };
 		792824271D541D74001764EB /* WantRepairTableView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantRepairTableView1.m; sourceTree = "<group>"; };
 		792824291D541D8F001764EB /* WantRepairTableView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableView2.h; sourceTree = "<group>"; };
@@ -990,6 +993,7 @@
 		5B25714E1D47106500CB4167 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				790FBEBB1D5B722800C00509 /* MainViews */,
 				793296741D51963B000FD426 /* RepaireRecordsViews */,
 				79F2B6B01D4E00D900AA94E0 /* BussnessCircleViews */,
 				7905064A1D4C892A00072AAC /* WantRepaireViews */,
@@ -1176,8 +1180,8 @@
 				5B25714C1D47105800CB4167 /* model */,
 				5B25714F1D47106800CB4167 /* viewController */,
 				5B25714E1D47106500CB4167 /* view */,
-				5BFFCE1B1D41B9A30066B1B9 /* AppDelegate.h */,
 				5BFFCE1C1D41B9A30066B1B9 /* AppDelegate.m */,
+				5BFFCE1B1D41B9A30066B1B9 /* AppDelegate.h */,
 				5BFFCE241D41B9A30066B1B9 /* Assets.xcassets */,
 				5BFFCE261D41B9A30066B1B9 /* LaunchScreen.storyboard */,
 				5BFFCE181D41B9A30066B1B9 /* Supporting Files */,
@@ -1243,6 +1247,15 @@
 				7928242A1D541D8F001764EB /* WantRepairTableView2.m */,
 			);
 			name = WantRepaireViews;
+			sourceTree = "<group>";
+		};
+		790FBEBB1D5B722800C00509 /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				790FBEBC1D5B726100C00509 /* DropMenuTableView.h */,
+				790FBEBD1D5B726100C00509 /* DropMenuTableView.m */,
+			);
+			name = MainViews;
 			sourceTree = "<group>";
 		};
 		792A24631D5314700005B085 /* FDTableviewHeightCell */ = {
@@ -1574,6 +1587,7 @@
 				79F2B6AE1D4DF86A00AA94E0 /* BussnessListVC.m in Sources */,
 				1E911BDD1D59A6DE006F15C6 /* AlertTableView2.m in Sources */,
 				5B25717B1D47110B00CB4167 /* NSDate+Extension.m in Sources */,
+				790FBEBE1D5B726100C00509 /* DropMenuTableView.m in Sources */,
 				5B25717A1D47110B00CB4167 /* NSArray+Extension.m in Sources */,
 				5BED6BBE1D49964800C137C5 /* FeeHistoryVO.m in Sources */,
 				5B2571E11D4716EE00CB4167 /* AFSecurityPolicy.m in Sources */,
