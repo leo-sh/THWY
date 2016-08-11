@@ -23,6 +23,9 @@
 @interface MainVC ()<DropTableMenuDelegate>
 
 @property (strong, nonatomic) UIButton *userInfoView;
+@property (strong, nonatomic) UIImageView *headImage;
+@property (strong, nonatomic) UILabel *username;
+@property (strong, nonatomic) UILabel *addr;
 
 @property (strong, nonatomic) DropMenuTableView *dropView;
 
@@ -42,7 +45,17 @@
     [self initUserInfoView];
     [self initModuleViews];
     [self initDownMenu];
+    [My_NoteCenter addObserver:self selector:@selector(refreshUserInfo) name:Login_Success object:nil];
     
+}
+
+- (void)refreshUserInfo{
+    UserVO *user = [[UDManager getUD] getUser];
+    if (user) {
+        [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
+        self.username.text = user.real_name;
+        self.addr.text = user.estate;
+    }
 }
 
 - (void)initNVBar{
@@ -169,48 +182,48 @@
     self.userInfoView = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, My_ScreenW, 1/4.0 * (My_ScreenH-64) - topMargin*2)];
     [self.userInfoView setBackgroundImage:[UIImage imageNamed:@"beijing"] forState:UIControlStateNormal];
     [self.userInfoView addTarget:self action:@selector(showUserInfoVC) forControlEvents:UIControlEventTouchUpInside];
-    UIImageView *headImage = [[UIImageView alloc] init];
-    headImage.image = [UIImage imageNamed:@"头像1"];
-    headImage.userInteractionEnabled = YES;
-    headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/4;
-    headImage.layer.borderWidth = 3;
-    headImage.layer.borderColor = [UIColor whiteColor].CGColor;
-    headImage.clipsToBounds = YES;
-    [self.userInfoView addSubview:headImage];
+    self.headImage = [[UIImageView alloc] init];
+    self.headImage.image = [UIImage imageNamed:@"头像1"];
+    self.headImage.userInteractionEnabled = YES;
+    self.headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/4;
+    self.headImage.layer.borderWidth = 3;
+    self.headImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.headImage.clipsToBounds = YES;
+    [self.userInfoView addSubview:self.headImage];
     
-    [headImage mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.headImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.userInfoView.mas_centerY);
         make.left.mas_equalTo(self.userInfoView).offset(30);
         make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.5);
-        make.width.mas_equalTo(headImage.mas_height);
+        make.width.mas_equalTo(self.headImage.mas_height);
     }];
     
     
-    UILabel *username = [[UILabel alloc] init];
-    username.text = @"name";
-    username.font = [UIFont fontWithName:My_RegularFontName size:16];
-    [username sizeToFit];
-    [self.userInfoView addSubview:username];
+    self.username = [[UILabel alloc] init];
+    self.username.text = @"name";
+    self.username.font = [UIFont fontWithName:My_RegularFontName size:16];
+    [self.username sizeToFit];
+    [self.userInfoView addSubview:self.username];
     
-    [username mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(headImage.mas_centerY).multipliedBy(0.75);
-        make.left.mas_equalTo(headImage.mas_right).offset(15);
+    [self.username mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.headImage.mas_centerY).multipliedBy(0.75);
+        make.left.mas_equalTo(self.headImage.mas_right).offset(15);
     }];
     
     UIImageView *locationImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dizhi"]];
     [self.userInfoView addSubview:locationImage];
     [locationImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(username.mas_left);
-        make.top.mas_equalTo(username.mas_bottom).offset(10);
+        make.left.mas_equalTo(self.username.mas_left);
+        make.top.mas_equalTo(self.username.mas_bottom).offset(10);
         make.size.mas_equalTo(CGSizeMake(10, 16));
     }];
     
-    UILabel *addr = [[UILabel alloc] init];
-    addr.text = @"地址";
-    addr.font = [UIFont fontWithName:My_RegularFontName size:16];
-    [addr sizeToFit];
-    [self.userInfoView addSubview:addr];
-    [addr mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.addr = [[UILabel alloc] init];
+    self.addr.text = @"地址";
+    self.addr.font = [UIFont fontWithName:My_RegularFontName size:16];
+    [self.addr sizeToFit];
+    [self.userInfoView addSubview:self.addr];
+    [self.addr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(locationImage.mas_right).offset(4);
         make.centerY.mas_equalTo(locationImage.mas_centerY);
     }];
@@ -224,12 +237,7 @@
     }];
     
     [self.view addSubview:self.userInfoView];
-    UserVO *user = [[UDManager getUD] getUser];
-    if (user) {
-        [headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
-        username.text = user.real_name;
-        addr.text = user.estate;
-    }
+
 }
 
 #pragma mark - 各模块控件
@@ -349,6 +357,14 @@
     UIButton *button = [[UIButton alloc] init];
     button.tag = 106;
     [self showVC:button];
+}
+
+- (void)dealloc{
+    [My_NoteCenter removeObserver:self name:Login_Success object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self refreshUserInfo];
 }
 
 #pragma  mark - MemoryWarning
