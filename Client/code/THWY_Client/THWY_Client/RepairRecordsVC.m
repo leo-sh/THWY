@@ -70,18 +70,6 @@
             }else{
                 self.page++;
             }
-            
-            if (list && list.count == 0) {
-//                if (self.switchFlag == 1) {
-//                    [self.tableView.mj_header endRefreshing];
-//                }else{
-//                    [self.tableView2.mj_header endRefreshing];
-//                }
-                
-                [SVProgressHUD setMinimumDismissTimeInterval:1.0];
-                [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
-            
-            }
 
             for (RepairVO *model in list) {
                 [self.repairDataArray addObject:model];
@@ -93,17 +81,22 @@
                 [self.tableView2 reloadData];
             }
             
-            [SVProgressHUD dismiss];
+            if (list && list.count == 0) {
+
+                [SVProgressHUD setMinimumDismissTimeInterval:1.2];
+                [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
+                
+            }else{
+                [SVProgressHUD dismiss];
+            }
+            
         }
       
         if (self.switchFlag == 1) {
             [self.tableView.mj_header endRefreshing];
-//            [self.tableView.mj_footer endRefreshing];
 
         }else{
             [self.tableView2.mj_header endRefreshing];
-//            [self.tableView2.mj_footer endRefreshing];
-
         }
         
     }];

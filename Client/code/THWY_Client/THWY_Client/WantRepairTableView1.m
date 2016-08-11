@@ -143,6 +143,7 @@
         case 7:{
             DescribeCell *cell = (DescribeCell *)[tableView dequeueReusableCellWithIdentifier:@"DescribeCell" forIndexPath:indexPath];
             cell.delegate = self;
+//            cell.textView.delegate = self;
             self.cells[row] = cell;
             return cell;
         }
@@ -257,6 +258,8 @@
 
 //提交报修对象
 - (void)commit{
+    
+    [[(UIViewController *)self.repairDelegate view] endEditing:YES];
     
     for (int i = 0; i < self.cells.count; i++) {
         if ([self.cells [i] isKindOfClass:[NSString class]]) {
