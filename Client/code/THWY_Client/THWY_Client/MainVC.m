@@ -40,6 +40,7 @@
     [self initNVBar];
     [self initUserInfoView];
     [self initModuleViews];
+   
     [My_NoteCenter addObserver:self selector:@selector(refreshUserInfo) name:Login_Success object:nil];
     
 }
@@ -51,13 +52,15 @@
 
 - (void)refreshUserInfo{
     
-    [My_ServicesManager getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
-        if (user) {
-            [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
-            self.username.text = user.real_name;
-            self.addr.text = user.estate;
-        }
-    }];
+    if([My_ServicesManager isLogin]){
+        [My_ServicesManager getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
+            if (user) {
+                [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
+                self.username.text = user.real_name;
+                self.addr.text = user.estate;
+            }
+        }];
+    }
 }
 
 - (void)initNVBar{
