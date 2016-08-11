@@ -70,7 +70,11 @@
     _imagePickerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     _imagePickerController.allowsEditing = YES;
     //相机类型（拍照、录像...）字符串需要做相应的类型转换
-    _imagePickerController.mediaTypes = @[(NSString *)kUTTypeMovie,(NSString *)kUTTypeImage];
+    if (self.selectType == ImageType) {
+        _imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
+    }else{
+        _imagePickerController.mediaTypes = @[(NSString *)kUTTypeMovie];
+    }
     
     if (type == UIImagePickerControllerSourceTypeCamera) {
 

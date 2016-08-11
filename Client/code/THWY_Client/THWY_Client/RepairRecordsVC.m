@@ -214,7 +214,7 @@
     }
     
     //tableView
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.bgView.height+20, My_ScreenW-20, My_ScreenH-104-40-self.bgView.height) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.bgView.height+20, My_ScreenW-20, My_ScreenH-114-45-self.bgView.height) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 300.0/667*My_ScreenH;
