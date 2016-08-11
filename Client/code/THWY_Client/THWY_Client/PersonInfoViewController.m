@@ -219,6 +219,12 @@
         else
         {
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+            
+            [[ServicesManager getAPI]getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
+                
+                [[UDManager getUD]saveUser:user];
+                
+            }];
         }
     }];
 }
