@@ -149,9 +149,6 @@
 		792A246F1D531A070005B085 /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A246E1D531A070005B085 /* UITableView+FDKeyedHeightCache.m */; };
 		792A24721D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A24711D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.m */; };
 		792E8B4B1D5325C500D70FB7 /* AlertTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 792E8B4A1D5325C500D70FB7 /* AlertTableView.m */; };
-		792E8B5A1D534BF900D70FB7 /* WCLRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 792E8B521D534BF800D70FB7 /* WCLRecordProgressView.m */; };
-		792E8B5B1D534BF900D70FB7 /* WCLRecordEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 792E8B561D534BF800D70FB7 /* WCLRecordEncoder.m */; };
-		792E8B5C1D534BF900D70FB7 /* WCLRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 792E8B591D534BF900D70FB7 /* WCLRecordEngine.m */; };
 		793296681D50826A000FD426 /* TYAlertController+BlurEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 793296511D50826A000FD426 /* TYAlertController+BlurEffects.m */; };
 		793296691D50826A000FD426 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 793296531D50826A000FD426 /* UIImage+ImageEffects.m */; };
 		7932966A1D50826A000FD426 /* TYAlertController+TransitionAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 793296551D50826A000FD426 /* TYAlertController+TransitionAnimate.m */; };
@@ -169,8 +166,6 @@
 		794E73D91D4A3A5100267C84 /* WantRepairesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73D81D4A3A5100267C84 /* WantRepairesVC.m */; };
 		794E73DC1D4A3A8800267C84 /* RepairRecordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73DB1D4A3A8800267C84 /* RepairRecordsVC.m */; };
 		794E73DF1D4A3AB700267C84 /* BussnessCircleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73DE1D4A3AB700267C84 /* BussnessCircleVC.m */; };
-		794E73E41D4A454700267C84 /* DTKDropdownMenuView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 794E73E11D4A454700267C84 /* DTKDropdownMenuView.bundle */; };
-		794E73E51D4A454700267C84 /* DTKDropdownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E31D4A454700267C84 /* DTKDropdownMenuView.m */; };
 		794E73E81D4A4F3E00267C84 /* PushSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E71D4A4F3E00267C84 /* PushSettingVC.m */; };
 		79A653E01D586CE100D03025 /* GoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A653DF1D586CE100D03025 /* GoodsVC.m */; };
 		79D2D2701D4F530400463CC5 /* MerchargeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F2B6B41D4E011C00AA94E0 /* MerchargeListCell.xib */; };
@@ -497,12 +492,6 @@
 		792A24711D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCellDebug.m"; sourceTree = "<group>"; };
 		792E8B491D5325C500D70FB7 /* AlertTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTableView.h; sourceTree = "<group>"; };
 		792E8B4A1D5325C500D70FB7 /* AlertTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTableView.m; sourceTree = "<group>"; };
-		792E8B511D534BF800D70FB7 /* WCLRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLRecordProgressView.h; sourceTree = "<group>"; };
-		792E8B521D534BF800D70FB7 /* WCLRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordProgressView.m; sourceTree = "<group>"; };
-		792E8B551D534BF800D70FB7 /* WCLRecordEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLRecordEncoder.h; sourceTree = "<group>"; };
-		792E8B561D534BF800D70FB7 /* WCLRecordEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEncoder.m; sourceTree = "<group>"; };
-		792E8B581D534BF900D70FB7 /* WCLRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLRecordEngine.h; sourceTree = "<group>"; };
-		792E8B591D534BF900D70FB7 /* WCLRecordEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEngine.m; sourceTree = "<group>"; };
 		793296501D50826A000FD426 /* TYAlertController+BlurEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TYAlertController+BlurEffects.h"; sourceTree = "<group>"; };
 		793296511D50826A000FD426 /* TYAlertController+BlurEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TYAlertController+BlurEffects.m"; sourceTree = "<group>"; };
 		793296521D50826A000FD426 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -536,9 +525,6 @@
 		794E73DB1D4A3A8800267C84 /* RepairRecordsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairRecordsVC.m; sourceTree = "<group>"; };
 		794E73DD1D4A3AB700267C84 /* BussnessCircleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BussnessCircleVC.h; sourceTree = "<group>"; };
 		794E73DE1D4A3AB700267C84 /* BussnessCircleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BussnessCircleVC.m; sourceTree = "<group>"; };
-		794E73E11D4A454700267C84 /* DTKDropdownMenuView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DTKDropdownMenuView.bundle; sourceTree = "<group>"; };
-		794E73E21D4A454700267C84 /* DTKDropdownMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTKDropdownMenuView.h; sourceTree = "<group>"; };
-		794E73E31D4A454700267C84 /* DTKDropdownMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTKDropdownMenuView.m; sourceTree = "<group>"; };
 		794E73E61D4A4F3E00267C84 /* PushSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushSettingVC.h; sourceTree = "<group>"; };
 		794E73E71D4A4F3E00267C84 /* PushSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushSettingVC.m; sourceTree = "<group>"; };
 		79A653DE1D586CE100D03025 /* GoodsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsVC.h; sourceTree = "<group>"; };
@@ -1089,13 +1075,11 @@
 			children = (
 				9449430A1D5C320200AD2B00 /* Keyboard */,
 				94E5DAD01D58731900300585 /* Reachability */,
-				792E8B4F1D534BF800D70FB7 /* VideoRecord */,
 				792A24631D5314700005B085 /* FDTableviewHeightCell */,
 				1E7527BC1D52356700AEDEC0 /* SVProgressHUD */,
 				1E7527791D52349E00AEDEC0 /* MJRefresh */,
 				7932964E1D50826A000FD426 /* TYAlertController */,
 				79F2B6981D4DD28F00AA94E0 /* ZYBannerView */,
-				794E73E01D4A454700267C84 /* DTKDropdownMenuView */,
 				5B197ECB1D487DAC00B95DE5 /* Masonry */,
 				5B197EBE1D48527600B95DE5 /* UMessage_Sdk_1.3.0 */,
 				5B2571F91D47177B00CB4167 /* SDWebImage */,
@@ -1281,51 +1265,6 @@
 			path = FDTableviewHeightCell;
 			sourceTree = "<group>";
 		};
-		792E8B4F1D534BF800D70FB7 /* VideoRecord */ = {
-			isa = PBXGroup;
-			children = (
-				792E8B501D534BF800D70FB7 /* WCLRecordProgressView */,
-				792E8B531D534BF800D70FB7 /* WCLRecordVideo */,
-			);
-			path = VideoRecord;
-			sourceTree = "<group>";
-		};
-		792E8B501D534BF800D70FB7 /* WCLRecordProgressView */ = {
-			isa = PBXGroup;
-			children = (
-				792E8B511D534BF800D70FB7 /* WCLRecordProgressView.h */,
-				792E8B521D534BF800D70FB7 /* WCLRecordProgressView.m */,
-			);
-			path = WCLRecordProgressView;
-			sourceTree = "<group>";
-		};
-		792E8B531D534BF800D70FB7 /* WCLRecordVideo */ = {
-			isa = PBXGroup;
-			children = (
-				792E8B541D534BF800D70FB7 /* WCLRecordEncoder */,
-				792E8B571D534BF900D70FB7 /* WCLRecordEngine */,
-			);
-			path = WCLRecordVideo;
-			sourceTree = "<group>";
-		};
-		792E8B541D534BF800D70FB7 /* WCLRecordEncoder */ = {
-			isa = PBXGroup;
-			children = (
-				792E8B551D534BF800D70FB7 /* WCLRecordEncoder.h */,
-				792E8B561D534BF800D70FB7 /* WCLRecordEncoder.m */,
-			);
-			path = WCLRecordEncoder;
-			sourceTree = "<group>";
-		};
-		792E8B571D534BF900D70FB7 /* WCLRecordEngine */ = {
-			isa = PBXGroup;
-			children = (
-				792E8B581D534BF900D70FB7 /* WCLRecordEngine.h */,
-				792E8B591D534BF900D70FB7 /* WCLRecordEngine.m */,
-			);
-			path = WCLRecordEngine;
-			sourceTree = "<group>";
-		};
 		7932964E1D50826A000FD426 /* TYAlertController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1383,16 +1322,6 @@
 				792A246B1D5315F70005B085 /* RecordImageCell.m */,
 			);
 			name = RepaireRecordsViews;
-			sourceTree = "<group>";
-		};
-		794E73E01D4A454700267C84 /* DTKDropdownMenuView */ = {
-			isa = PBXGroup;
-			children = (
-				794E73E11D4A454700267C84 /* DTKDropdownMenuView.bundle */,
-				794E73E21D4A454700267C84 /* DTKDropdownMenuView.h */,
-				794E73E31D4A454700267C84 /* DTKDropdownMenuView.m */,
-			);
-			path = DTKDropdownMenuView;
 			sourceTree = "<group>";
 		};
 		79F2B6981D4DD28F00AA94E0 /* ZYBannerView */ = {
@@ -1578,7 +1507,6 @@
 				5B197EE61D487DAC00B95DE5 /* Info.plist in Resources */,
 				5BFFCE281D41B9A30066B1B9 /* LaunchScreen.storyboard in Resources */,
 				1E7527B61D52349F00AEDEC0 /* MJRefresh.bundle in Resources */,
-				794E73E41D4A454700267C84 /* DTKDropdownMenuView.bundle in Resources */,
 				79F2B6BD1D4E22CC00AA94E0 /* RecommandMerchantCell.xib in Resources */,
 				1E7527C91D52356700AEDEC0 /* SVProgressHUD.bundle in Resources */,
 				5BFFCE251D41B9A30066B1B9 /* Assets.xcassets in Resources */,
@@ -1620,7 +1548,6 @@
 				5B2572211D47177B00CB4167 /* SDWebImageDownloaderOperation.m in Sources */,
 				5B2572231D47177B00CB4167 /* SDWebImagePrefetcher.m in Sources */,
 				5BED6BC11D499DB900C137C5 /* EstateVO.m in Sources */,
-				792E8B5B1D534BF900D70FB7 /* WCLRecordEncoder.m in Sources */,
 				793296681D50826A000FD426 /* TYAlertController+BlurEffects.m in Sources */,
 				5B2571851D47110B00CB4167 /* UIImage+ScreenShot.m in Sources */,
 				1E3BA3911D4AFF2B00633D0B /* PersonInfoLabel.m in Sources */,
@@ -1710,7 +1637,6 @@
 				1E75274B1D519A8500AEDEC0 /* AlertView.m in Sources */,
 				793296691D50826A000FD426 /* UIImage+ImageEffects.m in Sources */,
 				794E73DF1D4A3AB700267C84 /* BussnessCircleVC.m in Sources */,
-				792E8B5C1D534BF900D70FB7 /* WCLRecordEngine.m in Sources */,
 				5B2572271D47177B00CB4167 /* UIImage+WebP.m in Sources */,
 				5BED6BC71D49AA7F00C137C5 /* RepairVO.m in Sources */,
 				5B197EEF1D487DAC00B95DE5 /* View+MASAdditions.m in Sources */,
@@ -1725,7 +1651,6 @@
 				1E42BB551D498DEE0021DA01 /* userAndPassWordTextField.m in Sources */,
 				7928242B1D541D8F001764EB /* WantRepairTableView2.m in Sources */,
 				79F2B6BC1D4E22CC00AA94E0 /* RecommandMerchantCell.m in Sources */,
-				792E8B5A1D534BF900D70FB7 /* WCLRecordProgressView.m in Sources */,
 				5BFFCE1A1D41B9A30066B1B9 /* main.m in Sources */,
 				792A24661D5314700005B085 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				5B2571821D47110B00CB4167 /* UIDevice+DeviceType.m in Sources */,
@@ -1760,7 +1685,6 @@
 				7932967C1D51BCFF000FD426 /* RepairDetailController.m in Sources */,
 				792A24621D5300D10005B085 /* RecordsDetailCell.m in Sources */,
 				5B25721C1D47177B00CB4167 /* NSData+ImageContentType.m in Sources */,
-				794E73E51D4A454700267C84 /* DTKDropdownMenuView.m in Sources */,
 				5B197EF01D487DAC00B95DE5 /* ViewController+MASAdditions.m in Sources */,
 				5B197F0E1D48B73E00B95DE5 /* AdVO.m in Sources */,
 				5B2572741D47545400CB4167 /* UserVO.m in Sources */,

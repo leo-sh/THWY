@@ -7,15 +7,11 @@
 //
 
 #import "MainVC.h"
-#import "DTKDropdownMenuView.h"
 #import "Masonry/Masonry.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UserVO.h"
 #import "UDManager.h"
-#import "DTKDropdownMenuView.h"
-
 #import "PersonInfoViewController.h"
-#import "DTKDropdownMenuView.h"
 #import "DropMenuTableView.h"
 
 #define topMargin  8.0/375*My_ScreenW
@@ -55,12 +51,14 @@
 }
 
 - (void)refreshUserInfo{
-    UserVO *user = [[UDManager getUD] getUser];
-    if (user) {
-        [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
-        self.username.text = user.real_name;
-        self.addr.text = user.estate;
-    }
+    
+    [My_ServicesManager getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
+        if (user) {
+            [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
+            self.username.text = user.real_name;
+            self.addr.text = user.estate;
+        }
+    }];
 }
 
 - (void)initNVBar{

@@ -45,12 +45,18 @@
 
 - (void)getBussnessData{
     
+    [SVProgressHUD showWithStatus:@"数据加载中..."];
     self.bussnessModels = [NSMutableArray array];
     [My_ServicesManager getAGood:self.good.Id onComplete:^(NSString *errorMsg, GoodVO *merchant) {
 
+        if (errorMsg){
+            [SVProgressHUD setMinimumDismissTimeInterval:1.5];
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
         [self.bussnessModels addObject:merchant];
         
         [self.tableView reloadData];
+        [SVProgressHUD dismiss];
     }];
     
 }
