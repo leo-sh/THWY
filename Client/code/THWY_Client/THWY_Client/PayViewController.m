@@ -35,6 +35,8 @@
 - (void)ViewInitSetting
 {
     self.title = @"缴费台账";
+    UIImage *backgroundImage = [UIImage imageNamed:@"背景2"];
+    self.view.layer.contents = (id) backgroundImage.CGImage;
     self.page = 1;
     self.year = 0;
     self.statu = All;
@@ -91,7 +93,11 @@
     
     [self.view addSubview:searchView];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, searchView.bottom, self.view.width, self.view.height - searchView.height) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(5, searchView.bottom, self.view.width - 10, self.view.height - searchView.height) style:UITableViewStyleGrouped];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.tableView.backgroundColor = [UIColor clearColor];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -143,6 +149,34 @@
     self.statu = [self.chooseStatuBtn.postID intValue];
     
     [self getData];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.01;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section != self.data.count - 1) {
+        return 2;
+    }
+    else
+    {
+        return 0.01;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (section != self.data.count - 1) {
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"彩条"]];
+        return imageView;
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 /*

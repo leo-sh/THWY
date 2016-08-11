@@ -46,19 +46,36 @@
 {    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
 
     [[ServicesManager getAPI] getComplaints:self.pageNumber onComplete:^(NSString *errorMsg, NSArray *list) {
-        [self.data addObjectsFromArray:list];
-        for (ComplaintVO *temp in list) {
-            NSArray *array = @[temp.complaint_type_name,temp.estate,temp.complaint_person,temp.complaint_phone,temp.ctime,temp.Id];
-            [self.contentEnd addObject:array];
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
+        
+        if (errorMsg) {
             [SVProgressHUD dismiss];
-            [self.tableView.mj_footer endRefreshing];
-            [self.tableView.mj_header endRefreshing];
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
+        
+        else if (list.count == 0)
+        {
+            [SVProgressHUD dismiss];
+            [SVProgressHUD setMinimumDismissTimeInterval:1];
+            [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
+        }
+        else
+        {
+            [self.data addObjectsFromArray:list];
+            
+            for (ComplaintVO *temp in list) {
+                NSArray *array = @[temp.complaint_type_name,temp.estate,temp.complaint_person,temp.complaint_phone,temp.ctime,temp.Id];
+                [self.contentEnd addObject:array];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [SVProgressHUD dismiss];
+                [self.tableView.mj_footer endRefreshing];
+                [self.tableView.mj_header endRefreshing];
 
-        });
+            });
+        }
     }];
+        
 }
 
 - (void)createUI
@@ -219,38 +236,48 @@
 - (void)clickAdd
 {
     self.alertview = [[ComplainAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
-    [self.alertview updateWithComplainVo:[[UDManager getUD]getUser]];
+//    [self.alertview updateWithComplainVo:[[UDManager getUD]getUser]];
     [self.alertview show];
     [self.alertview addLeftBtnTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)submit
 {
-    if (self.alertview.houseSourceBtn.chooseStatu) {
+    
+    for (int i = 0; i < self.alertview.houseSourceBtnArray.count; i ++) {
         
-        ComplaintVO *postItem = [[ComplaintVO alloc]init];
-        UserVO *user = [[UDManager getUD] getUser];
-        postItem.complaint_person = user.real_name;
-        postItem.complaint_type = self.alertview.typeBtn.postID;
-        postItem.complaint_phone = user.cellphone;
-        NSLog(@"%@",self.alertview.houseSourceBtn.house)
-        postItem.house_id = self.alertview.houseSourceBtn.house.Id;
-        postItem.estate_id = self.alertview.houseSourceBtn.house.estate_id;
-        postItem.complaint_content = self.alertview.textView.text;
+        BlueRedioButton *btn = self.alertview.houseSourceBtnArray[i];
         
-        [[ServicesManager getAPI] addComplaint:postItem onComplete:^(NSString *errorMsg) {
-          
-            if (errorMsg) {
-                [SVProgressHUD showErrorWithStatus:errorMsg];
-                
-            }
-            else
-            {
-                [SVProgressHUD showSuccessWithStatus:@"添加成功"];
-            }
+        if (btn.chooseStatu) {
             
-        }];
+            ComplaintVO *postItem = [[ComplaintVO alloc]init];
+            UserVO *user = [[UDManager getUD] getUser];
+            postItem.complaint_person = user.real_name;
+            postItem.complaint_type = self.alertview.typeBtn.postID;
+            postItem.complaint_phone = user.cellphone;
+            postItem.house_id = btn.house.Id;
+            postItem.estate_id = btn.house.estate_id;
+            postItem.complaint_content = self.alertview.textView.text;
+            
+            [[ServicesManager getAPI] addComplaint:postItem onComplete:^(NSString *errorMsg) {
+                
+                if (errorMsg) {
+                    [SVProgressHUD showErrorWithStatus:errorMsg];
+                    
+                }
+                else
+                {
+                    [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+                }
+                
+            }];
+            
+            break;
+        }
+
+        
     }
+    
 }
 
 

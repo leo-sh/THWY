@@ -9,7 +9,6 @@
 #import "RootVC.h"
 #import "LoginViewController.h"
 @interface RootVC ()
-
 @end
 
 @implementation RootVC
@@ -28,12 +27,15 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     [self customNVBar];
-    
+    self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
     if (![[ServicesManager getAPI]isLogin]) {
         LoginViewController *presentView = [[LoginViewController alloc]init];
         [self presentViewController:presentView animated:YES completion:nil];
     }
-
+    My_WeakSelf;
+    [self.keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^(ZYKeyboardUtil *keyboardUtil) {
+        [keyboardUtil adaptiveViewHandleWithController:weakSelf adaptiveView:weakSelf.view, nil];
+    }];
 }
 
 - (void)customNVBar{

@@ -43,16 +43,41 @@
     houseLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
     [houseSource addSubview:houseLabel];
     
-    self.houseSourceBtn = [[BlueRedioButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(houseLabel.frame), 0, self.width - CGRectGetMaxX(houseLabel.frame), 30)];
-    [self.houseSourceBtn initDefaultImageName:@"repaire_unselected"  choosedImageName:@"repaire_selected"];
-    [houseSource addSubview:self.houseSourceBtn];
+    NSArray *houseArray = [[[UDManager getUD] getUser] houses];
+    
+    self.houseSourceBtnArray = [NSMutableArray array];
+    
+    CGFloat houseBtnX = CGRectGetMaxX(houseLabel.frame);
+    CGFloat houseBtnY = 0;
+    CGFloat houseBtnW = self.width - CGRectGetMaxX(houseLabel.frame);
+    CGFloat houseBtnH = 30;
+    
+    for (int i = 0; i < houseArray.count; i ++) {
+        houseSource.height = 30 *houseArray.count;
+        BlueRedioButton * btn = [[BlueRedioButton alloc]initWithFrame:CGRectMake(houseBtnX, houseBtnY, houseBtnW, houseBtnH)];
+        
+        HouseVO *house = houseArray[i];
+        
+        NSString *addressString = [NSString stringWithFormat:@"%@%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
+        
+        btn.house = house;
+        
+        [btn initDefaultImageName:@"repaire_unselected"  choosedImageName:@"repaire_selected" title:addressString];
+        
+        [self.houseSourceBtnArray addObject:btn];
+        
+        [houseSource addSubview:btn];
+        
+        houseBtnY +=houseBtnH;
+    }
     
     self.person = [[UILabel alloc]initWithFrame:CGRectMake(10,houseSource.bottom, self.width, 30)];
     self.person.font = [UIFont systemFontOfSize:CONTENT_FONT];
     
     [self addSubOhterview:self.person];
-    
+    self.person.text = [NSString stringWithFormat:@"投诉姓名：%@",[[UDManager getUD] getUser].real_name];
     self.phone = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(self.person.frame), self.width - 10, 30)];
+    self.phone.text = [NSString stringWithFormat:@"投诉人电话：%@",[[UDManager getUD] getUser].cellphone];
     self.phone.font = [UIFont systemFontOfSize:CONTENT_FONT];
     
     [self addSubOhterview:self.phone];
@@ -100,12 +125,10 @@
 
 - (void)updateWithComplainVo:(UserVO *)UserVO
 {
-    self.person.text = [NSString stringWithFormat:@"投诉姓名：%@",UserVO.real_name];
-    self.phone.text = [NSString stringWithFormat:@"投诉人电话：%@",UserVO.cellphone];
-    HouseVO * house = [UserVO.houses firstObject];
-    NSString *addressString = [NSString stringWithFormat:@"%@%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
-    self.houseSourceBtn.house = house;
-    [self.houseSourceBtn setTitle:addressString forState:UIControlStateNormal];
+//    HouseVO * house = [UserVO.houses firstObject];
+//    NSString *addressString = [NSString stringWithFormat:@"%@%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
+//    self.houseSourceBtn.house = house;
+//    [self.houseSourceBtn setTitle:addressString forState:UIControlStateNormal];
 }
 
 @end

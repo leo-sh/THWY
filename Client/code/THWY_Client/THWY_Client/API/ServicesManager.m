@@ -7,6 +7,7 @@
 //
 
 #import "ServicesManager.h"
+#import "UMessage.h"
 
 @interface ServicesManager ()
 {
@@ -269,8 +270,20 @@
         {
             _userName = userName;
             _passWord = password;
-            
+        
             UserVO* user = [[UserVO alloc]initWithJSON:responseObject[@"datas"]];
+            
+            NSMutableArray* tagArr = [[NSMutableArray alloc]initWithObjects:@"owner",[NSString stringWithFormat:@"owner_id_%@",user.Id], nil];
+            
+            for (HouseVO* house in user.houses) {
+                [tagArr addObject:[NSString stringWithFormat:@"estate_id_%@",house.estate_id]];
+            }
+            
+            [UMessage removeAllTags:^(id  _Nonnull responseObject, NSInteger remain, NSError * _Nonnull error) {
+                [UMessage addTag:tagArr response:^(id  _Nonnull responseObject, NSInteger remain, NSError * _Nonnull error) {
+                    
+                }];
+            }];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[UDManager getUD] saveUserName:userName];
@@ -288,6 +301,9 @@
 -(void)logOut:(void (^)())onComplete
 {
     [[UDManager getUD] removeUDUser];
+    [UMessage removeAllTags:^(id  _Nonnull responseObject, NSInteger remain, NSError * _Nonnull error) {
+        
+    }];
     onComplete();
 }
 
@@ -307,6 +323,17 @@
         }else
         {
             UserVO* user = [[UserVO alloc]initWithJSON:responseObject[@"datas"]];
+            NSMutableArray* tagArr = [[NSMutableArray alloc]initWithObjects:@"owner",[NSString stringWithFormat:@"owner_id_%@",user.Id], nil];
+            
+            for (HouseVO* house in user.houses) {
+                [tagArr addObject:[NSString stringWithFormat:@"estate_id_%@",house.estate_id]];
+            }
+            
+            [UMessage removeAllTags:^(id  _Nonnull responseObject, NSInteger remain, NSError * _Nonnull error) {
+                [UMessage addTag:tagArr response:^(id  _Nonnull responseObject, NSInteger remain, NSError * _Nonnull error) {
+                    
+                }];
+            }];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[UDManager getUD] saveUser:user];
             });

@@ -124,8 +124,12 @@
     self.AddressLabel.textColor = [UIColor lightGrayColor];
     
     self.payTypeLabel.font = self.estateLabel.font;
+    self.payTypeLabel.textColor = [UIColor lightGrayColor];
     self.priceLabel.font = self.estateLabel.font;
     self.stateLabel.font = self.estateLabel.font;
+    self.stateLabel.textColor = [UIColor lightGrayColor];
+
+    
     self.houseOwnerLabel.textAlignment = NSTextAlignmentRight;
     self.payTypeLabel.textAlignment = NSTextAlignmentRight;
     self.stateLabel.textAlignment = NSTextAlignmentRight;

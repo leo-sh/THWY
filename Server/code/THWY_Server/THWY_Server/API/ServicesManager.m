@@ -7,6 +7,7 @@
 //
 
 #import "ServicesManager.h"
+#import "UMessage.h"
 
 @interface ServicesManager ()
 {
@@ -226,6 +227,22 @@
             
             UserVO* user = [[UserVO alloc]initWithJSON:responseObject[@"datas"]];
             
+            NSMutableArray* tagArr = [[NSMutableArray alloc]initWithObjects:@"manager",[NSString stringWithFormat:@"admin_id_%@",user.admin_id],[NSString stringWithFormat:@"group_id%@",user.admin_group_id], nil];
+            if ([user.is_serviceman isEqualToString:@"1"]) {
+                [tagArr addObject:@"wx"];
+            }
+            
+            NSArray* estates = [user.estate_ids componentsSeparatedByString:@","];
+            for (NSString* estateId in estates) {
+                [tagArr addObject:[NSString stringWithFormat:@"estate_id_%@",estateId]];
+            }
+            
+            [UMessage removeAllTags:^(id  _Nonnull responseObject, NSInteger remain, NSError * _Nonnull error) {
+                [UMessage addTag:tagArr response:^(id  _Nonnull responseObject, NSInteger remain, NSError * _Nonnull error) {
+                    
+                }];
+            }];
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[UDManager getUD] saveUserName:userName];
                 [[UDManager getUD] saveUserPassWord:password];
@@ -255,6 +272,21 @@
         }else
         {
             UserVO* user = [[UserVO alloc]initWithJSON:responseObject[@"datas"]];
+            NSMutableArray* tagArr = [[NSMutableArray alloc]initWithObjects:@"manager",[NSString stringWithFormat:@"admin_id_%@",user.admin_id],[NSString stringWithFormat:@"group_id%@",user.admin_group_id], nil];
+            if ([user.is_serviceman isEqualToString:@"1"]) {
+                [tagArr addObject:@"wx"];
+            }
+            
+            NSArray* estates = [user.estate_ids componentsSeparatedByString:@","];
+            for (NSString* estateId in estates) {
+                [tagArr addObject:[NSString stringWithFormat:@"estate_id_%@",estateId]];
+            }
+            
+            [UMessage removeAllTags:^(id  _Nonnull responseObject, NSInteger remain, NSError * _Nonnull error) {
+                [UMessage addTag:tagArr response:^(id  _Nonnull responseObject, NSInteger remain, NSError * _Nonnull error) {
+                    
+                }];
+            }];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[UDManager getUD] saveUser:user];
             });
@@ -370,6 +402,9 @@
 -(void)logOut:(void (^)())onComplete
 {
     [[UDManager getUD] removeUDUser];
+    [UMessage removeAllTags:^(id  _Nonnull responseObject, NSInteger remain, NSError * _Nonnull error) {
+        
+    }];
     onComplete();
 }
 
