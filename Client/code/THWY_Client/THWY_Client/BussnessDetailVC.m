@@ -8,6 +8,7 @@
 
 #import "BussnessDetailVC.h"
 #import "GoodsVC.h"
+#import "MerchantDetailVC.h"
 
 @interface BussnessDetailVC ()
 
@@ -131,23 +132,31 @@
 }
 
 - (void)contact:(UIButton *)btn{
-    NSString *phoneNum = self.merchant.telephone;// 电话号码
-    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]];
-    //    if ( !self.phoneCallWebView ) {
-    //        self.phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的View 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
-    //    }
-    //    [self.phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
-    [[UIApplication sharedApplication] openURL:phoneURL];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"拨打电话" message:@"您确定要拔打电话吗?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *phoneNum = self.merchant.telephone;// 电话号码
+        NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]];
+        [[UIApplication sharedApplication] openURL:phoneURL];
 
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:sure];
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:^{
+        
+    }];
+    
 }
 
 - (void)showDetail:(UIButton *)btn{
-//    GoodsVC *detail = [[GoodsVC alloc] init];
-//    detail.good = [[GoodVO alloc] init];
-//    detail.good.pic = self.merchant.pic;
-//    detail.good.goods_name = self.merchant.business_name;
-//    detail.good.goods_intro = self.merchant.intro;
-//    [self .navigationController pushViewController:detail animated:YES];
+    MerchantDetailVC *detail = [[MerchantDetailVC alloc] init];
+    detail.goodVOs = self.merchant.products;
+    [self.navigationController pushViewController:detail animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {

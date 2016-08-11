@@ -47,13 +47,18 @@
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }else{
             [self.estateArray removeAllObjects];
-            for (EstateVO *estate in list) {
+            for (int i = 0; i<list.count; i++) {
+                EstateVO *estate = list[i];
+                if ([self.btn_project.titleLabel.text isEqualToString:estate.estate_name]) {
+                    self.estateIndex = i;
+                }
                 [self.estateArray addObject:estate];
             }
             [SVProgressHUD dismiss];
             self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.estateArray.count + 40.0/667*My_ScreenH)<(My_ScreenH-84)?(44.0*self.estateArray.count + 40.0/667*My_ScreenH):(My_ScreenH-84)) style:UITableViewStylePlain];
             self.alertTableView.type = AlertEstateType;
             self.alertTableView.data = self.estateArray;
+            self.alertTableView.selectedIndex = self.estateIndex;
             self.alertTableView.AlertDelegate = self;
             [self.alertTableView showInWindow];
         }
@@ -72,13 +77,18 @@
     
     [My_ServicesManager getBlock:[self.estateArray[self.estateIndex] estate_id] onComplete:^(NSString *errorMsg, NSArray *list) {
         [self.blockArray removeAllObjects];
-        for (NSString *block in list) {
+        for (int i=0; i<list.count; i++) {
+            NSString *block = list[i];
+            if ([block isEqualToString:self.btn_block.titleLabel.text]) {
+                self.blockIndex = i;
+            }
             [self.blockArray addObject:block];
         }
         [SVProgressHUD dismiss];
         self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.blockArray.count + 40.0/667*My_ScreenH)<(My_ScreenH-84)?(44.0*self.blockArray.count + 40.0/667*My_ScreenH):(My_ScreenH-84)) style:UITableViewStylePlain];
         self.alertTableView.type = AlertBlockType;
         self.alertTableView.data = self.blockArray;
+        self.alertTableView.selectedIndex = self.blockIndex;
         self.alertTableView.AlertDelegate = self;
         [self.alertTableView showInWindow];
     }];
@@ -93,7 +103,11 @@
     }
     [My_ServicesManager getUnit:[self.estateArray[self.estateIndex] estate_id] block:self.blockArray[self.blockIndex] onComplete:^(NSString *errorMsg, NSArray *list) {
         [self.unitArray removeAllObjects];
-        for (NSNumber *unit in list) {
+        for (int i=0; i<list.count; i++) {
+            NSNumber *unit = list[i];
+            if ([[unit stringValue] isEqualToString:self.btn_unit.titleLabel.text]) {
+                self.unitIndex = i;
+            }
             [self.unitArray addObject:unit];
         }
         [SVProgressHUD dismiss];
@@ -101,6 +115,7 @@
         self.alertTableView.type = AlertUnitType;
         self.alertTableView.data = self.unitArray;
         self.alertTableView.AlertDelegate = self;
+        self.alertTableView.selectedIndex = self.unitIndex;
         [self.alertTableView showInWindow];
     }];
 }
@@ -115,7 +130,11 @@
     }
     [My_ServicesManager getLayer:[self.estateArray[self.estateIndex] estate_id] block:self.blockArray[self.blockIndex] unit:self.unitArray[self.unitIndex] onComplete:^(NSString *errorMsg, NSArray *list) {
         [self.layerArray removeAllObjects];
-        for (NSString *layer in list) {
+        for (int i=0; i<list.count; i++) {
+            NSString *layer = list[i];
+            if ([layer isEqualToString:self.btn_layer.titleLabel.text]) {
+                self.layerIndex = i;
+            }
             [self.layerArray addObject:layer];
         }
         [SVProgressHUD dismiss];
@@ -123,6 +142,7 @@
         self.alertTableView.type = AlertLayerType;
         self.alertTableView.data = self.layerArray;
         self.alertTableView.AlertDelegate = self;
+        self.alertTableView.selectedIndex = self.layerIndex;
         [self.alertTableView showInWindow];
     }];
 }

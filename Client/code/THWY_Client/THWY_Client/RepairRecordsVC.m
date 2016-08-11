@@ -219,6 +219,8 @@
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 300.0/667*My_ScreenH;
     self.tableView.sectionHeaderHeight = 0;
+    self.tableView.sectionFooterHeight = 0;
+    self.tableView.contentInset = UIEdgeInsetsMake(-28, 0, 0, 0);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 4, 0);
     self.tableView.separatorColor = [UIColor grayColor];
@@ -230,7 +232,9 @@
     self.tableView2.delegate = self;
     self.tableView2.dataSource = self;
     self.tableView2.rowHeight = 300.0/667*My_ScreenH;
-//    self.tableView2.sectionHeaderHeight = 0;
+    self.tableView2.sectionHeaderHeight = 0;
+    self.tableView2.sectionFooterHeight = 0;
+    self.tableView2.contentInset = UIEdgeInsetsMake(-28, 0, 0, 0);
     self.tableView2.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     self.tableView2.separatorInset = UIEdgeInsetsMake(0, 0, 4, 0);
     self.tableView2.separatorColor = [UIColor grayColor];
@@ -377,6 +381,10 @@
     return button;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 30;
 }
@@ -406,6 +414,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

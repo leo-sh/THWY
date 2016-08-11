@@ -29,4 +29,6 @@ typedef NS_ENUM(NSInteger, AlertType){
 
 @property (strong, nonatomic) NSMutableArray *data;
 
+@property (assign, nonatomic) NSInteger selectedIndex;
+
 @end

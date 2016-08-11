@@ -185,6 +185,7 @@
             break;
         }
         default:
+            [[(UIViewController *)self.repairDelegate view] endEditing:YES];
             break;
     }
     

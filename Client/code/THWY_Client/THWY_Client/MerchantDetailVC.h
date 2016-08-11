@@ -1,5 +1,5 @@
 //
-//  TechSupportVC.h
+//  MerchantDetailVC.h
 //  THWY_Client
 //
 //  Created by wei on 16/8/11.
@@ -8,6 +8,8 @@
 
 #import "RootVC.h"
 
-@interface TechSupportVC : RootVC
+@interface MerchantDetailVC : RootVC
+
+@property (strong, nonatomic) NSArray *goodVOs;
 
 @end
