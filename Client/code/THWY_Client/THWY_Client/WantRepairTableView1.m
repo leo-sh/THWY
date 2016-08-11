@@ -18,7 +18,7 @@
 
 #import "AlertTableView.h"
 
-@interface WantRepairTableView1 ()<UITableViewDelegate, UITableViewDataSource, AlertTableViewDelegate, DescribeCellDelegate, UploadCellDelegate>
+@interface WantRepairTableView1 ()<UITableViewDelegate, UITableViewDataSource, AlertTableViewDelegate, DescribeCellDelegate, UploadCellDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) AlertTableView *alertView;
 
@@ -324,9 +324,6 @@
     }else if ([self.repairVO.image isEqual:nil]){
         errorMsg = @"请选择图片";
     }
-//    else if ([self.repairVO.videoPath isEqualToString:@""]){
-//        errorMsg = @"请选择视频";
-//    }
     
     if (![errorMsg isEqualToString:@""]){
         [SVProgressHUD setMinimumDismissTimeInterval:1.4];
@@ -377,6 +374,12 @@
         }];
     }
 
+    
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    
+    [self.repairDelegate tableViewDidScroll];
     
 }
 

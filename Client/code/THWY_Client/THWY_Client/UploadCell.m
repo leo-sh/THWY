@@ -74,23 +74,20 @@
         _imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
     }else{
         _imagePickerController.mediaTypes = @[(NSString *)kUTTypeMovie];
+        if (type == UIImagePickerControllerSourceTypeCamera) {
+            
+            //录制视频时长，默认10s
+            _imagePickerController.videoMaximumDuration = 15;
+            
+            //视频上传质量
+            _imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
+            
+            //设置摄像头模式（拍照，录制视频）为录像模式
+            _imagePickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
+            
+        }
     }
     
-    if (type == UIImagePickerControllerSourceTypeCamera) {
-
-        //录制视频时长，默认10s
-        _imagePickerController.videoMaximumDuration = 15;
-    
-        //视频上传质量
-        _imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
-        
-        //设置摄像头模式（拍照，录制视频）为录像模式
-        _imagePickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
-        
-    }else {
-        
-    }
-
     UIViewController *vc = [self vc:self.delegate] ;
     [vc presentViewController:_imagePickerController animated:YES completion:nil];
     
