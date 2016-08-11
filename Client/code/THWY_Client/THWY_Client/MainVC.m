@@ -7,15 +7,11 @@
 //
 
 #import "MainVC.h"
-#import "DTKDropdownMenuView.h"
 #import "Masonry/Masonry.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UserVO.h"
 #import "UDManager.h"
-#import "DTKDropdownMenuView.h"
-
 #import "PersonInfoViewController.h"
-#import "DTKDropdownMenuView.h"
 #import "DropMenuTableView.h"
 
 #define topMargin  8.0/375*My_ScreenW
@@ -44,7 +40,6 @@
     [self initNVBar];
     [self initUserInfoView];
     [self initModuleViews];
-    [self initDownMenu];
     [My_NoteCenter addObserver:self selector:@selector(refreshUserInfo) name:Login_Success object:nil];
     
 }
@@ -55,12 +50,14 @@
 }
 
 - (void)refreshUserInfo{
-    UserVO *user = [[UDManager getUD] getUser];
-    if (user) {
-        [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
-        self.username.text = user.real_name;
-        self.addr.text = user.estate;
-    }
+    
+    [My_ServicesManager getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
+        if (user) {
+            [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
+            self.username.text = user.real_name;
+            self.addr.text = user.estate;
+        }
+    }];
 }
 
 - (void)initNVBar{
@@ -137,47 +134,6 @@
 
 - (void)dropMenuHidden{
     [self.leftButton setBackgroundImage:nil forState:UIControlStateNormal];
-}
-
-#pragma mark - drownMenu
-- (void)initDownMenu{
-    
-//    DTKDropdownItem *item0 = [DTKDropdownItem itemWithTitle:@"我要报修" callBack:^(NSUInteger index, id info) {
-//        button.tag = 101;
-//        [self showVC:button];
-//    }];
-//    item0.iconName = @"main_1";
-//    DTKDropdownItem *item1 = [DTKDropdownItem itemWithTitle:@"我要投诉" callBack:^(NSUInteger index, id info) {
-//        button.tag = 105;
-//        [self showVC:button];
-//    }];
-//    item1.iconName = @"main_2";
-//    DTKDropdownItem *item2 = [DTKDropdownItem itemWithTitle:@"业务公告" callBack:^(NSUInteger index, id info) {
-//        button.tag = 108;
-//        [self showVC:button];
-//    }];
-//    item2.iconName = @"main_3";
-//    DTKDropdownItem *item3 = [DTKDropdownItem itemWithTitle:@"推送设置" callBack:^(NSUInteger index, id info) {
-//        button.tag = 109;
-//        [self showVC:button];
-//    }];
-//    item3.iconName = @"main_4";
-//    DTKDropdownItem *item4 = [DTKDropdownItem itemWithTitle:@"技术支持" callBack:^(NSUInteger index, id info) {
-//        button.tag = 110;
-//        [self showVC:button];
-//    }];
-//    item4.iconName = @"main_5";
-//    DTKDropdownMenuView *menuView = [DTKDropdownMenuView dropdownMenuViewWithType:dropDownTypeLeftItem frame:CGRectMake(0, 0, 44.f, 44.f) dropdownItems:@[item0,item1,item2,item3,item4] icon:@"menu"];
-//    
-//    menuView.dropWidth = 130.f;
-////    menuView.titleFont = [UIFont systemFontOfSize:18.f];
-//    menuView.textColor = [UIColor whiteColor];
-//    menuView.textFont = [UIFont systemFontOfSize:13.f];
-//    menuView.cellSeparatorColor = My_Color(229.f, 229.f, 229.f);
-//    menuView.animationDuration = 0.3f;
-//    menuView.cellColor = My_NAV_BG_Color;
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:menuView];
-
 }
 
 #pragma mark - UserInfo
