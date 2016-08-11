@@ -76,15 +76,10 @@
     
     self.alertView.AlertDelegate = self;
     
-    if (self.frameY == 0 && self.frameX == 0) {
+    if (self.alertView.method != GetComplainType) {
         
-        [self.alertView showCenter];
-    }
-    else
-    {
         [self.alertView showOriginY:self.frameY OriginX:self.frameX];
     }
-    
 }
 
 - (void)setGetDataMethod:(GetDataMethod)method OriginY:(CGFloat)y OriginX:(CGFloat)x

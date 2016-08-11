@@ -48,28 +48,34 @@
     [[ServicesManager getAPI] getComplaints:self.pageNumber onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg) {
+            [SVProgressHUD dismiss];
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }
         
         else if (list.count == 0)
         {
+            [SVProgressHUD dismiss];
+            [SVProgressHUD setMinimumDismissTimeInterval:1];
             [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
         }
-        
-        [self.data addObjectsFromArray:list];
-        
-        for (ComplaintVO *temp in list) {
-            NSArray *array = @[temp.complaint_type_name,temp.estate,temp.complaint_person,temp.complaint_phone,temp.ctime,temp.Id];
-            [self.contentEnd addObject:array];
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-            [SVProgressHUD dismiss];
-            [self.tableView.mj_footer endRefreshing];
-            [self.tableView.mj_header endRefreshing];
+        else
+        {
+            [self.data addObjectsFromArray:list];
+            
+            for (ComplaintVO *temp in list) {
+                NSArray *array = @[temp.complaint_type_name,temp.estate,temp.complaint_person,temp.complaint_phone,temp.ctime,temp.Id];
+                [self.contentEnd addObject:array];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [SVProgressHUD dismiss];
+                [self.tableView.mj_footer endRefreshing];
+                [self.tableView.mj_header endRefreshing];
 
-        });
+            });
+        }
     }];
+        
 }
 
 - (void)createUI
