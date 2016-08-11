@@ -8,10 +8,10 @@
 
 #import "AlertTableView2.h"
 #import "ServicesManager.h"
+#import "SVProgressHUD/SVProgressHUD.h"
 #define kCurrentWindow [[UIApplication sharedApplication].windows firstObject]
 @interface AlertTableView2()<UITableViewDelegate,UITableViewDataSource>
 @property NSArray *data;
-@property GetDataMethod method;
 @end
 @implementation AlertTableView2
 - (instancetype)initWithNumber:(GetDataMethod)method
@@ -26,23 +26,32 @@
         if (method == GetComplainType) {
             [[ServicesManager getAPI]getComplaintTypes:^(NSString *errorMsg, NSArray *list) {
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
+                NSMutableArray *array = [NSMutableArray array];
+                
+                for (ComplaintTypeVO *temp in list) {
                     
-                    
-                    NSMutableArray *array = [NSMutableArray array];
-                    
-                    for (ComplaintTypeVO *temp in list) {
-                        
-                        [array addObject:temp.complaint_type];
-                    }
-                    
-                    self.data = array;
-                    
-                    self.frame = CGRectMake(0, 0, 105, 30 * self.data.count);
-                    
-                    [self reloadData];
-                    
-                });
+                    [array addObject:temp.complaint_type];
+                }
+                
+                self.data = array;
+                
+                self.frame = CGRectMake(0, 0, 105, 30 * self.data.count);
+                self.center = kCurrentWindow.center;
+                
+                if (self.data.count != 0) {
+                    [self showCenter];
+                }
+                else
+                {
+                    [SVProgressHUD setMinimumDismissTimeInterval:1];
+                    [SVProgressHUD showInfoWithStatus:@"网络访问有问题"];
+                }
+                
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    
+//                    [self reloadData];
+//                    
+//                });
                 
             }];
         }
@@ -95,7 +104,7 @@
     NSString *string;
     if (self.method == GetComplainType) {
 
-       string  = [NSString stringWithFormat:@"%d",indexPath.row + 1];
+       string  = [NSString stringWithFormat:@"%ld",indexPath.row + 1];
     }
     else if (self.method == GetYear)
     {
@@ -103,7 +112,7 @@
     }
     else
     {
-       string = [NSString stringWithFormat:@"%d",indexPath.row - 1];
+       string = [NSString stringWithFormat:@"%ld",indexPath.row - 1];
     }
     NSArray *array = @[self.data[indexPath.row],string];
     

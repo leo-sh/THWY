@@ -20,6 +20,7 @@
 @property UISegmentedControl *segmentedControl;
 @property NSMutableArray *FeedBackTypeArray;
 @property NSArray *data;
+@property UIView *topView;
 @end
 
 @implementation SuggestViewController
@@ -63,7 +64,15 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 if (!self.data) {
-                    [self.view addSubview:[self createAddBtn:self.view]];
+                    static dispatch_once_t onceToken;
+                    dispatch_once(&onceToken, ^{
+                        ReviseBtn *addBtn = [self createAddBtn:self.view];
+                        
+                        addBtn.y = self.topView.bottom + 5;
+                        
+                        [self.view addSubview:addBtn];
+                        
+                    });
                 }
                 [self.tableView reloadData];
                 [SVProgressHUD dismiss];
@@ -79,10 +88,35 @@
 - (void)createUI
 {
     
+    self.topView = [[UIImageView alloc]init];
+    
+    self.topView.backgroundColor = [UIColor clearColor];
+    
+    self.topView.userInteractionEnabled = YES;
+    
+    [self.view addSubview:self.topView];
+    
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.mas_equalTo(0);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.height.mas_equalTo(TopViewH);
+    }];
+    self.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"建议",@"意见"]];
+    self.segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl.frame = CGRectMake(40, 15,My_ScreenW - 80 ,  40);
+    
+    self.segmentedControl.tintColor = My_NAV_BG_Color;
+    [self.topView addSubview:self.segmentedControl];
+    
+    [self.segmentedControl addTarget:self action:@selector(change) forControlEvents:UIControlEventValueChanged];
+    
+    
     self.tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.tableView.alpha = 1;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.clipsToBounds = NO;
     self.tableView.bounces = NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -91,28 +125,11 @@
     
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(TopViewH);
-        make.left.mas_equalTo(10);
-        make.right.mas_equalTo(-10);
+        make.top.equalTo(self.topView.mas_bottom).with.offset(10);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(-10);
     }];
-    
-    UIImageView *topView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0,My_ScreenW, TopViewH)];
-    topView.contentMode = UIViewContentModeBottomRight;
-    topView.image = [UIImage imageNamed:@"背景2"];
-    topView.clipsToBounds = YES;
-    [self.view addSubview:topView];
-    topView.userInteractionEnabled = YES;
-    topView.backgroundColor = [UIColor whiteColor];
-    self.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"建议",@"意见"]];
-    self.segmentedControl.selectedSegmentIndex = 0;
-    self.segmentedControl.frame = CGRectMake(40, 15,My_ScreenW - 80 ,  40);
-    
-    self.segmentedControl.tintColor = My_NAV_BG_Color;
-    [topView addSubview:self.segmentedControl];
-    
-    [self.segmentedControl addTarget:self action:@selector(change) forControlEvents:UIControlEventValueChanged];
-    
 }
 
 #pragma mark --tableViewDelegate与tableViewDataSource方法的实现
@@ -181,6 +198,8 @@
 {
     
     CGFloat contenHeight = [[self.data[indexPath.section] content] sizeWithFont:[UIFont systemFontOfSize:CONTENT_FONT] maxSize:CGSizeMake(tableView.width, 4000)].height;
+    NSArray *cellArray = @[[NSNumber numberWithFloat:contenHeight + 52 + 8 + 10],[NSNumber numberWithFloat:tableView.width]];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"cellHeight" object:cellArray];
     //添加上面固定内容的高度 + 下面内容的高度 + 与下边界的距离
     return contenHeight + 52 + 8 + 10;
 }
@@ -232,7 +251,7 @@
 
 }
 
-- (UIButton *)createAddBtn:(UIView *)view
+- (ReviseBtn *)createAddBtn:(UIView *)view
 {
     ReviseBtn *reviseBtn = [[ReviseBtn alloc]initWithFrame:CGRectMake(40, 5, view.width - 80 , 40)];
     [reviseBtn setLeftImageView:@"建议意见 添加" andTitle:@"添加"];

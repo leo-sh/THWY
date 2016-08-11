@@ -19,6 +19,7 @@ typedef enum{
 @end
 @interface AlertTableView2 : UITableView
 @property (weak,nonatomic) id<AlertTabelViewDelegate>AlertDelegate;
+@property GetDataMethod method;
 - (instancetype)initWithNumber:(GetDataMethod)method;
 - (void)hide;
 - (void)showCenter;
