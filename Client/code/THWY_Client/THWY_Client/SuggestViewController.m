@@ -208,7 +208,15 @@
 {
     
     NSLog(@"%@ld",self.FeedBackTypeArray);
-    [self getData:[self.FeedBackTypeArray[self.segmentedControl.selectedSegmentIndex] Id]];
+    
+    if ([ServicesManager getAPI].status != NotReachable) {
+        [self getData:[self.FeedBackTypeArray[self.segmentedControl.selectedSegmentIndex] Id]];
+    }
+    else
+    {
+        [SVProgressHUD showInfoWithStatus:@"网络访问错误"];
+    }
+    
     
 //    UILabel * houseLabel = [UILabel labelWithTitle:@"房源" frameX:10 Height:30];
 //    houseLabel.textColor = [UIColor yellowColor];

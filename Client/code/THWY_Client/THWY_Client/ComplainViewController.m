@@ -54,6 +54,7 @@
         
         else if (list.count == 0)
         {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
             [SVProgressHUD dismiss];
             [SVProgressHUD setMinimumDismissTimeInterval:1];
             [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
