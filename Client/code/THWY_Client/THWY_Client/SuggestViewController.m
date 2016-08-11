@@ -246,16 +246,22 @@
     {
         back = 2;
     }
-    [[ServicesManager getAPI]addFeedBack:back content:self.alertView.textView.text onComplete:^(NSString *errorMsg) {
-        if (errorMsg) {
-            [SVProgressHUD showErrorWithStatus:errorMsg];
-        }
-        else
-        {
-            [SVProgressHUD showSuccessWithStatus:@"添加成功"];
-        }
-        
-    }];
+    if (self.alertView.textView.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
+    }
+    else
+    {
+        [[ServicesManager getAPI]addFeedBack:back content:self.alertView.textView.text onComplete:^(NSString *errorMsg) {
+            if (errorMsg) {
+                [SVProgressHUD showErrorWithStatus:errorMsg];
+            }
+            else
+            {
+                [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+            }
+            
+        }];
+    }
 
 }
 

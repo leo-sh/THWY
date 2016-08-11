@@ -39,7 +39,7 @@
     self.suggestOne.tag = 101;
     [self.suggestOne initDefaultImageName:@"repaire_unselected" choosedImageName:@"repaire_selected" title:@"建议"];
     [self.suggestOne setChoosed];
-    self.suggestOne.chooseStatu = YES;
+//    self.suggestOne.chooseStatu = YES;
     [suggestView addSubview:self.suggestOne];
     
     self.suggestTwo = [[BlueRedioButton alloc]initWithFrame:CGRectMake(150, 0, suggestBtn_W , 30)];
