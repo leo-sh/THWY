@@ -53,7 +53,7 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.rowHeight = 100;
-    self.tableView.bounces = NO;
+//    self.tableView.bounces = NO;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"MerchargeListCell" bundle:nil]forCellReuseIdentifier:@"MerchargeListCell"];
