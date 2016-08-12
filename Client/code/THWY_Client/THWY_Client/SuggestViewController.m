@@ -21,6 +21,7 @@
 @property NSMutableArray *FeedBackTypeArray;
 @property NSArray *data;
 @property UIView *topView;
+@property UIImageView *segementBackgroundImageView;
 @end
 
 @implementation SuggestViewController
@@ -106,8 +107,20 @@
     self.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"建议",@"意见"]];
     self.segmentedControl.selectedSegmentIndex = 0;
     self.segmentedControl.frame = CGRectMake(40, 15,My_ScreenW - 80 ,  40);
+    self.segmentedControl.tintColor = [UIColor clearColor];
     
-    self.segmentedControl.tintColor = My_NAV_BG_Color;
+    self.segementBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.segmentedControl.width, self.segmentedControl.height)];
+    
+    NSDictionary *titleSelectDic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil];
+    
+    [self.segmentedControl setTitleTextAttributes:titleSelectDic forState:UIControlStateSelected];
+    
+    NSDictionary *titleDeselectDic = [NSDictionary dictionaryWithObjectsAndKeys:My_NAV_BG_Color,NSForegroundColorAttributeName, nil];
+
+    [self.segmentedControl setTitleTextAttributes:titleDeselectDic forState:UIControlStateNormal];
+
+    
+//    self.segmentedControl.tintColor = My_NAV_BG_Color;
     [self.topView addSubview:self.segmentedControl];
     
     [self.segmentedControl addTarget:self action:@selector(change) forControlEvents:UIControlEventValueChanged];

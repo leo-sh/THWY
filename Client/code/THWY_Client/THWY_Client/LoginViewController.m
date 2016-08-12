@@ -250,16 +250,20 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:Login_Fail object:nil];
 
         }
-        else if (user) {
-            [[UDManager getUD] saveUser:user];
-            
+        else if (user) {            
             [[UDManager getUD]saveUserName:self.userTF.text];
             
                 if (self.rememberPassWordBtn.chooseStatu) {
                     [[UDManager getUD]saveUserPassWord:self.passWordTF.text];
                 }
+                else
+                {
+                    
+                }
             NSLog(@"%@",self.userTF.text);
             NSLog(@"%@",self.passWordTF.text);
+            NSLog(@"%@",[[UDManager getUD]getUserName]);
+            NSLog(@"%@",[[UDManager getUD]getPassWord]);
             
             [[NSNotificationCenter defaultCenter] postNotificationName:Login_Success object:nil];
             
@@ -267,9 +271,7 @@
         }
         
     }];
-    
-    NSLog(@"%@",[[UDManager getUD]getUserName]);
-    NSLog(@"%@",[[UDManager getUD]getPassWord]);
+
 }
 
 - (void)didReceiveMemoryWarning {
