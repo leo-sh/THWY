@@ -9,14 +9,13 @@
 #import "RepairRecordsVC.h"
 #import "RecordeRepairingCell.h"
 #import "RepairStatuVO.h"
+#import "MySegmentedControl.h"
 #import "RepairDetailController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 
-@interface RepairRecordsVC ()<UITableViewDelegate, UITableViewDataSource>
+@interface RepairRecordsVC ()<UITableViewDelegate, UITableViewDataSource, SegmentDelegate>
 
-@property (strong, nonatomic) UIButton *switchButton;
-@property (strong, nonatomic) UILabel *leftLabel;
-@property (strong, nonatomic) UILabel *rightLabel;
+@property (strong, nonatomic) MySegmentedControl *switchButton;
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 
@@ -107,9 +106,10 @@
     
     //转换按钮
     self.switchFlag = 1;
-    self.switchButton = [[UIButton alloc] init];
-    [self.switchButton setBackgroundImage:[UIImage imageNamed:@"repaire_切换标签左"] forState:UIControlStateNormal];
-    [self.switchButton addTarget:self action:@selector(switchLeftRight) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.switchButton = [[MySegmentedControl alloc] initWithItems:@[@"业主报修", @"公共报修"]];
+    self.switchButton.delegate = self;
+    self.switchButton.selectedSegmentIndex = 0;
     [self.view addSubview:self.switchButton];
     
     [self.switchButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,28 +118,7 @@
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.top.mas_equalTo(self.view).offset(10);
     }];
-    
-    self.leftLabel = [[UILabel alloc] init];
-    self.leftLabel.text = @"业主报修";
-    self.leftLabel.font = [UIFont fontWithName:My_RegularFontName size:18.0];
-    self.leftLabel.textColor = [UIColor whiteColor];
-    [self.leftLabel sizeToFit];
-    [self.switchButton addSubview:self.leftLabel];
-    [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.switchButton.mas_centerX).multipliedBy(0.5);
-        make.centerY.mas_equalTo(self.switchButton.mas_centerY);
-    }];
-    
-    self.rightLabel = [[UILabel alloc] init];
-    self.rightLabel.text = @"公共报修";
-    self.rightLabel.textColor = My_NAV_BG_Color;
-    self.rightLabel.font = [UIFont fontWithName:My_RegularFontName size:18.0];
-    [self.rightLabel sizeToFit];
-    [self.switchButton addSubview:self.rightLabel];
-    [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.switchButton.mas_centerX).multipliedBy(1.5);
-        make.centerY.mas_equalTo(self.switchButton.mas_centerY);
-    }];
+
     //scrollView
     
     self.scrollView = [[UIScrollView alloc] init];
@@ -248,12 +227,40 @@
     [self.tableView2 registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }
 
-- (void)switchLeftRight{
-    
-    if (self.switchFlag == 1) {
-        self.leftLabel.textColor = My_NAV_BG_Color;
-        self.rightLabel.textColor = [UIColor whiteColor];
-        [self.switchButton setBackgroundImage:[UIImage imageNamed:@"repaire_切换标签右"] forState:UIControlStateNormal];
+//- (void)switchLeftRight{
+//    
+//    if (self.switchFlag == 1) {
+//        self.leftLabel.textColor = My_NAV_BG_Color;
+//        self.rightLabel.textColor = [UIColor whiteColor];
+////        [self.switchButton setBackgroundImage:[UIImage imageNamed:@"repaire_切换标签右"] forState:UIControlStateNormal];
+//        self.scrollView.contentOffset = CGPointMake(self.tableView.frame.size.width, 0);
+//        self.tableView2.contentOffset = CGPointMake(0, 0);
+//        
+//        [self btnOnclicked:[self.bgView viewWithTag:300]];
+//        self.switchFlag = 2;
+//        self.selectIndex = 0;
+//        [self btnOnclicked:[self.bgView2 viewWithTag:310]];
+//        
+//        
+//    }else if (self.switchFlag == 2){
+//        self.leftLabel.textColor = [UIColor whiteColor];
+//        self.rightLabel.textColor = My_NAV_BG_Color;
+////        [self.switchButton setBackgroundImage:[UIImage imageNamed:@"repaire_切换标签左"] forState:UIControlStateNormal];
+//        self.scrollView.contentOffset = CGPointMake(0, 0);
+//        self.tableView.contentOffset = CGPointMake(0, 0);
+//        self.switchFlag = 1;
+//        [self btnOnclicked:[self.bgView2 viewWithTag:310]];
+//        self.selectIndex = 0;
+//        [self btnOnclicked:[self.bgView viewWithTag:300]];
+//    }
+//    
+//    
+//}
+
+//业主,公共转换
+- (void)segmentSelectIndex:(NSInteger)index{
+    if (index == 1) {
+        
         self.scrollView.contentOffset = CGPointMake(self.tableView.frame.size.width, 0);
         self.tableView2.contentOffset = CGPointMake(0, 0);
         
@@ -261,22 +268,19 @@
         self.switchFlag = 2;
         self.selectIndex = 0;
         [self btnOnclicked:[self.bgView2 viewWithTag:310]];
+
         
-        
-    }else if (self.switchFlag == 2){
-        self.leftLabel.textColor = [UIColor whiteColor];
-        self.rightLabel.textColor = My_NAV_BG_Color;
-        [self.switchButton setBackgroundImage:[UIImage imageNamed:@"repaire_切换标签左"] forState:UIControlStateNormal];
+    }else if (index == 0){
         self.scrollView.contentOffset = CGPointMake(0, 0);
         self.tableView.contentOffset = CGPointMake(0, 0);
         self.switchFlag = 1;
         [self btnOnclicked:[self.bgView2 viewWithTag:310]];
         self.selectIndex = 0;
         [self btnOnclicked:[self.bgView viewWithTag:300]];
+
+        
     }
-    
     [self getDataType:self.switchFlag statusID:@"0" page:1 more:NO];
-    
 }
 //设置上拉下拉刷新
 - (void)initRefreshView{
