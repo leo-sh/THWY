@@ -13,6 +13,10 @@
 
 +(UDManager *)getUD;
 
+-(void)saveShowState:(BOOL)show;
+
+-(BOOL)showPassWord;
+
 /**
  *  获取已登录用户
  *

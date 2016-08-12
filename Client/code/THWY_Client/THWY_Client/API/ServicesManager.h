@@ -60,6 +60,7 @@
  */
 -(void)login:(NSString *)userName
     password:(NSString *)password
+savePassWord:(BOOL)save
   onComplete:(void (^)(NSString *errorMsg,UserVO *user))onComplete;
 
 /**
