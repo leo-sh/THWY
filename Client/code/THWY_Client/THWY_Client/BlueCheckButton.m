@@ -36,6 +36,7 @@
         self.chooseStatu = NO;
         self.defualtImage = [UIImage imageNamed:defaultImageName];
         self.choosedImage = [UIImage imageNamed:choosedImageName];
+        [self addObserver:self forKeyPath:@"chooseStatu" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
         [self setImage:self.defualtImage forState:UIControlStateNormal];
 
         [self setTitle:title forState:UIControlStateNormal];
@@ -70,5 +71,23 @@
     
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    NSLog(@"改变");
+    
+    if ([change[@"new"] boolValue]) {
+        [self setImage:self.choosedImage forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self setImage:self.defualtImage forState:UIControlStateNormal];
+    }
+    
+}
+
+- (void)dealloc
+{
+    [self removeObserver:self forKeyPath:@"chooseStatu"];
+}
 
 @end

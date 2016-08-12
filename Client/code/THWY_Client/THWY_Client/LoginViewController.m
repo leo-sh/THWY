@@ -159,7 +159,7 @@
 - (void)createButton
 {
     self.rememberPassWordBtn = [[BlueCheckButton alloc]initDefaultImageName:@"框不带勾" choosedImageName:@"框带勾" title:@"记住密码"];
-    
+    self.rememberPassWordBtn.chooseStatu = [[UDManager getUD]showPassWord];
     [self.view addSubview:self.rememberPassWordBtn];
 
     CGFloat rememberPassWordBtnLeft = self.view.width *0.056;
@@ -182,6 +182,8 @@
     self.findPsdBtn = [[BlueCheckButton alloc]initDefaultImageName:@"" choosedImageName:@"" title:@"密码找回"];
     [self.view addSubview:self.findPsdBtn];
     
+    //隐藏按钮
+    self.findPsdBtn.alpha = 0;
     CGFloat adminLoginBtnRightOffset = -self.view.width *0.036;
     CGFloat adminLoginBtnWidth = self.view.width *0.2;
     CGFloat adminLoginBtnHeight = self.view.height *0.02;
