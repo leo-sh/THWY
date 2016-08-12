@@ -307,6 +307,22 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    for (UIView *view in self.view.subviews) {
+        if ([view isKindOfClass:[UITextField class]]) {
+            
+            UITextField *textField = (UITextField *)view;
+            
+            [textField resignFirstResponder];
+            
+            
+            
+        }
+    }
+}
+
 /*
 #pragma mark - Navigation
 

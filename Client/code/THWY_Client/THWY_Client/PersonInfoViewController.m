@@ -351,6 +351,23 @@
     
 
 }
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    for (UIView *view in self.bottomView.subviews) {
+        if ([view isKindOfClass:[PersonInfoLabel class]]) {
+            
+            PersonInfoLabel *label = (PersonInfoLabel *)view;
+            
+            [label.textField resignFirstResponder];
+            
+            
+            
+        }
+    }
+}
+
+
 /*
 #pragma mark - Navigation
 
