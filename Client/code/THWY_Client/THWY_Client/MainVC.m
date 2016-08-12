@@ -46,7 +46,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
     [self refreshUserInfo];
 }
 
