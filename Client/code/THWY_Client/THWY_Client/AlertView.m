@@ -14,6 +14,7 @@
 @property UIButton *left;
 @property UIButton *right;
 @property NSInteger number;
+@property UILabel *placeholderLabel;
 @end
 @implementation AlertView
 - (instancetype)initWithFrame:(CGRect)frame
@@ -55,6 +56,17 @@
     }
     return self;
 }
+
+- (void)setPlaceholder:(NSString *)placeholder
+{
+    self.placeholderLabel = [[UILabel alloc]initWithFrame:CGRectMake(3, 7, 200, 15)];
+    self.placeholderLabel.text = placeholder;
+//    self.placeholderLabel.backgroundColor = [UIColor blackColor];
+    self.placeholderLabel.font = [UIFont systemFontOfSize:15];
+    self.placeholderLabel.textColor = [UIColor lightGrayColor];
+    [self.textView addSubview:self.placeholderLabel];
+}
+
 - (void)show
 {
     [self showInWindow];
@@ -103,6 +115,7 @@
     return YES;
 }
 
+
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     
     if([text isEqualToString:@"\n"]){
@@ -110,11 +123,22 @@
         [textView resignFirstResponder];
         
         return NO;
-        
     }
     
     return YES;
     
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if([textView.text isEqualToString:@""])
+    {
+        self.placeholderLabel.alpha = 1;
+    }
+    else{
+        self.placeholderLabel.alpha = 0;
+    }
+
 }
 
 - (void)keyboardShow:(NSNotification *)notification

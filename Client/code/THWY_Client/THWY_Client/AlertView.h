@@ -15,4 +15,5 @@
 - (void)hide;
 - (void)addSubOhterview:(UIView *)view;
 - (void)addLeftBtnTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
+- (void)setPlaceholder:(NSString *)placeholder;
 @end

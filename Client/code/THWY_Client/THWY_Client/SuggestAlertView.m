@@ -57,7 +57,10 @@
     self.textView = [[UITextView alloc]initWithFrame:CGRectMake(10, suggestView.bottom, self.width - 20, 100)];
     
     self.textView.delegate = self;
+    
     [self addSubOhterview:self.textView];
+    
+    [self setPlaceholder:@"请输入建议\\意见"];
     
     CGRect rect = self.frame;
     

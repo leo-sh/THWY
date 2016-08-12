@@ -10,7 +10,7 @@
 #import "ServicesManager.h"
 #import "SVProgressHUD/SVProgressHUD.h"
 #define kCurrentWindow [[UIApplication sharedApplication].windows firstObject]
-@interface AlertTableView2()<UITableViewDelegate,UITableViewDataSource>
+@interface AlertTableView2()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 @property NSArray *data;
 @end
 @implementation AlertTableView2
@@ -104,7 +104,7 @@
     NSString *string;
     if (self.method == GetComplainType) {
 
-       string  = [NSString stringWithFormat:@"%ld",indexPath.row + 1];
+       string  = [NSString stringWithFormat:@"%d",indexPath.row + 1];
     }
     else if (self.method == GetYear)
     {
@@ -112,7 +112,7 @@
     }
     else
     {
-       string = [NSString stringWithFormat:@"%ld",indexPath.row - 1];
+       string = [NSString stringWithFormat:@"%d",indexPath.row - 1];
     }
     NSArray *array = @[self.data[indexPath.row],string];
     
@@ -133,6 +133,10 @@
         
         UIView *backgroundView = [[UIView alloc]initWithFrame:kCurrentWindow.bounds];
         backgroundView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
+        backgroundView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
+        tap.delegate = self;
+        [backgroundView addGestureRecognizer:tap];
         [kCurrentWindow addSubview:backgroundView];
         
         self.center = backgroundView.center;
@@ -146,6 +150,11 @@
 {
     UIView *backgroundView = [[UIView alloc]initWithFrame:kCurrentWindow.bounds];
     backgroundView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
+    backgroundView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
+    tap.delegate = self;
+    [backgroundView addGestureRecognizer:tap];
+    
     [kCurrentWindow addSubview:backgroundView];
     
     self.y = y;
@@ -155,5 +164,17 @@
 
 }
 
+- (void)tap
+{
+    [self hide];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
+    return  YES;
+}
 
 @end
