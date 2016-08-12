@@ -27,6 +27,7 @@
     if (self.goodVOs.count == 0){
         [SVProgressHUD setMinimumDismissTimeInterval:1.5];
         [SVProgressHUD showInfoWithStatus:@"没有商品"];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
 }

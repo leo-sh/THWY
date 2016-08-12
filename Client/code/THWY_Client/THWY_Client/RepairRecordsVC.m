@@ -214,33 +214,27 @@
     }
     
     //tableView
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.bgView.height+20, My_ScreenW-20, My_ScreenH-114-45-self.bgView.height) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.bgView.height+20, My_ScreenW-20, My_ScreenH-114-45-self.bgView.height) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 300.0/667*My_ScreenH;
-    self.tableView.sectionHeaderHeight = 0;
-    self.tableView.sectionFooterHeight = 0;
-    self.tableView.contentInset = UIEdgeInsetsMake(-28, 0, 0, 0);
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
-    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 4, 0);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorColor = [UIColor grayColor];
     self.tableView.bounces = YES;
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     self.tableView.showsVerticalScrollIndicator = NO;
+//    [self.tableView setTableFooterView:btn_more];
     
-    self.tableView2 = [[UITableView alloc] initWithFrame:CGRectMake(My_ScreenW-20, self.bgView2.height+20, My_ScreenW-20, self.tableView.height)  style:UITableViewStyleGrouped];
+    self.tableView2 = [[UITableView alloc] initWithFrame:CGRectMake(My_ScreenW-20, self.bgView2.height+20, My_ScreenW-20, self.tableView.height)  style:UITableViewStylePlain];
     self.tableView2.delegate = self;
     self.tableView2.dataSource = self;
     self.tableView2.rowHeight = 300.0/667*My_ScreenH;
-    self.tableView2.sectionHeaderHeight = 0;
-    self.tableView2.sectionFooterHeight = 0;
-    self.tableView2.contentInset = UIEdgeInsetsMake(-28, 0, 0, 0);
-    self.tableView2.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
-    self.tableView2.separatorInset = UIEdgeInsetsMake(0, 0, 4, 0);
+    self.tableView2.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView2.separatorColor = [UIColor grayColor];
     self.tableView2.bounces = YES;
     [self.tableView2 setBackgroundColor:[UIColor clearColor]];
     self.tableView2.showsVerticalScrollIndicator = NO;
+//    [self.tableView2 setTableFooterView:btn_more];
     
     [self.scrollView addSubview:self.tableView];
     [self.scrollView addSubview:self.tableView2];
@@ -327,9 +321,11 @@
 - (void)btnOnclicked:(UIButton *)sender{
     UIButton *btn = nil;
     if (self.switchFlag == 1){
+        self.tableView.contentOffset = CGPointMake(0, 0);
         btn = [self.bgView viewWithTag:300+self.selectIndex];
         self.selectIndex = sender.tag - 300;
     }else if (self.switchFlag == 2){
+        self.tableView2.contentOffset = CGPointMake(0, 0);
         btn = [self.bgView2 viewWithTag:310+self.selectIndex];
         self.selectIndex = sender.tag - 310;
     }
@@ -362,6 +358,18 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == self.repairDataArray.count-1) {
+        UIButton *btn_more = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-20, 30)];
+        //    [btn_more setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
+        [btn_more setTitle:@"查看更多" forState:UIControlStateNormal];
+        [btn_more setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        btn_more.titleLabel.font = [UIFont fontWithName:My_RegularFontName size:15.0];
+        [btn_more addTarget:self action:@selector(loadMoreData:) forControlEvents:UIControlEventTouchUpInside];
+        tableView.tableFooterView = btn_more;
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
@@ -369,24 +377,7 @@
     
     CGRect rect2 = [[self.repairDataArray[indexPath.row] classes_str] boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     
-    return 210.0/667*My_ScreenH + rect.size.height +rect2.size.height;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 30)];
-    [button setTitle:@"查看更多" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont fontWithName:My_RegularFontName size:15.0];
-    [button addTarget:self action:@selector(loadMoreData:) forControlEvents:UIControlEventTouchUpInside];
-    return button;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 30;
+    return 205.0/667*My_ScreenH + rect.size.height +rect2.size.height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
