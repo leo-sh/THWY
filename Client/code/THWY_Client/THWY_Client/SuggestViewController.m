@@ -77,8 +77,8 @@
                 }
                 [self.tableView reloadData];
                 [SVProgressHUD dismiss];
-
-                
+                [self.tableView.mj_footer endRefreshing];
+                [self.tableView.mj_header endRefreshing];
             });
             
         }];
@@ -130,19 +130,51 @@
     self.tableView.alpha = 1;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.bounces = NO;
+//    self.tableView.bounces = NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            self.data = @[];
+            [self getData:[self.FeedBackTypeArray[self.segmentedControl.selectedSegmentIndex] Id]];
+        }];
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }];
+        
     
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.topView.mas_bottom).with.offset(10);
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(-10);
+        make.bottom.mas_equalTo(-80);
     }];
+    
+    UIView *view = [[UIView alloc]init];
+    
+    
+    view.backgroundColor = [UIColor whiteColor];
+    view.alpha = 0.8;
+    [self.view addSubview:view];
+    
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(self.tableView.mas_bottom).with.offset(10);
+        make.bottom.mas_equalTo(0);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        
+    }];
+    
+    ReviseBtn *btn = [[ReviseBtn alloc]initWithFrame:CGRectMake(40, 15, self.view.width - 80, 40)];
+    [btn setLeftImageView:@"建议意见 添加" andTitle:@"添加"];
+    [btn addTarget:self action:@selector(clickAddBtn) forControlEvents:UIControlEventTouchUpInside];
+    
+    [view addSubview:btn];
+
+    
 }
 
 #pragma mark --tableViewDelegate与tableViewDataSource方法的实现
@@ -188,23 +220,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == self.data.count - 1) {
-        return 50;
-    }
-    else
-    {
-        return 0.01;
-    }
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc]init];
-    if (section == self.data.count - 1) {
-        
-        [view addSubview:[self createAddBtn:tableView]];
-    }
-    return view;
+    return 0.01;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
