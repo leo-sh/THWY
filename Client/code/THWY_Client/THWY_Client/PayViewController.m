@@ -44,7 +44,8 @@
 }
 
 - (void)getData
-{    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+{
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
 
     [[ServicesManager getAPI]getFees:self.page year:self.year feeState:self.statu onComplete:^(NSString *errorMsg, NSArray *list) {
         
@@ -78,8 +79,8 @@
     self.chooseStatuBtn = [[AlertButton alloc]initWithFrame:CGRectMake(self.chooseYearBtn.right + 5, 5, self.view.width * 0.35, 30)];
     
     [self.chooseStatuBtn setGetDataMethod:GetPayStatu OriginY:66 OriginX:self.chooseStatuBtn.left + 20];
-    
-    [self.chooseStatuBtn setTitle:@"选择状态" forState:UIControlStateNormal];
+    self.chooseStatuBtn.postID = @"-1";
+    [self.chooseStatuBtn setTitle:@"全部" forState:UIControlStateNormal];
     
     [searchView addSubview:self.chooseStatuBtn];
     

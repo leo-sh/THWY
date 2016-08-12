@@ -217,17 +217,40 @@
 #pragma mark --点击修改按钮
 - (void)clickReviseBtn
 {
-    [SVProgressHUD showWithStatus:@"修改中..."];
-    [[ServicesManager getAPI]editUserInfo:[[self.canUpdateInfo[1] textField] text] carNumber:[[self.canUpdateInfo[4] textField] text] newUserName:[[self.canUpdateInfo[5] textField] text] newPassWord:[[self.canUpdateInfo[6] textField] text] onComplete:^(NSString *errorMsg) {
-        if (errorMsg) {
-            [SVProgressHUD showErrorWithStatus:errorMsg];
-            NSLog(@"%@",errorMsg);
-        }
-        else
-        {
-            [SVProgressHUD showSuccessWithStatus:@"修改成功"];
-        }
-    }];
+    BOOL isChanged = NO;
+    UserVO* user = [[UDManager getUD] getUser];
+    if (![user.cellphone isEqualToString:[[self.canUpdateInfo[1] textField] text]]) {
+        isChanged = YES;
+    }
+    
+    if (![user.car_number isEqualToString:[[self.canUpdateInfo[4] textField] text]]) {
+        isChanged = YES;
+    }
+    
+    if (![[[UDManager getUD] getUserName] isEqualToString:[[self.canUpdateInfo[5] textField] text]]) {
+        isChanged = YES;
+    }
+    
+    if (![[[UDManager getUD] getPassWord] isEqualToString:[[self.canUpdateInfo[6] textField] text]]) {
+        isChanged = YES;
+    }
+    
+    if (isChanged) {
+        [SVProgressHUD showWithStatus:@"修改中..."];
+        [[ServicesManager getAPI]editUserInfo:[[self.canUpdateInfo[1] textField] text] carNumber:[[self.canUpdateInfo[4] textField] text] newUserName:[[self.canUpdateInfo[5] textField] text] newPassWord:[[self.canUpdateInfo[6] textField] text] onComplete:^(NSString *errorMsg) {
+            if (errorMsg) {
+                [SVProgressHUD showErrorWithStatus:errorMsg];
+                NSLog(@"%@",errorMsg);
+            }
+            else
+            {
+                [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+            }
+        }];
+    }else{
+        return;
+    }
+    
 }
 
 #pragma mark --点击头像

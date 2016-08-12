@@ -11,16 +11,16 @@
 #import "WantRepairTableViewDelegate.h"
 #import "WantRepairTableView1.h"
 #import "WantRepairTableView2.h"
+#import "MySegmentedControl.h"
 
 #import "AlertTableView.h"
 #import "RepairClassVO.h"
 #import "AddRepairVO.h"
 
-@interface WantRepairesVC ()<WantRepairTableViewDelegate>
+@interface WantRepairesVC ()<WantRepairTableViewDelegate, SegmentDelegate>
 
-@property (strong, nonatomic) UIButton *switchButton;
-@property (strong, nonatomic) UILabel *leftLabel;
-@property (strong, nonatomic) UILabel *rightLabel;
+@property (strong, nonatomic) MySegmentedControl *switchButton;
+
 @property (assign, nonatomic) NSInteger switchFlag;
 
 @property (strong, nonatomic) UIScrollView *scrollView;
@@ -48,8 +48,12 @@
     [self getData];
     [self initNVBar];
     [self initViews];
-    
  }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [SVProgressHUD dismiss];
+}
 
 - (void)initNVBar{
     
@@ -59,9 +63,9 @@
 
 - (void)initViews{
     
-    self.switchButton = [[UIButton alloc] init];
-    [self.switchButton setBackgroundImage:[UIImage imageNamed:@"repaire_切换标签左"] forState:UIControlStateNormal];
-    [self.switchButton addTarget:self action:@selector(switchLeftRight) forControlEvents:UIControlEventTouchUpInside];
+    self.switchButton = [[MySegmentedControl alloc] initWithItems:@[@"业主报修", @"公共报修"]];
+    self.switchButton.delegate = self;
+    self.switchButton.selectedSegmentIndex = 0;
     [self.view addSubview:self.switchButton];
     
     [self.switchButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,28 +73,6 @@
         make.height.mas_equalTo(self.switchButton.mas_width).multipliedBy(70/491.0);
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.top.mas_equalTo(self.view).offset(10);
-    }];
-    
-    self.leftLabel = [[UILabel alloc] init];
-    self.leftLabel.text = @"业主报修";
-    self.leftLabel.font = [UIFont fontWithName:My_RegularFontName size:18.0];
-    self.leftLabel.textColor = [UIColor whiteColor];
-    [self.leftLabel sizeToFit];
-    [self.switchButton addSubview:self.leftLabel];
-    [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.switchButton.mas_centerX).multipliedBy(0.5);
-        make.centerY.mas_equalTo(self.switchButton.mas_centerY);
-    }];
-    
-    self.rightLabel = [[UILabel alloc] init];
-    self.rightLabel.text = @"公共报修";
-    self.rightLabel.textColor = My_NAV_BG_Color;
-    self.rightLabel.font = [UIFont fontWithName:My_RegularFontName size:18.0];
-    [self.rightLabel sizeToFit];
-    [self.switchButton addSubview:self.rightLabel];
-    [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.switchButton.mas_centerX).multipliedBy(1.5);
-        make.centerY.mas_equalTo(self.switchButton.mas_centerY);
     }];
     
     self.tableView = [[WantRepairTableView1 alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-20, My_ScreenH-94-40) style:UITableViewStylePlain];
@@ -120,24 +102,19 @@
 }
 
 //业主,公共转换
-- (void)switchLeftRight{
-
-    if (self.switchFlag == 1) {
-        self.leftLabel.textColor = My_NAV_BG_Color;
-        self.rightLabel.textColor = [UIColor whiteColor];
-        [self.switchButton setBackgroundImage:[UIImage imageNamed:@"repaire_切换标签右"] forState:UIControlStateNormal];
+- (void)segmentSelectIndex:(NSInteger)index{
+    if (index == 1) {
         self.scrollView.contentOffset = CGPointMake(self.tableView.frame.size.width, 0);
         self.tableView2.contentOffset = CGPointMake(0, 0);
         self.switchFlag = 2;
-    }else if (self.switchFlag == 2){
-        self.leftLabel.textColor = [UIColor whiteColor];
-        self.rightLabel.textColor = My_NAV_BG_Color;
-        [self.switchButton setBackgroundImage:[UIImage imageNamed:@"repaire_切换标签左"] forState:UIControlStateNormal];
+
+    }else if (index == 0){
+
         self.scrollView.contentOffset = CGPointMake(0, 0);
         self.tableView.contentOffset = CGPointMake(0, 0);
         self.switchFlag = 1;
-    }
 
+    }
 }
 
 //获取维修类型
