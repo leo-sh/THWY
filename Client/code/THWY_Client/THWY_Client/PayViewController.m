@@ -147,7 +147,6 @@
 {
     self.year = [self.chooseYearBtn.postID intValue];
     self.statu = [self.chooseStatuBtn.postID intValue];
-    
     [self getData];
 }
 
