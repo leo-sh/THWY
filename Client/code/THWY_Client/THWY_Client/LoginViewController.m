@@ -266,6 +266,7 @@
         [self.passWordTF endEditing:YES];
     }
     
+    [SVProgressHUD showWithStatus:@"登录中..."];
     [[ServicesManager getAPI] login:self.userTF.text password:self.passWordTF.text savePassWord:self.rememberPassWordBtn.chooseStatu onComplete:^(NSString *errorMsg, UserVO *user) {
         NSLog(@"%@",user);
         if (errorMsg) {
@@ -278,6 +279,7 @@
         }
         else {
             
+            [SVProgressHUD dismiss];
             [[NSNotificationCenter defaultCenter] postNotificationName:Login_Success object:nil];
             
             [self dismissViewControllerAnimated:YES completion:nil];
@@ -287,23 +289,7 @@
 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark --文本框代理方法
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    return YES;
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-    return YES;
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -318,9 +304,6 @@
             UITextField *textField = (UITextField *)view;
             
             [textField resignFirstResponder];
-            
-            
-            
         }
     }
 }

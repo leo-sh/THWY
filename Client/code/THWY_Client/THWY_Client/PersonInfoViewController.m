@@ -49,6 +49,8 @@
         self.userInfo = [[UDManager getUD]getUser];
         [self createIconAndBriefInfo];
         [self createDetailedInfoAndUpdateBtn];
+        
+        [SVProgressHUD dismiss];
     }
     else
     {
@@ -58,12 +60,11 @@
             [self createIconAndBriefInfo];
             [self createDetailedInfoAndUpdateBtn];
             
+            [SVProgressHUD dismiss];
+            
         }];
-
     }
     
-    [SVProgressHUD dismiss];
-
 }
 
 #pragma mark --创建头像和简要信息
@@ -216,6 +217,7 @@
 #pragma mark --点击修改按钮
 - (void)clickReviseBtn
 {
+    [SVProgressHUD showWithStatus:@"修改中..."];
     [[ServicesManager getAPI]editUserInfo:[[self.canUpdateInfo[1] textField] text] carNumber:[[self.canUpdateInfo[4] textField] text] newUserName:[[self.canUpdateInfo[5] textField] text] newPassWord:[[self.canUpdateInfo[6] textField] text] onComplete:^(NSString *errorMsg) {
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -267,6 +269,7 @@
     //获取选取的图片
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     
+    [SVProgressHUD showWithStatus:@"上传中..."];
     [[ServicesManager getAPI]upLoadAvatar:image OnComplete:^(NSString *errorMsg, NSString *avatar) {
         
         if (errorMsg) {
