@@ -218,7 +218,7 @@ static int flag = 0;
     [self.ADLabel sizeToFit];
     self.ADLabel.font = [UIFont fontWithName:My_RegularFontName size:16];
     self.ADLabel.textColor = [UIColor whiteColor];
-//    self.ADLabel.text = @"test";
+    self.ADLabel.text = @"加载中...";
     [self.ADView addSubview:self.ADLabel];
     [self.ADLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(laba.mas_centerY);

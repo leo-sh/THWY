@@ -17,6 +17,11 @@ typedef enum {
     KeyboardActionHide
 }KeyboardAction;
 
+typedef NS_ENUM(NSInteger, KeyBoardType){
+    keyBoardAppearType = 1,
+    keyBoardHiddenType
+};
+
 @protocol KeyboardUtilProtocol <NSObject>
 - (void)adaptiveViewHandleWithController:(UIViewController *)viewController adaptiveView:(UIView *)adaptiveView, ...NS_REQUIRES_NIL_TERMINATION;
 @end
@@ -49,6 +54,9 @@ typedef void (^animateWhenKeyboardAppearAutomaticAnimBlock)(ZYKeyboardUtil *keyb
 - (void)setAnimateWhenKeyboardAppearAutomaticAnimBlock:(animateWhenKeyboardAppearAutomaticAnimBlock)animateWhenKeyboardAppearAutomaticAnimBlock;
 - (void)setAnimateWhenKeyboardDisappearBlock:(animateWhenKeyboardDisappearBlock)animateWhenKeyboardDisappearBlock;
 - (void)setPrintKeyboardInfoBlock:(printKeyboardInfoBlock)printKeyboardInfoBlock;
+
+@property (assign, nonatomic)KeyBoardType keyBoardType;
+
 @end
 
 

@@ -96,6 +96,7 @@
     self.tableView = [[WantRepairTableView1 alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-20, My_ScreenH-94-40) style:UITableViewStylePlain];
     self.tableView.repairDelegate = self;
     
+    
     self.tableView2 = [[WantRepairTableView2 alloc] initWithFrame:CGRectMake(My_ScreenW-20, 0, My_ScreenW-20, My_ScreenH-94-40) style:UITableViewStylePlain];
     self.tableView2.repairDelegate = self;
 
@@ -217,6 +218,14 @@
         [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"报修提交失败\n%@",errorMsg]];
     }else{
         [SVProgressHUD showSuccessWithStatus:@"报修提交成功"];
+    }
+    
+}
+
+- (void)tableViewDidScroll{
+    
+    if (self.keyboardUtil.keyBoardType == keyBoardAppearType) {
+        [self.view endEditing:YES];
     }
     
 }

@@ -28,6 +28,19 @@
     return ud;
 }
 
+-(void)saveShowState:(BOOL)show
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:[NSNumber numberWithBool:show] forKey:SHOW_STATE];
+    [ud synchronize];
+}
+
+-(BOOL)showPassWord
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    return [ud objectForKey:SHOW_STATE];
+}
+
 -(UserVO *)getUser{
     if (user == nil) {
         user = [UserVO fromCodingObject];

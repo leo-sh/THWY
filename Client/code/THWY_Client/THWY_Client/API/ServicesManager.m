@@ -253,6 +253,7 @@
 #pragma mark 公共函数
 -(void)login:(NSString *)userName
     password:(NSString *)password
+savePassWord:(BOOL)save
   onComplete:(void (^)(NSString *errorMsg,UserVO *user))onComplete
 {
     AFHTTPSessionManager *manager = [self getManager];
@@ -270,7 +271,7 @@
         {
             _userName = userName;
             _passWord = password;
-        
+            
             UserVO* user = [[UserVO alloc]initWithJSON:responseObject[@"datas"]];
             
             NSMutableArray* tagArr = [[NSMutableArray alloc]initWithObjects:@"owner",[NSString stringWithFormat:@"owner_id_%@",user.Id], nil];
@@ -289,6 +290,7 @@
                 [[UDManager getUD] saveUserName:userName];
                 [[UDManager getUD] saveUserPassWord:password];
                 [[UDManager getUD] saveUser:user];
+                [[UDManager getUD] saveShowState:save];
             });
             
             onComplete(nil,user);

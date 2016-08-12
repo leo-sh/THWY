@@ -52,8 +52,8 @@
 }
 
 - (void)setFrame:(CGRect)frame {
-    frame.origin.y -= 5;      // 让cell的y值增加1(根据自己需要分割线的高度来进行调整)
-    frame.size.height -= 10;   // 让cell的高度减1
+    frame.origin.y += 5;      // 让cell的y值增加1(根据自己需要分割线的高度来进行调整)
+    frame.size.height -= 5;   // 让cell的高度减1
     [super setFrame:frame];   // 别忘了重写父类方法
 }
 
@@ -218,7 +218,7 @@
             
         }];
         
-        [self.callBtn setImage:[UIImage scaleImage:[UIImage imageNamed:@"records_call"]  toScale:0.7] forState:UIControlStateNormal];
+        [self.callBtn setImage:[UIImage scaleImage:[UIImage imageNamed:@"records_call"]  toScale:1] forState:UIControlStateNormal];
         [self.callBtn addTarget:self action:@selector(callNumber) forControlEvents:UIControlEventTouchUpInside];
         [self.callBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.detail.mas_centerX);
@@ -292,10 +292,23 @@
 }
 
 - (void)callNumber{
-    NSString *phoneNum = self.cellPhoneLabel.text;// 电话号码
-    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]];
-    [[UIApplication sharedApplication] openURL:phoneURL];
-
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"拨打电话" message:@"您确定要拔打电话吗?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *phoneNum = self.cellPhoneLabel.text;// 电话号码
+        NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]];
+        [[UIApplication sharedApplication] openURL:phoneURL];
+        
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:sure];
+    [alert addAction:cancel];
+    
+    [self.vc presentViewController:alert animated:YES completion:^{
+        
+    }];
 }
 
 - (void)showDetail{

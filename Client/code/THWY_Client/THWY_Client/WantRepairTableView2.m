@@ -295,6 +295,11 @@
         
     }];
     
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    
+    [self.repairDelegate tableViewDidScroll];
     
 }
 
