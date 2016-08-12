@@ -163,6 +163,7 @@
 		793296731D50826A000FD426 /* UIView+TYAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 793296671D50826A000FD426 /* UIView+TYAutoLayout.m */; };
 		793296771D5197A2000FD426 /* RecordeRepairingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 793296761D5197A2000FD426 /* RecordeRepairingCell.m */; };
 		7932967C1D51BCFF000FD426 /* RepairDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7932967B1D51BCFF000FD426 /* RepairDetailController.m */; };
+		7934F28F1D5DBCA800643B4D /* MySegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7934F28E1D5DBCA800643B4D /* MySegmentedControl.m */; };
 		794E73D91D4A3A5100267C84 /* WantRepairesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73D81D4A3A5100267C84 /* WantRepairesVC.m */; };
 		794E73DC1D4A3A8800267C84 /* RepairRecordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73DB1D4A3A8800267C84 /* RepairRecordsVC.m */; };
 		794E73DF1D4A3AB700267C84 /* BussnessCircleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73DE1D4A3AB700267C84 /* BussnessCircleVC.m */; };
@@ -519,6 +520,8 @@
 		793296761D5197A2000FD426 /* RecordeRepairingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordeRepairingCell.m; sourceTree = "<group>"; };
 		7932967A1D51BCFF000FD426 /* RepairDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairDetailController.h; sourceTree = "<group>"; };
 		7932967B1D51BCFF000FD426 /* RepairDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairDetailController.m; sourceTree = "<group>"; };
+		7934F28D1D5DBCA800643B4D /* MySegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySegmentedControl.h; sourceTree = "<group>"; };
+		7934F28E1D5DBCA800643B4D /* MySegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySegmentedControl.m; sourceTree = "<group>"; };
 		794E73D71D4A3A5100267C84 /* WantRepairesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairesVC.h; sourceTree = "<group>"; };
 		794E73D81D4A3A5100267C84 /* WantRepairesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantRepairesVC.m; sourceTree = "<group>"; };
 		794E73DA1D4A3A8800267C84 /* RepairRecordsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairRecordsVC.h; sourceTree = "<group>"; };
@@ -1320,6 +1323,8 @@
 				792A24611D5300D10005B085 /* RecordsDetailCell.m */,
 				792A246A1D5315F70005B085 /* RecordImageCell.h */,
 				792A246B1D5315F70005B085 /* RecordImageCell.m */,
+				7934F28D1D5DBCA800643B4D /* MySegmentedControl.h */,
+				7934F28E1D5DBCA800643B4D /* MySegmentedControl.m */,
 			);
 			name = RepaireRecordsViews;
 			sourceTree = "<group>";
@@ -1641,6 +1646,7 @@
 				5BED6BC71D49AA7F00C137C5 /* RepairVO.m in Sources */,
 				5B197EEF1D487DAC00B95DE5 /* View+MASAdditions.m in Sources */,
 				5B2571E01D4716EE00CB4167 /* AFNetworkReachabilityManager.m in Sources */,
+				7934F28F1D5DBCA800643B4D /* MySegmentedControl.m in Sources */,
 				79F2B6A11D4DD28F00AA94E0 /* YFLBBannerFooter.m in Sources */,
 				790506531D4CDB3500072AAC /* HouseSourceCell.m in Sources */,
 				793296731D50826A000FD426 /* UIView+TYAutoLayout.m in Sources */,
