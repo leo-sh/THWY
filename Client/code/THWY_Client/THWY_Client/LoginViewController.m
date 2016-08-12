@@ -240,6 +240,24 @@
 }
 - (void)login
 {
+    if (self.userTF.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入用户名"];
+        [self.userTF becomeFirstResponder];
+        return;
+    }
+    
+    if (self.passWordTF.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入密码"];
+        [self.passWordTF becomeFirstResponder];
+        return;
+    }
+    if (self.userTF.isEditing) {
+        [self.userTF endEditing:YES];
+    }
+    if (self.passWordTF.isEditing) {
+        [self.passWordTF endEditing:YES];
+    }
+    
     [[ServicesManager getAPI] login:self.userTF.text password:self.passWordTF.text onComplete:^(NSString *errorMsg, UserVO *user) {
         NSLog(@"%@",user);
         if (errorMsg) {
@@ -251,13 +269,11 @@
 
         }
         else if (user) {
-            [[UDManager getUD] saveUser:user];
             
-            [[UDManager getUD]saveUserName:self.userTF.text];
+            if (self.rememberPassWordBtn.chooseStatu) {
+                
+            }
             
-                if (self.rememberPassWordBtn.chooseStatu) {
-                    [[UDManager getUD]saveUserPassWord:self.passWordTF.text];
-                }
             NSLog(@"%@",self.userTF.text);
             NSLog(@"%@",self.passWordTF.text);
             
