@@ -133,8 +133,8 @@
 
 - (void)contact:(UIButton *)btn{
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"拨打电话" message:@"您确定要拔打电话吗?" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:self.merchant.telephone message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"拨打" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSString *phoneNum = self.merchant.telephone;// 电话号码
         NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]];
         [[UIApplication sharedApplication] openURL:phoneURL];
