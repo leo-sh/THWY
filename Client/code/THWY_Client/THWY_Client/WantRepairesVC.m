@@ -51,6 +51,11 @@
     
  }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [SVProgressHUD dismiss];
+}
+
 - (void)initNVBar{
     
     self.title = @"我要报修";

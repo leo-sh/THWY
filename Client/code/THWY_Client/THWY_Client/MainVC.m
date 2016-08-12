@@ -297,7 +297,10 @@
 }
 //pushVC
 - (void)showVC:(UIButton *)button{
-
+    if (button.tag-101 == 0) {
+        [SVProgressHUD showWithStatus:@"加载中..."];
+    }
+    
     NSArray *VCNames = @[@"WantRepairesVC",//我要报修
                          @"RepairRecordsVC",//报修记录
                          @"BussnessCircleVC",//社区商圈
@@ -309,6 +312,7 @@
                          @"PushSettingVC",//推送设置
                          @"TechSupportVC"];//技术支持
     id vc = [[NSClassFromString(VCNames[button.tag-101]) alloc]init];
+    
     if (vc) {
         [self.navigationController pushViewController:(UIViewController *)vc animated:YES];
     }else{
