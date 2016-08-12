@@ -29,7 +29,6 @@
     [self ViewInitSetting];
     [self getData];
 
-    
     // Do any additional setup after loading the view.
 }
 
@@ -40,10 +39,6 @@
     self.canUpdateInfo = [NSMutableArray array];
     
     self.title = @"账号信息";
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardHide) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)getData
@@ -54,6 +49,8 @@
         self.userInfo = [[UDManager getUD]getUser];
         [self createIconAndBriefInfo];
         [self createDetailedInfoAndUpdateBtn];
+        
+        [SVProgressHUD dismiss];
     }
     else
     {
@@ -63,12 +60,11 @@
             [self createIconAndBriefInfo];
             [self createDetailedInfoAndUpdateBtn];
             
+            [SVProgressHUD dismiss];
+            
         }];
-
     }
     
-    [SVProgressHUD dismiss];
-
 }
 
 #pragma mark --创建头像和简要信息
@@ -106,13 +102,6 @@
     [icon addSubview:self.iconImageView];
     
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userInfo.avatar]]];
-
-    
-//    NSLog(@"%@",self.userInfo.avatar);
-//    
-//    NSLog(@"%@",self.userInfo.houses[0]);
-    
-    
     
     UILabel *nameLabel = [[UILabel alloc]init];
     
@@ -228,6 +217,7 @@
 #pragma mark --点击修改按钮
 - (void)clickReviseBtn
 {
+    [SVProgressHUD showWithStatus:@"修改中..."];
     [[ServicesManager getAPI]editUserInfo:[[self.canUpdateInfo[1] textField] text] carNumber:[[self.canUpdateInfo[4] textField] text] newUserName:[[self.canUpdateInfo[5] textField] text] newPassWord:[[self.canUpdateInfo[6] textField] text] onComplete:^(NSString *errorMsg) {
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -243,8 +233,6 @@
 #pragma mark --点击头像
 - (void)clickIcon
 {
-    
-    
     TYAlertView *alertView = [[TYAlertView alloc]init];
     
     [alertView addAction:[TYAlertAction actionWithTitle:@"拍照" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
@@ -281,6 +269,7 @@
     //获取选取的图片
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     
+    [SVProgressHUD showWithStatus:@"上传中..."];
     [[ServicesManager getAPI]upLoadAvatar:image OnComplete:^(NSString *errorMsg, NSString *avatar) {
         
         if (errorMsg) {
@@ -295,61 +284,11 @@
     
     [self dismissViewControllerAnimated:NO completion:nil];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-    return YES;
-}
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    [[NSNotificationCenter defaultCenter]postNotificationName:UIKeyboardWillShowNotification object:textField];
-    return YES;
-}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return YES;
-}
-
-- (void)keyboardShow:(NSNotification *)notifation
-{
-    NSDictionary *info = notifation.userInfo;
-    
-    NSValue *value = [info valueForKey:UIKeyboardFrameBeginUserInfoKey];
-    
-    CGRect rect = [value CGRectValue];
-    
-    UITextField *textfield = notifation.object;
-    
-    NSLog(@"selfView bottom = %f keyboardHeight = %f textfield.bottom = %f",self.view.bottom,rect.size.height,textfield.bounds.origin.y);
-    
-    if (textfield.bottom + rect.size.height > self.view.bottom) {
-        CGRect selfViewFrame = self.view.frame;
-        
-        selfViewFrame.origin.y -= self.view.bottom - rect.size.height;
-        
-        self.view.frame = selfViewFrame;
-    }
-    
-}
-
-- (void)keyboardHide
-{
-    [UIView animateWithDuration:0.2 animations:^{
-        CGRect selfViewFrame = self.view.frame;
-        
-        selfViewFrame.origin.y = 66;
-        
-        self.view.frame = selfViewFrame;
-    }];
-    
-
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -360,9 +299,6 @@
             PersonInfoLabel *label = (PersonInfoLabel *)view;
             
             [label.textField resignFirstResponder];
-            
-            
-            
         }
     }
 }

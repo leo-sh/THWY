@@ -361,7 +361,6 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == self.repairDataArray.count-1) {
         UIButton *btn_more = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-20, 30)];
-        //    [btn_more setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
         [btn_more setTitle:@"查看更多" forState:UIControlStateNormal];
         [btn_more setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn_more.titleLabel.font = [UIFont fontWithName:My_RegularFontName size:15.0];
