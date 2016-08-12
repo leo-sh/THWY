@@ -19,6 +19,7 @@
 @property UIView *bottomView;
 @property UserVO *userInfo;
 @property NSMutableArray *canUpdateInfo;
+@property UIImageView *iconImageView;
 @end
 
 @implementation PersonInfoViewController
@@ -27,8 +28,7 @@
     [super viewDidLoad];
     [self ViewInitSetting];
     [self getData];
-    [self createIconAndBriefInfo];
-    [self createDetailedInfoAndUpdateBtn];
+
     
     // Do any additional setup after loading the view.
 }
@@ -49,7 +49,13 @@
 - (void)getData
 {
     [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
-    self.userInfo = [[UDManager getUD]getUser];
+    [[ServicesManager getAPI]getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
+        self.userInfo = user;
+        
+        [self createIconAndBriefInfo];
+        [self createDetailedInfoAndUpdateBtn];
+        
+    }];
     [SVProgressHUD dismiss];
 
 }
@@ -84,11 +90,11 @@
     icon.clipsToBounds = YES;
     [icon addTarget:self action:@selector(clickIcon) forControlEvents:UIControlEventTouchUpInside];
     
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, iconWidth, iconHeight)];
+    self.iconImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, iconWidth, iconHeight)];
     
-    [icon addSubview:imageView];
+    [icon addSubview:self.iconImageView];
     
-    [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userInfo.avatar]]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userInfo.avatar]]];
 
     
 //    NSLog(@"%@",self.userInfo.avatar);
@@ -219,12 +225,6 @@
         else
         {
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
-            
-            [[ServicesManager getAPI]getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
-                
-                [[UDManager getUD]saveUser:user];
-                
-            }];
         }
     }];
 }
@@ -278,6 +278,7 @@
         else
         {
             [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+            self.iconImageView.image = image;
         }
     }];
     

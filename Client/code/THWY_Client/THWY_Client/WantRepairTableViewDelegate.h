@@ -12,4 +12,6 @@
 
 - (void)commitComplete:(NSString *)errorMsg;
 
+- (void)tableViewDidScroll;
+
 @end

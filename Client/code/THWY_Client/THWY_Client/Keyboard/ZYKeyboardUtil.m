@@ -209,6 +209,7 @@ static UIView *FIRST_RESPONDER;
 
 #pragma mark 响应selector
 - (void)keyboardWillShow:(NSNotification *)notification {
+    self.keyBoardType = keyBoardAppearType;
     [self handleKeyboard:notification keyboardAction:KeyboardActionShow];
 }
 
@@ -221,6 +222,7 @@ static UIView *FIRST_RESPONDER;
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
+    self.keyBoardType = keyBoardHiddenType;
     [self handleKeyboard:notification keyboardAction:KeyboardActionHide];
 }
 
