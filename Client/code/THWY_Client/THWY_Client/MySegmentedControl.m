@@ -14,7 +14,7 @@
     
     if (self = [super initWithItems:items]) {
         [self addTarget:self action:@selector(selected:) forControlEvents:UIControlEventValueChanged];
-        self.layer.cornerRadius = 6;
+//        self.layer.cornerRadius = 6;
         [self setClipsToBounds:YES];
         self.tintColor = My_NAV_BG_Color;
         self.backgroundColor = [UIColor clearColor];
