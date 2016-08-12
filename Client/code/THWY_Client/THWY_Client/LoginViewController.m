@@ -13,9 +13,10 @@
 #import "BlueCheckButton.h"
 #import "ServicesManager.h"
 #import "MainVC.h"
-@interface LoginViewController ()<UITextFieldDelegate,UIScrollViewDelegate>
+@interface LoginViewController ()<UITextFieldDelegate>
 
 @property (strong, nonatomic) UIScrollView* introScrollView;
+@property ZYKeyboardUtil* keyboardUtil;
 @property UIImageView *LogoView;
 @property userAndPassWordTextField *userTF;
 @property userAndPassWordTextField *passWordTF;
@@ -29,6 +30,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
+    My_WeakSelf;
+    [self.keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^(ZYKeyboardUtil *keyboardUtil) {
+        [keyboardUtil adaptiveViewHandleWithController:weakSelf adaptiveView:weakSelf.view, nil];
+    }];
+    
     [self showIntroView];
     
     [self ViewInitSetting];
@@ -48,10 +55,11 @@
         });
         self.introScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, My_ScreenW, My_ScreenH)];
         self.introScrollView.bounces = NO;
-        self.introScrollView.backgroundColor = self.view.backgroundColor;
+        self.introScrollView.backgroundColor = My_clearColor;
         self.introScrollView.contentSize = CGSizeMake(My_ScreenW * 4, My_ScreenH);
-        self.introScrollView.delegate = self;
         self.introScrollView.pagingEnabled = YES;
+        self.introScrollView.showsVerticalScrollIndicator = NO;
+        self.introScrollView.showsHorizontalScrollIndicator = NO;
         
         for (int i = 0; i<4; i++) {
             NSString* imageName = [NSString stringWithFormat:@"yitai引导页%d",i+1];
@@ -268,13 +276,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:Login_Fail object:nil];
 
         }
-        else if (user) {            
-            [[UDManager getUD]saveUserName:self.userTF.text];
-            
-//            NSLog(@"%@",self.userTF.text);
-//            NSLog(@"%@",self.passWordTF.text);
-//            NSLog(@"%@",[[UDManager getUD]getUserName]);
-//            NSLog(@"%@",[[UDManager getUD]getPassWord]);
+        else {
             
             [[NSNotificationCenter defaultCenter] postNotificationName:Login_Success object:nil];
             
