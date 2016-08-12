@@ -38,7 +38,7 @@
 -(BOOL)showPassWord
 {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    return [ud objectForKey:SHOW_STATE];
+    return [[ud objectForKey:SHOW_STATE] boolValue];
 }
 
 -(UserVO *)getUser{

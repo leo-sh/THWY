@@ -151,9 +151,9 @@
     
     [self.passWordTF setLeftIcon:@"登录密码" placeholder:@"请输入密码" backgroundColor:[UIColor whiteColor]];
     
-    self.passWordTF.text = [[UDManager getUD]getPassWord];
-
-    
+    if ([[UDManager getUD]showPassWord]) {
+        self.passWordTF.text = [[UDManager getUD]getPassWord];
+    }
 }
 
 - (void)createButton
@@ -258,7 +258,7 @@
         [self.passWordTF endEditing:YES];
     }
     
-    [[ServicesManager getAPI] login:self.userTF.text password:self.passWordTF.text onComplete:^(NSString *errorMsg, UserVO *user) {
+    [[ServicesManager getAPI] login:self.userTF.text password:self.passWordTF.text savePassWord:self.rememberPassWordBtn.chooseStatu onComplete:^(NSString *errorMsg, UserVO *user) {
         NSLog(@"%@",user);
         if (errorMsg) {
             NSLog(@"%@",errorMsg);
@@ -271,17 +271,10 @@
         else if (user) {            
             [[UDManager getUD]saveUserName:self.userTF.text];
             
-                if (self.rememberPassWordBtn.chooseStatu) {
-                    [[UDManager getUD]saveUserPassWord:self.passWordTF.text];
-                }
-                else
-                {
-                    
-                }
-            NSLog(@"%@",self.userTF.text);
-            NSLog(@"%@",self.passWordTF.text);
-            NSLog(@"%@",[[UDManager getUD]getUserName]);
-            NSLog(@"%@",[[UDManager getUD]getPassWord]);
+//            NSLog(@"%@",self.userTF.text);
+//            NSLog(@"%@",self.passWordTF.text);
+//            NSLog(@"%@",[[UDManager getUD]getUserName]);
+//            NSLog(@"%@",[[UDManager getUD]getPassWord]);
             
             [[NSNotificationCenter defaultCenter] postNotificationName:Login_Success object:nil];
             
