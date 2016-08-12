@@ -49,13 +49,24 @@
 - (void)getData
 {
     [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
-    [[ServicesManager getAPI]getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
-        self.userInfo = user;
-        
+    
+    if ([ServicesManager getAPI].status == NotReachable) {
+        self.userInfo = [[UDManager getUD]getUser];
         [self createIconAndBriefInfo];
         [self createDetailedInfoAndUpdateBtn];
-        
-    }];
+    }
+    else
+    {
+        [[ServicesManager getAPI]getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
+            self.userInfo = user;
+            
+            [self createIconAndBriefInfo];
+            [self createDetailedInfoAndUpdateBtn];
+            
+        }];
+
+    }
+    
     [SVProgressHUD dismiss];
 
 }
