@@ -11,6 +11,8 @@
 #import "AlertButton.h"
 @interface ComplainAlertView : AlertView
 @property AlertButton *typeBtn;
+@property UITextField *personTf;
+@property UITextField *phoneTf;
 @property NSMutableArray *houseSourceBtnArray;
 - (void)updateWithComplainVo:(UserVO *)UserVO;
 @end

@@ -63,18 +63,6 @@
             self.data = list;
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
-                if (!self.data) {
-                    static dispatch_once_t onceToken;
-                    dispatch_once(&onceToken, ^{
-                        ReviseBtn *addBtn = [self createAddBtn:self.view];
-                        
-                        addBtn.y = self.topView.bottom + 5;
-                        
-                        [self.view addSubview:addBtn];
-                        
-                    });
-                }
                 [self.tableView reloadData];
                 [SVProgressHUD dismiss];
                 [self.tableView.mj_footer endRefreshing];
@@ -293,16 +281,6 @@
     }
 
 }
-
-- (ReviseBtn *)createAddBtn:(UIView *)view
-{
-    ReviseBtn *reviseBtn = [[ReviseBtn alloc]initWithFrame:CGRectMake(40, 5, view.width - 80 , 40)];
-    [reviseBtn setLeftImageView:@"建议意见 添加" andTitle:@"添加"];
-    [reviseBtn addTarget:self action:@selector(clickAddBtn) forControlEvents:UIControlEventTouchUpInside];
-    
-    return reviseBtn;
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

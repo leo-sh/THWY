@@ -8,8 +8,6 @@
 
 #import "ComplainAlertView.h"
 @interface ComplainAlertView()
-@property UILabel *person;
-@property UILabel *phone;
 @end
 @implementation ComplainAlertView
 - (instancetype)initWithFrame:(CGRect)frame
@@ -37,7 +35,6 @@
     CGFloat left = 10;
     
     UIView *houseSource = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, 30)];
-    [self addSubOhterview:houseSource];
     
     UILabel * houseLabel = [UILabel labelWithTitle:@"房源：" frameX:left Height:houseSource.height];
     houseLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
@@ -74,18 +71,61 @@
         houseBtnY +=houseBtnH;
     }
     
-    self.person = [[UILabel alloc]initWithFrame:CGRectMake(10,houseSource.bottom, self.width, 30)];
-    self.person.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    [self addSubOhterview:houseSource];
+
+    //创建personView
+    UIView *personView = [[UIView alloc]initWithFrame:CGRectMake(10,houseSource.bottom, self.width, 30)];
     
-    [self addSubOhterview:self.person];
-    self.person.text = [NSString stringWithFormat:@"投诉姓名：%@",[[UDManager getUD] getUser].real_name];
-    self.phone = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(self.person.frame), self.width - 10, 30)];
-    self.phone.text = [NSString stringWithFormat:@"投诉人电话：%@",[[UDManager getUD] getUser].cellphone];
-    self.phone.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    [self addSubOhterview:personView];
     
-    [self addSubOhterview:self.phone];
+    UILabel *personLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 75, 30)];
     
-    UIView *complainTypeView = [[UIView alloc]initWithFrame:CGRectMake(0, self.phone.bottom, self.width - 10, 30)];
+    personLabel.text = @"投诉姓名：";
+    
+    personLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+
+    [personView addSubview:personLabel];
+    
+    self.personTf = [[UITextField alloc]initWithFrame:CGRectMake(75,6, 120 , 18)];
+    self.personTf.layer.borderWidth = 1;
+    self.personTf.layer.borderColor = My_Color(236, 236, 236).CGColor;
+    self.personTf.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    
+    self.personTf.text = [[UDManager getUD] getUser].real_name;
+    
+    [personView addSubview:self.personTf];
+    //创建手机号veiw
+    
+    UIView *phoneView = [[UIView alloc]initWithFrame:CGRectMake(10,personView.bottom, self.width, 30)];
+    
+    [self addSubOhterview:phoneView];
+    
+    UILabel *phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 90, 30)];
+    
+    phoneLabel.text = @"投诉人电话：";
+    
+    phoneLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    
+    [phoneView addSubview:phoneLabel];
+    
+    self.phoneTf = [[UITextField alloc]initWithFrame:CGRectMake(90,6, 120, 18)];
+    self.phoneTf.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    
+    self.phoneTf.text = [[UDManager getUD] getUser].cellphone;
+    
+    self.phoneTf.layer.borderWidth = 1;
+    self.phoneTf.layer.borderColor = My_Color(236, 236, 236).CGColor;
+    self.phoneTf.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    
+    [phoneView addSubview:self.phoneTf];
+    
+//    self.phone = [[UITextField alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(self.person.frame), self.width - 10, 30)];
+//    self.phone.text = [[UDManager getUD] getUser].cellphone;
+//    self.phone.font = [UIFont systemFontOfSize:CONTENT_FONT];
+//    
+//    [self addSubOhterview:self.phone];
+//    
+    UIView *complainTypeView = [[UIView alloc]initWithFrame:CGRectMake(0, phoneView.bottom, self.width - 10, 30)];
     
     [self addSubOhterview:complainTypeView];
     
@@ -121,11 +161,6 @@
     
 //    NSLog(@"self y %f",self.y);
 
-}
-
-- (void)updateCenter:(CGPoint)point
-{
-    self.center = point;
 }
 
 - (void)updateWithComplainVo:(UserVO *)UserVO
