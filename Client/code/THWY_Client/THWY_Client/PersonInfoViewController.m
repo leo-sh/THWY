@@ -175,6 +175,7 @@
         
         [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] TextField:tfTextArray[i]];
         label.textField.delegate = self;
+        label.textField.textColor = My_Color(202, 202, 207);
         label.layer.borderWidth = 1;
         label.layer.borderColor = [UIColor lightGrayColor].CGColor;
         
