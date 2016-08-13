@@ -57,13 +57,13 @@
         }
         else if(method == GetYear)
         {
-            self.data = @[@"全部",@"2010",@"2011",@"2012",@"2013",@"2014",@"2015",@"2016"];
+            self.data = @[@"选择年份",@"2012",@"2013",@"2014",@"2015",@"2016",@"2017",@"2018",@"2019"];
             self.frame = CGRectMake(0, 0, 90, 30 * self.data.count);
 
         }
         else
         {
-            self.data = @[@"全部",@"未支付",@"部分支付",@"已支付",@"退款"];
+            self.data = @[@"选择状态",@"未缴",@"未缴齐",@"已缴齐",@"已经退款"];
             self.frame = CGRectMake(0, 0, 90, 30 * self.data.count);
         }
         
@@ -149,7 +149,7 @@
 - (void)showOriginY:(CGFloat)y OriginX:(CGFloat)x
 {
     UIView *backgroundView = [[UIView alloc]initWithFrame:kCurrentWindow.bounds];
-    backgroundView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
+    backgroundView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     backgroundView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
     tap.delegate = self;

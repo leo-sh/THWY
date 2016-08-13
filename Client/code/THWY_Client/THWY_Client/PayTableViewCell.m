@@ -157,27 +157,27 @@
     switch (FeeVO.st) {
         case All:
         {
-            self.stateLabel.text = @"全部";
+            self.stateLabel.text = @"选择状态";
         }
             break;
         case NonPayment:
         {
-            self.stateLabel.text = @"未支付";
+            self.stateLabel.text = @"未缴";
         }
             break;
         case Part:
         {
-            self.stateLabel.text = @"部分支付";
+            self.stateLabel.text = @"未缴齐";
         }
             break;
         case Paid:
         {
-            self.stateLabel.text = @"已支付";
+            self.stateLabel.text = @"已缴齐";
         }
             break;
         case Refund:
         {
-            self.stateLabel.text = @"退款";
+            self.stateLabel.text = @"已经退款";
         }
             break;
         default:
