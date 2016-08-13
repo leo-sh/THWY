@@ -160,7 +160,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProclamationInfoViewController *pushView = [[ProclamationInfoViewController alloc]init];
-    pushView.proclamationId = [self.data[indexPath.row] Id];
+    pushView.proclamationId = [self.data[indexPath.section] Id];
     
     [self.navigationController pushViewController:pushView animated:YES];
     
