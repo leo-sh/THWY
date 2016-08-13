@@ -104,6 +104,14 @@
     cell.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
     cell.layoutMargins = UIEdgeInsetsZero;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.section == 1) {
+        cell.backgroundColor = My_Color(254, 253, 236);
+    }
+    else
+    {
+        cell.backgroundColor = [UIColor whiteColor];
+
+    }
     return cell;
 }
 

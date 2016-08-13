@@ -151,7 +151,7 @@
 //    self.textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
     [self addSubOhterview:self.textView];
     
-    [self setPlaceholder:@"请输入投诉内容："];
+    [self setPlaceholder:@"请输入投诉详情"];
     
     CGRect rect = self.frame;
     

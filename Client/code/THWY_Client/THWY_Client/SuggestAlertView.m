@@ -60,7 +60,7 @@
     
     [self addSubOhterview:self.textView];
     
-    [self setPlaceholder:@"请输入建议\\意见"];
+    [self setPlaceholder:@"请输入内容"];
     
     CGRect rect = self.frame;
     
