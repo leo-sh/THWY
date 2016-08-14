@@ -76,7 +76,8 @@
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.tableView];
-    TableViewFram
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {make.top.mas_equalTo(10);make.left.mas_equalTo(5);make.right.mas_equalTo(-5);make.bottom.mas_equalTo(-10);}];
+
     
 }
 
@@ -98,7 +99,24 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@：%@",self.sectionHead[indexPath.section][indexPath.row],self.data[indexPath.section][indexPath.row]];
+//    cell.textLabel.text = [NSString stringWithFormat:@"%@：%@",self.sectionHead[indexPath.section][indexPath.row],self.data[indexPath.section][indexPath.row]];
+    
+   NSString *cellText = [NSString stringWithFormat:@"%@：%@",self.sectionHead[indexPath.section][indexPath.row],self.data[indexPath.section][indexPath.row]];
+    
+    NSMutableAttributedString *cellAttrText = [[NSMutableAttributedString alloc]initWithString:cellText];
+    
+    NSRange headSR = [cellText rangeOfString:@"："];
+    if (headSR.location != NSNotFound) {
+    
+        [cellAttrText addAttribute:NSForegroundColorAttributeName value:My_Color(202, 202, 207) range:NSMakeRange(headSR.location + headSR.length, cellAttrText.length - headSR.location - headSR.length)];
+        
+        cell.textLabel.attributedText = cellAttrText;
+    }
+    
+
+    
+    
+    
     cell.textLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
     cell.preservesSuperviewLayoutMargins = NO;
     cell.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
