@@ -120,21 +120,39 @@
 
 - (void)createUserAndPasswordTextfiled
 {
-    self.userTF =[[userAndPassWordTextField alloc]init];
-    self.userTF.delegate = self;
-    [self.view addSubview:self.userTF];
-    
     CGFloat userAndPassWordTFWidth = self.view.width *0.9;
     CGFloat userTFTop = self.view.height * 0.1;
     CGFloat userAndPassWordHeight = self.view.height * 0.08;
     
-    [self.userTF mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIView *TFbackgroundView = [[UIView alloc]init];
+    
+    TFbackgroundView.layer.cornerRadius = 5;
+    TFbackgroundView.clipsToBounds = YES;
+    
+//    TFbackgroundView.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:TFbackgroundView];
+    
+    [TFbackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.LogoView.mas_bottom).with.offset(userTFTop);
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(userAndPassWordTFWidth);
-        make.height.mas_equalTo(userAndPassWordHeight);
-
+        make.height.mas_equalTo(userAndPassWordHeight *2 +1);
+        
     }];
+    
+    self.userTF =[[userAndPassWordTextField alloc]initWithFrame:CGRectMake(0, 0, userAndPassWordTFWidth, userAndPassWordHeight)];
+    self.userTF.delegate = self;
+    [TFbackgroundView addSubview:self.userTF];
+    
+
+    
+//    [self.userTF mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.LogoView.mas_bottom).with.offset(userTFTop);
+//        make.centerX.equalTo(self.view.mas_centerX);
+//        make.width.mas_equalTo(userAndPassWordTFWidth);
+//        make.height.mas_equalTo(userAndPassWordHeight);
+//
+//    }];
     
     [self.userTF setLeftIcon:@"账号" placeholder:@"请输入账号" backgroundColor:[UIColor whiteColor]];
     
@@ -143,19 +161,18 @@
     NSLog(@"%@",[[UDManager getUD]getUserName]);
     NSLog(@"%@",[[UDManager getUD]getPassWord]);
     
-    self.passWordTF =[[userAndPassWordTextField alloc]init];
+    self.passWordTF =[[userAndPassWordTextField alloc]initWithFrame:CGRectMake(0, self.userTF.bottom + 1, userAndPassWordTFWidth, userAndPassWordHeight)];
     self.passWordTF.delegate = self;
     [self.passWordTF setSecureTextEntry:YES];
-    [self.view addSubview:self.passWordTF];
+    [TFbackgroundView addSubview:self.passWordTF];
     
-    CGFloat passWordTFTop = self.view.height * 0.001;
     
-    [self.passWordTF mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.userTF.mas_bottom).with.offset(passWordTFTop);
-        make.centerX.equalTo(self.view.mas_centerX);
-        make.width.mas_equalTo(userAndPassWordTFWidth);
-        make.height.mas_equalTo(userAndPassWordHeight);
-    }];
+//    [self.passWordTF mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.userTF.mas_bottom).with.offset(passWordTFTop);
+//        make.centerX.equalTo(self.view.mas_centerX);
+//        make.width.mas_equalTo(userAndPassWordTFWidth);
+//        make.height.mas_equalTo(userAndPassWordHeight);
+//    }];
     
     [self.passWordTF setLeftIcon:@"登录密码" placeholder:@"请输入密码" backgroundColor:[UIColor whiteColor]];
     

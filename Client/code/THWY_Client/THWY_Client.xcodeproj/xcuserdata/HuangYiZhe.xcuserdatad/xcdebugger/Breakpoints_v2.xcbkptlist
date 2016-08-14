@@ -25,7 +25,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
             endingLineNumber = "88"
-            landmarkName = "-ViewInitSetting"
+            landmarkName = "-tapOnLastImage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/LoginViewController.m"
-            timestampString = "492707012.171299"
+            timestampString = "492861303.402232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "-createButton"
             landmarkType = "5">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/LoginViewController.m"
-            timestampString = "492707012.171299"
+            timestampString = "492861303.402232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "-createButton"
             landmarkType = "5">
          </BreakpointContent>
@@ -724,11 +724,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/LoginViewController.m"
-            timestampString = "492707012.171299"
+            timestampString = "492861303.402232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "259"
-            endingLineNumber = "259"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
             landmarkName = "-login"
             landmarkType = "5">
          </BreakpointContent>
@@ -740,11 +740,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/LoginViewController.m"
-            timestampString = "492707012.171299"
+            timestampString = "492861303.402232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
             landmarkName = "-login"
             landmarkType = "5">
          </BreakpointContent>
@@ -756,27 +756,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/LoginViewController.m"
-            timestampString = "492691364.680367"
+            timestampString = "492861303.402232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "-createUserAndPasswordTextfiled"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "THWY_Client/LoginViewController.m"
-            timestampString = "492707012.171299"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "-login"
             landmarkType = "5">
          </BreakpointContent>
@@ -882,11 +866,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/LoginViewController.m"
-            timestampString = "492707062.390385"
+            timestampString = "492861303.402232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "-createUserAndPasswordTextfiled"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "THWY_Client/LoginViewController.m"
+            timestampString = "492861303.402232"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "-createButton"
             landmarkType = "5">
          </BreakpointContent>
@@ -898,27 +898,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/LoginViewController.m"
-            timestampString = "492707081.727463"
+            timestampString = "492861303.402232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
-            landmarkName = "-createButton"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "THWY_Client/LoginViewController.m"
-            timestampString = "492707829.058128"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
             landmarkName = "-login"
             landmarkType = "5">
          </BreakpointContent>
@@ -930,11 +914,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/LoginViewController.m"
-            timestampString = "492707830.961293"
+            timestampString = "492861303.402232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
             landmarkName = "-login"
             landmarkType = "5">
          </BreakpointContent>
@@ -946,11 +930,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/LoginViewController.m"
-            timestampString = "492707835.419363"
+            timestampString = "492861303.402232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
             landmarkName = "-login"
             landmarkType = "5">
          </BreakpointContent>
@@ -962,11 +946,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/LoginViewController.m"
-            timestampString = "492707837.946607"
+            timestampString = "492861303.402232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
             landmarkName = "-login"
             landmarkType = "5">
          </BreakpointContent>
@@ -978,11 +962,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/LoginViewController.m"
-            timestampString = "492707865.432991"
+            timestampString = "492861303.402232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
             landmarkName = "-login"
             landmarkType = "5">
          </BreakpointContent>
