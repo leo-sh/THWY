@@ -56,9 +56,9 @@
         FeeHistoryVO *item = [ad.fee_history firstObject];
         NSString *time = [NSString stringDateFromTimeInterval:[item.fee_time intValue] withFormat:@"YYYY-MM-dd HH:mm:ss"];
         
-        NSString *fee = [NSString stringConvertFloatString:item.fee addEndString:@"元"];
+//        NSString *fee = [NSString stringConvertFloatString:item.fee addEndString:@"元"];
         
-        NSArray *sectionTwoData = @[time,fee,item.real_name,item.remark];
+        NSArray *sectionTwoData = @[time,actualString,item.real_name,item.remark];
         self.data = @[sectionOneData,sectionTwoData];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self createUI];
