@@ -31,7 +31,7 @@
 @property (strong, nonatomic) NSMutableArray *repairStatusArray;
 
 @property (assign, nonatomic) NSInteger switchFlag;
-@property (assign, nonatomic) NSInteger selectIndex;
+@property (assign, nonatomic) int selectIndex;
 @property (assign, nonatomic) int page;
 
 @end
@@ -315,7 +315,7 @@
     if (self.selectIndex == 0){
         [self getDataType:self.switchFlag statusID:@"0" page:self.page+1 more:YES];
     }else{
-        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%ld", self.selectIndex+1] page:self.page+1 more:YES];
+        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%d", self.selectIndex+1] page:self.page+1 more:YES];
     }
     
     
@@ -340,7 +340,7 @@
     if (self.selectIndex == 0){
         [self getDataType:self.switchFlag statusID:@"0" page:1 more:NO];
     }else{
-        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%ld", self.selectIndex+1] page:1 more:NO];
+        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%d", self.selectIndex+1] page:1 more:NO];
     }
 
 }
@@ -398,7 +398,7 @@
     if (self.selectIndex == 0){
         [self getDataType:self.switchFlag statusID:@"0" page:self.page+1 more:YES];
     }else{
-        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%ld", self.selectIndex+1] page:self.page+1 more:YES];
+        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%d", self.selectIndex+1] page:self.page+1 more:YES];
     }
     
 }

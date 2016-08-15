@@ -10,4 +10,9 @@
 
 @interface MainNavigationViewController : UINavigationController
 @property (nonatomic, strong) id popDelegate;
+
+-(void)popWithUserInfo:(NSDictionary *)userInfo;
+
+-(void)showAlertWithUserInfo:(NSDictionary *)userInfo;
+
 @end

@@ -7,12 +7,80 @@
 //
 
 #import "MainNavigationViewController.h"
+#import "RecommandBussnessADVC.h"
+#import "RepairDetailController.h"
 
 @interface MainNavigationViewController () <UINavigationControllerDelegate>
 //@property (nonatomic, strong) id popDelegate;
+{
+    BOOL tapGestureBool;
+    NSDictionary* _userInfo;
+}
 @end
 
 @implementation MainNavigationViewController
+
+-(void)popWithUserInfo:(NSDictionary *)userInfo
+{
+    NSString* pushType = userInfo[@"push_type"];
+    if ([pushType isEqualToString:@"4"]) {
+//        报修接单
+        RepairDetailController *detail = [[RepairDetailController alloc] init];
+#pragma - TODO RepairVO
+        detail.model = [[RepairVO alloc] init];
+        [self.navigationController pushViewController:detail animated:YES];
+        
+    }else if ([pushType isEqualToString:@"5"])
+    {
+//        业主公告
+        
+    }else if ([pushType isEqualToString:@"6"])
+    {
+//        社区商圈-商圈公告
+        RecommandBussnessADVC *advc = [[RecommandBussnessADVC alloc] init];
+        [self.navigationController pushViewController:advc animated:YES];
+        
+    }else if ([pushType isEqualToString:@"7"])
+    {
+//        缴费台账
+        
+    }
+    if (_userInfo) {
+        _userInfo = nil;
+    }
+}
+
+-(void)showAlertWithUserInfo:(NSDictionary *)userInfo
+{
+    _userInfo = userInfo;
+    tapGestureBool = YES;
+    UIView *viewBanner = [BannerNotice bannerWith:[UIImage imageNamed:@"ios4"] bannerName:@"泰生活" bannerContent:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]];
+    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(event:)];
+    [viewBanner addGestureRecognizer:tapGesture];
+    
+    double delayInSeconds = 4.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if (tapGestureBool) {
+            //转换成一个本地通知，显示到通知栏，
+            UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+            localNotification.userInfo = userInfo;
+            localNotification.alertAction = @"查看";
+            localNotification.soundName = UILocalNotificationDefaultSoundName;
+            localNotification.alertBody = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+            localNotification.fireDate = [NSDate date];
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        }
+    });
+    
+    [My_KeyWindow addSubview:viewBanner];
+}
+
+- (void)event:(UITapGestureRecognizer *)gesture
+{
+    tapGestureBool = NO;
+    [self popWithUserInfo:_userInfo];
+}
 
 + (void)initialize {
     // 设置UIUINavigationBar的主题

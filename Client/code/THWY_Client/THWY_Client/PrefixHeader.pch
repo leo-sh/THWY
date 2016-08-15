@@ -23,6 +23,7 @@
 #import "SVProgressHUD.h"
 #import "UIView+TYAlertView.h"
 #import "TYAlertController+BlurEffects.h"
+#import "BannerNotice.h"
 
 #endif
 
@@ -81,7 +82,9 @@
 //登录页面通知
 #define Login_Success @"LoginSuccess"
 #define Login_Fail @"Login_Fail"
-#endif /* PrefixHeader_pch */
+#endif 
+
+/* PrefixHeader_pch */
 //tableView的位置
 #define TableViewFram     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {make.top.mas_equalTo(10);make.left.mas_equalTo(0);make.right.mas_equalTo(0);make.bottom.mas_equalTo(-10);}];
 //内容默认文字大小

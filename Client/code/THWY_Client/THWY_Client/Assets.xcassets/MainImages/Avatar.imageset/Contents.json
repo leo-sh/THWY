@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "yitailogo-1.png",
+      "filename" : "tx.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "yitailogo.png",
       "scale" : "2x"
     },
     {

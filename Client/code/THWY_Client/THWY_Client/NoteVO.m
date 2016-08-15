@@ -14,13 +14,15 @@
 {
     if (self = [super init]) {
         self.Id = JSON[@"id"];
-        self.category = JSON[@"category"];
-        self.oid = JSON[@"oid"];
         self.content = JSON[@"content"];
-        
-        self.is_read = [JSON[@"is_read"] boolValue];
-        self.answer = JSON[@"answer"];
+        self.content_app = JSON[@"content_app"];
         self.ctime = JSON[@"ctime"];
+        
+        self.is_index = [JSON[@"is_index"] boolValue];
+        self.estate_id = JSON[@"estate_id"];
+        self.ctime = JSON[@"ctime"];
+        self.title = JSON[@"title"];
+        self.note_txt_type_id = JSON[@"note_txt_type_id"];
     }
     
     return self;

@@ -28,6 +28,28 @@
     return ud;
 }
 
+-(void)saveNotification:(NSDictionary *)userInfo
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:userInfo forKey:@"ActiveNotification"];
+    [ud synchronize];
+}
+
+-(NSDictionary *)getNotification
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSDictionary* userInfo = [ud objectForKey:@"ActiveNotification"];
+    [self delNotification];
+    return userInfo;
+}
+
+-(void)delNotification
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud removeObjectForKey:@"ActiveNotification"];
+    [ud synchronize];
+}
+
 -(void)saveShowState:(BOOL)show
 {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
