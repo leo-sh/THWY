@@ -54,7 +54,7 @@
     if ([My_ServicesManager isLogin]) {
         [My_ServicesManager getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
             if (user) {
-                [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
+                [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"Avatar"]];
                 self.username.text = user.real_name;
                 self.addr.text = user.estate;
             }
@@ -68,7 +68,7 @@
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"yitailogo"]];
     self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [self.leftButton setImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
-    [self.leftButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+//    [self.leftButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [self.leftButton addTarget:self action:@selector(leftItemOnclicked:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithCustomView:self.leftButton];
     self.navigationItem.leftBarButtonItem  = left;
@@ -84,13 +84,10 @@
 - (void)leftItemOnclicked:(UIButton *)button{
     
     if (self.flag == -1) {
-        [button setBackgroundImage:[UIImage imageNamed:@"anxia"] forState:UIControlStateNormal];
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-        
         [window addSubview:self.dropView];
         self.flag = 1;
     }else{
-        [button setBackgroundImage:nil forState:UIControlStateNormal];
         [self.dropView removeFromSuperview];
         self.flag = -1;
     }
@@ -130,12 +127,11 @@
             break;
     }
     [self.dropView removeFromSuperview];
-    [self.leftButton setBackgroundImage:nil forState:UIControlStateNormal];
 
 }
 
 - (void)dropMenuHidden{
-    [self.leftButton setBackgroundImage:nil forState:UIControlStateNormal];
+    
 }
 
 #pragma mark - UserInfo

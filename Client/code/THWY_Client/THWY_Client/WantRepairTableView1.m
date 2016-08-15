@@ -335,10 +335,11 @@
     
         switch (My_ServicesManager.status) {
             case NotReachable:
-                NSLog(@"网络不可达");
+               
+                [SVProgressHUD setMinimumDismissTimeInterval:1.3];
+                [SVProgressHUD showErrorWithStatus:@"网络未连接"];
                 break;
             case ReachableViaWWAN:{
-                NSLog(@"GPRS网络");
                 TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"当前处于非WiFi状态" message:@"你确定上传视频吗?"];
                 [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancle handler:^(TYAlertAction *action) {
                     
@@ -355,16 +356,22 @@
                     
                 }]];
                 
-                // first way to show ,use UIView Category
-                [alertView showInWindowWithOriginY:200 backgoundTapDismissEnable:YES];
+                [alertView showInWindow];
                 
                 break;
             }
-            case ReachableViaWiFi:
-                NSLog(@"wifi网络");
+            case ReachableViaWiFi:{
+                [SVProgressHUD showWithStatus:@"数据上传中..."];
+                
+                [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
+                    
+                    [self.repairDelegate commitComplete:errorMsg];
+                    
+                }];
+     
                 break;
-            default:
-                break;
+            }
+
         }
     }
 

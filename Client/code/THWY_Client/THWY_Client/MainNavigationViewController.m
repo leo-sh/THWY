@@ -7,6 +7,8 @@
 //
 
 #import "MainNavigationViewController.h"
+#import "RecommandBussnessADVC.h"
+#import "RepairDetailController.h"
 
 @interface MainNavigationViewController () <UINavigationControllerDelegate>
 //@property (nonatomic, strong) id popDelegate;
@@ -23,6 +25,10 @@
     NSString* pushType = userInfo[@"push_type"];
     if ([pushType isEqualToString:@"4"]) {
 //        报修接单
+        RepairDetailController *detail = [[RepairDetailController alloc] init];
+#pragma - TODO RepairVO
+        detail.model = [[RepairVO alloc] init];
+        [self.navigationController pushViewController:detail animated:YES];
         
     }else if ([pushType isEqualToString:@"5"])
     {
@@ -31,6 +37,8 @@
     }else if ([pushType isEqualToString:@"6"])
     {
 //        社区商圈-商圈公告
+        RecommandBussnessADVC *advc = [[RecommandBussnessADVC alloc] init];
+        [self.navigationController pushViewController:advc animated:YES];
         
     }else if ([pushType isEqualToString:@"7"])
     {

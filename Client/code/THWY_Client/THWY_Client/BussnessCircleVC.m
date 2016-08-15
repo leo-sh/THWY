@@ -92,7 +92,7 @@
 
     // 创建将要显示控件
     UIImageView *imageView = [[UIImageView alloc] init];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:[self.adDataArray[index] pic]] placeholderImage:[UIImage imageNamed:@"beijing"]];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:[self.adDataArray[index] pic]] placeholderImage:[UIImage imageNamed:@"bannerload"]];
     
     return imageView;
 }
@@ -118,7 +118,7 @@
     }];
     
     UIImageView *headImage = [[UIImageView alloc] init];
-    headImage.image = [UIImage imageNamed:@"头像1"];
+    headImage.image = [UIImage imageNamed:@"Avatar"];
     headImage.userInteractionEnabled = YES;
     headImage.layer.cornerRadius = self.view.height*1.0/12*0.85;
     headImage.layer.borderWidth = 3;
@@ -156,7 +156,7 @@
     
     UserVO *user = [[UDManager getUD] getUser];
     if (user) {
-        [headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
+        [headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"Avatar"]];
         username.text = user.real_name;
         addr.text = user.estate;
     }
