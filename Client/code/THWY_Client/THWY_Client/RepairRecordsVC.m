@@ -157,7 +157,7 @@
         label.text = self.labelNames[i];
         [label sizeToFit];
         label.centerX = btnImage.centerX;
-        label.font = [UIFont fontWithName:My_RegularFontName size:16.0];
+        label.font = FontSize(CONTENT_FONT);
         label.textColor = [UIColor blackColor];
         [btn addSubview:label];
         
@@ -184,7 +184,7 @@
         label.text = self.labelNames[i];
         [label sizeToFit];
         label.centerX = btnImage.centerX;
-        label.font = [UIFont fontWithName:My_RegularFontName size:16.0];
+        label.font = FontSize(CONTENT_FONT);
         label.textColor = [UIColor blackColor];
         [btn addSubview:label];
 

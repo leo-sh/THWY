@@ -15,7 +15,10 @@
     [super awakeFromNib];
     // Initialization code
   
-//    self.icon = [[UIImageView alloc] init];  
+//    self.icon = [[UIImageView alloc] init];
+    self.textField.borderStyle = UITextBorderStyleNone;
+    self.textField.layer.borderWidth = 0.5;
+    self.textField.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
 }
 

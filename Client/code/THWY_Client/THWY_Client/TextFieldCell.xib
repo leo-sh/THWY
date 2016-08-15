@@ -36,7 +36,10 @@
                     </label>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jN1-4u-mPo">
                         <rect key="frame" x="117" y="17" width="143" height="24"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="Vtu-wL-wUI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                     </textField>
                 </subviews>

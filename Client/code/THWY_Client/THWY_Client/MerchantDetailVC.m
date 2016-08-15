@@ -57,7 +57,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = [UIColor lightGrayColor];
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
-    self.tableView.rowHeight = 100;
+    self.tableView.rowHeight = 100/667.0*My_ScreenH;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"RecommandMerchantCell" bundle:nil]forCellReuseIdentifier:@"RecommandMerchantCell"];

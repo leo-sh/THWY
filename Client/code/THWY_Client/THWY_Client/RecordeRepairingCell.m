@@ -102,14 +102,14 @@
         }];
         
         self.paiGongLabel.text = @"派工单号: ";
-        [self setLabelAttributes:self.paiGongLabel];
+        [self setLabelAttributes:self.paiGongLabel with:0];
         [self.paiGongLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.paiGongNumber.mas_centerY);
             make.left.mas_equalTo(self.paiGongNumber.mas_right).offset(10.0/375*My_ScreenW);
         }];
         
         self.numberLabel.text = @"WX1223";
-        [self setLabelAttributes:self.numberLabel];
+        [self setLabelAttributes:self.numberLabel with:0];
         [self.numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.paiGongLabel.mas_centerY);
             make.left.mas_equalTo(self.paiGongLabel.mas_right).offset(10.0/375*My_ScreenW);
@@ -132,14 +132,14 @@
         [self.contentView addSubview:self.houseSource];
         
         self.houseSource.text = @"报修房源: ";
-        [self setLabelAttributes:self.houseSource];
+        [self setLabelAttributes:self.houseSource with:0];
         
         [self.houseSource mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.paiGongNumber.mas_centerX);
             make.top.mas_equalTo(self.line.mas_bottom).offset(topMagrin);
         }];
         
-        [self setLabelAttributes:self.houseSourceLabel];
+        [self setLabelAttributes:self.houseSourceLabel with:-1];
         [self.houseSourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.houseSource.mas_centerY);
             make.left.mas_equalTo(self.houseSource.mas_right);
@@ -151,7 +151,7 @@
         [self.contentView addSubview:self.repairCatogeryLabel];
         [self.contentView addSubview:self.repairCatogery];
         self.repairCatogery.text = @"保修类别: ";
-        [self setLabelAttributes:self.repairCatogery];
+        [self setLabelAttributes:self.repairCatogery with:0];
         [self.repairCatogery mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.houseSource.mas_left);
             make.top.mas_equalTo(self.houseSource.mas_bottom).offset(topMagrin);
@@ -162,7 +162,7 @@
         NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
         CGRect rect = [self.repairCatogeryLabel.text boundingRectWithSize:CGSizeMake(300.0/375*My_ScreenW, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
         
-        [self setLabelAttributes:self.repairCatogeryLabel];
+        [self setLabelAttributes:self.repairCatogeryLabel with:-1];
         [self.repairCatogeryLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.repairCatogery.mas_left);
             make.top.mas_equalTo(self.repairCatogery.mas_bottom).offset(topMagrin);
@@ -185,7 +185,7 @@
         self.repairDesc = [[UILabel alloc] init];
         self.repairDesc.text = @"报修描述: ";
         self.repairDescLabel = [[UILabel alloc] init];
-        [self setLabelAttributes:self.repairDesc];
+        [self setLabelAttributes:self.repairDesc with:0];
         [self.contentView addSubview:self.repairDesc];
         [self.contentView addSubview:self.repairDescLabel];
         
@@ -194,7 +194,7 @@
             make.top.mas_equalTo(self.line2.mas_bottom).offset(topMagrin);
         }];
         
-        [self setLabelAttributes:self.repairDescLabel];
+        [self setLabelAttributes:self.repairDescLabel with:-1];
         [self.repairDescLabel setNumberOfLines:0];
         self.repairDescLabel.lineBreakMode = NSLineBreakByWordWrapping;
         //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
@@ -236,13 +236,13 @@
         [self.contentView addSubview:self.cellPhoneLabel];
         
         self.cellPhone.text = @"报修人电话: ";
-        [self setLabelAttributes:self.cellPhone];
+        [self setLabelAttributes:self.cellPhone with:0];
         [self.cellPhone mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.houseSource.mas_left);
             make.centerY.mas_equalTo(self.callBtn.mas_centerY);
         }];
         
-        [self setLabelAttributes:self.cellPhoneLabel];
+        [self setLabelAttributes:self.cellPhoneLabel with:-1];
         [self.cellPhoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.cellPhone.mas_right);
             make.centerY.mas_equalTo(self.cellPhone.mas_centerY);
@@ -254,10 +254,10 @@
 
 }
 
-- (void)setLabelAttributes:(UILabel *)label{
+- (void)setLabelAttributes:(UILabel *)label with:(NSInteger)big{
     
     label.numberOfLines = 0;
-    label.font = [UIFont fontWithName:My_RegularFontName size:16.0];
+    label.font = FontSize(CONTENT_FONT+big);
     label.textColor = [UIColor darkGrayColor];
 //    [label sizeToFit];
 

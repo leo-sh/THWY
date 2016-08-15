@@ -24,6 +24,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    self.textField.borderStyle = UITextBorderStyleNone;
+    self.textField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.textField.layer.borderWidth = 0.5;
 }
 
 - (IBAction)select:(UIButton *)sender {
