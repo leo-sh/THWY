@@ -55,9 +55,9 @@
         }];
         
         [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.contentView.mas_left).offset(topMargin);
-            make.height.mas_equalTo(1);
-            make.right.mas_equalTo(self.contentView.mas_right).offset(-topMargin);
+            make.left.mas_equalTo(self.contentView.mas_left).offset(15);
+            make.height.mas_equalTo(0.5);
+            make.right.mas_equalTo(self.contentView.mas_right).offset(-15);
             make.bottom.mas_equalTo(self.contentView.mas_bottom);
         }];
         

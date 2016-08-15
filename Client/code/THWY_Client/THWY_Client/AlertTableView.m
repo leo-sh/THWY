@@ -28,6 +28,10 @@
         [self initTableHeaderView];
         self.delegate = self;
         self.dataSource = self;
+        self.backgroundColor = [UIColor whiteColor];
+        self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.separatorColor = [UIColor lightGrayColor];
+        self.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
         self.bounces = NO;
         self.sectionFooterHeight = 0;
     }
@@ -38,7 +42,7 @@
 - (void)initTableHeaderView{
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 40.0/667*My_ScreenH)];
-    headerView.backgroundColor = self.backgroundColor;
+    headerView.backgroundColor = [UIColor whiteColor];
     UIButton *confirm = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, headerView.height-10, headerView.height-10)];
     [confirm setBackgroundImage:[UIImage imageNamed:@"√"] forState:UIControlStateNormal];
     [confirm addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
@@ -48,6 +52,10 @@
     [cancel setBackgroundImage:[UIImage imageNamed:@"X"] forState:UIControlStateNormal];
     [cancel addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:cancel];
+    
+    UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(0, headerView.height-0.4, headerView.width, 0.4)];
+    line.backgroundColor = [UIColor lightGrayColor];
+    [headerView addSubview:line];
     
     self.tableHeaderView = headerView;
     
@@ -102,7 +110,7 @@
         model = [self.data[indexPath.section] child][indexPath.row];
     }
     cell.textLabel.text = [NSString stringWithFormat:@"%@ (￥%@)",model.class_name, model.class_price];
-    cell.textLabel.font = [UIFont fontWithName:My_RegularFontName size:14.0];
+    cell.textLabel.font = FontSize(CONTENT_FONT-1);
     cell.textLabel.textColor = [UIColor darkGrayColor];
     return cell;
 }
@@ -124,14 +132,19 @@
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.width, self.tableHeaderView.height)];
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    button.titleLabel.font = [UIFont fontWithName:My_RegularFontName size:15.0];
-    [button setTitle:[self.data[section] class_name] forState:UIControlStateNormal];
+    button.titleLabel.font = FontSize(CONTENT_FONT-1);;
+    [button setTitle:[NSString stringWithFormat:@"  %@",[self.data[section] class_name]] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-//    [button setBackgroundColor:[UIColor lightTextColor]];
+    [button setBackgroundColor:[UIColor whiteColor]];
     button.tag = section+20;
-    button.layer.borderColor = [UIColor lightTextColor].CGColor;
-    button.layer.borderWidth = 1;
+    button.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    button.layer.borderWidth = 0.2;
     [button addTarget:self action:@selector(sectionFolded:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(0, button.height-0.4, button.width, 0.4)];
+    line.backgroundColor = [UIColor lightGrayColor];
+    [button addSubview:line];
+
     return button;
                       
 }

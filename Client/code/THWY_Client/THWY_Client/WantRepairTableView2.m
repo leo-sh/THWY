@@ -43,7 +43,7 @@
         self.delegate = self;
         self.dataSource = self;
         self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        self.separatorColor = [UIColor grayColor];
+        self.separatorColor = [UIColor lightGrayColor];
 //        self.bounces = NO;
         self.showsVerticalScrollIndicator = NO;
         self.sectionFooterHeight = 0;
@@ -170,6 +170,10 @@
             break;
     }
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
 }
 
 //弹出框

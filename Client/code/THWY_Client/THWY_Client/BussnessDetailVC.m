@@ -154,7 +154,7 @@
 
 - (void)showDetail:(UIButton *)btn{
     MerchantDetailVC *detail = [[MerchantDetailVC alloc] init];
-    detail.goodVOs = self.merchant.products;
+    detail.merchant = self.merchant;
     [self.navigationController pushViewController:detail animated:YES];
     
 }

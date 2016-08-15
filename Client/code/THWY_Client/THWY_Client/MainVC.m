@@ -70,9 +70,8 @@
     UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithCustomView:self.leftButton];
     self.navigationItem.leftBarButtonItem  = left;
     
-    self.dropView = [[DropMenuTableView alloc] initWithWidth:135.f itemHeight:40.f itemNames:@[@"我要报修", @"我要投诉", @"业务公告", @"推送设置", @"技术支持"] ItemImages:@[@"main_1", @"main_2", @"main_3", @"main_4", @"main_5"]];
-    self.dropView.fontSize = 16.0;
-    self.dropView.backColor = My_Color(2, 134, 196);
+    self.dropView = [[DropMenuTableView alloc] initWithWidth:135.f itemHeight:40.f itemNames:@[@"我要报修", @"我要投诉", @"个人信息", @"推送设置", @"技术支持"] ItemImages:@[@"main_1", @"main_2", @"main_6", @"main_4", @"main_5"]];
+    self.dropView.backColor = My_NAV_BG_Color;
     self.dropView.textColor = [UIColor whiteColor];
     
     self.dropView.dropDelegate = self;
@@ -104,7 +103,7 @@
             break;
         }
         case 2:{
-            button.tag = 108;
+            button.tag = 106;
             [self showVC:button];
             break;
         }
@@ -155,7 +154,7 @@
     
     self.username = [[UILabel alloc] init];
     self.username.text = @"name";
-    self.username.font = [UIFont fontWithName:My_RegularFontName size:16];
+    self.username.font = FontSize(CONTENT_FONT+1);
     [self.username sizeToFit];
     [self.userInfoView addSubview:self.username];
     
@@ -174,7 +173,7 @@
     
     self.addr = [[UILabel alloc] init];
     self.addr.text = @"地址";
-    self.addr.font = [UIFont fontWithName:My_RegularFontName size:16];
+    self.addr.font = FontSize(CONTENT_FONT+1);
     [self.addr sizeToFit];
     [self.userInfoView addSubview:self.addr];
     [self.addr mas_makeConstraints:^(MASConstraintMaker *make) {

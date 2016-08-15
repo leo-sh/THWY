@@ -87,6 +87,7 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
             <connections>
                 <outlet property="desc" destination="kRi-s4-10f" id="I5E-WE-Ile"/>
                 <outlet property="timeLabel" destination="eC2-SX-R4j" id="JyF-bO-UbW"/>

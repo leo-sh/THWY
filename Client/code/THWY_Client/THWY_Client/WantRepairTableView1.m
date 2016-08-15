@@ -47,7 +47,7 @@
         self.delegate = self;
         self.dataSource = self;
         self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        self.separatorColor = [UIColor grayColor];
+        self.separatorColor = [UIColor lightGrayColor];
 //        self.bounces = NO;
         self.showsVerticalScrollIndicator = NO;
         self.sectionFooterHeight = 0;
@@ -145,6 +145,7 @@
         case 7:{
             DescribeCell *cell = (DescribeCell *)[tableView dequeueReusableCellWithIdentifier:@"DescribeCell" forIndexPath:indexPath];
             cell.delegate = self;
+//            self.separatorStyle = UITableViewCellSeparatorStyleNone;
 //            cell.textView.delegate = self;
             self.cells[row] = cell;
             return cell;
@@ -191,6 +192,10 @@
             break;
     }
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
 }
 
 //弹出框

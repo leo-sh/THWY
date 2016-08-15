@@ -10,6 +10,6 @@
 
 @interface MerchantDetailVC : RootVC
 
-@property (strong, nonatomic) NSArray *goodVOs;
+@property (strong, nonatomic) MerchantVO *merchant;
 
 @end

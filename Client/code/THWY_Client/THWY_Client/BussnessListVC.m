@@ -111,7 +111,7 @@
     self.merchantNametextField.layer.borderWidth = 1;
     self.merchantNametextField.layer.borderColor = My_Color(236, 236, 236).CGColor;
     self.merchantNametextField.placeholder = @" 请输入商家名称";
-    self.merchantNametextField.font = [UIFont fontWithName:My_RegularFontName size:14.0];
+    self.merchantNametextField.font = FontSize(CONTENT_FONT-1);
     self.merchantNametextField.backgroundColor = [UIColor whiteColor];
     self.merchantNametextField.delegate = self;
     self.merchantNametextField.keyboardType = UIKeyboardTypeNamePhonePad;
@@ -125,7 +125,7 @@
     search.backgroundColor = My_NAV_BG_Color;
     search.layer.cornerRadius = 5;
     search.clipsToBounds = YES;
-    search.titleLabel.font = [UIFont systemFontOfSize:CONTENT_FONT - 1];
+    search.titleLabel.font = FontSize(CONTENT_FONT);
     [search setTitle:@"查询" forState:UIControlStateNormal];
     [search addTarget:self action:@selector(clickSearchBtn) forControlEvents:UIControlEventTouchUpInside];
     [searchView addSubview:search];
@@ -137,6 +137,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = [UIColor lightGrayColor];
     self.tableView.rowHeight = 100/667.0*My_ScreenH;
 //    self.tableView.bounces = NO;
     self.tableView.showsHorizontalScrollIndicator = NO;
@@ -233,6 +234,10 @@
         detail.merchant = self.searchResultModels[indexPath.row];
     }
     [self .navigationController pushViewController:detail animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
 }
 
 - (void)didReceiveMemoryWarning {

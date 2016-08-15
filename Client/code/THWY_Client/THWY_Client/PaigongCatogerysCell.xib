@@ -61,6 +61,7 @@
                     <constraint firstItem="flx-xh-DFa" firstAttribute="leading" secondItem="3E9-Tp-24T" secondAttribute="trailing" constant="8" id="jhb-bv-nHf"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
             <connections>
                 <outlet property="btn_budan" destination="kRA-WI-rVo" id="7Mr-gk-vqX"/>
                 <outlet property="btn_kaidan" destination="Qsg-8T-tpB" id="kQi-Dd-M38"/>

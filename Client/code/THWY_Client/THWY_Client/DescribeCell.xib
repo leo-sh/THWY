@@ -87,10 +87,11 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
             <connections>
                 <outlet property="textView" destination="r2x-z1-5VT" id="H0b-z4-2i4"/>
             </connections>
-            <point key="canvasLocation" x="22" y="338.5"/>
+            <point key="canvasLocation" x="35" y="313.5"/>
         </tableViewCell>
     </objects>
     <resources>

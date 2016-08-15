@@ -62,6 +62,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = [UIColor lightGrayColor];
     self.tableView.rowHeight = 110/667.0*My_ScreenH;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
@@ -92,6 +93,9 @@
     [self .navigationController pushViewController:detail animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

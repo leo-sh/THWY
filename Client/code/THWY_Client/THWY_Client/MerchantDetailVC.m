@@ -13,6 +13,8 @@
 
 @property (strong, nonatomic) UITableView *tableView;
 
+@property (strong, nonatomic) NSMutableArray *dataArray;
+
 @end
 
 @implementation MerchantDetailVC
@@ -24,11 +26,26 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]];
     [self initViews];
     
-    if (self.goodVOs.count == 0){
+    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    [My_ServicesManager getAMerchant:self.merchant.Id onComplete:^(NSString *errorMsg, MerchantVO *merchant) {
         
-        [SVProgressHUD showErrorWithStatus:@"没有商品"];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+        if (errorMsg) {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }else{
+            
+            if (self.merchant.products.count == 0){
+                
+                [SVProgressHUD showErrorWithStatus:@"没有商品"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
+            }else{
+                [self.dataArray addObjectsFromArray:merchant.products];
+            }
+            [SVProgressHUD dismiss];
+        }
+        
+    }];
     
 }
 
@@ -38,6 +55,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = [UIColor lightGrayColor];
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
     self.tableView.rowHeight = 100;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
@@ -49,17 +68,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.goodVOs.count;
+    return self.dataArray.count;
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     RecommandMerchantCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecommandMerchantCell" forIndexPath:indexPath];
-    [cell loadDataFromMercharge:self.goodVOs[indexPath.row]];
+    [cell loadDataFromMercharge:self.dataArray[indexPath.row]];
     return cell;
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
 
 @end

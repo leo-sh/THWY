@@ -119,8 +119,9 @@
         [self.contentView addSubview:self.line];
         [self.line setBackgroundColor:[UIColor lightGrayColor]];
         [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(1);
-            make.left.and.right.equalTo(self.contentView);
+            make.height.mas_equalTo(0.5);
+            make.left.equalTo(self.contentView.mas_left).offset(15);
+            make.right.equalTo(self.contentView.mas_right).offset(-15);
             make.top.mas_equalTo(self.detail.mas_bottom).offset(topMagrin*0.5);
         }];
 
@@ -174,8 +175,9 @@
         [self.contentView addSubview:self.line2];
         [self.line2 setBackgroundColor:[UIColor lightGrayColor]];
         [self.line2 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(1);
-            make.left.and.right.equalTo(self.contentView);
+            make.height.mas_equalTo(0.5);
+            make.left.equalTo(self.contentView.mas_left).offset(15);
+            make.right.equalTo(self.contentView.mas_right).offset(-15);
             make.top.mas_equalTo(self.repairCatogeryLabel.mas_bottom).offset(topMagrin);
             
         }];
@@ -212,8 +214,9 @@
         
         [self.line3 setBackgroundColor:[UIColor lightGrayColor]];
         [self.line3 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(1);
-            make.left.and.right.equalTo(self.contentView);
+            make.height.mas_equalTo(0.5);
+            make.left.equalTo(self.contentView.mas_left).offset(15);
+            make.right.equalTo(self.contentView.mas_right).offset(-15);
             make.top.mas_equalTo(self.repairDescLabel.mas_bottom).offset(topMagrin);
             
         }];
