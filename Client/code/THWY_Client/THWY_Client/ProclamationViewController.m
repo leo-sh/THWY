@@ -46,8 +46,7 @@
         if (list.count == 0 && errorMsg == nil) {
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
             [SVProgressHUD dismiss];
-            [SVProgressHUD setMinimumDismissTimeInterval:1];
-            [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
+            [SVProgressHUD showErrorWithStatus:@"没有更多数据..."];
 
         }
         else

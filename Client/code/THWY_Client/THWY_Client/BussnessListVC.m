@@ -51,7 +51,6 @@
     
     [[ServicesManager getAPI] getMerchants:1 name:nil onComplete:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg){
-            [SVProgressHUD setMinimumDismissTimeInterval:1.5];
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }
         
@@ -71,7 +70,6 @@
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     [My_ServicesManager getMerchantTypes:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg) {
-            [SVProgressHUD setMinimumDismissTimeInterval:1.3];
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }else{
             MerchantTypeVO *mytype = [[MerchantTypeVO alloc] init];

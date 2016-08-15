@@ -8,7 +8,6 @@
 
 #import "AlertTableView2.h"
 #import "ServicesManager.h"
-#import "SVProgressHUD/SVProgressHUD.h"
 #define kCurrentWindow [[UIApplication sharedApplication].windows firstObject]
 @interface AlertTableView2()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 @property NSArray *data;
@@ -43,8 +42,7 @@
                 }
                 else
                 {
-                    [SVProgressHUD setMinimumDismissTimeInterval:1];
-                    [SVProgressHUD showInfoWithStatus:@"网络访问有问题"];
+                    [SVProgressHUD showErrorWithStatus:@"网络访问有问题"];
                 }
                 
 //                dispatch_async(dispatch_get_main_queue(), ^{

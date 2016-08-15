@@ -281,7 +281,6 @@
             }
             case 2:{
                 if ([(HouseSourceCell *)cell selectedIndex] == -1) {
-                    [SVProgressHUD setMinimumDismissTimeInterval:1.2];
                     [SVProgressHUD showErrorWithStatus:@"请选择房源"];
                     return;
                 }
@@ -326,7 +325,6 @@
     }
     
     if (![errorMsg isEqualToString:@""]){
-        [SVProgressHUD setMinimumDismissTimeInterval:1.4];
         [SVProgressHUD showErrorWithStatus:errorMsg];
         return;
     }
@@ -336,7 +334,6 @@
         switch (My_ServicesManager.status) {
             case NotReachable:
                
-                [SVProgressHUD setMinimumDismissTimeInterval:1.3];
                 [SVProgressHUD showErrorWithStatus:@"网络未连接"];
                 break;
             case ReachableViaWWAN:{

@@ -122,7 +122,7 @@
     [My_ServicesManager getRepairClasses:1 onComplete:^(NSString *errorMsg, NSDictionary *list) {
         
         if (errorMsg) {
-            [SVProgressHUD setMinimumDismissTimeInterval:1.5];
+            
             [SVProgressHUD showErrorWithStatus:errorMsg];
             return ;
         }
@@ -144,7 +144,7 @@
     
     [My_ServicesManager getRepairClasses:2 onComplete:^(NSString *errorMsg, NSDictionary *list) {
         if (errorMsg) {
-            [SVProgressHUD setMinimumDismissTimeInterval:1.5];
+            
             [SVProgressHUD showErrorWithStatus:errorMsg];
             return ;
         }
@@ -190,11 +190,10 @@
 #pragma mark - WantRepairDelegate
 - (void)commitComplete:(NSString *)errorMsg{
     
-    [SVProgressHUD setMinimumDismissTimeInterval:1.0];
     if (errorMsg) {
         [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"报修提交失败\n%@",errorMsg]];
     }else{
-        [SVProgressHUD showSuccessWithStatus:@"报修提交成功"];
+        [SVProgressHUD showErrorWithStatus:@"报修提交成功"];
     }
     
 }

@@ -245,7 +245,7 @@
             }
             else
             {
-                [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+                [SVProgressHUD showErrorWithStatus:@"修改成功"];
             }
         }];
     }else{
@@ -301,7 +301,7 @@
         }
         else
         {
-            [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+            [SVProgressHUD showErrorWithStatus:@"上传成功"];
             self.iconImageView.image = image;
         }
     }];

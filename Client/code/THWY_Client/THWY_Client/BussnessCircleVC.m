@@ -105,7 +105,6 @@
     BussnessDetailVC *detail = [[BussnessDetailVC alloc] init];
     [My_ServicesManager getAMerchant:merchantVO.Id onComplete:^(NSString *errorMsg, MerchantVO *merchant) {
         if (errorMsg) {
-            [SVProgressHUD setMinimumDismissTimeInterval:1.3];
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }else{
             detail.merchant = merchant;

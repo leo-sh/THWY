@@ -25,9 +25,6 @@
         [My_ServicesManager test];//测试API函数😁
         
         [[UDManager getUD] delNotification];
-        //设置svp默认样式
-        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleLight];
-        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
         //此处填写各种key
         //设置 AppKey 及 LaunchOptions
         [UMessage startWithAppkey:@"57981a41e0f55a301c0029b6" launchOptions:launchOptions];

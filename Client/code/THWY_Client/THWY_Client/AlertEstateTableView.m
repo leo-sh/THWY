@@ -55,7 +55,6 @@
 - (void)confirm{
     
     if (self.selectedIndex == -1) {
-        [SVProgressHUD setMinimumDismissTimeInterval:1.2];
         [SVProgressHUD showErrorWithStatus:@"请选择项目"];
         return;
     }

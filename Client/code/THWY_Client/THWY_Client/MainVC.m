@@ -80,6 +80,10 @@
 
 - (void)leftItemOnclicked:(UIButton *)button{
     
+    if (self.dropView.superview) {
+        [self.dropView removeFromSuperview];
+        return;
+    }
     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
     [window addSubview:self.dropView];
     
