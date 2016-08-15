@@ -15,6 +15,7 @@
 @interface RecommandBussnessListVC ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) NSMutableArray *bussnessModels;
+
 @property (strong, nonatomic) UITableView *tableView;
 
 @end
@@ -26,7 +27,9 @@
     // Do any additional setup after loading the view.
 
     self.title = @"推荐商品";
+   
     self.bussnessModels = [NSMutableArray array];
+  
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
 
     [self initViews];
@@ -60,31 +63,31 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.tableView.rowHeight = 100;
+    self.tableView.rowHeight = 110/667.0*My_ScreenH;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
-    [self.tableView registerNib:[UINib nibWithNibName:@"RecommandMerchantCell" bundle:nil]forCellReuseIdentifier:@"RecommandMerchantCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"RecommandMerchantCell" bundle:nil] forCellReuseIdentifier:@"RecommandMerchantCell"];
     [self.view addSubview:self.tableView];
     
 }
 
+#pragma mark - UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
     return self.bussnessModels.count;
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     RecommandMerchantCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecommandMerchantCell" forIndexPath:indexPath];
-    [cell loadDataFromMercharge:self.bussnessModels[indexPath.row]];
     return cell;
     
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    [(RecommandMerchantCell *)cell loadDataFromMercharge:self.bussnessModels[indexPath.row]];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    BussnessDetailVC *detail = [[BussnessDetailVC alloc] init];
-//    detail.merchant = self.bussnessModels[indexPath.row];
     GoodsVC *detail = [[GoodsVC alloc] init];
     detail.good = self.bussnessModels[indexPath.row];
     [self .navigationController pushViewController:detail animated:YES];

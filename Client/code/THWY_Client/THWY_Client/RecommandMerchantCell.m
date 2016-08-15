@@ -22,13 +22,15 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.icon.layer.cornerRadius = self.icon.width/2.0;
+    self.icon.layer.cornerRadius = self.height*0.8/2.0;
     self.icon.clipsToBounds = YES;
 }
 
 - (void)loadDataFromMercharge:(GoodVO *)merchant{
     
-    [self.icon sd_setImageWithURL:[NSURL URLWithString:merchant.pic] placeholderImage:[UIImage imageNamed:@"图大小"]];
+    [self.icon sd_setImageWithURL:[NSURL URLWithString:merchant.pic] placeholderImage:[UIImage imageNamed:@"头像1"]];
+    self.icon.layer.cornerRadius = self.height*0.8/2.0;
+    self.icon.clipsToBounds = YES;
     self.name.text = merchant.business_name;
 //    self.addr.text = merchant.addr;
     NSArray *strings = [merchant.goods_intro componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n<>\t\r"]];

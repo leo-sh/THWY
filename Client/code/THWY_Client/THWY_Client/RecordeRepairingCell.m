@@ -52,8 +52,8 @@
 }
 
 - (void)setFrame:(CGRect)frame {
-    frame.origin.y += 5;      // 让cell的y值增加1(根据自己需要分割线的高度来进行调整)
-    frame.size.height -= 5;   // 让cell的高度减1
+    frame.origin.y += 5;      // 让cell的y值增加5(根据自己需要分割线的高度来进行调整)
+    frame.size.height -= 5;   // 让cell的高度减5
     [super setFrame:frame];   // 别忘了重写父类方法
 }
 

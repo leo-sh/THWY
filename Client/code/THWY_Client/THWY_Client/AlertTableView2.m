@@ -61,7 +61,7 @@
             self.frame = CGRectMake(0, 0, 90, 30 * self.data.count);
 
         }
-        else
+        else if(method == GetPayStatu)
         {
             self.data = @[@"选择状态",@"未缴",@"未缴齐",@"已缴齐",@"已经退款"];
             self.frame = CGRectMake(0, 0, 90, 30 * self.data.count);
@@ -110,7 +110,7 @@
     {
         string = self.data[indexPath.row];
     }
-    else
+    else if (self.method == GetPayStatu)
     {
        string = [NSString stringWithFormat:@"%d",indexPath.row - 1];
     }

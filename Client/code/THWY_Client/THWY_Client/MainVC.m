@@ -27,8 +27,6 @@
 
 @property (strong, nonatomic) UIButton *leftButton;
 
-@property (assign, nonatomic) NSInteger flag;
-
 @end
 
 @implementation MainVC
@@ -64,7 +62,6 @@
 
 - (void)initNVBar{
 
-    self.flag = -1;
     self.title = @"业主客服系统";
     self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [self.leftButton setImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
@@ -83,14 +80,8 @@
 
 - (void)leftItemOnclicked:(UIButton *)button{
     
-    if (self.flag == -1) {
-        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-        [window addSubview:self.dropView];
-        self.flag = 1;
-    }else{
-        [self.dropView removeFromSuperview];
-        self.flag = -1;
-    }
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    [window addSubview:self.dropView];
     
 }
 

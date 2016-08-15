@@ -805,8 +805,8 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
-                for (NSDictionary* merchantTypeDic in responseObject[@"datas"][@"datas"]) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* merchantTypeDic in responseObject[@"datas"]) {
                     MerchantTypeVO *type = [[MerchantTypeVO alloc]initWithJSON:merchantTypeDic];
                     [listArr addObject:type];
                 }

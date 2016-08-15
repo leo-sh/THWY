@@ -379,8 +379,15 @@
     CGRect rect = [[self.repairDataArray[indexPath.row] detail] boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     
     CGRect rect2 = [[self.repairDataArray[indexPath.row] classes_str] boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-    
-    return 205.0/667*My_ScreenH + rect.size.height +rect2.size.height;
+    if ([[UIDevice platformString] isEqualToString:@"iPhone 4s"]) {
+        return 205.0/667*My_ScreenH + rect.size.height +rect2.size.height+20;
+    }else if([[UIDevice platformString] isEqualToString:@"iPhone 5s"] || [[UIDevice platformString] isEqualToString:@"iPhone 5"]){
+        return 210.0/667*My_ScreenH + rect.size.height +rect2.size.height;
+    }else if([[UIDevice platformString] isEqualToString:@"iPhone 6s"] || [[UIDevice platformString] isEqualToString:@"iPhone 6"]){
+        return 200.0/667*My_ScreenH + rect.size.height +rect2.size.height;
+    }else{
+        return 190.0/667*My_ScreenH + rect.size.height +rect2.size.height;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

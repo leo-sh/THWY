@@ -140,6 +140,8 @@
 		7905065D1D4CE51A00072AAC /* UploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7905065B1D4CE51A00072AAC /* UploadCell.m */; };
 		790506621D4CE93C00072AAC /* DescribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790506601D4CE93C00072AAC /* DescribeCell.m */; };
 		790FBEBE1D5B726100C00509 /* DropMenuTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 790FBEBD1D5B726100C00509 /* DropMenuTableView.m */; };
+		79270C3D1D6174B300E29568 /* MerchantTypeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270C3C1D6174B300E29568 /* MerchantTypeTableView.m */; };
+		79270C401D61875900E29568 /* BussnessSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270C3F1D61875900E29568 /* BussnessSelectButton.m */; };
 		792824281D541D74001764EB /* WantRepairTableView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 792824271D541D74001764EB /* WantRepairTableView1.m */; };
 		7928242B1D541D8F001764EB /* WantRepairTableView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7928242A1D541D8F001764EB /* WantRepairTableView2.m */; };
 		7928242F1D544130001764EB /* AlertEstateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7928242E1D544130001764EB /* AlertEstateTableView.m */; };
@@ -476,6 +478,10 @@
 		790506611D4CE93C00072AAC /* DescribeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescribeCell.xib; sourceTree = "<group>"; };
 		790FBEBC1D5B726100C00509 /* DropMenuTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropMenuTableView.h; sourceTree = "<group>"; };
 		790FBEBD1D5B726100C00509 /* DropMenuTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropMenuTableView.m; sourceTree = "<group>"; };
+		79270C3B1D6174B300E29568 /* MerchantTypeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantTypeTableView.h; sourceTree = "<group>"; };
+		79270C3C1D6174B300E29568 /* MerchantTypeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantTypeTableView.m; sourceTree = "<group>"; };
+		79270C3E1D61875900E29568 /* BussnessSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BussnessSelectButton.h; sourceTree = "<group>"; };
+		79270C3F1D61875900E29568 /* BussnessSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BussnessSelectButton.m; sourceTree = "<group>"; };
 		792824261D541D74001764EB /* WantRepairTableView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableView1.h; sourceTree = "<group>"; };
 		792824271D541D74001764EB /* WantRepairTableView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantRepairTableView1.m; sourceTree = "<group>"; };
 		792824291D541D8F001764EB /* WantRepairTableView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableView2.h; sourceTree = "<group>"; };
@@ -999,8 +1005,8 @@
 			children = (
 				94F7CE7E1D6149D90034E9FC /* BannerNotice.h */,
 				94F7CE7F1D6149D90034E9FC /* BannerNotice.m */,
-				790FBEBB1D5B722800C00509 /* MainViews */,
 				793296741D51963B000FD426 /* RepaireRecordsViews */,
+				790FBEBB1D5B722800C00509 /* MainViews */,
 				79F2B6B01D4E00D900AA94E0 /* BussnessCircleViews */,
 				7905064A1D4C892A00072AAC /* WantRepaireViews */,
 			);
@@ -1426,6 +1432,10 @@
 				79F2B6BE1D4E2ECF00AA94E0 /* BussnessADCell.h */,
 				79F2B6BF1D4E2ECF00AA94E0 /* BussnessADCell.m */,
 				79F2B6C01D4E2ECF00AA94E0 /* BussnessADCell.xib */,
+				79270C3B1D6174B300E29568 /* MerchantTypeTableView.h */,
+				79270C3C1D6174B300E29568 /* MerchantTypeTableView.m */,
+				79270C3E1D61875900E29568 /* BussnessSelectButton.h */,
+				79270C3F1D61875900E29568 /* BussnessSelectButton.m */,
 			);
 			name = BussnessCircleViews;
 			sourceTree = "<group>";
@@ -1583,6 +1593,7 @@
 				5B2571841D47110B00CB4167 /* UIImage+Extension.m in Sources */,
 				79E862D71D5C687300D8E527 /* MerchantDetailVC.m in Sources */,
 				1E7527B21D52349F00AEDEC0 /* MJRefreshBackStateFooter.m in Sources */,
+				79270C401D61875900E29568 /* BussnessSelectButton.m in Sources */,
 				1E7527711D51EF4E00AEDEC0 /* BlueRedioButton.m in Sources */,
 				5B2572241D47177B00CB4167 /* UIButton+WebCache.m in Sources */,
 				5BED6BC41D49A53F00C137C5 /* RepairStatuVO.m in Sources */,
@@ -1643,6 +1654,7 @@
 				5B197ECA1D48779B00B95DE5 /* PointHistoryVO.m in Sources */,
 				1E7527781D52165B00AEDEC0 /* SuggestAlertView.m in Sources */,
 				5B2572771D4762CB00CB4167 /* HouseVO.m in Sources */,
+				79270C3D1D6174B300E29568 /* MerchantTypeTableView.m in Sources */,
 				5B2572221D47177B00CB4167 /* SDWebImageManager.m in Sources */,
 				79F2B6AB1D4DF18500AA94E0 /* BussnessDetailVC.m in Sources */,
 				5B197EEA1D487DAC00B95DE5 /* MASLayoutConstraint.m in Sources */,

@@ -148,7 +148,7 @@
     }else if (indexPath.row == 5 || indexPath.row == 6) {
         return 90.0/713*My_ScreenH;
     }else if (indexPath.row == 7){
-        return 300.0/713*My_ScreenH;
+        return 310.0/713*My_ScreenH;
     }
     return 60.0/713*My_ScreenH;
 }

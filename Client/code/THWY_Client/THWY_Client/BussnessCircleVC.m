@@ -47,7 +47,7 @@
 
 #pragma mark - 轮播图
 - (void)getData{
-    
+    [SVProgressHUD showWithStatus:@"数据加载中..."];
     self.adDataArray = [[NSMutableArray alloc] init];
     [[ServicesManager getAPI] getRecommendMerchants:1 onComplete:^(NSString *errorMsg, NSArray *list) {
         for (MerchantVO * model in list) {
@@ -55,6 +55,7 @@
                 [self.adDataArray addObject:model];
             }
         }
+        [SVProgressHUD dismiss];
         [self initADScrollView];
     }];
     
@@ -100,10 +101,18 @@
 #pragma mark - ZYBannerViewDelegate
 // 在这里实现点击事件的处理
 - (void)banner:(YFLBBannerView *)banner didSelectItemAtIndex:(NSInteger)index{
-    MerchantVO *merchant = self.adDataArray[index];
+    MerchantVO *merchantVO = self.adDataArray[index];
     BussnessDetailVC *detail = [[BussnessDetailVC alloc] init];
-    detail.merchant = merchant;
-    [self.navigationController pushViewController:detail animated:YES];
+    [My_ServicesManager getAMerchant:merchantVO.Id onComplete:^(NSString *errorMsg, MerchantVO *merchant) {
+        if (errorMsg) {
+            [SVProgressHUD setMinimumDismissTimeInterval:1.3];
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }else{
+            detail.merchant = merchant;
+            [SVProgressHUD dismiss];
+            [self.navigationController pushViewController:detail animated:YES];
+        }
+    }];
 }
 
 #pragma mark - 用户信息
@@ -204,7 +213,7 @@ static int flag = 0;
         make.top.mas_equalTo(self.userInfoView.mas_bottom);
         make.left.mas_equalTo(self.view.mas_left);
         make.right.mas_equalTo(self.view.mas_right);
-        make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.6);
+        make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.75);
     }];
     
     UIImageView *laba = [[UIImageView alloc] initWithImage:[UIImage scaleImage:[UIImage imageNamed:@"bussness_喇叭"] toScale:0.6]];
