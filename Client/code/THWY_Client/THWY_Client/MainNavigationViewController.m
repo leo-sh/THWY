@@ -12,6 +12,7 @@
 //@property (nonatomic, strong) id popDelegate;
 {
     BOOL tapGestureBool;
+    NSDictionary* _userInfo;
 }
 @end
 
@@ -36,10 +37,14 @@
 //        缴费台账
         
     }
+    if (_userInfo) {
+        _userInfo = nil;
+    }
 }
 
 -(void)showAlertWithUserInfo:(NSDictionary *)userInfo
 {
+    _userInfo = userInfo;
     tapGestureBool = YES;
     UIView *viewBanner = [BannerNotice bannerWith:[UIImage imageNamed:@"ios4"] bannerName:@"泰生活" bannerContent:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]];
     UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(event:)];
@@ -66,6 +71,7 @@
 - (void)event:(UITapGestureRecognizer *)gesture
 {
     tapGestureBool = NO;
+    [self popWithUserInfo:_userInfo];
 }
 
 + (void)initialize {
