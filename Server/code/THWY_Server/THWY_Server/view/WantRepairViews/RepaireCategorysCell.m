@@ -7,7 +7,6 @@
 //
 
 #import "RepaireCategorysCell.h"
-#import "Masonry/Masonry.h"
 
 @implementation RepaireCategorysCell
 

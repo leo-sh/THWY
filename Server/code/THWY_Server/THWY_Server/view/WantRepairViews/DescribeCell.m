@@ -7,7 +7,6 @@
 //
 
 #import "DescribeCell.h"
-#import "Masonry/Masonry.h"
 
 @interface DescribeCell ()
 

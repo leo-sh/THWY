@@ -57,12 +57,12 @@
 
 - (void)initViews{
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 10, self.view.width-20, self.view.height-20-64)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 5ViewView, self.view.width, self.view.height-10-64)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.rowHeight = 300;
+    self.tableView.rowHeight = 300/667.0*My_ScreenH;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"BussnessADCell" bundle:nil]forCellReuseIdentifier:@"BussnessADCell"];
