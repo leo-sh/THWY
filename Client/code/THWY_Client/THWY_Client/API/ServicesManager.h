@@ -31,7 +31,6 @@
 
 @interface ServicesManager : NSObject
 
-@property BOOL isFromNotification;
 @property NetworkStatus status;
 
 /**
