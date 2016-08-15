@@ -335,7 +335,9 @@
     
         switch (My_ServicesManager.status) {
             case NotReachable:
-                NSLog(@"网络不可达");
+               
+                [SVProgressHUD setMinimumDismissTimeInterval:1.3];
+                [SVProgressHUD showErrorWithStatus:@"网络未连接"];
                 break;
             case ReachableViaWWAN:{
                 NSLog(@"GPRS网络");
@@ -355,16 +357,22 @@
                     
                 }]];
                 
-                // first way to show ,use UIView Category
                 [alertView showInWindowWithOriginY:200 backgoundTapDismissEnable:YES];
                 
                 break;
             }
-            case ReachableViaWiFi:
+            case ReachableViaWiFi:{
+                [SVProgressHUD showWithStatus:@"数据上传中..."];
+                
+                [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
+                    
+                    [self.repairDelegate commitComplete:errorMsg];
+                    
+                }];
                 NSLog(@"wifi网络");
                 break;
-            default:
-                break;
+            }
+
         }
     }
 
