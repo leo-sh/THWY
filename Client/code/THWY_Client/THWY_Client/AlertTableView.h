@@ -14,12 +14,15 @@
 
 @end
 
-@interface AlertTableView : UITableView
+@interface AlertTableView : UIView
 
 @property (assign, nonatomic) NSInteger flag;
 
 @property (strong, nonatomic) NSArray *data;
 
 @property (weak, nonatomic) id<AlertTableViewDelegate> AlertDelegate;
+
+
+- (void)initViews;
 
 @end
