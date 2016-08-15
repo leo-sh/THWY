@@ -36,13 +36,13 @@
             if (self.merchant.products.count == 0){
                 
                 [SVProgressHUD showErrorWithStatus:@"没有商品"];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.navigationController popViewControllerAnimated:YES];
                 });
             }else{
                 [self.dataArray addObjectsFromArray:merchant.products];
             }
-            [SVProgressHUD dismiss];
+
         }
         
     }];
