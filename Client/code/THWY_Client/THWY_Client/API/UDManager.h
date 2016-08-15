@@ -11,7 +11,6 @@
 
 typedef enum : NSUInteger {
     Background,
-    Close,
     Active,
 } AppStateType;
 
@@ -23,13 +22,11 @@ typedef enum : NSUInteger {
 
 -(BOOL)showPassWord;
 
--(void)saveNotification:(AppStateType)type userInfo:(NSDictionary *)userInfo;
+-(void)saveNotification:(NSDictionary *)userInfo;
 
--(NSDictionary *)getNotification:(AppStateType)type;
+-(NSDictionary *)getNotification;
 
--(void)delNotification:(AppStateType)type;
-
--(void)delAllNotification;
+-(void)delNotification;
 /**
  *  获取已登录用户
  *

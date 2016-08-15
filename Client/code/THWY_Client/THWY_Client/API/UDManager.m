@@ -28,76 +28,24 @@
     return ud;
 }
 
--(void)saveNotification:(AppStateType)type userInfo:(NSDictionary *)userInfo
+-(void)saveNotification:(NSDictionary *)userInfo
 {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    
-    switch (type) {
-        case Background:
-            [ud setObject:userInfo forKey:@"BackgroundNotification"];
-            break;
-        case Close:
-            [ud setObject:userInfo forKey:@"InactiveNotification"];
-            break;
-        case Active:
-            [ud setObject:userInfo forKey:@"ActiveNotification"];
-            break;
-        default:
-            break;
-    }
-    
+    [ud setObject:userInfo forKey:@"ActiveNotification"];
     [ud synchronize];
 }
 
--(NSDictionary *)getNotification:(AppStateType)type
+-(NSDictionary *)getNotification
 {
-    NSDictionary* userInfo = nil;
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSDictionary* userInfo = [ud objectForKey:@"ActiveNotification"];
     
-    switch (type) {
-        case Background:
-            userInfo = [ud objectForKey:@"BackgroundNotification"];
-            break;
-        case Close:
-            userInfo = [ud objectForKey:@"InactiveNotification"];
-            break;
-        case Active:
-            userInfo = [ud objectForKey:@"ActiveNotification"];
-            break;
-        default:
-            break;
-    }
-    
-    [self delNotification:type];
     return userInfo;
 }
 
--(void)delNotification:(AppStateType)type
+-(void)delNotification
 {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    
-    switch (type) {
-        case Background:
-            [ud removeObjectForKey:@"BackgroundNotification"];
-            break;
-        case Close:
-            [ud removeObjectForKey:@"InactiveNotification"];
-            break;
-        case Active:
-            [ud removeObjectForKey:@"ActiveNotification"];
-            break;
-        default:
-            break;
-    }
-    
-    [ud synchronize];
-}
-
--(void)delAllNotification
-{
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    [ud removeObjectForKey:@"BackgroundNotification"];
-    [ud removeObjectForKey:@"InactiveNotification"];
     [ud removeObjectForKey:@"ActiveNotification"];
     [ud synchronize];
 }

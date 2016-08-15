@@ -24,6 +24,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [My_ServicesManager test];//测试API函数😁
         
+        [[UDManager getUD] delNotification];
         //设置svp默认样式
         [SVProgressHUD setDefaultStyle:SVProgressHUDStyleLight];
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
@@ -63,25 +64,22 @@
         }
     });
     
-    BOOL isFromNotification = NO;
-    if (launchOptions) {
-        NSDictionary * remoteNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-        //这个判断是在程序没有运行的情况下收到通知，点击通知跳转页面
-        if (remoteNotification) {
-            NSLog(@"推送消息==== %@",remoteNotification);
-            isFromNotification = YES;
-        }
-        
-    }
-    
-    My_ServicesManager.isFromNotification = isFromNotification;
-    
     self.window = [[UIWindow alloc]initWithFrame:My_ScreenBounds];
     self.window.backgroundColor = My_Color(238, 238, 238);
     MainVC* mainVC = [[MainVC alloc]init];
     MainNavigationViewController* mainNav = [[MainNavigationViewController alloc]initWithRootViewController:mainVC];
     self.window.rootViewController = mainNav;
     [self.window makeKeyAndVisible];
+    
+    if (launchOptions) {
+        NSDictionary * remoteNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        //这个判断是在程序没有运行的情况下收到通知，点击通知跳转页面
+        if (remoteNotification) {
+            NSLog(@"推送消息==== %@",remoteNotification);
+            [mainNav popWithUserInfo:remoteNotification];
+        }
+        
+    }
     
     return YES;
 }
@@ -104,13 +102,14 @@
 //    }
     
     if (application.applicationState == UIApplicationStateActive) {
-        [[UDManager getUD] saveNotification:Active userInfo:userInfo];
+        [[UDManager getUD] saveNotification:userInfo];
+        
+        MainNavigationViewController* mainNav = (MainNavigationViewController *)self.window.rootViewController;
+        [mainNav showAlertWithUserInfo:userInfo];
         
     }else if(application.applicationState == UIApplicationStateInactive) {
-        [[UDManager getUD] saveNotification:Close userInfo:userInfo];
-    }
-    else{
-        [[UDManager getUD] saveNotification:Background userInfo:userInfo];
+        MainNavigationViewController* mainNav = (MainNavigationViewController *)self.window.rootViewController;
+        [mainNav popWithUserInfo:userInfo];
     }
     
     [UMessage didReceiveRemoteNotification:userInfo];

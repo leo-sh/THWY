@@ -23,6 +23,7 @@
 #import "SVProgressHUD.h"
 #import "UIView+TYAlertView.h"
 #import "TYAlertController+BlurEffects.h"
+#import "BannerNotice.h"
 
 #endif
 
