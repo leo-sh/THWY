@@ -252,10 +252,9 @@
         if (btn.chooseStatu) {
             
             ComplaintVO *postItem = [[ComplaintVO alloc]init];
-            UserVO *user = [[UDManager getUD] getUser];
-            postItem.complaint_person = user.real_name;
+            postItem.complaint_person = self.alertview.personTf.text;
             postItem.complaint_type = self.alertview.typeBtn.postID;
-            postItem.complaint_phone = user.cellphone;
+            postItem.complaint_phone = self.alertview.phoneTf.text;
             postItem.house_id = btn.house.Id;
             postItem.estate_id = btn.house.estate_id;
             postItem.complaint_content = self.alertview.textView.text;

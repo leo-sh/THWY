@@ -10,6 +10,7 @@
 #import "ProclamationTableViewCell.h"
 #import "ServicesManager.h"
 #import "Masonry/Masonry.h"
+#import "ProclamationInfoViewController.h"
 @interface ProclamationViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property NSMutableArray *data;
 @property CGFloat topHeight;
@@ -117,6 +118,7 @@
     }
     NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd"];
     [cell setTitle:[self.data[indexPath.section] category]  time:time content:[self.data[indexPath.section] content] width:tableView.width];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -143,12 +145,11 @@
 {
 
     if (self.data) {
-        CGFloat contenHeight = [[self.data[indexPath.section] content] sizeWithFont:[UIFont systemFontOfSize:CONTENT_FONT] maxSize:CGSizeMake(tableView.width, 4000)].height;
 //        NSLog(@"%f",tableView.width);
-        NSArray *cellArray = @[[NSNumber numberWithFloat:contenHeight + 52 + 8 + 10],[NSNumber numberWithFloat:tableView.width]];
+        NSArray *cellArray = @[[NSNumber numberWithFloat:200],[NSNumber numberWithFloat:tableView.width]];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"cellHeight" object:cellArray];
         //添加上面固定内容的高度 + 下面内容的高度 + 与下边界的距离
-        return contenHeight + 52 + 8 + 10;
+        return 200;
     }
     else
     {
@@ -158,6 +159,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ProclamationInfoViewController *pushView = [[ProclamationInfoViewController alloc]init];
+    pushView.proclamationId = [self.data[indexPath.section] Id];
+    
+    [self.navigationController pushViewController:pushView animated:YES];
     
 }
 

@@ -78,7 +78,7 @@
     }];
     
     CGFloat labelLeft = imageViewLeft;
-    CGFloat labelWidth = self.frame.size.width * 0.28;
+    CGFloat labelWidth = self.frame.size.width * 0.25;
     CGFloat labelHeight = imageViewWidthAndHeight;
     
     [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -87,7 +87,7 @@
         make.left.equalTo(self.imageView.mas_right).with.offset(labelLeft);
     }];
     
-    self.label.font = [UIFont systemFontOfSize:labelHeight * 0.8];
+    self.label.font = [UIFont systemFontOfSize:CONTENT_FONT];
 //    self.label.backgroundColor = [UIColor grayColor];
     CGFloat tfHeight = imageViewWidthAndHeight;
     CGFloat tfWidht = self.frame.size.width - labelLeft -labelWidth -imageViewWidthAndHeight -imageViewLeft;

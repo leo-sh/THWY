@@ -12,6 +12,7 @@
 #import "PayTableViewCell.h"
 #import "PayInfoViewController.h"
 #import "AlertButton.h"
+#import "ReviseBtn.h"
 @interface PayViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property UITableView *tableView;
 @property NSArray *data;
@@ -72,22 +73,24 @@
     
     [self.chooseYearBtn setTitle:@"选择年份" forState:UIControlStateNormal];
     
-    [self.chooseYearBtn setGetDataMethod:GetYear OriginY:66 OriginX:20];
+    [self.chooseYearBtn setGetDataMethod:GetYear OriginY:self.chooseYearBtn.bottom - 10 + 66 OriginX:15];
     
     [searchView addSubview:self.chooseYearBtn];
     
     self.chooseStatuBtn = [[AlertButton alloc]initWithFrame:CGRectMake(self.chooseYearBtn.right + 5, 5, self.view.width * 0.35, 30)];
     
-    [self.chooseStatuBtn setGetDataMethod:GetPayStatu OriginY:66 OriginX:self.chooseStatuBtn.left + 20];
+    [self.chooseStatuBtn setGetDataMethod:GetPayStatu OriginY:self.chooseYearBtn.bottom - 10 + 66 OriginX:self.chooseStatuBtn.left + 10];
     self.chooseStatuBtn.postID = @"-1";
-    [self.chooseStatuBtn setTitle:@"全部" forState:UIControlStateNormal];
+    [self.chooseStatuBtn setTitle:@"选择状态" forState:UIControlStateNormal];
     
     [searchView addSubview:self.chooseStatuBtn];
     
-    UIButton *search = [[UIButton alloc]initWithFrame:CGRectMake(self.chooseStatuBtn.right + 5, 5, self.view.width - self.chooseStatuBtn.right - 10, 30)];
+    UIButton *search = [[UIButton alloc]initWithFrame:CGRectMake(self.chooseStatuBtn.right + 15, 5, self.view.width - self.chooseStatuBtn.right - 25, 30)];
     
     search.backgroundColor = My_NAV_BG_Color;
-    
+    search.layer.cornerRadius = 5;
+    search.clipsToBounds = YES;
+    search.titleLabel.font = [UIFont systemFontOfSize:CONTENT_FONT - 1];
     [search setTitle:@"查询" forState:UIControlStateNormal];
     [search addTarget:self action:@selector(clickSearchBtn) forControlEvents:UIControlEventTouchUpInside];
     [searchView addSubview:search];

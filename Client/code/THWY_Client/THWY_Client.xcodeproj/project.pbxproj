@@ -49,6 +49,7 @@
 		1E7527CA1D52356700AEDEC0 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7527C41D52356700AEDEC0 /* SVProgressHUD.m */; };
 		1E7527CB1D52356700AEDEC0 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7527C61D52356700AEDEC0 /* SVRadialGradientLayer.m */; };
 		1E7527CE1D56D68100AEDEC0 /* AlertButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7527CD1D56D68100AEDEC0 /* AlertButton.m */; };
+		1E88078D1D5FAE6B009C7A04 /* ProclamationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E88078C1D5FAE6B009C7A04 /* ProclamationInfoViewController.m */; };
 		1E911BDD1D59A6DE006F15C6 /* AlertTableView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E911BDC1D59A6DE006F15C6 /* AlertTableView2.m */; };
 		1EE2841F1D4D037D008D5305 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2841E1D4D037D008D5305 /* PayViewController.m */; };
 		1EE284251D4D0548008D5305 /* ProclamationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE284241D4D0548008D5305 /* ProclamationViewController.m */; };
@@ -195,6 +196,7 @@
 		9449430D1D5C320200AD2B00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */; };
 		94D708931D4C68EE00C5009D /* ComplaintStateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EF81D48A0BD00B95DE5 /* ComplaintStateVO.m */; };
 		94E5DAD31D58731900300585 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5DAD21D58731900300585 /* Reachability.m */; };
+		94F7CE801D6149D90034E9FC /* BannerNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F7CE7F1D6149D90034E9FC /* BannerNotice.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -280,6 +282,8 @@
 		1E7527C61D52356700AEDEC0 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		1E7527CC1D56D68100AEDEC0 /* AlertButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertButton.h; sourceTree = "<group>"; };
 		1E7527CD1D56D68100AEDEC0 /* AlertButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertButton.m; sourceTree = "<group>"; };
+		1E88078B1D5FAE6B009C7A04 /* ProclamationInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProclamationInfoViewController.h; sourceTree = "<group>"; };
+		1E88078C1D5FAE6B009C7A04 /* ProclamationInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProclamationInfoViewController.m; sourceTree = "<group>"; };
 		1E911BDB1D59A6DE006F15C6 /* AlertTableView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTableView2.h; sourceTree = "<group>"; };
 		1E911BDC1D59A6DE006F15C6 /* AlertTableView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTableView2.m; sourceTree = "<group>"; };
 		1EE2841D1D4D037D008D5305 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
@@ -572,6 +576,8 @@
 		9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
 		94E5DAD11D58731900300585 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		94E5DAD21D58731900300585 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		94F7CE7E1D6149D90034E9FC /* BannerNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerNotice.h; sourceTree = "<group>"; };
+		94F7CE7F1D6149D90034E9FC /* BannerNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerNotice.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -828,6 +834,8 @@
 			children = (
 				1EE284231D4D0548008D5305 /* ProclamationViewController.h */,
 				1EE284241D4D0548008D5305 /* ProclamationViewController.m */,
+				1E88078B1D5FAE6B009C7A04 /* ProclamationInfoViewController.h */,
+				1E88078C1D5FAE6B009C7A04 /* ProclamationInfoViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -989,6 +997,8 @@
 		5B25714E1D47106500CB4167 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				94F7CE7E1D6149D90034E9FC /* BannerNotice.h */,
+				94F7CE7F1D6149D90034E9FC /* BannerNotice.m */,
 				790FBEBB1D5B722800C00509 /* MainViews */,
 				793296741D51963B000FD426 /* RepaireRecordsViews */,
 				79F2B6B01D4E00D900AA94E0 /* BussnessCircleViews */,
@@ -1561,6 +1571,7 @@
 				5B197EFF1D48A47800B95DE5 /* ComplaintVO.m in Sources */,
 				5B2571791D47110B00CB4167 /* Foundation+Log.m in Sources */,
 				5B197F0B1D48AD2C00B95DE5 /* GoodVO.m in Sources */,
+				94F7CE801D6149D90034E9FC /* BannerNotice.m in Sources */,
 				5B25717C1D47110B00CB4167 /* NSDate+Helper.m in Sources */,
 				1E7527B41D52349F00AEDEC0 /* MJRefreshNormalHeader.m in Sources */,
 				1E0489ED1D48818B00D6B0CC /* LoginViewController.m in Sources */,
@@ -1586,6 +1597,7 @@
 				1E5F6CD81D5071C2004DC6F6 /* PayTableViewCell.m in Sources */,
 				7932966C1D50826A000FD426 /* TYAlertDropDownAnimation.m in Sources */,
 				5B197EEE1D487DAC00B95DE5 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				1E88078D1D5FAE6B009C7A04 /* ProclamationInfoViewController.m in Sources */,
 				5B2571571D4710C100CB4167 /* MainNavigationViewController.m in Sources */,
 				1E7527B71D52349F00AEDEC0 /* MJRefreshConst.m in Sources */,
 				1E7527B51D52349F00AEDEC0 /* MJRefreshStateHeader.m in Sources */,
