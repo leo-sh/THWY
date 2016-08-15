@@ -340,7 +340,6 @@
                 [SVProgressHUD showErrorWithStatus:@"网络未连接"];
                 break;
             case ReachableViaWWAN:{
-                NSLog(@"GPRS网络");
                 TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"当前处于非WiFi状态" message:@"你确定上传视频吗?"];
                 [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancle handler:^(TYAlertAction *action) {
                     
@@ -357,7 +356,7 @@
                     
                 }]];
                 
-                [alertView showInWindowWithOriginY:200 backgoundTapDismissEnable:YES];
+                [alertView showInWindow];
                 
                 break;
             }
@@ -369,7 +368,7 @@
                     [self.repairDelegate commitComplete:errorMsg];
                     
                 }];
-                NSLog(@"wifi网络");
+     
                 break;
             }
 

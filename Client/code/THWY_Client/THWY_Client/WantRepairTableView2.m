@@ -309,8 +309,7 @@
                     
                 }]];
                 
-                // first way to show ,use UIView Category
-                [alertView showInWindowWithOriginY:200 backgoundTapDismissEnable:YES];
+                [alertView showInWindow];
                 break;
             }
             case ReachableViaWiFi:{
