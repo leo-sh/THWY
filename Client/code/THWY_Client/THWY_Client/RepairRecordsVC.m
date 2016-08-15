@@ -59,7 +59,7 @@
     [My_ServicesManager getRepairs:type page:page repairStatu:statusID onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg) {
-            [SVProgressHUD setMinimumDismissTimeInterval:1.5];
+            
             [SVProgressHUD showErrorWithStatus:errorMsg];
             
         }else {
@@ -82,8 +82,7 @@
             
             if (list && list.count == 0) {
 
-                [SVProgressHUD setMinimumDismissTimeInterval:1.2];
-                [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
+                [SVProgressHUD showErrorWithStatus:@"没有更多数据..."];
                 
             }else{
                 [SVProgressHUD dismiss];

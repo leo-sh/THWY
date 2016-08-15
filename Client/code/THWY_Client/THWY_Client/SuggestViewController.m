@@ -231,7 +231,7 @@
     }
     else
     {
-        [SVProgressHUD showInfoWithStatus:@"网络访问错误"];
+        [SVProgressHUD showErrorWithStatus:@"网络访问错误"];
     }
     
     
@@ -274,7 +274,7 @@
             }
             else
             {
-                [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+                [SVProgressHUD showErrorWithStatus:@"添加成功"];
             }
             
         }];

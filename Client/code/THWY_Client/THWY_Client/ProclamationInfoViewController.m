@@ -30,7 +30,7 @@
 - (void)getData
 {
     if ([ServicesManager getAPI].status == NotReachable) {
-        [SVProgressHUD showInfoWithStatus:@"网络访问错误"];
+        [SVProgressHUD showErrorWithStatus:@"网络访问错误"];
     }
     else
     {

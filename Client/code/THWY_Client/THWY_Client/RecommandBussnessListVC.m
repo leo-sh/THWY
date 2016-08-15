@@ -42,7 +42,6 @@
     [[ServicesManager getAPI] getRecommendGoods:1 onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg){
-            [SVProgressHUD setMinimumDismissTimeInterval:1.5];
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }
         

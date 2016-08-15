@@ -50,7 +50,7 @@
     [My_ServicesManager getAGood:self.good.Id onComplete:^(NSString *errorMsg, GoodVO *merchant) {
 
         if (errorMsg){
-            [SVProgressHUD setMinimumDismissTimeInterval:1.5];
+            
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }
         [self.bussnessModels addObject:merchant];

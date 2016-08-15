@@ -55,8 +55,7 @@
         else if (list.count == 0)
         {
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
-            [SVProgressHUD setMinimumDismissTimeInterval:1];
-            [SVProgressHUD showInfoWithStatus:@"没有更多数据..."];
+            [SVProgressHUD showErrorWithStatus:@"没有更多数据..."];
         }
         else
         {
@@ -273,7 +272,7 @@
                     }
                     else
                     {
-                        [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+                        [SVProgressHUD showErrorWithStatus:@"添加成功"];
                         [self.alertview hideInWindow];
                         self.pageNumber = 1;
                         [self.data removeAllObjects];

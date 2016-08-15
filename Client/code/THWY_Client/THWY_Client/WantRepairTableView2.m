@@ -277,7 +277,6 @@
     }
     
     if (![errorMsg isEqualToString:@""]){
-        [SVProgressHUD setMinimumDismissTimeInterval:1.4];
         [SVProgressHUD showErrorWithStatus:errorMsg];
         return;
     }
@@ -287,7 +286,6 @@
         
         switch (My_ServicesManager.status) {
             case NotReachable:
-                [SVProgressHUD setMinimumDismissTimeInterval:1.3];
                 [SVProgressHUD showErrorWithStatus:@"网络未连接"];
 
                 break;

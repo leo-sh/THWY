@@ -43,7 +43,6 @@
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     [My_ServicesManager getEstates:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg) {
-            [SVProgressHUD setMinimumDismissTimeInterval:1.2];
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }else{
             [self.estateArray removeAllObjects];
@@ -68,7 +67,6 @@
 - (IBAction)blockSelect:(UIButton *)sender {
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     if (self.estateIndex == -1 || ![self.estateArray[self.estateIndex] estate_id] || [[self.estateArray[self.estateIndex] estate_id] isEqualToString:@""]) {
-        [SVProgressHUD setMinimumDismissTimeInterval:1.2];
         [SVProgressHUD showErrorWithStatus:@"请选择项目"];
         return;
     }
@@ -97,7 +95,6 @@
 - (IBAction)unitSelect:(UIButton *)sender {
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     if (self.blockIndex == -1 || !self.blockArray[self.blockIndex] || [self.blockArray[self.blockIndex] isEqualToString:@""]) {
-        [SVProgressHUD setMinimumDismissTimeInterval:1.2];
         [SVProgressHUD showErrorWithStatus:@"请选择项目"];
         return;
     }
@@ -124,7 +121,6 @@
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     
     if (self.unitIndex == -1 || !self.unitArray[self.unitIndex] || [[self.unitArray[self.unitIndex] stringValue] isEqualToString:@""]) {
-        [SVProgressHUD setMinimumDismissTimeInterval:1.2];
         [SVProgressHUD showErrorWithStatus:@"请选择项目"];
         return;
     }
