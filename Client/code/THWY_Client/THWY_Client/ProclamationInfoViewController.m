@@ -37,7 +37,7 @@
         [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
         
         [[ServicesManager getAPI]getANote:self.proclamationId onComplete:^(NSString *errorMsg, NoteVO *complaint) {
-            
+            self.title = complaint.title;
             [self createUI:complaint];
             [SVProgressHUD dismiss];
             
@@ -98,7 +98,7 @@
     
     [self.view addSubview:backView];
     
-    titleLabel.text = noteVO.category;
+    titleLabel.text = noteVO.title;
     NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime intValue] withFormat:@"YYYY-MM-dd"];
     time.text = showtime;
     content.text = noteVO.content;

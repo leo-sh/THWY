@@ -65,7 +65,7 @@
 - (void)initNVBar{
 
     self.flag = -1;
-    self.title = @"业主客服系统";
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"yitailogo"]];
     self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [self.leftButton setImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
     [self.leftButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
