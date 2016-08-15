@@ -34,7 +34,7 @@
                 
                 self.data = array;
                 
-                self.frame = CGRectMake(0, 0, 105, 30 * self.data.count);
+                self.frame = CGRectMake(0, 0, 130, 30 * self.data.count);
                 self.center = kCurrentWindow.center;
                 
                 if (self.data.count != 0) {
@@ -56,13 +56,13 @@
         else if(method == GetYear)
         {
             self.data = @[@"选择年份",@"2012",@"2013",@"2014",@"2015",@"2016",@"2017",@"2018",@"2019"];
-            self.frame = CGRectMake(0, 0, 90, 30 * self.data.count);
+            self.frame = CGRectMake(0, 0, 100, 30 * self.data.count);
 
         }
         else if(method == GetPayStatu)
         {
             self.data = @[@"选择状态",@"未缴",@"未缴齐",@"已缴齐",@"已经退款"];
-            self.frame = CGRectMake(0, 0, 90, 30 * self.data.count);
+            self.frame = CGRectMake(0, 0, 100, 30 * self.data.count);
         }
         
     }
@@ -144,7 +144,7 @@
     }
 }
 
-- (void)showOriginY:(CGFloat)y OriginX:(CGFloat)x
+- (void)showOriginY:(CGFloat)y showCentenX:(CGFloat)x
 {
     UIView *backgroundView = [[UIView alloc]initWithFrame:kCurrentWindow.bounds];
     backgroundView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
@@ -155,8 +155,8 @@
     
     [kCurrentWindow addSubview:backgroundView];
     
-    self.y = y;
-    self.x = x;
+    self.y= y;
+    self.centerX = x;
     
     [backgroundView addSubview:self];
 

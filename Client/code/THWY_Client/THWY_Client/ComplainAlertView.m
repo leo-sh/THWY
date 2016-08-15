@@ -33,11 +33,14 @@
     self.backgroundColor = [UIColor whiteColor];
     
     CGFloat left = 10;
+    CGFloat height = 40;
+    UIView *houseSource = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, height)];
+//    houseSource.backgroundColor = [UIColor blackColor];
     
-    UIView *houseSource = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, 30)];
-    
-    UILabel * houseLabel = [UILabel labelWithTitle:@"房源：" frameX:left Height:houseSource.height];
+    UILabel * houseLabel = [UILabel labelWithTitle:@"房源：" frameX:left Height:height];
     houseLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    
+    
     [houseSource addSubview:houseLabel];
     
     NSArray *houseArray = [[[UDManager getUD] getUser] houses];
@@ -50,10 +53,12 @@
     CGFloat houseBtnH = 30;
     
     for (int i = 0; i < houseArray.count; i ++) {
-        houseSource.height = 30 *houseArray.count;
+        houseSource.height = height *houseArray.count;
         BlueRedioButton * btn = [[BlueRedioButton alloc]initWithFrame:CGRectMake(houseBtnX, houseBtnY, houseBtnW, houseBtnH)];
         
         HouseVO *house = houseArray[i];
+        
+        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         
         NSString *addressString = [NSString stringWithFormat:@"%@%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
         
@@ -62,6 +67,7 @@
         [btn initDefaultImageName:@"repaire_unselected"  choosedImageName:@"repaire_selected" title:addressString];
         if (i == 0) {
             [btn setChoosed];
+            btn.centerY = houseSource.centerY;
         }
         
         [self.houseSourceBtnArray addObject:btn];
@@ -74,11 +80,13 @@
     [self addSubOhterview:houseSource];
 
     //创建personView
-    UIView *personView = [[UIView alloc]initWithFrame:CGRectMake(10,houseSource.bottom, self.width, 30)];
+    UIView *personView = [[UIView alloc]initWithFrame:CGRectMake(10,houseSource.bottom, self.width, height)];
+    
+//    personView.backgroundColor = [UIColor yellowColor];
     
     [self addSubOhterview:personView];
     
-    UILabel *personLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 75, 30)];
+    UILabel *personLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 85, height)];
     
     personLabel.text = @"投诉姓名：";
     
@@ -86,9 +94,14 @@
 
     [personView addSubview:personLabel];
     
-    self.personTf = [[UITextField alloc]initWithFrame:CGRectMake(75,6, 120 , 18)];
+    CGFloat borderHeight = 25;
+    
+    self.personTf = [[UITextField alloc]initWithFrame:CGRectMake(85,0, 120 , borderHeight)];
+    
+    self.personTf.centerY = personLabel.centerY;
+    
     self.personTf.layer.borderWidth = 1;
-    self.personTf.layer.borderColor = My_Color(236, 236, 236).CGColor;
+    self.personTf.layer.borderColor = CellUnderLineColor.CGColor;
     self.personTf.font = [UIFont systemFontOfSize:CONTENT_FONT];
     
     self.personTf.text = [[UDManager getUD] getUser].real_name;
@@ -96,11 +109,11 @@
     [personView addSubview:self.personTf];
     //创建手机号veiw
     
-    UIView *phoneView = [[UIView alloc]initWithFrame:CGRectMake(10,personView.bottom, self.width, 30)];
+    UIView *phoneView = [[UIView alloc]initWithFrame:CGRectMake(10,personView.bottom, self.width, height)];
     
     [self addSubOhterview:phoneView];
     
-    UILabel *phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 90, 30)];
+    UILabel *phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 102, height)];
     
     phoneLabel.text = @"投诉人电话：";
     
@@ -108,13 +121,14 @@
     
     [phoneView addSubview:phoneLabel];
     
-    self.phoneTf = [[UITextField alloc]initWithFrame:CGRectMake(90,6, 120, 18)];
+    self.phoneTf = [[UITextField alloc]initWithFrame:CGRectMake(102,0, 120, borderHeight)];
+    self.phoneTf.centerY = phoneLabel.centerY;
     self.phoneTf.font = [UIFont systemFontOfSize:CONTENT_FONT];
     
     self.phoneTf.text = [[UDManager getUD] getUser].cellphone;
     
     self.phoneTf.layer.borderWidth = 1;
-    self.phoneTf.layer.borderColor = My_Color(236, 236, 236).CGColor;
+    self.phoneTf.layer.borderColor = CellUnderLineColor.CGColor;
     self.phoneTf.font = [UIFont systemFontOfSize:CONTENT_FONT];
     
     [phoneView addSubview:self.phoneTf];
@@ -125,39 +139,37 @@
 //    
 //    [self addSubOhterview:self.phone];
 //    
-    UIView *complainTypeView = [[UIView alloc]initWithFrame:CGRectMake(0, phoneView.bottom, self.width - 10, 30)];
+    UIView *complainTypeView = [[UIView alloc]initWithFrame:CGRectMake(0, phoneView.bottom, self.width - 10, height)];
     
     [self addSubOhterview:complainTypeView];
     
-    UILabel *complainLabel = [UILabel labelWithTitle:@"投诉类型：" frameX:10 Height:30];
+    UILabel *complainLabel = [UILabel labelWithTitle:@"投诉类型：" frameX:10 Height:height];
     complainLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
     
     [complainTypeView addSubview:complainLabel];
     
     CGFloat boderspace = 2;
     
-    self.typeBtn = [[AlertButton alloc]initWithFrame:CGRectMake(complainLabel.right + boderspace , boderspace, 150, 26)];
+    self.typeBtn = [[AlertButton alloc]initWithFrame:CGRectMake(complainLabel.right + boderspace ,0, 150, 26)];
+    self.typeBtn.centerY = complainLabel.centerY;
     [self.typeBtn setTitle:@"请选择投诉类型" forState:UIControlStateNormal];
     
-    [self.typeBtn setGetDataMethod:GetComplainType OriginY:0 OriginX:0];
+    [self.typeBtn setGetDataMethod:GetComplainType OriginY:100 showCentenX:self.typeBtn.centerX + 1000];
     
     [complainTypeView addSubview:self.typeBtn];
     
 //    self.textView = [[UITextView alloc]initWithFrame:
-    self.textView.frame = CGRectMake(10, complainTypeView.bottom, self.width - 20, 100);
+    self.textView.frame = CGRectMake(10, complainTypeView.bottom + 1, self.width - 20, 80);
     
     self.textView.delegate = self;
+    self.textView.font = [UIFont systemFontOfSize:CONTENT_FONT];
 //    self.textView.autocorrectionType = UITextAutocorrectionTypeNo;
 //    self.textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
     [self addSubOhterview:self.textView];
     
     [self setPlaceholder:@"请输入投诉详情"];
     
-    CGRect rect = self.frame;
-    
-    rect.size.height = self.textView.bottom;
-    
-    self.frame = rect;
+    self.height = self.textView.bottom + CONTENT_FONT;
     
 //    NSLog(@"self y %f",self.y);
 

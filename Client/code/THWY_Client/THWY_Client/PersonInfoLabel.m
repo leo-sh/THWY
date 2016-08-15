@@ -78,7 +78,7 @@
     }];
     
     CGFloat labelLeft = imageViewLeft;
-    CGFloat labelWidth = self.frame.size.width * 0.25;
+    CGFloat labelWidth = CONTENT_FONT * 5;
     CGFloat labelHeight = imageViewWidthAndHeight;
     
     [self.label mas_makeConstraints:^(MASConstraintMaker *make) {

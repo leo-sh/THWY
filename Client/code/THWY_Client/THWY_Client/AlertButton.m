@@ -53,7 +53,7 @@
         [self addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
         [self setImage:[UIImage imageNamed:@"repaire_下"] forState:UIControlStateNormal];
         self.layer.borderWidth = 1;
-        self.layer.borderColor = My_Color(236, 236, 236).CGColor;
+        self.layer.borderColor = CellUnderLineColor.CGColor;
         self.backgroundColor = [UIColor whiteColor];
         self.adjustsImageWhenHighlighted = NO;
     }
@@ -76,13 +76,13 @@
     
     self.alertView.AlertDelegate = self;
     
-    if (self.alertView.method != GetComplainType) {
-        
-        [self.alertView showOriginY:self.frameY OriginX:self.frameX];
-    }
+//    if (self.alertView.method != GetComplainType) {
+    
+        [self.alertView showOriginY:self.frameY showCentenX:self.frameX];
+//    }
 }
 
-- (void)setGetDataMethod:(GetDataMethod)method OriginY:(CGFloat)y OriginX:(CGFloat)x
+- (void)setGetDataMethod:(GetDataMethod)method OriginY:(CGFloat)y showCentenX:(CGFloat)x
 {
     self.method = method;
     self.frameX = x;

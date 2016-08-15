@@ -73,13 +73,13 @@
     
     [self.chooseYearBtn setTitle:@"选择年份" forState:UIControlStateNormal];
     
-    [self.chooseYearBtn setGetDataMethod:GetYear OriginY:self.chooseYearBtn.bottom - 10 + 66 OriginX:15];
+    [self.chooseYearBtn setGetDataMethod:GetYear OriginY:self.chooseYearBtn.bottom - 10 + 66 showCentenX:self.chooseYearBtn.centerX];
     
     [searchView addSubview:self.chooseYearBtn];
     
     self.chooseStatuBtn = [[AlertButton alloc]initWithFrame:CGRectMake(self.chooseYearBtn.right + 5, 5, self.view.width * 0.35, 30)];
     
-    [self.chooseStatuBtn setGetDataMethod:GetPayStatu OriginY:self.chooseYearBtn.bottom - 10 + 66 OriginX:self.chooseStatuBtn.left + 10];
+    [self.chooseStatuBtn setGetDataMethod:GetPayStatu OriginY:self.chooseYearBtn.bottom - 10 + 66 showCentenX:self.chooseStatuBtn.centerX];
     self.chooseStatuBtn.postID = @"-1";
     [self.chooseStatuBtn setTitle:@"选择状态" forState:UIControlStateNormal];
     
@@ -125,6 +125,7 @@
     [cell giveData:item];
     [cell updateFrame:CGSizeMake(tableView.width, 100)];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = WhiteAlphaColor;
     return cell;
 }
 

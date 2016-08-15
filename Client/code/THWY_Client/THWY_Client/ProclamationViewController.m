@@ -44,10 +44,8 @@
     [[ServicesManager getAPI] getNotes:self.pageNumber onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (list.count == 0 && errorMsg == nil) {
-            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            [self.tableView.mj_footer endRefreshing];
             [SVProgressHUD dismiss];
-            [SVProgressHUD showErrorWithStatus:@"没有更多数据..."];
-
         }
         else
         {
@@ -118,6 +116,7 @@
     NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd"];
     [cell setTitle:[self.data[indexPath.section] title]  time:time content:[self.data[indexPath.section] content] width:tableView.width];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 

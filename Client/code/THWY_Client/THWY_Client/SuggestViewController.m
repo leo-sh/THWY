@@ -128,7 +128,7 @@
             [self getData:[self.FeedBackTypeArray[self.segmentedControl.selectedSegmentIndex] Id]];
         }];
         self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            [self.tableView.mj_footer endRefreshing];
         }];
         
     
@@ -142,9 +142,7 @@
     
     UIView *view = [[UIView alloc]init];
     
-    
-    view.backgroundColor = [UIColor whiteColor];
-    view.alpha = 0.8;
+    view.backgroundColor = WhiteAlphaColor;
     [self.view addSubview:view];
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {

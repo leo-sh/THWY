@@ -22,7 +22,6 @@
         
         self.backgroundColor = [UIColor clearColor];
         
-        self.backView.backgroundColor = [UIColor whiteColor];
         self.head = [[UIImageView alloc]init];
         self.right = [[UIImageView alloc]init];
         self.title = [[UILabel alloc]init];
@@ -60,6 +59,8 @@
         [self.backView addSubview:self.content];
         [self.backView addSubview:left];
         [self.backView addSubview:self.right];
+        
+        self.backView.backgroundColor = WhiteAlphaColor;
         
         [self.contentView addSubview:self.backView];
 

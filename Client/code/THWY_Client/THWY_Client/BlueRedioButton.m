@@ -37,7 +37,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.chooseStatu = NO;
-        self.titleLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+        self.titleLabel.font = [UIFont systemFontOfSize:15];
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statuChange) name:@"判断" object:nil];
     }

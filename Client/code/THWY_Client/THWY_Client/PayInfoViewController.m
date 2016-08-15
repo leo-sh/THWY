@@ -113,10 +113,6 @@
         cell.textLabel.attributedText = cellAttrText;
     }
     
-
-    
-    
-    
     cell.textLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
     cell.preservesSuperviewLayoutMargins = NO;
     cell.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
@@ -127,7 +123,7 @@
     }
     else
     {
-        cell.backgroundColor = [UIColor whiteColor];
+        cell.backgroundColor = WhiteAlphaColor;
 
     }
     return cell;

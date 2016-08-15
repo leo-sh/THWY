@@ -23,5 +23,5 @@ typedef enum{
 - (instancetype)initWithNumber:(GetDataMethod)method;
 - (void)hide;
 - (void)showCenter;
-- (void)showOriginY:(CGFloat)y OriginX:(CGFloat)x;
+- (void)showOriginY:(CGFloat)y showCentenX:(CGFloat)x;
 @end

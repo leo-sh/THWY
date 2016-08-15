@@ -96,6 +96,9 @@
     [backView addSubview:left];
     [backView addSubview:right];
     
+    
+    backView.backgroundColor = WhiteAlphaColor;
+    
     [self.view addSubview:backView];
     
     titleLabel.text = noteVO.title;

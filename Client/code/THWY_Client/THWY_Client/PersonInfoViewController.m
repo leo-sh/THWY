@@ -155,7 +155,7 @@
 {
     self.bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, self.view.height * 0.18, self.view.width, self.view.height * 0.82)];
     
-//    self.bottomView.backgroundColor = [UIColor yellowColor];
+    self.bottomView.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:self.bottomView];
     
@@ -173,11 +173,13 @@
         
         PersonInfoLabel *label = [[PersonInfoLabel alloc]initWithFrame:CGRectMake(labelLeft, labelY , labelWidth , labelHeight)];
         
+        label.backgroundColor = WhiteAlphaColor;
+        
         [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] TextField:tfTextArray[i]];
         label.textField.delegate = self;
         label.textField.textColor = My_Color(202, 202, 207);
-        label.layer.borderWidth = 1;
-        label.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        label.layer.borderWidth = 0.5;
+        label.layer.borderColor = CellUnderLineColor.CGColor;
         
         [self.bottomView addSubview: label];
         //将边框减掉
