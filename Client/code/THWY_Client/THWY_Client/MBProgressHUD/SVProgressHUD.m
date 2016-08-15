@@ -55,10 +55,11 @@
     
     if (self.loadingLabel == nil) {
         self.loadingLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 1, 1)];
-        self.loadingLabel.backgroundColor = My_AlphaColor(0, 0, 0, 0.7);
+        self.loadingLabel.backgroundColor = RGBColorFromX(333333);
         self.loadingLabel.layer.cornerRadius = 10;
         self.loadingLabel.clipsToBounds = YES;
         self.loadingLabel.numberOfLines = 0;
+        self.loadingLabel.adjustsFontSizeToFitWidth = YES;
         
         self.loadingLabel.textColor = [UIColor whiteColor];
         self.loadingLabel.textAlignment = NSTextAlignmentCenter;
@@ -84,7 +85,7 @@
     self.hud.removeFromSuperViewOnHide = NO;
     self.hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     self.hud.backgroundView.style = MBProgressHUDBackgroundStyleSolidColor;
-    self.hud.backgroundView.color = My_AlphaColor(0, 0, 0, 0.5);
+    self.hud.backgroundView.color = My_AlphaColor(0, 0, 0, 0.1);
     self.hud.bezelView.color = [UIColor clearColor];
     self.hud.bezelView.clipsToBounds = NO;
     self.hud.mode = MBProgressHUDModeCustomView;
@@ -127,12 +128,12 @@
 {
     [self hudInit];
     [self.hud showAnimated:YES];
-    self.hud.backgroundView.color = My_AlphaColor(0, 0, 0, 0.1);
     
-    self.loadingLabel.text = title;
     self.loadingLabel.width = [title sizeWithFont:[UIFont fontWithDeviceName:My_RegularFontName size:13] maxSize:CGSizeMake(My_ScreenW/3*2, My_ScreenH/3)].width + 20;
     self.loadingLabel.height = [title sizeWithFont:[UIFont fontWithDeviceName:My_RegularFontName size:13] maxSize:CGSizeMake(My_ScreenW/3*2, My_ScreenH/3)].height + 20;
     self.loadingLabel.center = CGPointMake(20, 20);
+    
+    self.loadingLabel.text = title;
     
     [self.hud setOffset:CGPointMake(0, My_ScreenH - self.loadingLabel.height - 50)];
     
@@ -152,20 +153,14 @@
     [self hudInit];
     [self.hud showAnimated:YES];
     
-//    NSMutableArray *imgArray = [NSMutableArray array];
-//    for (int i=1; i<=10; i++) {
-//        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"empty_loading%d.png",i]];
-//        [imgArray addObject:image];
-//    }
-//    self.loadingImv.animationImages = imgArray;
-//    self.loadingImv.animationDuration = 10*0.1;
-//    self.loadingImv.animationRepeatCount = 0;
-//    [self.loadingImv startAnimating];
+    self.loadingLabel.width = [title sizeWithFont:[UIFont fontWithDeviceName:My_RegularFontName size:13] maxSize:CGSizeMake(My_ScreenW/3*2, My_ScreenH/3)].width + 20;
+    self.loadingLabel.height = [title sizeWithFont:[UIFont fontWithDeviceName:My_RegularFontName size:13] maxSize:CGSizeMake(My_ScreenW/3*2, My_ScreenH/3)].height + 20;
+    self.loadingLabel.center = CGPointMake(20, 20);
+    self.loadingLabel.text = title;
     
-    self.loadingLabel.x = self.loadingImv.right + 10;
-    self.loadingView.center = CGPointMake(20, 20);
-    self.hintLabel.text = title;
-    [self.hud.bezelView addSubview:self.loadingView];
-    [self.hud.bezelView bringSubviewToFront:self.loadingView];
+    [self.hud.bezelView addSubview:self.loadingLabel];
+    [self.hud.bezelView bringSubviewToFront:self.loadingLabel];
+    
+    [self.hud hideAnimated:YES afterDelay:1.5];
 }
 @end
