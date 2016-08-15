@@ -37,7 +37,7 @@
         [UMessage setLogEnabled:YES];
         [UMessage setAutoAlert:NO];
         
-        if ([[UDManager getUD] getUser]) {
+        if (My_ServicesManager.isLogin) {
             UserVO* user = [[UDManager getUD] getUser];
             
             NSMutableArray* tagArr = [[NSMutableArray alloc]initWithObjects:@"owner",[NSString stringWithFormat:@"owner_id_%@",user.Id], nil];
@@ -51,6 +51,13 @@
                     [UMessage getTags:^(NSSet * _Nonnull responseTags, NSInteger remain, NSError * _Nonnull error) {
                         
                     }];
+                }];
+            }];
+        }else
+        {
+            [UMessage addTag:@"owner" response:^(id  _Nonnull responseObject, NSInteger remain, NSError * _Nonnull error) {
+                [UMessage getTags:^(NSSet * _Nonnull responseTags, NSInteger remain, NSError * _Nonnull error) {
+                    
                 }];
             }];
         }
@@ -67,6 +74,8 @@
         
     }
     
+    My_ServicesManager.isFromNotification = isFromNotification;
+    
     self.window = [[UIWindow alloc]initWithFrame:My_ScreenBounds];
     self.window.backgroundColor = My_Color(238, 238, 238);
     MainVC* mainVC = [[MainVC alloc]init];
@@ -79,23 +88,29 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    MainNavigationViewController* mainNav = (MainNavigationViewController *)self.window.rootViewController;
     NSLog(@"%@",userInfo);
+//    推送内容示例
+//    {
+//        aps =     {
+//            alert = "\U5929\U9a84\U82b1\U56edIOS\U63a8\U9001";
+//            badge = 0;
+//            sound = chime;
+//        };
+//        d = us21240147114678523001;
+//        "notice_type" = yz;
+//        p = 0;
+//        pk = 33;
+//        "push_type" = 5;
+//    }
     
     if (application.applicationState == UIApplicationStateActive) {
-        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-        [ud setObject:userInfo forKey:@"ActiveNotification"];
-        [ud synchronize];
+        [[UDManager getUD] saveNotification:Active userInfo:userInfo];
         
     }else if(application.applicationState == UIApplicationStateInactive) {
-        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-        [ud setObject:userInfo forKey:@"InactiveNotification"];
-        [ud synchronize];
+        [[UDManager getUD] saveNotification:Close userInfo:userInfo];
     }
     else{
-        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-        [ud setObject:userInfo forKey:@"BackgroundNotification"];
-        [ud synchronize];
+        [[UDManager getUD] saveNotification:Background userInfo:userInfo];
     }
     
     [UMessage didReceiveRemoteNotification:userInfo];

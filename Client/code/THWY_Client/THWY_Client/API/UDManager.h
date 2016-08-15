@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "UserVO.h"
 
+typedef enum : NSUInteger {
+    Background,
+    Close,
+    Active,
+} AppStateType;
+
 @interface UDManager : NSObject
 
 +(UDManager *)getUD;
@@ -17,6 +23,13 @@
 
 -(BOOL)showPassWord;
 
+-(void)saveNotification:(AppStateType)type userInfo:(NSDictionary *)userInfo;
+
+-(NSDictionary *)getNotification:(AppStateType)type;
+
+-(void)delNotification:(AppStateType)type;
+
+-(void)delAllNotification;
 /**
  *  获取已登录用户
  *

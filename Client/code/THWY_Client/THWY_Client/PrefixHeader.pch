@@ -36,8 +36,8 @@
 //API
 #define My_ServicesManager [ServicesManager getAPI]
 #define API_Address @"http://112.126.75.77"
-#define API_Port @"7976"
-//#define API_Port @"6699"
+//#define API_Port @"7976"
+#define API_Port @"6699"
 #define API_Prefix [NSString stringWithFormat:@"%@:%@",API_Address,API_Port]
 #define API_HOST [NSString stringWithFormat:@"%@/index.php/api/owner/",API_Prefix]
 
