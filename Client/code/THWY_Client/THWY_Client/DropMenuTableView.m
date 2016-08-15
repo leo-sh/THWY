@@ -26,9 +26,9 @@
         self.itemNames = items;
         self.itemImages = images;
         self.frame = CGRectMake(0, 64, My_ScreenW, My_ScreenH);
-        self.backgroundColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.2];
+        self.backgroundColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.01];
         
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(5, 5, width, items.count*itemHeight) style:UITableViewStylePlain];
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(7, 0, width, items.count*itemHeight) style:UITableViewStylePlain];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableView.backgroundColor = [UIColor clearColor];
         self.tableView.rowHeight = itemHeight;
@@ -50,12 +50,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.imageView.image = [UIImage imageNamed:self.itemImages[indexPath.row]];
     cell.textLabel.text = self.itemNames[indexPath.row];
-    cell.textLabel.backgroundColor = My_NAV_BG_Color;
+    cell.textLabel.backgroundColor = My_clearColor;
     cell.textLabel.textColor = self.textColor;
     cell.textLabel.font = [UIFont fontWithName:My_RegularFontName size:self.fontSize];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentView.backgroundColor = self.backColor;
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, cell.frame.size.height-1, cell.frame.size.width, 1)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, cell.frame.size.height-0.5, cell.frame.size.width, 0.5)];
     label.backgroundColor = My_Color(229.f, 229.f, 229.f);
     [cell.contentView addSubview:label];
     return cell;
