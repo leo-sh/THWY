@@ -193,11 +193,11 @@
 		79F2B6C21D4E2ECF00AA94E0 /* BussnessADCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F2B6C01D4E2ECF00AA94E0 /* BussnessADCell.xib */; };
 		79F2B6C51D4E3CC000AA94E0 /* RecommandBussnessADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F2B6C41D4E3CC000AA94E0 /* RecommandBussnessADVC.m */; };
 		79F2B6C81D4E3DE900AA94E0 /* ADDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F2B6C71D4E3DE900AA94E0 /* ADDetailVC.m */; };
+		9400B9781D6187EE00E49F0E /* tuisong.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9400B9771D6187EE00E49F0E /* tuisong.caf */; };
 		9449430D1D5C320200AD2B00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */; };
 		94D708931D4C68EE00C5009D /* ComplaintStateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EF81D48A0BD00B95DE5 /* ComplaintStateVO.m */; };
 		94E5DAD31D58731900300585 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5DAD21D58731900300585 /* Reachability.m */; };
 		94F7CE801D6149D90034E9FC /* BannerNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F7CE7F1D6149D90034E9FC /* BannerNotice.m */; };
-		94F7CE821D615BFF0034E9FC /* tuisong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 94F7CE811D615BFF0034E9FC /* tuisong.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -573,13 +573,13 @@
 		79F2B6C41D4E3CC000AA94E0 /* RecommandBussnessADVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommandBussnessADVC.m; sourceTree = "<group>"; };
 		79F2B6C61D4E3DE900AA94E0 /* ADDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADDetailVC.h; sourceTree = "<group>"; };
 		79F2B6C71D4E3DE900AA94E0 /* ADDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADDetailVC.m; sourceTree = "<group>"; };
+		9400B9771D6187EE00E49F0E /* tuisong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tuisong.caf; sourceTree = "<group>"; };
 		9449430B1D5C320200AD2B00 /* ZYKeyboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYKeyboardUtil.h; sourceTree = "<group>"; };
 		9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
 		94E5DAD11D58731900300585 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		94E5DAD21D58731900300585 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		94F7CE7E1D6149D90034E9FC /* BannerNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerNotice.h; sourceTree = "<group>"; };
 		94F7CE7F1D6149D90034E9FC /* BannerNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerNotice.m; sourceTree = "<group>"; };
-		94F7CE811D615BFF0034E9FC /* tuisong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tuisong.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1182,7 +1182,7 @@
 		5BFFCE171D41B9A30066B1B9 /* THWY_Client */ = {
 			isa = PBXGroup;
 			children = (
-				94F7CE811D615BFF0034E9FC /* tuisong.mp3 */,
+				9400B9771D6187EE00E49F0E /* tuisong.caf */,
 				5B2571CF1D47169600CB4167 /* 3rd */,
 				5B25714D1D47105E00CB4167 /* util */,
 				5B25714C1D47105800CB4167 /* model */,
@@ -1524,13 +1524,13 @@
 				79D2D2701D4F530400463CC5 /* MerchargeListCell.xib in Resources */,
 				5B197EE61D487DAC00B95DE5 /* Info.plist in Resources */,
 				5BFFCE281D41B9A30066B1B9 /* LaunchScreen.storyboard in Resources */,
+				9400B9781D6187EE00E49F0E /* tuisong.caf in Resources */,
 				1E7527B61D52349F00AEDEC0 /* MJRefresh.bundle in Resources */,
 				79F2B6BD1D4E22CC00AA94E0 /* RecommandMerchantCell.xib in Resources */,
 				1E7527C91D52356700AEDEC0 /* SVProgressHUD.bundle in Resources */,
 				5BFFCE251D41B9A30066B1B9 /* Assets.xcassets in Resources */,
 				7905064F1D4CD07900072AAC /* TextFieldCell.xib in Resources */,
 				79F2B6C21D4E2ECF00AA94E0 /* BussnessADCell.xib in Resources */,
-				94F7CE821D615BFF0034E9FC /* tuisong.mp3 in Resources */,
 				79F2B6971D4D9E9700AA94E0 /* ProjectCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

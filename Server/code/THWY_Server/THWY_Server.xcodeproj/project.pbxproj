@@ -178,6 +178,9 @@
 		5BFFCE471D41B9C40066B1B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BFFCE4A1D41B9C40066B1B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BFFCE4C1D41B9C40066B1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9400B9791D6188B200E49F0E /* fasong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fasong.caf; sourceTree = "<group>"; };
+		9400B97A1D6188B200E49F0E /* shou.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shou.caf; sourceTree = "<group>"; };
+		9400B97B1D6188BF00E49F0E /* tuisong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tuisong.caf; sourceTree = "<group>"; };
 		940D69D21D51811400E1159D /* DocTypeVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocTypeVO.h; sourceTree = "<group>"; };
 		940D69D31D51811400E1159D /* DocTypeVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocTypeVO.m; sourceTree = "<group>"; };
 		940D69D51D51880600E1159D /* DocVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocVO.h; sourceTree = "<group>"; };
@@ -452,6 +455,9 @@
 		5BFFCE3A1D41B9C40066B1B9 /* THWY_Server */ = {
 			isa = PBXGroup;
 			children = (
+				9400B97B1D6188BF00E49F0E /* tuisong.caf */,
+				9400B9791D6188B200E49F0E /* fasong.caf */,
+				9400B97A1D6188B200E49F0E /* shou.caf */,
 				5B2571D01D47169E00CB4167 /* 3rd */,
 				5B2571901D47148D00CB4167 /* uitil */,
 				5B25718F1D47148800CB4167 /* model */,
