@@ -39,7 +39,7 @@
 {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     NSDictionary* userInfo = [ud objectForKey:@"ActiveNotification"];
-    
+    [self delNotification];
     return userInfo;
 }
 
