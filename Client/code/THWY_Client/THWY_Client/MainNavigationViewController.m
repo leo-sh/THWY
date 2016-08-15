@@ -9,7 +9,8 @@
 #import "MainNavigationViewController.h"
 #import "RecommandBussnessADVC.h"
 #import "RepairDetailController.h"
-
+#import "ProclamationInfoViewController.h"
+#import "ComplainDetailViewController.h"
 @interface MainNavigationViewController () <UINavigationControllerDelegate>
 //@property (nonatomic, strong) id popDelegate;
 {
@@ -33,6 +34,11 @@
     }else if ([pushType isEqualToString:@"5"])
     {
 //        业主公告
+        ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc]init];
+        
+//        detail.proclamationId =
+        
+        [self.navigationController pushViewController:detail animated:YES];
         
     }else if ([pushType isEqualToString:@"6"])
     {
@@ -43,7 +49,11 @@
     }else if ([pushType isEqualToString:@"7"])
     {
 //        缴费台账
+        ComplainDetailViewController *detail = [[ComplainDetailViewController alloc]init];
         
+//        detail.complianId =
+        
+        [self.navigationController pushViewController:detail animated:YES];
     }
     if (_userInfo) {
         _userInfo = nil;

@@ -117,7 +117,7 @@
         self.topHeight = CGRectGetMaxY(cell.time.frame);
     }
     NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd"];
-    [cell setTitle:[self.data[indexPath.section] category]  time:time content:[self.data[indexPath.section] content] width:tableView.width];
+    [cell setTitle:[self.data[indexPath.section] title]  time:time content:[self.data[indexPath.section] content] width:tableView.width];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
