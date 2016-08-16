@@ -77,7 +77,7 @@
     
     RecommandMerchantCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecommandMerchantCell" forIndexPath:indexPath];
     [cell loadDataFromMercharge:self.bussnessModels[indexPath.row]];
-    cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
+    cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
     return cell;
     
 }

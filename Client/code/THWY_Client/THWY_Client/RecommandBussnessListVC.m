@@ -46,16 +46,16 @@
         
         if (errorMsg){
             [SVProgressHUD showErrorWithStatus:errorMsg];
+        }else
+        {
+            for (GoodVO *model in list) {
+                [self.bussnessModels addObject:model];
+            }
+            
+            [self.tableView reloadData];
+            [SVProgressHUD dismiss];
         }
-        
-        for (GoodVO *model in list) {
-            [self.bussnessModels addObject:model];
-        }
-        
-        [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
-        [SVProgressHUD dismiss];
-        
     }];
     
 }
@@ -65,6 +65,7 @@
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 10, self.view.width-20, self.view.height-84)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.backgroundColor = My_clearColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = [UIColor lightGrayColor];
     self.tableView.rowHeight = 110/667.0*My_ScreenH;
@@ -95,16 +96,18 @@
         
         if (errorMsg){
             [SVProgressHUD showErrorWithStatus:errorMsg];
+            self.page --;
+        }else
+        {
+            for (GoodVO *model in list) {
+                [self.bussnessModels addObject:model];
+            }
+            
+            [self.tableView reloadData];
+            [SVProgressHUD dismiss];
         }
         
-        for (GoodVO *model in list) {
-            [self.bussnessModels addObject:model];
-        }
-        
-        [self.tableView reloadData];
         [self.tableView.mj_footer endRefreshing];
-        [SVProgressHUD dismiss];
-        
     }];
     
 }
