@@ -82,7 +82,7 @@
             
             if (list && list.count == 0) {
 
-                [SVProgressHUD showErrorWithStatus:@"没有更多数据..."];
+//                [SVProgressHUD showErrorWithStatus:@"没有更多数据..."];
                 
             }else{
                 [SVProgressHUD dismiss];
@@ -295,11 +295,11 @@
     if (self.switchFlag == 1){
         self.tableView.contentOffset = CGPointMake(0, 0);
         btn = [self.bgView viewWithTag:300+self.selectIndex];
-        self.selectIndex = sender.tag - 300;
+        self.selectIndex = (int)sender.tag - 300;
     }else if (self.switchFlag == 2){
         self.tableView2.contentOffset = CGPointMake(0, 0);
         btn = [self.bgView2 viewWithTag:310+self.selectIndex];
-        self.selectIndex = sender.tag - 310;
+        self.selectIndex = (int)sender.tag - 310;
     }
 
     [btn setImage:nil forState:UIControlStateNormal];

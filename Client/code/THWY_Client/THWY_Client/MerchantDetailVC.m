@@ -25,28 +25,7 @@
     self.title = @"商家详情";
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]];
     [self initViews];
-    
-    [SVProgressHUD showWithStatus:@"数据加载中..."];
-    [My_ServicesManager getAMerchant:self.merchant.Id onComplete:^(NSString *errorMsg, MerchantVO *merchant) {
-        
-        if (errorMsg) {
-            [SVProgressHUD showErrorWithStatus:errorMsg];
-        }else{
-            
-            if (self.merchant.products.count == 0){
-                
-                [SVProgressHUD showErrorWithStatus:@"没有商品"];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.navigationController popViewControllerAnimated:YES];
-                });
-            }else{
-                [self.dataArray addObjectsFromArray:merchant.products];
-            }
 
-        }
-        
-    }];
-    
 }
 
 - (void)initViews{

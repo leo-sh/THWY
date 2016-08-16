@@ -99,8 +99,9 @@
                     break;
                 }
                 case 1:{
-                    self.detailLabel.text = model.classes_str;
                     self.detailLabel.numberOfLines = 0;
+                    self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
+                    self.detailLabel.text = model.classes_str;
                     [self.detailLabel sizeToFit];
                     break;
                 }
