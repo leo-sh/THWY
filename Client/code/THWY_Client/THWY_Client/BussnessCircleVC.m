@@ -18,6 +18,8 @@
 #import "RecommandBussnessADVC.h"
 #import "ADDetailVC.h"
 
+#define HEIGHT self.view.height*1/8.0
+
 @interface BussnessCircleVC ()<ZYBannerViewDataSource, ZYBannerViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *adDataArray;
@@ -46,7 +48,7 @@
 //    self.adDataArray = [NSMutableArray array];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
     [self getData];
-    [self getADLabels];
+    
 }
 
 #pragma mark - 轮播图
@@ -61,6 +63,7 @@
         }
         [SVProgressHUD dismiss];
         [self initADScrollView];
+        [self getADLabels];
     }];
     
 }
@@ -179,14 +182,35 @@
 - (void)getADLabels{
 
     [[ServicesManager getAPI] getAds:1 onComplete:^(NSString *errorMsg, NSArray *list) {
-        for (AdVO *model in list) {
+        
+        if (errorMsg) {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+            return ;
+        }
+        for (int i = 0; i < list.count;i++) {
+            AdVO *model = list[i];
+            self.adLabelScrollView.contentSize = CGSizeMake(self.view.width*6/7.0, HEIGHT*list.count);
             if (model) {
                 [self.adLabels addObject:model];
+                UIButton *adbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, HEIGHT*i, self.view.width*6/7.0, HEIGHT)];
+                adbtn.tag = 500+i;
+                [adbtn addTarget:self action:@selector(showAdDetail:) forControlEvents:UIControlEventTouchUpInside];
+                adbtn.titleLabel.font = FontSize(CONTENT_FONT+1);
+                adbtn.titleLabel.textColor = [UIColor whiteColor];
+                adbtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//                adbtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+                adbtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 20, 0);
+                [self.adLabelScrollView addSubview:adbtn];
+                [adbtn setTitle:model.title forState:UIControlStateNormal];
+                
             }
         }
+        
+        
         if (self.adLabels.count>0) {
-            self.adLabelTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(runloopAdLabel) userInfo:nil repeats:YES];
+            self.adLabelTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(runloopAdLabel) userInfo:nil repeats:YES];
         }
+        
     }];
 }
 
@@ -195,13 +219,14 @@
         return;
     }
     if (self.scrollIndex<self.adLabels.count) {
-        AdVO *model = self.adLabels[self.scrollIndex];
-        [UIView animateWithDuration:2.0 animations:^{
-            self.ADLabel.text = model.title;
-        }];
         self.scrollIndex++;
+        [UIView animateWithDuration:0.5 animations:^{
+            self.adLabelScrollView.contentOffset = CGPointMake(0, self.scrollIndex*HEIGHT);
+        }];
     }else{
         self.scrollIndex = 0;
+        self.adLabelScrollView.contentOffset = CGPointMake(0, 0);
+
     }
 }
 
@@ -209,8 +234,8 @@
     self.ADView = [[UIButton alloc] init];
     [self.ADView setImage:[UIImage imageNamed:@"bussness_锯齿"] forState:UIControlStateNormal];
     [self.ADView setImage:[UIImage imageNamed:@"bussness_锯齿"] forState:UIControlStateHighlighted];
-    [self.ADView addTarget:self action:@selector(showAdDetail) forControlEvents:UIControlEventTouchUpInside];
-//    [self.ADView ;
+//    [self.ADView addTarget:self action:@selector(showAdDetail) forControlEvents:UIControlEventTouchUpInside];
+
     [self.view addSubview:self.ADView];
     [self.ADView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.userInfoView.mas_bottom);
@@ -223,18 +248,22 @@
     [self.ADView addSubview:laba];
     [laba mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.ADView.centerY).offset(-2);
-        make.left.mas_equalTo(self.ADView.mas_left).offset(30);
+        make.left.mas_equalTo(self.ADView.mas_left).offset(20);
     }];
     
-    self.ADLabel = [[UILabel alloc] init];
-    [self.ADLabel sizeToFit];
-    self.ADLabel.font = FontSize(CONTENT_FONT);
-    self.ADLabel.textColor = [UIColor whiteColor];
-    self.ADLabel.text = @"加载中...";
-    [self.ADView addSubview:self.ADLabel];
-    [self.ADLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.adLabelScrollView = [[UIScrollView alloc] init];
+    self.adLabelScrollView.backgroundColor = [UIColor clearColor];
+    self.adLabelScrollView.showsVerticalScrollIndicator = NO;
+    self.adLabelScrollView.showsHorizontalScrollIndicator = NO;
+    self.adLabelScrollView.bounces = NO;
+    self.adLabelScrollView.scrollEnabled = NO;
+    [self.ADView addSubview:self.adLabelScrollView];
+    
+    [self.adLabelScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(laba.mas_centerY);
         make.left.mas_equalTo(laba.mas_right).offset(10);
+        make.right.mas_equalTo(self.ADView.mas_right);
+        make.height.mas_equalTo(self.ADView.mas_height).multipliedBy(0.7);
     }];
     
     NSArray *labelNames = @[@"社区商家", @"推介商品&服务", @"商圈广告"];
@@ -266,15 +295,14 @@
     
 }
 
-- (void)showAdDetail{
+- (void)showAdDetail:(UIButton *)btn{
     
-    if (self.adLabels.count-1<self.scrollIndex) {
-        self.scrollIndex = -1;
+    if (self.adLabels.count-1<btn.tag-501) {
         return;
     }
     
     ADDetailVC *detail = [[ADDetailVC alloc] init];
-    if (self.adLabels[self.scrollIndex]) {
+    if (self.adLabels[btn.tag-501]) {
         detail.advo = self.adLabels[self.scrollIndex];
         [self.navigationController pushViewController:detail animated:YES];
     }
