@@ -43,7 +43,16 @@
 
     [[ServicesManager getAPI] getNotes:self.pageNumber onComplete:^(NSString *errorMsg, NSArray *list) {
         
-        if (list.count == 0 && errorMsg == nil) {
+        if (errorMsg) {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView.mj_footer endRefreshing];
+                [self.tableView.mj_header endRefreshing];
+            });
+            
+        }
+        
+        else if (list.count == 0 && errorMsg == nil) {
             [self.tableView.mj_footer endRefreshing];
             [SVProgressHUD dismiss];
         }

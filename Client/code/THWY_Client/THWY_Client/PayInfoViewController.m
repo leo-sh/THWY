@@ -42,6 +42,15 @@
     
     [[ServicesManager getAPI]getAFee:self.feeId onComplete:^(NSString *errorMsg, FeeVO *ad) {
         
+        if (errorMsg) {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView.mj_footer endRefreshing];
+                [self.tableView.mj_header endRefreshing];
+            });
+            
+        }
+        
         NSLog(@"213213")
         
         NSString *sourceInfo = [NSString stringWithFormat:@"%@栋%@单元%@室",ad.block,ad.unit,ad.mph];

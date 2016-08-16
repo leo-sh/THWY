@@ -169,6 +169,9 @@
     self.height = self.textView.bottom + CONTENT_FONT;
     
     [[ServicesManager getAPI]getComplaintTypes:^(NSString *errorMsg, NSArray *list) {
+        if (errorMsg) {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
         
         NSMutableArray *array = [NSMutableArray array];
         

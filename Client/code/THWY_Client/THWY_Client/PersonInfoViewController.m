@@ -55,12 +55,20 @@
     else
     {
         [[ServicesManager getAPI]getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
-            self.userInfo = user;
             
-            [self createIconAndBriefInfo];
-            [self createDetailedInfoAndUpdateBtn];
-            
-            [SVProgressHUD dismiss];
+            if (errorMsg) {
+                [SVProgressHUD showErrorWithStatus:errorMsg];
+
+            }
+            else
+            {
+                self.userInfo = user;
+                
+                [self createIconAndBriefInfo];
+                [self createDetailedInfoAndUpdateBtn];
+                
+                [SVProgressHUD dismiss];
+            }
             
         }];
     }
