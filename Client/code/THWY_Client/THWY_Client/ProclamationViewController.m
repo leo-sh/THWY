@@ -94,13 +94,13 @@
     }
     
     [self.view addSubview:self.tableView];
-    TableViewFram
-//    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(10);
-//        make.left.mas_equalTo(10);
-//        make.right.mas_equalTo(-10);
-//        make.bottom.mas_equalTo(-10);
-//    }];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(10);
+        make.left.mas_equalTo(5);
+        make.right.mas_equalTo(-5);
+        make.bottom.mas_equalTo(-10);
+    }];
 
     
 }
