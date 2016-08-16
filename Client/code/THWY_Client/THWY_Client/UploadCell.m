@@ -33,7 +33,7 @@
 - (IBAction)select:(UIButton *)sender {
     
     TYAlertView *alertView = [[TYAlertView alloc]init];
-    
+    My_WeakSelf;
     [alertView addAction:[TYAlertAction actionWithTitle:@"相机" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
         [self loadImageWithType:UIImagePickerControllerSourceTypeCamera];
     }]];
