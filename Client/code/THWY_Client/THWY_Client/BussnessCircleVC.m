@@ -211,12 +211,27 @@
 //                    adbtn.titleLabel.centerY = self.laba.centerY;
                     [self.adLabelScrollView addSubview:adbtn];
                     [adbtn setTitle:model.title forState:UIControlStateNormal];
+                    if (i == list.count-1){
+                        [self.adLabels addObject:list[0]];
+                        UIButton *adbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, HEIGHT*(i+1), self.view.width*6/7.0, HEIGHT)];
+                        adbtn.tag = 500+i+1;
+                        [adbtn addTarget:self action:@selector(showAdDetail:) forControlEvents:UIControlEventTouchUpInside];
+                        adbtn.titleLabel.font = FontSize(CONTENT_FONT+1);
+                        [adbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                        adbtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+                        adbtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, (70-18)*0.5, 0);
+                        //                    adbtn.titleLabel.centerY = self.laba.centerY;
+                        [self.adLabelScrollView addSubview:adbtn];
+                        [adbtn setTitle:[list[0] title] forState:UIControlStateNormal];
+                    }
                 }
                 self.ADLabel.hidden = YES;
             }
             
             if (self.adLabels.count>0) {
+                self.scrollIndex = 0;
                 self.adLabelTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(runloopAdLabel) userInfo:nil repeats:YES];
+                
             }        
         }
         [SVProgressHUD dismiss];
@@ -228,15 +243,18 @@
     if (!self.adLabels){
         return;
     }
-    if (self.scrollIndex<self.adLabels.count-1) {
+    if (self.scrollIndex<self.adLabels.count-2) {
         self.scrollIndex++;
         [UIView animateWithDuration:0.5 animations:^{
             self.adLabelScrollView.contentOffset = CGPointMake(0, self.scrollIndex*HEIGHT);
         }];
     }else{
+        [UIView animateWithDuration:0.5 animations:^{
+            self.scrollIndex++;
+            self.adLabelScrollView.contentOffset = CGPointMake(0, self.scrollIndex*HEIGHT);
+        }];
         self.scrollIndex = 0;
         self.adLabelScrollView.contentOffset = CGPointMake(0, 0);
-
     }
 }
 
