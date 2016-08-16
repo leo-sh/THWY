@@ -213,6 +213,9 @@
         
         if (i == imageNameArray.count - 1) {
             label.textField.secureTextEntry = YES;
+            label.textField.text = @"";
+            label.textField.rightViewMode = UITextFieldViewModeNever;
+            label.textField.font = [UIFont systemFontOfSize:12];
         }
         
         switch (i) {
