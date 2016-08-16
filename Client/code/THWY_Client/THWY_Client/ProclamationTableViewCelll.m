@@ -47,7 +47,7 @@
         
         self.title.textAlignment = NSTextAlignmentCenter;
         
-        self.time.font = [UIFont systemFontOfSize:11];
+        self.time.font = FontSize(Content_Time_Font);
         
         self.time.textAlignment = NSTextAlignmentCenter;
 

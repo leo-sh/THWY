@@ -90,7 +90,7 @@
     
     titleLabel.textAlignment = NSTextAlignmentCenter;
     
-    time.font = [UIFont systemFontOfSize:11];
+    time.font = FontSize(Content_Time_Font);
     
     time.textAlignment = NSTextAlignmentCenter;
     
