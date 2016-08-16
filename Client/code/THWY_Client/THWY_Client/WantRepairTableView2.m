@@ -279,6 +279,8 @@
         errorMsg = @"请选择图片";
     }else if ([self.repairVO.videoPath isEqualToString:@""]){
         errorMsg = @"请选择视频";
+    }else if ([self.repairVO.repair_detail isEqual:nil]){
+        errorMsg = @"描述不能为空";
     }
     
     if (![errorMsg isEqualToString:@""]){
