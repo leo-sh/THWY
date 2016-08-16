@@ -107,7 +107,7 @@
     
     [self.topView addSubview:nameLabel];
     
-    CGFloat nameLabelTop = iconTop * 3;
+    CGFloat nameLabelTop = iconTop * 2;
     CGFloat nameLabelLeft = iconLeft * 1.2;
     CGFloat nameLabelRight = 0;
     CGFloat namelabelHeight = self.topView.height/5.f;
@@ -124,7 +124,7 @@
     
 //    CGFloat font = namelabelHeight * 0.65;
     
-    nameLabel.font = [UIFont systemFontOfSize: CONTENT_FONT];
+    nameLabel.font = FontSize(CONTENT_FONT);
     
     
     UILabel *addressLabel = [[UILabel alloc]init];
@@ -144,9 +144,27 @@
         make.height.mas_equalTo(addressLabelHeight);
     }];
     HouseVO *house = self.userInfo.houses[0];
-    NSString *addressString = [NSString stringWithFormat:@"%@%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
+    NSString *addressString = [NSString stringWithFormat:@"%@",house.estate];
     addressLabel.text = addressString;
-    addressLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    addressLabel.font = FontSize(CONTENT_FONT);
+    
+    NSString *detailString = [NSString stringWithFormat:@"%@栋%@单元%@室",house.block,house.unit,house.mph];
+    
+    UILabel *detailLabel = [[UILabel alloc]init];
+    
+    [self.topView addSubview:detailLabel];
+    
+    [detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+      
+        make.top.equalTo(addressLabel.mas_bottom).with.offset(addressLabelTop);
+        make.left.equalTo(icon.mas_right).with.offset(addressLabelLeft);
+        make.right.mas_equalTo(addressLabelRight);
+        make.height.mas_equalTo(addressLabelHeight);
+    }];
+    
+    detailLabel.text = detailString;
+    detailLabel.font = FontSize(CONTENT_FONT);
+    
 
 }
 
