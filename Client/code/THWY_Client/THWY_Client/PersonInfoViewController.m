@@ -203,6 +203,10 @@
         //将边框减掉
         labelY +=labelHeight - 1;
         
+        if (i == imageNameArray.count - 1) {
+            label.textField.secureTextEntry = YES;
+        }
+        
         switch (i) {
                 
             case 0:
