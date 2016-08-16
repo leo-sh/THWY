@@ -145,7 +145,9 @@
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell2"];
         }
         cell.textLabel.text = @"投诉内容：";
-        cell.detailTextLabel.text = self.data[indexPath.section][0];
+        cell.textLabel.font = FontSize(CONTENT_FONT);
+        cell.detailTextLabel.text = self.data[1][0];
+        cell.detailTextLabel.font = FontSize(CONTENT_FONT);
         cell.detailTextLabel.numberOfLines = 0;
         resultCell = cell;
     }
@@ -206,9 +208,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        CGFloat contenHeight = [self.data[1][0] sizeWithFont:[UIFont systemFontOfSize:20] maxSize:CGSizeMake(tableView.width, 4000)].height;
+        CGFloat contenHeight = [self.data[1][0] sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(tableView.width - 20, 4000)].height;
         //添加上面固定内容的高度 + 下面内容的高度 + 与下边界的距离
-        return contenHeight + 20;
+        return contenHeight + 40;
     }
     else
     {

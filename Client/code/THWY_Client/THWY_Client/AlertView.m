@@ -34,7 +34,7 @@
         
         self.leftBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, heighAndWidth, heighAndWidth)];
         [self.leftBtn setImage:[UIImage imageNamed:@"√"] forState:UIControlStateNormal];
-        self.leftBtn.contentEdgeInsets = UIEdgeInsetsMake(15, 15,  15 , 15);
+        self.leftBtn.contentEdgeInsets = UIEdgeInsetsMake(15, 14.5,  15 , 14.5);
         [self addSubview:self.leftBtn];
 
         self.rightBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.right - heighAndWidth - 10, 0, heighAndWidth, heighAndWidth)];
@@ -42,7 +42,7 @@
         [self.rightBtn setImage:[UIImage imageNamed:@"X"] forState:UIControlStateNormal];
 //        self.rightBtn.backgroundColor = [UIColor blackColor];
         
-        self.rightBtn.contentEdgeInsets = UIEdgeInsetsMake(15, 15,15, 15);
+        self.rightBtn.contentEdgeInsets = UIEdgeInsetsMake(15, 14.5,15, 14.5);
 
         
         [self.rightBtn addTarget:self action:@selector(clickRight) forControlEvents:UIControlEventTouchUpInside];

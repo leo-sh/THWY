@@ -13,7 +13,7 @@
 #import "AlertView.h"
 #import "SuggestAlertView.h"
 #import "BlueRedioButton.h"
-#define TopViewH 70
+#define TopViewH 65
 @interface SuggestViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property SuggestAlertView *alertView;
 @property UITableView *tableView;
@@ -94,13 +94,15 @@
     }];
     self.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"建议",@"意见"]];
     self.segmentedControl.selectedSegmentIndex = 0;
-    self.segmentedControl.frame = CGRectMake(40, 15,My_ScreenW - 80 ,  40);
+    self.segmentedControl.frame = CGRectMake(40, 15,My_ScreenW - 80 ,  35);
     
     self.segmentedControl.layer.cornerRadius = 10;
     self.segmentedControl.clipsToBounds = YES;
     self.segmentedControl.layer.borderWidth = 1;
     self.segmentedControl.layer.borderColor = My_NAV_BG_Color.CGColor;
     self.segmentedControl.tintColor = My_NAV_BG_Color;
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:My_NAV_BG_Color,NSForegroundColorAttributeName,FontSize(18.0),NSFontAttributeName ,nil];
+    [self.segmentedControl setTitleTextAttributes:dic forState:UIControlStateNormal];
     [self.topView addSubview:self.segmentedControl];
     
     [self.segmentedControl addTarget:self action:@selector(change) forControlEvents:UIControlEventValueChanged];
@@ -126,7 +128,7 @@
     
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.topView.mas_bottom).with.offset(10);
+        make.top.equalTo(self.topView.mas_bottom).with.offset(0);
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(-80);
