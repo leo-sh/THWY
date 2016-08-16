@@ -53,6 +53,11 @@
 - (void)refreshUserInfo{
     if ([My_ServicesManager isLogin]) {
         [My_ServicesManager getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
+            if (errorMsg) {
+                [SVProgressHUD showErrorWithStatus:errorMsg];
+                return ;
+            }
+            
             if (user) {
                 [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"Avatar"]];
                 self.username.text = user.real_name;
@@ -141,8 +146,8 @@
     self.headImage.image = [UIImage imageNamed:@"头像1"];
     self.headImage.userInteractionEnabled = YES;
     self.headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/3;
-    self.headImage.layer.borderWidth = 3;
-    self.headImage.layer.borderColor = [UIColor whiteColor].CGColor;
+//    self.headImage.layer.borderWidth = 3;
+//    self.headImage.layer.borderColor = [UIColor whiteColor].CGColor;
     self.headImage.clipsToBounds = YES;
     [self.userInfoView addSubview:self.headImage];
     

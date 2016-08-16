@@ -64,14 +64,11 @@
                 NSArray *array = @[temp.complaint_type_name,temp.estate,temp.complaint_person,temp.complaint_phone,temp.ctime,temp.Id];
                 [self.contentEnd addObject:array];
             }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                [self.tableView.mj_footer endRefreshing];
-                [self.tableView.mj_header endRefreshing];
-                
-                [SVProgressHUD dismiss];
-
-            });
+            [self.tableView reloadData];
+            [self.tableView.mj_footer endRefreshing];
+            [self.tableView.mj_header endRefreshing];
+            
+            [SVProgressHUD dismiss];
         }
     }];
         
@@ -110,17 +107,17 @@
             make.top.mas_equalTo(10);
             make.left.mas_equalTo(5);
             make.right.mas_equalTo(-5);
-            make.bottom.mas_equalTo(-80);
+            make.bottom.mas_equalTo(0);
         }];
         
         UIView *view = [[UIView alloc]init];
         
-        view.backgroundColor = WhiteAlphaColor;
+        view.backgroundColor = My_AlphaColor(255, 255, 255, 0.9);
         [self.view addSubview:view];
 
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
             
-            make.top.equalTo(self.tableView.mas_bottom).with.offset(10);
+            make.top.equalTo(self.tableView.mas_bottom).with.offset(-70);
             make.bottom.mas_equalTo(0);
             make.left.mas_equalTo(0);
             make.right.mas_equalTo(0);
@@ -182,12 +179,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
 
-        return 6;
+    return 6;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-
+    if (section == self.data.count-1) {
+        return 30;
+    }
     return 0.01;
 }
 

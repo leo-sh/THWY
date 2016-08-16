@@ -179,15 +179,16 @@
     [[ServicesManager getAPI] getMerchants:++self.page name:nil onComplete:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg){
             [SVProgressHUD showErrorWithStatus:errorMsg];
+        }else{
+            for (MerchantVO *model in list) {
+                [self.bussnessModels addObject:model];
+            }
+            
+            [self.tableView reloadData];
+            [SVProgressHUD dismiss];        
         }
         
-        for (MerchantVO *model in list) {
-            [self.bussnessModels addObject:model];
-        }
-        
-        [self.tableView reloadData];
         [self.tableView.mj_footer endRefreshing];
-        [SVProgressHUD dismiss];
         
     }];
 

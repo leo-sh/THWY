@@ -145,15 +145,15 @@
         case 3:{
             switch (indexpath.row) {
                 case 0:{
-                    self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_1_time intValue] withFormat:nil];
+                    self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_1_time integerValue] withFormat:nil];
                     break;
                 }
                 case 1:{
-                    self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_2_time intValue] withFormat:nil];
+                    self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_2_time integerValue] withFormat:nil];
                     break;
                 }
                 case 2:{
-                    self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_3_time intValue] withFormat:nil];
+                    self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_3_time integerValue] withFormat:nil];
                     [self.line setHidden:YES];
                     break;
                 }
