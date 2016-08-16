@@ -51,15 +51,23 @@
     [[ServicesManager getAPI]getFees:self.page year:self.year feeState:self.statu onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg) {
-            NSLog(@"%@",errorMsg);
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView.mj_footer endRefreshing];
+                [self.tableView.mj_header endRefreshing];
+            });
+            
         }
-        self.data = list;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-            [SVProgressHUD dismiss];
+        else
+        {
+            self.data = list;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [SVProgressHUD dismiss];
 
-        });
+            });
+        }
         
     }];
 }

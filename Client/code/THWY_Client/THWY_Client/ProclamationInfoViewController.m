@@ -37,9 +37,17 @@
         [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
         
         [[ServicesManager getAPI]getANote:self.proclamationId onComplete:^(NSString *errorMsg, NoteVO *complaint) {
-            self.title = complaint.title;
-            [self createUI:complaint];
-            [SVProgressHUD dismiss];
+            if (errorMsg) {
+                [SVProgressHUD showErrorWithStatus:errorMsg];
+                
+            }
+            else
+            {
+                self.title = complaint.title;
+                [self createUI:complaint];
+                [SVProgressHUD dismiss];
+            }
+
             
         }];
     }
