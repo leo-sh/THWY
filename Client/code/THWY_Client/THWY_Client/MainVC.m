@@ -27,6 +27,8 @@
 
 @property (strong, nonatomic) UIButton *leftButton;
 
+@property (strong, nonatomic) UIScrollView *bgScrollView;
+
 @end
 
 @implementation MainVC
@@ -193,20 +195,29 @@
 
 #pragma mark - 各模块控件
 - (void)initModuleViews{
+    
+    self.bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.userInfoView.height+self.userInfoView.y, self.view.width, 3/4.0 * (My_ScreenH-64)+2*topMargin)];
+    self.bgScrollView.contentSize = CGSizeMake(self.bgScrollView.width, (My_ScreenW-3*topMargin)*0.5/297*168.0*4+topMargin*4);
+    self.bgScrollView.backgroundColor = [UIColor clearColor];
+    self.bgScrollView.showsVerticalScrollIndicator = NO;
+    self.bgScrollView.showsHorizontalScrollIndicator = NO;
+    self.bgScrollView.bounces = NO;
+    [self.view addSubview:self.bgScrollView];
+    
     UIButton *woyaobaoxiu = [[UIButton alloc] init];
     woyaobaoxiu.tag = 101;
     [woyaobaoxiu setBackgroundImage:[UIImage imageNamed:@"我要保修"] forState:UIControlStateNormal];
-    [self.view addSubview:woyaobaoxiu];
+    [self.bgScrollView addSubview:woyaobaoxiu];
     [woyaobaoxiu mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).offset(topMargin);
-        make.top.mas_equalTo(self.userInfoView.mas_bottom).offset(topMargin);
+        make.left.mas_equalTo(self.bgScrollView.mas_left).offset(topMargin);
+        make.top.mas_equalTo(self.bgScrollView.mas_top).offset(topMargin);
         make.size.mas_equalTo(CGSizeMake((My_ScreenW-3*topMargin)*0.5, (My_ScreenW-3*topMargin)*0.5/297*168.0));
     }];
     
     UIButton *baoxiujilu = [[UIButton alloc] init];
     baoxiujilu.tag = 102;
     [baoxiujilu setBackgroundImage:[UIImage imageNamed:@"保修记录"] forState:UIControlStateNormal];
-    [self.view addSubview:baoxiujilu];
+    [self.bgScrollView addSubview:baoxiujilu];
     [baoxiujilu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(woyaobaoxiu.mas_left);
         make.top.mas_equalTo(woyaobaoxiu.mas_bottom).offset(topMargin);
@@ -216,7 +227,7 @@
     UIButton *shequshangquan = [[UIButton alloc] init];
     shequshangquan.tag = 103;
     [shequshangquan setBackgroundImage:[UIImage imageNamed:@"社区商圈"] forState:UIControlStateNormal];
-    [self.view addSubview:shequshangquan];
+    [self.bgScrollView addSubview:shequshangquan];
     [shequshangquan mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(baoxiujilu.mas_left);
         make.top.mas_equalTo(baoxiujilu.mas_bottom).offset(topMargin);
@@ -227,7 +238,7 @@
     UIButton *jiaofeitaizhang = [[UIButton alloc] init];
     jiaofeitaizhang.tag = 104;
     [jiaofeitaizhang setBackgroundImage:[UIImage imageNamed:@"缴费台账"] forState:UIControlStateNormal];
-    [self.view addSubview:jiaofeitaizhang];
+    [self.bgScrollView addSubview:jiaofeitaizhang];
     [jiaofeitaizhang mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(woyaobaoxiu.mas_right).offset(topMargin);
         make.top.mas_equalTo(woyaobaoxiu.mas_top);
@@ -237,7 +248,7 @@
     UIButton *woyaotousu = [[UIButton alloc] init];
     woyaotousu.tag = 105;
     [woyaotousu setBackgroundImage:[UIImage imageNamed:@"我要投诉"] forState:UIControlStateNormal];
-    [self.view addSubview:woyaotousu];
+    [self.bgScrollView addSubview:woyaotousu];
     [woyaotousu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(baoxiujilu.mas_right).offset(topMargin);
         make.top.mas_equalTo(baoxiujilu.mas_top);
@@ -248,7 +259,7 @@
     UIButton *zhanghaoxinxi = [[UIButton alloc] init];
     zhanghaoxinxi.tag = 106;
     [zhanghaoxinxi setBackgroundImage:[UIImage imageNamed:@"账号信息"] forState:UIControlStateNormal];
-    [self.view addSubview:zhanghaoxinxi];
+    [self.bgScrollView addSubview:zhanghaoxinxi];
     [zhanghaoxinxi mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(woyaotousu.mas_right).offset(topMargin);
         make.top.mas_equalTo(woyaotousu.mas_top);
@@ -260,7 +271,7 @@
     UIButton *jianyiyijian = [[UIButton alloc] init];
     jianyiyijian.tag = 107;
     [jianyiyijian setBackgroundImage:[UIImage imageNamed:@"建议意见"] forState:UIControlStateNormal];
-    [self.view addSubview:jianyiyijian];
+    [self.bgScrollView addSubview:jianyiyijian];
     [jianyiyijian mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(jiaofeitaizhang.mas_left);
         make.top.mas_equalTo(shequshangquan.mas_top);
@@ -270,12 +281,97 @@
     UIButton *yezhugonggao = [[UIButton alloc] init];
     yezhugonggao.tag = 108;
     [yezhugonggao setBackgroundImage:[UIImage imageNamed:@"业主公告"] forState:UIControlStateNormal];
-    [self.view addSubview:yezhugonggao];
+    [self.bgScrollView addSubview:yezhugonggao];
     [yezhugonggao mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(jianyiyijian.mas_left);
         make.top.mas_equalTo(jianyiyijian.mas_bottom).offset(topMargin);
         make.width.and.height.mas_equalTo(jiaofeitaizhang);
     }];
+    
+    
+//    UIButton *woyaobaoxiu = [[UIButton alloc] init];
+//    woyaobaoxiu.tag = 101;
+//    [woyaobaoxiu setBackgroundImage:[UIImage imageNamed:@"我要保修"] forState:UIControlStateNormal];
+//    [self.view addSubview:woyaobaoxiu];
+//    [woyaobaoxiu mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(self.view.mas_left).offset(topMargin);
+//        make.top.mas_equalTo(self.userInfoView.mas_bottom).offset(topMargin);
+//        make.size.mas_equalTo(CGSizeMake((My_ScreenW-3*topMargin)*0.5, (My_ScreenW-3*topMargin)*0.5/297*168.0));
+//    }];
+//    
+//    UIButton *baoxiujilu = [[UIButton alloc] init];
+//    baoxiujilu.tag = 102;
+//    [baoxiujilu setBackgroundImage:[UIImage imageNamed:@"保修记录"] forState:UIControlStateNormal];
+//    [self.view addSubview:baoxiujilu];
+//    [baoxiujilu mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(woyaobaoxiu.mas_left);
+//        make.top.mas_equalTo(woyaobaoxiu.mas_bottom).offset(topMargin);
+//        make.width.and.height.mas_equalTo(woyaobaoxiu);
+//    }];
+//    
+//    UIButton *shequshangquan = [[UIButton alloc] init];
+//    shequshangquan.tag = 103;
+//    [shequshangquan setBackgroundImage:[UIImage imageNamed:@"社区商圈"] forState:UIControlStateNormal];
+//    [self.view addSubview:shequshangquan];
+//    [shequshangquan mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(baoxiujilu.mas_left);
+//        make.top.mas_equalTo(baoxiujilu.mas_bottom).offset(topMargin);
+//        make.width.mas_equalTo(woyaobaoxiu.mas_width);
+//        make.height.mas_equalTo(baoxiujilu.mas_height).multipliedBy(2.0).offset(topMargin);
+//    }];
+//    
+//    UIButton *jiaofeitaizhang = [[UIButton alloc] init];
+//    jiaofeitaizhang.tag = 104;
+//    [jiaofeitaizhang setBackgroundImage:[UIImage imageNamed:@"缴费台账"] forState:UIControlStateNormal];
+//    [self.view addSubview:jiaofeitaizhang];
+//    [jiaofeitaizhang mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(woyaobaoxiu.mas_right).offset(topMargin);
+//        make.top.mas_equalTo(woyaobaoxiu.mas_top);
+//        make.width.and.height.mas_equalTo(woyaobaoxiu);
+//    }];
+//    
+//    UIButton *woyaotousu = [[UIButton alloc] init];
+//    woyaotousu.tag = 105;
+//    [woyaotousu setBackgroundImage:[UIImage imageNamed:@"我要投诉"] forState:UIControlStateNormal];
+//    [self.view addSubview:woyaotousu];
+//    [woyaotousu mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(baoxiujilu.mas_right).offset(topMargin);
+//        make.top.mas_equalTo(baoxiujilu.mas_top);
+//        make.height.mas_equalTo(baoxiujilu);
+//        make.width.mas_equalTo(baoxiujilu.mas_width).multipliedBy(0.5).offset(-topMargin*0.5);
+//    }];
+//    
+//    UIButton *zhanghaoxinxi = [[UIButton alloc] init];
+//    zhanghaoxinxi.tag = 106;
+//    [zhanghaoxinxi setBackgroundImage:[UIImage imageNamed:@"账号信息"] forState:UIControlStateNormal];
+//    [self.view addSubview:zhanghaoxinxi];
+//    [zhanghaoxinxi mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(woyaotousu.mas_right).offset(topMargin);
+//        make.top.mas_equalTo(woyaotousu.mas_top);
+//        make.width.and.height.mas_equalTo(woyaotousu);
+//    }];
+//    
+//    [zhanghaoxinxi addTarget:self action:@selector(showVC:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIButton *jianyiyijian = [[UIButton alloc] init];
+//    jianyiyijian.tag = 107;
+//    [jianyiyijian setBackgroundImage:[UIImage imageNamed:@"建议意见"] forState:UIControlStateNormal];
+//    [self.view addSubview:jianyiyijian];
+//    [jianyiyijian mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(jiaofeitaizhang.mas_left);
+//        make.top.mas_equalTo(shequshangquan.mas_top);
+//        make.width.and.height.mas_equalTo(jiaofeitaizhang);
+//    }];
+//    
+//    UIButton *yezhugonggao = [[UIButton alloc] init];
+//    yezhugonggao.tag = 108;
+//    [yezhugonggao setBackgroundImage:[UIImage imageNamed:@"业主公告"] forState:UIControlStateNormal];
+//    [self.view addSubview:yezhugonggao];
+//    [yezhugonggao mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(jianyiyijian.mas_left);
+//        make.top.mas_equalTo(jianyiyijian.mas_bottom).offset(topMargin);
+//        make.width.and.height.mas_equalTo(jiaofeitaizhang);
+//    }];
     
     NSArray *buttons = @[woyaobaoxiu, baoxiujilu, shequshangquan, jiaofeitaizhang, woyaotousu, zhanghaoxinxi, jianyiyijian, yezhugonggao];
     for (UIButton *button in buttons) {
