@@ -45,7 +45,7 @@
         make.left.mas_equalTo(self.view.mas_left);
         make.right.mas_equalTo(self.view.mas_right);
         make.top.mas_equalTo(self.view.mas_top);
-        make.height.mas_equalTo(self.view.height*1/4.0);
+        make.height.mas_equalTo(self.view.height/3.6);
 
     }];
     NSInteger iconHeight = (self.view.height*1/4.0-3*topMargin)*2/3.0;
@@ -64,12 +64,12 @@
     self.nameLabel = [[UILabel alloc] init];
     self.nameLabel.text = self.merchant.business_name;
     self.nameLabel.textColor = [UIColor blackColor];
-    self.nameLabel.font = [UIFont fontWithName:My_RegularFontName size:16.0];
+    self.nameLabel.font = FontSize(CONTENT_FONT + 2);
     [self.nameLabel sizeToFit];
     [self.bgView addSubview:self.nameLabel];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.iconImageView.mas_right).offset(topMargin);
-        make.top.mas_equalTo(self.iconImageView.mas_top);
+        make.top.mas_equalTo(self.iconImageView.mas_top).offset(10);
         make.height.mas_equalTo(iconHeight*0.2);
     }];
     
@@ -79,7 +79,7 @@
     NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[self.merchant.intro dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     self.descLabel.text = attrStr.string;
     self.descLabel.textColor = [UIColor lightGrayColor];
-    self.descLabel.font = FontSize(CONTENT_FONT-1);
+    self.descLabel.font = FontSize(CONTENT_FONT);
     self.descLabel.numberOfLines = 0;
     self.descLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [self.descLabel sizeToFit];
@@ -101,19 +101,25 @@
     [self.btnContact setTitle:@"联系商家" forState:UIControlStateNormal];
     [self.btnContact setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.btnContact setBackgroundColor:My_NAV_BG_Color];
+    self.btnContact.titleLabel.font = FontSize(CONTENT_FONT);
     [self.btnContact addTarget:self action:@selector(contact:) forControlEvents:UIControlEventTouchUpInside];
+    self.btnContact.layer.cornerRadius = 2;
+    self.btnContact.clipsToBounds = YES;
     [self.bgView addSubview:self.btnContact];
     [self.btnContact mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.bgView.mas_centerX).multipliedBy(0.5);
         make.top.mas_equalTo(self.descLabel.mas_bottom).offset(topMargin*1.5);
         make.width.mas_equalTo((self.view.width-4*topMargin)*0.5);
-        make.height.mas_equalTo(iconHeight*1/3.0);
+        make.height.mas_equalTo(iconHeight*1.5/3.0);
     }];
     
     self.btnShowDetail = [[UIButton alloc] init];
     [self.btnShowDetail setTitle:@"进入商家" forState:UIControlStateNormal];
     [self.btnShowDetail setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.btnShowDetail.titleLabel.font = FontSize(CONTENT_FONT);
     [self.btnShowDetail setBackgroundColor:My_NAV_BG_Color];
+    self.btnShowDetail.layer.cornerRadius = 2;
+    self.btnShowDetail.clipsToBounds = YES;
     [self.btnShowDetail addTarget:self action:@selector(showDetail:) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.btnShowDetail];
     [self.btnShowDetail mas_makeConstraints:^(MASConstraintMaker *make) {

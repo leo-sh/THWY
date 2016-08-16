@@ -18,7 +18,7 @@
 		1E4CE4C71D4DCCAB00FF528A /* ComplainDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CE4C61D4DCCAB00FF528A /* ComplainDetailViewController.m */; };
 		1E5F6CD81D5071C2004DC6F6 /* PayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F6CD71D5071C2004DC6F6 /* PayTableViewCell.m */; };
 		1E5F6CDB1D507239004DC6F6 /* PayInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F6CDA1D507239004DC6F6 /* PayInfoViewController.m */; };
-		1E60484A1D4D0E51007CDE32 /* ProclamationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6048491D4D0E51007CDE32 /* ProclamationTableViewCell.m */; };
+		1E60484A1D4D0E51007CDE32 /* ProclamationTableViewCelll.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6048491D4D0E51007CDE32 /* ProclamationTableViewCelll.m */; };
 		1E75274B1D519A8500AEDEC0 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E75274A1D519A8500AEDEC0 /* AlertView.m */; };
 		1E7527711D51EF4E00AEDEC0 /* BlueRedioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7527701D51EF4E00AEDEC0 /* BlueRedioButton.m */; };
 		1E7527741D52029700AEDEC0 /* ComplainAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7527731D52029700AEDEC0 /* ComplainAlertView.m */; };
@@ -49,6 +49,7 @@
 		1EE2841F1D4D037D008D5305 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2841E1D4D037D008D5305 /* PayViewController.m */; };
 		1EE284251D4D0548008D5305 /* ProclamationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE284241D4D0548008D5305 /* ProclamationViewController.m */; };
 		1EE2842B1D4D05D1008D5305 /* SuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2842A1D4D05D1008D5305 /* SuggestViewController.m */; };
+		1EF6BFF61D62B2010094955A /* SuggestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF6BFF51D62B2010094955A /* SuggestTableViewCell.m */; };
 		5B197EC11D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B197EBF1D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a */; };
 		5B197ECA1D48779B00B95DE5 /* PointHistoryVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EC91D48779B00B95DE5 /* PointHistoryVO.m */; };
 		5B197EE61D487DAC00B95DE5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B197ECC1D487DAC00B95DE5 /* Info.plist */; };
@@ -222,7 +223,7 @@
 		1E5F6CD91D507239004DC6F6 /* PayInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayInfoViewController.h; sourceTree = "<group>"; };
 		1E5F6CDA1D507239004DC6F6 /* PayInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayInfoViewController.m; sourceTree = "<group>"; };
 		1E6048481D4D0E51007CDE32 /* ProclamationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProclamationTableViewCell.h; sourceTree = "<group>"; };
-		1E6048491D4D0E51007CDE32 /* ProclamationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProclamationTableViewCell.m; sourceTree = "<group>"; };
+		1E6048491D4D0E51007CDE32 /* ProclamationTableViewCelll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProclamationTableViewCelll.m; sourceTree = "<group>"; };
 		1E7527491D519A8500AEDEC0 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		1E75274A1D519A8500AEDEC0 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
 		1E75276F1D51EF4E00AEDEC0 /* BlueRedioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueRedioButton.h; sourceTree = "<group>"; };
@@ -283,6 +284,8 @@
 		1EE284241D4D0548008D5305 /* ProclamationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProclamationViewController.m; sourceTree = "<group>"; };
 		1EE284291D4D05D1008D5305 /* SuggestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestViewController.h; sourceTree = "<group>"; };
 		1EE2842A1D4D05D1008D5305 /* SuggestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestViewController.m; sourceTree = "<group>"; };
+		1EF6BFF41D62B2010094955A /* SuggestTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestTableViewCell.h; sourceTree = "<group>"; };
+		1EF6BFF51D62B2010094955A /* SuggestTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestTableViewCell.m; sourceTree = "<group>"; };
 		5B197EBF1D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.3.0.a; sourceTree = "<group>"; };
 		5B197EC01D48527600B95DE5 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		5B197EC81D48779B00B95DE5 /* PointHistoryVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointHistoryVO.h; sourceTree = "<group>"; };
@@ -828,7 +831,7 @@
 			isa = PBXGroup;
 			children = (
 				1E6048481D4D0E51007CDE32 /* ProclamationTableViewCell.h */,
-				1E6048491D4D0E51007CDE32 /* ProclamationTableViewCell.m */,
+				1E6048491D4D0E51007CDE32 /* ProclamationTableViewCelll.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -858,6 +861,8 @@
 				1E7527701D51EF4E00AEDEC0 /* BlueRedioButton.m */,
 				1E7527761D52165B00AEDEC0 /* SuggestAlertView.h */,
 				1E7527771D52165B00AEDEC0 /* SuggestAlertView.m */,
+				1EF6BFF41D62B2010094955A /* SuggestTableViewCell.h */,
+				1EF6BFF51D62B2010094955A /* SuggestTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1569,7 +1574,7 @@
 				5B2571851D47110B00CB4167 /* UIImage+ScreenShot.m in Sources */,
 				1E3BA3911D4AFF2B00633D0B /* PersonInfoLabel.m in Sources */,
 				7928242F1D544130001764EB /* AlertEstateTableView.m in Sources */,
-				1E60484A1D4D0E51007CDE32 /* ProclamationTableViewCell.m in Sources */,
+				1E60484A1D4D0E51007CDE32 /* ProclamationTableViewCelll.m in Sources */,
 				5B197EFF1D48A47800B95DE5 /* ComplaintVO.m in Sources */,
 				5B2571791D47110B00CB4167 /* Foundation+Log.m in Sources */,
 				5B197F0B1D48AD2C00B95DE5 /* GoodVO.m in Sources */,
@@ -1594,6 +1599,7 @@
 				1E7527CE1D56D68100AEDEC0 /* AlertButton.m in Sources */,
 				1E7527AB1D52349F00AEDEC0 /* MJRefreshFooter.m in Sources */,
 				1E7527AC1D52349F00AEDEC0 /* MJRefreshHeader.m in Sources */,
+				1EF6BFF61D62B2010094955A /* SuggestTableViewCell.m in Sources */,
 				5B2572251D47177B00CB4167 /* UIImage+GIF.m in Sources */,
 				793296771D5197A2000FD426 /* RecordeRepairingCell.m in Sources */,
 				5B2571881D47110B00CB4167 /* UIView+Extension.m in Sources */,

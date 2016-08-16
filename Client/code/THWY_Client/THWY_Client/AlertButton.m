@@ -13,6 +13,7 @@
 @property int method;
 @property CGFloat frameY;
 @property CGFloat frameX;
+@property NSArray *data;
 @end
 @implementation AlertButton
 
@@ -48,12 +49,12 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        self.titleLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+        self.titleLabel.font = FontSize(CONTENT_FONT);
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
         [self setImage:[UIImage imageNamed:@"repaire_下"] forState:UIControlStateNormal];
         self.layer.borderWidth = 1;
-        self.layer.borderColor = My_Color(236, 236, 236).CGColor;
+        self.layer.borderColor = CellUnderLineColor.CGColor;
         self.backgroundColor = [UIColor whiteColor];
         self.adjustsImageWhenHighlighted = NO;
     }
@@ -72,21 +73,22 @@
 //    }
 //    self.openStatu = !self.openStatu;
     
-    self.alertView = [[AlertTableView2 alloc]initWithNumber:self.method];
+    self.alertView = [[AlertTableView2 alloc]initWithNumber:self.method withData:self.data];
     
     self.alertView.AlertDelegate = self;
     
-    if (self.alertView.method != GetComplainType) {
-        
-        [self.alertView showOriginY:self.frameY OriginX:self.frameX];
-    }
+//    if (self.alertView.method != GetComplainType) {
+    
+        [self.alertView showOriginY:self.frameY showCentenX:self.frameX];
+//    }
 }
 
-- (void)setGetDataMethod:(GetDataMethod)method OriginY:(CGFloat)y OriginX:(CGFloat)x
+- (void)setGetDataMethod:(GetDataMethod)method OriginY:(CGFloat)y showCentenX:(CGFloat)x withData:(NSArray *)data
 {
     self.method = method;
     self.frameX = x;
     self.frameY = y;
+    self.data = data;
 }
 
 - (void)returnData:(NSArray *)array

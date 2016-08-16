@@ -47,10 +47,10 @@
 + (instancetype)labelWithTitle:(NSString *)title frameX:(CGFloat)x Height:(CGFloat)height
 {
  
-    CGSize size = [title sizeWithFont:[UIFont systemFontOfSize:CONTENT_FONT] maxSize:CGSizeMake(8000, 8000)];
+    CGSize size = [title sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(8000, 8000)];
     UILabel *lable = [[UILabel alloc]initWithFrame:CGRectMake(x, 0, size.width, height)];
     lable.text = title;
-    lable.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    lable.font = FontSize(CONTENT_FONT);
     return lable;
 }
 

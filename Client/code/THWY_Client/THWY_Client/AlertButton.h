@@ -12,5 +12,5 @@
 @property BOOL openStatu;
 @property AlertTableView2 *alertView;
 @property NSString *postID;
-- (void)setGetDataMethod:(GetDataMethod)method OriginY:(CGFloat)y OriginX:(CGFloat)x;
+- (void)setGetDataMethod:(GetDataMethod)method OriginY:(CGFloat)y showCentenX:(CGFloat)x withData:(NSArray *)data;
 @end

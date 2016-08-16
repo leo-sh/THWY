@@ -49,6 +49,11 @@
     [self.merchantNametextField becomeFirstResponder];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.merchantNametextField resignFirstResponder];
+}
+
 - (void)getBussnessData{
     [self.bussnessModels removeAllObjects];
     [SVProgressHUD showWithStatus:@"数据加载中..."];
@@ -105,7 +110,7 @@
     UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width,40)];
     
     self.chooseTypeBtn = [[BussnessSelectButton alloc]initWithFrame:CGRectMake(5, 5, self.view.width * 0.35 , 30)];
-    self.chooseTypeBtn.titleLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    self.chooseTypeBtn.titleLabel.font = FontSize(CONTENT_FONT);
     [self.chooseTypeBtn setTitle:@"选择类型" forState:UIControlStateNormal];
     [self.chooseTypeBtn addTarget:self action:@selector(chooseTypeBtnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -282,9 +287,9 @@
     return 0.01;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.merchantNametextField resignFirstResponder];
 }
 
 

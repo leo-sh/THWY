@@ -54,11 +54,11 @@
             NSArray *sectionTwoData = @[complaint.complaint_content];
             NSArray *sectionThreeData;
             if ([complaint.st integerValue]) {
-                sectionThreeData = @[@"成功",complaint.ctime];
+                sectionThreeData = @[@"已处理",complaint.ctime];
             }
             else
             {
-                sectionThreeData = @[@"失败",complaint.ctime];
+                sectionThreeData = @[@"未处理",complaint.ctime];
                 
             }
             self.data = @[sectionOneData,sectionTwoData,sectionThreeData];
@@ -79,10 +79,10 @@
     self.tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorColor = CellUnderLineColor;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.bounces = NO;
-    [self.tableView setSeparatorColor:My_Color(241, 244, 244)];
-//    [self.tableView setSeparatorColor:[UIColor lightGrayColor]];
     [self.view addSubview: self.tableView];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -145,18 +145,27 @@
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell2"];
         }
         cell.textLabel.text = @"投诉内容：";
-        cell.detailTextLabel.text = self.data[indexPath.section][0];
+        cell.textLabel.font = FontSize(CONTENT_FONT);
+        cell.detailTextLabel.text = self.data[1][0];
+        cell.detailTextLabel.font = FontSize(CONTENT_FONT);
         cell.detailTextLabel.numberOfLines = 0;
         resultCell = cell;
     }
     if (indexPath.row == [self.data[indexPath.section]count] - 1) {
     }
-    resultCell.textLabel.font = [UIFont systemFontOfSize:15];
+    resultCell.textLabel.font = FontSize(CONTENT_FONT);
     resultCell.detailTextLabel.font = resultCell.textLabel.font;
     resultCell.selectionStyle = UITableViewCellSelectionStyleNone;
     resultCell.preservesSuperviewLayoutMargins = NO;
     resultCell.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
     resultCell.layoutMargins = UIEdgeInsetsZero;
+    if (indexPath.row != [self.data[indexPath.section] count] - 1) {
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20, resultCell.bottom - 5, self.tableView.width - 40, 0.5)];
+        label.backgroundColor = CellUnderLineColor;
+        [resultCell addSubview:label];
+    }
+
+    
     return resultCell;
 }
 
@@ -183,7 +192,7 @@
         UIView *view = [[UIView alloc]init];
         view.backgroundColor = [UIColor whiteColor];
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, tableView.width, 1)];
-        imageView.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"虚线"]];
+        imageView.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"records_虚线"]];
 //        imageView.backgroundColor = [UIColor whiteColor];
         [view addSubview:imageView];
         ResultView = view;
@@ -199,9 +208,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        CGFloat contenHeight = [self.data[1][0] sizeWithFont:[UIFont systemFontOfSize:20] maxSize:CGSizeMake(tableView.width, 4000)].height;
+        CGFloat contenHeight = [self.data[1][0] sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(tableView.width - 20, 4000)].height;
         //添加上面固定内容的高度 + 下面内容的高度 + 与下边界的距离
-        return contenHeight + 20;
+        return contenHeight + 40;
     }
     else
     {

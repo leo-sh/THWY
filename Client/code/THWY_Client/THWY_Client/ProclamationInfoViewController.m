@@ -63,7 +63,7 @@
     
     time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), backView.width, 14);
     
-    CGSize size = [noteVO.content sizeWithFont:[UIFont systemFontOfSize:CONTENT_FONT] maxSize:CGSizeMake(4000, 4000)];
+    CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(4000, 4000)];
     
     
     content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
@@ -88,13 +88,16 @@
     
     time.textColor = [UIColor lightGrayColor];
     
-    content.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    content.font = FontSize(CONTENT_FONT);
     [backView addSubview:titleLabel];
     [backView addSubview:time];
     [backView addSubview:head];
     [backView addSubview:content];
     [backView addSubview:left];
     [backView addSubview:right];
+    
+    
+    backView.backgroundColor = WhiteAlphaColor;
     
     [self.view addSubview:backView];
     

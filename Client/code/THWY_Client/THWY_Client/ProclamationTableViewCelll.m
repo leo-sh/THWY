@@ -22,7 +22,6 @@
         
         self.backgroundColor = [UIColor clearColor];
         
-        self.backView.backgroundColor = [UIColor whiteColor];
         self.head = [[UIImageView alloc]init];
         self.right = [[UIImageView alloc]init];
         self.title = [[UILabel alloc]init];
@@ -61,6 +60,8 @@
         [self.backView addSubview:left];
         [self.backView addSubview:self.right];
         
+        self.backView.backgroundColor = WhiteAlphaColor;
+        
         [self.contentView addSubview:self.backView];
 
         
@@ -92,9 +93,9 @@
     self.time.text = time;
     self.content.text = content;
     self.content.numberOfLines = 0;
-    self.content.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    self.content.font = FontSize(CONTENT_FONT);
 
-    CGFloat contenHeight = [content sizeWithFont:[UIFont systemFontOfSize:CONTENT_FONT] maxSize:CGSizeMake(width, 4000)].height;
+    CGFloat contenHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
     self.content.frame = CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, contenHeight);
     
     

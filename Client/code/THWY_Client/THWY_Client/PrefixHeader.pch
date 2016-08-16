@@ -75,8 +75,10 @@
 
 //字体
 #define My_LightFontName @"PingFangSC-Light"
-#define My_RegularFontName @"MicrosoftYaHei"
-#define My_SemiboldFontName @"MicrosoftYaHei"
+#define My_RegularFontName @"PingFangSC-Regular"
+#define My_SemiboldFontName @"PingFangSC-Semibold"
+//#define My_RegularFontName @"MicrosoftYaHei"
+//#define My_SemiboldFontName @"MicrosoftYaHei"
 
 #define NetWorkChanged @"netWorkChanged"
 //登录页面通知
@@ -88,7 +90,7 @@
 //tableView的位置
 #define TableViewFram     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {make.top.mas_equalTo(10);make.left.mas_equalTo(0);make.right.mas_equalTo(0);make.bottom.mas_equalTo(-10);}];
 //内容默认文字大小
-#define CONTENT_FONT 15
+#define CONTENT_FONT 16
 
 //设备判断
 #define kDevice_Is_iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
@@ -139,3 +141,8 @@ static inline int sizeValue(int sizefont) {
 //加粗字体
 #define  FontBoldSize(sizefont)  [UIFont fontWithName:My_SemiboldFontName size:sizefont]
 
+//白色透明背景颜色
+#define WhiteAlphaColor My_AlphaColor(255, 255, 255, 0.8)
+//cell下线颜色
+#define CellUnderLineColor My_Color(200, 199, 204)
+//灰色

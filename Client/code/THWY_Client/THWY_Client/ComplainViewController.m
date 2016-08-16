@@ -54,8 +54,7 @@
         
         else if (list.count == 0)
         {
-            [self.tableView.mj_footer endRefreshingWithNoMoreData];
-            [SVProgressHUD showErrorWithStatus:@"没有更多数据..."];
+            [self.tableView.mj_footer endRefreshing];
         }
         else
         {
@@ -88,7 +87,7 @@
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
 //        self.tableView.bounces = NO;
-        [self.tableView setSeparatorColor:My_Color(241, 244, 244)];
+//        [self.tableView setSeparatorColor:My_Color(241, 244, 244)];
         
         if (self.data) {
             self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -109,16 +108,14 @@
         [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.top.mas_equalTo(10);
-            make.left.mas_equalTo(10);
-            make.right.mas_equalTo(-10);
+            make.left.mas_equalTo(5);
+            make.right.mas_equalTo(-5);
             make.bottom.mas_equalTo(-80);
         }];
         
         UIView *view = [[UIView alloc]init];
         
-        
-        view.backgroundColor = [UIColor whiteColor];
-        view.alpha = 0.8;
+        view.backgroundColor = WhiteAlphaColor;
         [self.view addSubview:view];
 
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -155,33 +152,30 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    }
     
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    cell.textLabel.font = FontSize(CONTENT_FONT);
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.preservesSuperviewLayoutMargins = NO;
+    cell.separatorInset = UIEdgeInsetsZero;
+    cell.layoutMargins = UIEdgeInsetsZero;
+    cell.backgroundColor =WhiteAlphaColor;
+    if (self.data && indexPath.section < self.data.count) {
+        if (indexPath.row < 4) {
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",self.contentHead[indexPath.row],self.contentEnd[indexPath.section][indexPath.row]];
         }
-        
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
-        //    cell.textLabel.textColor = [UIColor grayColor];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        if (indexPath.row != 4) {
-            cell.preservesSuperviewLayoutMargins = NO;
-            cell.separatorInset = UIEdgeInsetsZero;
-            cell.layoutMargins = UIEdgeInsetsZero;
-//        }
-    
-        if (self.data && indexPath.section < self.data.count) {
-            if (indexPath.row < 4) {
-                cell.textLabel.text = [NSString stringWithFormat:@"%@%@",self.contentHead[indexPath.row],self.contentEnd[indexPath.section][indexPath.row]];
-            }
-            else
-            {
-                NSString *time = [NSString stringDateFromTimeInterval:[self.contentEnd[indexPath.section][indexPath.row] intValue] withFormat:@"YYYY-MM-dd HH:mm"];
-                
-                cell.textLabel.text = [NSString stringWithFormat:@"%@%@",self.contentHead[indexPath.row],time];
-            }
+        else
+        {
+            NSString *time = [NSString stringDateFromTimeInterval:[self.contentEnd[indexPath.section][indexPath.row] intValue] withFormat:@"YYYY-MM-dd HH:mm"];
+            
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",self.contentHead[indexPath.row],time];
         }
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
+    }
+        cell.textLabel.font = FontSize(CONTENT_FONT);
     return cell;
 }
 
@@ -236,7 +230,6 @@
 - (void)clickAdd
 {
     self.alertview = [[ComplainAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
-//    [self.alertview updateWithComplainVo:[[UDManager getUD]getUser]];
     [self.alertview show];
     [self.alertview addLeftBtnTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -291,24 +284,5 @@
 }
 
 
-//#pragma mark --设置sectionHeaderView固定
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    CGFloat sectionHeaderHeight = 6;
-//    if(scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
-//        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0,0);
-//    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
-//        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-//    }
-//}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

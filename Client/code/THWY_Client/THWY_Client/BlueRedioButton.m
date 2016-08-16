@@ -37,7 +37,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.chooseStatu = NO;
-        self.titleLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+        self.titleLabel.font = [UIFont systemFontOfSize:15];
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statuChange) name:@"判断" object:nil];
     }
@@ -64,28 +64,29 @@
 
 - (void)click
 {
-    self.chooseStatu =!self.chooseStatu;
-    
-    [self statuChange];
-    
-    for (UIView *temp in self.superview.subviews) {
-        if([temp isKindOfClass:[BlueRedioButton class]])
-        {
-            if (temp != self) {
-                BlueRedioButton *btn = (BlueRedioButton *)temp;
-                if (self.chooseStatu) {
-                    btn.chooseStatu = NO;
+    if (!self.chooseStatu) {
+        self.chooseStatu =!self.chooseStatu;
+        [self statuChange];
+        
+        for (UIView *temp in self.superview.subviews) {
+            if([temp isKindOfClass:[BlueRedioButton class]])
+            {
+                if (temp != self) {
+                    BlueRedioButton *btn = (BlueRedioButton *)temp;
+                    if (self.chooseStatu) {
+                        btn.chooseStatu = NO;
+                    }
+                    else
+                    {
+                        btn.chooseStatu = YES;
+                        
+                    }
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"判断" object:nil];
                 }
-                else
-                {
-                    btn.chooseStatu = YES;
-                    
-                }
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"判断" object:nil];
             }
         }
-    }
 
+    }
     
 }
 

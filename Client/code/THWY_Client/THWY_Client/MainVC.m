@@ -138,7 +138,7 @@
     self.headImage = [[UIImageView alloc] init];
     self.headImage.image = [UIImage imageNamed:@"头像1"];
     self.headImage.userInteractionEnabled = YES;
-    self.headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/4;
+    self.headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/3;
     self.headImage.layer.borderWidth = 3;
     self.headImage.layer.borderColor = [UIColor whiteColor].CGColor;
     self.headImage.clipsToBounds = YES;
@@ -147,15 +147,14 @@
     [self.headImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.userInfoView.mas_centerY);
         make.left.mas_equalTo(self.userInfoView).offset(30);
-        make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.5);
+        make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.6666666666666666667);
         make.width.mas_equalTo(self.headImage.mas_height);
     }];
     
     
     self.username = [[UILabel alloc] init];
-    self.username.text = @"";
-    self.username.font = FontSize(CONTENT_FONT+2);
-    [self.username sizeToFit];
+    self.username.font = FontBoldSize(CONTENT_FONT+3);
+    self.username.textColor = My_BlackColor;
     [self.userInfoView addSubview:self.username];
     
     [self.username mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -167,17 +166,16 @@
     [self.userInfoView addSubview:locationImage];
     [locationImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.username.mas_left);
-        make.top.mas_equalTo(self.username.mas_bottom).offset(5);
-        make.size.mas_equalTo(CGSizeMake(10.5, 14.5));
+        make.top.mas_equalTo(self.username.mas_bottom).offset(6);
+        make.size.mas_equalTo(CGSizeMake(10.5, 15.5));
     }];
     
     self.addr = [[UILabel alloc] init];
-    self.addr.text = @"";
-    self.addr.font = FontSize(CONTENT_FONT+1);
-    [self.addr sizeToFit];
+    self.addr.font = FontBoldSize(CONTENT_FONT+5);
+    self.addr.textColor = My_BlackColor;
     [self.userInfoView addSubview:self.addr];
     [self.addr mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(locationImage.mas_right).offset(8);
+        make.left.mas_equalTo(locationImage.mas_right).offset(9);
         make.centerY.mas_equalTo(locationImage.mas_centerY);
     }];
     

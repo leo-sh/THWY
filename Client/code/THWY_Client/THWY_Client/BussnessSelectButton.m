@@ -35,7 +35,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        self.titleLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+        self.titleLabel.font = FontSize(CONTENT_FONT);
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self setImage:[UIImage imageNamed:@"repaire_下"] forState:UIControlStateNormal];
         self.layer.borderWidth = 1;

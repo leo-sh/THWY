@@ -60,7 +60,7 @@
         self.loadingLabel.clipsToBounds = YES;
         self.loadingLabel.numberOfLines = 0;
         self.loadingLabel.adjustsFontSizeToFitWidth = YES;
-        self.loadingLabel.font = [UIFont fontWithDeviceName:My_RegularFontName size:14];
+        self.loadingLabel.font = FontSize(CONTENT_FONT);
         
         self.loadingLabel.textColor = [UIColor whiteColor];
         self.loadingLabel.textAlignment = NSTextAlignmentCenter;

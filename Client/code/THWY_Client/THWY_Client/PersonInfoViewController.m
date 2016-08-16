@@ -107,7 +107,7 @@
     
     [self.topView addSubview:nameLabel];
     
-    CGFloat nameLabelTop = iconTop * 3;
+    CGFloat nameLabelTop = iconTop * 2;
     CGFloat nameLabelLeft = iconLeft * 1.2;
     CGFloat nameLabelRight = 0;
     CGFloat namelabelHeight = self.topView.height/5.f;
@@ -124,7 +124,7 @@
     
 //    CGFloat font = namelabelHeight * 0.65;
     
-    nameLabel.font = [UIFont systemFontOfSize: CONTENT_FONT];
+    nameLabel.font = FontSize(CONTENT_FONT);
     
     
     UILabel *addressLabel = [[UILabel alloc]init];
@@ -144,9 +144,27 @@
         make.height.mas_equalTo(addressLabelHeight);
     }];
     HouseVO *house = self.userInfo.houses[0];
-    NSString *addressString = [NSString stringWithFormat:@"%@%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
+    NSString *addressString = [NSString stringWithFormat:@"%@",house.estate];
     addressLabel.text = addressString;
-    addressLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    addressLabel.font = FontSize(CONTENT_FONT);
+    
+    NSString *detailString = [NSString stringWithFormat:@"%@栋%@单元%@室",house.block,house.unit,house.mph];
+    
+    UILabel *detailLabel = [[UILabel alloc]init];
+    
+    [self.topView addSubview:detailLabel];
+    
+    [detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+      
+        make.top.equalTo(addressLabel.mas_bottom).with.offset(addressLabelTop);
+        make.left.equalTo(icon.mas_right).with.offset(addressLabelLeft);
+        make.right.mas_equalTo(addressLabelRight);
+        make.height.mas_equalTo(addressLabelHeight);
+    }];
+    
+    detailLabel.text = detailString;
+    detailLabel.font = FontSize(CONTENT_FONT);
+    
 
 }
 
@@ -155,14 +173,14 @@
 {
     self.bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, self.view.height * 0.18, self.view.width, self.view.height * 0.82)];
     
-//    self.bottomView.backgroundColor = [UIColor yellowColor];
+    self.bottomView.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:self.bottomView];
     
     NSArray *imageNameArray = @[@"姓名",@"电话",@"项目",@"部门",@"车牌号",@"登录账号",@"密码"];
     NSArray *labelTitleArry = @[@"业主姓名",@"联系电话",@"所在项目",@"房源信息",@"车牌号",@"登录账号",@"账号密码"];
     HouseVO *house = [self.userInfo.houses firstObject];
-    NSString *addressString = [NSString stringWithFormat:@"%@%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
+    NSString *addressString = [NSString stringWithFormat:@"%@·%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
     NSArray *tfTextArray = @[self.userInfo.real_name,self.userInfo.cellphone,self.userInfo.estate,addressString,self.userInfo.car_number,self.userInfo.oname,[[UDManager getUD]getPassWord]];
     CGFloat labelHeight = self.bottomView.height/(imageNameArray.count + 3);
     CGFloat labelLeft = self.view.width * 0.02;
@@ -173,15 +191,21 @@
         
         PersonInfoLabel *label = [[PersonInfoLabel alloc]initWithFrame:CGRectMake(labelLeft, labelY , labelWidth , labelHeight)];
         
+        label.backgroundColor = WhiteAlphaColor;
+        
         [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] TextField:tfTextArray[i]];
         label.textField.delegate = self;
         label.textField.textColor = My_Color(202, 202, 207);
-        label.layer.borderWidth = 1;
-        label.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        label.layer.borderWidth = 0.5;
+        label.layer.borderColor = CellUnderLineColor.CGColor;
         
         [self.bottomView addSubview: label];
         //将边框减掉
         labelY +=labelHeight - 1;
+        
+        if (i == imageNameArray.count - 1) {
+            label.textField.secureTextEntry = YES;
+        }
         
         switch (i) {
                 
