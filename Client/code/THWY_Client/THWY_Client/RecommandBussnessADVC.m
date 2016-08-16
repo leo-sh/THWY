@@ -86,11 +86,20 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ADDetailVC *detail = [[ADDetailVC alloc] init];
-    detail.advo = self.bussnessModels[indexPath.row];
-    [self .navigationController pushViewController:detail animated:YES];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍后......"];
+    AdVO* adVO = self.bussnessModels[indexPath.row];
+    [My_ServicesManager getAnAd:adVO.Id onComplete:^(NSString *errorMsg, AdVO *ad) {
+        if (errorMsg == nil) {
+            ADDetailVC *detail = [[ADDetailVC alloc] init];
+            detail.advo = ad;
+            [self .navigationController pushViewController:detail animated:YES];
+            [SVProgressHUD dismiss];
+        }else
+        {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
+    }];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

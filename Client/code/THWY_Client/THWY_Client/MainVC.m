@@ -70,8 +70,8 @@
     UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithCustomView:self.leftButton];
     self.navigationItem.leftBarButtonItem  = left;
     
-    self.dropView = [[DropMenuTableView alloc] initWithWidth:135.f itemHeight:40.f itemNames:@[@"我要报修", @"我要投诉", @"个人信息", @"推送设置", @"技术支持"] ItemImages:@[@"main_1", @"main_2", @"main_6", @"main_4", @"main_5"]];
-    self.dropView.backColor = My_NAV_BG_Color;
+    self.dropView = [[DropMenuTableView alloc] initWithWidth:145.f itemHeight:45.f itemNames:@[@"我要报修", @"我要投诉", @"个人信息", @"推送设置", @"技术支持"] ItemImages:@[@"main_1", @"main_2", @"main_6", @"main_4", @"main_5"]];
+    self.dropView.backColor = My_Color(2, 134, 196);
     self.dropView.textColor = [UIColor whiteColor];
     
     self.dropView.dropDelegate = self;
@@ -154,7 +154,7 @@
     
     self.username = [[UILabel alloc] init];
     self.username.text = @"name";
-    self.username.font = FontSize(CONTENT_FONT+1);
+    self.username.font = FontSize(CONTENT_FONT+2);
     [self.username sizeToFit];
     [self.userInfoView addSubview:self.username];
     

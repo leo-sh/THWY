@@ -137,5 +137,5 @@ static inline int sizeValue(int sizefont) {
 //正常字体
 #define  FontSize(sizefont)  [UIFont fontWithName:My_RegularFontName size:sizefont]
 //加粗字体
-#define  FontBoldSize(sizefont)  [UIFont fontWithName:My_RegularFontName size:sizefont]
+#define  FontBoldSize(sizefont)  [UIFont fontWithName:My_SemiboldFontName size:sizefont]
 

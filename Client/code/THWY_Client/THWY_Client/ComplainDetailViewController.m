@@ -39,36 +39,38 @@
 }
 
 - (void)getData
-{    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+{
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
 
     [[ServicesManager getAPI] getAComplaint:self.complianId onComplete:^(NSString *errorMsg, ComplaintVO *complaint) {
         if (errorMsg) {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
             NSLog(@"%@",errorMsg);
-        }
-        NSLog(@"%@",complaint);
-        NSLog(@"%@",self.complianId);
-        NSArray *sectionOneData = @[complaint.complaint_type_name,complaint.estate,complaint.complaint_person,complaint.complaint_phone];
-        NSArray *sectionTwoData = @[complaint.complaint_content];
-        NSArray *sectionThreeData;
-        if ([complaint.st integerValue]) {
-            sectionThreeData = @[@"成功",complaint.ctime];
-        }
-        else
+        }else
         {
-            sectionThreeData = @[@"失败",complaint.ctime];
+            NSLog(@"%@",complaint);
+            NSLog(@"%@",self.complianId);
+            NSArray *sectionOneData = @[complaint.complaint_type_name,complaint.estate,complaint.complaint_person,complaint.complaint_phone];
+            NSArray *sectionTwoData = @[complaint.complaint_content];
+            NSArray *sectionThreeData;
+            if ([complaint.st integerValue]) {
+                sectionThreeData = @[@"成功",complaint.ctime];
+            }
+            else
+            {
+                sectionThreeData = @[@"失败",complaint.ctime];
+                
+            }
+            self.data = @[sectionOneData,sectionTwoData,sectionThreeData];
             
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [SVProgressHUD dismiss];
+                
+            });
         }
-        self.data = @[sectionOneData,sectionTwoData,sectionThreeData];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-            [SVProgressHUD dismiss];
-
-        });
-        
         
     }];
-    NSLog(@"%@",self.data);
 
 }
 
