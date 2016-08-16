@@ -254,7 +254,7 @@
         [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     }
     //    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:-[merchant.ctime intValue]];
-    NSDate *date = [[NSDate alloc] initWithTimeIntervalSinceNow:-(timeInterval/1000)];
+    NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:timeInterval];
     return [formatter stringFromDate:date];
 
 }
