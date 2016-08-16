@@ -13,7 +13,7 @@
 #import "AlertView.h"
 #import "SuggestAlertView.h"
 #import "BlueRedioButton.h"
-#define TopViewH 65
+#define TopViewH 60
 @interface SuggestViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property SuggestAlertView *alertView;
 @property UITableView *tableView;
@@ -53,23 +53,36 @@
     [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
     [[ServicesManager getAPI] getFeedBackTypes:^(NSString *errorMsg, NSArray *list) {
         
-        for (FeedBackTypeVO *temp in list) {
-            
-            [self.FeedBackTypeArray addObject:temp];
-        }
-        
-        [[ServicesManager getAPI]getFeedBackList:type onComplete:^(NSString *errorMsg, NSArray *list) {
-            
-            self.data = list;
-            
+        if (errorMsg) {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                [SVProgressHUD dismiss];
                 [self.tableView.mj_footer endRefreshing];
                 [self.tableView.mj_header endRefreshing];
             });
+        }else
+        {
+            for (FeedBackTypeVO *temp in list) {
+                
+                [self.FeedBackTypeArray addObject:temp];
+            }
             
-        }];
+            [[ServicesManager getAPI]getFeedBackList:type onComplete:^(NSString *errorMsg, NSArray *list) {
+                if (errorMsg == nil) {
+                    [SVProgressHUD dismiss];
+                    self.data = list;
+                    [self.tableView reloadData];
+                }else
+                {
+                    [SVProgressHUD showErrorWithStatus:errorMsg];
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView.mj_footer endRefreshing];
+                    [self.tableView.mj_header endRefreshing];
+                });
+                
+            }];
+        }
         
     }];
 }
@@ -94,14 +107,14 @@
     }];
     self.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"建议",@"意见"]];
     self.segmentedControl.selectedSegmentIndex = 0;
-    self.segmentedControl.frame = CGRectMake(40, 15,My_ScreenW - 80 ,  35);
-    
+    self.segmentedControl.frame = CGRectMake(40, 15,My_ScreenW - 100 ,  40);
+    self.segmentedControl.center = CGPointMake(My_ScreenW/2, self.segmentedControl.center.y);
     self.segmentedControl.layer.cornerRadius = 10;
     self.segmentedControl.clipsToBounds = YES;
     self.segmentedControl.layer.borderWidth = 1;
     self.segmentedControl.layer.borderColor = My_NAV_BG_Color.CGColor;
     self.segmentedControl.tintColor = My_NAV_BG_Color;
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:My_NAV_BG_Color,NSForegroundColorAttributeName,FontSize(18.0),NSFontAttributeName ,nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:My_NAV_BG_Color,NSForegroundColorAttributeName,FontSize(CONTENT_FONT + 2),NSFontAttributeName ,nil];
     [self.segmentedControl setTitleTextAttributes:dic forState:UIControlStateNormal];
     [self.topView addSubview:self.segmentedControl];
     
@@ -117,31 +130,27 @@
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     
-        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            self.data = @[];
-            [self getData:[self.FeedBackTypeArray[self.segmentedControl.selectedSegmentIndex] Id]];
-        }];
-        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-            [self.tableView.mj_footer endRefreshing];
-        }];
-        
-    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.data = @[];
+        [self getData:[self.FeedBackTypeArray[self.segmentedControl.selectedSegmentIndex] Id]];
+    }];
+    self.tableView.mj_footer = nil;
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.topView.mas_bottom).with.offset(0);
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(-80);
+        make.bottom.mas_equalTo(0);
     }];
     
     UIView *view = [[UIView alloc]init];
     
-    view.backgroundColor = WhiteAlphaColor;
+    view.backgroundColor = My_AlphaColor(255, 255, 255, 0.9);
     [self.view addSubview:view];
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(self.tableView.mas_bottom).with.offset(10);
+        make.top.equalTo(self.tableView.mas_bottom).with.offset(-70);
         make.bottom.mas_equalTo(0);
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
@@ -200,6 +209,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
+    if (section == self.data.count - 1) {
+        return 80;
+    }
     return 0.01;
 }
 

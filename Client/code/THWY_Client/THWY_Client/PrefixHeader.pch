@@ -142,7 +142,7 @@ static inline int sizeValue(int sizefont) {
 #define  FontBoldSize(sizefont)  [UIFont fontWithName:My_SemiboldFontName size:sizefont]
 
 //白色透明背景颜色
-#define WhiteAlphaColor My_AlphaColor(255, 255, 255, 0.8)
+#define WhiteAlphaColor My_AlphaColor(255, 255, 255, 0.7)
 //cell下线颜色
 #define CellUnderLineColor My_Color(200, 199, 204)
 //灰色
