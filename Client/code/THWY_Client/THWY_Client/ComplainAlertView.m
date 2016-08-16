@@ -158,6 +158,8 @@
     
     [complainTypeView addSubview:self.typeBtn];
     
+    
+    
 //    self.textView = [[UITextView alloc]initWithFrame:
     self.textView.frame = CGRectMake(10, complainTypeView.bottom + 1, self.width - 20, 80);
     
