@@ -47,13 +47,13 @@
     
     self.houseSourceBtnArray = [NSMutableArray array];
     
-    CGFloat houseBtnX = CGRectGetMaxX(houseLabel.frame);
-    CGFloat houseBtnY = 0;
+    CGFloat houseBtnX = 30;
+    CGFloat houseBtnY = houseLabel.bottom - 10;
     CGFloat houseBtnW = self.width - CGRectGetMaxX(houseLabel.frame);
     CGFloat houseBtnH = 30;
     
     for (int i = 0; i < houseArray.count; i ++) {
-        houseSource.height = height *houseArray.count;
+        houseSource.height = houseBtnH *houseArray.count + houseBtnY;
         BlueRedioButton * btn = [[BlueRedioButton alloc]initWithFrame:CGRectMake(houseBtnX, houseBtnY, houseBtnW, houseBtnH)];
         
         HouseVO *house = houseArray[i];
@@ -67,7 +67,7 @@
         [btn initDefaultImageName:@"repaire_unselected"  choosedImageName:@"repaire_selected" title:addressString];
         if (i == 0) {
             [btn setChoosed];
-            btn.centerY = houseSource.centerY;
+//            btn.centerY = houseSource.centerY;
         }
         
         [self.houseSourceBtnArray addObject:btn];
@@ -165,7 +165,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
            
             
-            [self.typeBtn setGetDataMethod:GetComplainType OriginY:80 showCentenX:self.typeBtn.centerX withData:array];
+            [self.typeBtn setGetDataMethod:GetComplainType OriginY:complainTypeView.centerY - 60 showCentenX:self.typeBtn.centerX + 10 withData:array];
             
         });
         [self.typeBtn setTitle:[array firstObject] forState:UIControlStateNormal];
