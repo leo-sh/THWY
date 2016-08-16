@@ -13,7 +13,7 @@
 @property NSArray *data;
 @end
 @implementation AlertTableView2
-- (instancetype)initWithNumber:(GetDataMethod)method
+- (instancetype)initWithNumber:(GetDataMethod)method withData:(NSArray *)data
 {
     
     if (self = [super init]) {
@@ -22,46 +22,20 @@
         self.delegate = self;
         self.rowHeight = 30;
         self.method = method;
+        self.data = data;
         if (method == GetComplainType) {
-            [[ServicesManager getAPI]getComplaintTypes:^(NSString *errorMsg, NSArray *list) {
-                
-                NSMutableArray *array = [NSMutableArray array];
-                
-                for (ComplaintTypeVO *temp in list) {
-                    
-                    [array addObject:temp.complaint_type];
-                }
-                
-                self.data = array;
-                
-                self.frame = CGRectMake(0, 0, 130, 30 * self.data.count);
-                self.center = kCurrentWindow.center;
-                
-                if (self.data.count != 0) {
-                    [self showCenter];
-                }
-                else
-                {
-                    [SVProgressHUD showErrorWithStatus:@"网络访问有问题"];
-                }
-                
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    
-//                    [self reloadData];
-//                    
-//                });
-                
-            }];
+
+            self.frame = CGRectMake(0, 0, 130, 30 * self.data.count);
+            
+
         }
         else if(method == GetYear)
         {
-            self.data = @[@"选择年份",@"2012",@"2013",@"2014",@"2015",@"2016",@"2017",@"2018",@"2019"];
             self.frame = CGRectMake(0, 0, 100, 30 * self.data.count);
 
         }
         else if(method == GetPayStatu)
         {
-            self.data = @[@"选择状态",@"未缴",@"未缴齐",@"已缴齐",@"已经退款"];
             self.frame = CGRectMake(0, 0, 100, 30 * self.data.count);
         }
         

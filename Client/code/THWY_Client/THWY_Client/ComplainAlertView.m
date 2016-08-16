@@ -152,13 +152,30 @@
     
     self.typeBtn = [[AlertButton alloc]initWithFrame:CGRectMake(complainLabel.right + boderspace ,0, 150, 26)];
     self.typeBtn.centerY = complainLabel.centerY;
-    [self.typeBtn setTitle:@"请选择投诉类型" forState:UIControlStateNormal];
     
-    [self.typeBtn setGetDataMethod:GetComplainType OriginY:100 showCentenX:self.typeBtn.centerX + 1000];
+    [[ServicesManager getAPI]getComplaintTypes:^(NSString *errorMsg, NSArray *list) {
+        
+        NSMutableArray *array = [NSMutableArray array];
+        
+        for (ComplaintTypeVO *temp in list) {
+            
+            [array addObject:temp.complaint_type];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+           
+            
+            [self.typeBtn setGetDataMethod:GetComplainType OriginY:80 showCentenX:self.typeBtn.centerX withData:array];
+            
+        });
+        [self.typeBtn setTitle:[array firstObject] forState:UIControlStateNormal];
+
+    }];
+
     
-    [complainTypeView addSubview:self.typeBtn];
     
     
+        [complainTypeView addSubview:self.typeBtn];
     
 //    self.textView = [[UITextView alloc]initWithFrame:
     self.textView.frame = CGRectMake(10, complainTypeView.bottom + 1, self.width - 20, 80);

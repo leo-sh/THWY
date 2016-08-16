@@ -13,6 +13,7 @@
 @property int method;
 @property CGFloat frameY;
 @property CGFloat frameX;
+@property NSArray *data;
 @end
 @implementation AlertButton
 
@@ -72,7 +73,7 @@
 //    }
 //    self.openStatu = !self.openStatu;
     
-    self.alertView = [[AlertTableView2 alloc]initWithNumber:self.method];
+    self.alertView = [[AlertTableView2 alloc]initWithNumber:self.method withData:self.data];
     
     self.alertView.AlertDelegate = self;
     
@@ -82,11 +83,12 @@
 //    }
 }
 
-- (void)setGetDataMethod:(GetDataMethod)method OriginY:(CGFloat)y showCentenX:(CGFloat)x
+- (void)setGetDataMethod:(GetDataMethod)method OriginY:(CGFloat)y showCentenX:(CGFloat)x withData:(NSArray *)data
 {
     self.method = method;
     self.frameX = x;
     self.frameY = y;
+    self.data = data;
 }
 
 - (void)returnData:(NSArray *)array

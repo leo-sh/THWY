@@ -73,13 +73,17 @@
     
     [self.chooseYearBtn setTitle:@"选择年份" forState:UIControlStateNormal];
     
-    [self.chooseYearBtn setGetDataMethod:GetYear OriginY:self.chooseYearBtn.bottom - 10 + 66 showCentenX:self.chooseYearBtn.centerX];
+    NSArray *data = @[@"选择年份",@"2012",@"2013",@"2014",@"2015",@"2016",@"2017",@"2018",@"2019"];
+    
+    [self.chooseYearBtn setGetDataMethod:GetYear OriginY:self.chooseYearBtn.bottom - 10 + 66 showCentenX:self.chooseYearBtn.centerX withData:data];
     
     [searchView addSubview:self.chooseYearBtn];
     
     self.chooseStatuBtn = [[AlertButton alloc]initWithFrame:CGRectMake(self.chooseYearBtn.right + 5, 5, self.view.width * 0.35, 30)];
     
-    [self.chooseStatuBtn setGetDataMethod:GetPayStatu OriginY:self.chooseYearBtn.bottom - 10 + 66 showCentenX:self.chooseStatuBtn.centerX];
+    data = @[@"选择状态",@"未缴",@"未缴齐",@"已缴齐",@"已经退款"];
+    
+    [self.chooseStatuBtn setGetDataMethod:GetPayStatu OriginY:self.chooseYearBtn.bottom - 10 + 66 showCentenX:self.chooseStatuBtn.centerX withData:data];
     self.chooseStatuBtn.postID = @"-1";
     [self.chooseStatuBtn setTitle:@"选择状态" forState:UIControlStateNormal];
     
