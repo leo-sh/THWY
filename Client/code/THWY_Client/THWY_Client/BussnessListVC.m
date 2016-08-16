@@ -27,6 +27,8 @@
 @property (assign, nonatomic) NSInteger selectedIndex;
 @property (assign, nonatomic) BOOL isSearch;
 
+@property (assign, nonatomic) int page;
+
 @end
 
 @implementation BussnessListVC
@@ -42,14 +44,15 @@
     self.selectedIndex = 0;
     self.isSearch = NO;
     [self initViews];
-    [self getBussnessData];
+//    [self getBussnessData];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)getBussnessData{
     [self.bussnessModels removeAllObjects];
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     
-    [[ServicesManager getAPI] getMerchants:1 name:nil onComplete:^(NSString *errorMsg, NSArray *list) {
+    [[ServicesManager getAPI] getMerchants:0 name:nil onComplete:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg){
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }
@@ -59,6 +62,7 @@
         }
         
         [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
         [SVProgressHUD dismiss];
         
     }];
@@ -143,10 +147,44 @@
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"MerchargeListCell" bundle:nil]forCellReuseIdentifier:@"MerchargeListCell"];
+    [self initRefreshView];
     [self.view addSubview:self.tableView];
     
     
 }
+
+//设置上拉下拉刷新
+- (void)initRefreshView{
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getBussnessData)];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
+    //自动更改透明度
+    self.tableView.mj_header.automaticallyChangeAlpha = YES;
+    // self.tableView.mj_footer.automaticallyChangeAlpha = YES;
+    
+}
+
+- (void)loadMoreData{
+    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    
+    [[ServicesManager getAPI] getMerchants:++self.page name:nil onComplete:^(NSString *errorMsg, NSArray *list) {
+        if (errorMsg){
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
+        
+        for (MerchantVO *model in list) {
+            [self.bussnessModels addObject:model];
+        }
+        
+        [self.tableView reloadData];
+        [self.tableView.mj_footer endRefreshing];
+        [SVProgressHUD dismiss];
+        
+    }];
+
+}
+
 
 - (void)chooseTypeBtnOnclicked:(UIButton *)button{
     [self getBussnessTypeView];
