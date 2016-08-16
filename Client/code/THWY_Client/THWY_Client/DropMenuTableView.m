@@ -64,10 +64,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.dropDelegate itemSelected:indexPath.row];
-    }];
-    
+    [self.dropDelegate itemSelected:indexPath.row];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

@@ -75,8 +75,8 @@
 
 //字体
 #define My_LightFontName @"PingFangSC-Light"
-#define My_RegularFontName @"PingFangSC-Regular"
-#define My_SemiboldFontName @"PingFangSC-Semibold"
+#define My_RegularFontName @"MicrosoftYaHei"
+#define My_SemiboldFontName @"MicrosoftYaHei"
 
 #define NetWorkChanged @"netWorkChanged"
 //登录页面通知

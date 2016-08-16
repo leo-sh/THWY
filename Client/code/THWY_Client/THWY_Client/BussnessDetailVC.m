@@ -45,7 +45,7 @@
         make.left.mas_equalTo(self.view.mas_left);
         make.right.mas_equalTo(self.view.mas_right);
         make.top.mas_equalTo(self.view.mas_top);
-        make.height.mas_equalTo(self.view.height*1/3.0);
+        make.height.mas_equalTo(self.view.height/2.5);
     }];
     NSInteger iconHeight = (self.view.height*1/3.0-4*topMargin)*2/3.0;
     self.iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"头像1"]];

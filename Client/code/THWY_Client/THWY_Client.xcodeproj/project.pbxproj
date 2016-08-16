@@ -198,6 +198,7 @@
 		94D708931D4C68EE00C5009D /* ComplaintStateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EF81D48A0BD00B95DE5 /* ComplaintStateVO.m */; };
 		94E5DAD31D58731900300585 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5DAD21D58731900300585 /* Reachability.m */; };
 		94F7CE801D6149D90034E9FC /* BannerNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F7CE7F1D6149D90034E9FC /* BannerNotice.m */; };
+		94FA70261D62B09000D66567 /* msyh.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94FA70251D62B02100D66567 /* msyh.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -580,6 +581,7 @@
 		94E5DAD21D58731900300585 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		94F7CE7E1D6149D90034E9FC /* BannerNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerNotice.h; sourceTree = "<group>"; };
 		94F7CE7F1D6149D90034E9FC /* BannerNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerNotice.m; sourceTree = "<group>"; };
+		94FA70251D62B02100D66567 /* msyh.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = msyh.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1169,6 +1171,7 @@
 		5BFFCE171D41B9A30066B1B9 /* THWY_Client */ = {
 			isa = PBXGroup;
 			children = (
+				94FA70251D62B02100D66567 /* msyh.ttf */,
 				9400B9771D6187EE00E49F0E /* tuisong.caf */,
 				5B2571CF1D47169600CB4167 /* 3rd */,
 				5B25714D1D47105E00CB4167 /* util */,
@@ -1517,6 +1520,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94FA70261D62B09000D66567 /* msyh.ttf in Resources */,
 				79D2D2741D4F534B00463CC5 /* UploadCell.xib in Resources */,
 				79D2D2731D4F533A00463CC5 /* RepaireCategorysCell.xib in Resources */,
 				79D2D2721D4F533000463CC5 /* DescribeCell.xib in Resources */,
