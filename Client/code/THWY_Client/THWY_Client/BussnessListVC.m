@@ -89,7 +89,8 @@
                 [self.merchantTypeArray addObject:type];
                 
             }
-            self.merchantTypeView = [[MerchantTypeTableView alloc] initWithWidth:120.f itemHeight:30.f itemNames:self.merchantTypeArray];
+            self.merchantTypeView = [[MerchantTypeTableView alloc] initWithWidth:100.f itemHeight:30.f itemNames:self.merchantTypeArray];
+            
             self.merchantTypeView.fontSize = 14.0;
             self.merchantTypeView.backColor = [UIColor whiteColor];
             self.merchantTypeView.textColor = [UIColor blackColor];
