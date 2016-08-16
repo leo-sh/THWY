@@ -56,7 +56,7 @@
         
         [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.contentView.mas_left).offset(15);
-            make.height.mas_equalTo(0.5);
+            make.height.mas_equalTo(0.4);
             make.right.mas_equalTo(self.contentView.mas_right).offset(-15);
             make.bottom.mas_equalTo(self.contentView.mas_bottom);
         }];
@@ -99,11 +99,19 @@
                     break;
                 }
                 case 1:{
-                    
                     self.detailLabel.numberOfLines = 0;
                     self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
-                    self.detailLabel.text = model.classes_str;
                     [self.detailLabel sizeToFit];
+                    self.detailLabel.text = model.classes_str;
+                    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
+                    CGRect rect = [model.classes_str boundingRectWithSize:CGSizeMake(self.contentView.width*0.7, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+                    
+                    [self.detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                        make.height.mas_equalTo(rect.size.height);
+                        make.width.mas_equalTo(rect.size.width);
+                    }];
+                    [self layoutIfNeeded];
+//                    CGFloat topMargin = 8.0/375*My_ScreenW;
                     break;
                 }
                 case 2:{

@@ -46,6 +46,7 @@
     [self initViews];
 //    [self getBussnessData];
     [self.tableView.mj_header beginRefreshing];
+    [self.merchantNametextField becomeFirstResponder];
 }
 
 - (void)getBussnessData{

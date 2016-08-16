@@ -153,7 +153,7 @@
     
     
     self.username = [[UILabel alloc] init];
-    self.username.text = @"name";
+    self.username.text = @"";
     self.username.font = FontSize(CONTENT_FONT+2);
     [self.username sizeToFit];
     [self.userInfoView addSubview:self.username];
@@ -172,7 +172,7 @@
     }];
     
     self.addr = [[UILabel alloc] init];
-    self.addr.text = @"地址";
+    self.addr.text = @"";
     self.addr.font = FontSize(CONTENT_FONT+1);
     [self.addr sizeToFit];
     [self.userInfoView addSubview:self.addr];
