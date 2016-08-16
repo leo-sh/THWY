@@ -99,6 +99,7 @@
                     break;
                 }
                 case 1:{
+                    
                     self.detailLabel.numberOfLines = 0;
                     self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
                     self.detailLabel.text = model.classes_str;

@@ -98,7 +98,7 @@
                 <outlet property="merchargePhone" destination="tvc-bT-4BK" id="vx1-pO-YPk"/>
                 <outlet property="merchargeType" destination="Olt-FG-5dL" id="moN-r5-zJ3"/>
             </connections>
-            <point key="canvasLocation" x="477.5" y="182"/>
+            <point key="canvasLocation" x="285.5" y="149"/>
         </tableViewCell>
     </objects>
     <resources>

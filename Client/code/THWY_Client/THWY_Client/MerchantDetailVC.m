@@ -8,12 +8,13 @@
 
 #import "MerchantDetailVC.h"
 #import "RecommandMerchantCell.h"
+#import "GoodsVC.h"
 
 @interface MerchantDetailVC ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
 
-@property (strong, nonatomic) NSMutableArray *dataArray;
+//@property (strong, nonatomic) NSMutableArray *dataArray;
 
 @end
 
@@ -36,6 +37,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = [UIColor lightGrayColor];
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
+    self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.rowHeight = 100/667.0*My_ScreenH;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
@@ -47,16 +49,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.dataArray.count;
+    return self.merchant.products.count;
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     RecommandMerchantCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecommandMerchantCell" forIndexPath:indexPath];
-    [cell loadDataFromMercharge:self.dataArray[indexPath.row]];
+    [cell loadDataFromMercharge:self.merchant.products[indexPath.row]];
+    cell.contentView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
     
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    GoodsVC *goodvc = [[GoodsVC alloc] init];
+    goodvc.good = self.merchant.products[indexPath.row];
+    [self.navigationController pushViewController:goodvc animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
