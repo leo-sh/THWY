@@ -152,7 +152,7 @@
     
     [headImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.userInfoView.mas_centerY);
-        make.left.mas_equalTo(self.userInfoView).offset(30);
+        make.left.mas_equalTo(self.userInfoView).offset(10);
         make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.85);
         make.width.mas_equalTo(headImage.mas_height);
     }];
@@ -182,7 +182,7 @@
     if (user) {
         [headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"Avatar"]];
         username.text = user.real_name;
-        addr.text = user.estate;
+        addr.text = [NSString stringWithFormat:@"%@·%@栋%@单元%@室",[user.houses[0] estate],[user.houses[0] block],[user.houses[0] unit],[user.houses[0] mph]];
     }
     
 }
