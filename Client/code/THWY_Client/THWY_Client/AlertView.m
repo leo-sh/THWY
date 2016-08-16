@@ -70,7 +70,7 @@
     self.placeholderLabel = [[UILabel alloc]initWithFrame:CGRectMake(3, 7, 200, CONTENT_FONT)];
     self.placeholderLabel.text = placeholder;
 //    self.placeholderLabel.backgroundColor = [UIColor blackColor];
-    self.placeholderLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    self.placeholderLabel.font = FontSize(CONTENT_FONT);
     self.placeholderLabel.textColor = [UIColor lightGrayColor];
     [self.textView addSubview:self.placeholderLabel];
 }

@@ -40,7 +40,7 @@
 
         self.label = [[UILabel alloc]init];
         self.textField = [[UITextField alloc]init];
-        self.textField.font = [UIFont systemFontOfSize:CONTENT_FONT];
+        self.textField.font = FontSize(CONTENT_FONT);
         self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
         self.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         self.textField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -87,7 +87,7 @@
         make.left.equalTo(self.imageView.mas_right).with.offset(labelLeft);
     }];
     
-    self.label.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    self.label.font = FontSize(CONTENT_FONT);
 //    self.label.backgroundColor = [UIColor grayColor];
     CGFloat tfHeight = imageViewWidthAndHeight;
     CGFloat tfWidht = self.frame.size.width - labelLeft -labelWidth -imageViewWidthAndHeight -imageViewLeft;

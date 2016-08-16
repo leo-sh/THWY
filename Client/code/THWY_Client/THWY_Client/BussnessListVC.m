@@ -105,7 +105,7 @@
     UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width,40)];
     
     self.chooseTypeBtn = [[BussnessSelectButton alloc]initWithFrame:CGRectMake(5, 5, self.view.width * 0.35 , 30)];
-    self.chooseTypeBtn.titleLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    self.chooseTypeBtn.titleLabel.font = FontSize(CONTENT_FONT);
     [self.chooseTypeBtn setTitle:@"选择类型" forState:UIControlStateNormal];
     [self.chooseTypeBtn addTarget:self action:@selector(chooseTypeBtnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
     

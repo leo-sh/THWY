@@ -158,7 +158,7 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     
-    cell.textLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    cell.textLabel.font = FontSize(CONTENT_FONT);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.preservesSuperviewLayoutMargins = NO;
     cell.separatorInset = UIEdgeInsetsZero;
@@ -175,7 +175,7 @@
             cell.textLabel.text = [NSString stringWithFormat:@"%@%@",self.contentHead[indexPath.row],time];
         }
     }
-        cell.textLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+        cell.textLabel.font = FontSize(CONTENT_FONT);
     return cell;
 }
 

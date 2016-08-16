@@ -180,7 +180,7 @@
     NSArray *imageNameArray = @[@"姓名",@"电话",@"项目",@"部门",@"车牌号",@"登录账号",@"密码"];
     NSArray *labelTitleArry = @[@"业主姓名",@"联系电话",@"所在项目",@"房源信息",@"车牌号",@"登录账号",@"账号密码"];
     HouseVO *house = [self.userInfo.houses firstObject];
-    NSString *addressString = [NSString stringWithFormat:@"%@%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
+    NSString *addressString = [NSString stringWithFormat:@"%@·%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
     NSArray *tfTextArray = @[self.userInfo.real_name,self.userInfo.cellphone,self.userInfo.estate,addressString,self.userInfo.car_number,self.userInfo.oname,[[UDManager getUD]getPassWord]];
     CGFloat labelHeight = self.bottomView.height/(imageNameArray.count + 3);
     CGFloat labelLeft = self.view.width * 0.02;

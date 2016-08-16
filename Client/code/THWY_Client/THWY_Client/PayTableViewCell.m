@@ -117,7 +117,7 @@
     self.icon.clipsToBounds = YES;
     self.icon.layer.cornerRadius = image_H_W/2;
     
-    self.estateLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    self.estateLabel.font = FontSize(CONTENT_FONT);
     self.houseOwnerLabel.font = self.estateLabel.font;
     
     self.AddressLabel.font = self.estateLabel.font;

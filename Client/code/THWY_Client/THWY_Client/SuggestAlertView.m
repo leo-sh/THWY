@@ -29,7 +29,7 @@
     
     UILabel * suggestLabel = [UILabel labelWithTitle:@"留言类别：" frameX:10 Height:suggestView.height];
     
-    suggestLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    suggestLabel.font = FontSize(CONTENT_FONT);
     
     [suggestView addSubview:suggestLabel];
     

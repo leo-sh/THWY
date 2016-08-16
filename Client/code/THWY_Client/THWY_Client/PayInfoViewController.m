@@ -113,7 +113,7 @@
         cell.textLabel.attributedText = cellAttrText;
     }
     
-    cell.textLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    cell.textLabel.font = FontSize(CONTENT_FONT);
     cell.preservesSuperviewLayoutMargins = NO;
     cell.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
     cell.layoutMargins = UIEdgeInsetsZero;

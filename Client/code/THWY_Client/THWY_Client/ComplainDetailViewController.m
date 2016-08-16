@@ -151,7 +151,7 @@
     }
     if (indexPath.row == [self.data[indexPath.section]count] - 1) {
     }
-    resultCell.textLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    resultCell.textLabel.font = FontSize(CONTENT_FONT);
     resultCell.detailTextLabel.font = resultCell.textLabel.font;
     resultCell.selectionStyle = UITableViewCellSelectionStyleNone;
     resultCell.preservesSuperviewLayoutMargins = NO;

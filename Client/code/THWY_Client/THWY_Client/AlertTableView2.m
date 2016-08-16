@@ -67,7 +67,7 @@
     cell.preservesSuperviewLayoutMargins = NO;
     cell.separatorInset = UIEdgeInsetsZero;
     cell.layoutMargins = UIEdgeInsetsZero;
-    cell.textLabel.font = [UIFont systemFontOfSize:CONTENT_FONT];
+    cell.textLabel.font = FontSize(CONTENT_FONT);
     return cell;
 }
 
