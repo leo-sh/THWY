@@ -35,6 +35,11 @@
 
 @property (strong, nonatomic) UILabel *line3;
 
+@property (strong, nonatomic) UILabel *repairTime;
+@property (strong, nonatomic) UILabel *repairTimeLabel;
+
+@property (strong, nonatomic) UILabel *line4;
+
 @property (strong, nonatomic) UILabel *cellPhone;
 @property (strong, nonatomic) UILabel *cellPhoneLabel;
 
@@ -62,7 +67,6 @@
     if (self) {
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-                
         CGFloat topMagrin = 5.0/375*My_ScreenW;
         self.caiTiaoImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, 2)];
         self.caiTiaoImage.image = [UIImage imageNamed:@"records_彩条"];
@@ -150,7 +154,7 @@
         self.repairCatogeryLabel = [[UILabel alloc] init];
         [self.contentView addSubview:self.repairCatogeryLabel];
         [self.contentView addSubview:self.repairCatogery];
-        self.repairCatogery.text = @"保修类别: ";
+        self.repairCatogery.text = @"报修类别: ";
         [self setLabelAttributes:self.repairCatogery with:0];
         [self.repairCatogery mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.houseSource.mas_left);
@@ -205,7 +209,6 @@
             make.width.mas_equalTo(rect2.size.width);
             make.height.mas_equalTo(rect2.size.height);
         }];
-    
         
         self.line3 = [[UILabel alloc] init];
         self.callBtn = [[UIButton alloc] init];
@@ -221,11 +224,40 @@
             
         }];
         
+        self.repairTime = [[UILabel alloc] init];
+        self.repairTime.text = @"报修时间: ";
+        self.repairTimeLabel = [[UILabel alloc] init];
+        [self setLabelAttributes:self.repairTime with:0];
+        [self setLabelAttributes:self.repairTimeLabel with:-1];
+        [self.contentView addSubview:self.repairTime];
+        [self.contentView addSubview:self.repairTimeLabel];
+        
+        [self.repairTime mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.repairDesc.mas_left);
+            make.top.mas_equalTo(self.line3.mas_bottom).offset(topMagrin);
+        }];
+        
+        [self.repairTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.repairTime.mas_right);
+            make.centerY.mas_equalTo(self.repairTime.mas_centerY);
+        }];
+        
+        self.line4 = [[UILabel alloc] init];
+        [self.line4 setBackgroundColor:[UIColor lightGrayColor]];
+        [self.contentView addSubview:self.line4];
+        [self.line4 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0.5);
+            make.left.equalTo(self.contentView.mas_left).offset(15);
+            make.right.equalTo(self.contentView.mas_right).offset(-15);
+            make.top.mas_equalTo(self.repairTime.mas_bottom).offset(topMagrin);
+            
+        }];
+        
         [self.callBtn setImage:[UIImage scaleImage:[UIImage imageNamed:@"records_call"]  toScale:1] forState:UIControlStateNormal];
         [self.callBtn addTarget:self action:@selector(callNumber) forControlEvents:UIControlEventTouchUpInside];
         [self.callBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.detail.mas_centerX);
-            make.top.mas_equalTo(self.line3.mas_bottom).offset(topMagrin);
+            make.top.mas_equalTo(self.line4.mas_bottom).offset(topMagrin);
             make.height.mas_equalTo(self.detail.mas_height).multipliedBy(0.7);
             make.width.mas_equalTo(self.callBtn.mas_height).multipliedBy(0.75);
         }];
@@ -270,7 +302,12 @@
     self.houseSourceLabel.text = repaireVO.estate_name;
     self.repairCatogeryLabel.text = repaireVO.classes_str;
     self.repairDescLabel.text = repaireVO.detail;
+    self.repairTimeLabel.text = [NSString stringDateFromTimeInterval:[repaireVO.st_0_time integerValue] withFormat:nil];
     self.cellPhoneLabel.text = repaireVO.call_phone;
+    
+    if (repaireVO.kb.intValue == 2){
+        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"records_详情"]  toScale:0.7]forState:UIControlStateNormal];
+    }
     
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
     CGRect rect = [self.repairCatogeryLabel.text boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];

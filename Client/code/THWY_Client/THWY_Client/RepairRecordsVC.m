@@ -258,7 +258,7 @@
 //设置上拉下拉刷新
 - (void)initRefreshView{
     
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
  //   self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
     //自动更改透明度
@@ -266,7 +266,7 @@
 // self.tableView.mj_footer.automaticallyChangeAlpha = YES;
     
     
-    self.tableView2.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView2.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
  //   self.tableView2.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
     //自动更改透明度
@@ -274,6 +274,16 @@
 //    self.tableView2.mj_footer.automaticallyChangeAlpha = YES;
     
 
+}
+
+- (void)refreshData{
+
+    if (self.selectIndex == 0){
+        [self getDataType:self.switchFlag statusID:@"0" page:0 more:NO];
+    }else{
+        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%d", self.selectIndex+1] page:0 more:NO];
+    }
+    
 }
 
 //下拉刷新
@@ -311,9 +321,9 @@
     [sender setImage:[UIImage imageNamed:@"records_按下"] forState:UIControlStateNormal];
     
     if (self.selectIndex == 0){
-        [self getDataType:self.switchFlag statusID:@"0" page:1 more:NO];
+        [self getDataType:self.switchFlag statusID:@"0" page:0 more:NO];
     }else{
-        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%d", self.selectIndex+1] page:1 more:NO];
+        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%d", self.selectIndex+1] page:0 more:NO];
     }
 
 }
@@ -331,6 +341,8 @@
     NSInteger row = indexPath.row;
     RecordeRepairingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordeRepeiringCell" forIndexPath:indexPath];
     cell.vc = self;
+    cell.contentView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
+    cell.backgroundColor = [UIColor clearColor];
     [cell loadDataFromModel:self.repairDataArray[row]];
     return cell;
 }
@@ -353,13 +365,13 @@
     
     CGRect rect2 = [[self.repairDataArray[indexPath.row] classes_str] boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     if ([[UIDevice platformString] isEqualToString:@"iPhone 4s"]) {
-        return 205.0/667*My_ScreenH + rect.size.height +rect2.size.height+20;
+        return 245.0/667*My_ScreenH + rect.size.height +rect2.size.height+20;
     }else if([[UIDevice platformString] isEqualToString:@"iPhone 5s"] || [[UIDevice platformString] isEqualToString:@"iPhone 5"]){
-        return 210.0/667*My_ScreenH + rect.size.height +rect2.size.height;
+        return 250.0/667*My_ScreenH + rect.size.height +rect2.size.height;
     }else if([[UIDevice platformString] isEqualToString:@"iPhone 6s"] || [[UIDevice platformString] isEqualToString:@"iPhone 6"]){
-        return 200.0/667*My_ScreenH + rect.size.height +rect2.size.height;
+        return 240.0/667*My_ScreenH + rect.size.height +rect2.size.height;
     }else{
-        return 190.0/667*My_ScreenH + rect.size.height +rect2.size.height;
+        return 230.0/667*My_ScreenH + rect.size.height +rect2.size.height;
     }
 }
 
