@@ -56,10 +56,10 @@
     [My_ServicesManager getAGood:self.good.Id onComplete:^(NSString *errorMsg, GoodVO *merchant) {
 
         if (errorMsg){
-            
             [SVProgressHUD showErrorWithStatus:errorMsg];
+        }else{
+            [self.bussnessModels addObject:merchant];
         }
-        [self.bussnessModels addObject:merchant];
         
         [self.tableView reloadData];
         [SVProgressHUD dismiss];

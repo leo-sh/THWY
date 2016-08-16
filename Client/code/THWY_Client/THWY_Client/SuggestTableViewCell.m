@@ -31,7 +31,7 @@
                 
         self.head.image = [UIImage imageNamed:@"彩条"];
         
-        self.time.font = [UIFont systemFontOfSize:11];
+        self.time.font = FontSize(Content_Time_Font);
         
         self.time.textAlignment = NSTextAlignmentCenter;
         

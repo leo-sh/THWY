@@ -100,8 +100,8 @@
     }];
     
     icon.layer.cornerRadius = iconWidth/2;
-    icon.layer.borderWidth = 3;
-    icon.layer.borderColor = [UIColor whiteColor].CGColor;
+//    icon.layer.borderWidth = 3;
+//    icon.layer.borderColor = [UIColor whiteColor].CGColor;
     icon.clipsToBounds = YES;
     [icon addTarget:self action:@selector(clickIcon) forControlEvents:UIControlEventTouchUpInside];
     
@@ -213,6 +213,9 @@
         
         if (i == imageNameArray.count - 1) {
             label.textField.secureTextEntry = YES;
+            label.textField.text = @"";
+            label.textField.rightViewMode = UITextFieldViewModeNever;
+            label.textField.font = [UIFont systemFontOfSize:12];
         }
         
         switch (i) {

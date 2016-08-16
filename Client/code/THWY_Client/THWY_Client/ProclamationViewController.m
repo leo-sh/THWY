@@ -94,13 +94,13 @@
     }
     
     [self.view addSubview:self.tableView];
-    TableViewFram
-//    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(10);
-//        make.left.mas_equalTo(10);
-//        make.right.mas_equalTo(-10);
-//        make.bottom.mas_equalTo(-10);
-//    }];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(10);
+        make.left.mas_equalTo(5);
+        make.right.mas_equalTo(-5);
+        make.bottom.mas_equalTo(-10);
+    }];
 
     
 }
@@ -122,7 +122,7 @@
         cell = [[ProclamationTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         self.topHeight = CGRectGetMaxY(cell.time.frame);
     }
-    NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd"];
+    NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd HH:SS"];
     [cell setTitle:[self.data[indexPath.section] title]  time:time content:[self.data[indexPath.section] content] width:tableView.width];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];

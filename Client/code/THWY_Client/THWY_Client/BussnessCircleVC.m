@@ -32,6 +32,7 @@
 @property (strong, nonatomic) UILabel *ADLabel;
 @property (assign, nonatomic) NSInteger scrollIndex;
 @property (strong, nonatomic) UIScrollView *adLabelScrollView;
+@property (strong, nonatomic) UIImageView *laba;
 
 @property (strong, nonatomic) NSTimer *adLabelTimer;
 
@@ -56,14 +57,21 @@
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     self.adDataArray = [[NSMutableArray alloc] init];
     [[ServicesManager getAPI] getRecommendMerchants:1 onComplete:^(NSString *errorMsg, NSArray *list) {
+        if (errorMsg) {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
+    
         for (MerchantVO * model in list) {
             if (model) {
                 [self.adDataArray addObject:model];
             }
         }
+        
         [SVProgressHUD dismiss];
+            
         [self initADScrollView];
         [self getADLabels];
+        
     }];
     
 }
@@ -71,6 +79,7 @@
 - (void)initADScrollView{
     
     self.scrollView = [[YFLBBannerView alloc] init];
+    self.scrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bannerload"]];
     self.scrollView.showFooter = NO;
     self.scrollView.autoScroll = YES;
     self.scrollView.shouldLoop = YES;
@@ -115,9 +124,9 @@
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }else{
             detail.merchant = merchant;
-            [SVProgressHUD dismiss];
             [self.navigationController pushViewController:detail animated:YES];
         }
+        [SVProgressHUD dismiss];
     }];
 }
 
@@ -136,21 +145,21 @@
     headImage.image = [UIImage imageNamed:@"Avatar"];
     headImage.userInteractionEnabled = YES;
     headImage.layer.cornerRadius = self.view.height*1.0/12*0.85;
-    headImage.layer.borderWidth = 3;
-    headImage.layer.borderColor = [UIColor whiteColor].CGColor;
+//    headImage.layer.borderWidth = 3;
+//    headImage.layer.borderColor = [UIColor whiteColor].CGColor;
     headImage.clipsToBounds = YES;
     [self.userInfoView addSubview:headImage];
     
     [headImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.userInfoView.mas_centerY);
-        make.left.mas_equalTo(self.userInfoView).offset(30);
+        make.left.mas_equalTo(self.userInfoView).offset(10);
         make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.85);
         make.width.mas_equalTo(headImage.mas_height);
     }];
     
     UILabel *username = [[UILabel alloc] init];
     username.text = @"";
-    username.font = FontSize(CONTENT_FONT);
+    username.font = FontSize(CONTENT_FONT+1);
     [username sizeToFit];
     [self.userInfoView addSubview:username];
     
@@ -161,7 +170,7 @@
     
     UILabel *addr = [[UILabel alloc] init];
     addr.text = @"";
-    addr.font = FontSize(CONTENT_FONT);
+    addr.font = FontSize(CONTENT_FONT+1);
     [addr sizeToFit];
     [self.userInfoView addSubview:addr];
     [addr mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -173,7 +182,7 @@
     if (user) {
         [headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"Avatar"]];
         username.text = user.real_name;
-        addr.text = user.estate;
+        addr.text = [NSString stringWithFormat:@"%@·%@栋%@单元%@室",[user.houses[0] estate],[user.houses[0] block],[user.houses[0] unit],[user.houses[0] mph]];
     }
     
 }
@@ -185,31 +194,47 @@
         
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];
-            return ;
-        }
-        for (int i = 0; i < list.count;i++) {
-            AdVO *model = list[i];
-            self.adLabelScrollView.contentSize = CGSizeMake(self.view.width*6/7.0, HEIGHT*list.count);
-            if (model) {
-                [self.adLabels addObject:model];
-                UIButton *adbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, HEIGHT*i, self.view.width*6/7.0, HEIGHT)];
-                adbtn.tag = 500+i;
-                [adbtn addTarget:self action:@selector(showAdDetail:) forControlEvents:UIControlEventTouchUpInside];
-                adbtn.titleLabel.font = FontSize(CONTENT_FONT+1);
-                adbtn.titleLabel.textColor = [UIColor whiteColor];
-                adbtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//                adbtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-                adbtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 20, 0);
-                [self.adLabelScrollView addSubview:adbtn];
-                [adbtn setTitle:model.title forState:UIControlStateNormal];
-                
+//            return ;
+        }else{
+            for (int i = 0; i < list.count;i++) {
+                AdVO *model = list[i];
+                self.adLabelScrollView.contentSize = CGSizeMake(self.view.width*6/7.0, HEIGHT*list.count);
+                if (model) {
+                    [self.adLabels addObject:model];
+                    UIButton *adbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, HEIGHT*i, self.view.width*6/7.0, HEIGHT)];
+                    adbtn.tag = 500+i;
+                    [adbtn addTarget:self action:@selector(showAdDetail:) forControlEvents:UIControlEventTouchUpInside];
+                    adbtn.titleLabel.font = FontSize(CONTENT_FONT+1);
+                    [adbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                    adbtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+                    adbtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, (70-18)*0.5, 0);
+//                    adbtn.titleLabel.centerY = self.laba.centerY;
+                    [self.adLabelScrollView addSubview:adbtn];
+                    [adbtn setTitle:model.title forState:UIControlStateNormal];
+                    if (i == list.count-1){
+                        [self.adLabels addObject:list[0]];
+                        UIButton *adbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, HEIGHT*(i+1), self.view.width*6/7.0, HEIGHT)];
+                        adbtn.tag = 500+i+1;
+                        [adbtn addTarget:self action:@selector(showAdDetail:) forControlEvents:UIControlEventTouchUpInside];
+                        adbtn.titleLabel.font = FontSize(CONTENT_FONT+1);
+                        [adbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                        adbtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+                        adbtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, (70-18)*0.5, 0);
+                        //                    adbtn.titleLabel.centerY = self.laba.centerY;
+                        [self.adLabelScrollView addSubview:adbtn];
+                        [adbtn setTitle:[list[0] title] forState:UIControlStateNormal];
+                    }
+                }
+                self.ADLabel.hidden = YES;
             }
+            
+            if (self.adLabels.count>0) {
+                self.scrollIndex = 0;
+                self.adLabelTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(runloopAdLabel) userInfo:nil repeats:YES];
+                
+            }        
         }
-        
-        
-        if (self.adLabels.count>0) {
-            self.adLabelTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(runloopAdLabel) userInfo:nil repeats:YES];
-        }
+        [SVProgressHUD dismiss];
         
     }];
 }
@@ -218,15 +243,18 @@
     if (!self.adLabels){
         return;
     }
-    if (self.scrollIndex<self.adLabels.count) {
+    if (self.scrollIndex<self.adLabels.count-2) {
         self.scrollIndex++;
         [UIView animateWithDuration:0.5 animations:^{
             self.adLabelScrollView.contentOffset = CGPointMake(0, self.scrollIndex*HEIGHT);
         }];
     }else{
+        [UIView animateWithDuration:0.5 animations:^{
+            self.scrollIndex++;
+            self.adLabelScrollView.contentOffset = CGPointMake(0, self.scrollIndex*HEIGHT);
+        }];
         self.scrollIndex = 0;
         self.adLabelScrollView.contentOffset = CGPointMake(0, 0);
-
     }
 }
 
@@ -241,12 +269,12 @@
         make.top.mas_equalTo(self.userInfoView.mas_bottom);
         make.left.mas_equalTo(self.view.mas_left);
         make.right.mas_equalTo(self.view.mas_right);
-        make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.75);
+        make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.65);
     }];
     
-    UIImageView *laba = [[UIImageView alloc] initWithImage:[UIImage scaleImage:[UIImage imageNamed:@"bussness_喇叭"] toScale:0.6]];
-    [self.ADView addSubview:laba];
-    [laba mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.laba = [[UIImageView alloc] initWithImage:[UIImage scaleImage:[UIImage imageNamed:@"bussness_喇叭"] toScale:0.6]];
+    [self.ADView addSubview:self.laba];
+    [self.laba mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.ADView.centerY).offset(-2);
         make.left.mas_equalTo(self.ADView.mas_left).offset(20);
     }];
@@ -260,10 +288,19 @@
     [self.ADView addSubview:self.adLabelScrollView];
     
     [self.adLabelScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(laba.mas_centerY);
-        make.left.mas_equalTo(laba.mas_right).offset(10);
+        make.centerY.mas_equalTo(self.laba.mas_centerY);
+        make.left.mas_equalTo(self.laba.mas_right).offset(10);
         make.right.mas_equalTo(self.ADView.mas_right);
         make.height.mas_equalTo(self.ADView.mas_height).multipliedBy(0.7);
+    }];
+    
+    self.ADLabel = [[UILabel alloc] init];
+    self.ADLabel.text = @"数据加载中...";
+//    self.ADLabel.textColor = [UIColor whiteColor];
+    [self.adLabelScrollView addSubview:self.ADLabel];
+    [self.ADLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.laba.mas_right).offset(10);
+        make.centerY.mas_equalTo(self.laba.mas_centerY);
     }];
     
     NSArray *labelNames = @[@"社区商家", @"推介商品&服务", @"商圈广告"];

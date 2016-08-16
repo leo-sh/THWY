@@ -73,6 +73,7 @@
     _imagePickerController.sourceType = type;
     _imagePickerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     _imagePickerController.allowsEditing = YES;
+    
     //相机类型（拍照、录像...）字符串需要做相应的类型转换
     if (self.selectType == ImageType) {
         _imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
@@ -106,24 +107,17 @@
     if ([mediaType isEqualToString:(NSString *)kUTTypeImage]){
         //如果是图片
         UIImage *image = info[UIImagePickerControllerEditedImage];
-        //压缩图片
-//        NSData *fileData = UIImageJPEGRepresentation(self.imageView.image, 1.0);
         if (_imagePickerController.sourceType == UIImagePickerControllerSourceTypeCamera) {
             //保存图片至相册
             UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
         }
         //上传图片
-//        [self uploadImageWithData:fileData];
         [self.delegate select:image type:ImageType];
         self.textField.text = mediaType;
         
     }else{
         //如果是视频
         NSURL *url = info[UIImagePickerControllerMediaURL];
-//        //播放视频
-//        _moviePlayer.contentURL = url;
-//        [_moviePlayer play];
-        //保存视频至相册（异步线程）
         NSString *urlStr = [url path];
 #pragma mark - URL
         NSLog(@"path ::  %@", url);
@@ -135,7 +129,6 @@
                 }
             });
         }
-//        NSData *videoData = [NSData dataWithContentsOfURL:url];
         //视频上传
         self.textField.text = urlStr;
         [self.delegate select:[NSString stringWithFormat:@"file://%@",urlStr] type:VideoType];

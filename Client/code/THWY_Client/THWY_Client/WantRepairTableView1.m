@@ -329,6 +329,8 @@
         errorMsg = @"请选择报修类型";
     }else if ([self.repairVO.image isEqual:nil]){
         errorMsg = @"请选择图片";
+    }else if ([self.repairVO.detail isEqual:nil]){
+        errorMsg = @"描述不能为空";
     }
     
     if (![errorMsg isEqualToString:@""]){

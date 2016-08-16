@@ -28,12 +28,12 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, height)];
     headerView.backgroundColor = [UIColor whiteColor];
     UIButton *confirm = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, headerView.height-10, headerView.height-10)];
-    [confirm setBackgroundImage:[UIImage imageNamed:@"√"] forState:UIControlStateNormal];
+    [confirm setImage:[UIImage imageNamed:@"√"] forState:UIControlStateNormal];
     [confirm addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:confirm];
     
     UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(self.width-5-confirm.width, 5, headerView.height-10, headerView.height-10)];
-    [cancel setBackgroundImage:[UIImage imageNamed:@"X"] forState:UIControlStateNormal];
+    [cancel setImage:[UIImage imageNamed:@"X"] forState:UIControlStateNormal];
     [cancel addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:cancel];
     
