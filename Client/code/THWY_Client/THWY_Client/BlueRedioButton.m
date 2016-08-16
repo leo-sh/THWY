@@ -64,28 +64,29 @@
 
 - (void)click
 {
-    self.chooseStatu =!self.chooseStatu;
-    
-    [self statuChange];
-    
-    for (UIView *temp in self.superview.subviews) {
-        if([temp isKindOfClass:[BlueRedioButton class]])
-        {
-            if (temp != self) {
-                BlueRedioButton *btn = (BlueRedioButton *)temp;
-                if (self.chooseStatu) {
-                    btn.chooseStatu = NO;
+    if (!self.chooseStatu) {
+        self.chooseStatu =!self.chooseStatu;
+        [self statuChange];
+        
+        for (UIView *temp in self.superview.subviews) {
+            if([temp isKindOfClass:[BlueRedioButton class]])
+            {
+                if (temp != self) {
+                    BlueRedioButton *btn = (BlueRedioButton *)temp;
+                    if (self.chooseStatu) {
+                        btn.chooseStatu = NO;
+                    }
+                    else
+                    {
+                        btn.chooseStatu = YES;
+                        
+                    }
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"判断" object:nil];
                 }
-                else
-                {
-                    btn.chooseStatu = YES;
-                    
-                }
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"判断" object:nil];
             }
         }
-    }
 
+    }
     
 }
 
