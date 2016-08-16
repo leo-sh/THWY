@@ -153,29 +153,7 @@
     self.typeBtn = [[AlertButton alloc]initWithFrame:CGRectMake(complainLabel.right + boderspace ,0, 150, 26)];
     self.typeBtn.centerY = complainLabel.centerY;
     
-    [[ServicesManager getAPI]getComplaintTypes:^(NSString *errorMsg, NSArray *list) {
-        
-        NSMutableArray *array = [NSMutableArray array];
-        
-        for (ComplaintTypeVO *temp in list) {
-            
-            [array addObject:temp.complaint_type];
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-           
-            
-            [self.typeBtn setGetDataMethod:GetComplainType OriginY:complainTypeView.centerY - 60 showCentenX:self.typeBtn.centerX + 10 withData:array];
-            
-        });
-        [self.typeBtn setTitle:[array firstObject] forState:UIControlStateNormal];
-
-    }];
-
-    
-    
-    
-        [complainTypeView addSubview:self.typeBtn];
+    [complainTypeView addSubview:self.typeBtn];
     
 //    self.textView = [[UITextView alloc]initWithFrame:
     self.textView.frame = CGRectMake(10, complainTypeView.bottom + 1, self.width - 20, 80);
@@ -189,6 +167,27 @@
     [self setPlaceholder:@"请输入投诉详情"];
     
     self.height = self.textView.bottom + CONTENT_FONT;
+    
+    [[ServicesManager getAPI]getComplaintTypes:^(NSString *errorMsg, NSArray *list) {
+        
+        NSMutableArray *array = [NSMutableArray array];
+        
+        for (ComplaintTypeVO *temp in list) {
+            
+            [array addObject:temp.complaint_type];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            CGFloat offset = (My_KeyWindow.height - self.height)/2 + complainTypeView.centerY - array.count * 30;
+            
+            [self.typeBtn setGetDataMethod:GetComplainType OriginY:offset showCentenX:self.typeBtn.centerX + 10 withData:array];
+            
+        });
+        [self.typeBtn setTitle:[array firstObject] forState:UIControlStateNormal];
+        self.typeBtn.postID = @"1";
+        
+    }];
     
 //    NSLog(@"self y %f",self.y);
 
