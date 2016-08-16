@@ -39,20 +39,22 @@
 - (void)getBussnessData{
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     [self.bussnessModels removeAllObjects];
-    [[ServicesManager getAPI] getAds:0 onComplete:^(NSString *errorMsg, NSArray *list) {
+    self.page = 0;
+    [[ServicesManager getAPI] getAds:self.page onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg){
             
             [SVProgressHUD showErrorWithStatus:errorMsg];
+        }else
+        {
+            for (AdVO *model in list) {
+                [self.bussnessModels addObject:model];
+            }
+            
+            [self.tableView reloadData];
+            [SVProgressHUD dismiss];
         }
-        
-        for (AdVO *model in list) {
-            [self.bussnessModels addObject:model];
-        }
-        
-        [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
-        [SVProgressHUD dismiss];
         
     }];
     
@@ -87,23 +89,21 @@
 }
 
 - (void)loadMoreData{
-    [SVProgressHUD showWithStatus:@"数据加载中..."];
-    
     [[ServicesManager getAPI] getAds:++self.page onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg){
-            
+            self.page --;
             [SVProgressHUD showErrorWithStatus:errorMsg];
+        }else
+        {
+            for (AdVO *model in list) {
+                [self.bussnessModels addObject:model];
+            }
+            
+            [self.tableView reloadData];
         }
         
-        for (AdVO *model in list) {
-            [self.bussnessModels addObject:model];
-        }
-        
-        [self.tableView reloadData];
         [self.tableView.mj_footer endRefreshing];
-        [SVProgressHUD dismiss];
-        
     }];
     
 }
