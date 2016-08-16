@@ -17,6 +17,8 @@
 @property (strong, nonatomic) NSMutableArray *bussnessModels;
 @property (strong, nonatomic) UITableView *tableView;
 
+@property (assign, nonatomic) int page;
+
 @end
 
 @implementation RecommandBussnessADVC
@@ -29,15 +31,15 @@
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
     
     [self initViews];
-    [self getBussnessData];
-    
+//    [self getBussnessData];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 
 - (void)getBussnessData{
     [SVProgressHUD showWithStatus:@"数据加载中..."];
-
-    [[ServicesManager getAPI] getAds:1 onComplete:^(NSString *errorMsg, NSArray *list) {
+    [self.bussnessModels removeAllObjects];
+    [[ServicesManager getAPI] getAds:0 onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg){
             
@@ -49,6 +51,7 @@
         }
         
         [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
         [SVProgressHUD dismiss];
         
     }];
@@ -66,7 +69,42 @@
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"BussnessADCell" bundle:nil]forCellReuseIdentifier:@"BussnessADCell"];
+    [self initRefreshView];
     [self.view addSubview:self.tableView];
+    
+}
+
+//设置上拉下拉刷新
+- (void)initRefreshView{
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getBussnessData)];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
+    //自动更改透明度
+    self.tableView.mj_header.automaticallyChangeAlpha = YES;
+    // self.tableView.mj_footer.automaticallyChangeAlpha = YES;
+    
+}
+
+- (void)loadMoreData{
+    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    
+    [[ServicesManager getAPI] getAds:++self.page onComplete:^(NSString *errorMsg, NSArray *list) {
+        
+        if (errorMsg){
+            
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
+        
+        for (AdVO *model in list) {
+            [self.bussnessModels addObject:model];
+        }
+        
+        [self.tableView reloadData];
+        [self.tableView.mj_footer endRefreshing];
+        [SVProgressHUD dismiss];
+        
+    }];
     
 }
 
@@ -86,11 +124,20 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ADDetailVC *detail = [[ADDetailVC alloc] init];
-    detail.advo = self.bussnessModels[indexPath.row];
-    [self .navigationController pushViewController:detail animated:YES];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍后......"];
+    AdVO* adVO = self.bussnessModels[indexPath.row];
+    [My_ServicesManager getAnAd:adVO.Id onComplete:^(NSString *errorMsg, AdVO *ad) {
+        if (errorMsg == nil) {
+            ADDetailVC *detail = [[ADDetailVC alloc] init];
+            detail.advo = ad;
+            [self .navigationController pushViewController:detail animated:YES];
+            [SVProgressHUD dismiss];
+        }else
+        {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
+    }];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

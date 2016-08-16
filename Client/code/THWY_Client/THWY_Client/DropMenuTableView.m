@@ -51,11 +51,12 @@
     cell.imageView.image = [UIImage imageNamed:self.itemImages[indexPath.row]];
     cell.textLabel.text = self.itemNames[indexPath.row];
     cell.textLabel.backgroundColor = My_clearColor;
+
     cell.textLabel.textColor = self.textColor;
-    cell.textLabel.font = [UIFont fontWithName:My_RegularFontName size:self.fontSize];
+    cell.textLabel.font = FontSize(16.5);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentView.backgroundColor = self.backColor;
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, cell.frame.size.height-0.5, cell.frame.size.width, 0.5)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, cell.frame.size.height-0.5, cell.frame.size.width, 0.2)];
     label.backgroundColor = My_Color(229.f, 229.f, 229.f);
     [cell.contentView addSubview:label];
     return cell;

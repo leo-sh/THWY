@@ -157,7 +157,7 @@
         label.text = self.labelNames[i];
         [label sizeToFit];
         label.centerX = btnImage.centerX;
-        label.font = [UIFont fontWithName:My_RegularFontName size:16.0];
+        label.font = FontSize(CONTENT_FONT);
         label.textColor = [UIColor blackColor];
         [btn addSubview:label];
         
@@ -184,7 +184,7 @@
         label.text = self.labelNames[i];
         [label sizeToFit];
         label.centerX = btnImage.centerX;
-        label.font = [UIFont fontWithName:My_RegularFontName size:16.0];
+        label.font = FontSize(CONTENT_FONT);
         label.textColor = [UIColor blackColor];
         [btn addSubview:label];
 
@@ -224,36 +224,6 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.tableView2 registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }
-
-//- (void)switchLeftRight{
-//    
-//    if (self.switchFlag == 1) {
-//        self.leftLabel.textColor = My_NAV_BG_Color;
-//        self.rightLabel.textColor = [UIColor whiteColor];
-////        [self.switchButton setBackgroundImage:[UIImage imageNamed:@"repaire_切换标签右"] forState:UIControlStateNormal];
-//        self.scrollView.contentOffset = CGPointMake(self.tableView.frame.size.width, 0);
-//        self.tableView2.contentOffset = CGPointMake(0, 0);
-//        
-//        [self btnOnclicked:[self.bgView viewWithTag:300]];
-//        self.switchFlag = 2;
-//        self.selectIndex = 0;
-//        [self btnOnclicked:[self.bgView2 viewWithTag:310]];
-//        
-//        
-//    }else if (self.switchFlag == 2){
-//        self.leftLabel.textColor = [UIColor whiteColor];
-//        self.rightLabel.textColor = My_NAV_BG_Color;
-////        [self.switchButton setBackgroundImage:[UIImage imageNamed:@"repaire_切换标签左"] forState:UIControlStateNormal];
-//        self.scrollView.contentOffset = CGPointMake(0, 0);
-//        self.tableView.contentOffset = CGPointMake(0, 0);
-//        self.switchFlag = 1;
-//        [self btnOnclicked:[self.bgView2 viewWithTag:310]];
-//        self.selectIndex = 0;
-//        [self btnOnclicked:[self.bgView viewWithTag:300]];
-//    }
-//    
-//    
-//}
 
 //业主,公共转换
 - (void)segmentSelectIndex:(NSInteger)index{

@@ -59,7 +59,7 @@
 - (void)setLabelAttributes:(UILabel *)label{
     
     label.numberOfLines = 0;
-    label.font = [UIFont fontWithName:My_RegularFontName size:16.0];
+    label.font = FontSize(CONTENT_FONT);
     label.textColor = [UIColor darkGrayColor];
     [label sizeToFit];
     

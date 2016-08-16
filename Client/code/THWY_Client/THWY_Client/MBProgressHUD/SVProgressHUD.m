@@ -60,6 +60,7 @@
         self.loadingLabel.clipsToBounds = YES;
         self.loadingLabel.numberOfLines = 0;
         self.loadingLabel.adjustsFontSizeToFitWidth = YES;
+        self.loadingLabel.font = [UIFont fontWithDeviceName:My_RegularFontName size:14];
         
         self.loadingLabel.textColor = [UIColor whiteColor];
         self.loadingLabel.textAlignment = NSTextAlignmentCenter;
@@ -85,7 +86,7 @@
     self.hud.removeFromSuperViewOnHide = NO;
     self.hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     self.hud.backgroundView.style = MBProgressHUDBackgroundStyleSolidColor;
-    self.hud.backgroundView.color = My_AlphaColor(0, 0, 0, 0.1);
+    self.hud.backgroundView.color = My_AlphaColor(0, 0, 0, 0.01);
     self.hud.bezelView.color = [UIColor clearColor];
     self.hud.bezelView.clipsToBounds = NO;
     self.hud.mode = MBProgressHUDModeCustomView;
@@ -129,13 +130,13 @@
     [self hudInit];
     [self.hud showAnimated:YES];
     
-    self.loadingLabel.width = [title sizeWithFont:[UIFont fontWithDeviceName:My_RegularFontName size:13] maxSize:CGSizeMake(My_ScreenW/3*2, My_ScreenH/3)].width + 20;
-    self.loadingLabel.height = [title sizeWithFont:[UIFont fontWithDeviceName:My_RegularFontName size:13] maxSize:CGSizeMake(My_ScreenW/3*2, My_ScreenH/3)].height + 20;
+    self.loadingLabel.width = [title sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].width + 40;
+    self.loadingLabel.height = [title sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].height + 20;
     self.loadingLabel.center = CGPointMake(20, 20);
     
     self.loadingLabel.text = title;
     
-    [self.hud setOffset:CGPointMake(0, My_ScreenH - self.loadingLabel.height - 50)];
+    [self.hud setOffset:CGPointMake(0, My_ScreenH - self.loadingLabel.height - 100)];
     
     [self.hud.bezelView addSubview:self.loadingLabel];
     [self.hud.bezelView bringSubviewToFront:self.loadingLabel];
@@ -153,9 +154,10 @@
     [self hudInit];
     [self.hud showAnimated:YES];
     
-    self.loadingLabel.width = [title sizeWithFont:[UIFont fontWithDeviceName:My_RegularFontName size:13] maxSize:CGSizeMake(My_ScreenW/3*2, My_ScreenH/3)].width + 20;
-    self.loadingLabel.height = [title sizeWithFont:[UIFont fontWithDeviceName:My_RegularFontName size:13] maxSize:CGSizeMake(My_ScreenW/3*2, My_ScreenH/3)].height + 20;
+    self.loadingLabel.width = [title sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].width + 40;
+    self.loadingLabel.height = [title sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].height + 20;
     self.loadingLabel.center = CGPointMake(20, 20);
+    
     self.loadingLabel.text = title;
     
     [self.hud.bezelView addSubview:self.loadingLabel];

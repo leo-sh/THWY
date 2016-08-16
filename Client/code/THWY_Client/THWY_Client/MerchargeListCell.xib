@@ -90,6 +90,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
             <connections>
                 <outlet property="icon" destination="dRF-WC-O6q" id="laj-Ww-yCP"/>
                 <outlet property="merchargeAddr" destination="Gko-Vz-Lpi" id="8Rt-YC-FKo"/>

@@ -18,7 +18,7 @@
         [self setClipsToBounds:YES];
         self.tintColor = My_NAV_BG_Color;
         self.backgroundColor = [UIColor clearColor];
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:My_NAV_BG_Color,NSForegroundColorAttributeName,[UIFont fontWithName:My_RegularFontName size:18],NSFontAttributeName ,nil];
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:My_NAV_BG_Color,NSForegroundColorAttributeName,FontSize(18.0),NSFontAttributeName ,nil];
         [self setTitleTextAttributes:dic forState:UIControlStateNormal];
     }
     return self;

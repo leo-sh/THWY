@@ -20,8 +20,8 @@
     [super awakeFromNib];
     // Initialization code
     
-    self.textView.layer.borderWidth = 1;
-    self.textView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.textView.layer.borderWidth = 0.5;
+    self.textView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
 }
 

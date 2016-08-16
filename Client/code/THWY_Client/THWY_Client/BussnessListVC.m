@@ -27,6 +27,8 @@
 @property (assign, nonatomic) NSInteger selectedIndex;
 @property (assign, nonatomic) BOOL isSearch;
 
+@property (assign, nonatomic) int page;
+
 @end
 
 @implementation BussnessListVC
@@ -42,14 +44,15 @@
     self.selectedIndex = 0;
     self.isSearch = NO;
     [self initViews];
-    [self getBussnessData];
+//    [self getBussnessData];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)getBussnessData{
     [self.bussnessModels removeAllObjects];
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     
-    [[ServicesManager getAPI] getMerchants:1 name:nil onComplete:^(NSString *errorMsg, NSArray *list) {
+    [[ServicesManager getAPI] getMerchants:0 name:nil onComplete:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg){
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }
@@ -59,6 +62,7 @@
         }
         
         [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
         [SVProgressHUD dismiss];
         
     }];
@@ -111,7 +115,7 @@
     self.merchantNametextField.layer.borderWidth = 1;
     self.merchantNametextField.layer.borderColor = My_Color(236, 236, 236).CGColor;
     self.merchantNametextField.placeholder = @" 请输入商家名称";
-    self.merchantNametextField.font = [UIFont fontWithName:My_RegularFontName size:14.0];
+    self.merchantNametextField.font = FontSize(CONTENT_FONT-1);
     self.merchantNametextField.backgroundColor = [UIColor whiteColor];
     self.merchantNametextField.delegate = self;
     self.merchantNametextField.keyboardType = UIKeyboardTypeNamePhonePad;
@@ -125,7 +129,7 @@
     search.backgroundColor = My_NAV_BG_Color;
     search.layer.cornerRadius = 5;
     search.clipsToBounds = YES;
-    search.titleLabel.font = [UIFont systemFontOfSize:CONTENT_FONT - 1];
+    search.titleLabel.font = FontSize(CONTENT_FONT);
     [search setTitle:@"查询" forState:UIControlStateNormal];
     [search addTarget:self action:@selector(clickSearchBtn) forControlEvents:UIControlEventTouchUpInside];
     [searchView addSubview:search];
@@ -137,15 +141,50 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = [UIColor lightGrayColor];
     self.tableView.rowHeight = 100/667.0*My_ScreenH;
 //    self.tableView.bounces = NO;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"MerchargeListCell" bundle:nil]forCellReuseIdentifier:@"MerchargeListCell"];
+    [self initRefreshView];
     [self.view addSubview:self.tableView];
     
     
 }
+
+//设置上拉下拉刷新
+- (void)initRefreshView{
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getBussnessData)];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
+    //自动更改透明度
+    self.tableView.mj_header.automaticallyChangeAlpha = YES;
+    // self.tableView.mj_footer.automaticallyChangeAlpha = YES;
+    
+}
+
+- (void)loadMoreData{
+    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    
+    [[ServicesManager getAPI] getMerchants:++self.page name:nil onComplete:^(NSString *errorMsg, NSArray *list) {
+        if (errorMsg){
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
+        
+        for (MerchantVO *model in list) {
+            [self.bussnessModels addObject:model];
+        }
+        
+        [self.tableView reloadData];
+        [self.tableView.mj_footer endRefreshing];
+        [SVProgressHUD dismiss];
+        
+    }];
+
+}
+
 
 - (void)chooseTypeBtnOnclicked:(UIButton *)button{
     [self getBussnessTypeView];
@@ -233,6 +272,10 @@
         detail.merchant = self.searchResultModels[indexPath.row];
     }
     [self .navigationController pushViewController:detail animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
 }
 
 - (void)didReceiveMemoryWarning {

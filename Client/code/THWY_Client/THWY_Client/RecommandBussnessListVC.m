@@ -18,6 +18,8 @@
 
 @property (strong, nonatomic) UITableView *tableView;
 
+@property (assign, nonatomic) int page;
+
 @end
 
 @implementation RecommandBussnessListVC
@@ -33,13 +35,14 @@
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
 
     [self initViews];
-    [self getBussnessData];
+    [self.tableView.mj_header beginRefreshing];
+//    [self getBussnessData];
 }
 
 - (void)getBussnessData{
     [SVProgressHUD showWithStatus:@"数据加载中..."];
-    
-    [[ServicesManager getAPI] getRecommendGoods:1 onComplete:^(NSString *errorMsg, NSArray *list) {
+    [self.bussnessModels removeAllObjects];
+    [[ServicesManager getAPI] getRecommendGoods:0 onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg){
             [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -50,6 +53,7 @@
         }
         
         [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
         [SVProgressHUD dismiss];
         
     }];
@@ -62,11 +66,46 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = [UIColor lightGrayColor];
     self.tableView.rowHeight = 110/667.0*My_ScreenH;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"RecommandMerchantCell" bundle:nil] forCellReuseIdentifier:@"RecommandMerchantCell"];
+    [self initRefreshView];
     [self.view addSubview:self.tableView];
+    
+}
+
+//设置上拉下拉刷新
+- (void)initRefreshView{
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getBussnessData)];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
+    //自动更改透明度
+    self.tableView.mj_header.automaticallyChangeAlpha = YES;
+    // self.tableView.mj_footer.automaticallyChangeAlpha = YES;
+    
+}
+
+- (void)loadMoreData{
+    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    
+    [[ServicesManager getAPI] getRecommendGoods:++self.page onComplete:^(NSString *errorMsg, NSArray *list) {
+        
+        if (errorMsg){
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
+        
+        for (GoodVO *model in list) {
+            [self.bussnessModels addObject:model];
+        }
+        
+        [self.tableView reloadData];
+        [self.tableView.mj_footer endRefreshing];
+        [SVProgressHUD dismiss];
+        
+    }];
     
 }
 
@@ -92,6 +131,9 @@
     [self .navigationController pushViewController:detail animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

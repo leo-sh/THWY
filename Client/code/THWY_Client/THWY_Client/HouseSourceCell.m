@@ -31,7 +31,7 @@
         self.selectedIndex = -1;
         self.icon = [[UIImageView alloc] initWithImage:[UIImage scaleImage:[UIImage imageNamed:@"repaire_项目"] toScale:0.8]];
         [self.contentView addSubview:self.icon];
-        
+        self.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
         NSInteger topMargin = 10.0/375*My_ScreenH;
         [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.contentView.mas_top).offset(topMargin);

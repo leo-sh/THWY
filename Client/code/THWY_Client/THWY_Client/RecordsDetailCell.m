@@ -33,8 +33,8 @@
         self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
         self.leftLabel = [[UILabel alloc] init];
         self.detailLabel = [[UILabel alloc] init];
-        [self setLabelAttributes:self.leftLabel];
-        [self setLabelAttributes:self.detailLabel];
+        [self setLabelAttributes:self.leftLabel with:0];
+        [self setLabelAttributes:self.detailLabel with:-1];
         self.line = [[UILabel alloc] init];
         self.line.backgroundColor = [UIColor lightGrayColor];
         
@@ -55,9 +55,9 @@
         }];
         
         [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.contentView.mas_left).offset(topMargin);
-            make.height.mas_equalTo(1);
-            make.right.mas_equalTo(self.contentView.mas_right).offset(-topMargin);
+            make.left.mas_equalTo(self.contentView.mas_left).offset(15);
+            make.height.mas_equalTo(0.5);
+            make.right.mas_equalTo(self.contentView.mas_right).offset(-15);
             make.bottom.mas_equalTo(self.contentView.mas_bottom);
         }];
         
@@ -161,10 +161,10 @@
     
 }
 
-- (void)setLabelAttributes:(UILabel *)label{
+- (void)setLabelAttributes:(UILabel *)label with:(NSInteger)big{
     
     label.numberOfLines = 0;
-    label.font = [UIFont fontWithName:My_RegularFontName size:16.0];
+    label.font = FontSize(CONTENT_FONT+big);
     label.textColor = [UIColor darkGrayColor];
     //    [label sizeToFit];
     

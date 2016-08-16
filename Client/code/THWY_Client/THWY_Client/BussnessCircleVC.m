@@ -25,8 +25,11 @@
 
 @property (strong, nonatomic) YFLBBannerView *scrollView;
 @property (strong, nonatomic) UIView *userInfoView;
+
 @property (strong, nonatomic) UIButton *ADView;
 @property (strong, nonatomic) UILabel *ADLabel;
+@property (assign, nonatomic) NSInteger scrollIndex;
+@property (strong, nonatomic) UIScrollView *adLabelScrollView;
 
 @property (strong, nonatomic) NSTimer *adLabelTimer;
 
@@ -38,6 +41,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"社区商圈";
+    self.scrollIndex = -1;
     self.adLabels = [NSMutableArray array];
 //    self.adDataArray = [NSMutableArray array];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
@@ -143,7 +147,7 @@
     
     UILabel *username = [[UILabel alloc] init];
     username.text = @"name";
-    username.font = [UIFont fontWithName:My_RegularFontName size:16];
+    username.font = FontSize(CONTENT_FONT);
     [username sizeToFit];
     [self.userInfoView addSubview:username];
     
@@ -154,7 +158,7 @@
     
     UILabel *addr = [[UILabel alloc] init];
     addr.text = @"地址";
-    addr.font = [UIFont fontWithName:My_RegularFontName size:16];
+    addr.font = FontSize(CONTENT_FONT);
     [addr sizeToFit];
     [self.userInfoView addSubview:addr];
     [addr mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -185,19 +189,19 @@
         }
     }];
 }
-static int flag = 0;
+
 - (void)runloopAdLabel{
     if (!self.adLabels){
         return;
     }
-    if (flag<self.adLabels.count) {
-        AdVO *model = self.adLabels[flag];
+    if (self.scrollIndex<self.adLabels.count) {
+        AdVO *model = self.adLabels[self.scrollIndex];
         [UIView animateWithDuration:2.0 animations:^{
             self.ADLabel.text = model.title;
         }];
-        flag++;
+        self.scrollIndex++;
     }else{
-        flag = 0;
+        self.scrollIndex = 0;
     }
 }
 
@@ -224,7 +228,7 @@ static int flag = 0;
     
     self.ADLabel = [[UILabel alloc] init];
     [self.ADLabel sizeToFit];
-    self.ADLabel.font = [UIFont fontWithName:My_RegularFontName size:16];
+    self.ADLabel.font = FontSize(CONTENT_FONT);
     self.ADLabel.textColor = [UIColor whiteColor];
     self.ADLabel.text = @"加载中...";
     [self.ADView addSubview:self.ADLabel];
@@ -252,7 +256,7 @@ static int flag = 0;
         btnLabel.text = labelNames[i];
         btnLabel.textColor = [UIColor darkGrayColor];
         [btnLabel sizeToFit];
-        btnLabel.font = [UIFont fontWithName:My_RegularFontName size:16.0];
+        btnLabel.font = FontSize(CONTENT_FONT);
         [self.view addSubview:btnLabel];
         [btnLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(button.mas_centerX);
@@ -264,9 +268,14 @@ static int flag = 0;
 
 - (void)showAdDetail{
     
+    if (self.adLabels.count-1<self.scrollIndex) {
+        self.scrollIndex = -1;
+        return;
+    }
+    
     ADDetailVC *detail = [[ADDetailVC alloc] init];
-    if (self.adLabels[flag]) {
-        detail.advo = self.adLabels[flag];
+    if (self.adLabels[self.scrollIndex]) {
+        detail.advo = self.adLabels[self.scrollIndex];
         [self.navigationController pushViewController:detail animated:YES];
     }
     

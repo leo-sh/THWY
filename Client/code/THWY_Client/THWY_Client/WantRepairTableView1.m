@@ -47,7 +47,7 @@
         self.delegate = self;
         self.dataSource = self;
         self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        self.separatorColor = [UIColor grayColor];
+        self.separatorColor = [UIColor lightGrayColor];
 //        self.bounces = NO;
         self.showsVerticalScrollIndicator = NO;
         self.sectionFooterHeight = 0;
@@ -145,6 +145,7 @@
         case 7:{
             DescribeCell *cell = (DescribeCell *)[tableView dequeueReusableCellWithIdentifier:@"DescribeCell" forIndexPath:indexPath];
             cell.delegate = self;
+//            self.separatorStyle = UITableViewCellSeparatorStyleNone;
 //            cell.textView.delegate = self;
             self.cells[row] = cell;
             return cell;
@@ -175,6 +176,7 @@
             [self initAlertView];
             self.alertView.data = self.repaireClassArrayPay;
             self.alertView.flag = 1;
+            [self.alertView initViews];
             [self.alertView showInWindow];
             break;
         }
@@ -183,6 +185,7 @@
             [self initAlertView];
             self.alertView.data = self.repaireClassArrayFree;
             self.alertView.flag = 2;
+            [self.alertView initViews];
             [self.alertView showInWindow];
             break;
         }
@@ -193,10 +196,14 @@
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+
 //弹出框
 - (void)initAlertView{
     
-    self.alertView = [[AlertTableView alloc] initWithFrame:CGRectMake(30/375.0*My_ScreenW, 30/375.0*My_ScreenW, 317/375.0*My_ScreenW, My_ScreenH*2/3.0) style:UITableViewStyleGrouped];
+    self.alertView = [[AlertTableView alloc] initWithFrame:CGRectMake(30/375.0*My_ScreenW, 30/375.0*My_ScreenW, 317/375.0*My_ScreenW, My_ScreenH*2/3.0)];
     self.alertView.AlertDelegate = self;
 
 }

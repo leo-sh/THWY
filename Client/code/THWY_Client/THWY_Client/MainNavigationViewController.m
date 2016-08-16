@@ -7,8 +7,7 @@
 //
 
 #import "MainNavigationViewController.h"
-#import "RecommandBussnessADVC.h"
-#import "RepairDetailController.h"
+#import "ADDetailVC.h"
 #import "ProclamationInfoViewController.h"
 #import "ComplainDetailViewController.h"
 @interface MainNavigationViewController () <UINavigationControllerDelegate>
@@ -24,36 +23,40 @@
 -(void)popWithUserInfo:(NSDictionary *)userInfo
 {
     NSString* pushType = userInfo[@"push_type"];
-    if ([pushType isEqualToString:@"4"]) {
-//        报修接单
-        RepairDetailController *detail = [[RepairDetailController alloc] init];
-#pragma - TODO RepairVO
-        detail.model = [[RepairVO alloc] init];
-        [self.navigationController pushViewController:detail animated:YES];
-        
-    }else if ([pushType isEqualToString:@"5"])
+    NSString* Id = userInfo[@"pk"];
+    if ([pushType isEqualToString:@"5"])
     {
 //        业主公告
         ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc]init];
         
-//        detail.proclamationId =
+        detail.proclamationId = Id;
         
-        [self.navigationController pushViewController:detail animated:YES];
+        [self pushViewController:detail animated:YES];
         
     }else if ([pushType isEqualToString:@"6"])
     {
 //        社区商圈-商圈公告
-        RecommandBussnessADVC *advc = [[RecommandBussnessADVC alloc] init];
-        [self.navigationController pushViewController:advc animated:YES];
+        [SVProgressHUD showWithStatus:@"正在加载数据，请稍后......"];
+        [My_ServicesManager getAnAd:Id onComplete:^(NSString *errorMsg, AdVO *ad) {
+            if (errorMsg == nil) {
+                ADDetailVC *detail = [[ADDetailVC alloc] init];
+                detail.advo = ad;
+                [self pushViewController:detail animated:YES];
+                [SVProgressHUD dismiss];
+            }else
+            {
+                [SVProgressHUD showErrorWithStatus:errorMsg];
+            }
+        }];
         
     }else if ([pushType isEqualToString:@"7"])
     {
 //        缴费台账
         ComplainDetailViewController *detail = [[ComplainDetailViewController alloc]init];
         
-//        detail.complianId =
+        detail.complianId = Id;
         
-        [self.navigationController pushViewController:detail animated:YES];
+        [self pushViewController:detail animated:YES];
     }
     if (_userInfo) {
         _userInfo = nil;
