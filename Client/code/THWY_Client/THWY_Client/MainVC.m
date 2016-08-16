@@ -71,7 +71,7 @@
     self.navigationItem.leftBarButtonItem  = left;
     
     self.dropView = [[DropMenuTableView alloc] initWithWidth:145.f itemHeight:45.f itemNames:@[@"我要报修", @"我要投诉", @"个人信息", @"推送设置", @"技术支持"] ItemImages:@[@"main_1", @"main_2", @"main_6", @"main_4", @"main_5"]];
-    self.dropView.backColor = My_Color(2, 134, 196);
+    self.dropView.backColor = My_Color(2, 134, 200);
     self.dropView.textColor = [UIColor whiteColor];
     
     self.dropView.dropDelegate = self;
@@ -154,12 +154,12 @@
     
     self.username = [[UILabel alloc] init];
     self.username.text = @"name";
-    self.username.font = FontSize(CONTENT_FONT+2);
+    self.username.font = FontBoldSize(CONTENT_FONT+3);
     [self.username sizeToFit];
     [self.userInfoView addSubview:self.username];
     
     [self.username mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.headImage.mas_centerY).multipliedBy(0.75);
+        make.centerY.mas_equalTo(self.headImage.mas_centerY).multipliedBy(0.8);
         make.left.mas_equalTo(self.headImage.mas_right).offset(15);
     }];
     
@@ -167,17 +167,17 @@
     [self.userInfoView addSubview:locationImage];
     [locationImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.username.mas_left);
-        make.top.mas_equalTo(self.username.mas_bottom).offset(10);
-        make.size.mas_equalTo(CGSizeMake(10, 16));
+        make.top.mas_equalTo(self.username.mas_bottom).offset(5);
+        make.size.mas_equalTo(CGSizeMake(10.5, 14.5));
     }];
     
     self.addr = [[UILabel alloc] init];
     self.addr.text = @"地址";
-    self.addr.font = FontSize(CONTENT_FONT+1);
+    self.addr.font = FontBoldSize(CONTENT_FONT+4);
     [self.addr sizeToFit];
     [self.userInfoView addSubview:self.addr];
     [self.addr mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(locationImage.mas_right).offset(4);
+        make.left.mas_equalTo(locationImage.mas_right).offset(8);
         make.centerY.mas_equalTo(locationImage.mas_centerY);
     }];
     
@@ -202,7 +202,7 @@
     [woyaobaoxiu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(topMargin);
         make.top.mas_equalTo(self.userInfoView.mas_bottom).offset(topMargin);
-        make.size.mas_equalTo(CGSizeMake((My_ScreenW-3*topMargin)*0.5, (((My_ScreenH-64)*3.0/4.0-topMargin)*0.5-topMargin)*0.5));
+        make.size.mas_equalTo(CGSizeMake((My_ScreenW-3*topMargin)*0.5, (My_ScreenW-3*topMargin)*0.5/297*168.0));
     }];
     
     UIButton *baoxiujilu = [[UIButton alloc] init];
