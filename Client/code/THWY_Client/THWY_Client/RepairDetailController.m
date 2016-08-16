@@ -104,6 +104,10 @@
 //        return [tableView fd_heightForCellWithIdentifier:@"RecordImageCell" cacheByIndexPath:indexPath configuration:^(id cell) {
 //            [cell loadDataWithModel:self.model];
 //        }];
+    }else if (indexPath.section == 1 && indexPath.row == 1){
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:15.0],NSFontAttributeName, nil];
+        CGRect rect = [self.model.classes_str boundingRectWithSize:CGSizeMake(self.tableView.width*3.0/4, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+        return rect.size.height+20;
     }else{
         return [tableView fd_heightForCellWithIdentifier:@"RecordsDetailCell" cacheByIndexPath:indexPath configuration:^(id cell) {
             [cell loadDataWithModel:self.model indexpath:indexPath];

@@ -146,7 +146,7 @@
     }];
     
     UILabel *username = [[UILabel alloc] init];
-    username.text = @"name";
+    username.text = @"";
     username.font = FontSize(CONTENT_FONT);
     [username sizeToFit];
     [self.userInfoView addSubview:username];
@@ -157,7 +157,7 @@
     }];
     
     UILabel *addr = [[UILabel alloc] init];
-    addr.text = @"地址";
+    addr.text = @"";
     addr.font = FontSize(CONTENT_FONT);
     [addr sizeToFit];
     [self.userInfoView addSubview:addr];
@@ -184,7 +184,7 @@
                 [self.adLabels addObject:model];
             }
         }
-        if (self.adLabels) {
+        if (self.adLabels.count>0) {
             self.adLabelTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(runloopAdLabel) userInfo:nil repeats:YES];
         }
     }];

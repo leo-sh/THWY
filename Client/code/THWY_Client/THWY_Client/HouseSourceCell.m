@@ -55,7 +55,7 @@
 
 - (void)updateFrame{
     
-    NSInteger topMargin = 10.0/713*My_ScreenH;
+    NSInteger topMargin = 10.0/667*My_ScreenH;
     for (int i = 0; i < self.housesArray.count; i++) {
         
         if([self.contentView viewWithTag:420]){
@@ -64,9 +64,12 @@
         
         UIImageView *selectIcon = [[UIImageView alloc] initWithImage:[UIImage scaleImage:[UIImage imageNamed:@"repaire_unselected"] toScale:0.5]];
         selectIcon.tag = 420+i;
+        selectIcon.userInteractionEnabled = YES;
         [self.contentView addSubview:selectIcon];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+        [selectIcon addGestureRecognizer:tap];
         [selectIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.label.mas_bottom).offset(topMargin*0.5 + i*(topMargin*0.5+20/713.0*My_ScreenH));
+            make.top.mas_equalTo(self.label.mas_bottom).offset(topMargin*0.6 + i*(topMargin*0.6+20/713.0*My_ScreenH));
             make.left.mas_equalTo(self.icon.mas_centerX);
         }];
         
@@ -96,6 +99,18 @@
     self.selectedIndex = index - 420;
     UIImageView *newicon = [self.contentView viewWithTag:index];
     newicon.image = [UIImage scaleImage:[UIImage imageNamed:@"repaire_selected"] toScale:0.5];
+}
+
+- (void)tap:(UITapGestureRecognizer *)tap{
+    if (self.selectedIndex != -1) {
+        UIImageView *iconimage = [self.contentView viewWithTag:self.selectedIndex + 420];
+        iconimage.image = [UIImage scaleImage:[UIImage imageNamed:@"repaire_unselected"] toScale:0.5];
+    }
+    
+    UIImageView *newicon = (UIImageView *)tap.view;
+    self.selectedIndex = newicon.tag - 420;
+    newicon.image = [UIImage scaleImage:[UIImage imageNamed:@"repaire_selected"] toScale:0.5];
+
 }
 
 - (NSString *)getHouseStringFromHouseVO:(HouseVO *)house{

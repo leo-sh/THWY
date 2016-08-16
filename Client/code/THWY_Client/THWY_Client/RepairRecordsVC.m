@@ -196,7 +196,7 @@
     }
     
     //tableView
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.bgView.height+20, My_ScreenW-20, My_ScreenH-114-45-self.bgView.height) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.bgView.height+10, My_ScreenW-20, My_ScreenH-104-45-self.bgView.height) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 300.0/667*My_ScreenH;
@@ -207,7 +207,7 @@
     self.tableView.showsVerticalScrollIndicator = NO;
 //    [self.tableView setTableFooterView:btn_more];
     
-    self.tableView2 = [[UITableView alloc] initWithFrame:CGRectMake(My_ScreenW-20, self.bgView2.height+20, My_ScreenW-20, self.tableView.height)  style:UITableViewStylePlain];
+    self.tableView2 = [[UITableView alloc] initWithFrame:CGRectMake(My_ScreenW-20, self.bgView2.height+10, My_ScreenW-20, self.tableView.height)  style:UITableViewStylePlain];
     self.tableView2.delegate = self;
     self.tableView2.dataSource = self;
     self.tableView2.rowHeight = 300.0/667*My_ScreenH;
