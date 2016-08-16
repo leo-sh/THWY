@@ -57,7 +57,7 @@
     
     CGFloat estateAndOwner_H = cellsize.height * 0.2;
     CGFloat estate_L = image_L;
-    CGFloat estate_W = image_H_W;
+    CGFloat estate_W = image_H_W + 10;
     
     CGFloat left = image_L;
     CGFloat center_W = (cellsize.width - image_H_W - left -image_L) * 0.6;
