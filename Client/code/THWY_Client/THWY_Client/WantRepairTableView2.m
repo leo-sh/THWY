@@ -180,7 +180,7 @@
 //弹出框
 - (void)initAlertView{
     
-    self.alertView = [[AlertTableView alloc] initWithFrame:CGRectMake(30/375.0*My_ScreenW, 30/375.0*My_ScreenW, 317/375.0*My_ScreenW, My_ScreenH*2/3.0) ];
+    self.alertView = [[AlertTableView alloc] initWithFrame:CGRectMake(20/375.0*My_ScreenW, 20/375.0*My_ScreenW, 337/375.0*My_ScreenW, My_ScreenH-20/375.0*My_ScreenW*2) ];
     self.alertView.AlertDelegate = self;
     
 }

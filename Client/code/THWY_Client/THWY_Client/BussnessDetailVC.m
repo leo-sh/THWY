@@ -30,7 +30,7 @@
     self.title = @"商家详情";
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]];
     [self initViews];
-    
+    [self getMerchantInfo];
 }
 
 - (void)initViews{
@@ -131,6 +131,29 @@
     
 }
 
+- (void)getMerchantInfo{
+    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    [My_ServicesManager getAMerchant:self.merchant.Id onComplete:^(NSString *errorMsg, MerchantVO *merchant) {
+        
+        if (errorMsg) {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }else{
+            
+            if (self.merchant.products.count == 0){
+                self.btnShowDetail.hidden = YES;
+//                [SVProgressHUD showErrorWithStatus:@"没有商品"];
+            }
+            
+            if ([self.merchant.telephone isEqualToString:@""]) {
+                self.btnContact.hidden = YES;
+            }
+            
+        }
+        
+    }];
+
+}
+
 - (void)contact:(UIButton *)btn{
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:self.merchant.telephone message:@"" preferredStyle:UIAlertControllerStyleAlert];
@@ -153,6 +176,7 @@
 }
 
 - (void)showDetail:(UIButton *)btn{
+    
     MerchantDetailVC *detail = [[MerchantDetailVC alloc] init];
     detail.merchant = self.merchant;
     [self.navigationController pushViewController:detail animated:YES];

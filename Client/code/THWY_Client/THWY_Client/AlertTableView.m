@@ -43,7 +43,7 @@
     [self addSubview:headerView];
     
     for (int i = 0; i<self.data.count; i++) {
-        [self.folded addObject:@(YES)];
+        [self.folded addObject:@(NO)];
     }
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, headerView.height, self.frame.size.width, self.frame.size.height-headerView.height) style:UITableViewStylePlain];
