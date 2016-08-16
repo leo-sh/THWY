@@ -142,6 +142,8 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = [UIColor lightGrayColor];
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
+    self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.rowHeight = 100/667.0*My_ScreenH;
 //    self.tableView.bounces = NO;
     self.tableView.showsHorizontalScrollIndicator = NO;
@@ -252,6 +254,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     MerchargeListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MerchargeListCell" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
     return cell;
     
 }

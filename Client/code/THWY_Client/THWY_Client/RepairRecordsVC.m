@@ -109,6 +109,11 @@
     self.switchButton = [[MySegmentedControl alloc] initWithItems:@[@"业主报修", @"公共报修"]];
     self.switchButton.delegate = self;
     self.switchButton.selectedSegmentIndex = 0;
+    self.switchButton.layer.cornerRadius = 10;
+    self.switchButton.clipsToBounds = YES;
+    self.switchButton.layer.borderWidth = 1;
+    self.switchButton.layer.borderColor = My_NAV_BG_Color.CGColor;
+    self.switchButton.tintColor = My_NAV_BG_Color;
     [self.view addSubview:self.switchButton];
     
     [self.switchButton mas_makeConstraints:^(MASConstraintMaker *make) {

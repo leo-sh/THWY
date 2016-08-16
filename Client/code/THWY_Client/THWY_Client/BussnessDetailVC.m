@@ -20,6 +20,8 @@
 @property (strong, nonatomic) UIButton *btnContact;
 @property (strong, nonatomic) UIButton *btnShowDetail;
 
+@property (strong, nonatomic) MerchantVO *selectedMerchant;
+
 @end
 
 @implementation BussnessDetailVC
@@ -37,7 +39,7 @@
     
     NSInteger topMargin = 10.0/375*My_ScreenW;
     self.bgView = [[UIView alloc] init];
-    [self.bgView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
+    [self.bgView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
     [self.view addSubview:self.bgView];
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left);
@@ -67,39 +69,30 @@
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.iconImageView.mas_right).offset(topMargin);
         make.top.mas_equalTo(self.iconImageView.mas_top);
-        make.height.mas_equalTo(iconHeight*0.25);
+        make.height.mas_equalTo(iconHeight*0.2);
     }];
     
     self.descLabel = [[UILabel alloc] init];
     
-    NSArray *strings = [self.merchant.intro componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n<>\t\r&nbsp"]];
-    for (NSString *string in strings) {
-        for(int i=0; i< [string length];i++){
-            int a = [string characterAtIndex:i];
-            if( a > 0x4e00 && a < 0x9fff){
-//                self.desc.text = string;
-                self.descLabel.text = string;
-            }
-            
-        }
-    }
     
+    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[self.merchant.intro dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    self.descLabel.text = attrStr.string;
     self.descLabel.textColor = [UIColor lightGrayColor];
-    self.descLabel.font = [UIFont fontWithName:My_RegularFontName size:15.0];
+    self.descLabel.font = FontSize(CONTENT_FONT-1);
     self.descLabel.numberOfLines = 0;
     self.descLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [self.descLabel sizeToFit];
     [self.bgView addSubview:self.descLabel];
     
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:15.0],NSFontAttributeName, nil];
-    CGRect rect = [self.descLabel.text boundingRectWithSize:CGSizeMake(self.view.width-2*topMargin-iconHeight, iconHeight*0.75) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+    CGRect rect = [self.descLabel.text boundingRectWithSize:CGSizeMake(self.view.width-2*topMargin-iconHeight, iconHeight*0.8) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
 
     
     [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.nameLabel.mas_left);
         make.top.mas_equalTo(self.nameLabel.mas_bottom);
         make.width.mas_equalTo(rect.size.width);
-        make.height.mas_equalTo(iconHeight*0.75);
+        make.height.mas_equalTo(iconHeight*0.8);
     }];
 
     
@@ -139,15 +132,17 @@
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }else{
             
-            if (self.merchant.products.count == 0){
-                self.btnShowDetail.hidden = YES;
-//                [SVProgressHUD showErrorWithStatus:@"没有商品"];
-            }
+//            if (merchant.products.count == 0){
+//                self.btnShowDetail.hidden = YES;
+////                [SVProgressHUD showErrorWithStatus:@"没有商品"];
+//            }else{
+//            }
+//            
+//            if ([merchant.telephone isEqualToString:@""]) {
+//                self.btnContact.hidden = YES;
+//            }
             
-            if ([self.merchant.telephone isEqualToString:@""]) {
-                self.btnContact.hidden = YES;
-            }
-            
+            self.selectedMerchant = merchant;
         }
         
     }];
@@ -178,7 +173,7 @@
 - (void)showDetail:(UIButton *)btn{
     
     MerchantDetailVC *detail = [[MerchantDetailVC alloc] init];
-    detail.merchant = self.merchant;
+    detail.merchant = self.selectedMerchant;
     [self.navigationController pushViewController:detail animated:YES];
     
 }
