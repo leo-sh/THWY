@@ -79,20 +79,21 @@
     
     CGFloat labelLeft = imageViewLeft;
     CGFloat labelWidth = CONTENT_FONT * 5;
-    CGFloat labelHeight = imageViewWidthAndHeight;
+    CGFloat labelHeight = self.height;
     
     [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(topOffSet);
+//        make.top.mas_equalTo(topOffSet);
         make.size.mas_equalTo(CGSizeMake(labelWidth, labelHeight));
         make.left.equalTo(self.imageView.mas_right).with.offset(labelLeft);
+        make.centerY.mas_equalTo(self.imageView.centerY);
     }];
     
     self.label.font = FontSize(CONTENT_FONT);
 //    self.label.backgroundColor = [UIColor grayColor];
-    CGFloat tfHeight = imageViewWidthAndHeight;
+    CGFloat tfHeight = self.height;
     CGFloat tfWidht = self.frame.size.width - labelLeft -labelWidth -imageViewWidthAndHeight -imageViewLeft;
     [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(topOffSet);
+        make.centerY.mas_equalTo(self.imageView.centerY);
         make.size.mas_equalTo(CGSizeMake(tfWidht, tfHeight));
         make.left.equalTo(self.label.mas_right).with.offset(0);
     }];

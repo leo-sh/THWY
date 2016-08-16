@@ -100,8 +100,8 @@
     }];
     
     icon.layer.cornerRadius = iconWidth/2;
-    icon.layer.borderWidth = 3;
-    icon.layer.borderColor = [UIColor whiteColor].CGColor;
+//    icon.layer.borderWidth = 3;
+//    icon.layer.borderColor = [UIColor whiteColor].CGColor;
     icon.clipsToBounds = YES;
     [icon addTarget:self action:@selector(clickIcon) forControlEvents:UIControlEventTouchUpInside];
     
