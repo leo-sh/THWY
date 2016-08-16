@@ -49,6 +49,11 @@
     [self.merchantNametextField becomeFirstResponder];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.merchantNametextField resignFirstResponder];
+}
+
 - (void)getBussnessData{
     [self.bussnessModels removeAllObjects];
     [SVProgressHUD showWithStatus:@"数据加载中..."];
@@ -282,9 +287,9 @@
     return 0.01;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.merchantNametextField resignFirstResponder];
 }
 
 

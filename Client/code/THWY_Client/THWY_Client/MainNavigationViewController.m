@@ -118,7 +118,7 @@
     
     // 设置文字
     NSMutableDictionary *att = [NSMutableDictionary dictionary];
-    att[NSFontAttributeName] = [UIFont fontWithDeviceName:My_RegularFontName size:17];
+    att[NSFontAttributeName] = [UIFont fontWithDeviceName:My_RegularFontName size:18];
     att[NSForegroundColorAttributeName] = [UIColor whiteColor];
     [appearance setTitleTextAttributes:att];
     
