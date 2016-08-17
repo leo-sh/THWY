@@ -38,7 +38,7 @@
     self.title = @"缴费台账";
     UIImage *backgroundImage = [UIImage imageNamed:@"背景2"];
     self.view.layer.contents = (id) backgroundImage.CGImage;
-    self.page = 1;
+    self.page = 0;
     self.year = 0;
     self.statu = All;
     //    [self.navigationController pushViewController:[[PayInfoViewController alloc]init] animated:YES];
@@ -89,7 +89,7 @@
     
     self.chooseStatuBtn = [[AlertButton alloc]initWithFrame:CGRectMake(self.chooseYearBtn.right + 5, 5, self.view.width * 0.35, 30)];
     
-    data = @[@"选择状态",@"未缴",@"未缴齐",@"已缴齐",@"已经退款"];
+    data = @[@"选择状态",@"未缴",@"未缴齐",@"已缴齐",@"已退款"];
     
     [self.chooseStatuBtn setGetDataMethod:GetPayStatu OriginY:self.chooseYearBtn.bottom - 10 + 66 showCentenX:self.chooseStatuBtn.centerX withData:data];
     self.chooseStatuBtn.postID = @"-1";

@@ -20,14 +20,12 @@
 
 @property (strong, nonatomic) BussnessSelectButton *chooseTypeBtn;
 @property (strong, nonatomic) UITextField *merchantNametextField;
-@property (strong, nonatomic) NSMutableArray *searchResultModels;
 @property (strong, nonatomic) MerchantTypeTableView *merchantTypeView;
 @property (strong, nonatomic) NSMutableArray<MerchantTypeVO *> *merchantTypeArray;
 
-@property (assign, nonatomic) NSInteger selectedIndex;
-@property (assign, nonatomic) BOOL isSearch;
-
 @property (assign, nonatomic) int page;
+@property NSString* searchName;
+@property NSString* searchTypeId;
 
 @end
 
@@ -37,40 +35,47 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"社区商家";
+    self.searchName = @"";
+    self.searchTypeId = @"";
     self.bussnessModels = [NSMutableArray array];
-    self.searchResultModels = [NSMutableArray array];
     self.merchantTypeArray = [NSMutableArray array];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
-    self.selectedIndex = 0;
-    self.isSearch = NO;
     [self initViews];
-//    [self getBussnessData];
-    [self.tableView.mj_header beginRefreshing];
+    self.page = 0;
+    [self getBussnessData];
     [self.merchantNametextField becomeFirstResponder];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self.merchantNametextField resignFirstResponder];
+    [self.merchantTypeView removeFromSuperview];
 }
 
 - (void)getBussnessData{
-    [self.bussnessModels removeAllObjects];
     [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
     
-    [[ServicesManager getAPI] getMerchants:0 name:nil onComplete:^(NSString *errorMsg, NSArray *list) {
+    [[ServicesManager getAPI] getMerchants:self.page typeId:self.searchTypeId name:self.searchName onComplete:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg){
             [SVProgressHUD showErrorWithStatus:errorMsg];
+            if (self.page != 0) {
+                self.page --;
+            }
+        }else
+        {
+            if (self.page == 0) {
+                [self.bussnessModels removeAllObjects];
+            }
+            
+            for (MerchantVO *model in list) {
+                [self.bussnessModels addObject:model];
+            }
+            
+            [self.tableView reloadData];
+            [SVProgressHUD dismiss];
         }
-        
-        for (MerchantVO *model in list) {
-            [self.bussnessModels addObject:model];
-        }
-        
-        [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
-        [SVProgressHUD dismiss];
-        
+
     }];
     
 }
@@ -97,8 +102,7 @@
             self.merchantTypeView.dropDelegate = self;
             [SVProgressHUD dismiss];
             
-            UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-            [window addSubview:self.merchantTypeView];
+            [My_KeyWindow addSubview:self.merchantTypeView];
 
         }
     }];
@@ -106,7 +110,6 @@
 }
 
 - (void)initViews{
-    
     //创建搜索视图
     UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width,40)];
     
@@ -121,8 +124,10 @@
     self.merchantNametextField.borderStyle = UITextBorderStyleNone;
     self.merchantNametextField.layer.borderWidth = 1;
     self.merchantNametextField.layer.borderColor = My_Color(236, 236, 236).CGColor;
-    self.merchantNametextField.placeholder = @" 请输入商家名称";
-    self.merchantNametextField.font = FontSize(CONTENT_FONT-1);
+    self.merchantNametextField.placeholder = @"请输入商家名称";
+    self.merchantNametextField.leftViewMode = UITextFieldViewModeAlways;
+    self.merchantNametextField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 5, 0)];
+    self.merchantNametextField.font = FontSize(CONTENT_FONT);
     self.merchantNametextField.backgroundColor = [UIColor whiteColor];
     self.merchantNametextField.delegate = self;
     self.merchantNametextField.keyboardType = UIKeyboardTypeNamePhonePad;
@@ -142,7 +147,6 @@
     [searchView addSubview:search];
     
     [self.view addSubview:searchView];
-    
 
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(5, 5+searchView.bottom, self.view.width-10, self.view.height-74-searchView.height)];
     self.tableView.delegate = self;
@@ -159,7 +163,6 @@
     [self initRefreshView];
     [self.view addSubview:self.tableView];
     
-    
 }
 
 //设置上拉下拉刷新
@@ -175,76 +178,39 @@
 }
 
 - (void)loadMoreData{
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
-    
-    [[ServicesManager getAPI] getMerchants:++self.page name:nil onComplete:^(NSString *errorMsg, NSArray *list) {
-        if (errorMsg){
-            [SVProgressHUD showErrorWithStatus:errorMsg];
-            if (self.page != 0) {
-                self.page--;
-            }
-        }else{
-            if (list && list.count == 0 && self.page != 0) {
-                self.page--;
-            }
-            for (MerchantVO *model in list) {
-                [self.bussnessModels addObject:model];
-            }
-            
-            [self.tableView reloadData];
-            [SVProgressHUD dismiss];        
-        }
-        
-        [self.tableView.mj_footer endRefreshing];
-        
-    }];
-
+    self.page ++ ;
+    [self getBussnessData];
 }
 
-
 - (void)chooseTypeBtnOnclicked:(UIButton *)button{
-    [self getBussnessTypeView];
+    if (self.merchantTypeArray.count > 0) {
+        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+        [window addSubview:self.merchantTypeView];
+    }else
+    {
+        [self getBussnessTypeView];
+    }
 }
 
 - (void)clickSearchBtn{
-    self.isSearch = YES;
-    [self.merchantNametextField resignFirstResponder];
-    [self.searchResultModels removeAllObjects];
-    for (MerchantVO *merchant in self.bussnessModels) {
-        if (self.selectedIndex != 0) {
-           NSString *typeId = [self.merchantTypeArray[self.selectedIndex] Id];
-            if ([merchant.business_type_id isEqualToString:typeId]) {
-                if ([self.merchantNametextField.text isEqualToString:@""]) {
-                    [self.searchResultModels addObject:merchant];
-                }else if([merchant.business_name containsString:self.merchantNametextField.text]){
-                    [self.searchResultModels addObject:merchant];
-                }
-            }
-        }else{
-            if ([self.merchantNametextField.text isEqualToString:@""]) {
-                [self.searchResultModels addObjectsFromArray: self.bussnessModels];
-                self.isSearch = NO;
-            }else if([merchant.business_name containsString:self.merchantNametextField.text] ){
-                [self.searchResultModels addObject:merchant];
-            }
-        }
-    }
+    [self.merchantNametextField endEditing:YES];
+    self.searchName = self.merchantNametextField.text;
+    
+    self.page = 0;
+    [self getBussnessData];
+    
     [self.tableView reloadData];
     
 }
 
 #pragma mark - UITextFieldDelegate
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    [textField resignFirstResponder];
-}
-
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.merchantNametextField resignFirstResponder];
 }
 
 #pragma mark - MerchantTypeTableViewDelegate
 - (void)itemSelected:(NSInteger)index{
-    self.selectedIndex = index;
+    self.searchTypeId = [self.merchantTypeArray[index] Id];
     [self.chooseTypeBtn setTitle:[self.merchantTypeArray[index] business_type_name]forState:UIControlStateNormal];
     [self.merchantTypeView removeFromSuperview];
 }
@@ -253,16 +219,9 @@
     [self.merchantTypeView removeFromSuperview];
 }
 
-
 #pragma mark - UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    if (!self.isSearch) {
-        return self.bussnessModels.count;
-    }else{
-        return self.searchResultModels.count;
-    }
-    
+    return self.bussnessModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -274,20 +233,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (!self.isSearch) {
-        [(MerchargeListCell *)cell loadDataFromMercharge:self.bussnessModels[indexPath.row]];
-    }else{
-        [(MerchargeListCell *)cell loadDataFromMercharge:self.searchResultModels[indexPath.row]];
-    }
+    [(MerchargeListCell *)cell loadDataFromMercharge:self.bussnessModels[indexPath.row]];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     BussnessDetailVC *detail = [[BussnessDetailVC alloc] init];
-    if (!self.isSearch) {
-        detail.merchant = self.bussnessModels[indexPath.row];
-    }else{
-        detail.merchant = self.searchResultModels[indexPath.row];
-    }
+    detail.merchant = self.bussnessModels[indexPath.row];
     [self .navigationController pushViewController:detail animated:YES];
 }
 
