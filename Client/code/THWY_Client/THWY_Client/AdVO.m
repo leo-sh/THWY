@@ -16,6 +16,9 @@
         self.Id = JSON[@"id"];
         self.title = JSON[@"title"];
         self.ctime = JSON[@"ctime"];
+        self.content = JSON[@"content"];
+        self.is_tuijian = [JSON[@"is_tuijian"] boolValue];
+        
     }
     
     return self;

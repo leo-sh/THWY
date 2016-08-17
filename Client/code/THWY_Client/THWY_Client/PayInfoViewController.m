@@ -34,7 +34,7 @@
 
 - (void)getData
 {
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
 
     NSArray *sectionOneHead = @[@"业主姓名",@"所在楼层",@"房源信息",@"面积",@"缴费科目",@"收费标准",@"应缴金额",@"月数",@"实收金额",@"欠费金额"];
     NSArray *sectionTwoHead = @[@"缴纳时间",@"金额",@"操作人",@"备注"];

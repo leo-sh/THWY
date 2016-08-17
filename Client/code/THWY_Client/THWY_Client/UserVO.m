@@ -42,7 +42,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     //Encode properties, other class variables, etc
-    [encoder encodeObject:self.Id forKey:@"id"];
+    [encoder encodeObject:self.Id forKey:@"Id"];
     [encoder encodeObject:self.oname forKey:@"oname"];
     [encoder encodeObject:self.real_name forKey:@"real_name"];
     [encoder encodeObject:self.id_card forKey:@"id_card"];
