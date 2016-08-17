@@ -207,6 +207,7 @@
 #pragma mark 公共函数
 -(void)login:(NSString *)userName
     password:(NSString *)password
+savePassWord:(BOOL)save
   onComplete:(void (^)(NSString *errorMsg,UserVO *user))onComplete
 {
     AFHTTPSessionManager *manager = [self getManager];
@@ -247,6 +248,7 @@
                 [[UDManager getUD] saveUserName:userName];
                 [[UDManager getUD] saveUserPassWord:password];
                 [[UDManager getUD] saveUser:user];
+                [[UDManager getUD] saveShowState:save];
             });
             
             onComplete(nil,user);
@@ -1547,16 +1549,13 @@
     if ([self isLogin]) {
         UserVO *user = [[UDManager getUD] getUser];
         NSLog(@"admin_id:%@",user.admin_id);
-        [self getMsgs:@"13" endId:@"1" onComplete:^(NSString *errorMsg, NSArray *list) {
-            
-        }];
     }else
     {
-        [self login:@"fzq" password:@"123456" onComplete:^(NSString *errorMsg, UserVO *user) {
-            if (errorMsg == nil) {
-                [self test];
-            }
-        }];
+//        [self login:@"fzq" password:@"123456" onComplete:^(NSString *errorMsg, UserVO *user) {
+//            if (errorMsg == nil) {
+//                [self test];
+//            }
+//        }];
     }
 }
 @end

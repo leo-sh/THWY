@@ -480,6 +480,7 @@ savePassWord:(BOOL)save
 
 -(void)getUserPointsHistory:(int)pageNum onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
+    pageNum++;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@points_history",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
@@ -656,6 +657,7 @@ savePassWord:(BOOL)save
 
 -(void)getComplaints:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
+    page++ ;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@complaints",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
@@ -736,6 +738,7 @@ savePassWord:(BOOL)save
 
 -(void)getNotes:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
+    page++;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@get_notes",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
@@ -821,6 +824,7 @@ savePassWord:(BOOL)save
 
 -(void)getRecommendMerchants:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
+    page++;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@get_tuijian_merchant",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
@@ -853,6 +857,7 @@ savePassWord:(BOOL)save
 
 -(void)getMerchants:(int)page name:(NSString* )name onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
+    page++;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@merchants",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
@@ -913,6 +918,7 @@ savePassWord:(BOOL)save
 
 -(void)getRecommendGoods:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
+    page++;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@recommend",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
@@ -968,6 +974,7 @@ savePassWord:(BOOL)save
 
 -(void)getAds:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
+    page++;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@ads",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
@@ -1053,6 +1060,7 @@ savePassWord:(BOOL)save
 
 -(void)getFees:(int)page year:(int)year feeState:(FeeState)state onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
+    page++;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@fee_histories",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
@@ -1280,6 +1288,7 @@ savePassWord:(BOOL)save
 
 -(void)getRepairs:(RepairType)type page:(int)page repairStatu:(NSString *)statuId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
+    page++;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = @"";
     NSDictionary *params = @{@"login_name":_userName,
