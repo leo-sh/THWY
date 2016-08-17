@@ -12,6 +12,7 @@
 #define THWY_USER @"ytwy_user"
 #define USER_NAME @"user_name"
 #define USER_PASSWORD @"user_password"
+#define SHOW_STATE @"show_state"
 
 @interface UserVO : NSObject <NSCoding>
 
