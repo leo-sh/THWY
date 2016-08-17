@@ -10,7 +10,6 @@
 		1EEB03091D6401A500CACF00 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB03051D6401A500CACF00 /* RootVC.m */; };
 		1EEB030A1D6401A500CACF00 /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB03071D6401A500CACF00 /* MainNavigationViewController.m */; };
 		1EEB030E1D6401F800CACF00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB030C1D6401F800CACF00 /* ZYKeyboardUtil.m */; };
-		1EEB03111D64027000CACF00 /* ReviseBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB03101D64027000CACF00 /* ReviseBtn.m */; };
 		5BFFCE3D1D41B9C40066B1B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE3C1D41B9C40066B1B9 /* main.m */; };
 		5BFFCE401D41B9C40066B1B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE3F1D41B9C40066B1B9 /* AppDelegate.m */; };
 		5BFFCE481D41B9C40066B1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE471D41B9C40066B1B9 /* Assets.xcassets */; };
@@ -144,8 +143,6 @@
 		1EEB03071D6401A500CACF00 /* MainNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationViewController.m; sourceTree = "<group>"; };
 		1EEB030B1D6401F800CACF00 /* ZYKeyboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYKeyboardUtil.h; sourceTree = "<group>"; };
 		1EEB030C1D6401F800CACF00 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
-		1EEB030F1D64027000CACF00 /* ReviseBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviseBtn.h; sourceTree = "<group>"; };
-		1EEB03101D64027000CACF00 /* ReviseBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviseBtn.m; sourceTree = "<group>"; };
 		5B2571CE1D4714E400CB4167 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		5BFFCE381D41B9C40066B1B9 /* THWY_Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THWY_Server.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFFCE3C1D41B9C40066B1B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1058,8 +1055,6 @@
 		79270EA11D61AE2600E29568 /* OtherController */ = {
 			isa = PBXGroup;
 			children = (
-				1EEB030F1D64027000CACF00 /* ReviseBtn.h */,
-				1EEB03101D64027000CACF00 /* ReviseBtn.m */,
 				79270EA31D61AE2600E29568 /* loginView */,
 				79270EA71D61AE2600E29568 /* Suggest */,
 			);
@@ -1323,7 +1318,6 @@
 				79270DE31D61ACB100E29568 /* MJRefreshBackNormalFooter.m in Sources */,
 				79270E501D61ACDA00E29568 /* DocVO.m in Sources */,
 				79270E091D61ACB100E29568 /* SDWebImagePrefetcher.m in Sources */,
-				1EEB03111D64027000CACF00 /* ReviseBtn.m in Sources */,
 				79270DC91D61ACB100E29568 /* AFURLSessionManager.m in Sources */,
 				79270E1D1D61ACB100E29568 /* TYAlertView.m in Sources */,
 				79270E551D61ACDA00E29568 /* NoticVO.m in Sources */,
