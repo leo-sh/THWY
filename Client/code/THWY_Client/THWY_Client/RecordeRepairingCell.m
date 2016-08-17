@@ -306,8 +306,11 @@
     self.cellPhoneLabel.text = repaireVO.call_phone;
     
     if (repaireVO.kb.intValue == 2){
+        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"repaire_保修类别"]  toScale:0.7]forState:UIControlStateNormal];
+    }else{
         [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"records_详情"]  toScale:0.7]forState:UIControlStateNormal];
     }
+//    NSLog(@"%d", repaireVO.kb.intValue);
     
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
     CGRect rect = [self.repairCatogeryLabel.text boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];

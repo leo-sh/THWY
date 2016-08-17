@@ -43,10 +43,9 @@
     [[ServicesManager getAPI] getAds:self.page onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg){
-            
             [SVProgressHUD showErrorWithStatus:errorMsg];
-        }else
-        {
+        }else{
+
             for (AdVO *model in list) {
                 [self.bussnessModels addObject:model];
             }
@@ -92,10 +91,17 @@
     [[ServicesManager getAPI] getAds:++self.page onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg){
-            self.page --;
             [SVProgressHUD showErrorWithStatus:errorMsg];
-        }else
-        {
+            
+            if (self.page != 0) {
+                self.page--;
+            }
+            
+        }else{
+            
+            if (list && list.count == 0 && self.page != 0) {
+                self.page--;
+            }
             for (AdVO *model in list) {
                 [self.bussnessModels addObject:model];
             }

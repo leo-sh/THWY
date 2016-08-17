@@ -179,7 +179,13 @@
     [[ServicesManager getAPI] getMerchants:++self.page name:nil onComplete:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg){
             [SVProgressHUD showErrorWithStatus:errorMsg];
+            if (self.page != 0) {
+                self.page--;
+            }
         }else{
+            if (list && list.count == 0 && self.page != 0) {
+                self.page--;
+            }
             for (MerchantVO *model in list) {
                 [self.bussnessModels addObject:model];
             }
