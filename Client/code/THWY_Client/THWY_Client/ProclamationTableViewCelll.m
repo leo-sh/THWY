@@ -37,7 +37,7 @@
 
         self.backView.backgroundColor = [UIColor whiteColor];
 
-        self.head.image = [UIImage imageNamed:@"彩条"];
+        self.head.image = [UIImage imageNamed:@"bg_repair_history_color_bar_three"];
         
         UIImageView *left = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
         left.center = CGPointMake(9, 0);
