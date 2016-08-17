@@ -855,7 +855,7 @@ savePassWord:(BOOL)save
     }];
 }
 
--(void)getMerchants:(int)page name:(NSString* )name onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
+-(void)getMerchants:(int)page typeId:(NSString *)typeId name:(NSString* )name onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
     page++;
     AFHTTPSessionManager *manager = [self getManager];
@@ -866,6 +866,9 @@ savePassWord:(BOOL)save
     NSMutableDictionary* dic = [[NSMutableDictionary alloc]initWithDictionary:params];
     if (name.length > 0) {
         dic[@"merchant_name_like"] = name;
+    }
+    if (typeId.length > 0) {
+        dic[@"merchant_type_id"] = typeId;
     }
     
     [manager GET:urlString parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {

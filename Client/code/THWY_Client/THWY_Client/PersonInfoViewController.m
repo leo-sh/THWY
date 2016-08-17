@@ -317,16 +317,18 @@
     UIImagePickerController *ipc = [[UIImagePickerController alloc]init];
     //设置操作类型
     ipc.sourceType = type;
+    ipc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    ipc.allowsEditing = YES;
     //设置代理对象
     ipc.delegate = self;
     
-    [self presentViewController:ipc animated:NO completion:nil];
+    [self presentViewController:ipc animated:YES completion:nil];
 }
 //实现选取图片结束后的代理方法
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     //获取选取的图片
-    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    UIImage *image = info[UIImagePickerControllerEditedImage];
     
     [SVProgressHUD showWithStatus:@"上传中..."];
     [[ServicesManager getAPI]upLoadAvatar:image OnComplete:^(NSString *errorMsg, NSString *avatar) {

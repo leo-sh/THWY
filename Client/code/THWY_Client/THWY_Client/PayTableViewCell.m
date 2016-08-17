@@ -177,7 +177,7 @@
             break;
         case Refund:
         {
-            self.stateLabel.text = @"已经退款";
+            self.stateLabel.text = @"已退款";
         }
             break;
         default:
