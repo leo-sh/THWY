@@ -44,6 +44,9 @@
 		791B4E121D645EF700AF9371 /* HouseSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E111D645EF700AF9371 /* HouseSourceCell.m */; };
 		791B4E151D645F1A00AF9371 /* RepairRecordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E141D645F1A00AF9371 /* RepairRecordsVC.m */; };
 		791B4E181D64606F00AF9371 /* MySegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E171D64606F00AF9371 /* MySegmentedControl.m */; };
+		791B4E291D64666700AF9371 /* RepairAcceptOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E281D64666700AF9371 /* RepairAcceptOrderVC.m */; };
+		791B4E2C1D64667F00AF9371 /* RepairStatistisVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E2B1D64667F00AF9371 /* RepairStatistisVC.m */; };
+		791B4E2F1D64693200AF9371 /* RepairStatisticsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E2E1D64693200AF9371 /* RepairStatisticsButton.m */; };
 		79270DC41D61ACB100E29568 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270CF41D61ACB100E29568 /* AFHTTPSessionManager.m */; };
 		79270DC51D61ACB100E29568 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270CF71D61ACB100E29568 /* AFNetworkReachabilityManager.m */; };
 		79270DC61D61ACB100E29568 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270CF91D61ACB100E29568 /* AFSecurityPolicy.m */; };
@@ -235,6 +238,12 @@
 		791B4E141D645F1A00AF9371 /* RepairRecordsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairRecordsVC.m; sourceTree = "<group>"; };
 		791B4E161D64606F00AF9371 /* MySegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySegmentedControl.h; sourceTree = "<group>"; };
 		791B4E171D64606F00AF9371 /* MySegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySegmentedControl.m; sourceTree = "<group>"; };
+		791B4E271D64666700AF9371 /* RepairAcceptOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairAcceptOrderVC.h; sourceTree = "<group>"; };
+		791B4E281D64666700AF9371 /* RepairAcceptOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairAcceptOrderVC.m; sourceTree = "<group>"; };
+		791B4E2A1D64667F00AF9371 /* RepairStatistisVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatistisVC.h; sourceTree = "<group>"; };
+		791B4E2B1D64667F00AF9371 /* RepairStatistisVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatistisVC.m; sourceTree = "<group>"; };
+		791B4E2D1D64693200AF9371 /* RepairStatisticsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticsButton.h; sourceTree = "<group>"; };
+		791B4E2E1D64693200AF9371 /* RepairStatisticsButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatisticsButton.m; sourceTree = "<group>"; };
 		79270CF31D61ACB100E29568 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		79270CF41D61ACB100E29568 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		79270CF51D61ACB100E29568 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -576,6 +585,8 @@
 			isa = PBXGroup;
 			children = (
 				7902B0451D6412F400ADDAE0 /* MainVCs */,
+				791B4E211D6465DD00AF9371 /* RepairStatistics */,
+				791B4E191D64657E00AF9371 /* RepairAcceptOrder */,
 				7902B0491D6412F400ADDAE0 /* PushSettingVCs */,
 				7902B04A1D6412F400ADDAE0 /* RepairRecordsVCs */,
 				7902B04B1D6412F400ADDAE0 /* TechSupportVCs */,
@@ -692,6 +703,42 @@
 			);
 			name = RepairRecordsViews;
 			path = THWY_Server/Views/RepairRecordsViews;
+			sourceTree = SOURCE_ROOT;
+		};
+		791B4E191D64657E00AF9371 /* RepairAcceptOrder */ = {
+			isa = PBXGroup;
+			children = (
+				791B4E271D64666700AF9371 /* RepairAcceptOrderVC.h */,
+				791B4E281D64666700AF9371 /* RepairAcceptOrderVC.m */,
+			);
+			path = RepairAcceptOrder;
+			sourceTree = "<group>";
+		};
+		791B4E211D6465DD00AF9371 /* RepairStatistics */ = {
+			isa = PBXGroup;
+			children = (
+				791B4E2A1D64667F00AF9371 /* RepairStatistisVC.h */,
+				791B4E2B1D64667F00AF9371 /* RepairStatistisVC.m */,
+			);
+			path = RepairStatistics;
+			sourceTree = "<group>";
+		};
+		791B4E221D64660300AF9371 /* RepairAcceptOrderViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = RepairAcceptOrderViews;
+			path = THWY_Server/Views/RepairAcceptOrderViews;
+			sourceTree = SOURCE_ROOT;
+		};
+		791B4E231D64660300AF9371 /* RepairStatisticsViews */ = {
+			isa = PBXGroup;
+			children = (
+				791B4E2D1D64693200AF9371 /* RepairStatisticsButton.h */,
+				791B4E2E1D64693200AF9371 /* RepairStatisticsButton.m */,
+			);
+			name = RepairStatisticsViews;
+			path = THWY_Server/Views/RepairStatisticsViews;
 			sourceTree = SOURCE_ROOT;
 		};
 		79270CF11D61ACB100E29568 /* 3rd */ = {
@@ -993,6 +1040,8 @@
 			children = (
 				791B4E071D645EBE00AF9371 /* BannerNotice.h */,
 				791B4E081D645EBE00AF9371 /* BannerNotice.m */,
+				791B4E221D64660300AF9371 /* RepairAcceptOrderViews */,
+				791B4E231D64660300AF9371 /* RepairStatisticsViews */,
 				791B4DCA1D645D4600AF9371 /* RepairRecordsViews */,
 				791B4DC91D645D2700AF9371 /* WantRepairViews */,
 				7902B04E1D64132700ADDAE0 /* MainVCViews */,
@@ -1336,6 +1385,7 @@
 				7902B0511D64132700ADDAE0 /* DropMenuTableView.m in Sources */,
 				79270F2E1D61B0DB00E29568 /* YFLBBannerView.m in Sources */,
 				791B4DC21D645C9F00AF9371 /* PushSettingVC.m in Sources */,
+				791B4E291D64666700AF9371 /* RepairAcceptOrderVC.m in Sources */,
 				79270DC41D61ACB100E29568 /* AFHTTPSessionManager.m in Sources */,
 				79270DE91D61ACB100E29568 /* MJRefreshConst.m in Sources */,
 				79270DE51D61ACB100E29568 /* MJRefreshGifHeader.m in Sources */,
@@ -1349,6 +1399,7 @@
 				791B4E121D645EF700AF9371 /* HouseSourceCell.m in Sources */,
 				79270E501D61ACDA00E29568 /* DocVO.m in Sources */,
 				79270E091D61ACB100E29568 /* SDWebImagePrefetcher.m in Sources */,
+				791B4E2C1D64667F00AF9371 /* RepairStatistisVC.m in Sources */,
 				791B4DEA1D645DAB00AF9371 /* RecordeRepairingCell.m in Sources */,
 				79270DC91D61ACB100E29568 /* AFURLSessionManager.m in Sources */,
 				79270E1D1D61ACB100E29568 /* TYAlertView.m in Sources */,
@@ -1399,6 +1450,7 @@
 				79270E591D61ACDA00E29568 /* RepairStatuVO.m in Sources */,
 				79270E561D61ACDA00E29568 /* Repair_RootVO.m in Sources */,
 				79270E4D1D61ACDA00E29568 /* AddRepairVO.m in Sources */,
+				791B4E2F1D64693200AF9371 /* RepairStatisticsButton.m in Sources */,
 				79270DD31D61ACB100E29568 /* MASLayoutConstraint.m in Sources */,
 				791B4DC81D645CEB00AF9371 /* WantRepairesVC.m in Sources */,
 				79270F551D61B1EF00E29568 /* NSDictionary+Extension.m in Sources */,

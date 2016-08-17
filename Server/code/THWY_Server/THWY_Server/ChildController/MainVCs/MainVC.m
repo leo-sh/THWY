@@ -210,6 +210,7 @@
     UIButton *woyaobaoxiu = [[UIButton alloc] init];
     woyaobaoxiu.tag = 101;
     [woyaobaoxiu setBackgroundImage:[UIImage imageNamed:@"main_我要报修"] forState:UIControlStateNormal];
+    [woyaobaoxiu setBackgroundImage:[UIImage imageNamed:@"main_我要报修按下"] forState:UIControlStateHighlighted];
     [self.bgScrollView addSubview:woyaobaoxiu];
     [woyaobaoxiu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgScrollView.mas_left).offset(topMargin);
@@ -220,6 +221,7 @@
     UIButton *baoxiujilu = [[UIButton alloc] init];
     baoxiujilu.tag = 102;
     [baoxiujilu setBackgroundImage:[UIImage imageNamed:@"main_保修记录"] forState:UIControlStateNormal];
+    [baoxiujilu setBackgroundImage:[UIImage imageNamed:@"main_保修记录按下"] forState:UIControlStateHighlighted];
     [self.bgScrollView addSubview:baoxiujilu];
     [baoxiujilu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(woyaobaoxiu.mas_left);
@@ -230,6 +232,7 @@
     UIButton *gongzuorizhi = [[UIButton alloc] init];
     gongzuorizhi.tag = 103;
     [gongzuorizhi setBackgroundImage:[UIImage imageNamed:@"main_工作日志"] forState:UIControlStateNormal];
+    [gongzuorizhi setBackgroundImage:[UIImage imageNamed:@"main_工作日志按下"] forState:UIControlStateHighlighted];
     [self.bgScrollView addSubview:gongzuorizhi];
     [gongzuorizhi mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(baoxiujilu.mas_left);
@@ -241,6 +244,7 @@
     UIButton *baoxiujiedan = [[UIButton alloc] init];
     baoxiujiedan.tag = 104;
     [baoxiujiedan setBackgroundImage:[UIImage imageNamed:@"main_报修接单"] forState:UIControlStateNormal];
+    [baoxiujiedan setBackgroundImage:[UIImage imageNamed:@"main_保修接单按下"] forState:UIControlStateHighlighted];
     [self.bgScrollView addSubview:baoxiujiedan];
     [baoxiujiedan mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(woyaobaoxiu.mas_right).offset(topMargin);
@@ -252,6 +256,7 @@
     UIButton *baoxiutongji = [[UIButton alloc] init];
     baoxiutongji.tag = 105;
     [baoxiutongji setBackgroundImage:[UIImage imageNamed:@"main_报修统计"] forState:UIControlStateNormal];
+    [baoxiutongji setBackgroundImage:[UIImage imageNamed:@"main_保修统计按下"] forState:UIControlStateHighlighted];
     [self.bgScrollView addSubview:baoxiutongji];
     [baoxiutongji mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(woyaobaoxiu.mas_right).offset(topMargin);
@@ -262,6 +267,7 @@
     UIButton *wodehaoyou = [[UIButton alloc] init];
     wodehaoyou.tag = 106;
     [wodehaoyou setBackgroundImage:[UIImage imageNamed:@"main_我的好友"] forState:UIControlStateNormal];
+    [wodehaoyou setBackgroundImage:[UIImage imageNamed:@"main_我的好友按下"] forState:UIControlStateHighlighted];
     [self.bgScrollView addSubview:wodehaoyou];
     [wodehaoyou mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(baoxiujilu.mas_right).offset(topMargin);
@@ -273,6 +279,7 @@
     UIButton *wuyegonggao = [[UIButton alloc] init];
     wuyegonggao.tag = 107;
     [wuyegonggao setBackgroundImage:[UIImage imageNamed:@"main_物业公告"] forState:UIControlStateNormal];
+    [wuyegonggao setBackgroundImage:[UIImage imageNamed:@"main_物业公告按下"] forState:UIControlStateHighlighted];
     [self.bgScrollView addSubview:wuyegonggao];
     [wuyegonggao mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(wodehaoyou.mas_right).offset(topMargin);
@@ -283,6 +290,7 @@
     UIButton *xindebiji = [[UIButton alloc] init];
     xindebiji.tag = 108;
     [xindebiji setBackgroundImage:[UIImage imageNamed:@"main_心得笔记"] forState:UIControlStateNormal];
+    [xindebiji setBackgroundImage:[UIImage imageNamed:@"main_心得笔记按下"] forState:UIControlStateHighlighted];
     [self.bgScrollView addSubview:xindebiji];
     [xindebiji mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(baoxiujiedan.mas_left);
@@ -293,6 +301,7 @@
     UIButton *ipbaimingdan = [[UIButton alloc] init];
     ipbaimingdan.tag = 109;
     [ipbaimingdan setBackgroundImage:[UIImage imageNamed:@"main_ip白名单"] forState:UIControlStateNormal];
+    [ipbaimingdan setBackgroundImage:[UIImage imageNamed:@"main_ip白名单按下"] forState:UIControlStateHighlighted];
     [self.bgScrollView addSubview:ipbaimingdan];
     [ipbaimingdan mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(xindebiji.mas_left);

@@ -37,6 +37,7 @@
     if (self = [super initWithFrame:frame style:style]) {
         
         self.repairVO = [[AddRepairVO alloc] init];
+        self.repairVO.videoPath = @"";
         self.repairVO.cls = @"";
         self.cells = [NSMutableArray arrayWithArray:@[@"",@"",@"",@"",@"",@"",@"",@""]];
         
@@ -177,6 +178,10 @@
             self.alertView.data = self.repaireClassArrayPay;
             self.alertView.flag = 1;
             [self.alertView initViews];
+            if(self.repaireClassArrayPay.count == 0 || !self.repaireClassArrayPay){
+                [SVProgressHUD showErrorWithStatus:@"请检查网络"];
+                return;
+            }
             [self.alertView showInWindow];
             break;
         }
@@ -186,6 +191,10 @@
             self.alertView.data = self.repaireClassArrayFree;
             self.alertView.flag = 2;
             [self.alertView initViews];
+            if(self.repaireClassArrayFree.count == 0 || !self.repaireClassArrayFree){
+                [SVProgressHUD showErrorWithStatus:@"请检查网络"];
+                return;
+            }
             [self.alertView showInWindow];
             break;
         }
@@ -327,9 +336,11 @@
         errorMsg = @"请选择房源";
     }else if ([self.repairVO.cls isEqualToString:@""]){
         errorMsg = @"请选择报修类型";
-    }else if ([self.repairVO.image isEqual:nil]){
-        errorMsg = @"请选择图片";
-    }else if ([self.repairVO.detail isEqual:nil]){
+    }
+//    else if ([self.repairVO.image isEqual:nil]){
+//        errorMsg = @"请选择图片";
+//    }
+    else if ([self.repairVO.detail isEqualToString:@""]){
         errorMsg = @"描述不能为空";
     }
     
@@ -338,7 +349,7 @@
         return;
     }
     
-    if (![self.repairVO.videoPath isEqualToString:@""]){
+//    if (![self.repairVO.videoPath isEqualToString:@""]){
     
         switch (My_ServicesManager.status) {
             case NotReachable:
@@ -379,7 +390,7 @@
             }
 
         }
-    }
+//    }
 
     
 }

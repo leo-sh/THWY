@@ -139,7 +139,8 @@
             [self.repaireClassArrayPay addObject:model];
         }
         
-        for (RepairClassVO *model in free.child) {
+        NSArray *freeArray = [free.child.lastObject child];
+        for (RepairClassVO *model in freeArray) {
             [self.repaireClassArrayFree addObject:model];
         }
         self.tableView.repaireClassArrayPay = self.repaireClassArrayPay;
@@ -199,6 +200,7 @@
         [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"报修提交失败\n%@",errorMsg]];
     }else{
         [SVProgressHUD showErrorWithStatus:@"报修提交成功"];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
 }
