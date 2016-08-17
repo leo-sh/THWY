@@ -7,7 +7,7 @@
 //
 
 #import "BussnessADCell.h"
-#import "ADDetailVC.h"
+#import "ProclamationInfoViewController.h"
 
 @interface BussnessADCell ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
@@ -29,8 +29,9 @@
 
 - (void)tapOnclick{
     
-    ADDetailVC *detail = [[ADDetailVC alloc] init];
-    detail.advo = self.advo;
+    ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc] init];
+    detail.proclamationId = self.advo.Id;
+    detail.type = 1;
     [self.vc.navigationController pushViewController:detail animated:YES];
 
 }

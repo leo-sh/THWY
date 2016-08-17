@@ -16,7 +16,7 @@
 #import "BussnessListVC.h"
 #import "RecommandBussnessListVC.h"
 #import "RecommandBussnessADVC.h"
-#import "ADDetailVC.h"
+#import "ProclamationInfoViewController.h"
 
 #define HEIGHT self.view.height*1/8.0
 
@@ -338,9 +338,10 @@
         return;
     }
     
-    ADDetailVC *detail = [[ADDetailVC alloc] init];
+    ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc] init];
     if (self.adLabels[btn.tag-501]) {
-        detail.advo = self.adLabels[self.scrollIndex];
+        detail.proclamationId = [self.adLabels[self.scrollIndex] Id];
+        detail.type = 1;
         [self.navigationController pushViewController:detail animated:YES];
     }
     

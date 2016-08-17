@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum : NSUInteger {
+    OwnerType = 0,
+    BusinessType,
+} InfoCellType;
+
 @interface ProclamationInfoViewController : UIViewController
 @property NSString *proclamationId;
+@property InfoCellType type;
 @end
