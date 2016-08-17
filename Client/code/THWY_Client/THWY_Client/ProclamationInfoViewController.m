@@ -8,13 +8,14 @@
 
 #import "ProclamationInfoViewController.h"
 #import "ServicesManager.h"
-@interface ProclamationInfoViewController ()
+@interface ProclamationInfoViewController ()<UIWebViewDelegate>
 @end
 
 @implementation ProclamationInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"业主公告详情";
     [self ViewInitSetting];
     [self getData];
     // Do any additional setup after loading the view.
@@ -34,7 +35,7 @@
     }
     else
     {
-        [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+        [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
         
         [[ServicesManager getAPI]getANote:self.proclamationId onComplete:^(NSString *errorMsg, NoteVO *complaint) {
             if (errorMsg) {
@@ -43,7 +44,7 @@
             }
             else
             {
-                self.title = complaint.title;
+//                self.title = complaint.title;
                 [self createUI:complaint];
                 [SVProgressHUD dismiss];
             }
@@ -112,11 +113,42 @@
     titleLabel.text = noteVO.title;
     NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:mm"];
     time.text = showtime;
-    content.text = noteVO.content;
-    
+    if ([noteVO.content rangeOfString:@"<"].location == 0 && [[noteVO.content substringFromIndex:noteVO.content.length - 1] isEqualToString:@">"]) {
+        UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, My_ScreenW, My_ScreenH)];
+        webView.delegate = self;
+        webView.backgroundColor = My_clearColor;
+        [content removeFromSuperview];
+        [backView addSubview:webView];
+        
+        NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", noteVO.content];
+        [webView loadHTMLString:htmlcontent baseURL:nil];
+        
+    }else
+    {
+        content.text = noteVO.content;
+    }
     
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //获取页面高度（像素）
+    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"];
+    float clientheight = [clientheight_str floatValue];
+    //设置到WebView上
+    webView.frame = CGRectMake(webView.x, webView.y, webView.width, clientheight);
+    //获取WebView最佳尺寸（点）
+    CGSize frame = [webView sizeThatFits:webView.frame.size];
+    //获取内容实际高度（像素）
+    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-top'))  + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-bottom'))"];
+    float height = [height_str floatValue];
+    //内容实际高度（像素）* 点和像素的比
+    height = height * frame.height / clientheight;
+    //再次设置WebView高度（点）
+    webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
+    
+    webView.superview.height = webView.bottom + 10;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

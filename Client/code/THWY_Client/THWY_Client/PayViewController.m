@@ -46,29 +46,26 @@
 
 - (void)getData
 {
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
 
     [[ServicesManager getAPI]getFees:self.page year:self.year feeState:self.statu onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView.mj_footer endRefreshing];
-                [self.tableView.mj_header endRefreshing];
-            });
+            if (self.page != 0) {
+                self.page --;
+            }
             
         }
         else
         {
             self.data = list;
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                [SVProgressHUD dismiss];
-
-            });
+            [self.tableView reloadData];
+            [SVProgressHUD dismiss];
         }
         
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 
@@ -89,7 +86,7 @@
     
     self.chooseStatuBtn = [[AlertButton alloc]initWithFrame:CGRectMake(self.chooseYearBtn.right + 5, 5, self.view.width * 0.35, 30)];
     
-    data = @[@"选择状态",@"未缴",@"未缴齐",@"已缴齐",@"已经退款"];
+    data = @[@"选择状态",@"未缴",@"未缴齐",@"已缴齐",@"已退款"];
     
     [self.chooseStatuBtn setGetDataMethod:GetPayStatu OriginY:self.chooseYearBtn.bottom - 10 + 66 showCentenX:self.chooseStatuBtn.centerX withData:data];
     self.chooseStatuBtn.postID = @"-1";
@@ -109,7 +106,7 @@
     
     [self.view addSubview:searchView];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(5, searchView.bottom, self.view.width - 10, self.view.height - searchView.height) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(5, searchView.bottom, self.view.width - 10, self.view.height - searchView.height - 64) style:UITableViewStyleGrouped];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -117,8 +114,33 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    [self initRefreshView];
     //    self.tableView.rowHeight = 200;
     [self.view addSubview:self.tableView];
+}
+
+//设置上拉下拉刷新
+- (void)initRefreshView{
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshPage)];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
+    
+    //自动更改透明度
+    self.tableView.mj_header.automaticallyChangeAlpha = YES;
+    // self.tableView.mj_footer.automaticallyChangeAlpha = YES;
+    
+}
+
+-(void)refreshPage
+{
+    self.page = 0;
+    [self getData];
+}
+
+-(void)loadMore
+{
+    self.page ++;
+    [self getData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

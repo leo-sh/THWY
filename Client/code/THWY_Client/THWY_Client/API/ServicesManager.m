@@ -161,59 +161,64 @@
         imageData = UIImagePNGRepresentation(repair.image);
     }
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    // 设置时间格式
-    formatter.dateFormat = @"yyyyMMddHHmmss";
-    NSString *str = [formatter stringFromDate:[NSDate date]];
-    
-    NSURL *newVideoUrl = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4", str]] ;
-    
-    [self convertVideoQuailtyWithInputURL:repair.videoPath outputURL:newVideoUrl completeHandler:^(AVAssetExportSession * exportSession) {
+    if (repair.videoPath.length > 0) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        // 设置时间格式
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
         
-        switch (exportSession.status) {
-            case AVAssetExportSessionStatusCancelled:
-            {
-                onComplete(@"Cancelled");
-                NSLog(@"AVAssetExportSessionStatusCancelled");
+        NSURL *newVideoUrl = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4", str]] ;
+        [self convertVideoQuailtyWithInputURL:repair.videoPath outputURL:newVideoUrl completeHandler:^(AVAssetExportSession * exportSession) {
+            
+            switch (exportSession.status) {
+                case AVAssetExportSessionStatusCancelled:
+                {
+                    onComplete(@"Cancelled");
+                    NSLog(@"AVAssetExportSessionStatusCancelled");
+                }
+                    break;
+                case AVAssetExportSessionStatusUnknown:
+                {
+                    onComplete(@"Unknown");
+                    NSLog(@"AVAssetExportSessionStatusUnknown");
+                }
+                    break;
+                case AVAssetExportSessionStatusWaiting:
+                {
+                    onComplete(@"Waiting");
+                    NSLog(@"AVAssetExportSessionStatusWaiting");
+                }
+                    break;
+                case AVAssetExportSessionStatusExporting:
+                {
+                    onComplete(@"Exporting");
+                    NSLog(@"AVAssetExportSessionStatusExporting");
+                }
+                    break;
+                case AVAssetExportSessionStatusCompleted:
+                {
+                    NSLog(@"AVAssetExportSessionStatusCompleted");
+                    NSLog(@"%@",[NSString stringWithFormat:@"%f s", [self getVideoLength:newVideoUrl]]);
+                    NSLog(@"%@", [NSString stringWithFormat:@"%.2f kb", [self getFileSize:[newVideoUrl path]]]);
+                    NSData *videoData = [NSData dataWithContentsOfURL:newVideoUrl];
+                    [self subMitRepair:params image:imageData video:videoData urlString:urlString onComplete:onComplete];
+                }
+                    break;
+                case AVAssetExportSessionStatusFailed:
+                {
+                    onComplete(@"Failed");
+                    NSLog(@"AVAssetExportSessionStatusFailed");
+                }
+                    break;
+                default:
+                    break;
             }
-                break;
-            case AVAssetExportSessionStatusUnknown:
-            {
-                onComplete(@"Unknown");
-                NSLog(@"AVAssetExportSessionStatusUnknown");
-            }
-                break;
-            case AVAssetExportSessionStatusWaiting:
-            {
-                onComplete(@"Waiting");
-                NSLog(@"AVAssetExportSessionStatusWaiting");
-            }
-                break;
-            case AVAssetExportSessionStatusExporting:
-            {
-                onComplete(@"Exporting");
-                NSLog(@"AVAssetExportSessionStatusExporting");
-            }
-                break;
-            case AVAssetExportSessionStatusCompleted:
-            {
-                NSLog(@"AVAssetExportSessionStatusCompleted");
-                NSLog(@"%@",[NSString stringWithFormat:@"%f s", [self getVideoLength:newVideoUrl]]);
-                NSLog(@"%@", [NSString stringWithFormat:@"%.2f kb", [self getFileSize:[newVideoUrl path]]]);
-                NSData *videoData = [NSData dataWithContentsOfURL:newVideoUrl];
-                [self subMitRepair:params image:imageData video:videoData urlString:urlString onComplete:onComplete];
-            }
-                break;
-            case AVAssetExportSessionStatusFailed:
-            {
-                onComplete(@"Failed");
-                NSLog(@"AVAssetExportSessionStatusFailed");
-            }
-                break;
-            default:
-                break;
-        }
-    }];
+        }];
+    }else
+    {
+        [self subMitRepair:params image:imageData video:nil urlString:urlString onComplete:onComplete];
+    }
+    
 }
 
 -(void)subMitRepair:(NSDictionary* )params image:(NSData* )imageData video:(NSData *)videoData urlString:(NSString *)urlString onComplete:(void (^)(NSString *errorMsg))onComplete
@@ -855,7 +860,7 @@ savePassWord:(BOOL)save
     }];
 }
 
--(void)getMerchants:(int)page name:(NSString* )name onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
+-(void)getMerchants:(int)page typeId:(NSString *)typeId name:(NSString* )name onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
     page++;
     AFHTTPSessionManager *manager = [self getManager];
@@ -866,6 +871,9 @@ savePassWord:(BOOL)save
     NSMutableDictionary* dic = [[NSMutableDictionary alloc]initWithDictionary:params];
     if (name.length > 0) {
         dic[@"merchant_name_like"] = name;
+    }
+    if (typeId.length > 0) {
+        dic[@"merchant_type_id"] = typeId;
     }
     
     [manager GET:urlString parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {

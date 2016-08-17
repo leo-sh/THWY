@@ -22,10 +22,10 @@
     
     if (self = [super init]) {
         self.itemNames = items;
-        self.frame = CGRectMake(0, 50, My_ScreenW, My_ScreenH);
+        self.frame = CGRectMake(0, 0, My_ScreenW, My_ScreenH);
 //        self.backgroundColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.2];
         
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 40, width, items.count*itemHeight) style:UITableViewStylePlain];
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 90, width, items.count*itemHeight) style:UITableViewStylePlain];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableView.backgroundColor = [UIColor clearColor];
         self.tableView.rowHeight = itemHeight;

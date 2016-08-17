@@ -212,7 +212,7 @@ savePassWord:(BOOL)save
  *  @param name       名称(可不传)
  *  @param onComplete 获取完成回调block
  */
--(void)getMerchants:(int)page name:(NSString* )name onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
+-(void)getMerchants:(int)page typeId:(NSString *)typeId name:(NSString* )name onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
 /**
  *  获取一个商家

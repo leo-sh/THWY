@@ -1,6 +1,6 @@
 //
 //  userAndPassWordTextField.m
-//  THWY_Client
+//  THWY_Server
 //
 //  Created by HuangYiZhe on 16/7/28.
 //  Copyright © 2016年 SXZ. All rights reserved.

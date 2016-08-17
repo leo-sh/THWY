@@ -1,6 +1,6 @@
 //
 //  UserVO.h
-//  THWY_Client
+//  THWY_Server
 //
 //  Created by 史秀泽 on 2016/7/26.
 //  Copyright © 2016年 SXZ. All rights reserved.
@@ -12,6 +12,7 @@
 #define THWY_USER @"ytwy_user"
 #define USER_NAME @"user_name"
 #define USER_PASSWORD @"user_password"
+#define SHOW_STATE @"show_state"
 
 @interface UserVO : NSObject <NSCoding>
 

@@ -35,11 +35,11 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.data = [NSMutableArray array];
-    self.pageNumber = 1;
+    self.pageNumber = 0;
 }
 
 - (void)getData
-{    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+{    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
 
     [[ServicesManager getAPI] getNotes:self.pageNumber onComplete:^(NSString *errorMsg, NSArray *list) {
         
@@ -49,7 +49,7 @@
                 [self.tableView.mj_footer endRefreshing];
                 [self.tableView.mj_header endRefreshing];
             });
-            
+            self.pageNumber --;
         }
         
         else if (list.count == 0 && errorMsg == nil) {
@@ -82,7 +82,7 @@
     
     if (self.data) {
         self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            self.pageNumber = 1;
+            self.pageNumber = 0;
             [self.data removeAllObjects];
             [self getData];
         }];

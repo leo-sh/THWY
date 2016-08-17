@@ -1,6 +1,6 @@
 //
 //  ReviseBtn.h
-//  THWY_Client
+//  THWY_Server
 //
 //  Created by HuangYiZhe on 16/7/29.
 //  Copyright © 2016年 SXZ. All rights reserved.
