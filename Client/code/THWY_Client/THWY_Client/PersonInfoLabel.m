@@ -11,6 +11,7 @@
 @interface PersonInfoLabel()
 @property UIImageView *imageView;
 @property UILabel *label;
+@property UILabel *infoLabel;
 @end
 @implementation PersonInfoLabel
 - (instancetype)init
@@ -22,9 +23,12 @@
         self.label = [[UILabel alloc]init];
         
         self.textField = [[UITextField alloc]init];
+        
+        self.infoLabel = [[UILabel alloc]init];
         [self addSubview:self.imageView];
         [self addSubview:self.label];
         [self addSubview:self.textField];
+        [self addSubview:self.infoLabel];
         
     }
     return self;
@@ -39,6 +43,7 @@
         self.imageView = [[UIImageView alloc]init];
 
         self.label = [[UILabel alloc]init];
+        self.infoLabel = [[UILabel alloc]init];
         self.textField = [[UITextField alloc]init];
         self.textField.font = FontSize(CONTENT_FONT);
         self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -57,13 +62,13 @@
         [self addSubview:self.imageView];
         [self addSubview:self.label];
         [self addSubview:self.textField];
-        
+        [self addSubview:self.infoLabel];
     }
     return self;
 }
 
 
-- (void)updateFrame
+- (void)updateFrame:(NSString *)string
 {
     NSLog(@"%f-%f-%f-%f",self.frame.origin.x,self.frame.origin.y,self.frame.size.width,self.frame.size.height);
     
@@ -90,13 +95,41 @@
     
     self.label.font = FontSize(CONTENT_FONT);
 //    self.label.backgroundColor = [UIColor grayColor];
-    CGFloat tfHeight = self.height;
-    CGFloat tfWidht = self.frame.size.width - labelLeft -labelWidth -imageViewWidthAndHeight -imageViewLeft;
-    [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.imageView.centerY);
-        make.size.mas_equalTo(CGSizeMake(tfWidht, tfHeight));
-        make.left.equalTo(self.label.mas_right).with.offset(0);
-    }];
+    if ([string isEqualToString:@"tf"]) {
+        CGFloat tfHeight = self.height;
+        CGFloat tfWidht = self.frame.size.width - labelLeft -labelWidth -imageViewWidthAndHeight -imageViewLeft;
+        [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(self.imageView.centerY);
+            make.size.mas_equalTo(CGSizeMake(tfWidht, tfHeight));
+            make.left.equalTo(self.label.mas_right).with.offset(0);
+        }];
+    }
+    else
+    {
+        CGFloat lbHeight = self.height;
+        CGFloat lbWidht = self.frame.size.width - labelLeft -labelWidth -imageViewWidthAndHeight -imageViewLeft;
+        
+        [self.infoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(self.imageView.centerY);
+            make.size.mas_equalTo(CGSizeMake(lbWidht, lbHeight));
+            make.left.equalTo(self.label.mas_right).with.offset(0);
+        }];
+
+        CGFloat fontSizeWidth = [self.infoLabel.text sizeWithFont:[UIFont systemFontOfSize:CONTENT_FONT] maxSize:CGSizeMake(4000, 4000)].width;
+        if (fontSizeWidth > lbWidht) {
+            self.height *=2;
+            [self.infoLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(self.height);
+            }];
+            [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(topOffSet + self.height/4);
+            }];
+            self.infoLabel.numberOfLines = 0;
+        }
+        
+        
+
+    }
     
     self.clipsToBounds = NO;
 
@@ -104,7 +137,6 @@
 
 - (void)setImageName:(NSString *)imageName Label:(NSString *)title TextField:(NSString *)text
 {
-    [self updateFrame];
     
     self.imageView.image = [UIImage imageNamed:imageName];
     
@@ -112,6 +144,24 @@
     
     self.textField.text = text;
     
+    [self updateFrame:@"tf"];
+
+}
+
+- (void)setImageName:(NSString *)imageName Label:(NSString *)title infoTitle:(NSString *)infotitle
+{
+    self.imageView.image = [UIImage imageNamed:imageName];
+    
+    self.label.text = title;
+    
+    self.infoLabel.text = infotitle;
+    
+    self.infoLabel.font = FontSize(CONTENT_FONT);
+    
+    self.infoLabel.textColor = CellUnderLineColor;
+
+    [self updateFrame:@"lb"];
+
 }
 
 - (void)setNoEnable

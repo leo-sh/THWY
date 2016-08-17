@@ -29,7 +29,7 @@
         
         self.time.frame = CGRectMake(0, 10, 1, 14);
                 
-        self.head.image = [UIImage imageNamed:@"彩条"];
+        self.head.image = [UIImage imageNamed:@"bg_repair_history_color_bar_three"];
         
         self.time.font = FontSize(Content_Time_Font);
         

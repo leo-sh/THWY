@@ -58,6 +58,8 @@
     
     self.textView.delegate = self;
     
+    self.textView.font = FontSize(CONTENT_FONT);
+    
     [self addSubOhterview:self.textView];
     
     [self setPlaceholder:@"请输入内容"];

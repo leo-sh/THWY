@@ -195,21 +195,39 @@
     CGFloat labelWidth = self.view.width - 2 *labelLeft;
     CGFloat labelY = 0;
     
+    PersonInfoLabel *lastLabel;
+    
     for (int i = 0; i < imageNameArray.count ; i ++) {
+        
+        if (lastLabel) {
+            labelY = lastLabel.bottom - 1;
+        }
         
         PersonInfoLabel *label = [[PersonInfoLabel alloc]initWithFrame:CGRectMake(labelLeft, labelY , labelWidth , labelHeight)];
         
-        label.backgroundColor = WhiteAlphaColor;
+        switch (i)
+        {
+                
+            case 0:
+            case 2:
+            case 3:
+                [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] infoTitle:tfTextArray[i]];
+                break;
+            default:
+                [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] TextField:tfTextArray[i]];
+                break;
+                
+        }
         
-        [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] TextField:tfTextArray[i]];
+        label.backgroundColor = WhiteAlphaColor;
         label.textField.delegate = self;
-        label.textField.textColor = My_Color(202, 202, 207);
+        label.textField.textColor = CellUnderLineColor;
         label.layer.borderWidth = 0.5;
         label.layer.borderColor = CellUnderLineColor.CGColor;
         
         [self.bottomView addSubview: label];
         //将边框减掉
-        labelY +=labelHeight - 1;
+//        labelY +=labelHeight - 1;
         
         if (i == imageNameArray.count - 1) {
             label.textField.secureTextEntry = YES;
@@ -218,18 +236,8 @@
             label.textField.font = [UIFont systemFontOfSize:12];
         }
         
-        switch (i) {
-                
-            case 0:
-            case 2:
-            case 3:
-                [label setNoEnable];
-                label.textField.text = @"";
-                label.textField.placeholder = tfTextArray[i];
-                break;
-            default:
-                break;
-        }
+        lastLabel = label;
+
         [self.canUpdateInfo addObject:label];
 
         
@@ -272,18 +280,36 @@
     }
     
     if (isChanged) {
-        [SVProgressHUD showWithStatus:@"修改中..."];
-        [[ServicesManager getAPI]editUserInfo:[[self.canUpdateInfo[1] textField] text] carNumber:[[self.canUpdateInfo[4] textField] text] newUserName:[[self.canUpdateInfo[5] textField] text] newPassWord:[[self.canUpdateInfo[6] textField] text] onComplete:^(NSString *errorMsg) {
-            if (errorMsg) {
-                [SVProgressHUD showErrorWithStatus:errorMsg];
-                NSLog(@"%@",errorMsg);
-            }
-            else
-            {
-                [SVProgressHUD showErrorWithStatus:@"修改成功"];
-            }
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改个人信息" message:@"是否确定修改？" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *agreeAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+                [SVProgressHUD showWithStatus:@"修改中..."];
+                [[ServicesManager getAPI]editUserInfo:[[self.canUpdateInfo[1] textField] text] carNumber:[[self.canUpdateInfo[4] textField] text] newUserName:[[self.canUpdateInfo[5] textField] text] newPassWord:[[self.canUpdateInfo[6] textField] text] onComplete:^(NSString *errorMsg) {
+                    if (errorMsg) {
+                        [SVProgressHUD showErrorWithStatus:errorMsg];
+                        NSLog(@"%@",errorMsg);
+                    }
+                    else
+                    {
+                        [SVProgressHUD showErrorWithStatus:@"修改成功"];
+                        [self.navigationController popViewControllerAnimated:NO];
+                    }
+                }];
+
         }];
-    }else{
+        
+        UIAlertAction *disagreeAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [alertController addAction: agreeAction];
+        [alertController addAction: disagreeAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+            }
+    
+    else{
         return;
     }
     
@@ -354,14 +380,15 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    for (UIView *view in self.bottomView.subviews) {
-        if ([view isKindOfClass:[PersonInfoLabel class]]) {
-            
-            PersonInfoLabel *label = (PersonInfoLabel *)view;
-            
-            [label.textField resignFirstResponder];
-        }
-    }
+//    for (UIView *view in self.bottomView.subviews) {
+//        if ([view isKindOfClass:[PersonInfoLabel class]]) {
+//            
+//            PersonInfoLabel *label = (PersonInfoLabel *)view;
+//            
+//            [label.textField resignFirstResponder];
+//        }
+//    }
+    [self.view endEditing:YES];
 }
 
 

@@ -184,7 +184,7 @@
     if (cell == nil) {
         cell = [[SuggestTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
-    NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd HH:SS"];
+    NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd HH:mm"];
     [cell setTime:time content:[self.data[indexPath.section] content] width:tableView.width];
     cell.preservesSuperviewLayoutMargins = NO;
     cell.separatorInset = UIEdgeInsetsZero;
@@ -279,6 +279,8 @@
             else
             {
                 [SVProgressHUD showErrorWithStatus:@"添加成功"];
+                [self.alertView hideInWindow];
+                [self getData:[NSString stringWithFormat:@"%d",back]];
             }
             
         }];
