@@ -56,7 +56,7 @@
 
 - (void)getBussnessData{
     [self.bussnessModels removeAllObjects];
-    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
     
     [[ServicesManager getAPI] getMerchants:0 name:nil onComplete:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg){
@@ -77,7 +77,7 @@
 
 - (void)getBussnessTypeView{
     [self.merchantTypeArray removeAllObjects];
-    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
     [My_ServicesManager getMerchantTypes:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -175,7 +175,7 @@
 }
 
 - (void)loadMoreData{
-    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
     
     [[ServicesManager getAPI] getMerchants:++self.page name:nil onComplete:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg){

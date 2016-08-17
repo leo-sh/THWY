@@ -54,7 +54,7 @@
 
 #pragma mark - 轮播图
 - (void)getData{
-    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
     self.adDataArray = [[NSMutableArray alloc] init];
     [[ServicesManager getAPI] getRecommendMerchants:1 onComplete:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg) {
