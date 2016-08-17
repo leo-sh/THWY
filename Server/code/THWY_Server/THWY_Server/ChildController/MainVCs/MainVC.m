@@ -1,6 +1,6 @@
 //
 //  MainVC.m
-//  THWY_Client
+//  THWY_Server
 //
 //  Created by 史秀泽 on 2016/7/26.
 //  Copyright © 2016年 SXZ. All rights reserved.

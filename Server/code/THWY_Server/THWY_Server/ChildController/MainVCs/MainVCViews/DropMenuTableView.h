@@ -1,6 +1,6 @@
 //
 //  DropMenuTableView.h
-//  THWY_Client
+//  THWY_Server
 //
 //  Created by wei on 16/8/10.
 //  Copyright © 2016年 SXZ. All rights reserved.
