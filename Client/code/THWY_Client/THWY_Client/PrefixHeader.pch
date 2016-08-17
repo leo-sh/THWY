@@ -24,6 +24,7 @@
 #import "UIView+TYAlertView.h"
 #import "TYAlertController+BlurEffects.h"
 #import "BannerNotice.h"
+#import "AssetView.h"
 
 #endif
 
