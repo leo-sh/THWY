@@ -38,7 +38,7 @@
     self.title = @"缴费台账";
     UIImage *backgroundImage = [UIImage imageNamed:@"背景2"];
     self.view.layer.contents = (id) backgroundImage.CGImage;
-    self.page = 1;
+    self.page = 0;
     self.year = 0;
     self.statu = All;
     //    [self.navigationController pushViewController:[[PayInfoViewController alloc]init] animated:YES];

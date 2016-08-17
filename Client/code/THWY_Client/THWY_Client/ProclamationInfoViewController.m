@@ -110,7 +110,7 @@
     [self.view addSubview:backView];
     
     titleLabel.text = noteVO.title;
-    NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:SS"];
+    NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:mm"];
     time.text = showtime;
     content.text = noteVO.content;
     

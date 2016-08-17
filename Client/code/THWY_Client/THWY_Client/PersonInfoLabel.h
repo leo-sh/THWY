@@ -13,7 +13,7 @@
 @property UITextField *textField;
 
 - (void)setImageName:(NSString *)imageName Label:(NSString *)title TextField:(NSString *)placeholder;
-- (void)setImageName:(NSString *)imageName Label:(NSString *)title infoTitle:(NSString *)title;
-- (void)updateFrame;
+- (void)setImageName:(NSString *)imageName Label:(NSString *)title infoTitle:(NSString *)infotitle;
+//- (void)updateFrame;
 - (void)setNoEnable;
 @end

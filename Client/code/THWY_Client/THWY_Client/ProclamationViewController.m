@@ -122,7 +122,7 @@
         cell = [[ProclamationTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         self.topHeight = CGRectGetMaxY(cell.time.frame);
     }
-    NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd HH:SS"];
+    NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd HH:mm"];
     [cell setTitle:[self.data[indexPath.section] title]  time:time content:[self.data[indexPath.section] content] width:tableView.width];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
