@@ -23,7 +23,6 @@
 #import "SVProgressHUD.h"
 #import "UIView+TYAlertView.h"
 #import "TYAlertController+BlurEffects.h"
-#import "BannerNotice.h"
 
 #endif
 
@@ -77,5 +76,8 @@
 #define My_LightFontName @"PingFangSC-Light"
 #define My_RegularFontName @"PingFangSC-Regular"
 #define My_SemiboldFontName @"PingFangSC-Semibold"
+
+//内容默认文字大小
+#define CONTENT_FONT 16
 
 #endif /* PrefixHeader_pch */

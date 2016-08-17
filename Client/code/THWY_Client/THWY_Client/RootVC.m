@@ -18,7 +18,7 @@
 -(instancetype)init
 {
     if (self = [super init]) {
-        [My_NoteCenter addObserver:self selector:@selector(netWorkChanged:) name:NetWorkChanged object:nil];
+//        [My_NoteCenter addObserver:self selector:@selector(netWorkChanged:) name:NetWorkChanged object:nil];
     }
     return self;
 }

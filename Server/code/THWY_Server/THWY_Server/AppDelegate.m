@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainNavigationViewController.h"
-#import "MainVC.h"
+//#import "MainVC.h"
 #import "UMessage.h"
 
 @interface AppDelegate ()
@@ -32,8 +32,8 @@
     
     self.window = [[UIWindow alloc]initWithFrame:My_ScreenBounds];
     self.window.backgroundColor = My_Color(238, 238, 238);
-    self.window.rootViewController = [[MainNavigationViewController alloc]
-                                      initWithRootViewController:[[MainVC alloc]init]];
+//    self.window.rootViewController = [[MainNavigationViewController alloc]
+//                                      initWithRootViewController:[[MainVC alloc]init]];
     [self.window makeKeyAndVisible];
     
     return YES;

@@ -12,7 +12,7 @@
 #import "userAndPassWordTextField.h"
 #import "BlueCheckButton.h"
 #import "ServicesManager.h"
-#import "MainVC.h"
+//#import "MainVC.h"
 @interface LoginViewController ()<UITextFieldDelegate>
 
 @property (strong, nonatomic) UIScrollView* introScrollView;
@@ -176,15 +176,15 @@
     
     [self.passWordTF setLeftIcon:@"登录密码" placeholder:@"请输入密码" backgroundColor:[UIColor whiteColor]];
     
-    if ([[UDManager getUD]showPassWord]) {
-        self.passWordTF.text = [[UDManager getUD]getPassWord];
-    }
+//    if ([[UDManager getUD]showPassWord]) {
+//        self.passWordTF.text = [[UDManager getUD]getPassWord];
+//    }
 }
 
 - (void)createButton
 {
     self.rememberPassWordBtn = [[BlueCheckButton alloc]initDefaultImageName:@"框不带勾" choosedImageName:@"框带勾" title:@"记住密码"];
-    self.rememberPassWordBtn.chooseStatu = [[UDManager getUD]showPassWord];
+//    self.rememberPassWordBtn.chooseStatu = [[UDManager getUD]showPassWord];
     [self.view addSubview:self.rememberPassWordBtn];
 
     CGFloat rememberPassWordBtnLeft = self.view.width *0.056;
@@ -286,25 +286,25 @@
     }
     
     [SVProgressHUD showWithStatus:@"登录中..."];
-    [[ServicesManager getAPI] login:self.userTF.text password:self.passWordTF.text savePassWord:self.rememberPassWordBtn.chooseStatu onComplete:^(NSString *errorMsg, UserVO *user) {
-        NSLog(@"%@",user);
-        if (errorMsg) {
-            NSLog(@"%@",errorMsg);
-            
-            [SVProgressHUD showErrorWithStatus:errorMsg];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:Login_Fail object:nil];
-
-        }
-        else {
-            
-            [SVProgressHUD dismiss];
-            [[NSNotificationCenter defaultCenter] postNotificationName:Login_Success object:nil];
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }
-        
-    }];
+//    [[ServicesManager getAPI] login:self.userTF.text password:self.passWordTF.text savePassWord:self.rememberPassWordBtn.chooseStatu onComplete:^(NSString *errorMsg, UserVO *user) {
+//        NSLog(@"%@",user);
+//        if (errorMsg) {
+//            NSLog(@"%@",errorMsg);
+//            
+//            [SVProgressHUD showErrorWithStatus:errorMsg];
+//            
+//            [[NSNotificationCenter defaultCenter] postNotificationName:Login_Fail object:nil];
+//
+//        }
+//        else {
+//            
+//            [SVProgressHUD dismiss];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:Login_Success object:nil];
+//            
+//            [self dismissViewControllerAnimated:YES completion:nil];
+//        }
+//        
+//    }];
 
 }
 

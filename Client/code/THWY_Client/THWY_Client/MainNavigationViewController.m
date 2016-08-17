@@ -24,52 +24,52 @@
 {
     NSString* pushType = userInfo[@"push_type"];
     NSString* Id = userInfo[@"pk"];
-    if ([pushType isEqualToString:@"5"])
-    {
-//        业主公告
-        ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc]init];
-        
-        detail.proclamationId = Id;
-        
-        [self pushViewController:detail animated:YES];
-        
-    }else if ([pushType isEqualToString:@"6"])
-    {
-//        社区商圈-商圈公告
-        [SVProgressHUD showWithStatus:@"正在加载数据，请稍后......"];
-        [My_ServicesManager getAnAd:Id onComplete:^(NSString *errorMsg, AdVO *ad) {
-            if (errorMsg == nil) {
-                ADDetailVC *detail = [[ADDetailVC alloc] init];
-                detail.advo = ad;
-                [self pushViewController:detail animated:YES];
-                [SVProgressHUD dismiss];
-            }else
-            {
-                [SVProgressHUD showErrorWithStatus:errorMsg];
-            }
-        }];
-        
-    }else if ([pushType isEqualToString:@"7"])
-    {
-//        缴费台账
-        ComplainDetailViewController *detail = [[ComplainDetailViewController alloc]init];
-        
-        detail.complianId = Id;
-        
-        [self pushViewController:detail animated:YES];
-    }
-    if (_userInfo) {
-        _userInfo = nil;
-    }
+//    if ([pushType isEqualToString:@"5"])
+//    {
+////        业主公告
+//        ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc]init];
+//        
+//        detail.proclamationId = Id;
+//        
+//        [self pushViewController:detail animated:YES];
+//        
+//    }else if ([pushType isEqualToString:@"6"])
+//    {
+////        社区商圈-商圈公告
+//        [SVProgressHUD showWithStatus:@"正在加载数据，请稍后......"];
+//        [My_ServicesManager getAnAd:Id onComplete:^(NSString *errorMsg, AdVO *ad) {
+//            if (errorMsg == nil) {
+//                ADDetailVC *detail = [[ADDetailVC alloc] init];
+//                detail.advo = ad;
+//                [self pushViewController:detail animated:YES];
+//                [SVProgressHUD dismiss];
+//            }else
+//            {
+//                [SVProgressHUD showErrorWithStatus:errorMsg];
+//            }
+//        }];
+//        
+//    }else if ([pushType isEqualToString:@"7"])
+//    {
+////        缴费台账
+//        ComplainDetailViewController *detail = [[ComplainDetailViewController alloc]init];
+//        
+//        detail.complianId = Id;
+//        
+//        [self pushViewController:detail animated:YES];
+//    }
+//    if (_userInfo) {
+//        _userInfo = nil;
+//    }
 }
 
 -(void)showAlertWithUserInfo:(NSDictionary *)userInfo
 {
     _userInfo = userInfo;
     tapGestureBool = YES;
-    UIView *viewBanner = [BannerNotice bannerWith:[UIImage imageNamed:@"ios4"] bannerName:@"泰生活" bannerContent:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]];
+//    UIView *viewBanner = [BannerNotice bannerWith:[UIImage imageNamed:@"ios4"] bannerName:@"泰生活" bannerContent:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]];
     UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(event:)];
-    [viewBanner addGestureRecognizer:tapGesture];
+//    [viewBanner addGestureRecognizer:tapGesture];
     
     double delayInSeconds = 4.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -86,7 +86,7 @@
         }
     });
     
-    [My_KeyWindow addSubview:viewBanner];
+//    [My_KeyWindow addSubview:viewBanner];
 }
 
 - (void)event:(UITapGestureRecognizer *)gesture
