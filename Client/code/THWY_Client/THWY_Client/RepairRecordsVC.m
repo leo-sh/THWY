@@ -55,7 +55,7 @@
 
 - (void)getDataType:(NSInteger)type statusID:(NSString *)statusID page:(int)page{
     
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
     [My_ServicesManager getRepairs:type page:page repairStatu:statusID onComplete:^(NSString *errorMsg, NSArray *list) {
         
 //        NSLog(@"page==%d, list.count--%ld", page, list.count);

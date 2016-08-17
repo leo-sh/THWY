@@ -31,13 +31,12 @@
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
     
     [self initViews];
-//    [self getBussnessData];
-    [self.tableView.mj_header beginRefreshing];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+    [self getBussnessData];
 }
 
 
 - (void)getBussnessData{
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
     [self.bussnessModels removeAllObjects];
     self.page = 0;
     [[ServicesManager getAPI] getAds:self.page onComplete:^(NSString *errorMsg, NSArray *list) {
@@ -107,6 +106,7 @@
             }
             
             [self.tableView reloadData];
+            [SVProgressHUD dismiss];
         }
         
         [self.tableView.mj_footer endRefreshing];
@@ -130,13 +130,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
     AdVO* adVO = self.bussnessModels[indexPath.row];
     [My_ServicesManager getAnAd:adVO.Id onComplete:^(NSString *errorMsg, AdVO *ad) {
         if (errorMsg == nil) {
             ADDetailVC *detail = [[ADDetailVC alloc] init];
             detail.advo = ad;
-            [self .navigationController pushViewController:detail animated:YES];
+            [self.navigationController pushViewController:detail animated:YES];
             [SVProgressHUD dismiss];
         }else
         {

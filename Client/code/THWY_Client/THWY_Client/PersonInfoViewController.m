@@ -43,7 +43,7 @@
 
 - (void)getData
 {
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
     
     if ([ServicesManager getAPI].status == NotReachable) {
         self.userInfo = [[UDManager getUD]getUser];

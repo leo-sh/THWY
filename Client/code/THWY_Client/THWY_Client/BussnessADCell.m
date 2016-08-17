@@ -41,9 +41,7 @@
     self.advo = merchant;
 
     self.timeLabel.text = [NSString stringDateFromTimeInterval:[merchant.ctime integerValue] withFormat:@"YYYY-MM-dd HH:mm"];
-    [[ServicesManager getAPI] getAnAd:merchant.Id onComplete:^(NSString *errorMsg, AdVO *ad) {
-        self.desc.text = ad.title;
-    }];
+    self.desc.text = merchant.content;
     
 }
 

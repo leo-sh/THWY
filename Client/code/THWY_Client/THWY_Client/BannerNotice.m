@@ -84,14 +84,18 @@
     double delayInSeconds = 4.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [UIView animateWithDuration:0.5 animations:^{
-            viewHidden.transform = CGAffineTransformMakeTranslation(0, -70);
-        }];
+        if (viewHidden.superview) {
+            [UIView animateWithDuration:0.5 animations:^{
+                viewHidden.transform = CGAffineTransformMakeTranslation(0, -70);
+            } completion:^(BOOL finished) {
+                [viewHidden removeFromSuperview];
+            }];
+        }
+        
     });
     
     return viewHidden;
     
 }
-
 
 @end

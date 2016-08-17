@@ -50,7 +50,7 @@
 
 - (void)getData:(NSString *)type
 {
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
     [[ServicesManager getAPI] getFeedBackTypes:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg) {

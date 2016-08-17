@@ -39,7 +39,7 @@
 }
 
 - (void)getData
-{    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
+{    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
 
     [[ServicesManager getAPI] getNotes:self.pageNumber onComplete:^(NSString *errorMsg, NSArray *list) {
         
