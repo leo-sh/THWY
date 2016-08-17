@@ -41,7 +41,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 //    self.tableView.rowHeight = 360/667*My_ScreenH;
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    self.tableView.separatorColor = [UIColor grayColor];
     self.tableView.bounces = NO;
     [self.tableView setBackgroundColor:[UIColor clearColor]];
