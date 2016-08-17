@@ -37,7 +37,7 @@
 
 
 - (void)getBussnessData{
-    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
     [self.bussnessModels removeAllObjects];
     self.page = 0;
     [[ServicesManager getAPI] getAds:self.page onComplete:^(NSString *errorMsg, NSArray *list) {
@@ -130,7 +130,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍后......"];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
     AdVO* adVO = self.bussnessModels[indexPath.row];
     [My_ServicesManager getAnAd:adVO.Id onComplete:^(NSString *errorMsg, AdVO *ad) {
         if (errorMsg == nil) {

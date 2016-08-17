@@ -51,7 +51,7 @@
 
 - (void)getBussnessData{
     
-    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等······"];
     self.bussnessModels = [NSMutableArray array];
     [My_ServicesManager getAGood:self.good.Id onComplete:^(NSString *errorMsg, GoodVO *merchant) {
 

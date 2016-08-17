@@ -33,22 +33,26 @@
 - (IBAction)select:(UIButton *)sender {
     
     TYAlertView *alertView = [[TYAlertView alloc]init];
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:alertView preferredStyle:TYAlertControllerStyleActionSheet];
     My_WeakSelf;
     [alertView addAction:[TYAlertAction actionWithTitle:@"相机" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
         [self loadImageWithType:UIImagePickerControllerSourceTypeCamera];
     }]];
     
     [alertView addAction:[TYAlertAction actionWithTitle:@"从相册选择" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
-        [self loadImageWithType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+        [self loadImageWithType:UIImagePickerControllerSourceTypePhotoLibrary];
+        
     }]];
     
     [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancle handler:^(TYAlertAction *action) {
         NSLog(@"%@",action.title);
     }]];
     
-    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:alertView preferredStyle:TYAlertControllerStyleActionSheet];
-    
-    
+//    [alertController setDismissComplete:^{
+//        [AssetView showInVC:[weakSelf vc:weakSelf.delegate] onComplete:^(UIImage *image) {
+//            
+//        }];
+//    }];
     
     UIViewController *vc = [self vc:self.delegate] ;
     [vc presentViewController:alertController animated:YES completion:nil];
@@ -71,8 +75,8 @@
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
     _imagePickerController.sourceType = type;
-    _imagePickerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    _imagePickerController.allowsEditing = YES;
+    _imagePickerController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    _imagePickerController.allowsEditing = NO;
     
     //相机类型（拍照、录像...）字符串需要做相应的类型转换
     if (self.selectType == ImageType) {
