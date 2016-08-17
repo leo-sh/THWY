@@ -62,6 +62,7 @@
         _preferredStyle = preferredStyle;
         _transitionAnimation = transitionAnimation;
         _transitionAnimationClass = transitionAnimationClass;
+        _backgoundTapDismissEnable = YES;
     }
     return self;
 }

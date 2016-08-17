@@ -136,7 +136,7 @@
             UploadCell *cell = (UploadCell *)[tableView dequeueReusableCellWithIdentifier:@"UploadCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_视频"];
             cell.label.text = @"上传视频:";
-            cell.descLabel.text = @"上传视频不能超过8M, 视频格式为avi, pge, swf";
+            cell.descLabel.text = @"上传视频不能超过8M, 视频格式为flv、f4v、mp4、mov";
             cell.delegate = self;
             cell.selectType = VideoType;
             self.cells[row] = cell;

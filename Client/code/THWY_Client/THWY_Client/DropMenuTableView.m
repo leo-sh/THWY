@@ -34,6 +34,7 @@
         self.tableView.rowHeight = itemHeight;
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        self.tableView.bounces = NO;
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         [self addSubview:self.tableView];
     }

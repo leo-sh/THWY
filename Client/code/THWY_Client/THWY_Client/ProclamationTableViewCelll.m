@@ -30,7 +30,7 @@
         self.backView = [[UIView alloc]init];
         
         self.head.frame = CGRectMake(0, 0, 1, 3);
-        self.right.frame = CGRectMake(0, 0, 30, 30);
+        self.right.frame = CGRectMake(0, 0, 20, 20);
         self.title.frame = CGRectMake(0, CGRectGetMaxY(self.head.frame) + 5, 1, 30);
         
         self.time.frame = CGRectMake(0, CGRectGetMaxY(self.title.frame), 1, 14);
@@ -39,15 +39,15 @@
 
         self.head.image = [UIImage imageNamed:@"彩条"];
         
-        UIImageView *left = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-        left.center = CGPointMake(7, 7);
+        UIImageView *left = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+        left.center = CGPointMake(9, 0);
         left.image = [UIImage imageNamed:@"左"];
         
         self.right.image = [UIImage imageNamed:@"右"];
         
         self.title.textAlignment = NSTextAlignmentCenter;
         
-        self.time.font = [UIFont systemFontOfSize:11];
+        self.time.font = FontSize(Content_Time_Font);
         
         self.time.textAlignment = NSTextAlignmentCenter;
 
@@ -57,7 +57,7 @@
         [self.backView addSubview:self.time];
         [self.backView addSubview:self.head];
         [self.backView addSubview:self.content];
-        [self.backView addSubview:left];
+        [self.contentView addSubview:left];
         [self.backView addSubview:self.right];
         
         self.backView.backgroundColor = WhiteAlphaColor;
@@ -71,13 +71,13 @@
 
 - (void)updateFrame:(CGFloat)height Width:(CGFloat)width
 {
-    CGFloat contentWidth = width - 20;
-    self.backView.frame = CGRectMake(10, 0, contentWidth, height);
+    CGFloat contentWidth = width;
+    self.backView.frame = CGRectMake(0, 0, contentWidth, height);
     self.head.width = contentWidth;
     self.time.width = contentWidth;
     self.title.width = contentWidth;
     self.content.width = contentWidth;
-    self.right.center = CGPointMake(contentWidth - 7, 7);
+    self.right.center = CGPointMake(contentWidth - 9, 0);
 
 }
 
@@ -92,9 +92,8 @@
     self.title.text = title;
     self.time.text = time;
     self.content.text = content;
-    self.content.numberOfLines = 0;
+    self.content.numberOfLines = 6;
     self.content.font = FontSize(CONTENT_FONT);
-
     CGFloat contenHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
     self.content.frame = CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, contenHeight);
     

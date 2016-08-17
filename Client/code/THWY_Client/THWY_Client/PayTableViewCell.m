@@ -112,8 +112,8 @@
         make.size.mas_equalTo(CGSizeMake(right_W + 40, Height));
     }];
     
-    self.icon.layer.borderWidth = 1;
-    self.icon.layer.borderColor = [UIColor whiteColor].CGColor;
+//    self.icon.layer.borderWidth = 1;
+//    self.icon.layer.borderColor = [UIColor whiteColor].CGColor;
     self.icon.clipsToBounds = YES;
     self.icon.layer.cornerRadius = image_H_W/2;
     
