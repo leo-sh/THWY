@@ -162,7 +162,5 @@
     
     [self.hud.bezelView addSubview:self.loadingLabel];
     [self.hud.bezelView bringSubviewToFront:self.loadingLabel];
-    
-    [self.hud hideAnimated:YES afterDelay:1.5];
 }
 @end

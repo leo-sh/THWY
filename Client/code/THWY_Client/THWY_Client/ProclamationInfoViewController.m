@@ -15,6 +15,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"业主公告详情";
     [self ViewInitSetting];
     [self getData];
     // Do any additional setup after loading the view.
@@ -43,7 +44,7 @@
             }
             else
             {
-                self.title = complaint.title;
+//                self.title = complaint.title;
                 [self createUI:complaint];
                 [SVProgressHUD dismiss];
             }

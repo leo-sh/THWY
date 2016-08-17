@@ -10,6 +10,7 @@
 #import "ADDetailVC.h"
 #import "ProclamationInfoViewController.h"
 #import "ComplainDetailViewController.h"
+#import "UMessage.h"
 @interface MainNavigationViewController () <UINavigationControllerDelegate>
 //@property (nonatomic, strong) id popDelegate;
 {
@@ -22,6 +23,7 @@
 
 -(void)popWithUserInfo:(NSDictionary *)userInfo
 {
+    [UMessage sendClickReportForRemoteNotification:userInfo];
     NSString* pushType = userInfo[@"push_type"];
     NSString* Id = userInfo[@"pk"];
     if ([pushType isEqualToString:@"5"])
