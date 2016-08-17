@@ -174,26 +174,26 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section != self.data.count - 1) {
-        return 2;
-    }
-    else
-    {
+//    if (section != self.data.count - 1) {
+//        return 2;
+//    }
+//    else
+//    {
         return 0.01;
-    }
+//    }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    if (section != self.data.count - 1) {
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"彩条"]];
-        return imageView;
-    }
-    else
-    {
-        return nil;
-    }
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+////    if (section != self.data.count - 1) {
+////        UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"彩条"]];
+////        return imageView;
+////    }
+////    else
+////    {
+////        return nil;
+////    }
+//}
 
 /*
  #pragma mark - Navigation
