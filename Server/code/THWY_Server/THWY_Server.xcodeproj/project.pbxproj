@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E29C6451D640FC400F1EE26 /* ReviseBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E29C6441D640FC400F1EE26 /* ReviseBtn.m */; };
 		1EEB03091D6401A500CACF00 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB03051D6401A500CACF00 /* RootVC.m */; };
 		1EEB030A1D6401A500CACF00 /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB03071D6401A500CACF00 /* MainNavigationViewController.m */; };
 		1EEB030E1D6401F800CACF00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB030C1D6401F800CACF00 /* ZYKeyboardUtil.m */; };
@@ -137,6 +138,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E29C6431D640FC400F1EE26 /* ReviseBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviseBtn.h; sourceTree = "<group>"; };
+		1E29C6441D640FC400F1EE26 /* ReviseBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviseBtn.m; sourceTree = "<group>"; };
 		1EEB03041D6401A500CACF00 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
 		1EEB03051D6401A500CACF00 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
 		1EEB03061D6401A500CACF00 /* MainNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationViewController.h; sourceTree = "<group>"; };
@@ -1055,6 +1058,8 @@
 		79270EA11D61AE2600E29568 /* OtherController */ = {
 			isa = PBXGroup;
 			children = (
+				1E29C6431D640FC400F1EE26 /* ReviseBtn.h */,
+				1E29C6441D640FC400F1EE26 /* ReviseBtn.m */,
 				79270EA31D61AE2600E29568 /* loginView */,
 				79270EA71D61AE2600E29568 /* Suggest */,
 			);
@@ -1328,6 +1333,7 @@
 				79270F591D61B1EF00E29568 /* UIButton+Extension.m in Sources */,
 				79270F5E1D61B1EF00E29568 /* UILabel+Extension.m in Sources */,
 				79270E521D61ACDA00E29568 /* GroupVO.m in Sources */,
+				1E29C6451D640FC400F1EE26 /* ReviseBtn.m in Sources */,
 				79270E511D61ACDA00E29568 /* EstateVO.m in Sources */,
 				79270E0D1D61ACB100E29568 /* UIImage+WebP.m in Sources */,
 				79270DEC1D61ACB100E29568 /* UIScrollView+MJRefresh.m in Sources */,
