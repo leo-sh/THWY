@@ -46,47 +46,49 @@
     self.repairDataArray = [NSMutableArray array];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景2"]]];
     self.selectIndex = 0;
-    self.page = 1;
+    self.page = 0;
     self.labelNames = @[@"未处理", @"处理中", @"处理完成", @"回访完毕"];//1, 2, 3, 4
     [self initViews];
-    [self getDataType:self.switchFlag statusID:@"0" page:self.page more:NO];
+    [self getDataType:self.switchFlag statusID:@"0" page:0];
     
 }
 
-- (void)getDataType:(NSInteger)type statusID:(NSString *)statusID page:(int)page more:(BOOL)more{
+- (void)getDataType:(NSInteger)type statusID:(NSString *)statusID page:(int)page{
     
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     [My_ServicesManager getRepairs:type page:page repairStatu:statusID onComplete:^(NSString *errorMsg, NSArray *list) {
         
+//        NSLog(@"page==%d, list.count--%ld", page, list.count);
         if (errorMsg) {
             
             [SVProgressHUD showErrorWithStatus:errorMsg];
-            
-        }else {
-            if (!more) {
-                //非加载更多
-                [self.repairDataArray removeAllObjects];
-            }else{
-                self.page++;
+            if (self.page != 0) {
+                self.page--;
             }
+        }else {
 
+            if (list && list.count == 0 && self.page != 0) {
+                self.page--;
+            }else{
+                [SVProgressHUD dismiss];
+            }
+            
             for (RepairVO *model in list) {
                 [self.repairDataArray addObject:model];
             }
             
             if (self.switchFlag == 1) {
                 [self.tableView reloadData];
+                if (self.page == 0) {
+                    self.tableView.contentOffset = CGPointMake(0, 0);
+                }
             }else if (self.switchFlag == 2){
                 [self.tableView2 reloadData];
+                if (self.page == 0) {
+                    self.tableView2.contentOffset = CGPointMake(0, 0);
+                }
             }
-            
-            if (list && list.count == 0) {
-
-//                [SVProgressHUD showErrorWithStatus:@"没有更多数据..."];
-                
-            }else{
-                [SVProgressHUD dismiss];
-            }
+    
             
         }
       
@@ -251,9 +253,9 @@
         self.selectIndex = 0;
         [self btnOnclicked:[self.bgView viewWithTag:300]];
 
-        
     }
-    [self getDataType:self.switchFlag statusID:@"0" page:1 more:NO];
+    
+    [self refreshData];
 }
 //设置上拉下拉刷新
 - (void)initRefreshView{
@@ -277,11 +279,12 @@
 }
 
 - (void)refreshData{
-
+    [self.repairDataArray removeAllObjects];
+    self.page = 0;
     if (self.selectIndex == 0){
-        [self getDataType:self.switchFlag statusID:@"0" page:0 more:NO];
+        [self getDataType:self.switchFlag statusID:@"0" page:0];
     }else{
-        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%d", self.selectIndex+1] page:0 more:NO];
+        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%d", self.selectIndex+1] page:0];
     }
     
 }
@@ -296,9 +299,9 @@
     }
     
     if (self.selectIndex == 0){
-        [self getDataType:self.switchFlag statusID:@"0" page:self.page+1 more:YES];
+        [self getDataType:self.switchFlag statusID:@"0" page:++self.page];
     }else{
-        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%d", self.selectIndex+1] page:self.page+1 more:YES];
+        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%d", self.selectIndex+1] page:++self.page];
     }
     
     
@@ -308,23 +311,21 @@
 - (void)btnOnclicked:(UIButton *)sender{
     UIButton *btn = nil;
     if (self.switchFlag == 1){
-        self.tableView.contentOffset = CGPointMake(0, 0);
         btn = [self.bgView viewWithTag:300+self.selectIndex];
         self.selectIndex = (int)sender.tag - 300;
+        [self refreshData];
+//        self.tableView.contentOffset = CGPointMake(0, 0);
     }else if (self.switchFlag == 2){
-        self.tableView2.contentOffset = CGPointMake(0, 0);
         btn = [self.bgView2 viewWithTag:310+self.selectIndex];
         self.selectIndex = (int)sender.tag - 310;
+        [self refreshData];
+//        self.tableView2.contentOffset = CGPointMake(0, 0);
     }
 
     [btn setImage:nil forState:UIControlStateNormal];
     [sender setImage:[UIImage imageNamed:@"records_按下"] forState:UIControlStateNormal];
     
-    if (self.selectIndex == 0){
-        [self getDataType:self.switchFlag statusID:@"0" page:0 more:NO];
-    }else{
-        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%d", self.selectIndex+1] page:0 more:NO];
-    }
+//    [self refreshData];
 
 }
 
@@ -339,12 +340,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger row = indexPath.row;
-    RecordeRepairingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordeRepeiringCell" forIndexPath:indexPath];
-    cell.vc = self;
-    cell.contentView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
-    cell.backgroundColor = [UIColor clearColor];
-    [cell loadDataFromModel:self.repairDataArray[row]];
-    return cell;
+    if (row<self.repairDataArray.count) {
+        RecordeRepairingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordeRepeiringCell" forIndexPath:indexPath];
+        cell.vc = self;
+        cell.contentView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
+        cell.backgroundColor = [UIColor clearColor];
+        [cell loadDataFromModel:self.repairDataArray[row]];
+        return cell;
+    }
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -360,19 +364,23 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
-    CGRect rect = [[self.repairDataArray[indexPath.row] detail] boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-    
-    CGRect rect2 = [[self.repairDataArray[indexPath.row] classes_str] boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-    if ([[UIDevice platformString] isEqualToString:@"iPhone 4s"]) {
-        return 245.0/667*My_ScreenH + rect.size.height +rect2.size.height+20;
-    }else if([[UIDevice platformString] isEqualToString:@"iPhone 5s"] || [[UIDevice platformString] isEqualToString:@"iPhone 5"]){
-        return 250.0/667*My_ScreenH + rect.size.height +rect2.size.height;
-    }else if([[UIDevice platformString] isEqualToString:@"iPhone 6s"] || [[UIDevice platformString] isEqualToString:@"iPhone 6"]){
-        return 240.0/667*My_ScreenH + rect.size.height +rect2.size.height;
-    }else{
-        return 230.0/667*My_ScreenH + rect.size.height +rect2.size.height;
+    if (indexPath.row<self.repairDataArray.count) {
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
+        CGRect rect = [[self.repairDataArray[indexPath.row] detail] boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+        
+        CGRect rect2 = [[self.repairDataArray[indexPath.row] classes_str] boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+        if ([[UIDevice platformString] isEqualToString:@"iPhone 4s"]) {
+            return 245.0/667*My_ScreenH + rect.size.height +rect2.size.height+20;
+        }else if([[UIDevice platformString] isEqualToString:@"iPhone 5s"] || [[UIDevice platformString] isEqualToString:@"iPhone 5"]){
+            return 250.0/667*My_ScreenH + rect.size.height +rect2.size.height;
+        }else if([[UIDevice platformString] isEqualToString:@"iPhone 6s"] || [[UIDevice platformString] isEqualToString:@"iPhone 6"]){
+            return 240.0/667*My_ScreenH + rect.size.height +rect2.size.height;
+        }else{
+            return 220.0/667*My_ScreenH + rect.size.height +rect2.size.height;
+        }
     }
+    return 0;
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -388,9 +396,9 @@
 - (void)loadMoreData:(UIButton *)button{
     
     if (self.selectIndex == 0){
-        [self getDataType:self.switchFlag statusID:@"0" page:self.page+1 more:YES];
+        [self getDataType:self.switchFlag statusID:@"0" page:++self.page];
     }else{
-        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%d", self.selectIndex+1] page:self.page+1 more:YES];
+        [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%d", self.selectIndex+1] page:++self.page];
     }
     
 }

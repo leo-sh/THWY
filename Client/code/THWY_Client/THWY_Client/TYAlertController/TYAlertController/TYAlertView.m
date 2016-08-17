@@ -210,12 +210,23 @@
 
 - (void)addAction:(TYAlertAction *)action
 {
+    self.backgroundColor = [UIColor grayColor];
+    self.buttonSpace = 10;
+    self.contentViewSpace = 5;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.clipsToBounds = YES;
     button.layer.cornerRadius = _buttonCornerRadius;
     [button setTitle:action.title forState:UIControlStateNormal];
-    button.titleLabel.font = _buttonFont;
-    button.backgroundColor = [self buttonBgColorWithStyle:action.style];
+    [button setTitleColor:My_BlackColor forState:UIControlStateNormal];
+    if (action.style != TYAlertActionStyleCancle) {
+        button.titleLabel.font = FontSize(CONTENT_FONT);
+    }else
+    {
+        button.titleLabel.font = FontBoldSize(CONTENT_FONT);
+    }
+    
+//    button.backgroundColor = [self buttonBgColorWithStyle:action.style];
+    button.backgroundColor = [UIColor whiteColor];
     button.enabled = action.enabled;
     button.tag = kButtonTagOffset + _buttons.count;
     button.translatesAutoresizingMaskIntoConstraints = NO;
