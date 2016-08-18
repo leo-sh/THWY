@@ -59,7 +59,7 @@
             }
             
             if (user) {
-                [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"Avatar"]];
+                [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
                 self.username.text = user.real_name;
                 self.addr.text = user.estate;
             }
@@ -143,7 +143,7 @@
     [self.userInfoView setBackgroundImage:[UIImage imageNamed:@"beijing"] forState:UIControlStateNormal];
     [self.userInfoView addTarget:self action:@selector(showUserInfoVC) forControlEvents:UIControlEventTouchUpInside];
     self.headImage = [[UIImageView alloc] init];
-    self.headImage.image = [UIImage imageNamed:@"头像1"];
+    self.headImage.image = [UIImage imageNamed:@"Avatar"];
     self.headImage.userInteractionEnabled = YES;
     self.headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/3;
 //    self.headImage.layer.borderWidth = 3;

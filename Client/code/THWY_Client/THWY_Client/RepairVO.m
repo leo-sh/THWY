@@ -61,7 +61,12 @@
         self.st_2_admin_ids = JSON[@"st_2_admin_ids"];
         self.st_3_time = JSON[@"st_3_time"];
         self.order_ts = JSON[@"order_ts"];
-        self.real_name = JSON[@"real_name"];
+        if (JSON[@"real_name"]) {
+            self.real_name = JSON[@"real_name"];
+        }else
+        {
+            self.real_name = JSON[@"call_name"];
+        }
         self.car_number = JSON[@"car_number"];
         self.cellphone = JSON[@"cellphone"];
         self.block = JSON[@"block"];

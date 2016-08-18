@@ -32,15 +32,15 @@
         self.icon = [[UIImageView alloc] initWithImage:[UIImage scaleImage:[UIImage imageNamed:@"repaire_项目"] toScale:0.8]];
         [self.contentView addSubview:self.icon];
         self.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
-        NSInteger topMargin = 10.0/375*My_ScreenH;
+        NSInteger topMargin = 6.0/375*My_ScreenH;
         [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.contentView.mas_top).offset(topMargin);
+            make.top.mas_equalTo(self.contentView.mas_top).offset(7.0/375*My_ScreenH);
             make.left.mas_equalTo(self.contentView.mas_left).offset(topMargin);
         }];
         
         self.label = [[UILabel alloc] init];
         self.label.text = @"房源:";
-        self.label.font = [UIFont fontWithName:My_RegularFontName size:15.0];
+        self.label.font = FontSize(CONTENT_FONT);
         [self.contentView addSubview:self.label];
         [self.label sizeToFit];
         [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,7 +69,7 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
         [selectIcon addGestureRecognizer:tap];
         [selectIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.label.mas_bottom).offset(topMargin*0.6 + i*(topMargin*0.6+20/713.0*My_ScreenH));
+            make.top.mas_equalTo(self.label.mas_bottom).offset(topMargin*0.9 + i*(topMargin*0.6+20/713.0*My_ScreenH));
             make.left.mas_equalTo(self.icon.mas_centerX);
         }];
         
