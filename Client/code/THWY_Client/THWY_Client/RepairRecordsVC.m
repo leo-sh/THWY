@@ -49,6 +49,7 @@
     self.page = 0;
     self.labelNames = @[@"未处理", @"处理中", @"处理完成", @"回访完毕"];//1, 2, 3, 4
     [self initViews];
+    self.switchFlag = 1;
     [self getDataType:self.switchFlag statusID:@"0" page:0];
     
 }
@@ -250,8 +251,8 @@
         self.scrollView.contentOffset = CGPointMake(self.tableView.frame.size.width, 0);
         self.tableView2.contentOffset = CGPointMake(0, 0);
         
-        [self btnOnclicked:[self.bgView viewWithTag:300]];
         self.switchFlag = 2;
+        [self btnOnclicked:[self.bgView viewWithTag:300]];
         self.selectIndex = 0;
         [self btnOnclicked:[self.bgView2 viewWithTag:310]];
 

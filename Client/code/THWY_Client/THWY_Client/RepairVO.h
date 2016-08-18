@@ -13,7 +13,6 @@
 @interface RepairVO : NSObject
 
 @property (nonatomic , copy) NSString              * Id;
-@property (nonatomic , copy) NSString              * pid;
 @property (nonatomic , copy) NSString              * owner_id;
 @property (nonatomic , copy) NSString              * estate_id;
 @property (nonatomic , copy) NSString              * house_id;
