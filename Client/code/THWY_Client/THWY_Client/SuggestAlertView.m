@@ -16,6 +16,8 @@
 {
     if (self = [super initWithFrame:frame]) {
         [self createUI];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+
     }
     return self;
 }
@@ -65,8 +67,37 @@
     [self setPlaceholder:@"请输入内容"];
     
     self.height = self.textView.bottom + CONTENT_FONT;
+    
+    
 
 }
+
+- (void)keyboardShow:(NSNotification *)notification
+{
+    NSLog(@"弹出键盘");
+    
+    NSDictionary *info = notification.userInfo;
+    
+    NSValue *value = [info valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    
+    CGRect rect = [value CGRectValue];
+    
+    
+//    NSLog(@"------------keyboradHeight%f,self.frame.y%f",rect.size.height,rect.origin.y - rect.size.height - self.bottom);
+    
+    
+    
+    if (self.y - self.bottom + (rect.origin.y - rect.size.height) > 20 ) {
+        
+        self.centerY -=(self.bottom - (rect.origin.y - rect.size.height));
+    }
+    else
+    {
+        self.y = 20;
+    }
+    
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
