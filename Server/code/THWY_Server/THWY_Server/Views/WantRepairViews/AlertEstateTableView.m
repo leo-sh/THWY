@@ -34,7 +34,7 @@
 
 - (void)initTableHeaderView{
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 50.0)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 45.0)];
     headerView.backgroundColor = self.backgroundColor;
     UIButton *confirm = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, headerView.height-10, headerView.height-10)];
     [confirm setBackgroundImage:[UIImage imageNamed:@"√"] forState:UIControlStateNormal];
@@ -46,6 +46,9 @@
     [cancel addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:cancel];
     
+    UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(0, headerView.height-0.2, headerView.width, 0.2)];
+    line.backgroundColor = [UIColor lightGrayColor];
+    [headerView addSubview:line];
     self.tableHeaderView = headerView;
     
     self.sectionHeaderHeight = headerView.height;
@@ -123,7 +126,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     if (self.type == AlertChooseEstateType) {
-        UIButton *allBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.width, 50.0)];
+        UIButton *allBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.width, 45.0)];
         [allBtn setTitle:@"全部小区" forState:UIControlStateNormal];
         [allBtn setBackgroundColor:[UIColor clearColor]];
         [allBtn addTarget:self action:@selector(btnOnclicked) forControlEvents:UIControlEventTouchUpInside];
@@ -135,7 +138,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (self.type == AlertChooseEstateType) {
-        return 50.0;
+        return 45.0;
     }else{
         return 0;
     }

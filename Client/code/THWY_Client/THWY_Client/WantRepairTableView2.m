@@ -104,7 +104,7 @@
         case 4:{
             RepaireCategorysCell *cell = (RepaireCategorysCell *)[tableView dequeueReusableCellWithIdentifier:@"RepaireCategorysCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_保修类别"];
-            cell.label.text = @"报修类别:";
+            cell.label.text = @"报修类别: ";
             self.cells[row] = cell;
             return cell;
         }

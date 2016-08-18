@@ -84,6 +84,7 @@
                     break;
                 }
                 case 2:{
+                    self.detailLabel.text = @"";
                     self.detailLabel.text = [NSString stringWithFormat:@"%@%@栋%@单元%@室",model.estate?:model.estate_name,model.block?:@"",model.unit?:@"",model.mph?:@""];
                     break;
                 }

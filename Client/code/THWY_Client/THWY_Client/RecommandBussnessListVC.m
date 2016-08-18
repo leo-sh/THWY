@@ -31,7 +31,7 @@
     self.title = @"推荐商品";
    
     self.bussnessModels = [NSMutableArray array];
-  
+    self.page  = 0;
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
 
     [self initViews];
@@ -46,8 +46,7 @@
         
         if (errorMsg){
             [SVProgressHUD showErrorWithStatus:errorMsg];
-        }else
-        {
+        }else{
             for (GoodVO *model in list) {
                 [self.bussnessModels addObject:model];
             }
@@ -97,8 +96,12 @@
         if (errorMsg){
             [SVProgressHUD showErrorWithStatus:errorMsg];
             self.page --;
-        }else
-        {
+        }else{
+            
+            if (list && list.count == 0 && self.page != 0) {
+                self.page--;
+            }
+            
             for (GoodVO *model in list) {
                 [self.bussnessModels addObject:model];
             }
