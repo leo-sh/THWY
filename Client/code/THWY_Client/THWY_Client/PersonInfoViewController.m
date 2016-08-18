@@ -211,7 +211,10 @@
             case 0:
             case 2:
             case 3:
+            {
                 [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] infoTitle:tfTextArray[i]];
+
+            }
                 break;
             default:
                 [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] TextField:tfTextArray[i]];
@@ -231,8 +234,8 @@
         
         if (i == imageNameArray.count - 1) {
             label.textField.secureTextEntry = YES;
-            label.textField.text = @"";
-            label.textField.rightViewMode = UITextFieldViewModeNever;
+//            label.textField.text = @"";
+//            label.textField.rightViewMode = UITextFieldViewModeNever;
             label.textField.font = [UIFont systemFontOfSize:12];
         }
         
@@ -281,10 +284,26 @@
     
     if (isChanged) {
         
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改个人信息" message:@"是否确定修改？" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *agreeAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if ([[[self.canUpdateInfo[5] textField] text] length] == 0) {
+            [SVProgressHUD showWithStatus:@"账号不能为空"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+            });
+        }
+        else if([[[self.canUpdateInfo[6] textField] text] length] == 0)
+        {
+            [SVProgressHUD showWithStatus:@"密码不能为空"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+            });
+
+        }
+        else
+        {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改个人信息" message:@"是否确定修改？" preferredStyle:UIAlertControllerStyleAlert];
             
+            UIAlertAction *agreeAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
                 [SVProgressHUD showWithStatus:@"修改中..."];
                 [[ServicesManager getAPI]editUserInfo:[[self.canUpdateInfo[1] textField] text] carNumber:[[self.canUpdateInfo[4] textField] text] newUserName:[[self.canUpdateInfo[5] textField] text] newPassWord:[[self.canUpdateInfo[6] textField] text] onComplete:^(NSString *errorMsg) {
                     if (errorMsg) {
@@ -297,19 +316,20 @@
                         [self.navigationController popViewControllerAnimated:YES];
                     }
                 }];
-
-        }];
+                
+            }];
+            
+            UIAlertAction *disagreeAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            
+            [alertController addAction: agreeAction];
+            [alertController addAction: disagreeAction];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+        }
         
-        UIAlertAction *disagreeAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        
-        [alertController addAction: agreeAction];
-        [alertController addAction: disagreeAction];
-        
-        [self presentViewController:alertController animated:YES completion:nil];
-        
-            }
-    
-    else{
+        }
+           else{
         return;
     }
     
@@ -380,17 +400,13 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-//    for (UIView *view in self.bottomView.subviews) {
-//        if ([view isKindOfClass:[PersonInfoLabel class]]) {
-//            
-//            PersonInfoLabel *label = (PersonInfoLabel *)view;
-//            
-//            [label.textField resignFirstResponder];
-//        }
-//    }
     [self.view endEditing:YES];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"rightViewModeNever" object:nil];
+}
 
 /*
 #pragma mark - Navigation
