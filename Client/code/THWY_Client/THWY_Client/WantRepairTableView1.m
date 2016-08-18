@@ -250,7 +250,7 @@
                 [clsPath appendString:@","];
             }
             [clsName appendString:[[self.repaireClassArrayFree[indexpath.section] child][indexpath.row] class_name]];
-            [clsPath appendString:[[self.repaireClassArrayPay[indexpath.section] child][indexpath.row] Id]];
+            [clsPath appendString:[[self.repaireClassArrayFree[indexpath.section] child][indexpath.row] Id]];
         }
         UITableViewCell *cell = [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
         RepaireCategorysCell *newcell = (RepaireCategorysCell *)cell;
