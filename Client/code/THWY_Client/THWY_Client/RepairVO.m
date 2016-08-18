@@ -88,7 +88,12 @@
             RepairClassVO* statu = [[RepairClassVO alloc]initWithJSON:statuDic];
             [self.classes addObject:statu];
         }
-        self.classes_str = JSON[@"classes_str"];
+        if (JSON[@"classes_str"]) {
+            self.classes_str = JSON[@"classes_str"];
+        }else
+        {
+            self.classes_str = JSON[@"cls"];
+        }
         self.estate_name = JSON[@"estate_name"];
         self.bg_color = JSON[@"bg_color"];
         self.task_time = JSON[@"task_time"];
