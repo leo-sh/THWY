@@ -91,7 +91,21 @@
 {
     self.title.text = title;
     self.time.text = time;
-    self.content.text = content;
+    
+    NSArray *array = @[content];
+    NSPredicate * prdicate = [NSPredicate predicateWithFormat:@"SELF LIKE '<*?>'"];
+    NSArray *a = [array filteredArrayUsingPredicate:prdicate];
+    
+    if (a.count) {
+        
+        NSAttributedString *string = [[NSAttributedString alloc]initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        self.content.attributedText = string;
+    }
+    else
+    {
+        self.content.text = content;
+
+    }
     self.content.numberOfLines = 6;
     self.content.font = FontSize(CONTENT_FONT);
     CGFloat contenHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
