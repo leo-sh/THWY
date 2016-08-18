@@ -160,6 +160,7 @@
     if ([noteVO.content rangeOfString:@"<"].location == 0 && [[noteVO.content substringFromIndex:noteVO.content.length - 1] isEqualToString:@">"]) {
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, backView.width - 2*content.x, My_ScreenH)];
         webView.delegate = self;
+        webView.scrollView.bounces = NO;
         webView.backgroundColor = My_clearColor;
         [content removeFromSuperview];
         [backView addSubview:webView];
@@ -235,6 +236,7 @@
     time.text = showtime;
     if ([noteVO.content rangeOfString:@"<"].location == 0 && [[noteVO.content substringFromIndex:noteVO.content.length - 1] isEqualToString:@">"]) {
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, backView.width - 2*content.x, My_ScreenH)];
+        webView.scrollView.bounces = NO;
         webView.delegate = self;
         webView.backgroundColor = My_clearColor;
         [content removeFromSuperview];
