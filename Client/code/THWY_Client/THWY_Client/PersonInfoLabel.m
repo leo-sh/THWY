@@ -103,11 +103,16 @@
             make.size.mas_equalTo(CGSizeMake(tfWidht, tfHeight));
             make.left.equalTo(self.label.mas_right).with.offset(0);
         }];
+        
+        [self.infoLabel removeFromSuperview];
+
     }
     else
     {
         CGFloat lbHeight = self.height;
         CGFloat lbWidht = self.frame.size.width - labelLeft -labelWidth -imageViewWidthAndHeight -imageViewLeft;
+        
+        [self.textField removeFromSuperview];
         
         [self.infoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.imageView.centerY);
