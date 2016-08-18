@@ -132,17 +132,17 @@
             return ;
         }
         
-        RepairClassVO *pay = list[@"for_pay"];
-        RepairClassVO *free = list[@"for_free"];
+        self.repaireClassArrayPay = list[@"for_pay"];
+        self.repaireClassArrayFree = list[@"for_free"];
         
-        for (RepairClassVO *model in pay.child) {
-            [self.repaireClassArrayPay addObject:model];
-        }
-        
-        NSArray *freeArray = [free.child.lastObject child];
-        for (RepairClassVO *model in freeArray) {
-            [self.repaireClassArrayFree addObject:model];
-        }
+//        for (RepairClassVO *model in pay.child) {
+//            [self.repaireClassArrayPay addObject:model];
+//        }
+//        
+//        NSArray *freeArray = [free.child.lastObject child];
+//        for (RepairClassVO *model in freeArray) {
+//            [self.repaireClassArrayFree addObject:model];
+//        }
         self.tableView.repaireClassArrayPay = self.repaireClassArrayPay;
         self.tableView.repaireClassArrayFree = self.repaireClassArrayFree;
         [self.tableView reloadData];

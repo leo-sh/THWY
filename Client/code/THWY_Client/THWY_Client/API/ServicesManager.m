@@ -1408,8 +1408,10 @@ savePassWord:(BOOL)save
             if (type == Owner) {
                 RepairClassVO *class1 = [[RepairClassVO alloc]initWithJSON:responseObject[@"datas"][@"for_pay"]];
                 RepairClassVO *class2 = [[RepairClassVO alloc]initWithJSON:responseObject[@"datas"][@"for_free"]];
-                onComplete(nil,@{@"for_pay":class1,
-                                 @"for_free":class2});
+                
+                NSLog(@"");
+                onComplete(nil,@{@"for_pay":[self lastArr:class1],
+                                 @"for_free":[self lastArr:class2]});
             }else if (type == Public){
                 RepairClassVO *class = [[RepairClassVO alloc]initWithJSON:responseObject[@"datas"]];
                 onComplete(nil,@{@"public":class});
@@ -1419,6 +1421,75 @@ savePassWord:(BOOL)save
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         onComplete(@"网络连接错误",nil);
     }];
+}
+
+-(NSMutableArray *)lastArr:(RepairClassVO *)class1
+{
+    NSMutableArray* class1Arr = [[NSMutableArray alloc]init];
+    [self classArr:class1Arr andClass:class1];
+    
+    NSMutableArray* supClassPids = [[NSMutableArray alloc]init];
+    for (RepairClassVO* subClass in class1Arr) {
+        [supClassPids addObject:subClass.pid];
+    }
+    
+    NSArray* supPid = [NSArray arrayWithArray:supClassPids];
+    [supClassPids removeAllObjects];
+    for (NSString* pid in supPid) {
+        BOOL isIn = NO;
+        for (RepairClassVO* p in supClassPids) {
+            if ([p.Id isEqualToString:pid]) {
+                isIn = YES;
+                break;
+            }
+        }
+        if (!isIn) {
+            [supClassPids addObject:[self foundSuperClass:pid inClass:class1]];
+        }
+    }
+    
+    for (RepairClassVO* subClass in class1Arr) {
+        for (RepairClassVO* supClass in supClassPids) {
+            if ([subClass.pid isEqualToString:supClass.Id]) {
+                [supClass.child addObject:subClass];
+                break;
+            }
+        }
+    }
+    
+    return supClassPids;
+}
+
+-(RepairClassVO *)foundSuperClass:(NSString* )Id inClass:(RepairClassVO *)class
+{
+    if ([class.Id isEqualToString:Id]) {
+        return class;
+    }else if(class.child.count == 0)
+    {
+        return nil;
+    }else
+    {
+        for (RepairClassVO * subClass in class.child) {
+            if ([self foundSuperClass:Id inClass:subClass]) {
+                RepairClassVO* supClass = [self foundSuperClass:Id inClass:subClass];
+                [supClass.child removeAllObjects];
+                return supClass;
+            }
+        }
+    }
+    return nil;
+}
+
+-(void)classArr:(NSMutableArray *)arr andClass:(RepairClassVO *)class
+{
+    for (RepairClassVO* subClass in class.child) {
+        if (subClass.child.count > 0) {
+            [self classArr:arr andClass:subClass];
+        }else
+        {
+            [arr addObject:subClass];
+        }
+    }
 }
 
 -(void)addRepair:(AddRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete
