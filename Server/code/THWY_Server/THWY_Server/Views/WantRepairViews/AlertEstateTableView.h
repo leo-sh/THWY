@@ -14,7 +14,8 @@ typedef NS_ENUM(NSInteger, AlertType){
     AlertEstateType = 1,
     AlertBlockType,
     AlertUnitType,
-    AlertLayerType
+    AlertLayerType,
+    AlertChooseEstateType
 };
 
 - (void)commit:(NSInteger)index;

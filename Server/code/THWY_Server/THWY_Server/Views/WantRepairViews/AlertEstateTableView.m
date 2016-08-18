@@ -34,7 +34,7 @@
 
 - (void)initTableHeaderView{
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 40.0/667*My_ScreenH)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 50.0)];
     headerView.backgroundColor = self.backgroundColor;
     UIButton *confirm = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, headerView.height-10, headerView.height-10)];
     [confirm setBackgroundImage:[UIImage imageNamed:@"√"] forState:UIControlStateNormal];
@@ -84,7 +84,12 @@
     }
 
     switch (self.type) {
-        case 1:{
+        case AlertEstateType:{
+            EstateVO *model = self.data[indexPath.row];
+            cell.textLabel.text = model.estate_name;
+            break;
+        }
+        case AlertChooseEstateType:{
             EstateVO *model = self.data[indexPath.row];
             cell.textLabel.text = model.estate_name;
             break;
@@ -115,5 +120,33 @@
 
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    if (self.type == AlertChooseEstateType) {
+        UIButton *allBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.width, 50.0)];
+        [allBtn setTitle:@"全部小区" forState:UIControlStateNormal];
+        [allBtn setBackgroundColor:[UIColor clearColor]];
+        [allBtn addTarget:self action:@selector(btnOnclicked) forControlEvents:UIControlEventTouchUpInside];
+        return allBtn;
+    }else{
+        return nil;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (self.type == AlertChooseEstateType) {
+        return 50.0;
+    }else{
+        return 0;
+    }
+}
+
+- (void)btnOnclicked{
+    
+    UITableViewCell *oldCell = [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.selectedIndex inSection:0]];
+    oldCell.imageView.image = [UIImage scaleImage:[UIImage imageNamed:@"repaire_unselected"] toScale:0.7];
+    
+    self.selectedIndex = -1;
+}
 
 @end
