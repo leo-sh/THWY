@@ -57,7 +57,6 @@
         self.textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
         self.textView.textAlignment = NSTextAlignmentLeft;
 //        self.textView.font = FontSize(CONTENT_FONT);
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide) name:UIKeyboardDidHideNotification object:nil];
 
         
@@ -151,36 +150,6 @@
 
 }
 
-- (void)keyboardShow:(NSNotification *)notification
-{
-    NSLog(@"弹出键盘");
-    
-    NSDictionary *info = notification.userInfo;
-    
-    NSValue *value = [info valueForKey:UIKeyboardFrameBeginUserInfoKey];
-    
-    CGRect rect = [value CGRectValue];
-    
-    CGRect selfFrameRect = self.frame;
-    
-    NSLog(@"------------keyboradHeight%f,self.frame.y%f",rect.size.height,self.y);
-    
-    
-    
-    if (selfFrameRect.origin.y - rect.size.height >= 0) {
-        
-        selfFrameRect.origin.y -=rect.size.height;
-    }
-    else
-    {
-        selfFrameRect.origin.y = 20;
-    }
-    
-    self.frame = selfFrameRect;
-    
-    
-    
-}
 
 - (void)keyboardHide
 {
