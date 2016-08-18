@@ -10,20 +10,23 @@
 #import "RepairStatisticsButton.h"
 #import "AlertEstateTableView.h"
 
-@interface RepairStatistisVC ()<AlertEstateTableViewDelegate>
+@interface RepairStatistisVC ()<AlertEstateTableViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIView *bgView;
 @property (strong, nonatomic) RepairStatisticsButton *unitBtn;
 @property (strong, nonatomic) AlertEstateTableView  *alertView;
 //全部楼盘
-@property (strong, nonatomic) NSMutableArray *unitArray;
+@property (strong, nonatomic) NSMutableArray *estatesArray;
 //btn名字
 @property (strong, nonatomic) NSArray *labelNames;
 
-
 @property (strong, nonatomic) UIScrollView *scrollView;
+@property (strong, nonatomic) UITableView *tableView1;
+@property (strong, nonatomic) UITableView *tableView2;
+@property (strong, nonatomic) UITableView *tableView3;
 
-@property (assign, nonatomic) NSInteger selectedIndex;
+@property (assign, nonatomic) NSInteger estateId;
+@property (assign, nonatomic) NSInteger switchFlag;
 
 @end
 
@@ -33,10 +36,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.selectedIndex = -1;
+    self.switchFlag = 1;
+    self.estateId = -1;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"背景"]];
     [self getEstatesData];
     [self initViews];
+    [self getStatisticsData:nil];
 }
 
 //获取楼盘数据
@@ -47,7 +52,7 @@
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }else{
             for (EstateVO * estate in list) {
-                [self.unitArray addObject:estate];
+                [self.estatesArray addObject:estate];
             }
             [self initAlertView];
             [SVProgressHUD dismiss];
@@ -55,30 +60,59 @@
     }];
 }
 
-- (void)gettatisticsData{
-    //
-//    [My_ServicesManager getRepairStatistic: onComplete:^(NSString *errorMsg, NSArray *list) {
-//        
-//    }];
+- (void)getStatisticsData:(NSString *)estateId{
+    //获取统计数据
+    switch (self.switchFlag) {
+        case 1:{
+            [My_ServicesManager getRepairStatistic:estateId onComplete:^(NSString *errorMsg, NSArray *list) {
+                
+            }];
+        
+            break;
+        }
+        case 2:{
+            [My_ServicesManager getPublicRepairStatistic:estateId onComplete:^(NSString *errorMsg, NSArray *list) {
+                
+            }];
+            break;
+        }
+        case 3:{
+            
+            break;
+        }
+        default:
+            break;
+    }
     
 }
 
 - (void)initViews{
     
-    NSInteger topMargin = 10/667.0*My_ScreenH;
-    NSInteger leftMargin = 8/667.0*My_ScreenH;
+    CGFloat topMargin = 10/667.0*My_ScreenH;
+    CGFloat leftMargin = 6/667.0*My_ScreenH;
     self.bgView = [[UIView alloc] initWithFrame:CGRectMake(leftMargin, topMargin, My_ScreenW-2*leftMargin, My_ScreenH * 0.3)];
     [self.bgView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
     [self.view addSubview:self.bgView];
     
-    self.unitBtn = [[RepairStatisticsButton alloc] initWithFrame:CGRectMake(0, 0, self.bgView.width, self.bgView.height*0.28)];
+    self.unitBtn = [[RepairStatisticsButton alloc] initWithFrame:CGRectMake(0, 0, self.bgView.width, self.bgView.height*0.3)];
     [self.unitBtn setLeftImageView:@"repairStatistics_展开箭头" andTitle:@"全部小区"];
     [self.unitBtn addTarget:self action:@selector(showUnitsAlert) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.unitBtn];
     
     self.labelNames = @[@"业主报修", @"公共报修", @"维修统计"];
+
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(leftMargin, self.bgView.height+topMargin, self.bgView.width, My_ScreenH-64-3*topMargin)];
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.backgroundColor = self.bgView.backgroundColor;
+    self.scrollView.layer.borderWidth = 1;
+    self.scrollView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [self.view addSubview:self.scrollView];
+
+    
+    CGFloat btnWidth = self.bgView.width/3.0-2*leftMargin;
     for(int i = 0; i<3; i++){
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.bgView.width*(1.5/4.0)*i, 0, self.bgView.width/4.0, self.bgView.height)];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(leftMargin + (leftMargin*2+btnWidth)*i, self.unitBtn.height+leftMargin, btnWidth, btnWidth)];
         
         btn.tag = 310 + i;
         [btn addTarget:self action:@selector(switchStatus:) forControlEvents:UIControlEventTouchUpInside];
@@ -89,15 +123,39 @@
         
         UIImageView *btnImage = [[UIImageView alloc] initWithFrame:CGRectMake(btn.width/8.0, 0, btn.width*3/4.0, btn.height*3/4.0)];
         btnImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"repairStatistics_%@",self.labelNames[i]]];
+        btnImage.userInteractionEnabled = YES;
         [btn addSubview:btnImage];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, btnImage.height, 0, 0)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, btnImage.height, btn.width, btn.height*0.25)];
         label.text = self.labelNames[i];
         [label sizeToFit];
         label.centerX = btnImage.centerX;
         label.font = FontSize(CONTENT_FONT);
         label.textColor = [UIColor blackColor];
         [btn addSubview:label];
+        
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(self.scrollView.width*i, 0, self.scrollView.width, self.scrollView.height) style:UITableViewStylePlain];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        tableView.separatorColor = [UIColor lightGrayColor];
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
+        tableView.rowHeight = 50.0<self.scrollView.height/5.0?self.scrollView.height/5.0:50.0;
+        switch (i) {
+            case 0:
+                self.tableView1 = tableView;
+                [self.tableView1 registerClass:[] forCellReuseIdentifier:@""];
+                break;
+            case 1:
+                self.tableView2 = tableView;
+                break;
+            case 2:
+                self.tableView3 = tableView;
+                break;
+            default:
+                break;
+        }
+        [self.scrollView addSubview:tableView];
         
     }
 
@@ -106,15 +164,16 @@
 //切换状态
 - (void)switchStatus:(UIButton *)btn{
     
-    
+    self.switchFlag = btn.tag - 310+1;
+    [self getStatisticsData:nil];
     
 }
 
 - (void)initAlertView{
  
-    self.alertView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.unitArray.count + 45.0/667*My_ScreenH*2)<(My_ScreenH-84)?(44.0*self.unitArray.count + 45.0/667*My_ScreenH*2):(My_ScreenH-84))];
+    self.alertView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.estatesArray.count + 45.0/667*My_ScreenH*2)<(My_ScreenH-84)?(44.0*self.estatesArray.count + 45.0/667*My_ScreenH*2):(My_ScreenH-84))];
     self.alertView.type = AlertChooseEstateType;
-    self.alertView.data = self.unitArray;
+    self.alertView.data = self.estatesArray;
     self.alertView.selectedIndex = -1;
     self.alertView.AlertDelegate = self;
     [self.alertView initViews];
@@ -129,7 +188,11 @@
 #pragma mark - AlertEstateTableViewDelegate
 - (void)commit:(NSInteger)index{
 
-    self.selectedIndex = index;
+    if (index == -1) {
+        [self getStatisticsData:nil];
+    }else{
+        [self getStatisticsData:[self.estatesArray[index] Id]];
+    }
     
     
 }

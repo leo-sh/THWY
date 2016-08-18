@@ -35,7 +35,10 @@
     if (self = [super initWithFrame:frame style:style]) {
         
         self.repairVO = [[AddPublicRepairVO alloc] init];
+        self.repairVO.videoPath = @"";
         self.repairVO.cls = @"";
+        self.repairVO.image = [[UIImage alloc] init];
+
         self.cells = [NSMutableArray arrayWithArray:@[@"",@"",@"",@"",@"",@"",@"",@""]];
         
         [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -275,11 +278,13 @@
         errorMsg = @"请选择房源";
     }else if ([self.repairVO.cls isEqualToString:@""]){
         errorMsg = @"请选择报修类型";
-    }else if ([self.repairVO.image isEqual:nil]){
-        errorMsg = @"请选择图片";
-    }else if ([self.repairVO.videoPath isEqualToString:@""]){
-        errorMsg = @"请选择视频";
-    }else if ([self.repairVO.repair_detail isEqual:nil]){
+    }
+//    else if ([self.repairVO.image isEqual:nil]){
+//        errorMsg = @"请选择图片";
+//    }else if ([self.repairVO.videoPath isEqualToString:@""]){
+//        errorMsg = @"请选择视频";
+//    }
+    else if ([self.repairVO.repair_detail isEqualToString:@""]){
         errorMsg = @"描述不能为空";
     }
     
@@ -288,22 +293,38 @@
         return;
     }
 
-    
-    if (![self.repairVO.videoPath isEqualToString:@""]){
-        
-        switch (My_ServicesManager.status) {
-            case NotReachable:
-                [SVProgressHUD showErrorWithStatus:@"网络未连接"];
-
-                break;
-            case ReachableViaWWAN:{
-
-                TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"当前处于非WiFi状态" message:@"你确定上传视频吗?"];
-                [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancle handler:^(TYAlertAction *action) {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认提交" message:@"您确定提交报修吗?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (![self.repairVO.videoPath isEqualToString:@""]){
+            
+            switch (My_ServicesManager.status) {
+                case NotReachable:
+                    [SVProgressHUD showErrorWithStatus:@"网络未连接"];
                     
-                }]];
-                
-                [alertView addAction:[TYAlertAction actionWithTitle:@"确定" style:TYAlertActionStyleDestructive handler:^(TYAlertAction *action) {
+                    break;
+                case ReachableViaWWAN:{
+                    
+                    TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"当前处于非WiFi状态" message:@"你确定上传视频吗?"];
+                    [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancle handler:^(TYAlertAction *action) {
+                        
+                    }]];
+                    
+                    [alertView addAction:[TYAlertAction actionWithTitle:@"确定" style:TYAlertActionStyleDestructive handler:^(TYAlertAction *action) {
+                        [SVProgressHUD showWithStatus:@"数据上传中..."];
+                        
+                        [My_ServicesManager addPublicRepair:self.repairVO onComplete:^(NSString *errorMsg) {
+                            
+                            [self.repairDelegate commitComplete:errorMsg];
+                            
+                        }];
+                        
+                    }]];
+                    
+                    [alertView showInWindow];
+                    break;
+                }
+                case ReachableViaWiFi:{
+                    
                     [SVProgressHUD showWithStatus:@"数据上传中..."];
                     
                     [My_ServicesManager addPublicRepair:self.repairVO onComplete:^(NSString *errorMsg) {
@@ -311,27 +332,25 @@
                         [self.repairDelegate commitComplete:errorMsg];
                         
                     }];
-                    
-                }]];
-                
-                [alertView showInWindow];
-                break;
+                    break;
+                }
+                default:
+                    break;
             }
-            case ReachableViaWiFi:{
-                
-                [SVProgressHUD showWithStatus:@"数据上传中..."];
-                
-                [My_ServicesManager addPublicRepair:self.repairVO onComplete:^(NSString *errorMsg) {
-                    
-                    [self.repairDelegate commitComplete:errorMsg];
-                    
-                }];
-                break;
-            }
-            default:
-                break;
         }
-    }
+
+    }];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        return ;
+    }];
+    
+    [alert addAction:confirm];
+    [alert addAction:cancel];
+    
+    [(UIViewController *)self.repairDelegate presentViewController:alert animated:YES completion:^{
+        
+    }];
     
 }
 

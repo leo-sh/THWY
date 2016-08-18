@@ -22,7 +22,6 @@
 		791B4DC81D645CEB00AF9371 /* WantRepairesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4DC71D645CEB00AF9371 /* WantRepairesVC.m */; };
 		791B4DCE1D645D6F00AF9371 /* UploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4DCC1D645D6F00AF9371 /* UploadCell.m */; };
 		791B4DCF1D645D6F00AF9371 /* UploadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791B4DCD1D645D6F00AF9371 /* UploadCell.xib */; };
-		791B4DD51D645D7800AF9371 /* WantRepairTableView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4DD11D645D7800AF9371 /* WantRepairTableView1.m */; };
 		791B4DD61D645D7800AF9371 /* WantRepairTableView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4DD31D645D7800AF9371 /* WantRepairTableView2.m */; };
 		791B4DDA1D645D8100AF9371 /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4DD81D645D8100AF9371 /* TextFieldCell.m */; };
 		791B4DDB1D645D8100AF9371 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791B4DD91D645D8100AF9371 /* TextFieldCell.xib */; };
@@ -166,6 +165,7 @@
 		79270F8C1D61BF7400E29568 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270F8B1D61BF7400E29568 /* LoginViewController.m */; };
 		793B8EDB1D656A9300290EAB /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDA1D656A9300290EAB /* AdVO.m */; };
 		793B8EDE1D6596A000290EAB /* AlertEstateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */; };
+		793B8EE11D65AEA500290EAB /* RepairStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -198,8 +198,6 @@
 		791B4DCB1D645D6F00AF9371 /* UploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadCell.h; sourceTree = "<group>"; };
 		791B4DCC1D645D6F00AF9371 /* UploadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadCell.m; sourceTree = "<group>"; };
 		791B4DCD1D645D6F00AF9371 /* UploadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadCell.xib; sourceTree = "<group>"; };
-		791B4DD01D645D7800AF9371 /* WantRepairTableView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableView1.h; sourceTree = "<group>"; };
-		791B4DD11D645D7800AF9371 /* WantRepairTableView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantRepairTableView1.m; sourceTree = "<group>"; };
 		791B4DD21D645D7800AF9371 /* WantRepairTableView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableView2.h; sourceTree = "<group>"; };
 		791B4DD31D645D7800AF9371 /* WantRepairTableView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantRepairTableView2.m; sourceTree = "<group>"; };
 		791B4DD41D645D7800AF9371 /* WantRepairTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableViewDelegate.h; sourceTree = "<group>"; };
@@ -486,6 +484,8 @@
 		793B8EDA1D656A9300290EAB /* AdVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdVO.m; sourceTree = "<group>"; };
 		793B8EDC1D6596A000290EAB /* AlertEstateTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertEstateTableView.h; sourceTree = "<group>"; };
 		793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertEstateTableView.m; sourceTree = "<group>"; };
+		793B8EDF1D65AEA500290EAB /* RepairStatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticsCell.h; sourceTree = "<group>"; };
+		793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatisticsCell.m; sourceTree = "<group>"; };
 		9400B9791D6188B200E49F0E /* fasong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fasong.caf; sourceTree = "<group>"; };
 		9400B97A1D6188B200E49F0E /* shou.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shou.caf; sourceTree = "<group>"; };
 		9400B97B1D6188BF00E49F0E /* tuisong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tuisong.caf; sourceTree = "<group>"; };
@@ -682,8 +682,6 @@
 				793B8EDC1D6596A000290EAB /* AlertEstateTableView.h */,
 				793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */,
 				791B4DD41D645D7800AF9371 /* WantRepairTableViewDelegate.h */,
-				791B4DD01D645D7800AF9371 /* WantRepairTableView1.h */,
-				791B4DD11D645D7800AF9371 /* WantRepairTableView1.m */,
 				791B4DD21D645D7800AF9371 /* WantRepairTableView2.h */,
 				791B4DD31D645D7800AF9371 /* WantRepairTableView2.m */,
 			);
@@ -736,6 +734,8 @@
 			children = (
 				791B4E2D1D64693200AF9371 /* RepairStatisticsButton.h */,
 				791B4E2E1D64693200AF9371 /* RepairStatisticsButton.m */,
+				793B8EDF1D65AEA500290EAB /* RepairStatisticsCell.h */,
+				793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */,
 			);
 			name = RepairStatisticsViews;
 			path = THWY_Server/Views/RepairStatisticsViews;
@@ -1352,6 +1352,7 @@
 				79270DD81D61ACB100E29568 /* View+MASAdditions.m in Sources */,
 				79270F5B1D61B1EF00E29568 /* UIFont+Extension.m in Sources */,
 				79270E021D61ACB100E29568 /* NSData+ImageContentType.m in Sources */,
+				793B8EE11D65AEA500290EAB /* RepairStatisticsCell.m in Sources */,
 				79270E1F1D61ACB100E29568 /* TYShowAlertView.m in Sources */,
 				79270F521D61B1EF00E29568 /* NSArray+Extension.m in Sources */,
 				79270F541D61B1EF00E29568 /* NSDate+Helper.m in Sources */,
@@ -1436,7 +1437,6 @@
 				79270F5C1D61B1EF00E29568 /* UIImage+Extension.m in Sources */,
 				79270E0A1D61ACB100E29568 /* UIButton+WebCache.m in Sources */,
 				79270DDC1D61ACB100E29568 /* MJRefreshComponent.m in Sources */,
-				791B4DD51D645D7800AF9371 /* WantRepairTableView1.m in Sources */,
 				5BFFCE3D1D41B9C40066B1B9 /* main.m in Sources */,
 				79270E531D61ACDA00E29568 /* IPAllowVO.m in Sources */,
 				79270E051D61ACB100E29568 /* SDWebImageDecoder.m in Sources */,
