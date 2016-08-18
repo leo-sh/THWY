@@ -79,7 +79,7 @@
         }];
         
         self.detail = [[UIButton alloc] init];
-        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"records_详情"]  toScale:0.7]forState:UIControlStateNormal];
+        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_open"]  toScale:0.5] forState:UIControlStateNormal];
         [self.detail addTarget:self action:@selector(showDetail) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.detail];
         [self.detail mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -112,7 +112,7 @@
             make.left.mas_equalTo(self.paiGongNumber.mas_right).offset(10.0/375*My_ScreenW);
         }];
         
-        self.numberLabel.text = @"WX1223";
+        self.numberLabel.text = @"";
         [self setLabelAttributes:self.numberLabel with:0];
         [self.numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.paiGongLabel.mas_centerY);
@@ -298,7 +298,7 @@
 - (void)loadDataFromModel:(RepairVO *)repaireVO{
     
     self.model = repaireVO;
-    self.numberLabel.text = repaireVO.Id;
+    self.numberLabel.text = [self createNumberText:repaireVO.Id];
     self.houseSourceLabel.text = repaireVO.estate_name;
     self.repairCatogeryLabel.text = repaireVO.classes_str;
     self.repairDescLabel.text = repaireVO.detail;
@@ -306,9 +306,9 @@
     self.cellPhoneLabel.text = repaireVO.call_phone;
     
     if (repaireVO.kb.intValue == 2){
-        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"repaire_保修类别"]  toScale:0.7]forState:UIControlStateNormal];
+        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_add"]  toScale:0.5]forState:UIControlStateNormal];
     }else{
-        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"records_详情"]  toScale:0.7]forState:UIControlStateNormal];
+        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_open"]  toScale:0.5]forState:UIControlStateNormal];
     }
 //    NSLog(@"%d", repaireVO.kb.intValue);
     
@@ -360,6 +360,14 @@
     detail.model = self.model;
     [self.vc.navigationController pushViewController:detail animated:YES];
     
+}
+
+- (NSString *)createNumberText:(NSString *)idString{
+    if (self.flag == 1) {
+        return [NSString stringWithFormat:@"WX%@%@", [NSDate currentYear], [NSString stringWithFormat:@"%06d", [idString intValue]]];
+    }else{
+        return [NSString stringWithFormat:@"GGWX%@%@", [NSDate currentYear], [NSString stringWithFormat:@"%06d", [idString intValue]]];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

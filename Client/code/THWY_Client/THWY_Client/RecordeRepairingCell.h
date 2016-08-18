@@ -12,6 +12,8 @@
 
 @property UIViewController *vc;
 
+@property (assign, nonatomic) NSInteger flag;
+
 - (void)loadDataFromModel:(RepairVO *)repaireVO;
 
 @end
