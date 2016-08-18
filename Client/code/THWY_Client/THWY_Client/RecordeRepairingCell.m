@@ -79,7 +79,7 @@
         }];
         
         self.detail = [[UIButton alloc] init];
-        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"records_详情"]  toScale:0.7]forState:UIControlStateNormal];
+        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_open"]  toScale:0.5] forState:UIControlStateNormal];
         [self.detail addTarget:self action:@selector(showDetail) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.detail];
         [self.detail mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -306,9 +306,9 @@
     self.cellPhoneLabel.text = repaireVO.call_phone;
     
     if (repaireVO.kb.intValue == 2){
-        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"repaire_保修类别"]  toScale:0.7]forState:UIControlStateNormal];
+        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_add"]  toScale:0.5]forState:UIControlStateNormal];
     }else{
-        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"records_详情"]  toScale:0.7]forState:UIControlStateNormal];
+        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_open"]  toScale:0.5]forState:UIControlStateNormal];
     }
 //    NSLog(@"%d", repaireVO.kb.intValue);
     
