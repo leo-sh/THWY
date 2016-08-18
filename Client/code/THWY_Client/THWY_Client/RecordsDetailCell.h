@@ -11,6 +11,8 @@
 
 @interface RecordsDetailCell : UITableViewCell
 
+@property (assign, nonatomic) RepairType type;
+
 - (void)loadDataWithModel:(RepairVO *)model indexpath:(NSIndexPath *)indexpath;
 
 @end

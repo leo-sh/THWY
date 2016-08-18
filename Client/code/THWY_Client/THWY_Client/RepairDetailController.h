@@ -11,6 +11,7 @@
 
 @interface RepairDetailController : RootVC
 
-@property (strong, nonatomic) RepairVO *model;
+@property (copy, nonatomic) NSString *repairVOId;
+@property (assign, nonatomic) RepairType type;
 
 @end

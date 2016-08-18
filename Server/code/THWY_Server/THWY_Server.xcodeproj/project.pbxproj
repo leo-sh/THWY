@@ -165,7 +165,7 @@
 		79270F861D61BF5E00E29568 /* userAndPassWordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270F851D61BF5E00E29568 /* userAndPassWordTextField.m */; };
 		79270F891D61BF6800E29568 /* BlueCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270F881D61BF6800E29568 /* BlueCheckButton.m */; };
 		79270F8C1D61BF7400E29568 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270F8B1D61BF7400E29568 /* LoginViewController.m */; };
-		94DF2DAF1D655FEF003BE996 /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF2DAE1D655FEF003BE996 /* AdVO.m */; };
+		793B8EDB1D656A9300290EAB /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDA1D656A9300290EAB /* AdVO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -484,11 +484,11 @@
 		79270F881D61BF6800E29568 /* BlueCheckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCheckButton.m; sourceTree = "<group>"; };
 		79270F8A1D61BF7400E29568 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		79270F8B1D61BF7400E29568 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		793B8ED91D656A9300290EAB /* AdVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdVO.h; sourceTree = "<group>"; };
+		793B8EDA1D656A9300290EAB /* AdVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdVO.m; sourceTree = "<group>"; };
 		9400B9791D6188B200E49F0E /* fasong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fasong.caf; sourceTree = "<group>"; };
 		9400B97A1D6188B200E49F0E /* shou.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shou.caf; sourceTree = "<group>"; };
 		9400B97B1D6188BF00E49F0E /* tuisong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tuisong.caf; sourceTree = "<group>"; };
-		94DF2DAD1D655FEF003BE996 /* AdVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdVO.h; sourceTree = "<group>"; };
-		94DF2DAE1D655FEF003BE996 /* AdVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdVO.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1052,8 +1052,8 @@
 		79270E271D61ACDA00E29568 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				94DF2DAD1D655FEF003BE996 /* AdVO.h */,
-				94DF2DAE1D655FEF003BE996 /* AdVO.m */,
+				793B8ED91D656A9300290EAB /* AdVO.h */,
+				793B8EDA1D656A9300290EAB /* AdVO.m */,
 				79270E281D61ACDA00E29568 /* AddPublicRepairVO.h */,
 				79270E291D61ACDA00E29568 /* AddPublicRepairVO.m */,
 				79270E2A1D61ACDA00E29568 /* AddRepairVO.h */,
@@ -1458,7 +1458,7 @@
 				79270E161D61ACB100E29568 /* TYAlertController+BlurEffects.m in Sources */,
 				79270F5A1D61B1EF00E29568 /* UIDevice+DeviceType.m in Sources */,
 				79270DC71D61ACB100E29568 /* AFURLRequestSerialization.m in Sources */,
-				94DF2DAF1D655FEF003BE996 /* AdVO.m in Sources */,
+				793B8EDB1D656A9300290EAB /* AdVO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

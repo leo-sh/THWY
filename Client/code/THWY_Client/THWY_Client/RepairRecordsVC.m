@@ -400,7 +400,8 @@
     
     RepairVO *model = self.repairDataArray[indexPath.row];
     RepairDetailController *detail = [[RepairDetailController alloc] init];
-    detail.model = model;
+    detail.repairVOId = model.Id;
+    detail.type = self.switchFlag;
     [self.navigationController pushViewController:detail animated:YES];
     
 }

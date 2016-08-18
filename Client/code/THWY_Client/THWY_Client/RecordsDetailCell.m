@@ -75,11 +75,16 @@
                     break;
                 }
                 case 1:{
-                    self.detailLabel.text = model.Id;
+//                    self.detailLabel.text = model.Id;
+                    if (self.type == 1) {
+                        self.detailLabel.text = [NSString stringWithFormat:@"WX%@%@", [NSDate currentYear], [NSString stringWithFormat:@"%06d", [model.Id intValue]]];
+                    }else{
+                        self.detailLabel.text = [NSString stringWithFormat:@"GGWX%@%@", [NSDate currentYear], [NSString stringWithFormat:@"%06d", [model.Id intValue]]];
+                    }
                     break;
                 }
                 case 2:{
-                    self.detailLabel.text = [NSString stringWithFormat:@"%@%@栋%@单元%@室",model.estate?:@"",model.block?:@"",model.unit?:@"",model.mph?:@""];
+                    self.detailLabel.text = [NSString stringWithFormat:@"%@%@栋%@单元%@室",model.estate?:model.estate_name,model.block?:@"",model.unit?:@"",model.mph?:@""];
                     break;
                 }
                 case 3:{

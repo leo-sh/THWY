@@ -12,10 +12,11 @@
 #import "RecordVideoCell.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 
-
 @interface RepairDetailController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
+
+@property (strong, nonatomic) RepairVO *model;
 
 @end
 
@@ -29,6 +30,21 @@
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景2"]]];
     
     [self initViews];
+    [self getRepairVO];
+}
+
+- (void)getRepairVO{
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+    [My_ServicesManager getARepair:self.type repairId:self.repairVOId onComplete:^(NSString *errorMsg, RepairVO *list) {
+        if (errorMsg) {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }else{
+            self.model = list;
+            [self.tableView reloadData];
+            [SVProgressHUD dismiss];
+        }
+    }];
+    
 }
 
 - (void)initViews{
@@ -108,6 +124,7 @@
         return cell;
     }else{
         RecordsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordsDetailCell" forIndexPath:indexPath];
+        cell.type = self.type;
         [cell loadDataWithModel:self.model indexpath:indexPath];
         return cell;
     }
