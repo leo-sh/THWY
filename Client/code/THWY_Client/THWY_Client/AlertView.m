@@ -167,9 +167,9 @@
     
     
     
-    if (selfFrameRect.origin.y - rect.size.height >= 0) {
+    if (My_KeyWindow.height/2 - rect.size.height/2 >= 20) {
         
-        selfFrameRect.origin.y -=rect.size.height;
+        selfFrameRect.origin.y =My_KeyWindow.height/2 - rect.size.height/2;
     }
     else
     {
