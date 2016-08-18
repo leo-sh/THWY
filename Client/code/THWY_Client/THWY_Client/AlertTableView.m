@@ -23,7 +23,7 @@
 
 - (void)initViews{
     
-    NSInteger height = 50.0;
+    NSInteger height = 45.0;
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, height)];
     headerView.backgroundColor = [UIColor whiteColor];
@@ -57,7 +57,7 @@
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
     self.tableView.bounces = NO;
     self.tableView.sectionFooterHeight = 0.01;
-    self.tableView.sectionHeaderHeight = 50.0;
+    self.tableView.sectionHeaderHeight = 45.0;
     [self addSubview:self.tableView];
 }
 
