@@ -38,12 +38,10 @@
 //    [self.view addSubview:imageView];
     
     //tableView
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(topMargrin, topMargrin+2, My_ScreenW-topMargrin*2.0, My_ScreenH-topMargrin*2.0-74)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(topMargrin, topMargrin+2, My_ScreenW-topMargrin*2.0, My_ScreenH-topMargrin*2.0-74) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-//    self.tableView.rowHeight = 360/667*My_ScreenH;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    self.tableView.separatorColor = [UIColor grayColor];
     self.tableView.bounces = NO;
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     self.tableView.tableHeaderView = imageView;
@@ -79,11 +77,20 @@
             break;
         }
         case 4:{
-            return 1;
+            if (self.model.pic && ![self.model.pic isEqualToString:@""]) {
+                return 1;
+            }else{
+                return 0;
+            }
+
             break;
         }
         case 5:{
-            return 1;
+            if (self.model.vdo && ![self.model.vdo isEqualToString:@""]) {
+                return 1;
+            }else{
+                return 0;
+            }
             break;
         }
     }
@@ -123,14 +130,15 @@
         }
 
     }else if (indexPath.section == 1 && indexPath.row == 1){
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:15.0],NSFontAttributeName, nil];
-        CGRect rect = [self.model.classes_str boundingRectWithSize:CGSizeMake(self.tableView.width*3.0/4, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-        return rect.size.height+20;
+        if (self.model.classes_str && ![self.model.classes_str isEqualToString:@""]) {
+            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:15.0],NSFontAttributeName, nil];
+            CGRect rect = [self.model.classes_str boundingRectWithSize:CGSizeMake(self.tableView.width*3.0/4, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+            return rect.size.height+20;
+        }else{
+            return 44;
+        }
     }else{
-        return [tableView fd_heightForCellWithIdentifier:@"RecordsDetailCell" cacheByIndexPath:indexPath configuration:^(id cell) {
-            [cell loadDataWithModel:self.model indexpath:indexPath];
-        }];
-        
+        return 44;
     }
     
 }
@@ -143,7 +151,22 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 1;
+    if (section == 4) {
+        if (self.model.pic && ![self.model.pic isEqualToString:@""]) {
+            return 1;
+        }else{
+            return 0;
+        }
+    }else if (section == 5) {
+        if (self.model.vdo && ![self.model.vdo isEqualToString:@""]) {
+            return 1;
+        }else{
+            return 0;
+        }
+        
+    }else{
+        return 1;
+    }
 }
 
 

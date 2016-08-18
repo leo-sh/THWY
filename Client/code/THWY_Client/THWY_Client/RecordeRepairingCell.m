@@ -112,7 +112,7 @@
             make.left.mas_equalTo(self.paiGongNumber.mas_right).offset(10.0/375*My_ScreenW);
         }];
         
-        self.numberLabel.text = @"WX1223";
+        self.numberLabel.text = @"";
         [self setLabelAttributes:self.numberLabel with:0];
         [self.numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.paiGongLabel.mas_centerY);
@@ -298,7 +298,7 @@
 - (void)loadDataFromModel:(RepairVO *)repaireVO{
     
     self.model = repaireVO;
-    self.numberLabel.text = repaireVO.Id;
+    self.numberLabel.text = [self createNumberText:repaireVO.Id];
     self.houseSourceLabel.text = repaireVO.estate_name;
     self.repairCatogeryLabel.text = repaireVO.classes_str;
     self.repairDescLabel.text = repaireVO.detail;
@@ -360,6 +360,14 @@
     detail.model = self.model;
     [self.vc.navigationController pushViewController:detail animated:YES];
     
+}
+
+- (NSString *)createNumberText:(NSString *)idString{
+    if (self.flag == 1) {
+        return [NSString stringWithFormat:@"WX%@%@", [NSDate currentYear], [NSString stringWithFormat:@"%06d", [idString intValue]]];
+    }else{
+        return [NSString stringWithFormat:@"GGWX%@%@", [NSDate currentYear], [NSString stringWithFormat:@"%06d", [idString intValue]]];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
