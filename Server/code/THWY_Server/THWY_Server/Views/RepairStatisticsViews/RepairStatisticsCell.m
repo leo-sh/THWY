@@ -36,14 +36,20 @@
     self.titleLabel.text = self.titleNames[self.index];
     self.titleLabel.font = FontSize(CONTENT_FONT+2);
     self.titleLabel.textColor = [UIColor blackColor];
-    self
+    [self.titleLabel sizeToFit];
     [self.contentView addSubview:self.titleLabel];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       make.left
+        make.left.mas_equalTo(self.contentView.mas_left).offset(leftMargin);
+        make.centerY.mas_equalTo(self.contentView.centerY);
     }];
     
     
+    self.rightImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"repairStatistics_%@", self.titleNames[self.index]]]];
+    [self.contentView addSubview:self.rightImageView];
+    [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
 }
 
 - (void)setIndex:(NSInteger)index{

@@ -350,50 +350,67 @@
         return;
     }
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认提交" message:@"您确定提交报修吗?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"我要报修" message:@"确定提交报修操作吗?" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    
-        switch (My_ServicesManager.status) {
-            case NotReachable:
-        
-                [SVProgressHUD showErrorWithStatus:@"网络未连接"];
-                break;
-            case ReachableViaWWAN:{
-                TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"当前处于非WiFi状态" message:@"你确定上传视频吗?"];
-                [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancle handler:^(TYAlertAction *action) {
-                 
-                }]];
-                
-                [alertView addAction:[TYAlertAction actionWithTitle:@"确定" style:TYAlertActionStyleDestructive handler:^(TYAlertAction *action) {
-                    [SVProgressHUD showWithStatus:@"数据上传中..."];
-                 
-                    [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
+        if (![self.repairVO.videoPath isEqualToString:@""]){
+            
+            switch (My_ServicesManager.status) {
+                case NotReachable:
+                    [SVProgressHUD showErrorWithStatus:@"网络未连接"];
                     
+                    break;
+                case ReachableViaWWAN:{
+                    
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"当前处于非WiFi状态" message:@"你确定上传视频吗?" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [SVProgressHUD showWithStatus:@"数据上传中..."];
+                        
+                        [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
+                            
+                            [self.repairDelegate commitComplete:errorMsg];
+                            
+                        }];
+                        
+                    }];
+                    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                        return ;
+                    }];
+                    
+                    [alert addAction:confirm];
+                    [alert addAction:cancel];
+                    
+                    [(UIViewController *)self.repairDelegate presentViewController:alert animated:YES completion:^{
+                        
+                    }];
+                    
+                    break;
+                }
+                case ReachableViaWiFi:{
+                    
+                    [SVProgressHUD showWithStatus:@"数据上传中..."];
+                    
+                    [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
+                        
                         [self.repairDelegate commitComplete:errorMsg];
                         
                     }];
-                 
-                }]];
-                
-                [alertView showInWindow];
-                
-                break;
+                    break;
+                }
+                default:
+                    break;
             }
-            case ReachableViaWiFi:{
-                [SVProgressHUD showWithStatus:@"数据上传中..."];
+        }else{
+            [SVProgressHUD showWithStatus:@"数据上传中..."];
+            
+            [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
                 
-                [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
+                [self.repairDelegate commitComplete:errorMsg];
                 
-                    [self.repairDelegate commitComplete:errorMsg];
-                
-                }];
-     
-                break;
-            }
-
+            }];
+            
         }
     }];
-    
+
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         return ;
     }];
