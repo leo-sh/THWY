@@ -17,6 +17,8 @@
 @property (strong, nonatomic) AlertEstateTableView  *alertView;
 //全部楼盘
 @property (strong, nonatomic) NSMutableArray *unitArray;
+//btn名字
+@property (strong, nonatomic) NSArray *labelNames;
 
 
 @property (strong, nonatomic) UIScrollView *scrollView;
@@ -31,11 +33,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.selectedIndex = -1;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"背景"]];
     [self getEstatesData];
     [self initViews];
 }
 
+//获取楼盘数据
 - (void)getEstatesData{
     [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
     [My_ServicesManager getEstates:^(NSString *errorMsg, NSArray *list) {
@@ -51,6 +55,14 @@
     }];
 }
 
+- (void)gettatisticsData{
+    //
+//    [My_ServicesManager getRepairStatistic: onComplete:^(NSString *errorMsg, NSArray *list) {
+//        
+//    }];
+    
+}
+
 - (void)initViews{
     
     NSInteger topMargin = 10/667.0*My_ScreenH;
@@ -64,18 +76,19 @@
     [self.unitBtn addTarget:self action:@selector(showUnitsAlert) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.unitBtn];
     
+    self.labelNames = @[@"业主报修", @"公共报修", @"维修统计"];
     for(int i = 0; i<3; i++){
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.bgView.width*(1.5/4.0)*i, 0, self.bgView.width/4.0, self.bgView.height)];
         
         btn.tag = 310 + i;
-        [btn addTarget:self action:@selector(btnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(switchStatus:) forControlEvents:UIControlEventTouchUpInside];
         if (i == 0) {
-            [btn setImage:[UIImage imageNamed:@"records_按下"] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:@"repairStatistics_按下"] forState:UIControlStateNormal];
         }
         [self.bgView addSubview:btn];
         
         UIImageView *btnImage = [[UIImageView alloc] initWithFrame:CGRectMake(btn.width/8.0, 0, btn.width*3/4.0, btn.height*3/4.0)];
-        btnImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"records_%@",self.labelNames[i]]];
+        btnImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"repairStatistics_%@",self.labelNames[i]]];
         [btn addSubview:btnImage];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, btnImage.height, 0, 0)];
@@ -88,16 +101,23 @@
         
     }
 
+}
+
+//切换状态
+- (void)switchStatus:(UIButton *)btn{
+    
+    
     
 }
 
 - (void)initAlertView{
  
-    self.alertView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.unitArray.count + 45.0/667*My_ScreenH*2)<(My_ScreenH-84)?(44.0*self.unitArray.count + 45.0/667*My_ScreenH*2):(My_ScreenH-84)) style:UITableViewStylePlain];
+    self.alertView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.unitArray.count + 45.0/667*My_ScreenH*2)<(My_ScreenH-84)?(44.0*self.unitArray.count + 45.0/667*My_ScreenH*2):(My_ScreenH-84))];
     self.alertView.type = AlertChooseEstateType;
     self.alertView.data = self.unitArray;
     self.alertView.selectedIndex = -1;
     self.alertView.AlertDelegate = self;
+    [self.alertView initViews];
 
 }
 
@@ -109,6 +129,9 @@
 #pragma mark - AlertEstateTableViewDelegate
 - (void)commit:(NSInteger)index{
 
+    self.selectedIndex = index;
+    
+    
 }
 
 @end

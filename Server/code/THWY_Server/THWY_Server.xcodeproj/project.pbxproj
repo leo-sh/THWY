@@ -39,7 +39,6 @@
 		791B4DFF1D645E6500AF9371 /* DescribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4DFD1D645E6500AF9371 /* DescribeCell.m */; };
 		791B4E001D645E6500AF9371 /* DescribeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791B4DFE1D645E6500AF9371 /* DescribeCell.xib */; };
 		791B4E091D645EBE00AF9371 /* BannerNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E081D645EBE00AF9371 /* BannerNotice.m */; };
-		791B4E0E1D645ECF00AF9371 /* AlertEstateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E0B1D645ECF00AF9371 /* AlertEstateTableView.m */; };
 		791B4E0F1D645ECF00AF9371 /* AlertTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E0D1D645ECF00AF9371 /* AlertTableView.m */; };
 		791B4E121D645EF700AF9371 /* HouseSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E111D645EF700AF9371 /* HouseSourceCell.m */; };
 		791B4E151D645F1A00AF9371 /* RepairRecordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E141D645F1A00AF9371 /* RepairRecordsVC.m */; };
@@ -166,6 +165,7 @@
 		79270F891D61BF6800E29568 /* BlueCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270F881D61BF6800E29568 /* BlueCheckButton.m */; };
 		79270F8C1D61BF7400E29568 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270F8B1D61BF7400E29568 /* LoginViewController.m */; };
 		793B8EDB1D656A9300290EAB /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDA1D656A9300290EAB /* AdVO.m */; };
+		793B8EDE1D6596A000290EAB /* AlertEstateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -228,8 +228,6 @@
 		791B4DFE1D645E6500AF9371 /* DescribeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescribeCell.xib; sourceTree = "<group>"; };
 		791B4E071D645EBE00AF9371 /* BannerNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BannerNotice.h; path = THWY_Server/Views/BannerNotice.h; sourceTree = SOURCE_ROOT; };
 		791B4E081D645EBE00AF9371 /* BannerNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BannerNotice.m; path = THWY_Server/Views/BannerNotice.m; sourceTree = SOURCE_ROOT; };
-		791B4E0A1D645ECF00AF9371 /* AlertEstateTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertEstateTableView.h; sourceTree = "<group>"; };
-		791B4E0B1D645ECF00AF9371 /* AlertEstateTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertEstateTableView.m; sourceTree = "<group>"; };
 		791B4E0C1D645ECF00AF9371 /* AlertTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTableView.h; sourceTree = "<group>"; };
 		791B4E0D1D645ECF00AF9371 /* AlertTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTableView.m; sourceTree = "<group>"; };
 		791B4E101D645EF700AF9371 /* HouseSourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseSourceCell.h; sourceTree = "<group>"; };
@@ -486,6 +484,8 @@
 		79270F8B1D61BF7400E29568 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		793B8ED91D656A9300290EAB /* AdVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdVO.h; sourceTree = "<group>"; };
 		793B8EDA1D656A9300290EAB /* AdVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdVO.m; sourceTree = "<group>"; };
+		793B8EDC1D6596A000290EAB /* AlertEstateTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertEstateTableView.h; sourceTree = "<group>"; };
+		793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertEstateTableView.m; sourceTree = "<group>"; };
 		9400B9791D6188B200E49F0E /* fasong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fasong.caf; sourceTree = "<group>"; };
 		9400B97A1D6188B200E49F0E /* shou.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shou.caf; sourceTree = "<group>"; };
 		9400B97B1D6188BF00E49F0E /* tuisong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tuisong.caf; sourceTree = "<group>"; };
@@ -677,15 +677,15 @@
 				791B4DFC1D645E6500AF9371 /* DescribeCell.h */,
 				791B4DFD1D645E6500AF9371 /* DescribeCell.m */,
 				791B4DFE1D645E6500AF9371 /* DescribeCell.xib */,
-				791B4E0A1D645ECF00AF9371 /* AlertEstateTableView.h */,
-				791B4E0B1D645ECF00AF9371 /* AlertEstateTableView.m */,
 				791B4E0C1D645ECF00AF9371 /* AlertTableView.h */,
 				791B4E0D1D645ECF00AF9371 /* AlertTableView.m */,
+				793B8EDC1D6596A000290EAB /* AlertEstateTableView.h */,
+				793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */,
+				791B4DD41D645D7800AF9371 /* WantRepairTableViewDelegate.h */,
 				791B4DD01D645D7800AF9371 /* WantRepairTableView1.h */,
 				791B4DD11D645D7800AF9371 /* WantRepairTableView1.m */,
 				791B4DD21D645D7800AF9371 /* WantRepairTableView2.h */,
 				791B4DD31D645D7800AF9371 /* WantRepairTableView2.m */,
-				791B4DD41D645D7800AF9371 /* WantRepairTableViewDelegate.h */,
 			);
 			name = WantRepairViews;
 			path = THWY_Server/Views/WantRepairViews;
@@ -1351,7 +1351,6 @@
 				79270E181D61ACB100E29568 /* TYAlertController+TransitionAnimate.m in Sources */,
 				79270DD81D61ACB100E29568 /* View+MASAdditions.m in Sources */,
 				79270F5B1D61B1EF00E29568 /* UIFont+Extension.m in Sources */,
-				791B4E0E1D645ECF00AF9371 /* AlertEstateTableView.m in Sources */,
 				79270E021D61ACB100E29568 /* NSData+ImageContentType.m in Sources */,
 				79270E1F1D61ACB100E29568 /* TYShowAlertView.m in Sources */,
 				79270F521D61B1EF00E29568 /* NSArray+Extension.m in Sources */,
@@ -1414,6 +1413,7 @@
 				1E29C6451D640FC400F1EE26 /* ReviseBtn.m in Sources */,
 				79270E511D61ACDA00E29568 /* EstateVO.m in Sources */,
 				79270E0D1D61ACB100E29568 /* UIImage+WebP.m in Sources */,
+				793B8EDE1D6596A000290EAB /* AlertEstateTableView.m in Sources */,
 				79270DEC1D61ACB100E29568 /* UIScrollView+MJRefresh.m in Sources */,
 				79270F561D61B1EF00E29568 /* NSString+BXExtension.m in Sources */,
 				79270E031D61ACB100E29568 /* SDImageCache.m in Sources */,

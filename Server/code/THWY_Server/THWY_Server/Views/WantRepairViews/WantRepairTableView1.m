@@ -65,7 +65,7 @@
 }
 
 - (void)getHouses{
-    self.housesArray = [NSMutableArray arrayWithArray:[[[UDManager getUD] getUser] houses]];
+//    self.housesArray = [NSMutableArray arrayWithArray:[[[UDManager getUD] getUser] houses]];
 }
 
 #pragma mark - tabelViewDelegate
@@ -340,45 +340,45 @@
     
     if (![self.repairVO.videoPath isEqualToString:@""]){
     
-        switch (My_ServicesManager.status) {
-            case NotReachable:
-               
-                [SVProgressHUD showErrorWithStatus:@"网络未连接"];
-                break;
-            case ReachableViaWWAN:{
-                TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"当前处于非WiFi状态" message:@"你确定上传视频吗?"];
-                [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancle handler:^(TYAlertAction *action) {
-                    
-                }]];
-                
-                [alertView addAction:[TYAlertAction actionWithTitle:@"确定" style:TYAlertActionStyleDestructive handler:^(TYAlertAction *action) {
-                    [SVProgressHUD showWithStatus:@"数据上传中..."];
-                    
-                    [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
-                        
-                        [self.repairDelegate commitComplete:errorMsg];
-                        
-                    }];
-                    
-                }]];
-                
-                [alertView showInWindow];
-                
-                break;
-            }
-            case ReachableViaWiFi:{
-                [SVProgressHUD showWithStatus:@"数据上传中..."];
-                
-                [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
-                    
-                    [self.repairDelegate commitComplete:errorMsg];
-                    
-                }];
-     
-                break;
-            }
-
-        }
+//        switch (My_ServicesManager.status) {
+//            case NotReachable:
+//               
+//                [SVProgressHUD showErrorWithStatus:@"网络未连接"];
+//                break;
+//            case ReachableViaWWAN:{
+//                TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"当前处于非WiFi状态" message:@"你确定上传视频吗?"];
+//                [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancle handler:^(TYAlertAction *action) {
+//                    
+//                }]];
+//                
+//                [alertView addAction:[TYAlertAction actionWithTitle:@"确定" style:TYAlertActionStyleDestructive handler:^(TYAlertAction *action) {
+//                    [SVProgressHUD showWithStatus:@"数据上传中..."];
+//                    
+//                    [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
+//                        
+//                        [self.repairDelegate commitComplete:errorMsg];
+//                        
+//                    }];
+//                    
+//                }]];
+//                
+//                [alertView showInWindow];
+//                
+//                break;
+//            }
+//            case ReachableViaWiFi:{
+//                [SVProgressHUD showWithStatus:@"数据上传中..."];
+//                
+//                [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
+//                    
+//                    [self.repairDelegate commitComplete:errorMsg];
+//                    
+//                }];
+//     
+//                break;
+//            }
+//
+//        }
     }
 
     
