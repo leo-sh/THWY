@@ -91,6 +91,7 @@
     self.hud.bezelView.clipsToBounds = NO;
     self.hud.mode = MBProgressHUDModeCustomView;
     self.hud.animationType = MBProgressHUDAnimationZoom;
+    self.hud.minShowTime = 0;
     self.hud.label.text = @"";
     [self.hud setOffset:CGPointMake(0, 0)];
 }
@@ -128,6 +129,7 @@
 -(void)hudHideWithText:(NSString*)title
 {
     [self hudInit];
+    self.hud.minShowTime = 1;
     [self.hud showAnimated:YES];
     
     self.loadingLabel.width = [title sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].width + 40;

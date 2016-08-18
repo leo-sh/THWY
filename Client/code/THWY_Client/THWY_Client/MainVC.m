@@ -59,7 +59,7 @@
             }
             
             if (user) {
-                [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"Avatar"]];
+                [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"头像1"]];
                 self.username.text = user.real_name;
                 self.addr.text = user.estate;
             }
@@ -143,7 +143,7 @@
     [self.userInfoView setBackgroundImage:[UIImage imageNamed:@"beijing"] forState:UIControlStateNormal];
     [self.userInfoView addTarget:self action:@selector(showUserInfoVC) forControlEvents:UIControlEventTouchUpInside];
     self.headImage = [[UIImageView alloc] init];
-    self.headImage.image = [UIImage imageNamed:@"头像1"];
+    self.headImage.image = [UIImage imageNamed:@"Avatar"];
     self.headImage.userInteractionEnabled = YES;
     self.headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/3;
 //    self.headImage.layer.borderWidth = 3;
@@ -153,7 +153,7 @@
     
     [self.headImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.userInfoView.mas_centerY);
-        make.left.mas_equalTo(self.userInfoView).offset(30);
+        make.left.mas_equalTo(self.userInfoView).offset(30/375.0*My_ScreenW);
         make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.7);
         make.width.mas_equalTo(self.headImage.mas_height);
     }];
@@ -200,13 +200,12 @@
 
 #pragma mark - 各模块控件
 - (void)initModuleViews{
-    
-    self.bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.userInfoView.bottom + 3/375.0*My_ScreenW, self.view.width, 3/4.0 * (My_ScreenH-64)+2*topMargin)];
-    self.bgScrollView.contentSize = CGSizeMake(self.bgScrollView.width, (My_ScreenW-3*topMargin)*0.5/297*168.0*4+topMargin*4);
+    self.bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.userInfoView.bottom + 2.5/375.0*My_ScreenW, self.view.width, 3/4.0 * (My_ScreenH-64)+2*topMargin)];
+    self.bgScrollView.contentSize = CGSizeMake(self.bgScrollView.width, (My_ScreenW-3*topMargin)*0.5/297*170.0*2 + (My_ScreenW-3*topMargin)*0.5 * 1.19 + topMargin*9);
     self.bgScrollView.backgroundColor = [UIColor clearColor];
     self.bgScrollView.showsVerticalScrollIndicator = NO;
     self.bgScrollView.showsHorizontalScrollIndicator = NO;
-    self.bgScrollView.bounces = NO;
+    self.bgScrollView.bounces = YES;
     [self.view addSubview:self.bgScrollView];
     
     UIButton *woyaobaoxiu = [[UIButton alloc] init];
@@ -227,7 +226,7 @@
     [self.bgScrollView addSubview:baoxiujilu];
     [baoxiujilu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(woyaobaoxiu.mas_left);
-        make.top.mas_equalTo(woyaobaoxiu.mas_bottom).offset(topMargin*1.5);
+        make.top.mas_equalTo(woyaobaoxiu.mas_bottom).offset(topMargin*1.3);
         make.width.and.height.mas_equalTo(woyaobaoxiu);
     }];
     
@@ -238,7 +237,7 @@
     [self.bgScrollView addSubview:shequshangquan];
     [shequshangquan mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(baoxiujilu.mas_left);
-        make.top.mas_equalTo(baoxiujilu.mas_bottom).offset(topMargin*1.5);
+        make.top.mas_equalTo(baoxiujilu.mas_bottom).offset(topMargin*1.3);
         make.width.mas_equalTo(woyaobaoxiu.mas_width);
         make.height.mas_equalTo(woyaobaoxiu.mas_width).multipliedBy(1.19);
     }];
@@ -263,7 +262,7 @@
         make.left.mas_equalTo(baoxiujilu.mas_right).offset(topMargin);
         make.top.mas_equalTo(baoxiujilu.mas_top);
         make.height.mas_equalTo(baoxiujilu);
-        make.width.mas_equalTo(baoxiujilu.mas_width).multipliedBy(0.5).offset(-topMargin*0.5);
+        make.width.mas_equalTo(baoxiujilu.mas_width).multipliedBy(0.5).offset(-topMargin*0.4);
     }];
     
     UIButton *zhanghaoxinxi = [[UIButton alloc] init];
@@ -272,7 +271,7 @@
     [zhanghaoxinxi setBackgroundImage:[UIImage imageNamed:@"账号信息anxia"] forState:UIControlStateHighlighted];
     [self.bgScrollView addSubview:zhanghaoxinxi];
     [zhanghaoxinxi mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(woyaotousu.mas_right).offset(topMargin);
+        make.left.mas_equalTo(woyaotousu.mas_right).offset(topMargin*0.8);
         make.top.mas_equalTo(woyaotousu.mas_top);
         make.width.and.height.mas_equalTo(woyaotousu);
     }];

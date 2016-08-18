@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self ViewInitSetting];
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
     [self getData];
     [self createUI];
     // Do any additional setup after loading the view.
@@ -44,7 +45,6 @@
 
 - (void)getData
 {
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
 
     [[ServicesManager getAPI] getComplaints:self.pageNumber onComplete:^(NSString *errorMsg, NSArray *list) {
         
@@ -265,12 +265,12 @@
                     }
                     else
                     {
-                        [SVProgressHUD showErrorWithStatus:@"添加成功"];
                         [self.alertview hideInWindow];
                         self.pageNumber = 1;
                         [self.data removeAllObjects];
                         [self.contentEnd removeAllObjects];
                         [self getData];
+                        [SVProgressHUD showErrorWithStatus:@"添加成功"];
                     }
                     
                 }];

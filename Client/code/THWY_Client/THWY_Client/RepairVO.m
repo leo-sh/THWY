@@ -61,7 +61,12 @@
         self.st_2_admin_ids = JSON[@"st_2_admin_ids"];
         self.st_3_time = JSON[@"st_3_time"];
         self.order_ts = JSON[@"order_ts"];
-        self.real_name = JSON[@"real_name"];
+        if (JSON[@"real_name"]) {
+            self.real_name = JSON[@"real_name"];
+        }else
+        {
+            self.real_name = JSON[@"call_name"];
+        }
         self.car_number = JSON[@"car_number"];
         self.cellphone = JSON[@"cellphone"];
         self.block = JSON[@"block"];
@@ -88,7 +93,12 @@
             RepairClassVO* statu = [[RepairClassVO alloc]initWithJSON:statuDic];
             [self.classes addObject:statu];
         }
-        self.classes_str = JSON[@"classes_str"];
+        if (JSON[@"classes_str"]) {
+            self.classes_str = JSON[@"classes_str"];
+        }else
+        {
+            self.classes_str = JSON[@"cls"];
+        }
         self.estate_name = JSON[@"estate_name"];
         self.bg_color = JSON[@"bg_color"];
         self.task_time = JSON[@"task_time"];

@@ -39,6 +39,7 @@
         self.repairVO = [[AddRepairVO alloc] init];
         self.repairVO.videoPath = @"";
         self.repairVO.cls = @"";
+        self.repairVO.image = [[UIImage alloc] init];
         self.cells = [NSMutableArray arrayWithArray:@[@"",@"",@"",@"",@"",@"",@"",@""]];
         
         [self getHouses];
@@ -111,7 +112,7 @@
         case 3:{
             RepaireCategorysCell *cell = (RepaireCategorysCell *)[tableView dequeueReusableCellWithIdentifier:@"RepaireCategorysCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_有偿保修"];
-            cell.label.text = @"有偿报修类别:";
+            cell.label.text = @"有偿报修类别: ";
             self.cells[row] = cell;
             return cell;
             
@@ -119,7 +120,7 @@
         case 4:{
             RepaireCategorysCell *cell = (RepaireCategorysCell *)[tableView dequeueReusableCellWithIdentifier:@"RepaireCategorysCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_保修类别"];
-            cell.label.text = @"无偿报修类别:";
+            cell.label.text = @"无偿报修类别: ";
             self.cells[row] = cell;
             return cell;
         }
@@ -250,7 +251,7 @@
                 [clsPath appendString:@","];
             }
             [clsName appendString:[[self.repaireClassArrayFree[indexpath.section] child][indexpath.row] class_name]];
-            [clsPath appendString:[[self.repaireClassArrayPay[indexpath.section] child][indexpath.row] Id]];
+            [clsPath appendString:[[self.repaireClassArrayFree[indexpath.section] child][indexpath.row] Id]];
         }
         UITableViewCell *cell = [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
         RepaireCategorysCell *newcell = (RepaireCategorysCell *)cell;
@@ -349,20 +350,43 @@
         return;
     }
     
-//    if (![self.repairVO.videoPath isEqualToString:@""]){
-    
-        switch (My_ServicesManager.status) {
-            case NotReachable:
-               
-                [SVProgressHUD showErrorWithStatus:@"网络未连接"];
-                break;
-            case ReachableViaWWAN:{
-                TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"当前处于非WiFi状态" message:@"你确定上传视频吗?"];
-                [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancle handler:^(TYAlertAction *action) {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"我要报修" message:@"确定提交报修操作吗?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (![self.repairVO.videoPath isEqualToString:@""]){
+            
+            switch (My_ServicesManager.status) {
+                case NotReachable:
+                    [SVProgressHUD showErrorWithStatus:@"网络未连接"];
                     
-                }]];
-                
-                [alertView addAction:[TYAlertAction actionWithTitle:@"确定" style:TYAlertActionStyleDestructive handler:^(TYAlertAction *action) {
+                    break;
+                case ReachableViaWWAN:{
+                    
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"当前处于非WiFi状态" message:@"你确定上传视频吗?" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [SVProgressHUD showWithStatus:@"数据上传中..."];
+                        
+                        [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
+                            
+                            [self.repairDelegate commitComplete:errorMsg];
+                            
+                        }];
+                        
+                    }];
+                    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                        return ;
+                    }];
+                    
+                    [alert addAction:confirm];
+                    [alert addAction:cancel];
+                    
+                    [(UIViewController *)self.repairDelegate presentViewController:alert animated:YES completion:^{
+                        
+                    }];
+                    
+                    break;
+                }
+                case ReachableViaWiFi:{
+                    
                     [SVProgressHUD showWithStatus:@"数据上传中..."];
                     
                     [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
@@ -370,27 +394,33 @@
                         [self.repairDelegate commitComplete:errorMsg];
                         
                     }];
-                    
-                }]];
-                
-                [alertView showInWindow];
-                
-                break;
+                    break;
+                }
+                default:
+                    break;
             }
-            case ReachableViaWiFi:{
-                [SVProgressHUD showWithStatus:@"数据上传中..."];
+        }else{
+            [SVProgressHUD showWithStatus:@"数据上传中..."];
+            
+            [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
                 
-                [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
-                    
-                    [self.repairDelegate commitComplete:errorMsg];
-                    
-                }];
-     
-                break;
-            }
-
+                [self.repairDelegate commitComplete:errorMsg];
+                
+            }];
+            
         }
-//    }
+    }];
+
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        return ;
+    }];
+    
+    [alert addAction:confirm];
+    [alert addAction:cancel];
+    
+    [(UIViewController *)self.repairDelegate presentViewController:alert animated:YES completion:^{
+        
+    }];
 
     
 }

@@ -29,6 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self ViewInitSetting];
+    
+    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
     [self getData:@"1"];
     [self createUI];
     // Do any additional setup after loading the view.
@@ -50,7 +52,6 @@
 
 - (void)getData:(NSString *)type
 {
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
     [[ServicesManager getAPI] getFeedBackTypes:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg) {
@@ -68,18 +69,15 @@
             
             [[ServicesManager getAPI]getFeedBackList:type onComplete:^(NSString *errorMsg, NSArray *list) {
                 if (errorMsg == nil) {
-                    [SVProgressHUD dismiss];
                     self.data = list;
                     [self.tableView reloadData];
+                    [SVProgressHUD dismiss];
                 }else
                 {
                     [SVProgressHUD showErrorWithStatus:errorMsg];
                 }
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView.mj_footer endRefreshing];
-                    [self.tableView.mj_header endRefreshing];
-                });
+                [self.tableView.mj_footer endRefreshing];
+                [self.tableView.mj_header endRefreshing];
                 
             }];
         }
@@ -286,11 +284,6 @@
         }];
     }
 
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

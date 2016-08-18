@@ -77,6 +77,12 @@
 #define My_RegularFontName @"PingFangSC-Regular"
 #define My_SemiboldFontName @"PingFangSC-Semibold"
 
+//通知
+#define NetWorkChanged @"netWorkChanged"
+//登录页面通知
+#define Login_Success @"LoginSuccess"
+#define Login_Fail @"Login_Fail"
+
 //内容默认文字大小
 #define CONTENT_FONT 16
 //设备判断

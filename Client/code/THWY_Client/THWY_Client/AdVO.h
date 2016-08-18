@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AdVO:NSObject
+@interface AdVO : NSObject
 
-@property (nonatomic , copy) NSString *Id;
-@property (nonatomic , copy) NSString *title;
-@property (nonatomic , copy) NSString *ctime;
-@property (nonatomic , copy) NSString *content;
-@property (nonatomic , copy) NSString *estate_ids;
+@property (nonatomic, copy) NSString *Id;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *ctime;
+@property (nonatomic, copy) NSString *content;
+@property (nonatomic, copy) NSString *estate_ids;
 @property BOOL is_tuijian;
 
--(AdVO* )initWithJSON:(NSDictionary *)JSON;
+- (AdVO *) initWithJSON:(NSDictionary *)JSON;
 
 @end
+

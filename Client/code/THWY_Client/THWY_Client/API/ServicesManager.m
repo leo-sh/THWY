@@ -293,10 +293,10 @@ savePassWord:(BOOL)save
                 }];
             }];
             
+            [[UDManager getUD] saveUser:user];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[UDManager getUD] saveUserName:userName];
                 [[UDManager getUD] saveUserPassWord:password];
-                [[UDManager getUD] saveUser:user];
                 [[UDManager getUD] saveShowState:save];
             });
             

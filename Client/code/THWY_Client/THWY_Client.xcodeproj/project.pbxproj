@@ -1174,8 +1174,6 @@
 		5BFFCE0C1D41B9A30066B1B9 = {
 			isa = PBXGroup;
 			children = (
-				791B4E331D64BCA400AF9371 /* MediaPlayer.framework */,
-				9490C3E41D63F8D400988649 /* Photos.framework */,
 				5BFFCE171D41B9A30066B1B9 /* THWY_Client */,
 				5BFFCE161D41B9A30066B1B9 /* Products */,
 			);
@@ -1210,6 +1208,8 @@
 		5BFFCE181D41B9A30066B1B9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				791B4E331D64BCA400AF9371 /* MediaPlayer.framework */,
+				9490C3E41D63F8D400988649 /* Photos.framework */,
 				5BFFCE291D41B9A30066B1B9 /* Info.plist */,
 				5BFFCE191D41B9A30066B1B9 /* main.m */,
 				5B25714A1D470E6800CB4167 /* PrefixHeader.pch */,

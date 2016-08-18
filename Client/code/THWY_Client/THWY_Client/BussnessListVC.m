@@ -65,8 +65,9 @@
         {
             if (self.page == 0) {
                 [self.bussnessModels removeAllObjects];
+            }else if (list && list.count == 0) {
+                self.page--;
             }
-            
             for (MerchantVO *model in list) {
                 [self.bussnessModels addObject:model];
             }
@@ -75,6 +76,7 @@
             [SVProgressHUD dismiss];
         }
         [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
 
     }];
     

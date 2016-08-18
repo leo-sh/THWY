@@ -54,11 +54,12 @@
                 [self.estateArray addObject:estate];
             }
             [SVProgressHUD dismiss];
-            self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.estateArray.count + 40.0/667*My_ScreenH)<(My_ScreenH-84)?(44.0*self.estateArray.count + 40.0/667*My_ScreenH):(My_ScreenH-84)) style:UITableViewStylePlain];
+            self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.estateArray.count + 45.0)<(My_ScreenH-84)?(44.0*self.estateArray.count + 45.0):(My_ScreenH-84))];
             self.alertTableView.type = AlertEstateType;
             self.alertTableView.data = self.estateArray;
-            self.alertTableView.selectedIndex = self.estateIndex;
             self.alertTableView.AlertDelegate = self;
+            [self.alertTableView initViews];
+            self.alertTableView.selectedIndex = self.estateIndex;
             [self.alertTableView showInWindow];
         }
     }];
@@ -67,7 +68,7 @@
 - (IBAction)blockSelect:(UIButton *)sender {
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     if (self.estateIndex == -1 || ![self.estateArray[self.estateIndex] estate_id] || [[self.estateArray[self.estateIndex] estate_id] isEqualToString:@""]) {
-        [SVProgressHUD showErrorWithStatus:@"请选择项目"];
+        [SVProgressHUD showErrorWithStatus:@"请选择楼盘"];
         return;
     }
     
@@ -83,11 +84,12 @@
             [self.blockArray addObject:block];
         }
         [SVProgressHUD dismiss];
-        self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.blockArray.count + 40.0/667*My_ScreenH)<(My_ScreenH-84)?(44.0*self.blockArray.count + 40.0/667*My_ScreenH):(My_ScreenH-84)) style:UITableViewStylePlain];
+        self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.blockArray.count + 45.0)<(My_ScreenH-84)?(44.0*self.blockArray.count + 45.0):(My_ScreenH-84))];
         self.alertTableView.type = AlertBlockType;
         self.alertTableView.data = self.blockArray;
-        self.alertTableView.selectedIndex = self.blockIndex;
         self.alertTableView.AlertDelegate = self;
+        [self.alertTableView initViews];
+        self.alertTableView.selectedIndex = self.blockIndex;
         [self.alertTableView showInWindow];
     }];
 }
@@ -95,7 +97,7 @@
 - (IBAction)unitSelect:(UIButton *)sender {
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     if (self.blockIndex == -1 || !self.blockArray[self.blockIndex] || [self.blockArray[self.blockIndex] isEqualToString:@""]) {
-        [SVProgressHUD showErrorWithStatus:@"请选择项目"];
+        [SVProgressHUD showErrorWithStatus:@"请选择栋"];
         return;
     }
     [My_ServicesManager getUnit:[self.estateArray[self.estateIndex] estate_id] block:self.blockArray[self.blockIndex] onComplete:^(NSString *errorMsg, NSArray *list) {
@@ -108,10 +110,11 @@
             [self.unitArray addObject:unit];
         }
         [SVProgressHUD dismiss];
-        self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.unitArray.count + 40.0/667*My_ScreenH)<(My_ScreenH-84)?(44.0*self.unitArray.count + 40.0/667*My_ScreenH):(My_ScreenH-84)) style:UITableViewStylePlain];
+        self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.unitArray.count + 45.0)<(My_ScreenH-84)?(44.0*self.unitArray.count + 45.0):(My_ScreenH-84))];
         self.alertTableView.type = AlertUnitType;
         self.alertTableView.data = self.unitArray;
         self.alertTableView.AlertDelegate = self;
+        [self.alertTableView initViews];
         self.alertTableView.selectedIndex = self.unitIndex;
         [self.alertTableView showInWindow];
     }];
@@ -121,7 +124,7 @@
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     
     if (self.unitIndex == -1 || !self.unitArray[self.unitIndex] || [[self.unitArray[self.unitIndex] stringValue] isEqualToString:@""]) {
-        [SVProgressHUD showErrorWithStatus:@"请选择项目"];
+        [SVProgressHUD showErrorWithStatus:@"请选择单元"];
         return;
     }
     [My_ServicesManager getLayer:[self.estateArray[self.estateIndex] estate_id] block:self.blockArray[self.blockIndex] unit:self.unitArray[self.unitIndex] onComplete:^(NSString *errorMsg, NSArray *list) {
@@ -134,10 +137,11 @@
             [self.layerArray addObject:layer];
         }
         [SVProgressHUD dismiss];
-        self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.layerArray.count + 40.0/667*My_ScreenH)<(My_ScreenH-84)?(44.0*self.layerArray.count + 40.0/667*My_ScreenH):(My_ScreenH-84)) style:UITableViewStylePlain];
+        self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.layerArray.count + 45.0)<(My_ScreenH-84)?(44.0*self.layerArray.count + 45.0):(My_ScreenH-84))];
         self.alertTableView.type = AlertLayerType;
         self.alertTableView.data = self.layerArray;
         self.alertTableView.AlertDelegate = self;
+        [self.alertTableView initViews];
         self.alertTableView.selectedIndex = self.layerIndex;
         [self.alertTableView showInWindow];
     }];
@@ -149,6 +153,7 @@
     switch (self.alertTableView.type) {
         case 1:{
             self.estateIndex = index;
+            self.selectEstate_id = [self.estateArray[index] estate_id];
             [btn setTitle:[self.estateArray[index] estate_name] forState:UIControlStateNormal];
             break;
         }

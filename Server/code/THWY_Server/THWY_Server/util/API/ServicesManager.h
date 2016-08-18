@@ -24,8 +24,11 @@
 #import "RepairVO.h"
 #import "TaskVO.h"
 #import "MsgVO.h"
+#import "Reachability.h"
 
 @interface ServicesManager : NSObject
+
+@property NetworkStatus status;
 
 +(ServicesManager *)getAPI;
 
