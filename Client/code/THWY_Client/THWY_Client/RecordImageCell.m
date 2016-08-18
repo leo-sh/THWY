@@ -66,7 +66,7 @@
 }
 
 - (void)loadDataWithModel:(RepairVO *)model{
-    [self.picImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"beijing"]];
+    [self.picImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"bannerload"]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

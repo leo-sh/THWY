@@ -1491,7 +1491,9 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-        
+        [self getAnAd:@"2" onComplete:^(NSString *errorMsg, AdVO *ad) {
+            
+        }];
     }else
     {
 //        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {

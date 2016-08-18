@@ -313,7 +313,7 @@
                     else
                     {
                         [SVProgressHUD showErrorWithStatus:@"修改成功"];
-                        [self.navigationController popViewControllerAnimated:NO];
+                        [self.navigationController popViewControllerAnimated:YES];
                     }
                 }];
                 

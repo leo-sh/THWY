@@ -89,7 +89,6 @@
                 }
             }
     
-            
         }
       
         if (self.switchFlag == 1) {
@@ -196,6 +195,13 @@
         [btn addSubview:label];
 
     }
+    UIButton *btn_more = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-20, 30)];
+    [btn_more setTitle:@"查看更多" forState:UIControlStateNormal];
+    [btn_more setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    btn_more.titleLabel.font = [UIFont fontWithName:My_RegularFontName size:15.0];
+    [btn_more addTarget:self action:@selector(loadMoreData:) forControlEvents:UIControlEventTouchUpInside];
+//    tableView.tableFooterView = btn_more;
+
     
     //tableView
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.bgView.height+10, My_ScreenW-20, My_ScreenH-104-45-self.bgView.height) style:UITableViewStylePlain];
@@ -207,9 +213,9 @@
     self.tableView.bounces = YES;
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     self.tableView.showsVerticalScrollIndicator = NO;
-//    [self.tableView setTableFooterView:btn_more];
+    [self.tableView setTableFooterView:btn_more];
     
-    self.tableView2 = [[UITableView alloc] initWithFrame:CGRectMake(My_ScreenW-20, self.bgView2.height+10, My_ScreenW-20, self.tableView.height)  style:UITableViewStylePlain];
+    self.tableView2 = [[UITableView alloc] initWithFrame:CGRectMake(My_ScreenW-20, self.bgView2.height+10, My_ScreenW-20, self.tableView.height)  style:UITableViewStyleGrouped];
     self.tableView2.delegate = self;
     self.tableView2.dataSource = self;
     self.tableView2.rowHeight = 300.0/667*My_ScreenH;
@@ -218,7 +224,7 @@
     self.tableView2.bounces = YES;
     [self.tableView2 setBackgroundColor:[UIColor clearColor]];
     self.tableView2.showsVerticalScrollIndicator = NO;
-//    [self.tableView2 setTableFooterView:btn_more];
+    [self.tableView2 setTableFooterView:btn_more];
     
     [self.scrollView addSubview:self.tableView];
     [self.scrollView addSubview:self.tableView2];
@@ -278,6 +284,7 @@
 
 }
 
+//刷新数据
 - (void)refreshData{
     [self.repairDataArray removeAllObjects];
     self.page = 0;
@@ -289,7 +296,7 @@
     
 }
 
-//下拉刷新
+//加载更多
 - (void)loadMoreData{
     
     if (self.switchFlag == 1) {
@@ -353,12 +360,12 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == self.repairDataArray.count-1) {
-        UIButton *btn_more = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-20, 30)];
-        [btn_more setTitle:@"查看更多" forState:UIControlStateNormal];
-        [btn_more setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        btn_more.titleLabel.font = [UIFont fontWithName:My_RegularFontName size:15.0];
-        [btn_more addTarget:self action:@selector(loadMoreData:) forControlEvents:UIControlEventTouchUpInside];
-        tableView.tableFooterView = btn_more;
+//        UIButton *btn_more = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-20, 30)];
+//        [btn_more setTitle:@"查看更多" forState:UIControlStateNormal];
+//        [btn_more setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        btn_more.titleLabel.font = [UIFont fontWithName:My_RegularFontName size:15.0];
+//        [btn_more addTarget:self action:@selector(loadMoreData:) forControlEvents:UIControlEventTouchUpInside];
+//        tableView.tableFooterView = btn_more;
     }
 }
 
@@ -391,6 +398,16 @@
     [self.navigationController pushViewController:detail animated:YES];
     
 }
+
+
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    CGFloat sectionFooterHeight = 40;
+//    if (scrollView.contentOffset.y<=sectionFooterHeight&&scrollView.contentOffset.y>=0) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+//    } else if (scrollView.contentOffset.y>=sectionFooterHeight) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-sectionFooterHeight, 0, 0, 0);
+//    }
+//}
 
 //查看更多
 - (void)loadMoreData:(UIButton *)button{

@@ -23,17 +23,17 @@
 
 - (void)initViews{
     
-    NSInteger height = 40.0/667*My_ScreenH;
+    NSInteger height = 50.0/667*My_ScreenH;
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, height)];
     headerView.backgroundColor = [UIColor whiteColor];
     UIButton *confirm = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, headerView.height-10, headerView.height-10)];
-    [confirm setImage:[UIImage imageNamed:@"√"] forState:UIControlStateNormal];
+    [confirm setImage:[UIImage scaleImage: [UIImage imageNamed:@"√"] toScale:0.5] forState:UIControlStateNormal];
     [confirm addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:confirm];
     
     UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(self.width-5-confirm.width, 5, headerView.height-10, headerView.height-10)];
-    [cancel setImage:[UIImage imageNamed:@"X"] forState:UIControlStateNormal];
+    [cancel setImage:[UIImage scaleImage:[UIImage imageNamed:@"X"] toScale:0.5] forState:UIControlStateNormal];
     [cancel addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:cancel];
     
@@ -57,7 +57,7 @@
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
     self.tableView.bounces = NO;
     self.tableView.sectionFooterHeight = 0.01;
-    self.tableView.sectionHeaderHeight = 40.0/667*My_ScreenH;
+    self.tableView.sectionHeaderHeight = 50.0/667*My_ScreenH;
     [self addSubview:self.tableView];
 }
 
@@ -104,7 +104,11 @@
     }else{
         model = [self.data[indexPath.section] child][indexPath.row];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ (￥%@)",model.class_name, model.class_price];
+    if(self.flag == 1){
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ (￥%@)",model.class_name, model.class_price];
+    }else{
+        cell.textLabel.text = model.class_name;
+    }
     cell.textLabel.font = FontSize(CONTENT_FONT-1);
     cell.textLabel.textColor = [UIColor darkGrayColor];
     return cell;

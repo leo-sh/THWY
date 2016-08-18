@@ -28,7 +28,9 @@
     NSArray* nibView = [[NSBundle mainBundle] loadNibNamed:@"BussnessADCell" owner:nil options:nil];
     BussnessADCell *cell = (BussnessADCell *)nibView[0];
     [cell loadDataFromMercharge:self.advo];
-    [self.view addSubview:cell.contentView];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, 10, My_ScreenW-20, 300)];
+    [view addSubview:cell.contentView];
+    [self.view addSubview:view];
     
 }
 

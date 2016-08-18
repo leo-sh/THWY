@@ -17,14 +17,14 @@
         self.owner_id = JSON[@"owner_id"];
         self.estate_id = JSON[@"estate_id"];
         self.house_id = JSON[@"house_id"];
-        if ([JSON[@"pic"] rangeOfString:@"http"].location != NSNotFound) {
+        if ([JSON[@"pic"] rangeOfString:@"http"].location != NSNotFound || [JSON[@"pic"] length] == 0) {
             self.pic = JSON[@"pic"];
         }else
         {
             self.pic = [NSString stringWithFormat:@"%@%@",API_Prefix,JSON[@"pic"]];
         }
         
-        if ([JSON[@"vdo"] rangeOfString:@"http"].location != NSNotFound) {
+        if ([JSON[@"vdo"] rangeOfString:@"http"].location != NSNotFound || [JSON[@"vdo"] length] == 0) {
             self.vdo = JSON[@"vdo"];
         }else
         {

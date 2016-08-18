@@ -9,7 +9,7 @@
 #import "RecommandBussnessADVC.h"
 #import "AdVO.h"
 #import "BussnessADCell.h"
-#import "ADDetailVC.h"
+#import "ProclamationInfoViewController.h"
 
 
 @interface RecommandBussnessADVC ()<UITableViewDataSource, UITableViewDelegate>
@@ -130,19 +130,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
     AdVO* adVO = self.bussnessModels[indexPath.row];
-    [My_ServicesManager getAnAd:adVO.Id onComplete:^(NSString *errorMsg, AdVO *ad) {
-        if (errorMsg == nil) {
-            ADDetailVC *detail = [[ADDetailVC alloc] init];
-            detail.advo = ad;
-            [self.navigationController pushViewController:detail animated:YES];
-            [SVProgressHUD dismiss];
-        }else
-        {
-            [SVProgressHUD showErrorWithStatus:errorMsg];
-        }
-    }];
+    ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc] init];
+    detail.proclamationId = adVO.Id;
+    detail.type = 1;
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

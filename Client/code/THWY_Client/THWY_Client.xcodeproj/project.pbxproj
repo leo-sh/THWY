@@ -136,6 +136,8 @@
 		7905065D1D4CE51A00072AAC /* UploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7905065B1D4CE51A00072AAC /* UploadCell.m */; };
 		790506621D4CE93C00072AAC /* DescribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790506601D4CE93C00072AAC /* DescribeCell.m */; };
 		790FBEBE1D5B726100C00509 /* DropMenuTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 790FBEBD1D5B726100C00509 /* DropMenuTableView.m */; };
+		791B4E321D64B84A00AF9371 /* RecordVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E311D64B84A00AF9371 /* RecordVideoCell.m */; };
+		791B4E341D64BCA400AF9371 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 791B4E331D64BCA400AF9371 /* MediaPlayer.framework */; };
 		79270C3D1D6174B300E29568 /* MerchantTypeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270C3C1D6174B300E29568 /* MerchantTypeTableView.m */; };
 		79270C401D61875900E29568 /* BussnessSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270C3F1D61875900E29568 /* BussnessSelectButton.m */; };
 		792824281D541D74001764EB /* WantRepairTableView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 792824271D541D74001764EB /* WantRepairTableView1.m */; };
@@ -167,6 +169,8 @@
 		794E73DC1D4A3A8800267C84 /* RepairRecordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73DB1D4A3A8800267C84 /* RepairRecordsVC.m */; };
 		794E73DF1D4A3AB700267C84 /* BussnessCircleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73DE1D4A3AB700267C84 /* BussnessCircleVC.m */; };
 		794E73E81D4A4F3E00267C84 /* PushSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E71D4A4F3E00267C84 /* PushSettingVC.m */; };
+		797B23421D64C31B0033903C /* KRVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 797B23311D64C31B0033903C /* KRVideoPlayerController.m */; };
+		797B23431D64C31B0033903C /* KRVideoPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 797B23331D64C31B0033903C /* KRVideoPlayerControlView.m */; };
 		79A653E01D586CE100D03025 /* GoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A653DF1D586CE100D03025 /* GoodsVC.m */; };
 		79D2D2701D4F530400463CC5 /* MerchargeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F2B6B41D4E011C00AA94E0 /* MerchargeListCell.xib */; };
 		79D2D2711D4F532400463CC5 /* PaigongCatogerysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F2B6901D4D9E7F00AA94E0 /* PaigongCatogerysCell.xib */; };
@@ -471,6 +475,9 @@
 		790506611D4CE93C00072AAC /* DescribeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescribeCell.xib; sourceTree = "<group>"; };
 		790FBEBC1D5B726100C00509 /* DropMenuTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropMenuTableView.h; sourceTree = "<group>"; };
 		790FBEBD1D5B726100C00509 /* DropMenuTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropMenuTableView.m; sourceTree = "<group>"; };
+		791B4E301D64B84A00AF9371 /* RecordVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordVideoCell.h; sourceTree = "<group>"; };
+		791B4E311D64B84A00AF9371 /* RecordVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordVideoCell.m; sourceTree = "<group>"; };
+		791B4E331D64BCA400AF9371 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		79270C3B1D6174B300E29568 /* MerchantTypeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantTypeTableView.h; sourceTree = "<group>"; };
 		79270C3C1D6174B300E29568 /* MerchantTypeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantTypeTableView.m; sourceTree = "<group>"; };
 		79270C3E1D61875900E29568 /* BussnessSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BussnessSelectButton.h; sourceTree = "<group>"; };
@@ -533,6 +540,10 @@
 		794E73DE1D4A3AB700267C84 /* BussnessCircleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BussnessCircleVC.m; sourceTree = "<group>"; };
 		794E73E61D4A4F3E00267C84 /* PushSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushSettingVC.h; sourceTree = "<group>"; };
 		794E73E71D4A4F3E00267C84 /* PushSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushSettingVC.m; sourceTree = "<group>"; };
+		797B23301D64C31B0033903C /* KRVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRVideoPlayerController.h; sourceTree = "<group>"; };
+		797B23311D64C31B0033903C /* KRVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRVideoPlayerController.m; sourceTree = "<group>"; };
+		797B23321D64C31B0033903C /* KRVideoPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRVideoPlayerControlView.h; sourceTree = "<group>"; };
+		797B23331D64C31B0033903C /* KRVideoPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRVideoPlayerControlView.m; sourceTree = "<group>"; };
 		79A653DE1D586CE100D03025 /* GoodsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsVC.h; sourceTree = "<group>"; };
 		79A653DF1D586CE100D03025 /* GoodsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsVC.m; sourceTree = "<group>"; };
 		79E862D21D5C533F00D8E527 /* TechSupportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TechSupportVC.h; sourceTree = "<group>"; };
@@ -592,6 +603,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				791B4E341D64BCA400AF9371 /* MediaPlayer.framework in Frameworks */,
 				9490C3E51D63F8D400988649 /* Photos.framework in Frameworks */,
 				5B197EC11D48527600B95DE5 /* libUMessage_Sdk_1.3.0.a in Frameworks */,
 			);
@@ -1083,6 +1095,7 @@
 		5B2571CF1D47169600CB4167 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				797B231F1D64C31B0033903C /* VideoPlayer */,
 				9400B97C1D619BBC00E49F0E /* MBProgressHUD */,
 				9449430A1D5C320200AD2B00 /* Keyboard */,
 				94E5DAD01D58731900300585 /* Reachability */,
@@ -1161,6 +1174,7 @@
 		5BFFCE0C1D41B9A30066B1B9 = {
 			isa = PBXGroup;
 			children = (
+				791B4E331D64BCA400AF9371 /* MediaPlayer.framework */,
 				9490C3E41D63F8D400988649 /* Photos.framework */,
 				5BFFCE171D41B9A30066B1B9 /* THWY_Client */,
 				5BFFCE161D41B9A30066B1B9 /* Products */,
@@ -1332,10 +1346,31 @@
 				792A24611D5300D10005B085 /* RecordsDetailCell.m */,
 				792A246A1D5315F70005B085 /* RecordImageCell.h */,
 				792A246B1D5315F70005B085 /* RecordImageCell.m */,
+				791B4E301D64B84A00AF9371 /* RecordVideoCell.h */,
+				791B4E311D64B84A00AF9371 /* RecordVideoCell.m */,
 				7934F28D1D5DBCA800643B4D /* MySegmentedControl.h */,
 				7934F28E1D5DBCA800643B4D /* MySegmentedControl.m */,
 			);
 			name = RepaireRecordsViews;
+			sourceTree = "<group>";
+		};
+		797B231F1D64C31B0033903C /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				797B232E1D64C31B0033903C /* Classes */,
+			);
+			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
+		797B232E1D64C31B0033903C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				797B23301D64C31B0033903C /* KRVideoPlayerController.h */,
+				797B23311D64C31B0033903C /* KRVideoPlayerController.m */,
+				797B23321D64C31B0033903C /* KRVideoPlayerControlView.h */,
+				797B23331D64C31B0033903C /* KRVideoPlayerControlView.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		79F2B6981D4DD28F00AA94E0 /* ZYBannerView */ = {
@@ -1628,6 +1663,7 @@
 				1E7527741D52029700AEDEC0 /* ComplainAlertView.m in Sources */,
 				792A246F1D531A070005B085 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				5B25717E1D47110B00CB4167 /* NSString+BXExtension.m in Sources */,
+				797B23431D64C31B0033903C /* KRVideoPlayerControlView.m in Sources */,
 				5B197F021D48A86E00B95DE5 /* NoteVO.m in Sources */,
 				792A246C1D5315F70005B085 /* RecordImageCell.m in Sources */,
 				5B197F051D48A9E600B95DE5 /* MerchantTypeVO.m in Sources */,
@@ -1636,6 +1672,7 @@
 				5B2571E21D4716EE00CB4167 /* AFURLRequestSerialization.m in Sources */,
 				1EE2841F1D4D037D008D5305 /* PayViewController.m in Sources */,
 				1E7527B31D52349F00AEDEC0 /* MJRefreshGifHeader.m in Sources */,
+				791B4E321D64B84A00AF9371 /* RecordVideoCell.m in Sources */,
 				5B2571E41D4716EE00CB4167 /* AFURLSessionManager.m in Sources */,
 				79E862D41D5C533F00D8E527 /* TechSupportVC.m in Sources */,
 				79F2B6961D4D9E9700AA94E0 /* ProjectCell.m in Sources */,
@@ -1687,6 +1724,7 @@
 				5BFFCE1A1D41B9A30066B1B9 /* main.m in Sources */,
 				792A24661D5314700005B085 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				5B2571821D47110B00CB4167 /* UIDevice+DeviceType.m in Sources */,
+				797B23421D64C31B0033903C /* KRVideoPlayerController.m in Sources */,
 				1E7527B81D52349F00AEDEC0 /* NSBundle+MJRefresh.m in Sources */,
 				1E7527AD1D52349F00AEDEC0 /* MJRefreshAutoGifFooter.m in Sources */,
 				7905065D1D4CE51A00072AAC /* UploadCell.m in Sources */,
