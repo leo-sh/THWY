@@ -11,6 +11,7 @@
 #import "ProclamationInfoViewController.h"
 #import "ComplainDetailViewController.h"
 #import "UMessage.h"
+#import "BannerNotice.h"
 @interface MainNavigationViewController () <UINavigationControllerDelegate>
 //@property (nonatomic, strong) id popDelegate;
 {

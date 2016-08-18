@@ -296,4 +296,14 @@ static NSDateFormatter *_displayFormatter = nil;
 	return [NSDate timestampFormatString];
 }
 
++ (NSString *)currentYear{
+    NSDate *date = [NSDate date];
+    NSCalendar * calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian]; // 指定日历的算法 NSCalendarIdentifierGregorian,NSGregorianCalendar
+    
+    // NSDateComponent 可以获得日期的详细信息，即日期的组成
+    NSDateComponents *comps = [calendar components:NSCalendarUnitYear fromDate:date];
+    return [NSString stringWithFormat:@"%ld", (long)comps.year];
+}
+
+
 @end

@@ -35,7 +35,7 @@
     CGFloat topMargrin = 10.0/375*My_ScreenW;
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(topMargrin, topMargrin, My_ScreenW-topMargrin*2.0, 2)];
     imageView.image = [UIImage imageNamed:@"records_彩条"];
-    [self.view addSubview:imageView];
+//    [self.view addSubview:imageView];
     
     //tableView
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(topMargrin, topMargrin+2, My_ScreenW-topMargrin*2.0, My_ScreenH-topMargrin*2.0-74)];
@@ -46,6 +46,7 @@
 //    self.tableView.separatorColor = [UIColor grayColor];
     self.tableView.bounces = NO;
     [self.tableView setBackgroundColor:[UIColor clearColor]];
+    self.tableView.tableHeaderView = imageView;
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.tableView];
 
@@ -139,6 +140,7 @@
     head.image = [UIImage imageNamed:@"records_虚线"];
     return head;
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 1;

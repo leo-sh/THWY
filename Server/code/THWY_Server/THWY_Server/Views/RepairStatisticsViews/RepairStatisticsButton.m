@@ -17,7 +17,7 @@
 //    rect.origin.y = self.height * 0.3;
     rect.size.height = self.height * 0.4;
     rect.size.width = rect.size.height*20/17.0;
-    rect.origin.x = 
+//    rect.origin.x = 
     
     return rect;
 }

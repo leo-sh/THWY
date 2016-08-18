@@ -7,11 +7,12 @@
 //
 
 #import "RepairStatistisVC.h"
+#import "RepairStatisticsButton.h"
 
 @interface RepairStatistisVC ()
 
 @property (strong, nonatomic) UIView *bgView;
-@property (strong, nonatomic) UIButton *
+@property (strong, nonatomic) RepairStatisticsButton *unitBtn;
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 

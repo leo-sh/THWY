@@ -61,4 +61,6 @@
 + (NSString *)timestampFormatString;
 + (NSString *)dbFormatString;
 
++ (NSString *)currentYear;
+
 @end
