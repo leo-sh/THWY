@@ -22,7 +22,6 @@
 		791B4DC81D645CEB00AF9371 /* WantRepairesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4DC71D645CEB00AF9371 /* WantRepairesVC.m */; };
 		791B4DCE1D645D6F00AF9371 /* UploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4DCC1D645D6F00AF9371 /* UploadCell.m */; };
 		791B4DCF1D645D6F00AF9371 /* UploadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791B4DCD1D645D6F00AF9371 /* UploadCell.xib */; };
-		791B4DD51D645D7800AF9371 /* WantRepairTableView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4DD11D645D7800AF9371 /* WantRepairTableView1.m */; };
 		791B4DD61D645D7800AF9371 /* WantRepairTableView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4DD31D645D7800AF9371 /* WantRepairTableView2.m */; };
 		791B4DDA1D645D8100AF9371 /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4DD81D645D8100AF9371 /* TextFieldCell.m */; };
 		791B4DDB1D645D8100AF9371 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791B4DD91D645D8100AF9371 /* TextFieldCell.xib */; };
@@ -39,7 +38,6 @@
 		791B4DFF1D645E6500AF9371 /* DescribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4DFD1D645E6500AF9371 /* DescribeCell.m */; };
 		791B4E001D645E6500AF9371 /* DescribeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791B4DFE1D645E6500AF9371 /* DescribeCell.xib */; };
 		791B4E091D645EBE00AF9371 /* BannerNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E081D645EBE00AF9371 /* BannerNotice.m */; };
-		791B4E0E1D645ECF00AF9371 /* AlertEstateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E0B1D645ECF00AF9371 /* AlertEstateTableView.m */; };
 		791B4E0F1D645ECF00AF9371 /* AlertTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E0D1D645ECF00AF9371 /* AlertTableView.m */; };
 		791B4E121D645EF700AF9371 /* HouseSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E111D645EF700AF9371 /* HouseSourceCell.m */; };
 		791B4E151D645F1A00AF9371 /* RepairRecordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E141D645F1A00AF9371 /* RepairRecordsVC.m */; };
@@ -166,6 +164,8 @@
 		79270F891D61BF6800E29568 /* BlueCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270F881D61BF6800E29568 /* BlueCheckButton.m */; };
 		79270F8C1D61BF7400E29568 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270F8B1D61BF7400E29568 /* LoginViewController.m */; };
 		793B8EDB1D656A9300290EAB /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDA1D656A9300290EAB /* AdVO.m */; };
+		793B8EDE1D6596A000290EAB /* AlertEstateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */; };
+		793B8EE11D65AEA500290EAB /* RepairStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -198,8 +198,6 @@
 		791B4DCB1D645D6F00AF9371 /* UploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadCell.h; sourceTree = "<group>"; };
 		791B4DCC1D645D6F00AF9371 /* UploadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadCell.m; sourceTree = "<group>"; };
 		791B4DCD1D645D6F00AF9371 /* UploadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadCell.xib; sourceTree = "<group>"; };
-		791B4DD01D645D7800AF9371 /* WantRepairTableView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableView1.h; sourceTree = "<group>"; };
-		791B4DD11D645D7800AF9371 /* WantRepairTableView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantRepairTableView1.m; sourceTree = "<group>"; };
 		791B4DD21D645D7800AF9371 /* WantRepairTableView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableView2.h; sourceTree = "<group>"; };
 		791B4DD31D645D7800AF9371 /* WantRepairTableView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantRepairTableView2.m; sourceTree = "<group>"; };
 		791B4DD41D645D7800AF9371 /* WantRepairTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairTableViewDelegate.h; sourceTree = "<group>"; };
@@ -228,8 +226,6 @@
 		791B4DFE1D645E6500AF9371 /* DescribeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescribeCell.xib; sourceTree = "<group>"; };
 		791B4E071D645EBE00AF9371 /* BannerNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BannerNotice.h; path = THWY_Server/Views/BannerNotice.h; sourceTree = SOURCE_ROOT; };
 		791B4E081D645EBE00AF9371 /* BannerNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BannerNotice.m; path = THWY_Server/Views/BannerNotice.m; sourceTree = SOURCE_ROOT; };
-		791B4E0A1D645ECF00AF9371 /* AlertEstateTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertEstateTableView.h; sourceTree = "<group>"; };
-		791B4E0B1D645ECF00AF9371 /* AlertEstateTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertEstateTableView.m; sourceTree = "<group>"; };
 		791B4E0C1D645ECF00AF9371 /* AlertTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTableView.h; sourceTree = "<group>"; };
 		791B4E0D1D645ECF00AF9371 /* AlertTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTableView.m; sourceTree = "<group>"; };
 		791B4E101D645EF700AF9371 /* HouseSourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseSourceCell.h; sourceTree = "<group>"; };
@@ -486,6 +482,10 @@
 		79270F8B1D61BF7400E29568 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		793B8ED91D656A9300290EAB /* AdVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdVO.h; sourceTree = "<group>"; };
 		793B8EDA1D656A9300290EAB /* AdVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdVO.m; sourceTree = "<group>"; };
+		793B8EDC1D6596A000290EAB /* AlertEstateTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertEstateTableView.h; sourceTree = "<group>"; };
+		793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertEstateTableView.m; sourceTree = "<group>"; };
+		793B8EDF1D65AEA500290EAB /* RepairStatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticsCell.h; sourceTree = "<group>"; };
+		793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatisticsCell.m; sourceTree = "<group>"; };
 		9400B9791D6188B200E49F0E /* fasong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fasong.caf; sourceTree = "<group>"; };
 		9400B97A1D6188B200E49F0E /* shou.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shou.caf; sourceTree = "<group>"; };
 		9400B97B1D6188BF00E49F0E /* tuisong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tuisong.caf; sourceTree = "<group>"; };
@@ -677,15 +677,13 @@
 				791B4DFC1D645E6500AF9371 /* DescribeCell.h */,
 				791B4DFD1D645E6500AF9371 /* DescribeCell.m */,
 				791B4DFE1D645E6500AF9371 /* DescribeCell.xib */,
-				791B4E0A1D645ECF00AF9371 /* AlertEstateTableView.h */,
-				791B4E0B1D645ECF00AF9371 /* AlertEstateTableView.m */,
 				791B4E0C1D645ECF00AF9371 /* AlertTableView.h */,
 				791B4E0D1D645ECF00AF9371 /* AlertTableView.m */,
-				791B4DD01D645D7800AF9371 /* WantRepairTableView1.h */,
-				791B4DD11D645D7800AF9371 /* WantRepairTableView1.m */,
+				793B8EDC1D6596A000290EAB /* AlertEstateTableView.h */,
+				793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */,
+				791B4DD41D645D7800AF9371 /* WantRepairTableViewDelegate.h */,
 				791B4DD21D645D7800AF9371 /* WantRepairTableView2.h */,
 				791B4DD31D645D7800AF9371 /* WantRepairTableView2.m */,
-				791B4DD41D645D7800AF9371 /* WantRepairTableViewDelegate.h */,
 			);
 			name = WantRepairViews;
 			path = THWY_Server/Views/WantRepairViews;
@@ -736,6 +734,8 @@
 			children = (
 				791B4E2D1D64693200AF9371 /* RepairStatisticsButton.h */,
 				791B4E2E1D64693200AF9371 /* RepairStatisticsButton.m */,
+				793B8EDF1D65AEA500290EAB /* RepairStatisticsCell.h */,
+				793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */,
 			);
 			name = RepairStatisticsViews;
 			path = THWY_Server/Views/RepairStatisticsViews;
@@ -1351,8 +1351,8 @@
 				79270E181D61ACB100E29568 /* TYAlertController+TransitionAnimate.m in Sources */,
 				79270DD81D61ACB100E29568 /* View+MASAdditions.m in Sources */,
 				79270F5B1D61B1EF00E29568 /* UIFont+Extension.m in Sources */,
-				791B4E0E1D645ECF00AF9371 /* AlertEstateTableView.m in Sources */,
 				79270E021D61ACB100E29568 /* NSData+ImageContentType.m in Sources */,
+				793B8EE11D65AEA500290EAB /* RepairStatisticsCell.m in Sources */,
 				79270E1F1D61ACB100E29568 /* TYShowAlertView.m in Sources */,
 				79270F521D61B1EF00E29568 /* NSArray+Extension.m in Sources */,
 				79270F541D61B1EF00E29568 /* NSDate+Helper.m in Sources */,
@@ -1414,6 +1414,7 @@
 				1E29C6451D640FC400F1EE26 /* ReviseBtn.m in Sources */,
 				79270E511D61ACDA00E29568 /* EstateVO.m in Sources */,
 				79270E0D1D61ACB100E29568 /* UIImage+WebP.m in Sources */,
+				793B8EDE1D6596A000290EAB /* AlertEstateTableView.m in Sources */,
 				79270DEC1D61ACB100E29568 /* UIScrollView+MJRefresh.m in Sources */,
 				79270F561D61B1EF00E29568 /* NSString+BXExtension.m in Sources */,
 				79270E031D61ACB100E29568 /* SDImageCache.m in Sources */,
@@ -1436,7 +1437,6 @@
 				79270F5C1D61B1EF00E29568 /* UIImage+Extension.m in Sources */,
 				79270E0A1D61ACB100E29568 /* UIButton+WebCache.m in Sources */,
 				79270DDC1D61ACB100E29568 /* MJRefreshComponent.m in Sources */,
-				791B4DD51D645D7800AF9371 /* WantRepairTableView1.m in Sources */,
 				5BFFCE3D1D41B9C40066B1B9 /* main.m in Sources */,
 				79270E531D61ACDA00E29568 /* IPAllowVO.m in Sources */,
 				79270E051D61ACB100E29568 /* SDWebImageDecoder.m in Sources */,

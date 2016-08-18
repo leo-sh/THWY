@@ -15,6 +15,8 @@
     NSString* _passWord;
 }
 
+@property (nonatomic, strong) Reachability* baiduReach;
+
 @end
 
 @implementation ServicesManager
@@ -36,8 +38,20 @@
             _userName = [[UDManager getUD] getUserName];
             _passWord = [[UDManager getUD] getPassWord];
         }
+        [self.baiduReach startNotifier];
+        
     }
     return self;
+}
+
+//检测到网络状态改变
+-(void)reachabilityChanged
+{
+    if (self.baiduReach.currentReachabilityStatus != self.status) {
+        self.status = self.baiduReach.currentReachabilityStatus;
+        
+        [My_NoteCenter postNotificationName:NetWorkChanged object:[NSNumber numberWithInteger:self.status]];
+    }
 }
 
 #pragma mark 私有函数

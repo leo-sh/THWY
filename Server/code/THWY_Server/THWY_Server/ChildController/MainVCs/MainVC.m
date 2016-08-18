@@ -39,7 +39,7 @@
     [self initUserInfoView];
     [self initModuleViews];
    
-//    [My_NoteCenter addObserver:self selector:@selector(refreshUserInfo) name:Login_Success object:nil];
+    [My_NoteCenter addObserver:self selector:@selector(refreshUserInfo) name:Login_Success object:nil];
     
 }
 
@@ -351,7 +351,7 @@
 }
 
 - (void)dealloc{
-//    [My_NoteCenter removeObserver:self name:Login_Success object:nil];
+    [My_NoteCenter removeObserver:self name:Login_Success object:nil];
 }
 
 #pragma  mark - MemoryWarning
