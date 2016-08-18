@@ -71,7 +71,7 @@
             if (list && list.count == 0 && self.page != 0) {
                 self.page--;
             }else{
-                [SVProgressHUD dismiss];
+                
             }
             
             for (RepairVO *model in list) {
@@ -90,6 +90,8 @@
                 }
             }
     
+            [SVProgressHUD dismiss];
+//            [SVProgressHUD hudHideWithSuccess:@"加载完毕"];
         }
       
         if (self.switchFlag == 1) {
@@ -305,11 +307,11 @@
 //加载更多
 - (void)loadMoreData{
     
-    if (self.switchFlag == 1) {
-        [self.tableView.mj_header beginRefreshing];
-    }else{
-        [self.tableView2.mj_header beginRefreshing];
-    }
+//    if (self.switchFlag == 1) {
+//        [self.tableView.mj_header beginRefreshing];
+//    }else{
+//        [self.tableView2.mj_header beginRefreshing];
+//    }
     
     if (self.selectIndex == 0){
         [self getDataType:self.switchFlag statusID:@"0" page:++self.page];
