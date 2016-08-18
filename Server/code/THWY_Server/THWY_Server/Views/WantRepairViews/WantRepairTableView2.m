@@ -86,7 +86,7 @@
             
             TextFieldCell *cell = (TextFieldCell *)[tableView dequeueReusableCellWithIdentifier:@"textFieldCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_姓名"];
-            cell.label.text = @"报修人姓名:";
+            cell.label.text = @"报修人姓名: ";
             cell.textField.text = [[[UDManager getUD] getUser] real_name];
             self.cells[row] = cell;
             return cell;
@@ -95,7 +95,7 @@
         case 3:{
             TextFieldCell *cell = (TextFieldCell *)[tableView dequeueReusableCellWithIdentifier:@"textFieldCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_call"];
-            cell.label.text = @"报修人电话:";
+            cell.label.text = @"报修人电话: ";
             cell.textField.text = [[[UDManager getUD] getUser] cellphone];
             self.cells[row] = cell;
             return cell;
@@ -104,7 +104,7 @@
         case 4:{
             RepaireCategorysCell *cell = (RepaireCategorysCell *)[tableView dequeueReusableCellWithIdentifier:@"RepaireCategorysCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_保修类别"];
-            cell.label.text = @"报修类别:";
+            cell.label.text = @"报修类别: ";
             self.cells[row] = cell;
             return cell;
         }

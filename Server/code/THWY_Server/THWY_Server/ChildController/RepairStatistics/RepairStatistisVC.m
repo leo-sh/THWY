@@ -15,8 +15,9 @@
 @property (strong, nonatomic) UIView *bgView;
 @property (strong, nonatomic) RepairStatisticsButton *unitBtn;
 @property (strong, nonatomic) AlertEstateTableView  *alertView;
-
+//全部楼盘
 @property (strong, nonatomic) NSMutableArray *unitArray;
+
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 
@@ -31,11 +32,11 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"背景"]];
-    [self getData];
+    [self getEstatesData];
     [self initViews];
 }
 
-- (void)getData{
+- (void)getEstatesData{
     [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
     [My_ServicesManager getEstates:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg){
@@ -61,15 +62,41 @@
     self.unitBtn = [[RepairStatisticsButton alloc] initWithFrame:CGRectMake(0, 0, self.bgView.width, self.bgView.height*0.28)];
     [self.unitBtn setLeftImageView:@"repairStatistics_展开箭头" andTitle:@"全部小区"];
     [self.unitBtn addTarget:self action:@selector(showUnitsAlert) forControlEvents:UIControlEventTouchUpInside];
+    [self.bgView addSubview:self.unitBtn];
+    
+    for(int i = 0; i<3; i++){
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.bgView.width*(1.5/4.0)*i, 0, self.bgView.width/4.0, self.bgView.height)];
+        
+        btn.tag = 310 + i;
+        [btn addTarget:self action:@selector(btnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
+        if (i == 0) {
+            [btn setImage:[UIImage imageNamed:@"records_按下"] forState:UIControlStateNormal];
+        }
+        [self.bgView addSubview:btn];
+        
+        UIImageView *btnImage = [[UIImageView alloc] initWithFrame:CGRectMake(btn.width/8.0, 0, btn.width*3/4.0, btn.height*3/4.0)];
+        btnImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"records_%@",self.labelNames[i]]];
+        [btn addSubview:btnImage];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, btnImage.height, 0, 0)];
+        label.text = self.labelNames[i];
+        [label sizeToFit];
+        label.centerX = btnImage.centerX;
+        label.font = FontSize(CONTENT_FONT);
+        label.textColor = [UIColor blackColor];
+        [btn addSubview:label];
+        
+    }
+
     
 }
 
 - (void)initAlertView{
  
-    self.alertView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.unitArray.count + 40.0/667*My_ScreenH)<(My_ScreenH-84)?(44.0*self.unitArray.count + 40.0/667*My_ScreenH):(My_ScreenH-84)) style:UITableViewStylePlain];
-    self.alertView.type = AlertEstateType;
+    self.alertView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.unitArray.count + 45.0/667*My_ScreenH*2)<(My_ScreenH-84)?(44.0*self.unitArray.count + 45.0/667*My_ScreenH*2):(My_ScreenH-84)) style:UITableViewStylePlain];
+    self.alertView.type = AlertChooseEstateType;
     self.alertView.data = self.unitArray;
-//    self.alertView.selectedIndex = self.estateIndex;
+    self.alertView.selectedIndex = -1;
     self.alertView.AlertDelegate = self;
 
 }

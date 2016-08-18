@@ -84,7 +84,7 @@
                   moduleName = "THWY_Client"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wei-mac/Repos/THWY/Client/code/THWY_Client/THWY_Client/API/ServicesManager.m"
-                  timestampString = "493186908.901488"
+                  timestampString = "493194875.266608"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "171"
@@ -99,7 +99,7 @@
                   moduleName = "THWY_Client"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wei-mac/Repos/THWY/Client/code/THWY_Client/THWY_Client/API/ServicesManager.m"
-                  timestampString = "493186908.901584"
+                  timestampString = "493194875.266792"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "171"
@@ -122,22 +122,6 @@
             startingLineNumber = "173"
             endingLineNumber = "173"
             landmarkName = "-handleRepair:params:urlStr:onComplete:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "THWY_Client/WantRepairesVC.m"
-            timestampString = "493179197.45232"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "-getData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

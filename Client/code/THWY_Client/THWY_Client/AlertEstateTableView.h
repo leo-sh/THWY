@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, AlertType){
 
 @end
 
-@interface AlertEstateTableView : UITableView
+@interface AlertEstateTableView : UIView
 
 @property (weak, nonatomic) id<AlertEstateTableViewDelegate> AlertDelegate;
 
@@ -30,5 +30,7 @@ typedef NS_ENUM(NSInteger, AlertType){
 @property (strong, nonatomic) NSMutableArray *data;
 
 @property (assign, nonatomic) NSInteger selectedIndex;
+
+- (void)initViews;
 
 @end

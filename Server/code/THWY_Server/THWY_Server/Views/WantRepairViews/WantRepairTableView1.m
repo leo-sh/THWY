@@ -80,7 +80,7 @@
   
             TextFieldCell *cell = (TextFieldCell *)[tableView dequeueReusableCellWithIdentifier:@"textFieldCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_姓名"];
-            cell.label.text = @"业主名称:";
+            cell.label.text = @"业主名称: ";
             cell.textField.text = [[[UDManager getUD] getUser] real_name];
             self.cells[row] = cell;
             return cell;
@@ -91,7 +91,7 @@
 
             TextFieldCell *cell = (TextFieldCell *)[tableView dequeueReusableCellWithIdentifier:@"textFieldCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_call"];
-            cell.label.text = @"联系电话:";
+            cell.label.text = @"联系电话: ";
             cell.textField.text = [[[UDManager getUD] getUser] cellphone];
             self.cells[row] = cell;
             return cell;
@@ -110,7 +110,7 @@
         case 3:{
             RepaireCategorysCell *cell = (RepaireCategorysCell *)[tableView dequeueReusableCellWithIdentifier:@"RepaireCategorysCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_有偿保修"];
-            cell.label.text = @"有偿报修类别:";
+            cell.label.text = @"有偿报修类别: ";
             self.cells[row] = cell;
             return cell;
             
@@ -118,7 +118,7 @@
         case 4:{
             RepaireCategorysCell *cell = (RepaireCategorysCell *)[tableView dequeueReusableCellWithIdentifier:@"RepaireCategorysCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_保修类别"];
-            cell.label.text = @"无偿报修类别:";
+            cell.label.text = @"无偿报修类别: ";
             self.cells[row] = cell;
             return cell;
         }
