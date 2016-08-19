@@ -99,14 +99,15 @@
     NSPredicate * prdicate = [NSPredicate predicateWithFormat:@"SELF LIKE '<*?>'"];
     NSArray *a = [array filteredArrayUsingPredicate:prdicate];
     
-    if (a.count) {
-        
-        for (UIView* subView in self.backView.subviews) {
-            if ([subView isKindOfClass:[UIWebView class]]) {
-                [subView removeFromSuperview];
-                break;
-            }
+    for (UIView* subView in self.backView.subviews) {
+        if ([subView isKindOfClass:[UIWebView class]]) {
+            [subView removeFromSuperview];
+            break;
         }
+    }
+    
+    if (a.count) {
+        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
         
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.time.frame) + 8, width, 0)];
         webView.scrollView.bounces = NO;
@@ -128,6 +129,11 @@
     }
 }
 
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    return YES;
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     //获取页面高度（像素）
@@ -144,6 +150,7 @@
     height = height * frame.height / clientheight;
     //再次设置WebView高度（点）
     webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
+    [SVProgressHUD dismiss];
 }
 
 - (void)awakeFromNib {
