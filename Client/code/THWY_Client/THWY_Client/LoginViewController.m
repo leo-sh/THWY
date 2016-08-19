@@ -44,6 +44,14 @@
     [self createButton];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    if (self.userTF.text.length == 0) {
+        [self.userTF becomeFirstResponder];
+    }else if (self.passWordTF.text.length == 0){
+        [self.passWordTF becomeFirstResponder];
+    }
+}
 
 -(void)showIntroView
 {
@@ -267,6 +275,9 @@
 }
 - (void)login
 {
+    [self.userTF endEditing:YES];
+    [self.passWordTF endEditing:YES];
+    
     if (self.userTF.text.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"请输入用户名"];
         [self.userTF becomeFirstResponder];
@@ -277,12 +288,6 @@
         [SVProgressHUD showErrorWithStatus:@"请输入密码"];
         [self.passWordTF becomeFirstResponder];
         return;
-    }
-    if (self.userTF.isEditing) {
-        [self.userTF endEditing:YES];
-    }
-    if (self.passWordTF.isEditing) {
-        [self.passWordTF endEditing:YES];
     }
     
     [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
@@ -311,20 +316,21 @@
 #pragma mark --文本框代理方法
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    [textField endEditing:YES];
+    if (textField == self.userTF && self.passWordTF.text.length < 6) {
+        [self.passWordTF becomeFirstResponder];
+    }
+    
+    if (textField == self.passWordTF && self.passWordTF.text.length >= 6) {
+        [self login];
+    }
     return YES;
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    for (UIView *view in self.view.subviews) {
-        if ([view isKindOfClass:[UITextField class]]) {
-            
-            UITextField *textField = (UITextField *)view;
-            
-            [textField resignFirstResponder];
-        }
-    }
+    [self.userTF endEditing:YES];
+    [self.passWordTF endEditing:YES];
 }
 
 /*

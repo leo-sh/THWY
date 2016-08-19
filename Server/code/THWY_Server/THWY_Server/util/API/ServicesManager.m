@@ -1563,6 +1563,9 @@ savePassWord:(BOOL)save
     if ([self isLogin]) {
         UserVO *user = [[UDManager getUD] getUser];
         NSLog(@"admin_id:%@",user.admin_id);
+        [self getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
+            
+        }];
     }else
     {
 //        [self login:@"fzq" password:@"123456" onComplete:^(NSString *errorMsg, UserVO *user) {
