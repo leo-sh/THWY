@@ -42,6 +42,25 @@
     self.advo = merchant;
 
     self.timeLabel.text = [NSString stringDateFromTimeInterval:[merchant.ctime integerValue] withFormat:@"YYYY-MM-dd HH:mm"];
+<<<<<<< HEAD
+=======
+    
+    
+    NSArray *array = @[merchant.content];
+    NSPredicate * prdicate = [NSPredicate predicateWithFormat:@"SELF LIKE '<*?>'"];
+    NSArray *a = [array filteredArrayUsingPredicate:prdicate];
+    
+    if (a.count) {
+        
+        NSAttributedString *string = [[NSAttributedString alloc]initWithData:[merchant.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        self.desc.text = string.string;
+    }
+    else
+    {
+        self.desc.text = merchant.content;
+        
+    }
+>>>>>>> 36f3d10dcac1430432daf01fd75af91500058dc2
     
     NSArray *array = @[merchant.content];
     NSPredicate * prdicate = [NSPredicate predicateWithFormat:@"SELF LIKE '<*?>'"];
