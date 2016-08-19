@@ -242,6 +242,8 @@
         [content removeFromSuperview];
         [backView addSubview:webView];
         
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"giveHeight" object:@[[NSNumber numberWithFloat:webView.bottom + 10]]];
+
         NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", noteVO.content];
         [webView loadHTMLString:htmlcontent baseURL:nil];
         

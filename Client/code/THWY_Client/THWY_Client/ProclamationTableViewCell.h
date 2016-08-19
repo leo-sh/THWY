@@ -11,6 +11,6 @@
 @property UILabel *title;
 @property UILabel *time;
 @property UILabel *content;
-
+@property NSInteger row;
 - (void)setTitle:(NSString *)title time:(NSString *)time content:(NSString *)content width:(CGFloat)width;
 @end

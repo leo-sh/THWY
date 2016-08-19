@@ -34,6 +34,7 @@
         [self setLabelAttributes:self.leftLabel];
         
         self.picImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"beijing"]];
+        self.picImage.contentMode = UIViewContentModeScaleAspectFit;
     
         [self.contentView addSubview:self.leftLabel];
         [self.contentView addSubview:self.picImage];
@@ -66,7 +67,11 @@
 }
 
 - (void)loadDataWithModel:(RepairVO *)model{
-    [self.picImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"bannerload"]];
+    [self.picImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"bannerload"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (image) {
+            
+        }
+    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

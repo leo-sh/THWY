@@ -16,8 +16,7 @@
 @property CGFloat topHeight;
 @property UITableView *tableView;
 @property int pageNumber;
-@property BOOL changeHeightStatu;
-@property CGFloat cellHeight;
+@property NSDictionary *rowAndHeight;
 @end
 
 @implementation ProclamationViewController
@@ -126,7 +125,7 @@
         self.topHeight = CGRectGetMaxY(cell.time.frame);
     }
     NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd HH:mm"];
-    
+    cell.row = indexPath.section;
     [cell setTitle:[self.data[indexPath.section] title]  time:time content:[self.data[indexPath.section] content] width:tableView.width];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
@@ -159,9 +158,12 @@
 //        NSLog(@"%f",tableView.width);
         NSArray *cellArray = @[[NSNumber numberWithFloat:200],[NSNumber numberWithFloat:tableView.width]];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"cellHeight" object:cellArray];
-        if (self.changeHeightStatu) {
-            self.changeHeightStatu = NO;
-            return self.cellHeight;
+        
+        NSString *rowS = [self.rowAndHeight allKeys][0];
+        
+        if (indexPath.section == [rowS integerValue]) {
+            
+            return [self.rowAndHeight[rowS] integerValue];
         }
         else
         {
@@ -191,8 +193,10 @@
 
 - (void)change:(NSNotification *)notification
 {
-    self.changeHeightStatu = YES;
-    self.cellHeight = [[notification.object firstObject] floatValue];
+//    self.changeHeightStatu = YES;
+//    self.cellHeight = [[notification.object firstObject] floatValue];
+    self.rowAndHeight = notification.object;
+    [self.tableView reloadData];
 }
 
 /*
