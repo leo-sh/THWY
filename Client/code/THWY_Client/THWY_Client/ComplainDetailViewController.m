@@ -61,6 +61,12 @@
                 sectionThreeData = @[@"未处理",complaint.ctime];
                 
             }
+            NSLog(@"处理状态为%@",complaint.st);
+            [[ServicesManager getAPI]getComplaintStates:^(NSString *errorMsg, NSArray *list) {
+              
+                NSLog(@"%@",list);
+                
+            }];
             self.data = @[sectionOneData,sectionTwoData,sectionThreeData];
             
             dispatch_async(dispatch_get_main_queue(), ^{

@@ -55,6 +55,7 @@
         else if (list.count == 0)
         {
             [self.tableView.mj_footer endRefreshing];
+            [SVProgressHUD dismiss];
         }
         else
         {
@@ -88,7 +89,7 @@
         
         if (self.data) {
             self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-                self.pageNumber = 1;
+                self.pageNumber = 0;
                 [self.data removeAllObjects];
                 [self.contentEnd removeAllObjects];
                 [self getData];

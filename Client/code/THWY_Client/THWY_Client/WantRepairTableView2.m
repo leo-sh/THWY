@@ -38,7 +38,7 @@
         self.repairVO.videoPath = @"";
         self.repairVO.cls = @"";
         self.repairVO.image = [[UIImage alloc] init];
-
+        self.repairVO.estate_id = @"-1";
         self.cells = [NSMutableArray arrayWithArray:@[@"",@"",@"",@"",@"",@"",@"",@""]];
         
         [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -274,8 +274,6 @@
         errorMsg = @"请输入业主名字";
     }else if ([self.repairVO.call_phone isEqualToString:@""]){
         errorMsg = @"请输入业主联系方式";
-    }else if ([self.repairVO.estate_id isEqualToString:@""] || [self.repairVO.block isEqualToString:@""] || [self.repairVO.unit isEqualToString:@""] || [self.repairVO.layer isEqualToString:@""]){
-        errorMsg = @"请选择房源";
     }else if ([self.repairVO.cls isEqualToString:@""]){
         errorMsg = @"请选择报修类型";
     }
@@ -286,14 +284,31 @@
 //    }
     else if ([self.repairVO.repair_detail isEqualToString:@""]){
         errorMsg = @"描述不能为空";
+    }else if(!self.repairVO.estate_id || [self.repairVO.estate_id isEqualToString:@""]){
+        errorMsg = @"请选择房源";
+    }else if (self.repairVO.estate_id && ![self.repairVO.estate_id isEqualToString:@""]){
+    
+        NSMutableArray *houseID = [NSMutableArray array];
+        for (HouseVO *house in [[[UDManager getUD] getUser] houses]) {
+            [houseID addObject:house.estate_id];
+        }
+        if ([houseID containsObject:self.repairVO.estate_id]){
+            errorMsg = @"";
+        }else{
+            errorMsg = @"你好业主,不能为其他楼盘提交公共报修,请重新选择";
+        }
     }
+    
+//    if ([self.repairVO.estate_id isEqualToString:@""] || [self.repairVO.block isEqualToString:@""] || [self.repairVO.unit isEqualToString:@""] || [self.repairVO.layer isEqualToString:@"" ] || !self.repairVO.estate_id || !self.repairVO.block || !self.repairVO.unit || !self.layer ){
+//        errorMsg = @"请选择房源";
+//    }
     
     if (![errorMsg isEqualToString:@""]){
         [SVProgressHUD showErrorWithStatus:errorMsg];
         return;
     }
 
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认提交" message:@"您确定提交报修吗?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"我要报修" message:@"确定提交报修操作吗?" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if (![self.repairVO.videoPath isEqualToString:@""]){
             
@@ -304,28 +319,32 @@
                     break;
                 case ReachableViaWWAN:{
                     
-                    TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"当前处于非WiFi状态" message:@"你确定上传视频吗?"];
-                    [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancle handler:^(TYAlertAction *action) {
-                        
-                    }]];
-                    
-                    [alertView addAction:[TYAlertAction actionWithTitle:@"确定" style:TYAlertActionStyleDestructive handler:^(TYAlertAction *action) {
-                        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"当前处于非WiFi状态" message:@"你确定上传视频吗?" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [SVProgressHUD showWithStatus:@"数据上传中..."];
                         
                         [My_ServicesManager addPublicRepair:self.repairVO onComplete:^(NSString *errorMsg) {
-                            
-                            [self.repairDelegate commitComplete:errorMsg];
+                                [self.repairDelegate commitComplete:errorMsg];
                             
                         }];
-                        
-                    }]];
+
+                    }];
+                    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                        return ;
+                    }];
                     
-                    [alertView showInWindow];
+                    [alert addAction:confirm];
+                    [alert addAction:cancel];
+                    
+                    [(UIViewController *)self.repairDelegate presentViewController:alert animated:YES completion:^{
+                        
+                    }];
+
                     break;
                 }
                 case ReachableViaWiFi:{
                     
-                    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+                    [SVProgressHUD showWithStatus:@"数据上传中..."];
                     
                     [My_ServicesManager addPublicRepair:self.repairVO onComplete:^(NSString *errorMsg) {
                         
@@ -337,6 +356,13 @@
                 default:
                     break;
             }
+        }else{
+            [SVProgressHUD showWithStatus:@"数据上传中..."];
+            
+            [My_ServicesManager addPublicRepair:self.repairVO onComplete:^(NSString *errorMsg) {
+                [self.repairDelegate commitComplete:errorMsg];
+            }];
+
         }
 
     }];

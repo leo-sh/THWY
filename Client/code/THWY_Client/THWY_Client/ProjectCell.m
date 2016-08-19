@@ -57,9 +57,9 @@
             self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.estateArray.count + 45.0)<(My_ScreenH-84)?(44.0*self.estateArray.count + 45.0):(My_ScreenH-84))];
             self.alertTableView.type = AlertEstateType;
             self.alertTableView.data = self.estateArray;
-            self.alertTableView.selectedIndex = self.estateIndex;
             self.alertTableView.AlertDelegate = self;
             [self.alertTableView initViews];
+            self.alertTableView.selectedIndex = self.estateIndex;
             [self.alertTableView showInWindow];
         }
     }];
@@ -87,9 +87,9 @@
         self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.blockArray.count + 45.0)<(My_ScreenH-84)?(44.0*self.blockArray.count + 45.0):(My_ScreenH-84))];
         self.alertTableView.type = AlertBlockType;
         self.alertTableView.data = self.blockArray;
-        self.alertTableView.selectedIndex = self.blockIndex;
         self.alertTableView.AlertDelegate = self;
         [self.alertTableView initViews];
+        self.alertTableView.selectedIndex = self.blockIndex;
         [self.alertTableView showInWindow];
     }];
 }
@@ -114,8 +114,8 @@
         self.alertTableView.type = AlertUnitType;
         self.alertTableView.data = self.unitArray;
         self.alertTableView.AlertDelegate = self;
-        self.alertTableView.selectedIndex = self.unitIndex;
         [self.alertTableView initViews];
+        self.alertTableView.selectedIndex = self.unitIndex;
         [self.alertTableView showInWindow];
     }];
 }
@@ -141,8 +141,8 @@
         self.alertTableView.type = AlertLayerType;
         self.alertTableView.data = self.layerArray;
         self.alertTableView.AlertDelegate = self;
-        self.alertTableView.selectedIndex = self.layerIndex;
         [self.alertTableView initViews];
+        self.alertTableView.selectedIndex = self.layerIndex;
         [self.alertTableView showInWindow];
     }];
 }
@@ -153,6 +153,7 @@
     switch (self.alertTableView.type) {
         case 1:{
             self.estateIndex = index;
+            self.selectEstate_id = [self.estateArray[index] estate_id];
             [btn setTitle:[self.estateArray[index] estate_name] forState:UIControlStateNormal];
             break;
         }
