@@ -35,6 +35,7 @@
 @property (nonatomic , copy) NSString              * callback_xl;
 @property (nonatomic , copy) NSString              * complaint_person;
 @property (nonatomic , copy) NSString              * st;
+@property (nonatomic , strong) ComplaintStateVO    * state;
 @property (nonatomic , copy) NSString              * deal_remark;
 @property (nonatomic , copy) NSString              * mph;
 

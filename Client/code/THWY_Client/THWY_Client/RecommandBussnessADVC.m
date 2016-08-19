@@ -31,7 +31,7 @@
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
     
     [self initViews];
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     [self getBussnessData];
 }
 

@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self ViewInitSetting];
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     [self getData];
     [self createUI];
     // Do any additional setup after loading the view.

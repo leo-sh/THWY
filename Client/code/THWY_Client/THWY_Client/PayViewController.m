@@ -46,7 +46,7 @@
 
 - (void)getData
 {
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
 
     [[ServicesManager getAPI]getFees:self.page year:self.year feeState:self.statu onComplete:^(NSString *errorMsg, NSArray *list) {
         

@@ -54,7 +54,7 @@
 
 #pragma mark - 轮播图
 - (void)getData{
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     self.adDataArray = [[NSMutableArray alloc] init];
     [[ServicesManager getAPI] getRecommendMerchants:1 onComplete:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg) {
@@ -295,7 +295,7 @@
     }];
     
     self.ADLabel = [[UILabel alloc] init];
-    self.ADLabel.text = @"数据加载中...";
+    self.ADLabel.text = @"加载数据中，请稍等...";
 //    self.ADLabel.textColor = [UIColor whiteColor];
     [self.adLabelScrollView addSubview:self.ADLabel];
     [self.ADLabel mas_makeConstraints:^(MASConstraintMaker *make) {

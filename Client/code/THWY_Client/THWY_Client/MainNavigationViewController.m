@@ -39,7 +39,7 @@
     }else if ([pushType isEqualToString:@"6"])
     {
 //        社区商圈-商圈公告
-        [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
         [My_ServicesManager getAnAd:Id onComplete:^(NSString *errorMsg, AdVO *ad) {
             if (errorMsg == nil) {
                 ADDetailVC *detail = [[ADDetailVC alloc] init];

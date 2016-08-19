@@ -35,12 +35,11 @@
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
 
     [self initViews];
-    [self.tableView.mj_header beginRefreshing];
-//    [self getBussnessData];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+    [self getBussnessData];
 }
 
 - (void)getBussnessData{
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
     [self.bussnessModels removeAllObjects];
     [[ServicesManager getAPI] getRecommendGoods:0 onComplete:^(NSString *errorMsg, NSArray *list) {
         
@@ -89,8 +88,6 @@
 }
 
 - (void)loadMoreData{
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
-    
     [[ServicesManager getAPI] getRecommendGoods:++self.page onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg){

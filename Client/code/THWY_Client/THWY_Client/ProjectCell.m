@@ -40,7 +40,7 @@
 
 
 - (IBAction)projectSelect:(UIButton *)sender {
-    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     [My_ServicesManager getEstates:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -66,7 +66,7 @@
 }
 
 - (IBAction)blockSelect:(UIButton *)sender {
-    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     if (self.estateIndex == -1 || ![self.estateArray[self.estateIndex] estate_id] || [[self.estateArray[self.estateIndex] estate_id] isEqualToString:@""]) {
         [SVProgressHUD showErrorWithStatus:@"请选择楼盘"];
         return;
@@ -95,7 +95,7 @@
 }
 
 - (IBAction)unitSelect:(UIButton *)sender {
-    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     if (self.blockIndex == -1 || !self.blockArray[self.blockIndex] || [self.blockArray[self.blockIndex] isEqualToString:@""]) {
         [SVProgressHUD showErrorWithStatus:@"请选择栋"];
         return;
@@ -121,7 +121,7 @@
 }
 
 - (IBAction)layerSelect:(UIButton *)sender {
-    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     
     if (self.unitIndex == -1 || !self.unitArray[self.unitIndex] || [[self.unitArray[self.unitIndex] stringValue] isEqualToString:@""]) {
         [SVProgressHUD showErrorWithStatus:@"请选择单元"];

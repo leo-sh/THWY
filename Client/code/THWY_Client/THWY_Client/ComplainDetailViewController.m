@@ -40,7 +40,7 @@
 
 - (void)getData
 {
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
 
     [[ServicesManager getAPI] getAComplaint:self.complianId onComplete:^(NSString *errorMsg, ComplaintVO *complaint) {
         if (errorMsg) {
@@ -52,28 +52,12 @@
             NSLog(@"%@",self.complianId);
             NSArray *sectionOneData = @[complaint.complaint_type_name,complaint.estate,complaint.complaint_person,complaint.complaint_phone];
             NSArray *sectionTwoData = @[complaint.complaint_content];
-            NSArray *sectionThreeData;
-            if ([complaint.st integerValue]) {
-                sectionThreeData = @[@"已处理",complaint.ctime];
-            }
-            else
-            {
-                sectionThreeData = @[@"未处理",complaint.ctime];
-                
-            }
-            NSLog(@"处理状态为%@",complaint.st);
-            [[ServicesManager getAPI]getComplaintStates:^(NSString *errorMsg, NSArray *list) {
-              
-                NSLog(@"%@",list);
-                
-            }];
+            NSArray *sectionThreeData = @[complaint.state.name ,complaint.ctime];
+            
             self.data = @[sectionOneData,sectionTwoData,sectionThreeData];
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                [SVProgressHUD dismiss];
-                
-            });
+            [self.tableView reloadData];
+            [SVProgressHUD dismiss];
         }
         
     }];

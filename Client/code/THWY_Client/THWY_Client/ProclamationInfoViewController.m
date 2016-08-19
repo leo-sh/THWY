@@ -52,7 +52,7 @@
     }
     else
     {
-        [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
         switch (self.type) {
             case 0:
             {
@@ -273,10 +273,6 @@
     webView.superview.height = webView.bottom + 10;
     
     [SVProgressHUD dismiss];
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

@@ -13,6 +13,7 @@
 {
     NSString* _userName;
     NSString* _passWord;
+    NSArray* _statesList;
 }
 
 @property (nonatomic, strong) Reachability* baiduReach;
@@ -616,8 +617,8 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
-                for (NSDictionary* complaintStateDic in responseObject[@"datas"][@"datas"]) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* complaintStateDic in responseObject[@"datas"]) {
                     ComplaintStateVO *state = [[ComplaintStateVO alloc]initWithJSON:complaintStateDic];
                     [listArr addObject:state];
                 }
@@ -710,7 +711,35 @@ savePassWord:(BOOL)save
         }else
         {
             ComplaintVO *complaint = [[ComplaintVO alloc]initWithJSON:responseObject[@"datas"]];
-            onComplete(nil,complaint);
+            if (_statesList) {
+                for (ComplaintStateVO* state in _statesList) {
+                    if ([state.st intValue] == [complaint.st intValue]) {
+                        complaint.state = state;
+                        break ;
+                    }
+                }
+                onComplete(nil,complaint);
+            }else
+            {
+                [self getComplaintStates:^(NSString *errorMsg, NSArray *list) {
+                    if (errorMsg) {
+                        onComplete(nil,complaint);
+                    }else
+                    {
+                        _statesList = list;
+                        for (ComplaintStateVO* state in _statesList) {
+                            if ([state.st intValue] == [complaint.st intValue]) {
+                                complaint.state = state;
+                                break ;
+                            }
+                        }
+                        onComplete(nil,complaint);
+                    }
+                    
+                }];
+            }
+            
+            
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         onComplete(@"网络连接错误",nil);
@@ -1562,9 +1591,7 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-        [self getAnAd:@"2" onComplete:^(NSString *errorMsg, AdVO *ad) {
-            
-        }];
+        
     }else
     {
 //        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {
