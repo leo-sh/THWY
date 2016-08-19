@@ -9,7 +9,9 @@
 #import "RepairStatistisVC.h"
 #import "RepairStatisticsButton.h"
 #import "RepairStatisticsCell.h"
+#import "RepairStatisticsFinishCell.h"
 #import "AlertEstateTableView.h"
+#import "RepairStatisticVO.h"
 
 @interface RepairStatistisVC ()<AlertEstateTableViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -29,6 +31,8 @@
 @property (assign, nonatomic) NSInteger estateId;
 @property (assign, nonatomic) NSInteger switchFlag;
 
+@property (strong, nonatomic) NSMutableArray *dataArray;
+
 @end
 
 @implementation RepairStatistisVC
@@ -43,6 +47,7 @@
     [self getEstatesData];
     [self initViews];
     [self getStatisticsData:nil];
+    self.dataArray = [NSMutableArray array];
 }
 
 //获取楼盘数据
@@ -63,17 +68,37 @@
 
 - (void)getStatisticsData:(NSString *)estateId{
     //获取统计数据
+    [self.dataArray removeAllObjects];
+    [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
     switch (self.switchFlag) {
         case 1:{
             [My_ServicesManager getRepairStatistic:estateId onComplete:^(NSString *errorMsg, NSArray *list) {
-                
+                if (errorMsg) {
+                    [SVProgressHUD showErrorWithStatus:errorMsg];
+                }else{
+                    
+                    for (RepairStatisticVO *model in list) {
+                        [self.dataArray addObject:model];
+                    }
+                    [self.tableView1 reloadData];
+                    [SVProgressHUD dismiss];
+                }
             }];
         
             break;
         }
         case 2:{
             [My_ServicesManager getPublicRepairStatistic:estateId onComplete:^(NSString *errorMsg, NSArray *list) {
-                
+                if (errorMsg) {
+                    [SVProgressHUD showErrorWithStatus:errorMsg];
+                }else{
+                    
+                    for (RepairStatisticVO *model in list) {
+                        [self.dataArray addObject:model];
+                    }
+                    [self.tableView2 reloadData];
+                    [SVProgressHUD dismiss];
+                }
             }];
             break;
         }
@@ -143,20 +168,24 @@
 //        tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
         tableView.rowHeight = 50.0<self.scrollView.height/5.0?self.scrollView.height/5.0:50.0;
         [tableView registerClass:[RepairStatisticsCell class] forCellReuseIdentifier:@"RepairStatisticsCell"];
+        [tableView registerClass:[RepairStatisticsCell class] forCellReuseIdentifier:@"RepairStatisticsFinishCell"];
+        
         switch (i) {
             case 0:
                 self.tableView1 = tableView;
+                [self.scrollView addSubview:self.tableView1];
                 break;
             case 1:
                 self.tableView2 = tableView;
+                [self.scrollView addSubview:self.tableView2];
                 break;
             case 2:
                 self.tableView3 = tableView;
+                [self.scrollView addSubview:self.tableView3];
                 break;
             default:
                 break;
         }
-        [self.scrollView addSubview:tableView];
         
     }
 

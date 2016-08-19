@@ -140,6 +140,8 @@
     self.userInfoView = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, My_ScreenW, 1/4.0 * (My_ScreenH-64) - topMargin*2)];
     [self.userInfoView setBackgroundImage:[UIImage imageNamed:@"main_背景"] forState:UIControlStateNormal];
     [self.userInfoView addTarget:self action:@selector(showUserInfoVC) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.userInfoView];
+    
     self.headImage = [[UIImageView alloc] init];
     self.headImage.image = [UIImage imageNamed:@"Avatar"];
     self.headImage.userInteractionEnabled = YES;
@@ -191,8 +193,6 @@
         make.size.mas_equalTo(CGSizeMake(12, 20));
         make.right.mas_equalTo(self.userInfoView.mas_right).offset(-30);
     }];
-    
-    [self.view addSubview:self.userInfoView];
 
 }
 
@@ -220,8 +220,8 @@
     
     UIButton *baoxiujilu = [[UIButton alloc] init];
     baoxiujilu.tag = 102;
-    [baoxiujilu setBackgroundImage:[UIImage imageNamed:@"main_保修记录"] forState:UIControlStateNormal];
-    [baoxiujilu setBackgroundImage:[UIImage imageNamed:@"main_保修记录按下"] forState:UIControlStateHighlighted];
+    [baoxiujilu setBackgroundImage:[UIImage imageNamed:@"main_报修记录"] forState:UIControlStateNormal];
+    [baoxiujilu setBackgroundImage:[UIImage imageNamed:@"main_报修记录按下"] forState:UIControlStateHighlighted];
     [self.bgScrollView addSubview:baoxiujilu];
     [baoxiujilu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(woyaobaoxiu.mas_left);
@@ -244,22 +244,22 @@
     UIButton *baoxiujiedan = [[UIButton alloc] init];
     baoxiujiedan.tag = 104;
     [baoxiujiedan setBackgroundImage:[UIImage imageNamed:@"main_报修接单"] forState:UIControlStateNormal];
-    [baoxiujiedan setBackgroundImage:[UIImage imageNamed:@"main_保修接单按下"] forState:UIControlStateHighlighted];
+    [baoxiujiedan setBackgroundImage:[UIImage imageNamed:@"main_报修接单按下"] forState:UIControlStateHighlighted];
     [self.bgScrollView addSubview:baoxiujiedan];
     [baoxiujiedan mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(woyaobaoxiu.mas_right).offset(topMargin);
         make.top.mas_equalTo(woyaobaoxiu.mas_top);
         make.height.mas_equalTo(woyaobaoxiu.mas_height);
-        make.width.mas_equalTo(woyaobaoxiu.mas_width).offset(-topMargin).multipliedBy(0.5);
+        make.width.mas_equalTo(woyaobaoxiu.mas_width).multipliedBy(0.5).offset(-topMargin*0.5);
     }];
     
     UIButton *baoxiutongji = [[UIButton alloc] init];
     baoxiutongji.tag = 105;
     [baoxiutongji setBackgroundImage:[UIImage imageNamed:@"main_报修统计"] forState:UIControlStateNormal];
-    [baoxiutongji setBackgroundImage:[UIImage imageNamed:@"main_保修统计按下"] forState:UIControlStateHighlighted];
+    [baoxiutongji setBackgroundImage:[UIImage imageNamed:@"main_报修统计按下"] forState:UIControlStateHighlighted];
     [self.bgScrollView addSubview:baoxiutongji];
     [baoxiutongji mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(woyaobaoxiu.mas_right).offset(topMargin);
+        make.left.mas_equalTo(baoxiujiedan.mas_right).offset(topMargin);
         make.top.mas_equalTo(woyaobaoxiu.mas_top);
         make.width.and.height.mas_equalTo(baoxiujiedan);
     }];
@@ -318,9 +318,9 @@
 }
 //pushVC
 - (void)showVC:(UIButton *)button{
-    if (button.tag-101 == 0) {
-        [SVProgressHUD showWithStatus:@"加载中..."];
-    }
+//    if (button.tag-101 == 0) {
+//        [SVProgressHUD showWithStatus:@"加载中..."];
+//    }
     
     NSArray *VCNames = @[@"WantRepairesVC",//我要报修 101
                          @"RepairRecordsVC",//报修记录 102
