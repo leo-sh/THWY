@@ -1,17 +1,18 @@
 //
-//  RepairStatisticsCell.h
+//  RepairStatisticsFinishCell.h
 //  THWY_Server
 //
-//  Created by wei on 16/8/18.
+//  Created by wei on 16/8/19.
 //  Copyright © 2016年 SXZ. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface RepairStatisticsCell : UITableViewCell
+@interface RepairStatisticsFinishCell : UITableViewCell
 
 @property (assign, nonatomic) NSInteger index;
 
 - (void)loadDataFromRepairVO:(RepairStatisticVO *)model;
+
 
 @end

@@ -8,6 +8,7 @@
 
 #import "RepairStatistisVC.h"
 #import "RepairStatisticsButton.h"
+#import "RepairStatisticsCell.h"
 #import "AlertEstateTableView.h"
 
 @interface RepairStatistisVC ()<AlertEstateTableViewDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -141,10 +142,10 @@
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //        tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
         tableView.rowHeight = 50.0<self.scrollView.height/5.0?self.scrollView.height/5.0:50.0;
+        [tableView registerClass:[RepairStatisticsCell class] forCellReuseIdentifier:@"RepairStatisticsCell"];
         switch (i) {
             case 0:
                 self.tableView1 = tableView;
-//                [self.tableView1 registerClass:[] forCellReuseIdentifier:@""];
                 break;
             case 1:
                 self.tableView2 = tableView;

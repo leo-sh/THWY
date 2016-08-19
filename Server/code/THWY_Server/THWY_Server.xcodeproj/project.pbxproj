@@ -166,6 +166,7 @@
 		793B8EE11D65AEA500290EAB /* RepairStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */; };
 		7973842D1D66D7D100708E62 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7973842C1D66D7D100708E62 /* RootVC.m */; };
 		797384301D66D7E300708E62 /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7973842F1D66D7E300708E62 /* MainNavigationViewController.m */; };
+		797384331D66D94500708E62 /* RepairStatisticsFinishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 797384321D66D94500708E62 /* RepairStatisticsFinishCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -486,6 +487,8 @@
 		7973842C1D66D7D100708E62 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
 		7973842E1D66D7E300708E62 /* MainNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationViewController.h; sourceTree = "<group>"; };
 		7973842F1D66D7E300708E62 /* MainNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationViewController.m; sourceTree = "<group>"; };
+		797384311D66D94500708E62 /* RepairStatisticsFinishCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticsFinishCell.h; sourceTree = "<group>"; };
+		797384321D66D94500708E62 /* RepairStatisticsFinishCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatisticsFinishCell.m; sourceTree = "<group>"; };
 		9400B9791D6188B200E49F0E /* fasong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fasong.caf; sourceTree = "<group>"; };
 		9400B97A1D6188B200E49F0E /* shou.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shou.caf; sourceTree = "<group>"; };
 		9400B97B1D6188BF00E49F0E /* tuisong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tuisong.caf; sourceTree = "<group>"; };
@@ -736,6 +739,8 @@
 				791B4E2E1D64693200AF9371 /* RepairStatisticsButton.m */,
 				793B8EDF1D65AEA500290EAB /* RepairStatisticsCell.h */,
 				793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */,
+				797384311D66D94500708E62 /* RepairStatisticsFinishCell.h */,
+				797384321D66D94500708E62 /* RepairStatisticsFinishCell.m */,
 			);
 			name = RepairStatisticsViews;
 			path = THWY_Server/Views/RepairStatisticsViews;
@@ -1433,6 +1438,7 @@
 				79270E541D61ACDA00E29568 /* MsgVO.m in Sources */,
 				79270E011D61ACB100E29568 /* MKAnnotationView+WebCache.m in Sources */,
 				791B4DCE1D645D6F00AF9371 /* UploadCell.m in Sources */,
+				797384331D66D94500708E62 /* RepairStatisticsFinishCell.m in Sources */,
 				79270DCA1D61ACB100E29568 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				79270F5C1D61B1EF00E29568 /* UIImage+Extension.m in Sources */,
 				79270E0A1D61ACB100E29568 /* UIButton+WebCache.m in Sources */,
