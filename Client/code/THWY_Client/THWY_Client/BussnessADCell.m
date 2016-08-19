@@ -43,27 +43,13 @@
     self.advo = merchant;
 
     self.timeLabel.text = [NSString stringDateFromTimeInterval:[merchant.ctime integerValue] withFormat:@"YYYY-MM-dd HH:mm"];
-
-//    NSArray *array = @[merchant.content];
-//    NSPredicate * prdicate = [NSPredicate predicateWithFormat:@"SELF LIKE '<*?>'"];
-//    NSArray *a = [array filteredArrayUsingPredicate:prdicate];
-//    
-//    if (a.count) {
-//        
-//        NSAttributedString *string = [[NSAttributedString alloc]initWithData:[merchant.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-//        self.desc.text = string.string;
-//    }
-//    else
-//    {
-//        self.desc.text = merchant.content;
-//        
-//    }
     
     NSArray *array = @[merchant.content];
     NSPredicate * prdicate = [NSPredicate predicateWithFormat:@"SELF LIKE '<*?>'"];
     NSArray *a = [array filteredArrayUsingPredicate:prdicate];
     
     if (a.count) {
+        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
         for (UIView* subView in self.desc.superview.subviews) {
             if ([subView isKindOfClass:[UITextView class]]) {
                 [subView removeFromSuperview];
@@ -112,6 +98,8 @@
     height = height * frame.height / clientheight;
     //再次设置WebView高度（点）
     webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
+    
+    [SVProgressHUD dismiss];
 }
 
 - (CGFloat)heightForCell{
