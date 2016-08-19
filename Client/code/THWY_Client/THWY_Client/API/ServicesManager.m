@@ -616,8 +616,8 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
-                for (NSDictionary* complaintStateDic in responseObject[@"datas"][@"datas"]) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* complaintStateDic in responseObject[@"datas"]) {
                     ComplaintStateVO *state = [[ComplaintStateVO alloc]initWithJSON:complaintStateDic];
                     [listArr addObject:state];
                 }
@@ -1562,7 +1562,7 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-        [self getAnAd:@"2" onComplete:^(NSString *errorMsg, AdVO *ad) {
+        [self getComplaintStates:^(NSString *errorMsg, NSArray *list) {
             
         }];
     }else

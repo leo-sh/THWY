@@ -43,7 +43,7 @@
 
 - (void)getData
 {
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     
     if ([ServicesManager getAPI].status == NotReachable) {
         self.userInfo = [[UDManager getUD]getUser];
@@ -304,7 +304,7 @@
             
             UIAlertAction *agreeAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
-                [SVProgressHUD showWithStatus:@"修改中..."];
+                [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
                 [[ServicesManager getAPI]editUserInfo:[[self.canUpdateInfo[1] textField] text] carNumber:[[self.canUpdateInfo[4] textField] text] newUserName:[[self.canUpdateInfo[5] textField] text] newPassWord:[[self.canUpdateInfo[6] textField] text] onComplete:^(NSString *errorMsg) {
                     if (errorMsg) {
                         [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -376,7 +376,7 @@
     //获取选取的图片
     UIImage *image = info[UIImagePickerControllerEditedImage];
     
-    [SVProgressHUD showWithStatus:@"上传中..."];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     [[ServicesManager getAPI]upLoadAvatar:image OnComplete:^(NSString *errorMsg, NSString *avatar) {
         
         if (errorMsg) {

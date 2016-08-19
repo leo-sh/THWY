@@ -40,7 +40,7 @@
 }
 
 - (void)getBussnessData{
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     [self.bussnessModels removeAllObjects];
     [[ServicesManager getAPI] getRecommendGoods:0 onComplete:^(NSString *errorMsg, NSArray *list) {
         
@@ -89,7 +89,7 @@
 }
 
 - (void)loadMoreData{
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     
     [[ServicesManager getAPI] getRecommendGoods:++self.page onComplete:^(NSString *errorMsg, NSArray *list) {
         

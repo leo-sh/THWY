@@ -101,7 +101,7 @@
     [self.btnContact setTitle:@"联系商家" forState:UIControlStateNormal];
     [self.btnContact setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.btnContact setBackgroundColor:My_NAV_BG_Color];
-    self.btnContact.titleLabel.font = FontSize(CONTENT_FONT);
+    self.btnContact.titleLabel.font = FontSize(CONTENT_FONT + 1);
     [self.btnContact addTarget:self action:@selector(contact:) forControlEvents:UIControlEventTouchUpInside];
     self.btnContact.layer.cornerRadius = 2;
     self.btnContact.clipsToBounds = YES;
@@ -116,9 +116,9 @@
     self.btnShowDetail = [[UIButton alloc] init];
     [self.btnShowDetail setTitle:@"进入商家" forState:UIControlStateNormal];
     [self.btnShowDetail setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.btnShowDetail.titleLabel.font = FontSize(CONTENT_FONT);
+    self.btnShowDetail.titleLabel.font = FontSize(CONTENT_FONT + 1);
     [self.btnShowDetail setBackgroundColor:My_NAV_BG_Color];
-    self.btnShowDetail.layer.cornerRadius = 2;
+    self.btnShowDetail.layer.cornerRadius = 2.5/375.0*My_ScreenW;
     self.btnShowDetail.clipsToBounds = YES;
     [self.btnShowDetail addTarget:self action:@selector(showDetail:) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.btnShowDetail];
@@ -132,7 +132,7 @@
 }
 
 - (void)getMerchantInfo{
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     [My_ServicesManager getAMerchant:self.merchant.Id onComplete:^(NSString *errorMsg, MerchantVO *merchant) {
         
         if (errorMsg) {

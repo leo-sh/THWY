@@ -27,7 +27,7 @@
 
 +(AssetView *)showInVC:(UIViewController *)vc onComplete:(void (^)(UIImage* image))onComplete
 {
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     [[self shareView].photoArr removeAllObjects];
     [self shareView].vc = vc;
     [self shareView].onComplete = onComplete;

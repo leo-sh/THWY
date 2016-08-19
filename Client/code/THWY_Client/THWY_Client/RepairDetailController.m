@@ -34,7 +34,7 @@
 }
 
 - (void)getRepairVO{
-    [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     [My_ServicesManager getARepair:self.type repairId:self.repairVOId onComplete:^(NSString *errorMsg, RepairVO *list) {
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];

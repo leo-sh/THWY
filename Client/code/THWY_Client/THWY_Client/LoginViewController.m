@@ -285,7 +285,7 @@
         [self.passWordTF endEditing:YES];
     }
     
-    [SVProgressHUD showWithStatus:@"登录中..."];
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     [[ServicesManager getAPI] login:self.userTF.text password:self.passWordTF.text savePassWord:self.rememberPassWordBtn.chooseStatu onComplete:^(NSString *errorMsg, UserVO *user) {
         NSLog(@"%@",user);
         if (errorMsg) {

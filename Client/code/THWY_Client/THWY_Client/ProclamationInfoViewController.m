@@ -52,7 +52,7 @@
     }
     else
     {
-        [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
         switch (self.type) {
             case 0:
             {

@@ -395,7 +395,7 @@
 //pushVC
 - (void)showVC:(UIButton *)button{
     if (button.tag-101 == 0) {
-        [SVProgressHUD showWithStatus:@"正在加载数据，请稍等......"];
+        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     }
     
     NSArray *VCNames = @[@"WantRepairesVC",//我要报修

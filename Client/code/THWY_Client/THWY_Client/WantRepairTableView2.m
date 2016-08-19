@@ -310,7 +310,7 @@
                     }]];
                     
                     [alertView addAction:[TYAlertAction actionWithTitle:@"确定" style:TYAlertActionStyleDestructive handler:^(TYAlertAction *action) {
-                        [SVProgressHUD showWithStatus:@"数据上传中..."];
+                        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
                         
                         [My_ServicesManager addPublicRepair:self.repairVO onComplete:^(NSString *errorMsg) {
                             
@@ -325,7 +325,7 @@
                 }
                 case ReachableViaWiFi:{
                     
-                    [SVProgressHUD showWithStatus:@"数据上传中..."];
+                    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
                     
                     [My_ServicesManager addPublicRepair:self.repairVO onComplete:^(NSString *errorMsg) {
                         
