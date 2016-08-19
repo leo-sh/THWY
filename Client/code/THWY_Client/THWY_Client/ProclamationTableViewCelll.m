@@ -7,7 +7,7 @@
 //
 
 #import "ProclamationTableViewCell.h"
-@interface ProclamationTableViewCell()
+@interface ProclamationTableViewCell()<UIWebViewDelegate>
 @property UIImageView *head;
 @property UIImageView *right;
 @property UIView *backView;
@@ -52,6 +52,9 @@
         self.time.textAlignment = NSTextAlignmentCenter;
 
         self.time.textColor = [UIColor lightGrayColor];
+        
+        self.content.numberOfLines = 6;
+        self.content.font = FontSize(CONTENT_FONT);
         
         [self.backView addSubview:self.title];
         [self.backView addSubview:self.time];
@@ -98,21 +101,49 @@
     
     if (a.count) {
         
-        NSAttributedString *string = [[NSAttributedString alloc]initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-        self.content.attributedText = string;
+        for (UIView* subView in self.backView.subviews) {
+            if ([subView isKindOfClass:[UIWebView class]]) {
+                [subView removeFromSuperview];
+                break;
+            }
+        }
+        
+        UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.time.frame) + 8, width, 0)];
+        webView.scrollView.bounces = NO;
+        webView.backgroundColor = My_clearColor;
+        webView.delegate = self;
+        webView.opaque = NO;
+        NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", content];
+        [webView loadHTMLString:htmlcontent baseURL:nil];
+        
+        [self.backView addSubview:webView];
+        [self.content removeFromSuperview];
     }
     else
     {
         self.content.text = content;
-
+        CGFloat contenHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
+        self.content.frame = CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, contenHeight);
+        [self.backView addSubview:self.content];
     }
-    self.content.numberOfLines = 6;
-    self.content.font = FontSize(CONTENT_FONT);
-    CGFloat contenHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
-    self.content.frame = CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, contenHeight);
-    
-    
-    
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //获取页面高度（像素）
+    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"];
+    float clientheight = [clientheight_str floatValue];
+    //设置到WebView上
+    webView.frame = CGRectMake(webView.x, webView.y, webView.width, clientheight);
+    //获取WebView最佳尺寸（点）
+    CGSize frame = [webView sizeThatFits:webView.frame.size];
+    //获取内容实际高度（像素）
+    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-top'))  + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-bottom'))"];
+    float height = [height_str floatValue];
+    //内容实际高度（像素）* 点和像素的比
+    height = height * frame.height / clientheight;
+    //再次设置WebView高度（点）
+    webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
 }
 
 - (void)awakeFromNib {

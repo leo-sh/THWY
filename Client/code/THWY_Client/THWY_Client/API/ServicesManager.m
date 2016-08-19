@@ -13,6 +13,7 @@
 {
     NSString* _userName;
     NSString* _passWord;
+    NSArray* _statesList;
 }
 
 @property (nonatomic, strong) Reachability* baiduReach;
@@ -710,15 +711,34 @@ savePassWord:(BOOL)save
         }else
         {
             ComplaintVO *complaint = [[ComplaintVO alloc]initWithJSON:responseObject[@"datas"]];
-            [self getComplaintStates:^(NSString *errorMsg, NSArray *list) {
-                for (ComplaintStateVO* state in list) {
+            if (_statesList) {
+                for (ComplaintStateVO* state in _statesList) {
                     if ([state.st intValue] == [complaint.st intValue]) {
                         complaint.state = state;
-                        onComplete(nil,complaint);
-                        return ;
+                        break ;
                     }
                 }
-            }];
+                onComplete(nil,complaint);
+            }else
+            {
+                [self getComplaintStates:^(NSString *errorMsg, NSArray *list) {
+                    if (errorMsg) {
+                        onComplete(nil,complaint);
+                    }else
+                    {
+                        _statesList = list;
+                        for (ComplaintStateVO* state in _statesList) {
+                            if ([state.st intValue] == [complaint.st intValue]) {
+                                complaint.state = state;
+                                break ;
+                            }
+                        }
+                        onComplete(nil,complaint);
+                    }
+                    
+                }];
+            }
+            
             
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
