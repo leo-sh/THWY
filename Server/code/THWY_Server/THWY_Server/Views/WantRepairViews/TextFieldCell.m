@@ -7,7 +7,6 @@
 //
 
 #import "TextFieldCell.h"
-#import "Masonry/Masonry.h"
 
 @implementation TextFieldCell
 

@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1E29C6451D640FC400F1EE26 /* ReviseBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E29C6441D640FC400F1EE26 /* ReviseBtn.m */; };
-		1EEB03091D6401A500CACF00 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB03051D6401A500CACF00 /* RootVC.m */; };
-		1EEB030A1D6401A500CACF00 /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB03071D6401A500CACF00 /* MainNavigationViewController.m */; };
 		1EEB030E1D6401F800CACF00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB030C1D6401F800CACF00 /* ZYKeyboardUtil.m */; };
 		5BFFCE3D1D41B9C40066B1B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE3C1D41B9C40066B1B9 /* main.m */; };
 		5BFFCE401D41B9C40066B1B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE3F1D41B9C40066B1B9 /* AppDelegate.m */; };
@@ -163,19 +161,16 @@
 		79270F861D61BF5E00E29568 /* userAndPassWordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270F851D61BF5E00E29568 /* userAndPassWordTextField.m */; };
 		79270F891D61BF6800E29568 /* BlueCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270F881D61BF6800E29568 /* BlueCheckButton.m */; };
 		79270F8C1D61BF7400E29568 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270F8B1D61BF7400E29568 /* LoginViewController.m */; };
-		79340EDC1D66D16600437AA8 /* ADDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79340EDB1D66D16600437AA8 /* ADDetailVC.m */; };
 		793B8EDB1D656A9300290EAB /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDA1D656A9300290EAB /* AdVO.m */; };
 		793B8EDE1D6596A000290EAB /* AlertEstateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */; };
 		793B8EE11D65AEA500290EAB /* RepairStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */; };
+		7973842D1D66D7D100708E62 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7973842C1D66D7D100708E62 /* RootVC.m */; };
+		797384301D66D7E300708E62 /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7973842F1D66D7E300708E62 /* MainNavigationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1E29C6431D640FC400F1EE26 /* ReviseBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviseBtn.h; sourceTree = "<group>"; };
 		1E29C6441D640FC400F1EE26 /* ReviseBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviseBtn.m; sourceTree = "<group>"; };
-		1EEB03041D6401A500CACF00 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
-		1EEB03051D6401A500CACF00 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
-		1EEB03061D6401A500CACF00 /* MainNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationViewController.h; sourceTree = "<group>"; };
-		1EEB03071D6401A500CACF00 /* MainNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationViewController.m; sourceTree = "<group>"; };
 		1EEB030B1D6401F800CACF00 /* ZYKeyboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYKeyboardUtil.h; sourceTree = "<group>"; };
 		1EEB030C1D6401F800CACF00 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
 		5B2571CE1D4714E400CB4167 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -481,14 +476,16 @@
 		79270F881D61BF6800E29568 /* BlueCheckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCheckButton.m; sourceTree = "<group>"; };
 		79270F8A1D61BF7400E29568 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		79270F8B1D61BF7400E29568 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		79340EDA1D66D16600437AA8 /* ADDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADDetailVC.h; sourceTree = "<group>"; };
-		79340EDB1D66D16600437AA8 /* ADDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADDetailVC.m; sourceTree = "<group>"; };
 		793B8ED91D656A9300290EAB /* AdVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdVO.h; sourceTree = "<group>"; };
 		793B8EDA1D656A9300290EAB /* AdVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdVO.m; sourceTree = "<group>"; };
 		793B8EDC1D6596A000290EAB /* AlertEstateTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertEstateTableView.h; sourceTree = "<group>"; };
 		793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertEstateTableView.m; sourceTree = "<group>"; };
 		793B8EDF1D65AEA500290EAB /* RepairStatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticsCell.h; sourceTree = "<group>"; };
 		793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatisticsCell.m; sourceTree = "<group>"; };
+		7973842B1D66D7D100708E62 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
+		7973842C1D66D7D100708E62 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
+		7973842E1D66D7E300708E62 /* MainNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationViewController.h; sourceTree = "<group>"; };
+		7973842F1D66D7E300708E62 /* MainNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationViewController.m; sourceTree = "<group>"; };
 		9400B9791D6188B200E49F0E /* fasong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fasong.caf; sourceTree = "<group>"; };
 		9400B97A1D6188B200E49F0E /* shou.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shou.caf; sourceTree = "<group>"; };
 		9400B97B1D6188BF00E49F0E /* tuisong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tuisong.caf; sourceTree = "<group>"; };
@@ -509,10 +506,10 @@
 		1EEB03081D6401A500CACF00 /* MainController */ = {
 			isa = PBXGroup;
 			children = (
-				1EEB03041D6401A500CACF00 /* RootVC.h */,
-				1EEB03051D6401A500CACF00 /* RootVC.m */,
-				1EEB03061D6401A500CACF00 /* MainNavigationViewController.h */,
-				1EEB03071D6401A500CACF00 /* MainNavigationViewController.m */,
+				7973842B1D66D7D100708E62 /* RootVC.h */,
+				7973842C1D66D7D100708E62 /* RootVC.m */,
+				7973842E1D66D7E300708E62 /* MainNavigationViewController.h */,
+				7973842F1D66D7E300708E62 /* MainNavigationViewController.m */,
 			);
 			name = MainController;
 			path = ../../../../Client/code/THWY_Client/THWY_Client;
@@ -587,8 +584,6 @@
 		7902B0431D6412F400ADDAE0 /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
-				79340EDA1D66D16600437AA8 /* ADDetailVC.h */,
-				79340EDB1D66D16600437AA8 /* ADDetailVC.m */,
 				7902B0451D6412F400ADDAE0 /* MainVCs */,
 				791B4E211D6465DD00AF9371 /* RepairStatistics */,
 				791B4E191D64657E00AF9371 /* RepairAcceptOrder */,
@@ -1356,7 +1351,7 @@
 				79270E181D61ACB100E29568 /* TYAlertController+TransitionAnimate.m in Sources */,
 				79270DD81D61ACB100E29568 /* View+MASAdditions.m in Sources */,
 				79270F5B1D61B1EF00E29568 /* UIFont+Extension.m in Sources */,
-				79340EDC1D66D16600437AA8 /* ADDetailVC.m in Sources */,
+				7973842D1D66D7D100708E62 /* RootVC.m in Sources */,
 				79270E021D61ACB100E29568 /* NSData+ImageContentType.m in Sources */,
 				793B8EE11D65AEA500290EAB /* RepairStatisticsCell.m in Sources */,
 				79270E1F1D61ACB100E29568 /* TYShowAlertView.m in Sources */,
@@ -1397,6 +1392,7 @@
 				79270E1B1D61ACB100E29568 /* TYAlertFadeAnimation.m in Sources */,
 				79270F891D61BF6800E29568 /* BlueCheckButton.m in Sources */,
 				79270E001D61ACB100E29568 /* Reachability.m in Sources */,
+				797384301D66D7E300708E62 /* MainNavigationViewController.m in Sources */,
 				791B4DE31D645D9B00AF9371 /* RepairDetailController.m in Sources */,
 				79270E201D61ACB100E29568 /* UIView+TYAlertView.m in Sources */,
 				79270F8C1D61BF7400E29568 /* LoginViewController.m in Sources */,
@@ -1412,7 +1408,6 @@
 				79270E1C1D61ACB100E29568 /* TYAlertScaleFadeAnimation.m in Sources */,
 				79270F5D1D61B1EF00E29568 /* UIImage+ScreenShot.m in Sources */,
 				79270E111D61ACB100E29568 /* SVIndefiniteAnimatedView.m in Sources */,
-				1EEB030A1D6401A500CACF00 /* MainNavigationViewController.m in Sources */,
 				791B4E151D645F1A00AF9371 /* RepairRecordsVC.m in Sources */,
 				79270F591D61B1EF00E29568 /* UIButton+Extension.m in Sources */,
 				79270F5E1D61B1EF00E29568 /* UILabel+Extension.m in Sources */,
@@ -1429,7 +1424,6 @@
 				791B4E0F1D645ECF00AF9371 /* AlertTableView.m in Sources */,
 				79270DC51D61ACB100E29568 /* AFNetworkReachabilityManager.m in Sources */,
 				79270DD51D61ACB100E29568 /* MASViewConstraint.m in Sources */,
-				1EEB03091D6401A500CACF00 /* RootVC.m in Sources */,
 				791B4DF51D645DD500AF9371 /* ProjectCell.m in Sources */,
 				79270E041D61ACB100E29568 /* SDWebImageCompat.m in Sources */,
 				79270E081D61ACB100E29568 /* SDWebImageManager.m in Sources */,

@@ -7,8 +7,6 @@
 //
 
 #import "UploadCell.h"
-#import "Masonry/Masonry.h"
-
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
