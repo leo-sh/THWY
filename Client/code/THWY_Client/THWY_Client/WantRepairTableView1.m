@@ -363,7 +363,7 @@
                     
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"当前处于非WiFi状态" message:@"你确定上传视频吗?" preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                        [SVProgressHUD showWithStatus:@"数据上传中..."];
+                        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
                         
                         [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
                             
@@ -387,7 +387,7 @@
                 }
                 case ReachableViaWiFi:{
                     
-                    [SVProgressHUD showWithStatus:@"数据上传中..."];
+                    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
                     
                     [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
                         
@@ -400,7 +400,7 @@
                     break;
             }
         }else{
-            [SVProgressHUD showWithStatus:@"数据上传中..."];
+            [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
             
             [My_ServicesManager addRepair:self.repairVO onComplete:^(NSString *errorMsg) {
                 
