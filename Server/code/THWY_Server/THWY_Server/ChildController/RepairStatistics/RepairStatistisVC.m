@@ -173,7 +173,7 @@
         switch (i) {
             case 0:
                 self.tableView1 = tableView;
-//                [self.tableView1 registerClass:[] forCellReuseIdentifier:@""];
+                [self.scrollView addSubview:self.tableView1];
                 break;
             case 1:
                 self.tableView2 = tableView;
