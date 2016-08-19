@@ -264,6 +264,7 @@
         
         self.scrollView.contentOffset = CGPointMake(self.tableView.frame.size.width, 0);
         self.tableView2.contentOffset = CGPointMake(0, 0);
+        [self.tableView2.mj_header beginRefreshing];
         [self btnOnclicked:[self.bgView viewWithTag:300]];
         self.switchFlag = 2;
         self.selectIndex = 0;
@@ -273,14 +274,14 @@
     }else if (index == 0){
         self.scrollView.contentOffset = CGPointMake(0, 0);
         self.tableView.contentOffset = CGPointMake(0, 0);
+        [self.tableView.mj_header beginRefreshing];
         [self btnOnclicked:[self.bgView2 viewWithTag:310]];
         self.switchFlag = 1;
         self.selectIndex = 0;
         [self btnOnclicked:[self.bgView viewWithTag:300]];
 
     }
-    
-    [self refreshData];
+
 }
 //设置上拉下拉刷新
 - (void)initRefreshView{
@@ -318,18 +319,11 @@
 //加载更多
 - (void)loadMoreData{
     
-//    if (self.switchFlag == 1) {
-//        [self.tableView.mj_header beginRefreshing];
-//    }else{
-//        [self.tableView2.mj_header beginRefreshing];
-//    }
-    
     if (self.selectIndex == 0){
         [self getDataType:self.switchFlag statusID:@"0" page:++self.page];
     }else{
         [self getDataType:self.switchFlag statusID:[NSString stringWithFormat:@"%d", self.selectIndex+1] page:++self.page];
     }
-    
     
 }
 
@@ -339,19 +333,16 @@
     if (self.switchFlag == 1){
         btn = [self.bgView viewWithTag:300+self.selectIndex];
         self.selectIndex = (int)sender.tag - 300;
-        [self refreshData];
-//        self.tableView.contentOffset = CGPointMake(0, 0);
+        [self.tableView.mj_header beginRefreshing];
+
     }else if (self.switchFlag == 2){
         btn = [self.bgView2 viewWithTag:310+self.selectIndex];
         self.selectIndex = (int)sender.tag - 310;
-        [self refreshData];
-//        self.tableView2.contentOffset = CGPointMake(0, 0);
+        [self.tableView2.mj_header beginRefreshing];
     }
 
     [btn setImage:nil forState:UIControlStateNormal];
     [sender setImage:[UIImage imageNamed:@"records_按下"] forState:UIControlStateNormal];
-    
-//    [self refreshData];
 
 }
 
@@ -377,17 +368,6 @@
     }
     return nil;
 }
-
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.row == self.repairDataArray.count-1) {
-//        UIButton *btn_more = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-20, 30)];
-//        [btn_more setTitle:@"查看更多" forState:UIControlStateNormal];
-//        [btn_more setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        btn_more.titleLabel.font = [UIFont fontWithName:My_RegularFontName size:15.0];
-//        [btn_more addTarget:self action:@selector(loadMoreData:) forControlEvents:UIControlEventTouchUpInside];
-//        tableView.tableFooterView = btn_more;
-//    }
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
