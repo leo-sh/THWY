@@ -134,7 +134,7 @@
                     break;
                 }
                 case 1:{
-                    self.detailLabel.text = model._st;
+                    self.detailLabel.text = model.st;
                     [self.line setHidden:YES];
                     break;
                 }

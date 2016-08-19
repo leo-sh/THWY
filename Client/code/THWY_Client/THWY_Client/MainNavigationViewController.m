@@ -7,11 +7,11 @@
 //
 
 #import "MainNavigationViewController.h"
-#import "ADDetailVC.h"
-#import "ProclamationInfoViewController.h"
-#import "ComplainDetailViewController.h"
+//#import "ProclamationInfoViewController.h"
+//#import "ComplainDetailViewController.h"
 #import "UMessage.h"
 #import "BannerNotice.h"
+
 @interface MainNavigationViewController () <UINavigationControllerDelegate>
 //@property (nonatomic, strong) id popDelegate;
 {
@@ -29,37 +29,29 @@
     NSString* Id = userInfo[@"pk"];
     if ([pushType isEqualToString:@"5"])
     {
-//        业主公告
-        ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc]init];
-        
-        detail.proclamationId = Id;
-        
-        [self pushViewController:detail animated:YES];
+//        //        业主公告
+//        ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc]init];
+//        
+//        detail.proclamationId = Id;
+//        
+//        [self pushViewController:detail animated:YES];
         
     }else if ([pushType isEqualToString:@"6"])
     {
-//        社区商圈-商圈公告
-        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
-        [My_ServicesManager getAnAd:Id onComplete:^(NSString *errorMsg, AdVO *ad) {
-            if (errorMsg == nil) {
-                ADDetailVC *detail = [[ADDetailVC alloc] init];
-                detail.advo = ad;
-                [self pushViewController:detail animated:YES];
-                [SVProgressHUD dismiss];
-            }else
-            {
-                [SVProgressHUD showErrorWithStatus:errorMsg];
-            }
-        }];
+//        //        社区商圈-商圈公告
+//        ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc] init];
+//        detail.proclamationId = Id;
+//        detail.type = 1;
+//        [self.navigationController pushViewController:detail animated:YES];
         
     }else if ([pushType isEqualToString:@"7"])
     {
-//        缴费台账
-        ComplainDetailViewController *detail = [[ComplainDetailViewController alloc]init];
-        
-        detail.complianId = Id;
-        
-        [self pushViewController:detail animated:YES];
+//        //        缴费台账
+//        ComplainDetailViewController *detail = [[ComplainDetailViewController alloc]init];
+//        
+//        detail.complianId = Id;
+//        
+//        [self pushViewController:detail animated:YES];
     }
     if (_userInfo) {
         _userInfo = nil;

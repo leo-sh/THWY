@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UITextView *desc;
+@property (strong, nonatomic) UIWebView* webView;
 @property (strong, nonatomic) AdVO *advo;
 @end
 
@@ -50,26 +51,31 @@
     if (a.count) {
         [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
         for (UIView* subView in self.desc.superview.subviews) {
-            if ([subView isKindOfClass:[UIWebView class]]) {
+            if ([subView isKindOfClass:[UITextView class]]) {
                 [subView removeFromSuperview];
                 break;
             }
         }
         
-        UIWebView* webView = [[UIWebView alloc]initWithFrame:self.desc.frame];
+        self.webView = [[UIWebView alloc]initWithFrame:self.desc.frame];
         
-        webView.scrollView.bounces = NO;
-        webView.backgroundColor = My_clearColor;
-        webView.delegate = self;
-        webView.opaque = NO;
+        self.webView.scrollView.bounces = NO;
+        self.webView.backgroundColor = My_clearColor;
+        self.webView.delegate = self;
+        self.webView.opaque = NO;
         NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", merchant.content];
-        [webView loadHTMLString:htmlcontent baseURL:nil];
+        [self.webView loadHTMLString:htmlcontent baseURL:nil];
         
-        [self.desc.superview addSubview:webView];
+        [self.desc.superview addSubview:self.webView];
         self.desc.alpha = 0;
     }
     else
     {
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
+        CGRect rect = [merchant.content boundingRectWithSize:CGSizeMake(self.desc.width, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+        self.desc.width = rect.size.width;
+        self.desc.height = rect.size.height;
+        
         self.desc.text = merchant.content;
         self.desc.alpha = 1;
         
@@ -94,6 +100,16 @@
     webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
     
     [SVProgressHUD dismiss];
+}
+
+- (CGFloat)heightForCell{
+    
+    if (self.webView == nil) {
+        return 100.0 + self.desc.height + 10 > 300/667.0*My_ScreenH ? 100.0 + self.desc.height + 10:300/667.0*My_ScreenH;
+    }else{
+        return 100.0 + self.webView.height + 10 > 300/667.0*My_ScreenH ? 100.0 + self.webView.height +10:300/667.0*My_ScreenH;
+    }
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

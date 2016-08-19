@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainNavigationViewController.h"
-//#import "MainVC.h"
+#import "MainVC.h"
 #import "UMessage.h"
 
 @interface AppDelegate ()
@@ -59,8 +59,9 @@
     
     self.window = [[UIWindow alloc]initWithFrame:My_ScreenBounds];
     self.window.backgroundColor = My_Color(238, 238, 238);
-//    MainVC* mainVC = [[MainVC alloc]init];
-//    MainNavigationViewController* mainNav = [[MainNavigationViewController alloc]initWithRootViewController:mainVC];
+    MainVC* mainVC = [[MainVC alloc]init];
+    MainNavigationViewController* mainNav = [[MainNavigationViewController alloc]initWithRootViewController:mainVC];
+    self.window.rootViewController = mainNav;
     [self.window makeKeyAndVisible];
     
     if (launchOptions) {
@@ -68,7 +69,7 @@
         //这个判断是在程序没有运行的情况下收到通知，点击通知跳转页面
         if (remoteNotification) {
             NSLog(@"推送消息==== %@",remoteNotification);
-//            [mainNav popWithUserInfo:remoteNotification];
+            [mainNav popWithUserInfo:remoteNotification];
         }
         
     }

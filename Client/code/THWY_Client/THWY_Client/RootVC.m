@@ -18,7 +18,7 @@
 -(instancetype)init
 {
     if (self = [super init]) {
-//        [My_NoteCenter addObserver:self selector:@selector(netWorkChanged:) name:NetWorkChanged object:nil];
+        [My_NoteCenter addObserver:self selector:@selector(netWorkChanged:) name:NetWorkChanged object:nil];
     }
     return self;
 }
@@ -41,10 +41,10 @@
 
 -(void)showLogin:(BOOL)animated
 {
-    if (![My_ServicesManager isLogin]) {
-        LoginViewController *presentView = [[LoginViewController alloc]init];
-        [self.navigationController presentViewController:presentView animated:animated completion:nil];
-    }
+//    if (![My_ServicesManager isLogin]) {
+//        LoginViewController *presentView = [[LoginViewController alloc]init];
+//        [self.navigationController presentViewController:presentView animated:animated completion:nil];
+//    }
 }
 
 - (void)customNVBar{

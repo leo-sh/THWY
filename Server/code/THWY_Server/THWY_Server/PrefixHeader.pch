@@ -53,7 +53,7 @@
 #define My_KeyWindow [UIApplication sharedApplication].keyWindow
 #define My_ServicesManager [ServicesManager getAPI]
 
-#define My_NAV_BG_Color RGBColorFromX(0xF9F9F9)
+#define My_NAV_BG_Color My_Color(44, 166, 223)
 #define MainColor RGBColorFromX(0xEAB300)
 #define My_clearColor [UIColor clearColor]
 #define My_BlackColor RGBColorFromX(0x333333)
