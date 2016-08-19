@@ -264,9 +264,8 @@
         
         self.scrollView.contentOffset = CGPointMake(self.tableView.frame.size.width, 0);
         self.tableView2.contentOffset = CGPointMake(0, 0);
-        
-        self.switchFlag = 2;
         [self btnOnclicked:[self.bgView viewWithTag:300]];
+        self.switchFlag = 2;
         self.selectIndex = 0;
         [self btnOnclicked:[self.bgView2 viewWithTag:310]];
 
@@ -274,8 +273,8 @@
     }else if (index == 0){
         self.scrollView.contentOffset = CGPointMake(0, 0);
         self.tableView.contentOffset = CGPointMake(0, 0);
-        self.switchFlag = 1;
         [self btnOnclicked:[self.bgView2 viewWithTag:310]];
+        self.switchFlag = 1;
         self.selectIndex = 0;
         [self btnOnclicked:[self.bgView viewWithTag:300]];
 

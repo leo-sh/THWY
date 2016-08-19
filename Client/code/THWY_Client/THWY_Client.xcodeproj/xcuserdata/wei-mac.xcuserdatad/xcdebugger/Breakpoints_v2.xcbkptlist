@@ -84,12 +84,12 @@
                   moduleName = "THWY_Client"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wei-mac/Repos/THWY/Client/code/THWY_Client/THWY_Client/API/ServicesManager.m"
-                  timestampString = "493209139.587809"
+                  timestampString = "493263479.363361"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "171"
                   endingLineNumber = "171"
-                  offsetFromSymbolStart = "712">
+                  offsetFromSymbolStart = "742">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -99,12 +99,12 @@
                   moduleName = "THWY_Client"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wei-mac/Repos/THWY/Client/code/THWY_Client/THWY_Client/API/ServicesManager.m"
-                  timestampString = "493209139.587992"
+                  timestampString = "493263479.363553"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "171"
                   endingLineNumber = "171"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "15">
                </Location>
             </Locations>
          </BreakpointContent>
