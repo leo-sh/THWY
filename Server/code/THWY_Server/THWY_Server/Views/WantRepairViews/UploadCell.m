@@ -108,7 +108,7 @@
     //判断资源类型
     if ([mediaType isEqualToString:(NSString *)kUTTypeImage]){
         //如果是图片
-        UIImage *image = info[UIImagePickerControllerEditedImage];
+        UIImage *image = info[UIImagePickerControllerOriginalImage];
         if (_imagePickerController.sourceType == UIImagePickerControllerSourceTypeCamera) {
             //保存图片至相册
             UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
