@@ -163,6 +163,7 @@
 		79270F861D61BF5E00E29568 /* userAndPassWordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270F851D61BF5E00E29568 /* userAndPassWordTextField.m */; };
 		79270F891D61BF6800E29568 /* BlueCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270F881D61BF6800E29568 /* BlueCheckButton.m */; };
 		79270F8C1D61BF7400E29568 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270F8B1D61BF7400E29568 /* LoginViewController.m */; };
+		79340EDC1D66D16600437AA8 /* ADDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79340EDB1D66D16600437AA8 /* ADDetailVC.m */; };
 		793B8EDB1D656A9300290EAB /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDA1D656A9300290EAB /* AdVO.m */; };
 		793B8EDE1D6596A000290EAB /* AlertEstateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */; };
 		793B8EE11D65AEA500290EAB /* RepairStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */; };
@@ -480,6 +481,8 @@
 		79270F881D61BF6800E29568 /* BlueCheckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCheckButton.m; sourceTree = "<group>"; };
 		79270F8A1D61BF7400E29568 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		79270F8B1D61BF7400E29568 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		79340EDA1D66D16600437AA8 /* ADDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADDetailVC.h; sourceTree = "<group>"; };
+		79340EDB1D66D16600437AA8 /* ADDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADDetailVC.m; sourceTree = "<group>"; };
 		793B8ED91D656A9300290EAB /* AdVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdVO.h; sourceTree = "<group>"; };
 		793B8EDA1D656A9300290EAB /* AdVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdVO.m; sourceTree = "<group>"; };
 		793B8EDC1D6596A000290EAB /* AlertEstateTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertEstateTableView.h; sourceTree = "<group>"; };
@@ -584,6 +587,8 @@
 		7902B0431D6412F400ADDAE0 /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				79340EDA1D66D16600437AA8 /* ADDetailVC.h */,
+				79340EDB1D66D16600437AA8 /* ADDetailVC.m */,
 				7902B0451D6412F400ADDAE0 /* MainVCs */,
 				791B4E211D6465DD00AF9371 /* RepairStatistics */,
 				791B4E191D64657E00AF9371 /* RepairAcceptOrder */,
@@ -1351,6 +1356,7 @@
 				79270E181D61ACB100E29568 /* TYAlertController+TransitionAnimate.m in Sources */,
 				79270DD81D61ACB100E29568 /* View+MASAdditions.m in Sources */,
 				79270F5B1D61B1EF00E29568 /* UIFont+Extension.m in Sources */,
+				79340EDC1D66D16600437AA8 /* ADDetailVC.m in Sources */,
 				79270E021D61ACB100E29568 /* NSData+ImageContentType.m in Sources */,
 				793B8EE11D65AEA500290EAB /* RepairStatisticsCell.m in Sources */,
 				79270E1F1D61ACB100E29568 /* TYShowAlertView.m in Sources */,

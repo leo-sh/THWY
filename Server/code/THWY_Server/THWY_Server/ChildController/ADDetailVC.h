@@ -1,13 +1,13 @@
 //
 //  ADDetailVC.h
-//  THWY_Client
+//  THWY_Server
 //
 //  Created by wei on 16/7/31.
 //  Copyright © 2016年 SXZ. All rights reserved.
 //
 
-#import "AdVO.h"
 #import "RootVC.h"
+#import "AdVO.h"
 
 @interface ADDetailVC : RootVC
 
