@@ -75,7 +75,7 @@
 - (void)updateFrame:(CGFloat)height Width:(CGFloat)width
 {
     CGFloat contentWidth = width;
-    self.backView.frame = CGRectMake(0, 0, contentWidth, height);
+    self.backView.frame = CGRectMake(0, 0, contentWidth, self.height);
     self.head.width = contentWidth;
     self.time.width = contentWidth;
     self.title.width = contentWidth;
@@ -151,6 +151,8 @@
     //再次设置WebView高度（点）
     webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
     [SVProgressHUD dismiss];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@[[NSNumber numberWithFloat:webView.bottom + 1000]]];
+//    self.height = webView.bottom + 200;
 }
 
 - (void)awakeFromNib {

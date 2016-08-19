@@ -144,7 +144,7 @@
         switch (i) {
             case 0:
                 self.tableView1 = tableView;
-                [self.tableView1 registerClass:[] forCellReuseIdentifier:@""];
+//                [self.tableView1 registerClass:[] forCellReuseIdentifier:@""];
                 break;
             case 1:
                 self.tableView2 = tableView;

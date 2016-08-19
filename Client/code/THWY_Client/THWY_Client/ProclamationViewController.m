@@ -16,6 +16,8 @@
 @property CGFloat topHeight;
 @property UITableView *tableView;
 @property int pageNumber;
+@property BOOL changeHeightStatu;
+@property CGFloat cellHeight;
 @end
 
 @implementation ProclamationViewController
@@ -36,6 +38,7 @@
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.data = [NSMutableArray array];
     self.pageNumber = 0;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change:) name:@"giveHeight" object:nil];
 }
 
 - (void)getData
@@ -156,8 +159,15 @@
 //        NSLog(@"%f",tableView.width);
         NSArray *cellArray = @[[NSNumber numberWithFloat:200],[NSNumber numberWithFloat:tableView.width]];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"cellHeight" object:cellArray];
+        if (self.changeHeightStatu) {
+            self.changeHeightStatu = NO;
+            return self.cellHeight;
+        }
+        else
+        {
         //添加上面固定内容的高度 + 下面内容的高度 + 与下边界的距离
-        return 200;
+            return 200;
+        }
     }
     else
     {
@@ -177,6 +187,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)change:(NSNotification *)notification
+{
+    self.changeHeightStatu = YES;
+    self.cellHeight = [[notification.object firstObject] floatValue];
 }
 
 /*
