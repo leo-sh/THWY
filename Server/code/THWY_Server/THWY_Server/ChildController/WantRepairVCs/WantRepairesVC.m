@@ -45,13 +45,14 @@
 - (void)initNVBar{
     
     self.title = @"我要报修";
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景2"]]];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景2"]]];
 }
 
 - (void)initViews{
     NSInteger topMargin = 10/667.0*My_ScreenH;
     self.tableView2 = [[WantRepairTableView2 alloc] initWithFrame:CGRectMake(topMargin, topMargin, My_ScreenW-2*topMargin, My_ScreenH-64-2*topMargin) style:UITableViewStylePlain];
     self.tableView2.repairDelegate = self;
+    [self.view addSubview:self.tableView2];
 }
 
 //获取维修类型

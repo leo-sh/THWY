@@ -85,7 +85,31 @@
                 }
                 case 2:{
                     self.detailLabel.text = @"";
-                    self.detailLabel.text = [NSString stringWithFormat:@"%@%@栋%@单元%@室",model.estate?:model.estate_name,model.block?:@"",model.unit?:@"",model.mph?:@""];
+                    NSMutableString *string = [[NSMutableString alloc] init];
+                    if(self.type == 1){
+                        if(model.estate && ![model.estate isEqualToString:@""] && [model.estate intValue] != 0){
+                            [string appendString:model.estate];
+                        }
+
+                    }else{
+                        
+                        if(model.estate_name && ![model.estate_name isEqualToString:@""]){
+                            [string appendString:model.estate_name];
+                        }
+                    }
+                    if (model.block && ![model.block isEqualToString:@""] && [model.block intValue] != 0){
+                        [string appendString:[NSString stringWithFormat:@"%@栋",model.block ]];
+                    }
+                    if (model.unit && ![model.unit isEqualToString:@""] && [model.unit intValue] != 0){
+                        [string appendString:[NSString stringWithFormat:@"%@单元",model.unit ]];
+                    }
+                    if (model.layer && ![model.layer isEqualToString:@""] && [model.layer intValue] != 0){
+                        [string appendString:[NSString stringWithFormat:@"%@层",model.unit ]];
+                    }
+                    if (model.mph && ![model.mph isEqualToString:@""] && [model.mph intValue] != 0){
+                        [string appendString:[NSString stringWithFormat:@"%@室",model.mph]];
+                    }
+                    self.detailLabel.text = string;
                     break;
                 }
                 case 3:{

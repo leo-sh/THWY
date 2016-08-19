@@ -61,7 +61,7 @@
 //                    [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.photo] placeholderImage:[UIImage imageNamed:@"Avatar"]];
                 }
                 self.username.text = user.real_name;
-                self.addr.text = user.estate_ids;
+                self.addr.text = [user.up_group project];
             }
         }];
     }
@@ -327,7 +327,7 @@
     NSArray *VCNames = @[@"WantRepairesVC",//我要报修 101
                          @"RepairRecordsVC",//报修记录 102
                          @"",//工作日志 103
-                         @"",//报修接单 104
+                         @"RepairAcceptOrderVC",//报修接单 104
                          @"RepairStatistisVC",//报修统计 105
                          @"",//我的好友 106
                          @"",//物业公告 107
