@@ -57,7 +57,9 @@
             }
             
             if (user) {
-                [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.photo] placeholderImage:[UIImage imageNamed:@"Avatar"]];
+                if(user.photo){
+//                    [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.photo] placeholderImage:[UIImage imageNamed:@"Avatar"]];
+                }
                 self.username.text = user.real_name;
                 self.addr.text = user.estate_ids;
             }
@@ -183,7 +185,7 @@
     [self.userInfoView addSubview:self.addr];
     [self.addr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.username.mas_left);
-        make.centerY.mas_equalTo(self.username.mas_centerY);
+        make.top.mas_equalTo(self.username.mas_bottom).offset(6);
     }];
     
     UIImageView *more = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"箭头"]];
