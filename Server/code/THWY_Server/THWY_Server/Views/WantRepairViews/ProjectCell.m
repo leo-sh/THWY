@@ -57,8 +57,9 @@
             self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.estateArray.count + 40.0/667*My_ScreenH)<(My_ScreenH-84)?(44.0*self.estateArray.count + 40.0/667*My_ScreenH):(My_ScreenH-84))];
             self.alertTableView.type = AlertEstateType;
             self.alertTableView.data = self.estateArray;
-            self.alertTableView.selectedIndex = self.estateIndex;
             self.alertTableView.AlertDelegate = self;
+            [self.alertTableView initViews];
+            self.alertTableView.selectedIndex = self.estateIndex;
             [self.alertTableView showInWindow];
         }
     }];
@@ -86,8 +87,9 @@
         self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.blockArray.count + 40.0/667*My_ScreenH)<(My_ScreenH-84)?(44.0*self.blockArray.count + 40.0/667*My_ScreenH):(My_ScreenH-84))];
         self.alertTableView.type = AlertBlockType;
         self.alertTableView.data = self.blockArray;
-        self.alertTableView.selectedIndex = self.blockIndex;
         self.alertTableView.AlertDelegate = self;
+        [self.alertTableView initViews];
+        self.alertTableView.selectedIndex = self.blockIndex;
         [self.alertTableView showInWindow];
     }];
 }
@@ -112,6 +114,7 @@
         self.alertTableView.type = AlertUnitType;
         self.alertTableView.data = self.unitArray;
         self.alertTableView.AlertDelegate = self;
+        [self.alertTableView initViews];
         self.alertTableView.selectedIndex = self.unitIndex;
         [self.alertTableView showInWindow];
     }];
@@ -138,6 +141,7 @@
         self.alertTableView.type = AlertLayerType;
         self.alertTableView.data = self.layerArray;
         self.alertTableView.AlertDelegate = self;
+        [self.alertTableView initViews];
         self.alertTableView.selectedIndex = self.layerIndex;
         [self.alertTableView showInWindow];
     }];

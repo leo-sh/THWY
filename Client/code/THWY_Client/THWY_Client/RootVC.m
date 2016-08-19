@@ -41,10 +41,10 @@
 
 -(void)showLogin:(BOOL)animated
 {
-//    if (![My_ServicesManager isLogin]) {
-//        LoginViewController *presentView = [[LoginViewController alloc]init];
-//        [self.navigationController presentViewController:presentView animated:animated completion:nil];
-//    }
+    if (![My_ServicesManager isLogin]) {
+        LoginViewController *presentView = [[LoginViewController alloc]init];
+        [self.navigationController presentViewController:presentView animated:animated completion:nil];
+    }
 }
 
 - (void)customNVBar{
