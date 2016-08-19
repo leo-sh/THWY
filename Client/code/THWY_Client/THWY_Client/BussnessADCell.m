@@ -9,7 +9,7 @@
 #import "BussnessADCell.h"
 #import "ProclamationInfoViewController.h"
 
-@interface BussnessADCell ()
+@interface BussnessADCell ()<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UITextView *desc;
@@ -42,6 +42,8 @@
     self.advo = merchant;
 
     self.timeLabel.text = [NSString stringDateFromTimeInterval:[merchant.ctime integerValue] withFormat:@"YYYY-MM-dd HH:mm"];
+<<<<<<< HEAD
+=======
     
     
     NSArray *array = @[merchant.content];
@@ -58,7 +60,56 @@
         self.desc.text = merchant.content;
         
     }
+>>>>>>> 36f3d10dcac1430432daf01fd75af91500058dc2
     
+    NSArray *array = @[merchant.content];
+    NSPredicate * prdicate = [NSPredicate predicateWithFormat:@"SELF LIKE '<*?>'"];
+    NSArray *a = [array filteredArrayUsingPredicate:prdicate];
+    
+    if (a.count) {
+        for (UIView* subView in self.desc.superview.subviews) {
+            if ([subView isKindOfClass:[UIWebView class]]) {
+                [subView removeFromSuperview];
+                break;
+            }
+        }
+        
+        UIWebView* webView = [[UIWebView alloc]initWithFrame:self.desc.frame];
+        
+        webView.scrollView.bounces = NO;
+        webView.backgroundColor = My_clearColor;
+        webView.delegate = self;
+        webView.opaque = NO;
+        NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", merchant.content];
+        [webView loadHTMLString:htmlcontent baseURL:nil];
+        
+        [self.desc.superview addSubview:webView];
+        self.desc.alpha = 0;
+    }
+    else
+    {
+        self.desc.text = merchant.content;
+        self.desc.alpha = 1;
+        
+    }
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //获取页面高度（像素）
+    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"];
+    float clientheight = [clientheight_str floatValue];
+    //设置到WebView上
+    webView.frame = CGRectMake(webView.x, webView.y, webView.width, clientheight);
+    //获取WebView最佳尺寸（点）
+    CGSize frame = [webView sizeThatFits:webView.frame.size];
+    //获取内容实际高度（像素）
+    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-top'))  + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-bottom'))"];
+    float height = [height_str floatValue];
+    //内容实际高度（像素）* 点和像素的比
+    height = height * frame.height / clientheight;
+    //再次设置WebView高度（点）
+    webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
