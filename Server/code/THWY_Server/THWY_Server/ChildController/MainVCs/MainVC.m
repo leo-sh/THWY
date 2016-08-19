@@ -57,9 +57,7 @@
             }
             
             if (user) {
-                if(user.photo){
-//                    [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.photo] placeholderImage:[UIImage imageNamed:@"Avatar"]];
-                }
+//                [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.photo] placeholderImage:[UIImage imageNamed:@"Avatar"]];
                 self.username.text = user.real_name;
                 self.addr.text = user.estate_ids;
             }

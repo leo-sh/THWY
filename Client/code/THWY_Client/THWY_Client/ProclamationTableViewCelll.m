@@ -11,6 +11,8 @@
 @property UIImageView *head;
 @property UIImageView *right;
 @property UIView *backView;
+@property NSString *lastTitle;
+@property int number;
 @end
 @implementation ProclamationTableViewCell
 
@@ -19,7 +21,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getHeight:) name:@"cellHeight" object:nil];
-        
+        self.number = 0;
         self.backgroundColor = [UIColor clearColor];
         
         self.head = [[UIImageView alloc]init];
@@ -94,7 +96,7 @@
 {
     self.title.text = title;
     self.time.text = time;
-    
+    self.lastTitle = title;
     NSArray *array = @[content];
     NSPredicate * prdicate = [NSPredicate predicateWithFormat:@"SELF LIKE '<*?>'"];
     NSArray *a = [array filteredArrayUsingPredicate:prdicate];
@@ -107,8 +109,10 @@
     }
     
     if (a.count) {
-        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
-        
+//        if (self.number == 0)
+//        {
+//        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+//        }
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.time.frame) + 8, width, 0)];
         webView.scrollView.bounces = NO;
         webView.backgroundColor = My_clearColor;
@@ -150,9 +154,18 @@
     height = height * frame.height / clientheight;
     //再次设置WebView高度（点）
     webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
-    [SVProgressHUD dismiss];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@[[NSNumber numberWithFloat:webView.bottom + 1000]]];
-//    self.height = webView.bottom + 200;
+    if (self.number == 0) {
+        NSString *rowS = [NSString stringWithFormat:@"%ld",self.row];
+        NSString *heightS = [NSString stringWithFormat:@"%lf",self.time.bottom + height + 8];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
+        self.number ++;
+    }
+    else
+    {
+        self.number = 0;
+//        [SVProgressHUD dismiss];
+
+    }
 }
 
 - (void)awakeFromNib {
