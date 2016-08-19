@@ -15,4 +15,6 @@
 
 - (void)loadDataFromMercharge:(AdVO *)merchant;
 
+- (CGFloat)heightForCell;
+
 @end

@@ -48,7 +48,10 @@
     self.rightImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"repairStatistics_%@", self.titleNames[self.index]]]];
     [self.contentView addSubview:self.rightImageView];
     [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.right.mas_equalTo(self.contentView.mas_right).offset(leftMargin);
+        make.centerY.mas_equalTo(self.contentView.mas_centerY);
+        make.height.mas_equalTo(self.titleLabel.mas_height).offset(10);
+        make.width.mas_equalTo(self.rightImageView.mas_height).multipliedBy(35/36.0);
     }];
 }
 

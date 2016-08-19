@@ -137,6 +137,14 @@
     [self.navigationController pushViewController:detail animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    BussnessADCell *cell = [BussnessADCell createViewFromNibName:@"BussnessADCell"] ;
+    [cell loadDataFromMercharge:self.bussnessModels[indexPath.row]];
+    return [cell heightForCell];
+}
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
