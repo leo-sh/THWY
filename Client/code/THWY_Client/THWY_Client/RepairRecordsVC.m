@@ -79,12 +79,24 @@
             }
             
             if (self.switchFlag == 1) {
-                [self.tableView reloadData];
+                if (self.tableView.numberOfSections > 0) {
+                    
+                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationRight];
+                }else{
+                    
+                    [self.tableView reloadData];
+                }
                 if (self.page == 0) {
                     self.tableView.contentOffset = CGPointMake(0, 0);
                 }
             }else if (self.switchFlag == 2){
-                [self.tableView2 reloadData];
+                if (self.tableView2.numberOfSections > 0) {
+                    
+                    [self.tableView2 reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
+                }else{
+                    
+                    [self.tableView2 reloadData];
+                }
                 if (self.page == 0) {
                     self.tableView2.contentOffset = CGPointMake(0, 0);
                 }

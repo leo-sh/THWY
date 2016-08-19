@@ -710,7 +710,16 @@ savePassWord:(BOOL)save
         }else
         {
             ComplaintVO *complaint = [[ComplaintVO alloc]initWithJSON:responseObject[@"datas"]];
-            onComplete(nil,complaint);
+            [self getComplaintStates:^(NSString *errorMsg, NSArray *list) {
+                for (ComplaintStateVO* state in list) {
+                    if ([state.st intValue] == [complaint.st intValue]) {
+                        complaint.state = state;
+                        onComplete(nil,complaint);
+                        return ;
+                    }
+                }
+            }];
+            
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         onComplete(@"网络连接错误",nil);
@@ -1562,9 +1571,7 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-        [self getComplaintStates:^(NSString *errorMsg, NSArray *list) {
-            
-        }];
+        
     }else
     {
 //        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {

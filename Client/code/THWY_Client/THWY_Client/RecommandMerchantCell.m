@@ -24,6 +24,8 @@
     // Initialization code
     self.icon.layer.cornerRadius = self.height*0.8/2.0;
     self.icon.clipsToBounds = YES;
+    
+    self.backgroundColor = WhiteAlphaColor;
 }
 
 - (void)loadDataFromMercharge:(GoodVO *)merchant{

@@ -42,6 +42,7 @@
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
     [self initViews];
     self.page = 0;
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     [self getBussnessData];
     [self.merchantNametextField becomeFirstResponder];
 }
@@ -53,7 +54,6 @@
 }
 
 - (void)getBussnessData{
-    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     
     [[ServicesManager getAPI] getMerchants:self.page typeId:self.searchTypeId name:self.searchName onComplete:^(NSString *errorMsg, NSArray *list) {
         if (errorMsg){
@@ -72,7 +72,13 @@
                 [self.bussnessModels addObject:model];
             }
             
-            [self.tableView reloadData];
+            if (self.tableView.numberOfSections > 0) {
+                
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }else{
+                
+                [self.tableView reloadData];
+            }
             [SVProgressHUD dismiss];
         }
         [self.tableView.mj_header endRefreshing];
@@ -195,6 +201,7 @@
 }
 
 - (void)clickSearchBtn{
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     [self.merchantNametextField endEditing:YES];
     self.searchName = self.merchantNametextField.text;
     

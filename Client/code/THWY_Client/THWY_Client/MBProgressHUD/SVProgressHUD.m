@@ -60,7 +60,7 @@
         self.loadingLabel.clipsToBounds = YES;
         self.loadingLabel.numberOfLines = 0;
         self.loadingLabel.adjustsFontSizeToFitWidth = YES;
-        self.loadingLabel.font = FontSize(CONTENT_FONT + 2);
+        self.loadingLabel.font = FontSize(CONTENT_FONT + 1);
         
         self.loadingLabel.textColor = [UIColor whiteColor];
         self.loadingLabel.textAlignment = NSTextAlignmentCenter;
@@ -133,7 +133,7 @@
     [self.hud showAnimated:YES];
     
     self.loadingLabel.width = [title sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].width + 45;
-    self.loadingLabel.height = [title sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].height + 20;
+    self.loadingLabel.height = [title sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].height + 25;
     self.loadingLabel.center = CGPointMake(20, 20);
     
     self.loadingLabel.text = title;
@@ -158,7 +158,7 @@
     [self.hud showAnimated:YES];
     
     self.loadingLabel.width = [title sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].width + 45;
-    self.loadingLabel.height = [title sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].height + 20;
+    self.loadingLabel.height = [title sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].height + 25;
     self.loadingLabel.center = CGPointMake(20, 20);
     
     self.loadingLabel.text = title;
