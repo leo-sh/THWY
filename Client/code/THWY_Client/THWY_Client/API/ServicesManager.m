@@ -75,7 +75,6 @@
 //    }
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.requestSerializer.timeoutInterval = 10.f;
     return manager;
 }
 
@@ -159,7 +158,8 @@
 {
     NSData *imageData = nil;
     if (repair.image) {
-        imageData = UIImagePNGRepresentation(repair.image);
+        
+        imageData = UIImageJPEGRepresentation(repair.image, 0.75);
     }
     
     if (repair.videoPath.length > 0) {
@@ -230,7 +230,8 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         // 设置时间格式
         formatter.dateFormat = @"yyyyMMddHHmmss";
-        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *str = [NSString stringWithFormat:@"%@%d",[formatter stringFromDate:[NSDate date]],arc4random() % 99999];
+        
         if (imageData) {
             NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
             [formData appendPartWithFileData:imageData name:@"pic" fileName:fileName mimeType:@"image/png"];

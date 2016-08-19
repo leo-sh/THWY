@@ -1568,11 +1568,11 @@ savePassWord:(BOOL)save
         }];
     }else
     {
-//        [self login:@"fzq" password:@"123456" onComplete:^(NSString *errorMsg, UserVO *user) {
-//            if (errorMsg == nil) {
-//                [self test];
-//            }
-//        }];
+        [self login:@"fzq" password:@"123456" savePassWord:NO onComplete:^(NSString *errorMsg, UserVO *user) {
+            if (errorMsg == nil) {
+                [self test];
+            }
+        }];
     }
 }
 @end
