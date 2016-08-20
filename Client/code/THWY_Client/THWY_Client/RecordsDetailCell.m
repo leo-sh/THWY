@@ -87,26 +87,26 @@
                     self.detailLabel.text = @"";
                     NSMutableString *string = [[NSMutableString alloc] init];
                     if(self.type == 1){
-                        if(model.estate && ![model.estate isEqualToString:@""] && [model.estate intValue] != 0){
+                        if(model.estate.length > 0){
                             [string appendString:model.estate];
                         }
 
                     }else{
                         
-                        if(model.estate_name && ![model.estate_name isEqualToString:@""]){
+                        if(model.estate_name.length > 0){
                             [string appendString:model.estate_name];
                         }
                     }
-                    if (model.block && ![model.block isEqualToString:@""] && [model.block intValue] != 0){
+                    if (model.block.length > 0 && [model.block intValue] > 0){
                         [string appendString:[NSString stringWithFormat:@"%@栋",model.block ]];
                     }
-                    if (model.unit && ![model.unit isEqualToString:@""] && [model.unit intValue] != 0){
+                    if (model.unit.length > 0 && [model.unit intValue] > 0){
                         [string appendString:[NSString stringWithFormat:@"%@单元",model.unit ]];
                     }
-                    if (model.layer && ![model.layer isEqualToString:@""] && [model.layer intValue] != 0){
+                    if (model.layer.length > 0 && [model.layer intValue] > 0){
                         [string appendString:[NSString stringWithFormat:@"%@层",model.unit ]];
                     }
-                    if (model.mph && ![model.mph isEqualToString:@""] && [model.mph intValue] != 0){
+                    if (model.mph.length > 0 && [model.mph intValue] > 0){
                         [string appendString:[NSString stringWithFormat:@"%@室",model.mph]];
                     }
                     self.detailLabel.text = string;
@@ -160,7 +160,7 @@
         case 2:{
             switch (indexpath.row) {
                 case 0:{
-                    self.detailLabel.text = @"";
+                    self.detailLabel.text = model.repair_task.firstObject.real_name;
                     break;
                 }
                 case 1:{
@@ -168,7 +168,7 @@
                     if (time == 0) {
                         self.detailLabel.text = @"";
                     }else{
-                        self.detailLabel.text = [NSString stringDateFromTimeInterval:time withFormat:nil];
+                        self.detailLabel.text = model.repair_task.firstObject.cellphone;
                     }
 //                    self.detailLabel.text = model._st;
                     [self.line setHidden:YES];

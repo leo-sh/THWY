@@ -335,25 +335,25 @@
 
     NSMutableString *string = [[NSMutableString alloc] init];
     if(self.flag == 1){
-        if(repaireVO.estate && ![repaireVO.estate isEqualToString:@""] && [repaireVO.estate intValue] != 0){
+        if(repaireVO.estate.length > 0){
             [string appendString:repaireVO.estate];
         }
     }else{
         
-        if(repaireVO.estate_name && ![repaireVO.estate_name isEqualToString:@""]){
+        if(repaireVO.estate_name.length > 0){
             [string appendString:repaireVO.estate_name];
         }
     }
-    if (repaireVO.block && ![repaireVO.block isEqualToString:@""] && [repaireVO.block intValue] != 0){
+    if (repaireVO.block.length > 0 && [repaireVO.block intValue] != 0){
         [string appendString:[NSString stringWithFormat:@"%@栋",repaireVO.block ]];
     }
-    if (repaireVO.unit && ![repaireVO.unit isEqualToString:@""] && [repaireVO.unit intValue] != 0){
+    if (repaireVO.unit.length > 0 && [repaireVO.unit intValue] != 0){
         [string appendString:[NSString stringWithFormat:@"%@单元",repaireVO.unit ]];
     }
-    if (repaireVO.layer && ![repaireVO.layer isEqualToString:@""] && [repaireVO.layer intValue] != 0){
+    if (repaireVO.layer.length > 0 && [repaireVO.layer intValue] != 0){
         [string appendString:[NSString stringWithFormat:@"%@层",repaireVO.unit ]];
     }
-    if (repaireVO.mph && ![repaireVO.mph isEqualToString:@""] && [repaireVO.mph intValue] != 0){
+    if (repaireVO.mph.length > 0 && [repaireVO.mph intValue] != 0){
         [string appendString:[NSString stringWithFormat:@"%@室",repaireVO.mph]];
     }
     self.houseSourceLabel.text = string;

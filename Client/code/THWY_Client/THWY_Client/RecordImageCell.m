@@ -7,11 +7,14 @@
 //
 
 #import "RecordImageCell.h"
+#import "ZLPhoto.h"
 
 @interface RecordImageCell ()
 
 @property (strong, nonatomic) UILabel *leftLabel;
 @property (strong, nonatomic) UIImageView *picImage;
+
+@property RepairVO* repair;
 
 @end
 
@@ -35,7 +38,7 @@
         
         self.picImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"beijing"]];
         self.picImage.contentMode = UIViewContentModeScaleAspectFit;
-    
+        [self.picImage addTarget:self action:@selector(showImage)];
         [self.contentView addSubview:self.leftLabel];
         [self.contentView addSubview:self.picImage];
         
@@ -67,11 +70,31 @@
 }
 
 - (void)loadDataWithModel:(RepairVO *)model{
+    self.repair = model;
     [self.picImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"bannerload"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image) {
             
         }
     }];
+}
+
+-(void)showImage
+{
+    if (self.repair) {
+        
+        NSMutableArray* imageArr = [[NSMutableArray alloc]init];
+        ZLPhotoPickerBrowserPhoto* photo = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:self.repair.pic];
+        [imageArr addObject:photo];
+        
+        ZLPhotoPickerBrowserViewController *pickerBrowser = [[ZLPhotoPickerBrowserViewController alloc] init];
+        pickerBrowser.editing = NO;
+        pickerBrowser.canLongPress = YES;
+        pickerBrowser.photos = imageArr;
+        // 当前选中的值
+        pickerBrowser.currentIndex = 0;
+        // 展示控制器
+        [pickerBrowser showPickerVc:self.vc];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

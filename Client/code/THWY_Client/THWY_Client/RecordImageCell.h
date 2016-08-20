@@ -10,6 +10,8 @@
 
 @interface RecordImageCell : UITableViewCell
 
+@property UIViewController* vc;
+
 - (void)loadDataWithModel:(RepairVO *)model;
 
 @end

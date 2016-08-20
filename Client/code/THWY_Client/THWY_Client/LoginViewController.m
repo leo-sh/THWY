@@ -46,11 +46,6 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    if (self.userTF.text.length == 0) {
-        [self.userTF becomeFirstResponder];
-    }else if (self.passWordTF.text.length == 0){
-        [self.passWordTF becomeFirstResponder];
-    }
 }
 
 -(void)showIntroView

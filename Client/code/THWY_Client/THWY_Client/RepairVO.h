@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "RepairStatuVO.h"
 #import "RepairClassVO.h"
+#import "UserVO.h"
 
 @interface RepairVO : NSObject
 
@@ -49,7 +50,7 @@
 @property (nonatomic , copy) NSString              * phone;
 @property (nonatomic , copy) NSString              * addr;
 @property (nonatomic , copy) NSString              * _st;
-@property BOOL                                      repair_task;
+@property NSMutableArray<UserVO *>                 *repair_task;
 @property NSArray                                  * repair_admin_id_arr;
 @property NSArray                                  * classes_ids;
 @property NSArray                                  * class_names;

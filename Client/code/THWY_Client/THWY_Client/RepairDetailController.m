@@ -116,6 +116,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 4) {
         RecordImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordImageCell" forIndexPath:indexPath];
+        cell.vc = self;
         [cell loadDataWithModel:self.model];
         return cell;
     }else if (indexPath.section == 5){
