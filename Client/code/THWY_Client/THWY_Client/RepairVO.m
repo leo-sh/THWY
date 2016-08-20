@@ -78,10 +78,14 @@
         self.addr = JSON[@"addr"];
         self._st = JSON[@"_st"];
         
-        if ([JSON[@"repair_task"] isKindOfClass:[NSDictionary class]]) {
-#pragma - mark TODO 字典类型解析
-        }else {
-            self.repair_task = [JSON[@"repair_task"] boolValue];
+        if ([JSON[@"repair_task"] isKindOfClass:[NSDictionary class]] && JSON[@"repair_task"][@"admins"] && [JSON[@"repair_task"][@"admins"] isKindOfClass:[NSArray class]]) {
+            self.repair_task = [[NSMutableArray alloc]init];
+            for (NSDictionary* adminDic in JSON[@"repair_task"][@"admins"]) {
+                UserVO* user = [[UserVO alloc]init];
+                user.real_name = adminDic[@"real_name"];
+                user.cellphone = adminDic[@"cellphone"];
+                [self.repair_task addObject:user];
+            }
         }
         
         self.repair_admin_id_arr = JSON[@"repair_admin_id_arr"];

@@ -158,11 +158,20 @@
 {
     NSData *imageData = nil;
     if (repair.image) {
-        
-        imageData = UIImageJPEGRepresentation(repair.image, 0.75);
+        imageData = UIImageJPEGRepresentation(repair.image, 1);
+    }
+    
+    CGFloat sizeOfImage = imageData.length/1000.0/1024.0;
+    CGFloat ratio = 0.95;
+    while (sizeOfImage >= 2.0) {
+        [SVProgressHUD showSubTitle:@"压缩图片"];
+        imageData = UIImageJPEGRepresentation(repair.image, ratio);
+        sizeOfImage = imageData.length/1000.0/1024.0;
+        ratio -= 0.05;
     }
     
     if (repair.videoPath.length > 0) {
+        [SVProgressHUD showSubTitle:@"转换视频格式"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         // 设置时间格式
         formatter.dateFormat = @"yyyyMMddHHmmss";
@@ -224,6 +233,7 @@
 
 -(void)subMitRepair:(NSDictionary* )params image:(NSData* )imageData video:(NSData *)videoData urlString:(NSString *)urlString onComplete:(void (^)(NSString *errorMsg))onComplete
 {
+    [SVProgressHUD showSubTitle:@"上传中 0.00％"];
     AFHTTPSessionManager *manager = [self getManager];
     [manager POST:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 
@@ -242,7 +252,7 @@
         }
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-        
+        [SVProgressHUD showSubTitle:[NSString stringWithFormat:@"上传中 %.2f％",uploadProgress.fractionCompleted*100]];
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
             [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
@@ -1524,36 +1534,42 @@ savePassWord:(BOOL)save
 
 -(void)addRepair:(AddRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@add_repair",API_HOST];
-    NSMutableDictionary* params = [[NSMutableDictionary alloc]init];
-    params[@"login_name"] = _userName;
-    params[@"login_password"] = _passWord;
-    params[@"call_person"] = repair.call_person;
-    params[@"call_phone"] = repair.call_phone;
-    params[@"house_id"] = repair.house_id;
-    params[@"cls"] = repair.cls;
-    params[@"detail"] = repair.detail;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *urlString = [NSString stringWithFormat:@"%@add_repair",API_HOST];
+        NSMutableDictionary* params = [[NSMutableDictionary alloc]init];
+        params[@"login_name"] = _userName;
+        params[@"login_password"] = _passWord;
+        params[@"call_person"] = repair.call_person;
+        params[@"call_phone"] = repair.call_phone;
+        params[@"house_id"] = repair.house_id;
+        params[@"cls"] = repair.cls;
+        params[@"detail"] = repair.detail;
+        
+        [self handleRepair:repair params:params urlStr:urlString onComplete:onComplete];
+    });
     
-    [self handleRepair:repair params:params urlStr:urlString onComplete:onComplete];
 }
 
 -(void)addPublicRepair:(AddPublicRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@add_public_repair",API_HOST];
-    NSMutableDictionary* params = [[NSMutableDictionary alloc]init];
-    params[@"login_name"] = _userName;
-    params[@"login_password"] = _passWord;
-    params[@"kb"] = [NSString stringWithFormat:@"%d",repair.kb];
-    params[@"estate_id"] = repair.estate_id;
-    params[@"block"] = repair.block;
-    params[@"unit"] = repair.unit;
-    params[@"layer"] = repair.layer;
-    params[@"call_name"] = repair.call_name;
-    params[@"call_phone"] = repair.call_phone;
-    params[@"cls"] = repair.cls;
-    params[@"repair_detail"] = repair.repair_detail;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *urlString = [NSString stringWithFormat:@"%@add_public_repair",API_HOST];
+        NSMutableDictionary* params = [[NSMutableDictionary alloc]init];
+        params[@"login_name"] = _userName;
+        params[@"login_password"] = _passWord;
+        params[@"kb"] = [NSString stringWithFormat:@"%d",repair.kb];
+        params[@"estate_id"] = repair.estate_id;
+        params[@"block"] = repair.block;
+        params[@"unit"] = repair.unit;
+        params[@"layer"] = repair.layer;
+        params[@"call_name"] = repair.call_name;
+        params[@"call_phone"] = repair.call_phone;
+        params[@"cls"] = repair.cls;
+        params[@"repair_detail"] = repair.repair_detail;
+        
+        [self handleRepair:repair params:params urlStr:urlString onComplete:onComplete];
+    });
     
-    [self handleRepair:repair params:params urlStr:urlString onComplete:onComplete];
 }
 
 #pragma mark 环境参数判定函数

@@ -119,7 +119,7 @@
         [self.delegate select:image type:ImageType];
         NSURL *url = info[UIImagePickerControllerReferenceURL];
         NSString *urlStr = [url path];
-        self.textField.text = urlStr;
+        self.textField.text = [NSString stringWithFormat:@"/private/var/mobile/Containers/Data/Application%@",urlStr];
         
     }else{
         //如果是视频

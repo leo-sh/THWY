@@ -200,6 +200,35 @@
 		9400B9781D6187EE00E49F0E /* tuisong.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9400B9771D6187EE00E49F0E /* tuisong.caf */; };
 		9400B97F1D619BBC00E49F0E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400B97E1D619BBC00E49F0E /* MBProgressHUD.m */; };
 		9400B9821D619C0D00E49F0E /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400B9811D619C0D00E49F0E /* SVProgressHUD.m */; };
+		94300F351D684DC80037546A /* UIImage+ZLPhotoLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300EEF1D684DC70037546A /* UIImage+ZLPhotoLib.m */; };
+		94300F361D684DC80037546A /* ZLCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300EF41D684DC70037546A /* ZLCamera.m */; };
+		94300F371D684DC80037546A /* ZLCameraImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300EF61D684DC70037546A /* ZLCameraImageView.m */; };
+		94300F381D684DC80037546A /* ZLCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300EF81D684DC70037546A /* ZLCameraView.m */; };
+		94300F391D684DC80037546A /* ZLCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300EFA1D684DC70037546A /* ZLCameraViewController.m */; };
+		94300F3A1D684DC80037546A /* ZLPhotoPickerBrowserPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300EFF1D684DC70037546A /* ZLPhotoPickerBrowserPhoto.m */; };
+		94300F3B1D684DC80037546A /* ZLPhotoRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F011D684DC70037546A /* ZLPhotoRect.m */; };
+		94300F3C1D684DC80037546A /* ZLPhotoPickerBrowserViewController+SignlePhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F041D684DC70037546A /* ZLPhotoPickerBrowserViewController+SignlePhotoBrowser.m */; };
+		94300F3D1D684DC80037546A /* ZLPhotoPickerBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F061D684DC70037546A /* ZLPhotoPickerBrowserViewController.m */; };
+		94300F3E1D684DC80037546A /* ZLPhotoPickerBrowserPhotoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F091D684DC70037546A /* ZLPhotoPickerBrowserPhotoImageView.m */; };
+		94300F3F1D684DC80037546A /* ZLPhotoPickerBrowserPhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F0B1D684DC70037546A /* ZLPhotoPickerBrowserPhotoScrollView.m */; };
+		94300F401D684DC80037546A /* ZLPhotoPickerBrowserPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F0D1D684DC70037546A /* ZLPhotoPickerBrowserPhotoView.m */; };
+		94300F411D684DC80037546A /* ZLPhotoPickerCustomToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F0F1D684DC70037546A /* ZLPhotoPickerCustomToolBarView.m */; };
+		94300F421D684DC80037546A /* ZLPhotoAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F131D684DC70037546A /* ZLPhotoAssets.m */; };
+		94300F431D684DC80037546A /* ZLPhotoPickerDatas.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F151D684DC70037546A /* ZLPhotoPickerDatas.m */; };
+		94300F441D684DC80037546A /* ZLPhotoPickerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F171D684DC70037546A /* ZLPhotoPickerGroup.m */; };
+		94300F451D684DC80037546A /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F1A1D684DC70037546A /* UIViewController+Alert.m */; };
+		94300F461D684DC80037546A /* ZLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F1C1D684DC70037546A /* ZLNavigationController.m */; };
+		94300F471D684DC80037546A /* ZLPhotoPickerAssetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F1E1D684DC70037546A /* ZLPhotoPickerAssetsViewController.m */; };
+		94300F481D684DC80037546A /* ZLPhotoPickerGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F201D684DC70037546A /* ZLPhotoPickerGroupViewController.m */; };
+		94300F491D684DC80037546A /* ZLPhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F221D684DC70037546A /* ZLPhotoPickerViewController.m */; };
+		94300F4A1D684DC80037546A /* ZLPhotoPickerCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F251D684DC70037546A /* ZLPhotoPickerCollectionView.m */; };
+		94300F4B1D684DC80037546A /* ZLPhotoPickerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F271D684DC70037546A /* ZLPhotoPickerCollectionViewCell.m */; };
+		94300F4C1D684DC80037546A /* ZLPhotoPickerFooterCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F291D684DC70037546A /* ZLPhotoPickerFooterCollectionReusableView.m */; };
+		94300F4D1D684DC80037546A /* ZLPhotoPickerGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F2B1D684DC70037546A /* ZLPhotoPickerGroupTableViewCell.m */; };
+		94300F4E1D684DC80037546A /* ZLPhotoPickerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F2D1D684DC70037546A /* ZLPhotoPickerImageView.m */; };
+		94300F4F1D684DC80037546A /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F311D684DC70037546A /* DACircularProgressView.m */; };
+		94300F501D684DC80037546A /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F331D684DC70037546A /* DALabeledCircularProgressView.m */; };
+		94300F511D684DC80037546A /* ZLPhotoLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 94300F341D684DC70037546A /* ZLPhotoLib.bundle */; };
 		9449430D1D5C320200AD2B00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */; };
 		9490C3E31D63F66400988649 /* AssetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490C3E21D63F66400988649 /* AssetView.m */; };
 		9490C3E51D63F8D400988649 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9490C3E41D63F8D400988649 /* Photos.framework */; };
@@ -593,6 +622,65 @@
 		9400B97E1D619BBC00E49F0E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		9400B9801D619C0D00E49F0E /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = MBProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
 		9400B9811D619C0D00E49F0E /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = MBProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
+		94300EEE1D684DC70037546A /* UIImage+ZLPhotoLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZLPhotoLib.h"; sourceTree = "<group>"; };
+		94300EEF1D684DC70037546A /* UIImage+ZLPhotoLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZLPhotoLib.m"; sourceTree = "<group>"; };
+		94300EF31D684DC70037546A /* ZLCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCamera.h; sourceTree = "<group>"; };
+		94300EF41D684DC70037546A /* ZLCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCamera.m; sourceTree = "<group>"; };
+		94300EF51D684DC70037546A /* ZLCameraImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCameraImageView.h; sourceTree = "<group>"; };
+		94300EF61D684DC70037546A /* ZLCameraImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCameraImageView.m; sourceTree = "<group>"; };
+		94300EF71D684DC70037546A /* ZLCameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCameraView.h; sourceTree = "<group>"; };
+		94300EF81D684DC70037546A /* ZLCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCameraView.m; sourceTree = "<group>"; };
+		94300EF91D684DC70037546A /* ZLCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCameraViewController.h; sourceTree = "<group>"; };
+		94300EFA1D684DC70037546A /* ZLCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCameraViewController.m; sourceTree = "<group>"; };
+		94300EFB1D684DC70037546A /* ZLPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhoto.h; sourceTree = "<group>"; };
+		94300EFE1D684DC70037546A /* ZLPhotoPickerBrowserPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerBrowserPhoto.h; sourceTree = "<group>"; };
+		94300EFF1D684DC70037546A /* ZLPhotoPickerBrowserPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerBrowserPhoto.m; sourceTree = "<group>"; };
+		94300F001D684DC70037546A /* ZLPhotoRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoRect.h; sourceTree = "<group>"; };
+		94300F011D684DC70037546A /* ZLPhotoRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoRect.m; sourceTree = "<group>"; };
+		94300F031D684DC70037546A /* ZLPhotoPickerBrowserViewController+SignlePhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZLPhotoPickerBrowserViewController+SignlePhotoBrowser.h"; sourceTree = "<group>"; };
+		94300F041D684DC70037546A /* ZLPhotoPickerBrowserViewController+SignlePhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZLPhotoPickerBrowserViewController+SignlePhotoBrowser.m"; sourceTree = "<group>"; };
+		94300F051D684DC70037546A /* ZLPhotoPickerBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerBrowserViewController.h; sourceTree = "<group>"; };
+		94300F061D684DC70037546A /* ZLPhotoPickerBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerBrowserViewController.m; sourceTree = "<group>"; };
+		94300F081D684DC70037546A /* ZLPhotoPickerBrowserPhotoImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerBrowserPhotoImageView.h; sourceTree = "<group>"; };
+		94300F091D684DC70037546A /* ZLPhotoPickerBrowserPhotoImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerBrowserPhotoImageView.m; sourceTree = "<group>"; };
+		94300F0A1D684DC70037546A /* ZLPhotoPickerBrowserPhotoScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerBrowserPhotoScrollView.h; sourceTree = "<group>"; };
+		94300F0B1D684DC70037546A /* ZLPhotoPickerBrowserPhotoScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerBrowserPhotoScrollView.m; sourceTree = "<group>"; };
+		94300F0C1D684DC70037546A /* ZLPhotoPickerBrowserPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerBrowserPhotoView.h; sourceTree = "<group>"; };
+		94300F0D1D684DC70037546A /* ZLPhotoPickerBrowserPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerBrowserPhotoView.m; sourceTree = "<group>"; };
+		94300F0E1D684DC70037546A /* ZLPhotoPickerCustomToolBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerCustomToolBarView.h; sourceTree = "<group>"; };
+		94300F0F1D684DC70037546A /* ZLPhotoPickerCustomToolBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerCustomToolBarView.m; sourceTree = "<group>"; };
+		94300F121D684DC70037546A /* ZLPhotoAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoAssets.h; sourceTree = "<group>"; };
+		94300F131D684DC70037546A /* ZLPhotoAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoAssets.m; sourceTree = "<group>"; };
+		94300F141D684DC70037546A /* ZLPhotoPickerDatas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerDatas.h; sourceTree = "<group>"; };
+		94300F151D684DC70037546A /* ZLPhotoPickerDatas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerDatas.m; sourceTree = "<group>"; };
+		94300F161D684DC70037546A /* ZLPhotoPickerGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerGroup.h; sourceTree = "<group>"; };
+		94300F171D684DC70037546A /* ZLPhotoPickerGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerGroup.m; sourceTree = "<group>"; };
+		94300F191D684DC70037546A /* UIViewController+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
+		94300F1A1D684DC70037546A /* UIViewController+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
+		94300F1B1D684DC70037546A /* ZLNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLNavigationController.h; sourceTree = "<group>"; };
+		94300F1C1D684DC70037546A /* ZLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLNavigationController.m; sourceTree = "<group>"; };
+		94300F1D1D684DC70037546A /* ZLPhotoPickerAssetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerAssetsViewController.h; sourceTree = "<group>"; };
+		94300F1E1D684DC70037546A /* ZLPhotoPickerAssetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerAssetsViewController.m; sourceTree = "<group>"; };
+		94300F1F1D684DC70037546A /* ZLPhotoPickerGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerGroupViewController.h; sourceTree = "<group>"; };
+		94300F201D684DC70037546A /* ZLPhotoPickerGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerGroupViewController.m; sourceTree = "<group>"; };
+		94300F211D684DC70037546A /* ZLPhotoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerViewController.h; sourceTree = "<group>"; };
+		94300F221D684DC70037546A /* ZLPhotoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerViewController.m; sourceTree = "<group>"; };
+		94300F241D684DC70037546A /* ZLPhotoPickerCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerCollectionView.h; sourceTree = "<group>"; };
+		94300F251D684DC70037546A /* ZLPhotoPickerCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerCollectionView.m; sourceTree = "<group>"; };
+		94300F261D684DC70037546A /* ZLPhotoPickerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerCollectionViewCell.h; sourceTree = "<group>"; };
+		94300F271D684DC70037546A /* ZLPhotoPickerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerCollectionViewCell.m; sourceTree = "<group>"; };
+		94300F281D684DC70037546A /* ZLPhotoPickerFooterCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerFooterCollectionReusableView.h; sourceTree = "<group>"; };
+		94300F291D684DC70037546A /* ZLPhotoPickerFooterCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerFooterCollectionReusableView.m; sourceTree = "<group>"; };
+		94300F2A1D684DC70037546A /* ZLPhotoPickerGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerGroupTableViewCell.h; sourceTree = "<group>"; };
+		94300F2B1D684DC70037546A /* ZLPhotoPickerGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerGroupTableViewCell.m; sourceTree = "<group>"; };
+		94300F2C1D684DC70037546A /* ZLPhotoPickerImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerImageView.h; sourceTree = "<group>"; };
+		94300F2D1D684DC70037546A /* ZLPhotoPickerImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerImageView.m; sourceTree = "<group>"; };
+		94300F2E1D684DC70037546A /* ZLPhotoPickerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerCommon.h; sourceTree = "<group>"; };
+		94300F301D684DC70037546A /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
+		94300F311D684DC70037546A /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
+		94300F321D684DC70037546A /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
+		94300F331D684DC70037546A /* DALabeledCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DALabeledCircularProgressView.m; sourceTree = "<group>"; };
+		94300F341D684DC70037546A /* ZLPhotoLib.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZLPhotoLib.bundle; sourceTree = "<group>"; };
 		9449430B1D5C320200AD2B00 /* ZYKeyboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYKeyboardUtil.h; sourceTree = "<group>"; };
 		9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
 		9490C3E11D63F66400988649 /* AssetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetView.h; sourceTree = "<group>"; };
@@ -1149,6 +1237,7 @@
 		5B2571CF1D47169600CB4167 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				94300EEA1D684DC70037546A /* ZLPhotoLib */,
 				1E8E8F161D66567A003D8CBC /* TYAlertController */,
 				797B231F1D64C31B0033903C /* VideoPlayer */,
 				9400B97C1D619BBC00E49F0E /* MBProgressHUD */,
@@ -1487,6 +1576,192 @@
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		94300EEA1D684DC70037546A /* ZLPhotoLib */ = {
+			isa = PBXGroup;
+			children = (
+				94300EEB1D684DC70037546A /* Classes */,
+				94300F2F1D684DC70037546A /* DACircularProgress */,
+				94300F341D684DC70037546A /* ZLPhotoLib.bundle */,
+			);
+			path = ZLPhotoLib;
+			sourceTree = "<group>";
+		};
+		94300EEB1D684DC70037546A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				94300EEC1D684DC70037546A /* Utils */,
+				94300EF21D684DC70037546A /* ZLCamera */,
+				94300EFB1D684DC70037546A /* ZLPhoto.h */,
+				94300EFC1D684DC70037546A /* ZLPhotoBrowser */,
+				94300F101D684DC70037546A /* ZLPhotoPicker */,
+				94300F2E1D684DC70037546A /* ZLPhotoPickerCommon.h */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		94300EEC1D684DC70037546A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				94300EED1D684DC70037546A /* Category */,
+				94300EF01D684DC70037546A /* Resource */,
+				94300EF11D684DC70037546A /* Views */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		94300EED1D684DC70037546A /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				94300EEE1D684DC70037546A /* UIImage+ZLPhotoLib.h */,
+				94300EEF1D684DC70037546A /* UIImage+ZLPhotoLib.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		94300EF01D684DC70037546A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		94300EF11D684DC70037546A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		94300EF21D684DC70037546A /* ZLCamera */ = {
+			isa = PBXGroup;
+			children = (
+				94300EF31D684DC70037546A /* ZLCamera.h */,
+				94300EF41D684DC70037546A /* ZLCamera.m */,
+				94300EF51D684DC70037546A /* ZLCameraImageView.h */,
+				94300EF61D684DC70037546A /* ZLCameraImageView.m */,
+				94300EF71D684DC70037546A /* ZLCameraView.h */,
+				94300EF81D684DC70037546A /* ZLCameraView.m */,
+				94300EF91D684DC70037546A /* ZLCameraViewController.h */,
+				94300EFA1D684DC70037546A /* ZLCameraViewController.m */,
+			);
+			path = ZLCamera;
+			sourceTree = "<group>";
+		};
+		94300EFC1D684DC70037546A /* ZLPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				94300EFD1D684DC70037546A /* Models */,
+				94300F021D684DC70037546A /* ViewControllers */,
+				94300F071D684DC70037546A /* Views */,
+			);
+			path = ZLPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		94300EFD1D684DC70037546A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				94300EFE1D684DC70037546A /* ZLPhotoPickerBrowserPhoto.h */,
+				94300EFF1D684DC70037546A /* ZLPhotoPickerBrowserPhoto.m */,
+				94300F001D684DC70037546A /* ZLPhotoRect.h */,
+				94300F011D684DC70037546A /* ZLPhotoRect.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		94300F021D684DC70037546A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				94300F031D684DC70037546A /* ZLPhotoPickerBrowserViewController+SignlePhotoBrowser.h */,
+				94300F041D684DC70037546A /* ZLPhotoPickerBrowserViewController+SignlePhotoBrowser.m */,
+				94300F051D684DC70037546A /* ZLPhotoPickerBrowserViewController.h */,
+				94300F061D684DC70037546A /* ZLPhotoPickerBrowserViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		94300F071D684DC70037546A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				94300F081D684DC70037546A /* ZLPhotoPickerBrowserPhotoImageView.h */,
+				94300F091D684DC70037546A /* ZLPhotoPickerBrowserPhotoImageView.m */,
+				94300F0A1D684DC70037546A /* ZLPhotoPickerBrowserPhotoScrollView.h */,
+				94300F0B1D684DC70037546A /* ZLPhotoPickerBrowserPhotoScrollView.m */,
+				94300F0C1D684DC70037546A /* ZLPhotoPickerBrowserPhotoView.h */,
+				94300F0D1D684DC70037546A /* ZLPhotoPickerBrowserPhotoView.m */,
+				94300F0E1D684DC70037546A /* ZLPhotoPickerCustomToolBarView.h */,
+				94300F0F1D684DC70037546A /* ZLPhotoPickerCustomToolBarView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		94300F101D684DC70037546A /* ZLPhotoPicker */ = {
+			isa = PBXGroup;
+			children = (
+				94300F111D684DC70037546A /* Models */,
+				94300F181D684DC70037546A /* ViewControllers */,
+				94300F231D684DC70037546A /* Views */,
+			);
+			path = ZLPhotoPicker;
+			sourceTree = "<group>";
+		};
+		94300F111D684DC70037546A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				94300F121D684DC70037546A /* ZLPhotoAssets.h */,
+				94300F131D684DC70037546A /* ZLPhotoAssets.m */,
+				94300F141D684DC70037546A /* ZLPhotoPickerDatas.h */,
+				94300F151D684DC70037546A /* ZLPhotoPickerDatas.m */,
+				94300F161D684DC70037546A /* ZLPhotoPickerGroup.h */,
+				94300F171D684DC70037546A /* ZLPhotoPickerGroup.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		94300F181D684DC70037546A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				94300F191D684DC70037546A /* UIViewController+Alert.h */,
+				94300F1A1D684DC70037546A /* UIViewController+Alert.m */,
+				94300F1B1D684DC70037546A /* ZLNavigationController.h */,
+				94300F1C1D684DC70037546A /* ZLNavigationController.m */,
+				94300F1D1D684DC70037546A /* ZLPhotoPickerAssetsViewController.h */,
+				94300F1E1D684DC70037546A /* ZLPhotoPickerAssetsViewController.m */,
+				94300F1F1D684DC70037546A /* ZLPhotoPickerGroupViewController.h */,
+				94300F201D684DC70037546A /* ZLPhotoPickerGroupViewController.m */,
+				94300F211D684DC70037546A /* ZLPhotoPickerViewController.h */,
+				94300F221D684DC70037546A /* ZLPhotoPickerViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		94300F231D684DC70037546A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				94300F241D684DC70037546A /* ZLPhotoPickerCollectionView.h */,
+				94300F251D684DC70037546A /* ZLPhotoPickerCollectionView.m */,
+				94300F261D684DC70037546A /* ZLPhotoPickerCollectionViewCell.h */,
+				94300F271D684DC70037546A /* ZLPhotoPickerCollectionViewCell.m */,
+				94300F281D684DC70037546A /* ZLPhotoPickerFooterCollectionReusableView.h */,
+				94300F291D684DC70037546A /* ZLPhotoPickerFooterCollectionReusableView.m */,
+				94300F2A1D684DC70037546A /* ZLPhotoPickerGroupTableViewCell.h */,
+				94300F2B1D684DC70037546A /* ZLPhotoPickerGroupTableViewCell.m */,
+				94300F2C1D684DC70037546A /* ZLPhotoPickerImageView.h */,
+				94300F2D1D684DC70037546A /* ZLPhotoPickerImageView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		94300F2F1D684DC70037546A /* DACircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				94300F301D684DC70037546A /* DACircularProgressView.h */,
+				94300F311D684DC70037546A /* DACircularProgressView.m */,
+				94300F321D684DC70037546A /* DALabeledCircularProgressView.h */,
+				94300F331D684DC70037546A /* DALabeledCircularProgressView.m */,
+			);
+			path = DACircularProgress;
+			sourceTree = "<group>";
+		};
 		9449430A1D5C320200AD2B00 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1583,6 +1858,7 @@
 				79F2B6BD1D4E22CC00AA94E0 /* RecommandMerchantCell.xib in Resources */,
 				5BFFCE251D41B9A30066B1B9 /* Assets.xcassets in Resources */,
 				7905064F1D4CD07900072AAC /* TextFieldCell.xib in Resources */,
+				94300F511D684DC80037546A /* ZLPhotoLib.bundle in Resources */,
 				79F2B6C21D4E2ECF00AA94E0 /* BussnessADCell.xib in Resources */,
 				79F2B6971D4D9E9700AA94E0 /* ProjectCell.xib in Resources */,
 			);
@@ -1595,29 +1871,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94300F361D684DC80037546A /* ZLCamera.m in Sources */,
 				1E7527BB1D52349F00AEDEC0 /* UIView+MJExtension.m in Sources */,
 				1E4CE4C71D4DCCAB00FF528A /* ComplainDetailViewController.m in Sources */,
 				1E42BB591D49C3670021DA01 /* ServicesManager.m in Sources */,
 				5B25722A1D47177B00CB4167 /* UIView+WebCacheOperation.m in Sources */,
 				5B2571861D47110B00CB4167 /* UILabel+Extension.m in Sources */,
+				94300F421D684DC80037546A /* ZLPhotoAssets.m in Sources */,
 				5B2571801D47110B00CB4167 /* UIBarButtonItem+Extension.m in Sources */,
 				5BED6BBB1D49963000C137C5 /* FeeVO.m in Sources */,
 				5B2572711D47475100CB4167 /* RootVC.m in Sources */,
 				79F2B6AE1D4DF86A00AA94E0 /* BussnessListVC.m in Sources */,
 				1E911BDD1D59A6DE006F15C6 /* AlertTableView2.m in Sources */,
+				94300F381D684DC80037546A /* ZLCameraView.m in Sources */,
+				94300F4A1D684DC80037546A /* ZLPhotoPickerCollectionView.m in Sources */,
 				5B25717B1D47110B00CB4167 /* NSDate+Extension.m in Sources */,
 				790FBEBE1D5B726100C00509 /* DropMenuTableView.m in Sources */,
+				94300F401D684DC80037546A /* ZLPhotoPickerBrowserPhotoView.m in Sources */,
 				5B25717A1D47110B00CB4167 /* NSArray+Extension.m in Sources */,
 				5BED6BBE1D49964800C137C5 /* FeeHistoryVO.m in Sources */,
 				5B2571E11D4716EE00CB4167 /* AFSecurityPolicy.m in Sources */,
 				5B25717D1D47110B00CB4167 /* NSDictionary+Extension.m in Sources */,
 				1E8E8F311D66567A003D8CBC /* UIImage+ImageEffects.m in Sources */,
+				94300F4D1D684DC80037546A /* ZLPhotoPickerGroupTableViewCell.m in Sources */,
+				94300F491D684DC80037546A /* ZLPhotoPickerViewController.m in Sources */,
 				5B197EEC1D487DAC00B95DE5 /* MASViewConstraint.m in Sources */,
 				9449430D1D5C320200AD2B00 /* ZYKeyboardUtil.m in Sources */,
 				5B2571DF1D4716EE00CB4167 /* AFHTTPSessionManager.m in Sources */,
 				5B197EE71D487DAC00B95DE5 /* MASCompositeConstraint.m in Sources */,
 				794E73E81D4A4F3E00267C84 /* PushSettingVC.m in Sources */,
 				1E8E8F3A1D66567A003D8CBC /* UIView+TYAlertView.m in Sources */,
+				94300F3C1D684DC80037546A /* ZLPhotoPickerBrowserViewController+SignlePhotoBrowser.m in Sources */,
 				1E5F6CDB1D507239004DC6F6 /* PayInfoViewController.m in Sources */,
 				5B2572211D47177B00CB4167 /* SDWebImageDownloaderOperation.m in Sources */,
 				1E8E8F371D66567A003D8CBC /* TYAlertView.m in Sources */,
@@ -1628,8 +1912,10 @@
 				798C24EC1D6894580078D1D9 /* RemoteImageSize.m in Sources */,
 				7928242F1D544130001764EB /* AlertEstateTableView.m in Sources */,
 				1E60484A1D4D0E51007CDE32 /* ProclamationTableViewCelll.m in Sources */,
+				94300F411D684DC80037546A /* ZLPhotoPickerCustomToolBarView.m in Sources */,
 				5B197EFF1D48A47800B95DE5 /* ComplaintVO.m in Sources */,
 				5B2571791D47110B00CB4167 /* Foundation+Log.m in Sources */,
+				94300F371D684DC80037546A /* ZLCameraImageView.m in Sources */,
 				1E8E8F341D66567A003D8CBC /* TYAlertDropDownAnimation.m in Sources */,
 				79340ED91D66D09D00437AA8 /* AdVO.m in Sources */,
 				5B197F0B1D48AD2C00B95DE5 /* GoodVO.m in Sources */,
@@ -1647,6 +1933,7 @@
 				79E862D71D5C687300D8E527 /* MerchantDetailVC.m in Sources */,
 				9400B9821D619C0D00E49F0E /* SVProgressHUD.m in Sources */,
 				1E7527B21D52349F00AEDEC0 /* MJRefreshBackStateFooter.m in Sources */,
+				94300F4B1D684DC80037546A /* ZLPhotoPickerCollectionViewCell.m in Sources */,
 				79270C401D61875900E29568 /* BussnessSelectButton.m in Sources */,
 				1E7527711D51EF4E00AEDEC0 /* BlueRedioButton.m in Sources */,
 				5B2572241D47177B00CB4167 /* UIButton+WebCache.m in Sources */,
@@ -1658,9 +1945,11 @@
 				1EF6BFF61D62B2010094955A /* SuggestTableViewCell.m in Sources */,
 				5B2572251D47177B00CB4167 /* UIImage+GIF.m in Sources */,
 				793296771D5197A2000FD426 /* RecordeRepairingCell.m in Sources */,
+				94300F3B1D684DC80037546A /* ZLPhotoRect.m in Sources */,
 				5B2571881D47110B00CB4167 /* UIView+Extension.m in Sources */,
 				1E5F6CD81D5071C2004DC6F6 /* PayTableViewCell.m in Sources */,
 				5B197EEE1D487DAC00B95DE5 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				94300F4E1D684DC80037546A /* ZLPhotoPickerImageView.m in Sources */,
 				1E88078D1D5FAE6B009C7A04 /* ProclamationInfoViewController.m in Sources */,
 				5B2571571D4710C100CB4167 /* MainNavigationViewController.m in Sources */,
 				1E7527B71D52349F00AEDEC0 /* MJRefreshConst.m in Sources */,
@@ -1684,6 +1973,7 @@
 				5B2571E21D4716EE00CB4167 /* AFURLRequestSerialization.m in Sources */,
 				1EE2841F1D4D037D008D5305 /* PayViewController.m in Sources */,
 				1E7527B31D52349F00AEDEC0 /* MJRefreshGifHeader.m in Sources */,
+				94300F501D684DC80037546A /* DALabeledCircularProgressView.m in Sources */,
 				791B4E321D64B84A00AF9371 /* RecordVideoCell.m in Sources */,
 				5B2571E41D4716EE00CB4167 /* AFURLSessionManager.m in Sources */,
 				79E862D41D5C533F00D8E527 /* TechSupportVC.m in Sources */,
@@ -1697,9 +1987,11 @@
 				5B197EFC1D48A32E00B95DE5 /* ComplaintTypeVO.m in Sources */,
 				794E73D91D4A3A5100267C84 /* WantRepairesVC.m in Sources */,
 				5B197EF61D4894D100B95DE5 /* FeedBackVO.m in Sources */,
+				94300F471D684DC80037546A /* ZLPhotoPickerAssetsViewController.m in Sources */,
 				79F2B6911D4D9E7F00AA94E0 /* PaigongCatogerysCell.m in Sources */,
 				5B3631FC1D4AED9B00D276D1 /* AddPublicRepairVO.m in Sources */,
 				1E8E8F321D66567A003D8CBC /* TYAlertController+TransitionAnimate.m in Sources */,
+				94300F451D684DC80037546A /* UIViewController+Alert.m in Sources */,
 				790506621D4CE93C00072AAC /* DescribeCell.m in Sources */,
 				1E7527AE1D52349F00AEDEC0 /* MJRefreshAutoNormalFooter.m in Sources */,
 				5B197ECA1D48779B00B95DE5 /* PointHistoryVO.m in Sources */,
@@ -1715,11 +2007,13 @@
 				1E7527AA1D52349F00AEDEC0 /* MJRefreshComponent.m in Sources */,
 				790506581D4CE2B100072AAC /* RepaireCategorysCell.m in Sources */,
 				1E75274B1D519A8500AEDEC0 /* AlertView.m in Sources */,
+				94300F4F1D684DC80037546A /* DACircularProgressView.m in Sources */,
 				794E73DF1D4A3AB700267C84 /* BussnessCircleVC.m in Sources */,
 				5B2572271D47177B00CB4167 /* UIImage+WebP.m in Sources */,
 				5BED6BC71D49AA7F00C137C5 /* RepairVO.m in Sources */,
 				5B197EEF1D487DAC00B95DE5 /* View+MASAdditions.m in Sources */,
 				5B2571E01D4716EE00CB4167 /* AFNetworkReachabilityManager.m in Sources */,
+				94300F3F1D684DC80037546A /* ZLPhotoPickerBrowserPhotoScrollView.m in Sources */,
 				7934F28F1D5DBCA800643B4D /* MySegmentedControl.m in Sources */,
 				79F2B6A11D4DD28F00AA94E0 /* YFLBBannerFooter.m in Sources */,
 				790506531D4CDB3500072AAC /* HouseSourceCell.m in Sources */,
@@ -1731,11 +2025,15 @@
 				1E42BB551D498DEE0021DA01 /* userAndPassWordTextField.m in Sources */,
 				7928242B1D541D8F001764EB /* WantRepairTableView2.m in Sources */,
 				1E8E8F381D66567A003D8CBC /* TYBaseAnimation.m in Sources */,
+				94300F391D684DC80037546A /* ZLCameraViewController.m in Sources */,
 				79F2B6BC1D4E22CC00AA94E0 /* RecommandMerchantCell.m in Sources */,
 				5BFFCE1A1D41B9A30066B1B9 /* main.m in Sources */,
 				1E8E8F331D66567A003D8CBC /* TYAlertController.m in Sources */,
 				792A24661D5314700005B085 /* UITableView+FDIndexPathHeightCache.m in Sources */,
+				94300F461D684DC80037546A /* ZLNavigationController.m in Sources */,
+				94300F351D684DC80037546A /* UIImage+ZLPhotoLib.m in Sources */,
 				5B2571821D47110B00CB4167 /* UIDevice+DeviceType.m in Sources */,
+				94300F3A1D684DC80037546A /* ZLPhotoPickerBrowserPhoto.m in Sources */,
 				797B23421D64C31B0033903C /* KRVideoPlayerController.m in Sources */,
 				1E7527B81D52349F00AEDEC0 /* NSBundle+MJRefresh.m in Sources */,
 				1E7527AD1D52349F00AEDEC0 /* MJRefreshAutoGifFooter.m in Sources */,
@@ -1748,6 +2046,8 @@
 				5B2571811D47110B00CB4167 /* UIButton+Extension.m in Sources */,
 				798C24EF1D68B3740078D1D9 /* MyDatePickerView.m in Sources */,
 				5B197EE91D487DAC00B95DE5 /* MASConstraintMaker.m in Sources */,
+				94300F431D684DC80037546A /* ZLPhotoPickerDatas.m in Sources */,
+				94300F441D684DC80037546A /* ZLPhotoPickerGroup.m in Sources */,
 				792A24721D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				5B25721B1D47177B00CB4167 /* MKAnnotationView+WebCache.m in Sources */,
 				1E3BA3B91D4B4FC600633D0B /* ReviseBtn.m in Sources */,
@@ -1758,11 +2058,13 @@
 				1E8E8F361D66567A003D8CBC /* TYAlertScaleFadeAnimation.m in Sources */,
 				5B25721F1D47177B00CB4167 /* SDWebImageDecoder.m in Sources */,
 				1E42BB581D4994E30021DA01 /* BlueCheckButton.m in Sources */,
+				94300F3D1D684DC80037546A /* ZLPhotoPickerBrowserViewController.m in Sources */,
 				5B25721E1D47177B00CB4167 /* SDWebImageCompat.m in Sources */,
 				1E7527AF1D52349F00AEDEC0 /* MJRefreshAutoStateFooter.m in Sources */,
 				9400B97F1D619BBC00E49F0E /* MBProgressHUD.m in Sources */,
 				1EE2842B1D4D05D1008D5305 /* SuggestViewController.m in Sources */,
 				5B2572281D47177B00CB4167 /* UIImageView+HighlightedWebCache.m in Sources */,
+				94300F3E1D684DC80037546A /* ZLPhotoPickerBrowserPhotoImageView.m in Sources */,
 				94D708931D4C68EE00C5009D /* ComplaintStateVO.m in Sources */,
 				7932967C1D51BCFF000FD426 /* RepairDetailController.m in Sources */,
 				792A24621D5300D10005B085 /* RecordsDetailCell.m in Sources */,
@@ -1771,7 +2073,9 @@
 				5B2572741D47545400CB4167 /* UserVO.m in Sources */,
 				79F2B6A01D4DD28F00AA94E0 /* YFLBBannerCell.m in Sources */,
 				5B197EF31D48924300B95DE5 /* FeedBackTypeVO.m in Sources */,
+				94300F4C1D684DC80037546A /* ZLPhotoPickerFooterCollectionReusableView.m in Sources */,
 				5B2571871D47110B00CB4167 /* UIScreen+Extension.m in Sources */,
+				94300F481D684DC80037546A /* ZLPhotoPickerGroupViewController.m in Sources */,
 				5BED6BCA1D49CCC500C137C5 /* RepairClassVO.m in Sources */,
 				1E8E8F3B1D66567A003D8CBC /* UIView+TYAutoLayout.m in Sources */,
 				1E8E8F391D66567A003D8CBC /* TYShowAlertView.m in Sources */,

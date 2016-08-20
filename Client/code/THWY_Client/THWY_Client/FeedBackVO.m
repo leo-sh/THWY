@@ -16,10 +16,16 @@
         self.Id = JSON[@"id"];
         self.category = JSON[@"category"];
         self.oid = JSON[@"oid"];
-        self.content = JSON[@"content"];
+        if ([JSON[@"answer"] isKindOfClass:[NSString class]] && [JSON[@"answer"] length] > 0) {
+            
+            self.answer = JSON[@"answer"];
+            self.content = [NSString stringWithFormat:@"%@\n回复：%@",JSON[@"content"],JSON[@"answer"]];
+        }else
+        {
+            self.content = JSON[@"content"];
+        }
         
         self.is_read = [JSON[@"is_read"] boolValue];
-        self.answer = JSON[@"answer"];
         self.ctime = JSON[@"ctime"];
     }
     
