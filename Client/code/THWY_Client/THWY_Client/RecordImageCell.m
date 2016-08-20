@@ -50,7 +50,7 @@
             make.left.mas_equalTo(self.leftLabel.mas_left);
             make.right.mas_equalTo(self.contentView.mas_right).offset(-topMargin);
             make.top.mas_equalTo(self.leftLabel.mas_bottom).offset(topMargin);
-            make.height.mas_equalTo(My_ScreenH*0.4);
+            make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-topMargin);
         }];
         
     }

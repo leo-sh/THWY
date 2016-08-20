@@ -95,7 +95,7 @@
         [self.paiGongNumber mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.contentView.mas_left).offset(topMagrin);
             make.width.mas_equalTo(self.paiGongNumber.mas_height);
-            make.height.mas_equalTo(20);
+            make.height.mas_equalTo(18);
             make.centerY.mas_equalTo(self.contentView.mas_top).offset(CENTERY(0));
         }];
         
@@ -351,7 +351,7 @@
         [string appendString:[NSString stringWithFormat:@"%@单元",repaireVO.unit ]];
     }
     if (repaireVO.layer && ![repaireVO.layer isEqualToString:@""] && [repaireVO.layer intValue] != 0){
-        [string appendString:[NSString stringWithFormat:@"%@层",repaireVO.unit ]];
+        [string appendString:[NSString stringWithFormat:@"%@层",repaireVO.layer ]];
     }
     if (repaireVO.mph && ![repaireVO.mph isEqualToString:@""] && [repaireVO.mph intValue] != 0){
         [string appendString:[NSString stringWithFormat:@"%@室",repaireVO.mph]];

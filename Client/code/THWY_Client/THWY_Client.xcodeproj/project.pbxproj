@@ -171,6 +171,9 @@
 		794E73E81D4A4F3E00267C84 /* PushSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73E71D4A4F3E00267C84 /* PushSettingVC.m */; };
 		797B23421D64C31B0033903C /* KRVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 797B23311D64C31B0033903C /* KRVideoPlayerController.m */; };
 		797B23431D64C31B0033903C /* KRVideoPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 797B23331D64C31B0033903C /* KRVideoPlayerControlView.m */; };
+		798C24EC1D6894580078D1D9 /* RemoteImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C24EB1D6894580078D1D9 /* RemoteImageSize.m */; };
+		798C24EF1D68B3740078D1D9 /* MyDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C24EE1D68B3740078D1D9 /* MyDatePickerView.m */; };
+		798C24F21D68DC640078D1D9 /* MyTimerPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C24F11D68DC640078D1D9 /* MyTimerPickerView.m */; };
 		79A653E01D586CE100D03025 /* GoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A653DF1D586CE100D03025 /* GoodsVC.m */; };
 		79D2D2701D4F530400463CC5 /* MerchargeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F2B6B41D4E011C00AA94E0 /* MerchargeListCell.xib */; };
 		79D2D2711D4F532400463CC5 /* PaigongCatogerysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F2B6901D4D9E7F00AA94E0 /* PaigongCatogerysCell.xib */; };
@@ -543,6 +546,12 @@
 		797B23311D64C31B0033903C /* KRVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRVideoPlayerController.m; sourceTree = "<group>"; };
 		797B23321D64C31B0033903C /* KRVideoPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRVideoPlayerControlView.h; sourceTree = "<group>"; };
 		797B23331D64C31B0033903C /* KRVideoPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRVideoPlayerControlView.m; sourceTree = "<group>"; };
+		798C24EA1D6894580078D1D9 /* RemoteImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteImageSize.h; sourceTree = "<group>"; };
+		798C24EB1D6894580078D1D9 /* RemoteImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteImageSize.m; sourceTree = "<group>"; };
+		798C24ED1D68B3740078D1D9 /* MyDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDatePickerView.h; sourceTree = "<group>"; };
+		798C24EE1D68B3740078D1D9 /* MyDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDatePickerView.m; sourceTree = "<group>"; };
+		798C24F01D68DC640078D1D9 /* MyTimerPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTimerPickerView.h; sourceTree = "<group>"; };
+		798C24F11D68DC640078D1D9 /* MyTimerPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTimerPickerView.m; sourceTree = "<group>"; };
 		79A653DE1D586CE100D03025 /* GoodsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsVC.h; sourceTree = "<group>"; };
 		79A653DF1D586CE100D03025 /* GoodsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsVC.m; sourceTree = "<group>"; };
 		79E862D21D5C533F00D8E527 /* TechSupportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TechSupportVC.h; sourceTree = "<group>"; };
@@ -1131,6 +1140,8 @@
 				5B2571761D47110B00CB4167 /* UIScreen+Extension.m */,
 				5B2571771D47110B00CB4167 /* UIView+Extension.h */,
 				5B2571781D47110B00CB4167 /* UIView+Extension.m */,
+				798C24EA1D6894580078D1D9 /* RemoteImageSize.h */,
+				798C24EB1D6894580078D1D9 /* RemoteImageSize.m */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -1306,6 +1317,10 @@
 				792824271D541D74001764EB /* WantRepairTableView1.m */,
 				792824291D541D8F001764EB /* WantRepairTableView2.h */,
 				7928242A1D541D8F001764EB /* WantRepairTableView2.m */,
+				798C24ED1D68B3740078D1D9 /* MyDatePickerView.h */,
+				798C24EE1D68B3740078D1D9 /* MyDatePickerView.m */,
+				798C24F01D68DC640078D1D9 /* MyTimerPickerView.h */,
+				798C24F11D68DC640078D1D9 /* MyTimerPickerView.m */,
 			);
 			name = WantRepaireViews;
 			sourceTree = "<group>";
@@ -1610,6 +1625,7 @@
 				5BED6BC11D499DB900C137C5 /* EstateVO.m in Sources */,
 				5B2571851D47110B00CB4167 /* UIImage+ScreenShot.m in Sources */,
 				1E3BA3911D4AFF2B00633D0B /* PersonInfoLabel.m in Sources */,
+				798C24EC1D6894580078D1D9 /* RemoteImageSize.m in Sources */,
 				7928242F1D544130001764EB /* AlertEstateTableView.m in Sources */,
 				1E60484A1D4D0E51007CDE32 /* ProclamationTableViewCelll.m in Sources */,
 				5B197EFF1D48A47800B95DE5 /* ComplaintVO.m in Sources */,
@@ -1617,6 +1633,7 @@
 				1E8E8F341D66567A003D8CBC /* TYAlertDropDownAnimation.m in Sources */,
 				79340ED91D66D09D00437AA8 /* AdVO.m in Sources */,
 				5B197F0B1D48AD2C00B95DE5 /* GoodVO.m in Sources */,
+				798C24F21D68DC640078D1D9 /* MyTimerPickerView.m in Sources */,
 				94F7CE801D6149D90034E9FC /* BannerNotice.m in Sources */,
 				5B25717C1D47110B00CB4167 /* NSDate+Helper.m in Sources */,
 				1E7527B41D52349F00AEDEC0 /* MJRefreshNormalHeader.m in Sources */,
@@ -1729,6 +1746,7 @@
 				7905064E1D4CD07900072AAC /* TextFieldCell.m in Sources */,
 				5B2572201D47177B00CB4167 /* SDWebImageDownloader.m in Sources */,
 				5B2571811D47110B00CB4167 /* UIButton+Extension.m in Sources */,
+				798C24EF1D68B3740078D1D9 /* MyDatePickerView.m in Sources */,
 				5B197EE91D487DAC00B95DE5 /* MASConstraintMaker.m in Sources */,
 				792A24721D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				5B25721B1D47177B00CB4167 /* MKAnnotationView+WebCache.m in Sources */,

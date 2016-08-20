@@ -40,7 +40,7 @@
         self.repairVO.videoPath = @"";
         self.repairVO.cls = @"";
         self.repairVO.image = [[UIImage alloc] init];
-        self.cells = [NSMutableArray arrayWithArray:@[@"",@"",@"",@"",@"",@"",@"",@""]];
+        self.cells = [NSMutableArray arrayWithArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@""]];
         
         [self getHouses];
         
@@ -59,7 +59,7 @@
         [self registerNib:[UINib nibWithNibName:@"RepaireCategorysCell" bundle:nil] forCellReuseIdentifier:@"RepaireCategorysCell"];
         [self registerNib:[UINib nibWithNibName:@"UploadCell" bundle:nil] forCellReuseIdentifier:@"UploadCell"];
         [self registerNib:[UINib nibWithNibName:@"DescribeCell" bundle:nil] forCellReuseIdentifier:@"DescribeCell"];
-
+        [self registerNib:[UINib nibWithNibName:@"PaigongCatogerysCell" bundle:nil] forCellReuseIdentifier:@"PaigongCatogerysCell"];
         
     }
     return self;
@@ -72,13 +72,22 @@
 
 #pragma mark - tabelViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 8;
+    return 9;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger row = indexPath.row;
     switch (row) {
         case 0:{
+            
+            PaigongCatogerysCell *cell = (PaigongCatogerysCell *)[tableView dequeueReusableCellWithIdentifier:@"PaigongCatogerysCell" forIndexPath:indexPath];
+            self.cells[row] = cell;
+            cell.tableView = tableView;
+            return cell;
+            break;
+        }
+
+        case 1:{
   
             TextFieldCell *cell = (TextFieldCell *)[tableView dequeueReusableCellWithIdentifier:@"textFieldCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_姓名"];
@@ -89,7 +98,7 @@
             
             break;
         }
-        case 1:{
+        case 2:{
 
             TextFieldCell *cell = (TextFieldCell *)[tableView dequeueReusableCellWithIdentifier:@"textFieldCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_call"];
@@ -100,7 +109,7 @@
         
             break;
         }
-        case 2:{
+        case 3:{
 
             HouseSourceCell *cell = (HouseSourceCell *)[tableView dequeueReusableCellWithIdentifier:@"HouseSourceCell" forIndexPath:indexPath];
             cell.housesArray = self.housesArray;
@@ -109,7 +118,7 @@
             return cell;
             
         }
-        case 3:{
+        case 4:{
             RepaireCategorysCell *cell = (RepaireCategorysCell *)[tableView dequeueReusableCellWithIdentifier:@"RepaireCategorysCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_有偿保修"];
             cell.label.text = @"有偿报修类别: ";
@@ -117,14 +126,14 @@
             return cell;
             
         }
-        case 4:{
+        case 5:{
             RepaireCategorysCell *cell = (RepaireCategorysCell *)[tableView dequeueReusableCellWithIdentifier:@"RepaireCategorysCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_保修类别"];
             cell.label.text = @"无偿报修类别: ";
             self.cells[row] = cell;
             return cell;
         }
-        case 5:{
+        case 6:{
             UploadCell *cell = (UploadCell *)[tableView dequeueReusableCellWithIdentifier:@"UploadCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_图片"];
             cell.label.text = @"上传图片:";
@@ -134,7 +143,7 @@
             self.cells[row] = cell;
             return cell;
         }
-        case 6:{
+        case 7:{
             UploadCell *cell = (UploadCell *)[tableView dequeueReusableCellWithIdentifier:@"UploadCell" forIndexPath:indexPath];
             cell.icon.image = [UIImage imageNamed:@"repaire_视频"];
             cell.label.text = @"上传视频:";
@@ -144,7 +153,7 @@
             self.cells[row] = cell;
             return cell;
         }
-        case 7:{
+        case 8:{
             DescribeCell *cell = (DescribeCell *)[tableView dequeueReusableCellWithIdentifier:@"DescribeCell" forIndexPath:indexPath];
             cell.delegate = self;
 //            self.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -161,19 +170,30 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 2) {
+    if (indexPath.row == 3) {
         return (60.0+self.housesArray.count*30)/713*My_ScreenH;
-    }else if (indexPath.row == 5 || indexPath.row == 6) {
+    }else if (indexPath.row == 6 || indexPath.row == 7) {
         return 90.0/713*My_ScreenH;
-    }else if (indexPath.row == 7){
+    }else if (indexPath.row == 8){
         return 310.0/713*My_ScreenH;
+    }else if (indexPath.row == 0){
+        CGFloat topMargin = 5;
+        if ([self.cells[0] isKindOfClass:[PaigongCatogerysCell class]]) {
+            if ([(PaigongCatogerysCell *)self.cells[0] showPikerView]) {
+                return 60.0/713*My_ScreenH + 40*2 +  topMargin;
+            }else{
+                return 60.0/713*My_ScreenH;
+            }
+        }else{
+            return 60.0/713*My_ScreenH;
+        }
     }
     return 60.0/713*My_ScreenH;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
-        case 3:{
+        case 4:{
             //有偿弹框
             [self initAlertView];
             self.alertView.data = self.repaireClassArrayPay;
@@ -186,7 +206,7 @@
             [self.alertView showInWindow];
             break;
         }
-        case 4:{
+        case 5:{
             //无偿弹框
             [self initAlertView];
             self.alertView.data = self.repaireClassArrayFree;
@@ -288,15 +308,15 @@
 
         UITableViewCell *cell = self.cells[i];
         switch (i) {
-            case 0:{
+            case 1:{
                 self.repairVO.call_person = [((TextFieldCell *)cell) textField].text;
                 break;
             }
-            case 1:{
+            case 2:{
                 self.repairVO.call_phone = [((TextFieldCell *)cell) textField].text;
                 break;
             }
-            case 2:{
+            case 3:{
                 if ([(HouseSourceCell *)cell selectedIndex] == -1) {
                     [SVProgressHUD showErrorWithStatus:@"请选择房源"];
                     return;
@@ -316,7 +336,7 @@
 //                }
 //                break;
 //            }
-            case 7:{
+            case 8:{
                 self.repairVO.detail = [[(DescribeCell *)cell textView] text];
                 break;
             }

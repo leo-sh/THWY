@@ -104,7 +104,7 @@
                         [string appendString:[NSString stringWithFormat:@"%@单元",model.unit ]];
                     }
                     if (model.layer && ![model.layer isEqualToString:@""] && [model.layer intValue] != 0){
-                        [string appendString:[NSString stringWithFormat:@"%@层",model.unit ]];
+                        [string appendString:[NSString stringWithFormat:@"%@层",model.layer ]];
                     }
                     if (model.mph && ![model.mph isEqualToString:@""] && [model.mph intValue] != 0){
                         [string appendString:[NSString stringWithFormat:@"%@室",model.mph]];

@@ -76,6 +76,7 @@
             
             PaigongCatogerysCell *cell = (PaigongCatogerysCell *)[tableView dequeueReusableCellWithIdentifier:@"PaigongCatogerysCell" forIndexPath:indexPath];
             self.cells[row] = cell;
+            cell.tableView = tableView;
             return cell;
             break;
         }
@@ -152,7 +153,19 @@
         return 90.0/713*My_ScreenH;
     }else if (indexPath.row == 7){
         return 310.0/713*My_ScreenH;
+    }else if (indexPath.row == 0){
+        CGFloat topMargin = 5;
+        if ([self.cells[0] isKindOfClass:[PaigongCatogerysCell class]]) {
+            if ([(PaigongCatogerysCell *)self.cells[0] showPikerView]) {
+                return 60.0/713*My_ScreenH + 40*2 +  topMargin;
+            }else{
+                return 60.0/713*My_ScreenH;
+            }
+        }else{
+            return 60.0/713*My_ScreenH;
+        }
     }
+
     return 60.0/713*My_ScreenH;
 }
 

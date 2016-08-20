@@ -135,7 +135,9 @@
     
     if (indexPath.section == 4) {
         if (self.model.pic && ![self.model.pic isEqualToString:@""]) {
-            return My_ScreenH*0.4+40;
+            CGSize size = [RemoteImageSize downloadImageSizeWithURL: [NSURL URLWithString:self.model.pic]];
+            return (My_ScreenW-8.0/375*My_ScreenW*4)/size.width*size.height + 20 + 8.0/375*My_ScreenW*3;
+//            return My_ScreenH*0.4+40;
         }else{
             return 0;
         }

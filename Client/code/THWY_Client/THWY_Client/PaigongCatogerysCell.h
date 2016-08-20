@@ -10,6 +10,7 @@
 
 @interface PaigongCatogerysCell : UITableViewCell
 
+@property (assign, nonatomic) BOOL showPikerView;
 @property (assign, nonatomic) int flag;
-
+@property (strong, nonatomic) UITableView *tableView;
 @end
