@@ -85,11 +85,34 @@
             break;
         }
         case 2:{
-            return 2;
+            if ([self.model._st intValue]>=1) {
+                return 2;
+            }else{
+                return 0;
+            }
             break;
         }
         case 3:{
-            return 3;
+            if (self.type == 1) {
+                if ([self.model._st intValue] == 0) {
+                    return 0;
+                }else if([self.model._st intValue] == 1 || [self.model._st intValue] == 2){
+                    return 1;
+                }else if([self.model._st intValue] == 3){
+                    return 2;
+                }else if([self.model._st intValue] == 4){
+                    return 3;
+                }
+            }else{
+                if ([self.model._st intValue] == 0) {
+                    return 0;
+                }else if([self.model._st intValue] == 1 || [self.model._st intValue] == 2){
+                    return 1;
+                }else if([self.model._st intValue] == 3){
+                    return 2;
+                }
+            }
+            
             break;
         }
         case 4:{
@@ -123,7 +146,7 @@
         RecordVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordVideoCell" forIndexPath:indexPath];
         [cell loadDataWithModel:self.model];
         return cell;
-    }else{
+    }else {
         RecordsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordsDetailCell" forIndexPath:indexPath];
         cell.type = self.type;
         [cell loadDataWithModel:self.model indexpath:indexPath];
@@ -166,26 +189,89 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIImageView *head = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 1)];
     head.image = [UIImage imageNamed:@"records_虚线"];
-    return head;
+    switch (section) {
+        case 2:{
+            if ([self.model._st intValue] == 0) {
+                return nil;
+            }else{
+                return head;
+            }
+            break;
+        }
+        case 3:{
+            if ([self.model._st intValue]== 0) {
+                return nil;
+            }else{
+                return head;
+            }
+            break;
+        }
+        case 4:{
+            if (self.model.pic && ![self.model.pic isEqualToString:@""]) {
+                return head;
+            }else{
+                return nil;
+            }
+            break;
+        }
+        case 5:{
+            if (self.model.vdo && ![self.model.vdo isEqualToString:@""]) {
+                return head;
+            }else{
+                return nil;
+            }
+
+            break;
+        }
+        default:{
+            return head;
+            break;
+        }
+    }
+    return nil;
+    
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section == 4) {
-        if (self.model.pic && ![self.model.pic isEqualToString:@""]) {
-            return 1;
-        }else{
-            return 0;
+    switch (section) {
+        case 2:{
+            if ([self.model._st intValue]== 0) {
+                return 0;
+            }else{
+                return 1;
+            }
+            break;
         }
-    }else if (section == 5) {
-        if (self.model.vdo && ![self.model.vdo isEqualToString:@""]) {
-            return 1;
-        }else{
-            return 0;
+        case 3:{
+            if ([self.model._st intValue]== 0) {
+                return 0;
+            }else{
+                return 1;
+            }
+            break;
         }
-        
-    }else{
-        return 1;
+        case 4:{
+            if (self.model.pic && ![self.model.pic isEqualToString:@""]) {
+                return 1;
+            }else{
+                return 0;
+            }
+            break;
+        }
+        case 5:{
+            if (self.model.vdo && ![self.model.vdo isEqualToString:@""]) {
+                return 1;
+            }else{
+                return 0;
+            }
+            
+            break;
+        }
+        default:{
+            return 1;
+            break;
+        }
     }
 }
 
