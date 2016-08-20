@@ -215,8 +215,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, tableView.width - 10, My_ScreenH*2)];
+    label.font = FontSize(CONTENT_FONT);
+    label.numberOfLines = 0;
+    label.text = [self.data[indexPath.section] content];
+    [label sizeToFit];
+    CGFloat contenHeight = label.height;
     
-    CGFloat contenHeight = [[self.data[indexPath.section] content] sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(tableView.width, 4000)].height;
     NSArray *cellArray = @[[NSNumber numberWithFloat:contenHeight + 32 + 8 + 10],[NSNumber numberWithFloat:tableView.width]];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"cellHeight" object:cellArray];
     //添加上面固定内容的高度 + 下面内容的高度 + 与下边界的距离

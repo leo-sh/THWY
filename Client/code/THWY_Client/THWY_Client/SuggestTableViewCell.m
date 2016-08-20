@@ -53,7 +53,6 @@
 - (void)updateFrame:(CGFloat)height Width:(CGFloat)width
 {
     CGFloat contentWidth = width - 20;
-    self.backView.frame = CGRectMake(10, 0, contentWidth, height);
     self.head.width = contentWidth;
     self.time.width = contentWidth;
     self.content.width = contentWidth;
@@ -73,11 +72,15 @@
     self.content.numberOfLines = 0;
     self.content.font = FontSize(CONTENT_FONT);
     
-    CGFloat contenHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
+    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, width - 10, My_ScreenH*2)];
+    label.font = FontSize(CONTENT_FONT);
+    label.numberOfLines = 0;
+    label.text = content;
+    [label sizeToFit];
+    CGFloat contenHeight = label.height;
     self.content.frame = CGRectMake(5, self.time.bottom + 8, width - 10, contenHeight);
     
-    
-    
+    self.backView.frame = CGRectMake(10, 0, width - 20, contenHeight + 32 + 8 + 10);
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
