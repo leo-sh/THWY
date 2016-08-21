@@ -27,3 +27,5 @@
 
 #import "NSDictionary+Extension.h"
 #import "NSArray+Extension.h"
+
+#import "RemoteImageSize.h"

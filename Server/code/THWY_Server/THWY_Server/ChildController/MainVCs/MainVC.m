@@ -186,7 +186,7 @@
         make.top.mas_equalTo(self.username.mas_bottom).offset(6);
     }];
     
-    UIImageView *more = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"箭头"]];
+    UIImageView *more = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"main_箭头"]];
     [self.userInfoView addSubview:more];
     [more mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.userInfoView.mas_centerY);

@@ -152,7 +152,7 @@
         
         //设置导航栏的按钮
         UIButton *back = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
-        [back setBackgroundImage:[UIImage imageNamed:@"main_back_icon"] forState:UIControlStateNormal];
+        [back setBackgroundImage:[UIImage imageNamed:@"main_back-icon"] forState:UIControlStateNormal];
         [back addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:back];
         viewController.navigationItem.leftBarButtonItems = @[negativeSpacer, backButton];
