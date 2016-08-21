@@ -29,8 +29,12 @@
         self.selectedDate = [[NSDate date] dateByAddingTimeInterval:8*60*60];
         self.selectedDateComponets = [self.calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:[NSDate date]];
 
+        self.startDate = [NSDate date];
+        self.endDate = [NSDate date];
+        
         [self selectRow:[self.selectedDateComponets month]-1 inComponent:1 animated:NO];
         [self selectRow:[self.selectedDateComponets day]-1 inComponent:2 animated:NO];
+        
     }
     return self;
 }

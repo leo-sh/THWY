@@ -124,7 +124,7 @@
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
-    return self.size.width / 3;
+    return self.size.width / 3-30;
 }
 
 

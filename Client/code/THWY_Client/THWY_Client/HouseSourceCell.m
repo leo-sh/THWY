@@ -58,7 +58,7 @@
     NSInteger topMargin = 10.0/667*My_ScreenH;
     for (int i = 0; i < self.housesArray.count; i++) {
         
-        if([self.contentView viewWithTag:420]){
+        if([self.contentView viewWithTag:420+i]){
             return;
         }
         
@@ -85,8 +85,6 @@
             make.centerY.mas_equalTo(selectIcon.mas_centerY);
         }];
     }
-
-    
 }
 
 - (void)selectIcon:(UIButton *)btn{
