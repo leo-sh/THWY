@@ -318,7 +318,7 @@
             }
             case 3:{
                 if ([(HouseSourceCell *)cell selectedIndex] == -1) {
-                    [SVProgressHUD showErrorWithStatus:@"请选择房源"];
+                    [SVProgressHUD showErrorWithStatus:@"请选择所在项目"];
                     return;
                 }
                 self.repairVO.house_id = [self.housesArray[[(HouseSourceCell *)cell selectedIndex]] Id];
