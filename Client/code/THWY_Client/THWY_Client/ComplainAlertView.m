@@ -52,10 +52,10 @@
     CGFloat houseBtnX = 30;
     CGFloat houseBtnY = houseLabel.bottom - 10;
     CGFloat houseBtnW = self.width - CGRectGetMaxX(houseLabel.frame);
-    CGFloat houseBtnH = 30;
+    CGFloat houseBtnH = 25;
     
     for (int i = 0; i < houseArray.count; i ++) {
-        houseSource.height = houseBtnH *houseArray.count + houseBtnY;
+        houseSource.height = houseBtnH *houseArray.count + houseLabel.height;
         BlueRedioButton * btn = [[BlueRedioButton alloc]initWithFrame:CGRectMake(houseBtnX, houseBtnY, houseBtnW, houseBtnH)];
         
         HouseVO *house = houseArray[i];

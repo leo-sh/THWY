@@ -384,7 +384,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/ComplainAlertView.m"
@@ -400,7 +400,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/ComplainAlertView.m"
@@ -416,7 +416,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/ComplainAlertView.m"
@@ -484,7 +484,7 @@
                   moduleName = "THWY_Client"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaa/Desktop/THWY/Client/code/THWY_Client/THWY_Client/ComplainViewController.m"
-                  timestampString = "493320494.512196"
+                  timestampString = "493443994.489637"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "67"
@@ -499,7 +499,7 @@
                   moduleName = "THWY_Client"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaa/Desktop/THWY/Client/code/THWY_Client/THWY_Client/ComplainViewController.m"
-                  timestampString = "493320494.512307"
+                  timestampString = "493443994.489746"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "67"
@@ -1192,6 +1192,22 @@
             startingLineNumber = "176"
             endingLineNumber = "176"
             landmarkName = "-tableView:heightForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "THWY_Client/ComplainAlertView.m"
+            timestampString = "493443202.269841"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "-keyboardShow:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
