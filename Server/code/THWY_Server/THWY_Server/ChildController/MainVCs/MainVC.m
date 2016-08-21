@@ -57,7 +57,7 @@
             }
             
             if (user) {
-//                [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.photo] placeholderImage:[UIImage imageNamed:@"Avatar"]];
+                [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.photo] placeholderImage:[UIImage imageNamed:@"Avatar"]];
                 self.username.text = user.real_name;
                 self.addr.text = [user.up_group project];
             }
@@ -69,7 +69,7 @@
     self.title = @"业主客服系统";
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"yitailogo"]];
     self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [self.leftButton setImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
+    [self.leftButton setImage:[UIImage scaleImage:[UIImage imageNamed:@"main_快捷菜单"] toScale:0.5] forState:UIControlStateNormal];
 //    [self.leftButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [self.leftButton addTarget:self action:@selector(leftItemOnclicked:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithCustomView:self.leftButton];
