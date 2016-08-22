@@ -50,7 +50,7 @@
 - (void)customNVBar{
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
-    [button setBackgroundImage:[UIImage imageNamed:@"main_注销按钮"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"注销按钮"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(signOut)];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     
