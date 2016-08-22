@@ -154,10 +154,10 @@
     }else if (indexPath.row == 7){
         return 310.0/713*My_ScreenH;
     }else if (indexPath.row == 0){
-        CGFloat topMargin = 5;
+//        CGFloat topMargin = 5;
         if ([self.cells[0] isKindOfClass:[PaigongCatogerysCell class]]) {
             if ([(PaigongCatogerysCell *)self.cells[0] showPikerView]) {
-                return 60.0/713*My_ScreenH + 40*2 +  topMargin;
+                return 60.0/713*My_ScreenH + 40*2;
             }else{
                 return 60.0/713*My_ScreenH;
             }
