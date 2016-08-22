@@ -1161,9 +1161,13 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"]) {
-                RepairStatisticVO *estate = [[RepairStatisticVO alloc]initWithJSON:estateDic];
-                [listArr addObject:estate];
+            for (NSArray* estateArr in responseObject[@"datas"]) {
+                NSMutableArray* list = [[NSMutableArray alloc]init];
+                for (NSDictionary* estateDic in estateArr) {
+                    RepairStatisticVO *estate = [[RepairStatisticVO alloc]initWithJSON:estateDic];
+                    [list addObject:estate];
+                }
+                [listArr addObject:list];
             }
             onComplete(nil,listArr);
         }
@@ -1563,7 +1567,7 @@ savePassWord:(BOOL)save
     if ([self isLogin]) {
         UserVO *user = [[UDManager getUD] getUser];
         NSLog(@"admin_id:%@",user.admin_id);
-        [self getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
+        [self getRepairStatistic:nil onComplete:^(NSString *errorMsg, NSArray *list) {
             
         }];
     }else

@@ -76,7 +76,9 @@
         self.estate_name = JSON[@"estate_name"];
         self.now_status = JSON[@"now_status"];
         
-        self.repair_task = [[RepairTaskVO alloc]initWithJSON:JSON[@"repair_task"]];
+        if ([JSON[@"repair_task"] isKindOfClass:[NSDictionary class]]) {
+            self.repair_task = [[RepairTaskVO alloc]initWithJSON:JSON[@"repair_task"]];
+        }
         
         NSMutableArray* statuArr = [[NSMutableArray alloc]init];
         for (NSDictionary* statuDic in JSON[@"repair_status"]) {

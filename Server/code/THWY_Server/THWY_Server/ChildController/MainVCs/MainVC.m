@@ -12,7 +12,7 @@
 //#import "PersonInfoViewController.h"
 #import "DropMenuTableView.h"
 
-#define topMargin  8.0/375*My_ScreenW
+#define topMargin  5.0/375*My_ScreenW
 
 @interface MainVC ()<DropTableMenuDelegate>
 
@@ -137,7 +137,7 @@
 //用户信息
 - (void)initUserInfoView{
     
-    self.userInfoView = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, My_ScreenW, 1/4.0 * (My_ScreenH-64) - topMargin*2)];
+    self.userInfoView = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, My_ScreenW, 1/4.0 * My_ScreenH - topMargin*2)];
     [self.userInfoView setBackgroundImage:[UIImage imageNamed:@"main_背景"] forState:UIControlStateNormal];
     [self.userInfoView addTarget:self action:@selector(showUserInfoVC) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.userInfoView];
@@ -153,8 +153,8 @@
     
     [self.headImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.userInfoView.mas_centerY);
-        make.left.mas_equalTo(self.userInfoView).offset(30);
-        make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.6666666666666666667);
+        make.left.mas_equalTo(self.userInfoView).offset(30/375.0*My_ScreenW);
+        make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.7);
         make.width.mas_equalTo(self.headImage.mas_height);
     }];
     
@@ -199,8 +199,8 @@
 #pragma mark - 各模块控件
 - (void)initModuleViews{
     
-    self.bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.userInfoView.height+self.userInfoView.y, self.view.width, 3/4.0 * (My_ScreenH-64)+2*topMargin)];
-    self.bgScrollView.contentSize = CGSizeMake(self.bgScrollView.width, (My_ScreenW-3*topMargin)*0.5/297*168.0*4+topMargin*4);
+    self.bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.userInfoView.bottom + 2.5/375.0*My_ScreenW, self.view.width, 3/4.0 * (My_ScreenH-64)+2*topMargin)];
+    self.bgScrollView.contentSize = CGSizeMake(self.bgScrollView.width, (My_ScreenW-3*topMargin)*0.5/297*170.0*2 + (My_ScreenW-3*topMargin)*0.5 * 1.19 + topMargin*9);
     self.bgScrollView.backgroundColor = [UIColor clearColor];
     self.bgScrollView.showsVerticalScrollIndicator = NO;
     self.bgScrollView.showsHorizontalScrollIndicator = NO;
@@ -215,7 +215,7 @@
     [woyaobaoxiu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgScrollView.mas_left).offset(topMargin);
         make.top.mas_equalTo(self.bgScrollView.mas_top).offset(topMargin);
-        make.size.mas_equalTo(CGSizeMake((My_ScreenW-3*topMargin)*0.5, (My_ScreenW-3*topMargin)*0.5/297*168.0));
+        make.size.mas_equalTo(CGSizeMake((My_ScreenW-3*topMargin)*0.5, (My_ScreenW-3*topMargin)*0.5/297*170.0));
     }];
     
     UIButton *baoxiujilu = [[UIButton alloc] init];
@@ -225,7 +225,7 @@
     [self.bgScrollView addSubview:baoxiujilu];
     [baoxiujilu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(woyaobaoxiu.mas_left);
-        make.top.mas_equalTo(woyaobaoxiu.mas_bottom).offset(topMargin);
+        make.top.mas_equalTo(woyaobaoxiu.mas_bottom).offset(topMargin*1.3);
         make.width.and.height.mas_equalTo(woyaobaoxiu);
     }];
     
@@ -236,9 +236,9 @@
     [self.bgScrollView addSubview:gongzuorizhi];
     [gongzuorizhi mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(baoxiujilu.mas_left);
-        make.top.mas_equalTo(baoxiujilu.mas_bottom).offset(topMargin);
+        make.top.mas_equalTo(baoxiujilu.mas_bottom).offset(topMargin*1.3);
         make.width.mas_equalTo(woyaobaoxiu.mas_width);
-        make.height.mas_equalTo(baoxiujilu.mas_height).multipliedBy(2.0).offset(topMargin);
+        make.height.mas_equalTo(baoxiujilu.mas_width).multipliedBy(1.19);
     }];
     
     UIButton *baoxiujiedan = [[UIButton alloc] init];
@@ -249,8 +249,8 @@
     [baoxiujiedan mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(woyaobaoxiu.mas_right).offset(topMargin);
         make.top.mas_equalTo(woyaobaoxiu.mas_top);
-        make.height.mas_equalTo(woyaobaoxiu.mas_height);
-        make.width.mas_equalTo(woyaobaoxiu.mas_width).multipliedBy(0.5).offset(-topMargin*0.5);
+        make.height.mas_equalTo(baoxiujilu);
+        make.width.mas_equalTo(baoxiujilu.mas_width).multipliedBy(0.5).offset(-topMargin*0.5);
     }];
     
     UIButton *baoxiutongji = [[UIButton alloc] init];
@@ -296,6 +296,7 @@
         make.left.mas_equalTo(baoxiujiedan.mas_left);
         make.top.mas_equalTo(gongzuorizhi.mas_top);
         make.width.and.height.mas_equalTo(woyaobaoxiu);
+        make.height.mas_equalTo(gongzuorizhi.mas_height).multipliedBy(0.5).offset(-topMargin*0.5);
     }];
     
     UIButton *ipbaimingdan = [[UIButton alloc] init];
@@ -306,7 +307,7 @@
     [ipbaimingdan mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(xindebiji.mas_left);
         make.top.mas_equalTo(xindebiji.mas_bottom).offset(topMargin);
-        make.width.and.height.mas_equalTo(woyaobaoxiu);
+        make.width.and.height.mas_equalTo(xindebiji);
     }];
 
     
