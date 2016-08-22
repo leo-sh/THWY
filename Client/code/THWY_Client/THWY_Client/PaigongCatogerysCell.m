@@ -47,7 +47,7 @@
     self.constraint2.constant = 10.0/375*My_ScreenW;
     self.constraint3.constant = 10.0/375*My_ScreenW;
    
-    CGFloat topMargin = 5.0;
+//    CGFloat topMargin = 5.0;
 
     self.datePickerView = [[MyDatePickerView alloc] initWithFrame:CGRectMake(10, self.btn_kaidan.bottom, My_ScreenW-40, 40)];
     self.datePickerView.font = FontSize(CONTENT_FONT+1);
@@ -59,7 +59,49 @@
     self.timePickerView.font = FontSize(CONTENT_FONT+1);
     self.timePickerView.fontColor = [UIColor blackColor];
     
-    self.showPikerView = NO;
+    [self.contentView addSubview:self.datePickerView];
+    [self.contentView addSubview:self.timePickerView];
+    [self.datePickerView setHidden:YES];
+    [self.timePickerView setHidden:YES];
+}
+
+- (void)updateView{
+    
+    switch (self.flag) {
+        case 1:{
+            [self.btn_kaidan setImage:self.selectedImage forState:UIControlStateNormal];
+            [self.btn_budan setImage:self.unselectedImage forState:UIControlStateNormal];
+            [self.btn_yuyue setImage:self.unselectedImage forState:UIControlStateNormal];
+            
+            [self.datePickerView setHidden:YES];
+            [self.timePickerView setHidden:YES];
+
+            break;
+        }
+        case 2:{
+            [self.btn_kaidan setImage:self.unselectedImage forState:UIControlStateNormal];
+            [self.btn_budan setImage:self.selectedImage forState:UIControlStateNormal];
+            [self.btn_yuyue setImage:self.unselectedImage forState:UIControlStateNormal];
+            
+            [self.datePickerView setHidden:YES];
+            [self.timePickerView setHidden:YES];
+
+            break;
+        }
+        case 3:{
+            [self.btn_yuyue setImage:self.selectedImage forState:UIControlStateNormal];
+            [self.btn_kaidan setImage:self.unselectedImage forState:UIControlStateNormal];
+            [self.btn_budan setImage:self.unselectedImage forState:UIControlStateNormal];
+            
+            [self.datePickerView setHidden:NO];
+            [self.timePickerView setHidden:NO];
+
+            break;
+        }
+        default:
+            break;
+    }
+    [self layoutIfNeeded];
     
 }
 
@@ -70,12 +112,13 @@
     [self.btn_yuyue setImage:self.unselectedImage forState:UIControlStateNormal];
     self.flag = 1;
     
-    [self.datePickerView removeFromSuperview];
-    [self.timePickerView removeFromSuperview];
+    [self.datePickerView setHidden:YES];
+    [self.timePickerView setHidden:YES];
     
     if (self.showPikerView) {
         self.showPikerView = NO;
-        [self.tableView reloadData];
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+
     }
 
 }
@@ -87,12 +130,12 @@
     [self.btn_yuyue setImage:self.unselectedImage forState:UIControlStateNormal];
     self.flag = 2;
     
-    [self.datePickerView removeFromSuperview];
-    [self.timePickerView removeFromSuperview];
+    [self.datePickerView setHidden:YES];
+    [self.timePickerView setHidden:YES];
 
     if (self.showPikerView) {
         self.showPikerView = NO;
-        [self.tableView reloadData];
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     
 }
@@ -104,17 +147,25 @@
     [self.btn_budan setImage:self.unselectedImage forState:UIControlStateNormal];
     self.flag = 3;
     
-    [self.contentView addSubview:self.datePickerView];
-    [self.contentView addSubview:self.timePickerView];
+    [self.datePickerView setHidden:NO];
+    [self.timePickerView setHidden:NO];
     
     if (!self.showPikerView) {
         self.showPikerView = YES;
-//        [self.tableView reloadData];
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     
 }
 
+- (NSInteger)order_timestamp{
+   
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:self.datePickerView.selectedDate];
+    [comp setHour:self.timePickerView.hour];
+    [comp setMinute:self.timePickerView.minute];
+    
+    return [[calendar dateFromComponents:comp ] timeIntervalSince1970];
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:NO animated:animated];

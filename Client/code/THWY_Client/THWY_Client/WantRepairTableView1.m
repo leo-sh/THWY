@@ -44,7 +44,6 @@
         
         [self getHouses];
         
-        [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         //[self initTableHeaderView];
         self.delegate = self;
         self.dataSource = self;
@@ -79,9 +78,12 @@
     NSInteger row = indexPath.row;
     switch (row) {
         case 0:{
-            
             PaigongCatogerysCell *cell = (PaigongCatogerysCell *)[tableView dequeueReusableCellWithIdentifier:@"PaigongCatogerysCell" forIndexPath:indexPath];
-            self.cells[row] = cell;
+            if ([self.cells[0] isKindOfClass:[PaigongCatogerysCell class]]) {
+                cell.flag = [(PaigongCatogerysCell *)self.cells[0] flag];
+                cell.showPikerView = [(PaigongCatogerysCell *)self.cells[0] showPikerView];
+            }
+            self.cells[0] = cell;
             cell.tableView = tableView;
             return cell;
             break;
@@ -179,7 +181,7 @@
     }else if (indexPath.row == 0){
 //        CGFloat topMargin = 5;
         if ([self.cells[0] isKindOfClass:[PaigongCatogerysCell class]]) {
-            if ([(PaigongCatogerysCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] showPikerView]) {
+            if ([(PaigongCatogerysCell *)self.cells[0] showPikerView]) {
                 return 60.0/713*My_ScreenH + 40*2;
             }else{
                 return 60.0/713*My_ScreenH;
@@ -224,6 +226,12 @@
             break;
     }
     
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        [(PaigongCatogerysCell *)cell updateView];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -310,6 +318,7 @@
         switch (i) {
             case 1:{
                 self.repairVO.call_person = [((TextFieldCell *)cell) textField].text;
+//                self.repairVO.
                 break;
             }
             case 2:{

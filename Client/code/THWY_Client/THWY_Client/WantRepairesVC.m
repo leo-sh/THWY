@@ -145,7 +145,7 @@
 //        }
         self.tableView.repaireClassArrayPay = self.repaireClassArrayPay;
         self.tableView.repaireClassArrayFree = self.repaireClassArrayFree;
-        [self.tableView reloadData];
+//        [self.tableView reloadData];
     }];
     
     [My_ServicesManager getRepairClasses:2 onComplete:^(NSString *errorMsg, NSDictionary *list) {
@@ -160,7 +160,7 @@
             [self.repaireClassArrayPublic addObject:publicVO];
         }
         self.tableView2.repaireClassArrayPublic = self.repaireClassArrayPublic;
-        [self.tableView2 reloadData];
+//        [self.tableView2 reloadData];
     }];
 }
 

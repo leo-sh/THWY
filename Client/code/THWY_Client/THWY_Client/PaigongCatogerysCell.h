@@ -13,4 +13,9 @@
 @property (assign, nonatomic) BOOL showPikerView;
 @property (assign, nonatomic) int flag;
 @property (strong, nonatomic) UITableView *tableView;
+
+@property (assign, nonatomic) NSInteger order_timestamp;
+
+- (void)updateView;
+
 @end

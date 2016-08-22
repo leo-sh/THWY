@@ -13,9 +13,6 @@
 @property (strong, nonatomic) NSCalendar *calendar;
 @property (strong, nonatomic) NSDateComponents *selectedDateComponets;
 
-@property (assign, nonatomic) NSInteger hour;
-@property (assign, nonatomic) NSInteger minute;
-
 @end
 
 @implementation MyTimerPickerView
@@ -120,7 +117,7 @@
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
-    return self.rowHeight?:44.0;
+    return self.rowHeight?:48.0;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
