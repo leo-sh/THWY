@@ -109,7 +109,8 @@
     
     if (!self.showPikerView) {
         self.showPikerView = YES;
-        [self.tableView reloadData];
+//        [self.tableView reloadData];
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     
 }

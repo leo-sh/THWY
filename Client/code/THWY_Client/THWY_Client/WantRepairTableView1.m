@@ -177,10 +177,10 @@
     }else if (indexPath.row == 8){
         return 310.0/713*My_ScreenH;
     }else if (indexPath.row == 0){
-        CGFloat topMargin = 5;
+//        CGFloat topMargin = 5;
         if ([self.cells[0] isKindOfClass:[PaigongCatogerysCell class]]) {
-            if ([(PaigongCatogerysCell *)self.cells[0] showPikerView]) {
-                return 60.0/713*My_ScreenH + 40*2 +  topMargin;
+            if ([(PaigongCatogerysCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] showPikerView]) {
+                return 60.0/713*My_ScreenH + 40*2;
             }else{
                 return 60.0/713*My_ScreenH;
             }
@@ -253,7 +253,7 @@
             [clsName appendString:[[self.repaireClassArrayPay[indexpath.section] child][indexpath.row] class_name]];
             [clsPath appendString:[[self.repaireClassArrayPay[indexpath.section] child][indexpath.row] Id]];
         }
-        UITableViewCell *cell = [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+        UITableViewCell *cell = [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
         RepaireCategorysCell *newcell = (RepaireCategorysCell *)cell;
         newcell.detailLabel.text = clsName;
         if ([self.repairVO.cls isEqualToString:@""]) {
@@ -273,7 +273,7 @@
             [clsName appendString:[[self.repaireClassArrayFree[indexpath.section] child][indexpath.row] class_name]];
             [clsPath appendString:[[self.repaireClassArrayFree[indexpath.section] child][indexpath.row] Id]];
         }
-        UITableViewCell *cell = [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+        UITableViewCell *cell = [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:0]];
         RepaireCategorysCell *newcell = (RepaireCategorysCell *)cell;
         newcell.detailLabel.text = clsName;
         if ([self.repairVO.cls isEqualToString:@""]) {

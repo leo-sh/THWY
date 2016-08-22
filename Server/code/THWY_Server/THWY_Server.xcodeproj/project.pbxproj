@@ -154,8 +154,6 @@
 		793B8EDB1D656A9300290EAB /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDA1D656A9300290EAB /* AdVO.m */; };
 		793B8EDE1D6596A000290EAB /* AlertEstateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */; };
 		793B8EE11D65AEA500290EAB /* RepairStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */; };
-		7973842D1D66D7D100708E62 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7973842C1D66D7D100708E62 /* RootVC.m */; };
-		797384301D66D7E300708E62 /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7973842F1D66D7E300708E62 /* MainNavigationViewController.m */; };
 		797384331D66D94500708E62 /* RepairStatisticsFinishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 797384321D66D94500708E62 /* RepairStatisticsFinishCell.m */; };
 		79F60D0A1D6A070C00A8E2D2 /* RepairRecordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F60D091D6A070C00A8E2D2 /* RepairRecordsVC.m */; };
 		79F60D101D6A072300A8E2D2 /* RepairDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F60D0F1D6A072300A8E2D2 /* RepairDetailController.m */; };
@@ -207,6 +205,8 @@
 		79F60DA21D6A07EE00A8E2D2 /* KRVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F60D931D6A07EE00A8E2D2 /* KRVideoPlayerController.m */; };
 		79F60DA31D6A07EE00A8E2D2 /* KRVideoPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F60D951D6A07EE00A8E2D2 /* KRVideoPlayerControlView.m */; };
 		79F60DA61D6A09F900A8E2D2 /* RemoteImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F60DA51D6A09F900A8E2D2 /* RemoteImageSize.m */; };
+		79FA4CBA1D6A879F0018816C /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA4CB71D6A879F0018816C /* MainNavigationViewController.m */; };
+		79FA4CBB1D6A879F0018816C /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA4CB91D6A879F0018816C /* RootVC.m */; };
 		94BCF14A1D66DCB800FF1B13 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCF1471D66DCB800FF1B13 /* MBProgressHUD.m */; };
 		94BCF14B1D66DCB800FF1B13 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCF1491D66DCB800FF1B13 /* SVProgressHUD.m */; };
 /* End PBXBuildFile section */
@@ -505,10 +505,6 @@
 		793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertEstateTableView.m; sourceTree = "<group>"; };
 		793B8EDF1D65AEA500290EAB /* RepairStatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticsCell.h; sourceTree = "<group>"; };
 		793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatisticsCell.m; sourceTree = "<group>"; };
-		7973842B1D66D7D100708E62 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
-		7973842C1D66D7D100708E62 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
-		7973842E1D66D7E300708E62 /* MainNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationViewController.h; sourceTree = "<group>"; };
-		7973842F1D66D7E300708E62 /* MainNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationViewController.m; sourceTree = "<group>"; };
 		797384311D66D94500708E62 /* RepairStatisticsFinishCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticsFinishCell.h; sourceTree = "<group>"; };
 		797384321D66D94500708E62 /* RepairStatisticsFinishCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatisticsFinishCell.m; sourceTree = "<group>"; };
 		79F60D081D6A070C00A8E2D2 /* RepairRecordsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairRecordsVC.h; sourceTree = "<group>"; };
@@ -600,6 +596,10 @@
 		79F60D951D6A07EE00A8E2D2 /* KRVideoPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRVideoPlayerControlView.m; sourceTree = "<group>"; };
 		79F60DA41D6A09F900A8E2D2 /* RemoteImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteImageSize.h; sourceTree = "<group>"; };
 		79F60DA51D6A09F900A8E2D2 /* RemoteImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteImageSize.m; sourceTree = "<group>"; };
+		79FA4CB61D6A879F0018816C /* MainNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationViewController.h; sourceTree = "<group>"; };
+		79FA4CB71D6A879F0018816C /* MainNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationViewController.m; sourceTree = "<group>"; };
+		79FA4CB81D6A879F0018816C /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
+		79FA4CB91D6A879F0018816C /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
 		9400B9791D6188B200E49F0E /* fasong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fasong.caf; sourceTree = "<group>"; };
 		9400B97A1D6188B200E49F0E /* shou.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shou.caf; sourceTree = "<group>"; };
 		9400B97B1D6188BF00E49F0E /* tuisong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tuisong.caf; sourceTree = "<group>"; };
@@ -621,18 +621,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1EEB03081D6401A500CACF00 /* MainController */ = {
-			isa = PBXGroup;
-			children = (
-				7973842B1D66D7D100708E62 /* RootVC.h */,
-				7973842C1D66D7D100708E62 /* RootVC.m */,
-				7973842E1D66D7E300708E62 /* MainNavigationViewController.h */,
-				7973842F1D66D7E300708E62 /* MainNavigationViewController.m */,
-			);
-			name = MainController;
-			path = ../../../../Client/code/THWY_Client/THWY_Client;
-			sourceTree = "<group>";
-		};
 		1EEB030D1D6401F800CACF00 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,8 +634,8 @@
 		5B25718E1D47148000CB4167 /* viewController */ = {
 			isa = PBXGroup;
 			children = (
+				79FA4CB51D6A879F0018816C /* MainController */,
 				7902B0431D6412F400ADDAE0 /* ChildController */,
-				1EEB03081D6401A500CACF00 /* MainController */,
 				79270EA11D61AE2600E29568 /* OtherController */,
 			);
 			name = viewController;
@@ -1546,6 +1534,17 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		79FA4CB51D6A879F0018816C /* MainController */ = {
+			isa = PBXGroup;
+			children = (
+				79FA4CB61D6A879F0018816C /* MainNavigationViewController.h */,
+				79FA4CB71D6A879F0018816C /* MainNavigationViewController.m */,
+				79FA4CB81D6A879F0018816C /* RootVC.h */,
+				79FA4CB91D6A879F0018816C /* RootVC.m */,
+			);
+			path = MainController;
+			sourceTree = "<group>";
+		};
 		94BCF1451D66DCB800FF1B13 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -1699,7 +1698,6 @@
 				79F60D1C1D6A074300A8E2D2 /* RecordVideoCell.m in Sources */,
 				79270DD81D61ACB100E29568 /* View+MASAdditions.m in Sources */,
 				79270F5B1D61B1EF00E29568 /* UIFont+Extension.m in Sources */,
-				7973842D1D66D7D100708E62 /* RootVC.m in Sources */,
 				79270E021D61ACB100E29568 /* NSData+ImageContentType.m in Sources */,
 				79F60D711D6A07A600A8E2D2 /* ZLPhotoPickerBrowserPhotoView.m in Sources */,
 				793B8EE11D65AEA500290EAB /* RepairStatisticsCell.m in Sources */,
@@ -1732,6 +1730,7 @@
 				79270DD71D61ACB100E29568 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				791B4E181D64606F00AF9371 /* MySegmentedControl.m in Sources */,
 				79270F5F1D61B1EF00E29568 /* UIScreen+Extension.m in Sources */,
+				79FA4CBA1D6A879F0018816C /* MainNavigationViewController.m in Sources */,
 				1EEB030E1D6401F800CACF00 /* ZYKeyboardUtil.m in Sources */,
 				79270E101D61ACB100E29568 /* UIView+WebCacheOperation.m in Sources */,
 				79F60D781D6A07A600A8E2D2 /* ZLPhotoPickerAssetsViewController.m in Sources */,
@@ -1741,6 +1740,7 @@
 				79F60D731D6A07A600A8E2D2 /* ZLPhotoAssets.m in Sources */,
 				7902B0511D64132700ADDAE0 /* DropMenuTableView.m in Sources */,
 				79270F2E1D61B0DB00E29568 /* YFLBBannerView.m in Sources */,
+				79FA4CBB1D6A879F0018816C /* RootVC.m in Sources */,
 				791B4DC21D645C9F00AF9371 /* PushSettingVC.m in Sources */,
 				791B4E291D64666700AF9371 /* RepairAcceptOrderVC.m in Sources */,
 				79270DC41D61ACB100E29568 /* AFHTTPSessionManager.m in Sources */,
@@ -1750,7 +1750,6 @@
 				79270E1B1D61ACB100E29568 /* TYAlertFadeAnimation.m in Sources */,
 				79270F891D61BF6800E29568 /* BlueCheckButton.m in Sources */,
 				79270E001D61ACB100E29568 /* Reachability.m in Sources */,
-				797384301D66D7E300708E62 /* MainNavigationViewController.m in Sources */,
 				79270E201D61ACB100E29568 /* UIView+TYAlertView.m in Sources */,
 				79F60D741D6A07A600A8E2D2 /* ZLPhotoPickerDatas.m in Sources */,
 				79270F8C1D61BF7400E29568 /* LoginViewController.m in Sources */,
