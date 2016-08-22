@@ -183,7 +183,7 @@
         case 3:{
             switch (indexpath.row) {
                 case 0:{
-                    NSInteger time = [model.st_1_time integerValue];
+                    NSInteger time = [model.st_0_time integerValue];
                     if (time == 0) {
                         self.detailLabel.text = @"";
                     }else{

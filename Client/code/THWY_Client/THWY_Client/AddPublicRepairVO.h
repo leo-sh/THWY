@@ -20,4 +20,6 @@
 @property (nonatomic , copy) NSString              * repair_detail;
 @property int kb;//(开单1，补单2)
 
+-(NSDictionary *)toDic;
+
 @end

@@ -1536,14 +1536,9 @@ savePassWord:(BOOL)save
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSString *urlString = [NSString stringWithFormat:@"%@add_repair",API_HOST];
-        NSMutableDictionary* params = [[NSMutableDictionary alloc]init];
+        NSMutableDictionary* params = [[NSMutableDictionary alloc]initWithDictionary:[repair toDic]];
         params[@"login_name"] = _userName;
         params[@"login_password"] = _passWord;
-        params[@"call_person"] = repair.call_person;
-        params[@"call_phone"] = repair.call_phone;
-        params[@"house_id"] = repair.house_id;
-        params[@"cls"] = repair.cls;
-        params[@"detail"] = repair.detail;
         
         [self handleRepair:repair params:params urlStr:urlString onComplete:onComplete];
     });
@@ -1554,18 +1549,9 @@ savePassWord:(BOOL)save
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSString *urlString = [NSString stringWithFormat:@"%@add_public_repair",API_HOST];
-        NSMutableDictionary* params = [[NSMutableDictionary alloc]init];
+        NSMutableDictionary* params = [[NSMutableDictionary alloc]initWithDictionary:[repair toDic]];
         params[@"login_name"] = _userName;
         params[@"login_password"] = _passWord;
-        params[@"kb"] = [NSString stringWithFormat:@"%d",repair.kb];
-        params[@"estate_id"] = repair.estate_id;
-        params[@"block"] = repair.block;
-        params[@"unit"] = repair.unit;
-        params[@"layer"] = repair.layer;
-        params[@"call_name"] = repair.call_name;
-        params[@"call_phone"] = repair.call_phone;
-        params[@"cls"] = repair.cls;
-        params[@"repair_detail"] = repair.repair_detail;
         
         [self handleRepair:repair params:params urlStr:urlString onComplete:onComplete];
     });

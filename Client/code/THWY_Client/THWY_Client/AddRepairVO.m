@@ -10,4 +10,25 @@
 
 @implementation AddRepairVO
 
+-(NSDictionary *)toDic
+{
+    NSMutableDictionary* params = [[NSMutableDictionary alloc]init];
+    params[@"call_person"] = self.call_person;
+    params[@"call_phone"] = self.call_phone;
+    params[@"house_id"] = self.house_id;
+    params[@"cls"] = self.cls;
+    params[@"detail"] = self.detail;
+    params[@"kb"] = [NSString stringWithFormat:@"%d",self.kb];
+    if (self.kb == 3) {
+        if (self.order_timestamp > 0) {
+            params[@"order_timestamp"] = [NSString stringWithFormat:@"%ld",self.order_timestamp];
+        }else
+        {
+            return nil;
+        }
+    }
+    
+    return params;
+}
+
 @end

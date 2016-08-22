@@ -15,5 +15,8 @@
 @property (nonatomic , copy) NSString              * house_id;
 @property (nonatomic , copy) NSString              * cls;
 @property (nonatomic , copy) NSString              * detail;
+@property int kb;//(开单1，补单2，预约3)
+@property NSUInteger order_timestamp;
 
+-(NSDictionary *)toDic;
 @end
