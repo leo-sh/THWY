@@ -14,11 +14,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_kaidan;
 @property (weak, nonatomic) IBOutlet UIButton *btn_budan;
-@property (weak, nonatomic) IBOutlet UIButton *btn_yuyue;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint1;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint2;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint3;
+
+
 
 
 @property (strong, nonatomic) UIImage *selectedImage;
@@ -157,14 +155,17 @@
     
 }
 
-- (NSInteger)order_timestamp{
+- (NSUInteger)order_timestamp{
    
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:self.datePickerView.selectedDate];
     [comp setHour:self.timePickerView.hour];
     [comp setMinute:self.timePickerView.minute];
     
-    return [[calendar dateFromComponents:comp ] timeIntervalSince1970];
+    NSUInteger timeInterval = [[[calendar dateFromComponents:comp] dateByAddingTimeInterval:8*60*60]timeIntervalSince1970];
+    
+//    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+    return timeInterval;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -207,6 +207,8 @@
 		79F60DA61D6A09F900A8E2D2 /* RemoteImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F60DA51D6A09F900A8E2D2 /* RemoteImageSize.m */; };
 		79FA4CBA1D6A879F0018816C /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA4CB71D6A879F0018816C /* MainNavigationViewController.m */; };
 		79FA4CBB1D6A879F0018816C /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA4CB91D6A879F0018816C /* RootVC.m */; };
+		79FA4CBE1D6ADF210018816C /* RepairAcceptOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA4CBD1D6ADF210018816C /* RepairAcceptOrderCell.m */; };
+		79FA4CC11D6AE3190018816C /* RunSliderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA4CC01D6AE3190018816C /* RunSliderLabel.m */; };
 		94BCF14A1D66DCB800FF1B13 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCF1471D66DCB800FF1B13 /* MBProgressHUD.m */; };
 		94BCF14B1D66DCB800FF1B13 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCF1491D66DCB800FF1B13 /* SVProgressHUD.m */; };
 /* End PBXBuildFile section */
@@ -600,6 +602,10 @@
 		79FA4CB71D6A879F0018816C /* MainNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationViewController.m; sourceTree = "<group>"; };
 		79FA4CB81D6A879F0018816C /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
 		79FA4CB91D6A879F0018816C /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
+		79FA4CBC1D6ADF210018816C /* RepairAcceptOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairAcceptOrderCell.h; sourceTree = "<group>"; };
+		79FA4CBD1D6ADF210018816C /* RepairAcceptOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairAcceptOrderCell.m; sourceTree = "<group>"; };
+		79FA4CBF1D6AE3190018816C /* RunSliderLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunSliderLabel.h; sourceTree = "<group>"; };
+		79FA4CC01D6AE3190018816C /* RunSliderLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunSliderLabel.m; sourceTree = "<group>"; };
 		9400B9791D6188B200E49F0E /* fasong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fasong.caf; sourceTree = "<group>"; };
 		9400B97A1D6188B200E49F0E /* shou.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shou.caf; sourceTree = "<group>"; };
 		9400B97B1D6188BF00E49F0E /* tuisong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tuisong.caf; sourceTree = "<group>"; };
@@ -832,6 +838,10 @@
 		791B4E221D64660300AF9371 /* RepairAcceptOrderViews */ = {
 			isa = PBXGroup;
 			children = (
+				79FA4CBC1D6ADF210018816C /* RepairAcceptOrderCell.h */,
+				79FA4CBD1D6ADF210018816C /* RepairAcceptOrderCell.m */,
+				79FA4CBF1D6AE3190018816C /* RunSliderLabel.h */,
+				79FA4CC01D6AE3190018816C /* RunSliderLabel.m */,
 			);
 			name = RepairAcceptOrderViews;
 			path = THWY_Server/Views/RepairAcceptOrderViews;
@@ -1658,6 +1668,7 @@
 				79270F571D61B1EF00E29568 /* UIApplication+Extensions.m in Sources */,
 				79F60D801D6A07A600A8E2D2 /* DACircularProgressView.m in Sources */,
 				79270DCB1D61ACB100E29568 /* UITableView+FDKeyedHeightCache.m in Sources */,
+				79FA4CC11D6AE3190018816C /* RunSliderLabel.m in Sources */,
 				791B4DC51D645CC000AF9371 /* TechSupportVC.m in Sources */,
 				791B4DF01D645DC900AF9371 /* RepaireCategorysCell.m in Sources */,
 				79270DEA1D61ACB100E29568 /* NSBundle+MJRefresh.m in Sources */,
@@ -1746,6 +1757,7 @@
 				79270DC41D61ACB100E29568 /* AFHTTPSessionManager.m in Sources */,
 				79270DE91D61ACB100E29568 /* MJRefreshConst.m in Sources */,
 				79F60D6F1D6A07A600A8E2D2 /* ZLPhotoPickerBrowserPhotoImageView.m in Sources */,
+				79FA4CBE1D6ADF210018816C /* RepairAcceptOrderCell.m in Sources */,
 				79270DE51D61ACB100E29568 /* MJRefreshGifHeader.m in Sources */,
 				79270E1B1D61ACB100E29568 /* TYAlertFadeAnimation.m in Sources */,
 				79270F891D61BF6800E29568 /* BlueCheckButton.m in Sources */,

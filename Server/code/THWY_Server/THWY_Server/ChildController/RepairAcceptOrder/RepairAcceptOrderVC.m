@@ -7,7 +7,7 @@
 //
 
 #import "RepairAcceptOrderVC.h"
-
+#import "RunSliderLabel.h"
 @interface RepairAcceptOrderVC ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) NSMutableArray *dataArray;
@@ -35,6 +35,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]];
     [self initViews];
     self.dataArray = [NSMutableArray array];
+    
 }
 
 - (void)initViews{

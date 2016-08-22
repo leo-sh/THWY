@@ -316,9 +316,13 @@
 
         UITableViewCell *cell = self.cells[i];
         switch (i) {
+            case 0:{
+                self.repairVO.kb = [(PaigongCatogerysCell *)cell flag];
+                self.repairVO.order_timestamp = [(PaigongCatogerysCell *)cell order_timestamp];
+                break;
+            }
             case 1:{
                 self.repairVO.call_person = [((TextFieldCell *)cell) textField].text;
-//                self.repairVO.
                 break;
             }
             case 2:{

@@ -75,10 +75,8 @@
         case 0:{
             
             PaigongCatogerysCell *cell = (PaigongCatogerysCell *)[tableView dequeueReusableCellWithIdentifier:@"PaigongCatogerysCell" forIndexPath:indexPath];
-            if ([self.cells[0] isKindOfClass:[PaigongCatogerysCell class]]) {
-                cell.flag = [(PaigongCatogerysCell *)self.cells[0] flag];
-                cell.showPikerView = [(PaigongCatogerysCell *)self.cells[0] showPikerView];
-            }
+            [cell.btn_yuyue setHidden:YES];
+            cell.constraint2.constant = 40;
             self.cells[row] = cell;
             cell.tableView = tableView;
             return cell;
@@ -193,11 +191,6 @@
     
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        [(PaigongCatogerysCell *)cell updateView];
-    }
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;

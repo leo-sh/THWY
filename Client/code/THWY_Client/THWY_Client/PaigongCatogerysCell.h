@@ -10,11 +10,17 @@
 
 @interface PaigongCatogerysCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *btn_yuyue;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint1;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint2;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint3;
+
 @property (assign, nonatomic) BOOL showPikerView;
 @property (assign, nonatomic) int flag;
 @property (strong, nonatomic) UITableView *tableView;
 
-@property (assign, nonatomic) NSInteger order_timestamp;
+@property (assign, nonatomic) NSUInteger order_timestamp;
 
 - (void)updateView;
 

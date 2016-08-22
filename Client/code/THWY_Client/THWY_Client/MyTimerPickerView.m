@@ -100,11 +100,11 @@
 
     switch (component) {
         case 0: {
-            self.hour = row++;
+            self.hour = ++row;
             break;
         }
         case 2: {
-            self.minute = row++;
+            self.minute = ++row;
             break;
         }
         default:
