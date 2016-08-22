@@ -1,6 +1,6 @@
 //
 //  RecordeRepeiringCell.m
-//  THWY_Server
+//  THWY_Client
 //
 //  Created by wei on 16/8/3.
 //  Copyright © 2016年 SXZ. All rights reserved.
@@ -10,6 +10,8 @@
 #import "RepairVO.h"
 #import "RepairDetailController.h"
 
+#define CENTERY(i) 27 + (50 + 0.5) * i
+#define LINECENTERY(i)  2 + 50 * i
 @interface RecordeRepairingCell ()
 
 @property (strong, nonatomic) UILabel *numberLabel;
@@ -47,6 +49,8 @@
 
 @property (strong, nonatomic) UIWebView *phoneCallWebView;
 
+@property (strong, nonatomic) UILabel *line5;
+
 @end
 
 @implementation RecordeRepairingCell
@@ -68,6 +72,7 @@
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         CGFloat topMagrin = 5.0/375*My_ScreenW;
+        
         self.caiTiaoImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, 2)];
         self.caiTiaoImage.image = [UIImage imageNamed:@"records_彩条"];
         [self.contentView addSubview:self.caiTiaoImage];
@@ -76,17 +81,6 @@
             make.left.mas_equalTo(self.contentView.mas_left);
             make.right.mas_equalTo(self.contentView.mas_right);
             make.top.mas_equalTo(self.contentView.mas_top);
-        }];
-        
-        self.detail = [[UIButton alloc] init];
-        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"records_详情"]  toScale:0.7]forState:UIControlStateNormal];
-        [self.detail addTarget:self action:@selector(showDetail) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:self.detail];
-        [self.detail mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.caiTiaoImage.mas_bottom).offset(topMagrin*0.5);
-            make.right.mas_equalTo(self.contentView.mas_right).offset(-4.0/375*My_ScreenW);
-            make.width.mas_equalTo(self.detail.mas_height);
-            make.height.mas_equalTo(40.0/667*My_ScreenH);
         }];
 
         self.paiGongNumber = [[UIImageView alloc] init];
@@ -99,34 +93,45 @@
         
         self.paiGongNumber.image = [UIImage imageNamed:@"records_派工单号"];
         [self.paiGongNumber mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.contentView.mas_left).offset(4.0/375*My_ScreenW);
+            make.left.mas_equalTo(self.contentView.mas_left).offset(topMagrin);
             make.width.mas_equalTo(self.paiGongNumber.mas_height);
-            make.height.mas_equalTo(self.detail.mas_height).multipliedBy(0.6);
-            make.centerY.mas_equalTo(self.detail.mas_centerY);
+            make.height.mas_equalTo(18);
+            make.centerY.mas_equalTo(self.contentView.mas_top).offset(CENTERY(0));
         }];
         
         self.paiGongLabel.text = @"派工单号: ";
         [self setLabelAttributes:self.paiGongLabel with:0];
         [self.paiGongLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.paiGongNumber.mas_centerY);
-            make.left.mas_equalTo(self.paiGongNumber.mas_right).offset(10.0/375*My_ScreenW);
+            make.left.mas_equalTo(self.paiGongNumber.mas_right).offset(topMagrin);
         }];
         
-        self.numberLabel.text = @"WX1223";
+        self.numberLabel.text = @"";
         [self setLabelAttributes:self.numberLabel with:0];
         [self.numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.paiGongLabel.mas_centerY);
             make.left.mas_equalTo(self.paiGongLabel.mas_right).offset(10.0/375*My_ScreenW);
         }];
         
+        self.detail = [[UIButton alloc] init];
+        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_open"]  toScale:0.5] forState:UIControlStateNormal];
+        [self.detail addTarget:self action:@selector(showDetail) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:self.detail];
+        [self.detail mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(self.contentView.mas_right).offset(-topMagrin);
+            make.width.mas_equalTo(self.detail.mas_height);
+            make.height.mas_equalTo(40.0);
+            make.centerY.mas_equalTo(self.numberLabel.mas_centerY);
+        }];
+        
         self.line = [[UILabel alloc] init];
         [self.contentView addSubview:self.line];
-        [self.line setBackgroundColor:[UIColor lightGrayColor]];
+        [self.line setBackgroundColor:My_LineColor];
         [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(0.5);
-            make.left.equalTo(self.contentView.mas_left).offset(15);
-            make.right.equalTo(self.contentView.mas_right).offset(-15);
-            make.top.mas_equalTo(self.detail.mas_bottom).offset(topMagrin*0.5);
+            make.left.equalTo(self.contentView.mas_left);
+            make.right.equalTo(self.contentView.mas_right);
+            make.centerY.mas_equalTo(self.contentView.mas_top).offset(LINECENTERY(1));
         }];
 
         
@@ -140,10 +145,10 @@
         
         [self.houseSource mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.paiGongNumber.mas_centerX);
-            make.top.mas_equalTo(self.line.mas_bottom).offset(topMagrin);
+            make.centerY.mas_equalTo(self.contentView.mas_top).offset(CENTERY(1));
         }];
         
-        [self setLabelAttributes:self.houseSourceLabel with:-1];
+        [self setLabelAttributes:self.houseSourceLabel with:0];
         [self.houseSourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.houseSource.mas_centerY);
             make.left.mas_equalTo(self.houseSource.mas_right);
@@ -151,39 +156,47 @@
         
         
         self.repairCatogery = [[UILabel alloc] init];
-        self.repairCatogeryLabel = [[UILabel alloc] init];
-        [self.contentView addSubview:self.repairCatogeryLabel];
-        [self.contentView addSubview:self.repairCatogery];
         self.repairCatogery.text = @"报修类别: ";
         [self setLabelAttributes:self.repairCatogery with:0];
+        [self.contentView addSubview:self.repairCatogery];
         [self.repairCatogery mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.houseSource.mas_left);
-            make.top.mas_equalTo(self.houseSource.mas_bottom).offset(topMagrin);
+            make.centerY.mas_equalTo(self.contentView.mas_top).offset(CENTERY(2));
+            make.width.mas_equalTo(self.houseSource.mas_width);
         }];
-        
-        [self.repairCatogeryLabel setNumberOfLines:0];
-        self.repairCatogeryLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
-        CGRect rect = [self.repairCatogeryLabel.text boundingRectWithSize:CGSizeMake(300.0/375*My_ScreenW, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-        
-        [self setLabelAttributes:self.repairCatogeryLabel with:-1];
+//适配版
+//        [self.repairCatogeryLabel setNumberOfLines:0];
+//        self.repairCatogeryLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
+//        CGRect rect = [self.repairCatogeryLabel.text boundingRectWithSize:CGSizeMake(300.0/375*My_ScreenW, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+//
+//        [self setLabelAttributes:self.repairCatogeryLabel with:-1];
+//        [self.repairCatogeryLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.mas_equalTo(self.repairCatogery.mas_left);
+//            make.top.mas_equalTo(self.repairCatogery.mas_bottom).offset(topMagrin);
+//            make.width.mas_equalTo(rect.size.width);
+//            make.height.mas_equalTo(rect.size.height);
+//
+//        }];
+//未适配版
+        self.repairCatogeryLabel = [[UILabel alloc] init];
+        [self.contentView addSubview:self.repairCatogeryLabel];
+        [self setLabelAttributes:self.repairCatogeryLabel with:0];
+        self.repairCatogeryLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [self.repairCatogeryLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.repairCatogery.mas_left);
-            make.top.mas_equalTo(self.repairCatogery.mas_bottom).offset(topMagrin);
-            make.width.mas_equalTo(rect.size.width);
-            make.height.mas_equalTo(rect.size.height);
-            
+            make.left.mas_equalTo(self.repairCatogery.mas_right);
+            make.centerY.mas_equalTo(self.repairCatogery.mas_centerY);
+            make.right.mas_equalTo(self.contentView.mas_right).offset(-topMagrin);
         }];
         
         self.line2 = [[UILabel alloc] init];
         [self.contentView addSubview:self.line2];
-        [self.line2 setBackgroundColor:[UIColor lightGrayColor]];
+        [self.line2 setBackgroundColor:My_LineColor];
         [self.line2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(0.5);
-            make.left.equalTo(self.contentView.mas_left).offset(15);
-            make.right.equalTo(self.contentView.mas_right).offset(-15);
-            make.top.mas_equalTo(self.repairCatogeryLabel.mas_bottom).offset(topMagrin);
-            
+            make.left.equalTo(self.contentView.mas_left);
+            make.right.equalTo(self.contentView.mas_right);
+            make.centerY.mas_equalTo(self.contentView.mas_top).offset(LINECENTERY(2));
         }];
 
         self.repairDesc = [[UILabel alloc] init];
@@ -195,46 +208,56 @@
         
         [self.repairDesc mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.houseSource.mas_left);
-            make.top.mas_equalTo(self.line2.mas_bottom).offset(topMagrin);
+            make.centerY.mas_equalTo(self.contentView.mas_top).offset(CENTERY(3));
+            make.width.mas_equalTo(self.houseSource.mas_width);
         }];
         
-        [self setLabelAttributes:self.repairDescLabel with:-1];
-        [self.repairDescLabel setNumberOfLines:0];
-        self.repairDescLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
-        CGRect rect2 = [self.repairDescLabel.text boundingRectWithSize:CGSizeMake(300.0/375*My_ScreenW, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+//        适配版
+//        [self setLabelAttributes:self.repairDescLabel with:-1];
+//        [self.repairDescLabel setNumberOfLines:0];
+//        self.repairDescLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
+//        CGRect rect2 = [self.repairDescLabel.text boundingRectWithSize:CGSizeMake(300.0/375*My_ScreenW, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+//        [self.repairDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.mas_equalTo(self.houseSource.mas_left);
+//            make.top.mas_equalTo(self.repairDesc.mas_bottom).offset(0);
+//            make.width.mas_equalTo(rect2.size.width);
+//            make.height.mas_equalTo(rect2.size.height);
+//        }];
+//未适配版
+        [self setLabelAttributes:self.repairDescLabel with:0];
+        self.repairDescLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [self.repairDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.houseSource.mas_left);
-            make.top.mas_equalTo(self.repairDesc.mas_bottom).offset(0);
-            make.width.mas_equalTo(rect2.size.width);
-            make.height.mas_equalTo(rect2.size.height);
+            make.left.mas_equalTo(self.repairDesc.mas_right);
+            make.centerY.mas_equalTo(self.repairDesc.mas_centerY);
+            make.right.mas_equalTo(self.contentView.mas_right).offset(-topMagrin);
         }];
         
-        self.line3 = [[UILabel alloc] init];
+   
         self.callBtn = [[UIButton alloc] init];
-        [self.contentView addSubview:self.line3];
         [self.contentView addSubview:self.callBtn];
         
-        [self.line3 setBackgroundColor:[UIColor lightGrayColor]];
+        self.line3 = [[UILabel alloc] init];
+        [self.contentView addSubview:self.line3];
+        [self.line3 setBackgroundColor:My_LineColor];
         [self.line3 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(0.5);
-            make.left.equalTo(self.contentView.mas_left).offset(15);
-            make.right.equalTo(self.contentView.mas_right).offset(-15);
-            make.top.mas_equalTo(self.repairDescLabel.mas_bottom).offset(topMagrin);
-            
+            make.left.equalTo(self.contentView.mas_left);
+            make.right.equalTo(self.contentView.mas_right);
+            make.centerY.mas_equalTo(self.contentView.mas_top).offset(LINECENTERY(3));
         }];
         
         self.repairTime = [[UILabel alloc] init];
         self.repairTime.text = @"报修时间: ";
         self.repairTimeLabel = [[UILabel alloc] init];
         [self setLabelAttributes:self.repairTime with:0];
-        [self setLabelAttributes:self.repairTimeLabel with:-1];
+        [self setLabelAttributes:self.repairTimeLabel with:0];
         [self.contentView addSubview:self.repairTime];
         [self.contentView addSubview:self.repairTimeLabel];
         
         [self.repairTime mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.repairDesc.mas_left);
-            make.top.mas_equalTo(self.line3.mas_bottom).offset(topMagrin);
+            make.centerY.mas_equalTo(self.contentView.mas_top).offset(CENTERY(4));
         }];
         
         [self.repairTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -243,41 +266,50 @@
         }];
         
         self.line4 = [[UILabel alloc] init];
-        [self.line4 setBackgroundColor:[UIColor lightGrayColor]];
         [self.contentView addSubview:self.line4];
+        [self.line4 setBackgroundColor:My_LineColor];
         [self.line4 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(0.5);
-            make.left.equalTo(self.contentView.mas_left).offset(15);
-            make.right.equalTo(self.contentView.mas_right).offset(-15);
-            make.top.mas_equalTo(self.repairTime.mas_bottom).offset(topMagrin);
-            
+            make.left.equalTo(self.contentView.mas_left);
+            make.right.equalTo(self.contentView.mas_right);
+            make.centerY.mas_equalTo(self.contentView.mas_top).offset(LINECENTERY(4));
+        }];
+        
+        self.cellPhone = [[UILabel alloc] init];
+        [self.contentView addSubview:self.cellPhone];
+        
+        self.cellPhone.text = @"报修人电话: ";
+        [self setLabelAttributes:self.cellPhone with:0];
+        [self.cellPhone mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.houseSource.mas_left);
+            make.centerY.mas_equalTo(self.contentView.mas_top).offset(CENTERY(5));
+        }];
+        
+        self.cellPhoneLabel = [[UILabel alloc] init];
+        [self.contentView addSubview:self.cellPhoneLabel];
+        [self setLabelAttributes:self.cellPhoneLabel with:0];
+        [self.cellPhoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.cellPhone.mas_right);
+            make.centerY.mas_equalTo(self.cellPhone.mas_centerY);
         }];
         
         [self.callBtn setImage:[UIImage scaleImage:[UIImage imageNamed:@"records_call"]  toScale:1] forState:UIControlStateNormal];
         [self.callBtn addTarget:self action:@selector(callNumber) forControlEvents:UIControlEventTouchUpInside];
         [self.callBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.detail.mas_centerX);
-            make.top.mas_equalTo(self.line4.mas_bottom).offset(topMagrin);
+            make.centerY.mas_equalTo(self.cellPhone.mas_centerY);
             make.height.mas_equalTo(self.detail.mas_height).multipliedBy(0.7);
             make.width.mas_equalTo(self.callBtn.mas_height).multipliedBy(0.75);
         }];
         
-        self.cellPhone = [[UILabel alloc] init];
-        self.cellPhoneLabel = [[UILabel alloc] init];
-        [self.contentView addSubview:self.cellPhone];
-        [self.contentView addSubview:self.cellPhoneLabel];
-        
-        self.cellPhone.text = @"报修人电话: ";
-        [self setLabelAttributes:self.cellPhone with:0];
-        [self.cellPhone mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.houseSource.mas_left);
-            make.centerY.mas_equalTo(self.callBtn.mas_centerY);
-        }];
-        
-        [self setLabelAttributes:self.cellPhoneLabel with:-1];
-        [self.cellPhoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.cellPhone.mas_right);
-            make.centerY.mas_equalTo(self.cellPhone.mas_centerY);
+        self.line5 = [[UILabel alloc] init];
+        [self.contentView addSubview:self.line5];
+        [self.line5 setBackgroundColor:My_LineColor];
+        [self.line5 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0.5);
+            make.left.equalTo(self.contentView.mas_left);
+            make.right.equalTo(self.contentView.mas_right);
+            make.centerY.mas_equalTo(self.contentView.mas_top).offset(LINECENTERY(5));
         }];
         
         
@@ -288,9 +320,10 @@
 
 - (void)setLabelAttributes:(UILabel *)label with:(NSInteger)big{
     
-    label.numberOfLines = 0;
+    label.numberOfLines = 1;
     label.font = FontSize(CONTENT_FONT+big);
     label.textColor = [UIColor darkGrayColor];
+
 //    [label sizeToFit];
 
 }
@@ -298,39 +331,62 @@
 - (void)loadDataFromModel:(RepairVO *)repaireVO{
     
     self.model = repaireVO;
-    self.numberLabel.text = repaireVO.Id;
-    self.houseSourceLabel.text = repaireVO.estate_name;
+    self.numberLabel.text = [self createNumberText:repaireVO.Id];
+
+    NSMutableString *string = [[NSMutableString alloc] init];
+    if(self.flag == 1){
+        if(repaireVO.estate.length > 0){
+            [string appendString:repaireVO.estate];
+        }
+    }else{
+        
+        if(repaireVO.estate_name.length > 0){
+            [string appendString:repaireVO.estate_name];
+        }
+    }
+    if (repaireVO.block.length > 0 && [repaireVO.block intValue] != 0){
+        [string appendString:[NSString stringWithFormat:@"%@栋",repaireVO.block ]];
+    }
+    if (repaireVO.unit.length > 0 && [repaireVO.unit intValue] != 0){
+        [string appendString:[NSString stringWithFormat:@"%@单元",repaireVO.unit ]];
+    }
+    if (repaireVO.layer && ![repaireVO.layer isEqualToString:@""] && [repaireVO.layer intValue] != 0){
+        [string appendString:[NSString stringWithFormat:@"%@层",repaireVO.layer ]];
+    }
+    if (repaireVO.mph.length > 0 && [repaireVO.mph intValue] != 0){
+        [string appendString:[NSString stringWithFormat:@"%@室",repaireVO.mph]];
+    }
+    self.houseSourceLabel.text = string;
     self.repairCatogeryLabel.text = repaireVO.classes_str;
     self.repairDescLabel.text = repaireVO.detail;
     self.repairTimeLabel.text = [NSString stringDateFromTimeInterval:[repaireVO.st_0_time integerValue] withFormat:nil];
     self.cellPhoneLabel.text = repaireVO.call_phone;
     
     if (repaireVO.kb.intValue == 2){
-        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"repaire_保修类别"]  toScale:0.7]forState:UIControlStateNormal];
+        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_add"]  toScale:0.5]forState:UIControlStateNormal];
     }else{
-        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"records_详情"]  toScale:0.7]forState:UIControlStateNormal];
+        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_open"]  toScale:0.5]forState:UIControlStateNormal];
     }
-//    NSLog(@"%d", repaireVO.kb.intValue);
     
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
-    CGRect rect = [self.repairCatogeryLabel.text boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-    
-    [self.repairCatogeryLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-        
-        make.width.mas_equalTo(rect.size.width);
-        make.height.mas_equalTo(rect.size.height);
-        
-    }];
-
-    [self layoutIfNeeded];
-
-    CGRect rect2 = [self.repairDescLabel.text boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-    [self.repairDescLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(rect2.size.width);
-        make.height.mas_equalTo(rect2.size.height);
-    }];
-    
-    [self layoutIfNeeded];
+//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
+//    CGRect rect = [self.repairCatogeryLabel.text boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+//    
+//    [self.repairCatogeryLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+//        
+//        make.width.mas_equalTo(rect.size.width);
+//        make.height.mas_equalTo(rect.size.height);
+//        
+//    }];
+//
+//    [self layoutIfNeeded];
+//
+//    CGRect rect2 = [self.repairDescLabel.text boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+//    [self.repairDescLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.width.mas_equalTo(rect2.size.width);
+//        make.height.mas_equalTo(rect2.size.height);
+//    }];
+//    
+//    [self layoutIfNeeded];
 
 }
 
@@ -357,9 +413,18 @@
 - (void)showDetail{
     
     RepairDetailController *detail = [[RepairDetailController alloc] init];
-    detail.model = self.model;
+    detail.repairVOId = self.model.Id;
+    detail.type = self.flag;
     [self.vc.navigationController pushViewController:detail animated:YES];
     
+}
+
+- (NSString *)createNumberText:(NSString *)idString{
+    if (self.flag == 1) {
+        return [NSString stringWithFormat:@"WX%@%@", [NSDate currentYear], [NSString stringWithFormat:@"%06d", [idString intValue]]];
+    }else{
+        return [NSString stringWithFormat:@"GGWX%@%@", [NSDate currentYear], [NSString stringWithFormat:@"%06d", [idString intValue]]];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

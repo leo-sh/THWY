@@ -282,7 +282,7 @@
     else if ([self.repairVO.repair_detail isEqualToString:@""]){
         errorMsg = @"描述不能为空";
     }else if(!self.repairVO.estate_id || [self.repairVO.estate_id isEqualToString:@""]){
-        errorMsg = @"请选择房源";
+        errorMsg = @"请选择所在项目";
     }else if (self.repairVO.estate_id && ![self.repairVO.estate_id isEqualToString:@""]){
         
 //        NSMutableArray *houseID = [NSMutableArray array];

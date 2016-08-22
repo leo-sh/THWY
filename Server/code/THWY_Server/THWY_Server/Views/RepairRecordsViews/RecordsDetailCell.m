@@ -1,6 +1,6 @@
 //
 //  RecordsDetailCell.m
-//  THWY_Server
+//  THWY_Client
 //
 //  Created by wei on 16/8/4.
 //  Copyright © 2016年 SXZ. All rights reserved.
@@ -75,11 +75,41 @@
                     break;
                 }
                 case 1:{
-                    self.detailLabel.text = model.Id;
+//                    self.detailLabel.text = model.Id;
+                    if (self.type == 1) {
+                        self.detailLabel.text = [NSString stringWithFormat:@"WX%@%@", [NSDate currentYear], [NSString stringWithFormat:@"%06d", [model.Id intValue]]];
+                    }else{
+                        self.detailLabel.text = [NSString stringWithFormat:@"GGWX%@%@", [NSDate currentYear], [NSString stringWithFormat:@"%06d", [model.Id intValue]]];
+                    }
                     break;
                 }
                 case 2:{
-                    self.detailLabel.text = [NSString stringWithFormat:@"%@%@栋%@单元%@室",model.estate,model.block,model.unit,model.mph];
+                    self.detailLabel.text = @"";
+                    NSMutableString *string = [[NSMutableString alloc] init];
+                    if(self.type == 1){
+                        if(model.estate.length > 0){
+                            [string appendString:model.estate];
+                        }
+
+                    }else{
+                        
+                        if(model.estate_name.length > 0){
+                            [string appendString:model.estate_name];
+                        }
+                    }
+                    if (model.block.length > 0 && [model.block intValue] > 0){
+                        [string appendString:[NSString stringWithFormat:@"%@栋",model.block ]];
+                    }
+                    if (model.unit.length > 0 && [model.unit intValue] > 0){
+                        [string appendString:[NSString stringWithFormat:@"%@单元",model.unit ]];
+                    }
+                    if (model.layer && ![model.layer isEqualToString:@""] && [model.layer intValue] != 0){
+                        [string appendString:[NSString stringWithFormat:@"%@层",model.layer ]];
+                    }
+                    if (model.mph.length > 0 && [model.mph intValue] > 0){
+                        [string appendString:[NSString stringWithFormat:@"%@室",model.mph]];
+                    }
+                    self.detailLabel.text = string;
                     break;
                 }
                 case 3:{
@@ -130,11 +160,17 @@
         case 2:{
             switch (indexpath.row) {
                 case 0:{
-                    self.detailLabel.text = @"张师傅";
+                    self.detailLabel.text = model.repair_task.admins.firstObject.real_name;
                     break;
                 }
                 case 1:{
-                    self.detailLabel.text = model.st;
+                    NSInteger time = [model.st integerValue];
+                    if (time == 0) {
+                        self.detailLabel.text = @"";
+                    }else{
+                        self.detailLabel.text = model.repair_task.admins.firstObject.cellphone;
+                    }
+//                    self.detailLabel.text = model._st;
                     [self.line setHidden:YES];
                     break;
                 }
@@ -147,16 +183,31 @@
         case 3:{
             switch (indexpath.row) {
                 case 0:{
-                    self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_1_time integerValue] withFormat:nil];
+                    NSInteger time = [model.st_1_time integerValue];
+                    if (time == 0) {
+                        self.detailLabel.text = @"";
+                    }else{
+                        self.detailLabel.text = [NSString stringDateFromTimeInterval:time withFormat:nil];
+                    }
                     break;
                 }
                 case 1:{
-                    self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_2_time integerValue] withFormat:nil];
+                    NSInteger time = [model.st_2_time integerValue];
+                    if (time == 0) {
+                        self.detailLabel.text = @"";
+                    }else{
+                        self.detailLabel.text = [NSString stringDateFromTimeInterval:time withFormat:nil];
+                    }
                     break;
                 }
                 case 2:{
-                    self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_3_time integerValue] withFormat:nil];
-                    [self.line setHidden:YES];
+                    NSInteger time = [model.st_3_time integerValue];
+                    if (time == 0) {
+                        self.detailLabel.text = @"";
+                    }else{
+                        self.detailLabel.text = [NSString stringDateFromTimeInterval:time withFormat:nil];
+                    }
+                    self.line.hidden = YES;
                     break;
                 }
   
@@ -168,6 +219,7 @@
         }
 
         default:
+            self.line.hidden = YES;
             break;
     }
     

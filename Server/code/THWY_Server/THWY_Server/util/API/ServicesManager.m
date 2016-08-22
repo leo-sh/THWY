@@ -1018,7 +1018,7 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"][@"child"]) {
+            for (NSDictionary* estateDic in responseObject[@"datas"][@"_child"]) {
                 RepairClassVO *estate = [[RepairClassVO alloc]initWithJSON:estateDic];
                 [listArr addObject:estate];
             }
@@ -1239,7 +1239,7 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSDictionary class]]) {
                 for (NSDictionary* estateDic in responseObject[@"datas"][@"datas"]) {
                     RepairVO *estate = [[RepairVO alloc]initWithJSON:estateDic];
                     [listArr addObject:estate];
@@ -1306,7 +1306,7 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSDictionary class]]) {
                 for (NSDictionary* estateDic in responseObject[@"datas"][@"datas"]) {
                     RepairVO *estate = [[RepairVO alloc]initWithJSON:estateDic];
                     [listArr addObject:estate];
