@@ -37,6 +37,7 @@
     [headerView addSubview:line];
     [self addSubview:headerView];
     
+//    self.selectedIndex = -1;
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, headerView.height, self.width, self.height-headerView.height) style:UITableViewStylePlain];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
    
@@ -45,9 +46,8 @@
     self.tableView.bounces = NO;
     self.tableView.rowHeight = 44.0;
     self.tableView.sectionFooterHeight = 0;
-    self.selectedIndex = -1;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
     self.tableView.showsVerticalScrollIndicator =  NO;
     self.tableView.showsHorizontalScrollIndicator = NO;
     [self addSubview:self.tableView];
@@ -57,8 +57,12 @@
 - (void)confirm{
     
     if (self.selectedIndex == -1) {
-        [SVProgressHUD showErrorWithStatus:@"请选择项目"];
-        return;
+        if (self.type == AlertChooseEstateType) {
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"请选择项目"];
+            return;
+        }
     }
     
     [self.AlertDelegate commit:self.selectedIndex];
@@ -106,6 +110,10 @@
     }
     cell.textLabel.font = FontSize(CONTENT_FONT+1);
     cell.textLabel.textColor = [UIColor darkGrayColor];
+    UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(0, cell.height-0.5, cell.width, 0.5)];
+    line.backgroundColor = My_LineColor;
+    [cell.contentView addSubview:line];
+    [cell.contentView bringSubviewToFront:line];
     return cell;
 }
 
@@ -128,7 +136,11 @@
         UIButton *allBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.width, 45.0)];
         [allBtn setTitle:@"全部小区" forState:UIControlStateNormal];
         [allBtn setBackgroundColor:[UIColor clearColor]];
+        [allBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [allBtn addTarget:self action:@selector(btnOnclicked) forControlEvents:UIControlEventTouchUpInside];
+        UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(0, allBtn.height-0.5, allBtn.width, 0.5)];
+        line.backgroundColor = My_LineColor;
+        [allBtn addSubview:line];
         return allBtn;
     }else{
         return nil;
@@ -149,6 +161,8 @@
     oldCell.imageView.image = [UIImage scaleImage:[UIImage imageNamed:@"repaire_unselected"] toScale:0.5];
     
     self.selectedIndex = -1;
+    [self.AlertDelegate commit:self.selectedIndex];
+    [self hideView];
 }
 
 

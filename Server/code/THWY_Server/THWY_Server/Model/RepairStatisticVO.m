@@ -13,7 +13,7 @@
 -(RepairStatisticVO* )initWithJSON:(NSDictionary *)JSON
 {
     if (self = [super init]) {
-        self.sum = JSON[@"sum"];
+        self.sum = [JSON[@"sum"] stringValue];
         self.status_name = JSON[@"status_name_"];
         self.estate_name = JSON[@"estate_name"];
         self.estate_id = JSON[@"estate_id"];

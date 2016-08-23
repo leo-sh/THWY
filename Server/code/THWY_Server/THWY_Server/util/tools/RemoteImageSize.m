@@ -16,7 +16,7 @@ singleton_implementation(RemoteImageSize)
 -(id)diskImageDataBySearchingAllPathsForKey:(id)key{
     return nil;
 }
-    
+
 +(CGSize)downloadImageSizeWithURL:(id)imageURL
 {
     NSURL* URL = nil;

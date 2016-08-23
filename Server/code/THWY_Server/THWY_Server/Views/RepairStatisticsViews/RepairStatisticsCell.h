@@ -10,8 +10,11 @@
 
 @interface RepairStatisticsCell : UITableViewCell
 
+//indexPath.row
 @property (assign, nonatomic) NSInteger index;
+//类型 业主:1 公共:2
+@property (assign, nonatomic) NSInteger flag;
 
-- (void)loadDataFromRepairVO:(RepairStatisticVO *)model;
+- (void)loadDataFromSum:(NSString *)sumString;
 
 @end

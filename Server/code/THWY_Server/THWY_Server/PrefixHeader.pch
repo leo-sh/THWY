@@ -134,4 +134,7 @@ static inline int sizeValue(int sizefont) {
 //加粗字体
 #define  FontBoldSize(sizefont)  [UIFont fontWithName:My_SemiboldFontName size:sizefont]
 
+//误差精度
+#define EPSINON  0.00000001
+
 #endif /* PrefixHeader_pch */

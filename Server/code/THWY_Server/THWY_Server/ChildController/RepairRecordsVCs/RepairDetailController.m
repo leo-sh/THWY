@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic) RepairVO *model;
 
+@property (strong, nonatomic) RecordImageCell *imageCell;
 @end
 
 @implementation RepairDetailController
@@ -87,7 +88,11 @@
 
 #pragma mark - UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 6;
+    if(self.model == nil){
+        return 0;
+    }else{
+        return 6;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -132,7 +137,7 @@
             break;
         }
         case 4:{
-            if (self.model.pic && ![self.model.pic isEqualToString:@""]) {
+            if (self.model.pic && ![self.model.pic isEqualToString:@""] && ![self.model.pic isEqualToString:@"http://112.126.75.77:6699"] && ![self.model.pic isEqualToString:@"http://112.126.75.77:7976"]) {
                 return 1;
             }else{
                 return 0;
@@ -155,8 +160,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 4) {
         RecordImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordImageCell" forIndexPath:indexPath];
+        cell.tableView = tableView;
         cell.vc = self;
         [cell loadDataWithModel:self.model];
+        self.imageCell = cell;
         return cell;
     }else if (indexPath.section == 5){
         RecordVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordVideoCell" forIndexPath:indexPath];
@@ -174,10 +181,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 4) {
-        if (self.model.pic && ![self.model.pic isEqualToString:@""]) {
-            CGSize size = [RemoteImageSize downloadImageSizeWithURL: [NSURL URLWithString:self.model.pic]];
-            return (My_ScreenW-8.0/375*My_ScreenW*4)/size.width*size.height + 20 + 8.0/375*My_ScreenW*3;
-//            return My_ScreenH*0.4+40;
+        if (self.model.pic && ![self.model.pic isEqualToString:@""] && ![self.model.pic isEqualToString:@"http://112.126.75.77:6699"] && ![self.model.pic isEqualToString:@"http://112.126.75.77:7976"]) {
+//            RecordImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordImageCell" forIndexPath:indexPath];
+            if (self.imageCell.imageHeight == 0) {
+                UIImage *image = [UIImage imageNamed:@"bannerload"];
+                return image.size.height + 20+ 8.0/375*My_ScreenW*3;
+                
+            }else{
+                return self.imageCell.imageHeight + 20 + 8.0/375*My_ScreenW*3;
+            }
         }else{
             return 0;
         }
@@ -223,7 +235,7 @@
             break;
         }
         case 4:{
-            if (self.model.pic && ![self.model.pic isEqualToString:@""]) {
+            if (self.model.pic && ![self.model.pic isEqualToString:@""] && ![self.model.pic isEqualToString:@"http://112.126.75.77:6699"] && ![self.model.pic isEqualToString:@"http://112.126.75.77:7976"]) {
                 return head;
             }else{
                 return nil;
@@ -268,7 +280,7 @@
             break;
         }
         case 4:{
-            if (self.model.pic && ![self.model.pic isEqualToString:@""]) {
+            if (self.model.pic && ![self.model.pic isEqualToString:@""] && ![self.model.pic isEqualToString:@"http://112.126.75.77:6699"] && ![self.model.pic isEqualToString:@"http://112.126.75.77:7976"]) {
                 return 1;
             }else{
                 return 0;

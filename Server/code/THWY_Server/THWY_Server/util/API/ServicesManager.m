@@ -1201,9 +1201,13 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"]) {
-                RepairStatisticVO *estate = [[RepairStatisticVO alloc]initWithJSON:estateDic];
-                [listArr addObject:estate];
+            for (NSArray* estateArr in responseObject[@"datas"]) {
+                NSMutableArray* list = [[NSMutableArray alloc]init];
+                for (NSDictionary* estateDic in estateArr) {
+                    RepairStatisticVO *estate = [[RepairStatisticVO alloc]initWithJSON:estateDic];
+                    [list addObject:estate];
+                }
+                [listArr addObject:list];
             }
             onComplete(nil,listArr);
         }

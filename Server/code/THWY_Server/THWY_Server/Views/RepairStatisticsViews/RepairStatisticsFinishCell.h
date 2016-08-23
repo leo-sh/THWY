@@ -12,7 +12,7 @@
 
 @property (assign, nonatomic) NSInteger index;
 
-- (void)loadDataFromRepairVO:(RepairStatisticVO *)model;
+- (void)loadDataFromArray:(NSArray *)data;
 
 
 @end

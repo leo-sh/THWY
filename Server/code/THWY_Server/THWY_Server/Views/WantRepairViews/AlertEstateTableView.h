@@ -26,10 +26,13 @@ typedef NS_ENUM(NSInteger, AlertType){
 
 @property (weak, nonatomic) id<AlertEstateTableViewDelegate> AlertDelegate;
 
+//弹出框类型
 @property (assign, nonatomic) AlertType type;
 
+//显示数据
 @property (strong, nonatomic) NSMutableArray *data;
 
+//当前选中行
 @property (assign, nonatomic) NSInteger selectedIndex;
 
 - (void)initViews;

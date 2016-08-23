@@ -57,106 +57,107 @@
 - (void)getDataType:(NSInteger)type statusID:(NSString *)statusID page:(int)page{
     
     
-//    if (type == 1) {
-//        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
-//        [My_ServicesManager getRepairs:page repairStatu:statusID onComplete:^(NSString *errorMsg, NSArray *list) {
-//            if (errorMsg) {
-//                
-//                [SVProgressHUD showErrorWithStatus:errorMsg];
-//                if (self.page != 0) {
-//                    self.page--;
-//                }
-//            }else {
-//                
-//                if (list && list.count == 0 && self.page != 0) {
-//                    self.page--;
-//                }else{
-//                    
-//                }
-//                
-//                for (RepairVO *model in list) {
-//                    [self.repairDataArray addObject:model];
-//                }
-//                
-//                if (self.switchFlag == 1) {
-//                    
-//                    if (self.page == 0) {
-//                        self.tableView.contentOffset = CGPointMake(0, 0);
-//                    }
-//                    
-//                    [self.tableView reloadData];
-//                    
-//                }else if (self.switchFlag == 2){
-//                    
-//                    if (self.page == 0) {
-//                        self.tableView2.contentOffset = CGPointMake(0, 0);
-//                    }
-//                    
-//                    [self.tableView2 reloadData];
-//                }
-//                
-//                [SVProgressHUD dismiss];
-//                //            [SVProgressHUD hudHideWithSuccess:@"加载完毕"];
-//            }
-//            
-//            if (self.switchFlag == 1) {
-//                [self.tableView.mj_header endRefreshing];
-//                
-//            }else{
-//                [self.tableView2.mj_header endRefreshing];
-//            }
-//
-//        }];
-//    }else{
-//        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
-//        [My_ServicesManager getRepairs:page repairStatu:statusID onComplete:^(NSString *errorMsg, NSArray *list) {
-//            if (errorMsg) {
-//                
-//                [SVProgressHUD showErrorWithStatus:errorMsg];
-//                if (self.page != 0) {
-//                    self.page--;
-//                }
-//            }else {
-//                
-//                if (list && list.count == 0 && self.page != 0) {
-//                    self.page--;
-//                }else{
-//                    
-//                }
-//                
-//                for (RepairVO *model in list) {
-//                    [self.repairDataArray addObject:model];
-//                }
-//                
-//                if (self.switchFlag == 1) {
-//                    
-//                    if (self.page == 0) {
-//                        self.tableView.contentOffset = CGPointMake(0, 0);
-//                    }
-//                    
-//                    [self.tableView reloadData];
-//                    
-//                }else if (self.switchFlag == 2){
-//                    
-//                    if (self.page == 0) {
-//                        self.tableView2.contentOffset = CGPointMake(0, 0);
-//                    }
-//                    
-//                    [self.tableView2 reloadData];
-//                }
-//                
-//                [SVProgressHUD dismiss];
-//                //            [SVProgressHUD hudHideWithSuccess:@"加载完毕"];
-//            }
-//            
-//            if (self.switchFlag == 1) {
-//                [self.tableView.mj_header endRefreshing];
-//                
-//            }else{
-//                [self.tableView2.mj_header endRefreshing];
-//            }
-//        }];
-//    }
+    if (type == 1) {
+        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+        [My_ServicesManager getRepairs:page repairStatu:statusID onComplete:^(NSString *errorMsg, NSArray *list) {
+            if (errorMsg) {
+                
+                [SVProgressHUD showErrorWithStatus:errorMsg];
+                if (self.page != 0) {
+                    self.page--;
+                }
+            }else {
+                
+                if (list && list.count == 0 && self.page != 0) {
+                    self.page--;
+                }else{
+                    
+                }
+                
+                for (RepairVO *model in list) {
+                    [self.repairDataArray addObject:model];
+                }
+                
+                if (self.switchFlag == 1) {
+                    
+                    if (self.page == 0) {
+                        self.tableView.contentOffset = CGPointMake(0, 0);
+                    }
+                    
+                    [self.tableView reloadData];
+                    
+                }else if (self.switchFlag == 2){
+                    
+                    if (self.page == 0) {
+                        self.tableView2.contentOffset = CGPointMake(0, 0);
+                    }
+                    
+                    [self.tableView2 reloadData];
+                }
+                
+                [SVProgressHUD dismiss];
+                //            [SVProgressHUD hudHideWithSuccess:@"加载完毕"];
+            }
+            
+            if (self.switchFlag == 1) {
+                [self.tableView.mj_header endRefreshing];
+                
+            }else{
+                [self.tableView2.mj_header endRefreshing];
+            }
+
+        }];
+    }else{
+        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+        [My_ServicesManager getPublicRepairs:page repairStatu:statusID onComplete:^(NSString *errorMsg, NSArray *list) {
+            
+            if (errorMsg) {
+                
+                [SVProgressHUD showErrorWithStatus:errorMsg];
+                if (self.page != 0) {
+                    self.page--;
+                }
+            }else {
+                
+                if (list && list.count == 0 && self.page != 0) {
+                    self.page--;
+                }else{
+                    
+                }
+                
+                for (RepairVO *model in list) {
+                    [self.repairDataArray addObject:model];
+                }
+                
+                if (self.switchFlag == 1) {
+                    
+                    if (self.page == 0) {
+                        self.tableView.contentOffset = CGPointMake(0, 0);
+                    }
+                    
+                    [self.tableView reloadData];
+                    
+                }else if (self.switchFlag == 2){
+                    
+                    if (self.page == 0) {
+                        self.tableView2.contentOffset = CGPointMake(0, 0);
+                    }
+                    
+                    [self.tableView2 reloadData];
+                }
+                
+                [SVProgressHUD dismiss];
+                //            [SVProgressHUD hudHideWithSuccess:@"加载完毕"];
+            }
+            
+            if (self.switchFlag == 1) {
+                [self.tableView.mj_header endRefreshing];
+                
+            }else{
+                [self.tableView2.mj_header endRefreshing];
+            }
+        }];
+    }
     
 }
 

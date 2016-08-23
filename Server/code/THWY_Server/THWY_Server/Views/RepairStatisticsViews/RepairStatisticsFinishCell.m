@@ -23,18 +23,20 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self initViews];
+        self.backgroundColor = [UIColor clearColor];
+        self.contentView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.6];
     }
     return self;
 }
 
 - (void)initViews{
     
-    CGFloat leftMargin = 6/667.0*My_ScreenH;
+    CGFloat leftMargin = 10/667.0*My_ScreenH;
     CGFloat jianju = -0.25*(2*leftMargin+24*35/36.0);
     self.rightImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"repairStatistics_完工率"]];
     [self.contentView addSubview:self.rightImageView];
     [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.contentView.mas_right).offset(leftMargin);
+        make.right.mas_equalTo(self.contentView.mas_right).offset(-2*leftMargin);
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
         make.height.mas_equalTo(24);
         make.width.mas_equalTo(self.rightImageView.mas_height).multipliedBy(35/36.0);
@@ -43,14 +45,14 @@
     
     self.titleLabel1 = [[UILabel alloc] init];
     self.titleLabel1.text = @"完工率: ";
-    self.titleLabel1.font = FontSize(CONTENT_FONT+2);
+    self.titleLabel1.font = FontSize(CONTENT_FONT+1);
     self.titleLabel1.textColor = [UIColor blackColor];
     [self.titleLabel1 sizeToFit];
     [self.contentView addSubview:self.titleLabel1];
     
     [self.titleLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.contentView.mas_left).offset(leftMargin);
-        make.centerY.mas_equalTo(self.contentView.centerY);
+        make.centerY.mas_equalTo(self.contentView.mas_centerY);
         make.width.mas_equalTo(self.contentView.mas_width).multipliedBy(0.25).offset(jianju);
     }];
     
@@ -74,7 +76,7 @@
     
     [self.titleLabel2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.contentLabel1.mas_right);
-        make.centerY.mas_equalTo(self.contentView.centerY);
+        make.centerY.mas_equalTo(self.contentView.mas_centerY);
     }];
     
     self.contentLabel2 = [[UILabel alloc] init];
@@ -91,9 +93,11 @@
 
 }
 
-- (void)loadDataFromRepairVO:(RepairStatisticVO *)model{
-//    self.contentLabel1.text = [NSString stringWithFormat:@"%0.2f%", model];
-//    self.contentLabel2.text = [NSString stringWithFormat:@"%0.2f%", model];
+- (void)loadDataFromArray:(NSArray *)data{
+    if (data.count >0) {
+        self.contentLabel1.text = data[0];
+        self.contentLabel2.text = data[1];
+    }
 }
 
 - (void)setIndex:(NSInteger)index{
