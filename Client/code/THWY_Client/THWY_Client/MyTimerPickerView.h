@@ -18,4 +18,7 @@
 
 @property (strong, nonatomic) NSDate *selectedDate;
 
+@property (assign, nonatomic) NSInteger hour;
+@property (assign, nonatomic) NSInteger minute;
+
 @end

@@ -28,12 +28,12 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, height)];
     headerView.backgroundColor = [UIColor whiteColor];
     UIButton *confirm = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, headerView.height-10, headerView.height-10)];
-    [confirm setImage:[UIImage imageNamed:@"√"] forState:UIControlStateNormal];
+    [confirm setImage:[UIImage scaleImage:[UIImage imageNamed:@"√"] toScale:0.5 ] forState:UIControlStateNormal];
     [confirm addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:confirm];
     
     UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(self.width-5-confirm.width, 5, headerView.height-10, headerView.height-10)];
-    [cancel setImage:[UIImage imageNamed:@"X"] forState:UIControlStateNormal];
+    [cancel setImage:[UIImage scaleImage:[UIImage imageNamed:@"X"] toScale:0.5] forState:UIControlStateNormal];
     [cancel addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:cancel];
     
@@ -93,9 +93,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     if([self.flags containsObject:indexPath]){
-        cell.imageView.image = [UIImage scaleImage:[UIImage imageNamed:@"repaire_代勾"] toScale:0.7];
+        cell.imageView.image = [UIImage scaleImage:[UIImage imageNamed:@"repaire_代勾"] toScale:0.5];
     }else{
-        cell.imageView.image = [UIImage scaleImage:[UIImage imageNamed:@"repaire_不代勾"] toScale:0.7];
+        cell.imageView.image = [UIImage scaleImage:[UIImage imageNamed:@"repaire_不代勾"] toScale:0.5];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     RepairClassVO *model = nil;
@@ -104,7 +104,7 @@
     }else{
         model = [self.data[indexPath.section] child][indexPath.row];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ (￥%@)",model.class_name, model.class_price];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",model.class_name];
     cell.textLabel.font = FontSize(CONTENT_FONT-1);
     cell.textLabel.textColor = [UIColor darkGrayColor];
     return cell;

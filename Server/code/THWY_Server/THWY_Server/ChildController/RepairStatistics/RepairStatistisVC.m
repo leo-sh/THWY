@@ -41,9 +41,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.title = @"报修统计";
     self.switchFlag = 1;
     self.estateId = -1;
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"背景"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]];
     [self getEstatesData];
     [self initViews];
     [self getStatisticsData:nil];
@@ -147,12 +148,12 @@
         }
         [self.bgView addSubview:btn];
         
-        UIImageView *btnImage = [[UIImageView alloc] initWithFrame:CGRectMake(btn.width/8.0, 0, btn.width*3/4.0, btn.height*3/4.0)];
+        UIImageView *btnImage = [[UIImageView alloc] initWithFrame:CGRectMake(btn.width/5.0, 0, btn.width*0.6, btn.height*0.6)];
         btnImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"repairStatistics_%@",self.labelNames[i]]];
         btnImage.userInteractionEnabled = YES;
         [btn addSubview:btnImage];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, btnImage.height, btn.width, btn.height*0.25)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, btn.width*0.75, 0, 0)];
         label.text = self.labelNames[i];
         [label sizeToFit];
         label.centerX = btnImage.centerX;
@@ -168,7 +169,7 @@
 //        tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
         tableView.rowHeight = 50.0<self.scrollView.height/5.0?self.scrollView.height/5.0:50.0;
         [tableView registerClass:[RepairStatisticsCell class] forCellReuseIdentifier:@"RepairStatisticsCell"];
-        [tableView registerClass:[RepairStatisticsCell class] forCellReuseIdentifier:@"RepairStatisticsFinishCell"];
+        [tableView registerClass:[RepairStatisticsFinishCell class] forCellReuseIdentifier:@"RepairStatisticsFinishCell"];
         
         switch (i) {
             case 0:
@@ -225,6 +226,45 @@
     }
     
     
+}
+
+#pragma mark - UITableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    switch (self.switchFlag) {
+        case 0:
+            return 5;
+            break;
+        case 1:
+            return 4;
+            break;
+        case 2:
+            return 0;
+            break;
+    }
+    return 0;
+    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.switchFlag == 2) {
+        
+    }else{
+        
+        if (indexPath.row == 4) {
+            RepairStatisticsFinishCell *cell = (RepairStatisticsFinishCell *)[tableView dequeueReusableCellWithIdentifier:@"RepairStatisticsFinishCell" forIndexPath:indexPath];
+            [cell loadDataFromRepairVO:nil];
+            return cell;
+        }else{
+            RepairStatisticsCell *cell = (RepairStatisticsCell *)[tableView dequeueReusableCellWithIdentifier:@"RepairStatisticsCell" forIndexPath:indexPath];
+            if (self.dataArray.count>indexPath.row) {
+                [cell loadDataFromRepairVO:self.dataArray[indexPath.row]];
+            }
+            return cell;
+        }
+        
+    }
+    
+    return nil;
 }
 
 @end

@@ -1,6 +1,6 @@
 //
 //  RecordsDetailCell.h
-//  THWY_Server
+//  THWY_Client
 //
 //  Created by wei on 16/8/4.
 //  Copyright © 2016年 SXZ. All rights reserved.
@@ -10,6 +10,8 @@
 #import "RepairVO.h"
 
 @interface RecordsDetailCell : UITableViewCell
+
+@property (assign, nonatomic) RepairType type;
 
 - (void)loadDataWithModel:(RepairVO *)model indexpath:(NSIndexPath *)indexpath;
 

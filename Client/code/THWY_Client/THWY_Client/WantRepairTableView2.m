@@ -75,6 +75,8 @@
         case 0:{
             
             PaigongCatogerysCell *cell = (PaigongCatogerysCell *)[tableView dequeueReusableCellWithIdentifier:@"PaigongCatogerysCell" forIndexPath:indexPath];
+            [cell.btn_yuyue setHidden:YES];
+            cell.constraint2.constant = 40;
             self.cells[row] = cell;
             cell.tableView = tableView;
             return cell;
@@ -154,10 +156,10 @@
     }else if (indexPath.row == 7){
         return 310.0/713*My_ScreenH;
     }else if (indexPath.row == 0){
-        CGFloat topMargin = 5;
+//        CGFloat topMargin = 5;
         if ([self.cells[0] isKindOfClass:[PaigongCatogerysCell class]]) {
             if ([(PaigongCatogerysCell *)self.cells[0] showPikerView]) {
-                return 60.0/713*My_ScreenH + 40*2 +  topMargin;
+                return 60.0/713*My_ScreenH + 40*2;
             }else{
                 return 60.0/713*My_ScreenH;
             }
@@ -188,6 +190,7 @@
     }
     
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
@@ -298,7 +301,7 @@
     else if ([self.repairVO.repair_detail isEqualToString:@""]){
         errorMsg = @"描述不能为空";
     }else if(!self.repairVO.estate_id || [self.repairVO.estate_id isEqualToString:@""]){
-        errorMsg = @"请选择房源";
+        errorMsg = @"请选择所在项目";
     }else if (self.repairVO.estate_id && ![self.repairVO.estate_id isEqualToString:@""]){
     
         NSMutableArray *houseID = [NSMutableArray array];

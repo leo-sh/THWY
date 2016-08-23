@@ -50,7 +50,7 @@
     [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.contentView.mas_right).offset(leftMargin);
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
-        make.height.mas_equalTo(self.titleLabel.mas_height).offset(10);
+        make.height.mas_equalTo(24);
         make.width.mas_equalTo(self.rightImageView.mas_height).multipliedBy(35/36.0);
     }];
     

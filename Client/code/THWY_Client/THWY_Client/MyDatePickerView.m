@@ -13,7 +13,6 @@
 @property (strong, nonatomic) NSCalendar *calendar;
 @property (strong, nonatomic) NSDateComponents *selectedDateComponets;
 
-
 @end
 
 @implementation MyDatePickerView
@@ -25,12 +24,17 @@
         self.delegate = self;
         self.dataSource = self;
         self.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-        self.selectedDateComponets.timeZone = [[NSTimeZone alloc] initWithName:@"GMT"];
+        self.calendar.timeZone = [NSTimeZone localTimeZone];
         self.selectedDate = [[NSDate date] dateByAddingTimeInterval:8*60*60];
         self.selectedDateComponets = [self.calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:[NSDate date]];
+        self.selectedDateComponets.timeZone = self.calendar.timeZone;
 
+        self.startDate = [NSDate date];
+        self.endDate = [NSDate date];
+        
         [self selectRow:[self.selectedDateComponets month]-1 inComponent:1 animated:NO];
         [self selectRow:[self.selectedDateComponets day]-1 inComponent:2 animated:NO];
+        
     }
     return self;
 }
@@ -54,7 +58,7 @@
             NSRange dayRange = [self.calendar rangeOfUnit:NSCalendarUnitDay
                                                    inUnit:NSCalendarUnitMonth
                                                   forDate:self.selectedDate];
-//            NSLog(@"current month: %ld, day number: %ld", [[self.calendar components:NSCalendarUnitMonth fromDate:self.selectedDate] month], dayRange.length);
+            NSLog(@"current month: %ld, day number: %ld", [[self.calendar components:NSCalendarUnitMonth fromDate:self.selectedDate] month], dayRange.length);
             return dayRange.length;
         }
         default:
@@ -106,7 +110,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
     switch (component) {
         case 0: {
             NSDateComponents *indicatorComponents = [self.calendar components:NSCalendarUnitYear
@@ -119,13 +123,18 @@
             break;
         }
         case 1: {
-            NSDateComponents *targetComponents = [self.calendar components:unitFlags
-                                                                  fromDate:self.selectedDate];
+            NSDateComponents *targetComponents = [self.calendar components:unitFlags fromDate:self.selectedDate];
+            targetComponents.timeZone = [NSTimeZone localTimeZone];
             [targetComponents setMonth:row + 1];
+            NSInteger oldDay = [targetComponents day];
+            [targetComponents setDay:1];
+            if ([self.selectedDateComponets day]>[self.calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:[self.calendar dateFromComponents:targetComponents]].length) {
+                [pickerView selectRow:0 inComponent:2 animated:YES];
+            }else{
+                [targetComponents setDay:oldDay];
+            }
             self.selectedDateComponets = targetComponents;
-//            if ([targetComponents day]>[self.calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:[self.calendar dateFromComponents:self.selectedDateComponets]].length) {
-//            }
-            [pickerView selectRow:0 inComponent:2 animated:YES];
+            NSLog(@"day:-- %ld > length:-- %ld", [self.selectedDateComponets day], [self.calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:[[self.calendar dateFromComponents:targetComponents] dateByAddingTimeInterval:8*60*60]].length);
             break;
         }
         case 2: {
@@ -139,12 +148,12 @@
     }
     self.selectedDate = [self.calendar dateFromComponents:self.selectedDateComponets];
     [pickerView reloadAllComponents]; // 注意，这一句不能掉，否则选择后每一栏的数据不会重载，其作用与UITableView中的reloadData相似
-    NSLog(@"%d", self.selectedDateComponets.day);
-    NSLog(@"%@", self.selectedDate);
+    NSLog(@"%ld", self.selectedDateComponets.day);
+    NSLog(@"selectedData:  %@", self.selectedDate);
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
-    return self.rowHeight?:44.0;
+    return self.rowHeight?:48.0;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{

@@ -27,7 +27,14 @@
         self.is_cashier = JSON[@"is_cashier"];
         self.real_name = JSON[@"real_name"];
         self.cellphone = JSON[@"cellphone"];
-        self.photo = JSON[@"photo"];
+        if ([JSON[@"photo"] isKindOfClass:[NSString class]] && [JSON[@"photo"] length] > 0) {
+            if ([JSON[@"photo"] rangeOfString:@"http"].location != NSNotFound) {
+                self.photo = JSON[@"photo"];
+            }else
+            {
+                self.photo = [NSString stringWithFormat:@"%@%@",API_Prefix,JSON[@"photo"]];
+            }
+        }
         self.up_group = [[GroupVO alloc]initWithJSON:JSON[@"up_group"]];
     }
     

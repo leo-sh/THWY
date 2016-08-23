@@ -27,7 +27,7 @@
     self.backgroundColor = My_Color(44, 191, 114);
     [self setTitle:title forState:UIControlStateNormal];
     self.titleLabel.font = FontSize(CONTENT_FONT+3);
-    [self setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    [self setImage:[UIImage scaleImage:[UIImage imageNamed:imageName] toScale:0.3] forState:UIControlStateNormal];
 //    [self setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     self.adjustsImageWhenHighlighted = NO;
 }

@@ -58,7 +58,6 @@
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
-                            <action selector="budanOnclick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FmK-g4-YC1"/>
                             <action selector="yuyueOnclick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cMn-nP-Rfg"/>
                         </connections>
                     </button>

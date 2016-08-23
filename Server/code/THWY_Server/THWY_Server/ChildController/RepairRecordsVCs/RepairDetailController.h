@@ -1,6 +1,6 @@
 //
 //  RepaireDetailController.h
-//  THWY_Server
+//  THWY_Client
 //
 //  Created by wei on 16/8/3.
 //  Copyright © 2016年 SXZ. All rights reserved.
@@ -11,6 +11,7 @@
 
 @interface RepairDetailController : RootVC
 
-@property (strong, nonatomic) RepairVO *model;
+@property (copy, nonatomic) NSString *repairVOId;
+@property (assign, nonatomic) RepairType type;
 
 @end
