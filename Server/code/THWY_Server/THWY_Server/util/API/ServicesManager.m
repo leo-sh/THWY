@@ -241,6 +241,7 @@ savePassWord:(BOOL)save
             _passWord = password;
             
             UserVO* user = [[UserVO alloc]initWithJSON:responseObject[@"datas"]];
+            [[UDManager getUD] saveUser:user];
             
             NSMutableArray* tagArr = [[NSMutableArray alloc]initWithObjects:@"manager",[NSString stringWithFormat:@"admin_id_%@",user.admin_id],[NSString stringWithFormat:@"group_id%@",user.admin_group_id], nil];
             if ([user.is_serviceman isEqualToString:@"1"]) {
@@ -261,7 +262,6 @@ savePassWord:(BOOL)save
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[UDManager getUD] saveUserName:userName];
                 [[UDManager getUD] saveUserPassWord:password];
-                [[UDManager getUD] saveUser:user];
                 [[UDManager getUD] saveShowState:save];
             });
             
@@ -615,6 +615,7 @@ savePassWord:(BOOL)save
 
 -(void)getNotice:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray* list))onComplete
 {
+    page ++;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@notice",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
@@ -668,6 +669,7 @@ savePassWord:(BOOL)save
 
 -(void)getAds:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray* list))onComplete
 {
+    page ++;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@ads",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
@@ -749,6 +751,7 @@ savePassWord:(BOOL)save
 
 -(void)getDocs:(int)page docTypeId:(NSString *)typeId public:(int)isPublic belong:(int)belong onComplete:(void (^)(NSString *errorMsg,NSArray* list))onComplete
 {
+    page ++;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@get_docs",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
@@ -1214,6 +1217,7 @@ savePassWord:(BOOL)save
 
 -(void)getRepairs:(int)page repairStatu:(NSString *)repairStatuId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
+    page ++;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@get_repairs",API_HOST];
     NSDictionary *params = nil;
@@ -1281,6 +1285,7 @@ savePassWord:(BOOL)save
 
 -(void)getPublicRepairs:(int)page repairStatu:(NSString *)repairStatuId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
+    page ++;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@get_public_repairs",API_HOST];
     NSDictionary *params = nil;
@@ -1348,6 +1353,7 @@ savePassWord:(BOOL)save
 
 -(void)getTaskList:(TaskType )type page:(int)page onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete
 {
+    page ++;
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@get_task_list",API_HOST];
     NSString *typeStr = @"";
@@ -1567,7 +1573,7 @@ savePassWord:(BOOL)save
     if ([self isLogin]) {
         UserVO *user = [[UDManager getUD] getUser];
         NSLog(@"admin_id:%@",user.admin_id);
-        [self getRepairStatistic:nil onComplete:^(NSString *errorMsg, NSArray *list) {
+        [self getPublicRepairs:0 repairStatu:nil onComplete:^(NSString *errorMsg, NSArray *list) {
             
         }];
     }else
