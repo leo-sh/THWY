@@ -324,14 +324,14 @@
     
     NSArray *VCNames = @[@"WantRepairesVC",//我要报修 101
                          @"RepairRecordsVC",//报修记录 102
-                         @"",//工作日志 103
+                         @"WorkRecordViewController",//工作日志 103
                          @"RepairAcceptOrderVC",//报修接单 104
                          @"RepairStatistisVC",//报修统计 105
                          @"",//我的好友 106
-                         @"",//物业公告 107
+                         @"ProclamationViewController",//物业公告 107
                          @"",//心得笔记 108
-                         @"",//ip白名单 109
-                         @"",//个人信息 110
+                         @"WhiteListViewController",//ip白名单 109
+                         @"PersonInfoViewController",//个人信息 110
                          @"PushSettingVC",//推送设置 //111
                          @"TechSupportVC"];//技术支持 //112
     

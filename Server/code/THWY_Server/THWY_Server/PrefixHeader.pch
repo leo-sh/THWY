@@ -85,6 +85,8 @@
 
 //内容默认文字大小
 #define CONTENT_FONT 16
+//ip默认自己大小
+#define Content_Ip_Font 13
 //设备判断
 #define kDevice_Is_iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
@@ -128,10 +130,16 @@ static inline int sizeValue(int sizefont) {
         return sizefont;
     }
 }
-
+//白色透明背景颜色
+#define WhiteAlphaColor My_AlphaColor(255, 255, 255, 0.7)
+//cell下线颜色
+#define CellUnderLineColor My_Color(200, 199, 204)
 //正常字体
 #define  FontSize(sizefont)  [UIFont fontWithName:My_RegularFontName size:sizefont]
 //加粗字体
 #define  FontBoldSize(sizefont)  [UIFont fontWithName:My_SemiboldFontName size:sizefont]
-
+//获取内容宽度
+#define GetContentWidth(content,font) [content sizeWithFont:FontSize(font) maxSize:CGSizeMake(4000, 4000)].width
+//获取内容高度
+#define GetContentHeight(content,font) [content sizeWithFont:FontSize(font) maxSize:CGSizeMake(4000, 4000)].height
 #endif /* PrefixHeader_pch */
