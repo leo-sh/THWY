@@ -8,6 +8,8 @@
 
 #import "RepairAcceptOrderVC.h"
 #import "RunSliderLabel.h"
+#import "RepairAcceptOrderCell.h"
+
 @interface RepairAcceptOrderVC ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) NSMutableArray *dataArray;
@@ -94,6 +96,8 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.tableFooterView = btn_more;
     self.tableView.tableHeaderView = headerImage;
+    
+    [self.tableView registerClass:[RepairAcceptOrderCell class] forCellReuseIdentifier:@"RepairAcceptOrderCell"];
     [self.view addSubview:self.tableView];
     
 }
