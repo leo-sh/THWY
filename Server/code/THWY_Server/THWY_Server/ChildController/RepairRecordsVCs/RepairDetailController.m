@@ -16,7 +16,9 @@
 
 @property (strong, nonatomic) UITableView *tableView;
 
-@property (strong, nonatomic) RepairVO *model;
+@property (strong, nonatomic) RepairVO *repairVO;
+
+@property (strong, nonatomic) TaskVO *taskVO;
 
 @property (strong, nonatomic) RecordImageCell *imageCell;
 @end
@@ -27,7 +29,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"报修记录详情";
+    if (self.displayType == 1) {
+        self.title = @"报修记录详情";
+    }else if (self.displayType == 2){
+        self.title = @"报修接单详情";
+    }
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景2"]]];
     
     [self initViews];
@@ -36,30 +42,34 @@
 
 - (void)getRepairVO{
     
-    if (self.type == 1) {
-        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
-        [My_ServicesManager getARepair:self.repairVOId onComplete:^(NSString *errorMsg, RepairVO *repair) {
-            if (errorMsg) {
-                [SVProgressHUD showErrorWithStatus:errorMsg];
-            }else{
-                self.model = repair;
-                [self.tableView reloadData];
-                [SVProgressHUD dismiss];
-            }
-            
-        }];
-    }else{
-        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
-        [My_ServicesManager getAPublicRepair:self.repairVOId onComplete:^(NSString *errorMsg, RepairVO *repair) {
-            if (errorMsg) {
-                [SVProgressHUD showErrorWithStatus:errorMsg];
-            }else{
-                self.model = repair;
-                [self.tableView reloadData];
-                [SVProgressHUD dismiss];
-            }
-            
-        }];
+    if (self.displayType == 1){
+        if (self.type == 1) {
+            [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+            [My_ServicesManager getARepair:self.repairVOId onComplete:^(NSString *errorMsg, RepairVO *repair) {
+                if (errorMsg) {
+                    [SVProgressHUD showErrorWithStatus:errorMsg];
+                }else{
+                    self.repairVO = repair;
+                    [self.tableView reloadData];
+                    [SVProgressHUD dismiss];
+                }
+                
+            }];
+        }else{
+            [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+            [My_ServicesManager getAPublicRepair:self.repairVOId onComplete:^(NSString *errorMsg, RepairVO *repair) {
+                if (errorMsg) {
+                    [SVProgressHUD showErrorWithStatus:errorMsg];
+                }else{
+                    self.repairVO = repair;
+                    [self.tableView reloadData];
+                    [SVProgressHUD dismiss];
+                }
+                
+            }];
+        }
+    }else if (self.displayType == 2){
+        
     }
     
 }
@@ -88,7 +98,7 @@
 
 #pragma mark - UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    if(self.model == nil){
+    if(self.repairVO == nil){
         return 0;
     }else{
         return 6;
@@ -106,7 +116,7 @@
             break;
         }
         case 2:{
-            if ([self.model.st intValue]>=1) {
+            if ([self.repairVO.st intValue]>=1) {
                 return 2;
             }else{
                 return 0;
@@ -115,21 +125,21 @@
         }
         case 3:{
             if (self.type == 1) {
-                if ([self.model.st intValue] == 0) {
+                if ([self.repairVO.st intValue] == 0) {
                     return 0;
-                }else if([self.model.st intValue] == 1 || [self.model.st intValue] == 2){
+                }else if([self.repairVO.st intValue] == 1 || [self.repairVO.st intValue] == 2){
                     return 1;
-                }else if([self.model.st intValue] == 3){
+                }else if([self.repairVO.st intValue] == 3){
                     return 2;
-                }else if([self.model.st intValue] == 4){
+                }else if([self.repairVO.st intValue] == 4){
                     return 3;
                 }
             }else{
-                if ([self.model.st intValue] == 0) {
+                if ([self.repairVO.st intValue] == 0) {
                     return 0;
-                }else if([self.model.st intValue] == 1 || [self.model.st intValue] == 2){
+                }else if([self.repairVO.st intValue] == 1 || [self.repairVO.st intValue] == 2){
                     return 1;
-                }else if([self.model.st intValue] == 3){
+                }else if([self.repairVO.st intValue] == 3){
                     return 2;
                 }
             }
@@ -137,7 +147,7 @@
             break;
         }
         case 4:{
-            if (self.model.pic && ![self.model.pic isEqualToString:@""] && ![self.model.pic isEqualToString:@"http://112.126.75.77:6699"] && ![self.model.pic isEqualToString:@"http://112.126.75.77:7976"]) {
+            if (self.repairVO.pic && ![self.repairVO.pic isEqualToString:@""] && ![self.repairVO.pic isEqualToString:@"http://112.126.75.77:6699"] && ![self.repairVO.pic isEqualToString:@"http://112.126.75.77:7976"]) {
                 return 1;
             }else{
                 return 0;
@@ -146,7 +156,7 @@
             break;
         }
         case 5:{
-            if (self.model.vdo && ![self.model.vdo isEqualToString:@""]) {
+            if (self.repairVO.vdo && ![self.repairVO.vdo isEqualToString:@""]) {
                 return 1;
             }else{
                 return 0;
@@ -162,17 +172,17 @@
         RecordImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordImageCell" forIndexPath:indexPath];
         cell.tableView = tableView;
         cell.vc = self;
-        [cell loadDataWithModel:self.model];
+        [cell loadDataWithModel:self.repairVO];
         self.imageCell = cell;
         return cell;
     }else if (indexPath.section == 5){
         RecordVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordVideoCell" forIndexPath:indexPath];
-        [cell loadDataWithModel:self.model];
+        [cell loadDataWithModel:self.repairVO];
         return cell;
     }else {
         RecordsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordsDetailCell" forIndexPath:indexPath];
         cell.type = self.type;
-        [cell loadDataWithModel:self.model indexpath:indexPath];
+        [cell loadDataWithModel:self.repairVO indexpath:indexPath];
         return cell;
     }
     
@@ -181,7 +191,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 4) {
-        if (self.model.pic && ![self.model.pic isEqualToString:@""] && ![self.model.pic isEqualToString:@"http://112.126.75.77:6699"] && ![self.model.pic isEqualToString:@"http://112.126.75.77:7976"]) {
+        if (self.repairVO.pic && ![self.repairVO.pic isEqualToString:@""] && ![self.repairVO.pic isEqualToString:@"http://112.126.75.77:6699"] && ![self.repairVO.pic isEqualToString:@"http://112.126.75.77:7976"]) {
 //            RecordImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordImageCell" forIndexPath:indexPath];
             if (self.imageCell.imageHeight == 0) {
                 UIImage *image = [UIImage imageNamed:@"bannerload"];
@@ -194,16 +204,16 @@
             return 0;
         }
     }else if (indexPath.section == 5) {
-        if (self.model.vdo && ![self.model.vdo isEqualToString:@""]) {
-            return 240/667.0*My_ScreenH;
+        if (self.repairVO.vdo && ![self.repairVO.vdo isEqualToString:@""]) {
+            return 220/667.0*My_ScreenH;
         }else{
             return 0;
         }
 
     }else if (indexPath.section == 1 && indexPath.row == 1){
-        if (self.model.classes_str && ![self.model.classes_str isEqualToString:@""]) {
+        if (self.repairVO.classes_str && ![self.repairVO.classes_str isEqualToString:@""]) {
             NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:15.0],NSFontAttributeName, nil];
-            CGRect rect = [self.model.classes_str boundingRectWithSize:CGSizeMake(self.tableView.width*3.0/4, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+            CGRect rect = [self.repairVO.classes_str boundingRectWithSize:CGSizeMake(self.tableView.width*3.0/4, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
             return rect.size.height+20;
         }else{
             return 44;
@@ -219,7 +229,7 @@
     head.image = [UIImage imageNamed:@"records_虚线"];
     switch (section) {
         case 2:{
-            if ([self.model.st intValue] == 0) {
+            if ([self.repairVO.st intValue] == 0) {
                 return nil;
             }else{
                 return head;
@@ -227,7 +237,7 @@
             break;
         }
         case 3:{
-            if ([self.model.st intValue]== 0) {
+            if ([self.repairVO.st intValue]== 0) {
                 return nil;
             }else{
                 return head;
@@ -235,7 +245,7 @@
             break;
         }
         case 4:{
-            if (self.model.pic && ![self.model.pic isEqualToString:@""] && ![self.model.pic isEqualToString:@"http://112.126.75.77:6699"] && ![self.model.pic isEqualToString:@"http://112.126.75.77:7976"]) {
+            if (self.repairVO.pic && ![self.repairVO.pic isEqualToString:@""] && ![self.repairVO.pic isEqualToString:@"http://112.126.75.77:6699"] && ![self.repairVO.pic isEqualToString:@"http://112.126.75.77:7976"]) {
                 return head;
             }else{
                 return nil;
@@ -243,7 +253,7 @@
             break;
         }
         case 5:{
-            if (self.model.vdo && ![self.model.vdo isEqualToString:@""]) {
+            if (self.repairVO.vdo && ![self.repairVO.vdo isEqualToString:@""]) {
                 return head;
             }else{
                 return nil;
@@ -264,7 +274,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     switch (section) {
         case 2:{
-            if ([self.model.st intValue]== 0) {
+            if ([self.repairVO.st intValue]== 0) {
                 return 0;
             }else{
                 return 1;
@@ -272,7 +282,7 @@
             break;
         }
         case 3:{
-            if ([self.model.st intValue]== 0) {
+            if ([self.repairVO.st intValue]== 0) {
                 return 0;
             }else{
                 return 1;
@@ -280,7 +290,7 @@
             break;
         }
         case 4:{
-            if (self.model.pic && ![self.model.pic isEqualToString:@""] && ![self.model.pic isEqualToString:@"http://112.126.75.77:6699"] && ![self.model.pic isEqualToString:@"http://112.126.75.77:7976"]) {
+            if (self.repairVO.pic && ![self.repairVO.pic isEqualToString:@""] && ![self.repairVO.pic isEqualToString:@"http://112.126.75.77:6699"] && ![self.repairVO.pic isEqualToString:@"http://112.126.75.77:7976"]) {
                 return 1;
             }else{
                 return 0;
@@ -288,7 +298,7 @@
             break;
         }
         case 5:{
-            if (self.model.vdo && ![self.model.vdo isEqualToString:@""]) {
+            if (self.repairVO.vdo && ![self.repairVO.vdo isEqualToString:@""]) {
                 return 1;
             }else{
                 return 0;

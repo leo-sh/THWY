@@ -129,25 +129,26 @@
                     [self.repairDataArray addObject:model];
                 }
                 
-                if (self.switchFlag == 1) {
-                    
-                    if (self.page == 0) {
-                        self.tableView.contentOffset = CGPointMake(0, 0);
-                    }
-                    
-                    [self.tableView reloadData];
-                    
-                }else if (self.switchFlag == 2){
-                    
-                    if (self.page == 0) {
-                        self.tableView2.contentOffset = CGPointMake(0, 0);
-                    }
-                    
-                    [self.tableView2 reloadData];
-                }
                 
                 [SVProgressHUD dismiss];
                 //            [SVProgressHUD hudHideWithSuccess:@"加载完毕"];
+            }
+            
+            if (self.switchFlag == 1) {
+                
+                [self.tableView reloadData];
+                if (self.page == 0) {
+                    self.tableView.contentOffset = CGPointMake(0, 0);
+                }
+                
+                
+            }else if (self.switchFlag == 2){
+                
+                [self.tableView2 reloadData];
+                if (self.page == 0) {
+                    self.tableView2.contentOffset = CGPointMake(0, 0);
+                }
+                
             }
             
             if (self.switchFlag == 1) {
@@ -442,6 +443,7 @@
     RepairDetailController *detail = [[RepairDetailController alloc] init];
     detail.repairVOId = model.Id;
     detail.type = self.switchFlag;
+    detail.displayType = 1;
     [self.navigationController pushViewController:detail animated:YES];
     
 }

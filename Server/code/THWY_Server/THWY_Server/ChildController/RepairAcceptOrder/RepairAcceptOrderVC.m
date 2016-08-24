@@ -20,7 +20,7 @@
 
 @property (strong, nonatomic) NSArray *labelNames;
 
-@property (assign, nonatomic) NSInteger switchFlag;
+@property (assign, nonatomic) TaskType switchFlag;
 @property (assign, nonatomic) int selectIndex;
 @property (assign, nonatomic) int page;
 
@@ -34,9 +34,11 @@
     
     self.title = @"报修接单";
     self.switchFlag = 1;
+    self.page = 0;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]];
-    [self initViews];
     self.dataArray = [NSMutableArray array];
+    [self initViews];
+    [self getDataListPage:self.page];
     
 }
 
@@ -85,7 +87,7 @@
     
     
     //tableView
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(topMargin, self.bgView.height+20, self.bgView.width, My_ScreenH-104-45-self.bgView.height) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(topMargin, self.bgView.height+20, self.bgView.width, My_ScreenH-64- 3* topMargin-self.bgView.height) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 300.0/667*My_ScreenH;
@@ -102,46 +104,79 @@
     
 }
 
+- (void)getDataListPage:(int)page{
+   
+    [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
+    [My_ServicesManager getTaskList:self.switchFlag page:self.page onComplete:^(NSString *errorMsg, NSArray *list) {
+        if (errorMsg) {
+            
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+            if (self.page != 0) {
+                self.page--;
+            }
+            
+            
+        }else {
+            
+            if (list && list.count == 0 && self.page != 0) {
+                self.page--;
+            }else{
+                
+            }
+            
+            for (TaskVO *model in list) {
+                [self.dataArray addObject:model];
+            }
+            
+            [SVProgressHUD dismiss];
+            //            [SVProgressHUD hudHideWithSuccess:@"加载完毕"];
+        }
+        
+        [self.tableView reloadData];
+        if (self.page == 0) {
+            self.tableView.contentOffset = CGPointMake(0, 0);
+        }
+        
+        [self.tableView.mj_header endRefreshing];
+
+    }];
+    
+    
+}
+
 //设置上拉下拉刷新
 - (void)initRefreshView{
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
-    //   self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-    
     //自动更改透明度
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
-    // self.tableView.mj_footer.automaticallyChangeAlpha = YES;
     
 }
 
 - (void)refreshData{
     [self.dataArray removeAllObjects];
     self.page = 0;
-    if (self.selectIndex == 0){
-       
-    }else{
-       
-    }
-    
-}
-
-//下拉刷新
-- (void)loadMoreData{
-    
-    [self.tableView.mj_header beginRefreshing];
-    
+    [self getDataListPage:self.page];
     
 }
 
 //更换状态
 - (void)btnOnclicked:(UIButton *)sender{
     
-    UIButton *btn = [self.view viewWithTag:300+self.selectIndex];
-    self.selectIndex = (int)sender.tag - 300;
-    [self refreshData];
-
+    UIButton *btn = [self.bgView viewWithTag:299+self.switchFlag];
+    self.switchFlag = sender.tag - 299;
     [btn setImage:nil forState:UIControlStateNormal];
     [sender setImage:[UIImage imageNamed:@"records_按下"] forState:UIControlStateNormal];
+    
+    [self refreshData];
+
+    
+}
+
+//查看更多
+- (void)loadMoreData:(UIButton *)button{
+    
+    [self getDataListPage:++self.page];
     
 }
 
@@ -157,12 +192,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger row = indexPath.row;
     if (row<self.dataArray.count) {
-//        RecordeRepairingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordeRepeiringCell" forIndexPath:indexPath];
-//        cell.vc = self;
-//        cell.contentView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
-//        cell.backgroundColor = [UIColor clearColor];
-//        [cell loadDataFromModel:self.repairDataArray[row]];
-//        return cell;
+        RepairAcceptOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RepairAcceptOrderCell" forIndexPath:indexPath];
+        [cell loadDataFromTaskVO:self.dataArray[row]];
+        return cell;
     }
     return nil;
 }
@@ -180,8 +212,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-
-    return 0;
+    CGFloat topMargin = 10/667.0*My_ScreenH;
+    CGFloat leftMargin = topMargin*0.5;
+    CGFloat imageWidth = 50/667.0*My_ScreenH;
+    CGFloat detailWidth = tableView.width-(3*topMargin+leftMargin+imageWidth);
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
+    CGRect rect = [[self.dataArray[indexPath.row] classes_str] boundingRectWithSize:CGSizeMake(detailWidth, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+    
+    return rect.size.height+80;
     
 }
 
@@ -193,13 +231,5 @@
 //    [self.navigationController pushViewController:detail animated:YES];
     
 }
-
-//查看更多
-- (void)loadMoreData:(UIButton *)button{
-    
-    
-    
-}
-
 
 @end
