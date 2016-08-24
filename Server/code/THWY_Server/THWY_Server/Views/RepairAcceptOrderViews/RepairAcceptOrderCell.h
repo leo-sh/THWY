@@ -10,7 +10,7 @@
 
 @interface RepairAcceptOrderCell : UITableViewCell
 
-@property (assign, nonatomic) NSInteger type;
+//@property (assign, nonatomic) NSInteger type;
 
 - (void)loadDataFromTaskVO:(TaskVO *)task;
 

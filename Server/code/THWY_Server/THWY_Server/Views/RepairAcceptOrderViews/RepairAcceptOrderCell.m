@@ -32,11 +32,15 @@
         
         self.contentView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
         self.backgroundColor = [UIColor clearColor];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
+        CGRect rect = [[NSString stringWithFormat:@"报修类别:"] boundingRectWithSize:CGSizeMake(0, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
         
         CGFloat topMargin = 10/667.0*My_ScreenH;
         CGFloat leftMargin = topMargin*0.5;
         CGFloat imageWidth = 50/667.0*My_ScreenH;
-        CGFloat detailWidth = self.width-(3*topMargin+leftMargin+imageWidth);
+        CGFloat detailWidth = My_ScreenW-2*topMargin-(3*topMargin+leftMargin+imageWidth)-rect.size.width;
         self.leftImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"repairStatistics_业主报修"]];
         [self.contentView addSubview:self.leftImageView];
         
@@ -46,9 +50,6 @@
             make.height.mas_equalTo(imageWidth);
             make.width.mas_equalTo(self.leftImageView.mas_height);
         }];
-        
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT),NSFontAttributeName, nil];
-        CGRect rect = [[NSString stringWithFormat:@"报修房源:"] boundingRectWithSize:CGSizeMake(120, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
         
         self.houseLabel = [[UILabel alloc] init];
         self.houseLabel.text = @"报修房源:";
@@ -94,7 +95,7 @@
             make.left.mas_equalTo(self.houseDetailLabel.mas_left);
 //            make.centerY.mas_equalTo(self.categoryLabel.mas_centerY);
             make.top.mas_equalTo(self.houseLabel.mas_bottom);
-            make.width.mas_equalTo(self.houseDetailLabel.mas_width);
+            make.right.mas_equalTo(self.contentView.mas_right).offset(-topMargin);
             make.height.mas_equalTo(self.categoryLabel.mas_height);
         }];
 
@@ -169,16 +170,19 @@
 
 - (void)loadDataFromTaskVO:(TaskVO *)task{
     
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
+    CGRect rect = [[NSString stringWithFormat:@"报修类型:"] boundingRectWithSize:CGSizeMake(0, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+    
     CGFloat topMargin = 10/667.0*My_ScreenH;
     CGFloat leftMargin = topMargin*0.5;
     CGFloat imageWidth = 50/667.0*My_ScreenH;
-    CGFloat detailWidth = self.width-(3*topMargin+leftMargin+imageWidth);
+    CGFloat detailWidth = My_ScreenW-2*topMargin-(3*topMargin+leftMargin+imageWidth)-rect.size.width;
     
     if (task) {
         
-        if (self.type == 1) {
+        if ([task.owner_public isEqualToString:@"o"]) {
             self.leftImageView.image = [UIImage imageNamed:@"repairStatistics_业主报修"];
-        }else if (self.type == 2){
+        }else{
             self.leftImageView.image = [UIImage imageNamed:@"repairStatistics_公共报修"];
         }
         
@@ -203,11 +207,11 @@
 
         self.houseDetailLabel.title = string;
         
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
-        CGRect rect = [task.classes_str boundingRectWithSize:CGSizeMake(detailWidth, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+        NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
+        CGRect rect2 = [task.classes_str boundingRectWithSize:CGSizeMake(detailWidth, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic2 context:nil];
         self.categoryDetailLabel.text = task.classes_str;
         [self.categoryDetailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(rect.size.height);
+            make.height.mas_equalTo(rect2.size.height);
         }];
         
         NSInteger time = [task.st_0_time integerValue];

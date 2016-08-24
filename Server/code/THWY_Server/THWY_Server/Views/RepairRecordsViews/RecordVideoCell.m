@@ -91,4 +91,10 @@
     self.videoController.contentURL = url;
 }
 
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:NO animated:animated];
+    
+    // Configure the view for the selected state
+}
+
 @end

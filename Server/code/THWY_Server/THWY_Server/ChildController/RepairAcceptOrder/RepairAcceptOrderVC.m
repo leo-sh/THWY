@@ -9,6 +9,7 @@
 #import "RepairAcceptOrderVC.h"
 #import "RunSliderLabel.h"
 #import "RepairAcceptOrderCell.h"
+#import "RepairDetailController.h"
 
 @interface RepairAcceptOrderVC ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -170,7 +171,6 @@
     
     [self refreshData];
 
-    
 }
 
 //查看更多
@@ -215,7 +215,7 @@
     CGFloat topMargin = 10/667.0*My_ScreenH;
     CGFloat leftMargin = topMargin*0.5;
     CGFloat imageWidth = 50/667.0*My_ScreenH;
-    CGFloat detailWidth = tableView.width-(3*topMargin+leftMargin+imageWidth);
+    CGFloat detailWidth = tableView.width-(3*topMargin+leftMargin+imageWidth)-70;
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
     CGRect rect = [[self.dataArray[indexPath.row] classes_str] boundingRectWithSize:CGSizeMake(detailWidth, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     
@@ -225,10 +225,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    RepairVO *model = self.repairDataArray[indexPath.row];
-//    RepairDetailController *detail = [[RepairDetailController alloc] init];
-//    detail.model = model;
-//    [self.navigationController pushViewController:detail animated:YES];
+    TaskVO *task = self.dataArray[indexPath.row];
+    RepairDetailController *detail = [[RepairDetailController alloc] init];
+    detail.repairVOId = task.Id;
+    detail.displayType = RepairStatisticsDetailType;
+    if ([task.owner_public isEqualToString:@"o"]) {
+        detail.type = 1;
+    }else{
+        detail.type = 2;
+    }
+    
+    [self.navigationController pushViewController:detail animated:YES];
     
 }
 

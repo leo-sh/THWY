@@ -12,7 +12,7 @@
 //记录详情 or 接单详情
 typedef NS_ENUM(NSUInteger, DisplayType) {
     RecordDetailType = 1,
-    RepairStatisticsDetailTyp
+    RepairStatisticsDetailType
 };
 
 @interface RepairDetailController : RootVC
@@ -21,5 +21,6 @@ typedef NS_ENUM(NSUInteger, DisplayType) {
 @property (assign, nonatomic) RepairType type;
 
 @property (assign, nonatomic) DisplayType displayType;
+
 
 @end

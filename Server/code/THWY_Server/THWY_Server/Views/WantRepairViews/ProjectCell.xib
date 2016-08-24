@@ -40,7 +40,7 @@
                             <action selector="projectSelect:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Izp-Vs-ef5"/>
                         </connections>
                     </button>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="箭头" translatesAutoresizingMaskIntoConstraints="NO" id="SyT-9X-88M">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_箭头" translatesAutoresizingMaskIntoConstraints="NO" id="SyT-9X-88M">
                         <rect key="frame" x="357" y="15" width="11" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="SyT-9X-88M" secondAttribute="height" multiplier="5:8" id="8wt-tY-FLj"/>
@@ -65,7 +65,7 @@
                             <action selector="blockSelect:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kWT-vm-goq"/>
                         </connections>
                     </button>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="箭头" translatesAutoresizingMaskIntoConstraints="NO" id="tjP-5t-aNJ">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="main_箭头" translatesAutoresizingMaskIntoConstraints="NO" id="tjP-5t-aNJ">
                         <rect key="frame" x="357" y="44" width="11" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="tjP-5t-aNJ" secondAttribute="height" multiplier="5:8" id="ecv-SR-oR3"/>
@@ -90,7 +90,7 @@
                             <action selector="unitSelect:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="aZb-fM-vZc"/>
                         </connections>
                     </button>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="箭头" translatesAutoresizingMaskIntoConstraints="NO" id="6UJ-FC-nfX">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="main_箭头" translatesAutoresizingMaskIntoConstraints="NO" id="6UJ-FC-nfX">
                         <rect key="frame" x="357" y="73" width="11" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="6UJ-FC-nfX" secondAttribute="height" multiplier="5:8" id="Z1B-9m-xqy"/>
@@ -115,7 +115,7 @@
                             <action selector="layerSelect:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="isf-cm-ueE"/>
                         </connections>
                     </button>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="箭头" translatesAutoresizingMaskIntoConstraints="NO" id="bkb-LU-h3C">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="main_箭头" translatesAutoresizingMaskIntoConstraints="NO" id="bkb-LU-h3C">
                         <rect key="frame" x="357" y="100" width="11" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="bkb-LU-h3C" secondAttribute="height" multiplier="5:8" id="JvB-xJ-qg7"/>
@@ -189,7 +189,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="main_箭头" width="17" height="29"/>
         <image name="repaire_项目" width="30" height="30"/>
-        <image name="箭头" width="15" height="25"/>
     </resources>
 </document>
