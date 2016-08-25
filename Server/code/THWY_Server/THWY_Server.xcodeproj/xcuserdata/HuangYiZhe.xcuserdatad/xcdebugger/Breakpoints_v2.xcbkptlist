@@ -36,7 +36,7 @@
                   moduleName = "THWY_Server"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaa/Desktop/THWY/Server/code/THWY_Server/THWY_Server/OtherController/loginView/LoginViewController.m"
-                  timestampString = "493817480.454762"
+                  timestampString = "493822619.48227"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "35"
@@ -51,7 +51,7 @@
                   moduleName = "THWY_Server"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaa/Desktop/THWY/Server/code/THWY_Server/THWY_Server/OtherController/loginView/LoginViewController.m"
-                  timestampString = "493817480.454889"
+                  timestampString = "493822619.482392"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "36"
@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Server/OtherController/WorkRecord/Controller/WorkRecordViewController.m"
-            timestampString = "493816458.497805"
+            timestampString = "493822307.053551"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "344"
-            endingLineNumber = "344"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
             landmarkName = "-change"
             landmarkType = "5">
          </BreakpointContent>
@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Server/OtherController/WorkRecord/Controller/WorkRecordViewController.m"
-            timestampString = "493816458.497805"
+            timestampString = "493822307.053551"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
             landmarkName = "-change"
             landmarkType = "5">
          </BreakpointContent>
@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Server/OtherController/WorkRecord/Controller/WorkRecordViewController.m"
-            timestampString = "493662644.166378"
+            timestampString = "493821342.419272"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "-getData"
             landmarkType = "5">
          </BreakpointContent>
@@ -203,38 +203,6 @@
             endingLineNumber = "53"
             landmarkName = "-getData"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[MyFriendViewController getData]"
-                  moduleName = "THWY_Server"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aaa/Desktop/THWY/Server/code/THWY_Server/THWY_Server/OtherController/MyFriendViewController.m"
-                  timestampString = "493817480.45902"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "444">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__33-[MyFriendViewController getData]_block_invoke.58"
-                  moduleName = "THWY_Server"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aaa/Desktop/THWY/Server/code/THWY_Server/THWY_Server/OtherController/MyFriendViewController.m"
-                  timestampString = "493817480.459124"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "14">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -256,15 +224,15 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__33-[MyFriendViewController getData]_block_invoke.58"
+                  symbolName = "__33-[MyFriendViewController getData]_block_invoke"
                   moduleName = "THWY_Server"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaa/Desktop/THWY/Server/code/THWY_Server/THWY_Server/OtherController/MyFriendViewController.m"
-                  timestampString = "493817480.459701"
+                  timestampString = "493822619.487208"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
                   offsetFromSymbolStart = "64">
                </Location>
                <Location
@@ -275,11 +243,11 @@
                   moduleName = "THWY_Server"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaa/Desktop/THWY/Server/code/THWY_Server/THWY_Server/OtherController/MyFriendViewController.m"
-                  timestampString = "493817480.459804"
+                  timestampString = "493822619.487321"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
                   offsetFromSymbolStart = "30">
                </Location>
             </Locations>
@@ -297,6 +265,22 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
             endingLineNumber = "28"
+            landmarkName = "-getData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "THWY_Server/OtherController/WorkRecord/Controller/WorkRecordViewController.m"
+            timestampString = "493821053.780838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "-getData"
             landmarkType = "5">
          </BreakpointContent>

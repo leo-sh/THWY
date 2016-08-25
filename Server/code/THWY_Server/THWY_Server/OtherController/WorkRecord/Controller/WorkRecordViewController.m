@@ -26,6 +26,9 @@
 @property int page;
 @property NSMutableArray *clickStatuA;
 @property NSDictionary *rowAndHeight;
+@property BOOL refreshBtnClickStatu;
+@property int public;
+@property int belong;
 @end
 
 @implementation WorkRecordViewController
@@ -51,7 +54,6 @@
     self.method = GetAdministrationData;
     self.page = 0;
     
-    
     //    self.automaticallyAdjustsScrollViewInsets = NO;
     //    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
@@ -62,8 +64,20 @@
 //    [[ServicesManager getAPI]getDocTypes:^(NSString *errorMsg, NSArray *list) {
 //        NSLog(@"12313");
 //    }];
+    if (!self.refreshBtnClickStatu) {
+        self.public = 2;
+        self.belong = 0;
+    }
+    else
+    {
+        self.public = 1;
+        self.belong = 1;
+    }
     if (self.method == GetAdministrationData) {
-        [[ServicesManager getAPI]getDocs:self.page docTypeId:@"1" public:2 belong:2 onComplete:^(NSString *errorMsg, NSArray *list) {
+        
+
+        
+        [[ServicesManager getAPI]getDocs:self.page docTypeId:@"1" public:self.public belong:self.belong onComplete:^(NSString *errorMsg, NSArray *list) {
             
             if (errorMsg) {
                 [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -98,7 +112,7 @@
     
     else
     {
-        [[ServicesManager getAPI]getDocs:0 docTypeId:@"2" public:2 belong:2 onComplete:^(NSString *errorMsg, NSArray *list) {
+        [[ServicesManager getAPI]getDocs:0 docTypeId:@"2" public:self.public belong:self.belong onComplete:^(NSString *errorMsg, NSArray *list) {
             
             if (errorMsg) {
                 [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -115,6 +129,7 @@
             else
             {
                 [self.data addObjectsFromArray:list];
+
                 for (int i = 0; i < list.count; i ++) {
                     [self.clickStatuA addObject:[NSNumber numberWithBool:NO]];
                 }                dispatch_async(dispatch_get_main_queue(), ^{
@@ -267,7 +282,7 @@
     CGFloat btnL = 10;
     
     CGFloat labelL = imageView.right + 10;
-    CGFloat labelW = tableView.width - (btnW + btnL) * 2 - imageView.right - 10;
+    CGFloat labelW  = tableView.width - (btnW + btnL) * 2 - imageView.right - 10;
     
     RunSliderLabel *label = [[RunSliderLabel alloc]initWithFrame:CGRectMake(labelL, top, labelW, height)];
     [label setTitle:[self.data[section] title]];
@@ -280,29 +295,53 @@
     
     view.tag = 300 + section;
     
-    ReviseBtn *revise = [[ReviseBtn alloc]initWithFrame:CGRectMake(0, top, btnW, CONTENT_FONT)];
     
-    revise.centerY = imageView.centerY;
-    
-    revise.x = label.right + btnL;
-    
-    [revise setLeftImageView:@"b修改" andTitle:@"修改"];
-    
-    revise.titleLabel.font = FontSize(CONTENT_FONT);
-    
-    [view addSubview:revise];
-    
-    ReviseBtn *delete = [[ReviseBtn alloc]initWithFrame:CGRectMake(0, top, btnW, CONTENT_FONT)];
-    
-    delete.x = revise.right + btnL;
-    
-    delete.centerY = imageView.centerY;
+    if (!self.refreshBtnClickStatu) {
+        ReviseBtn *revise = [[ReviseBtn alloc]initWithFrame:CGRectMake(0, top, btnW, CONTENT_FONT)];
+        
+        revise.centerY = imageView.centerY;
+        
+        revise.x = label.right + btnL;
+        
+        [revise setLeftImageView:@"b修改" andTitle:@"修改"];
+        
+        revise.titleLabel.font = FontSize(CONTENT_FONT);
+        
+        [view addSubview:revise];
+        
+        ReviseBtn *delete = [[ReviseBtn alloc]initWithFrame:CGRectMake(0, top, btnW, CONTENT_FONT)];
+        
+        delete.x = revise.right + btnL;
+        
+        delete.centerY = imageView.centerY;
+        
+        [delete setLeftImageView:@"b删除" andTitle:@"删除"];
+        
+        delete.titleLabel.font = FontSize(CONTENT_FONT);
+        
+        [view addSubview:delete];
 
-    [delete setLeftImageView:@"b删除" andTitle:@"删除"];
-    
-    delete.titleLabel.font = FontSize(CONTENT_FONT);
-    
-    [view addSubview:delete];
+    }
+    else
+    {
+        UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, top, view.width - label.right - btnL, CONTENT_FONT)];
+        nameLabel.x = label.right +btnL;
+        nameLabel.centerY = imageView.centerY;
+        
+        if ([[self.data[section] real_name] isEqualToString:@"0"]) {
+            NSLog(@"%@",[self.data[section] real_name]);
+            nameLabel.text = @"false";
+        }
+        else
+        {
+            nameLabel.text = [self.data[section] real_name];
+
+        }
+        nameLabel.font = FontSize(CONTENT_FONT);
+        
+        [view addSubview:nameLabel];
+
+    }
     
     UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(labelL, label.bottom + 10, tableView.width, Content_Ip_Font)];
     
@@ -364,12 +403,14 @@
 - (void)clickRefreshBtn
 {
     NSLog(@"刷新");
+    self.refreshBtnClickStatu = !self.refreshBtnClickStatu;
+    [self.data removeAllObjects];
+    [self getData];
 }
 #pragma mark -- 点击添加按钮
 - (void)clickAdd
 {
     NSLog(@"添加");
-    NSString *typeId = [NSString stringWithFormat:@"%d",self.segmentedControl.selectedSegmentIndex];
 }
 #pragma mark -- view点击事件
 - (void)click:(UIGestureRecognizer *)sender
@@ -385,6 +426,6 @@
     NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:sender.view.tag - 300];
     
     [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
-    NSLog(@"%ld",sender.view.tag - 300);
+    NSLog(@"%d",sender.view.tag - 300);
 }
 @end
