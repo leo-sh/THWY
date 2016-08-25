@@ -27,31 +27,40 @@
     [UMessage sendClickReportForRemoteNotification:userInfo];
     NSString* pushType = userInfo[@"push_type"];
     NSString* Id = userInfo[@"pk"];
-    if ([pushType isEqualToString:@"5"])
+    if ([pushType isEqualToString:@"1"])
     {
-//        //        业主公告
+        //聊天消息
 //        ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc]init];
 //        
 //        detail.proclamationId = Id;
 //        
 //        [self pushViewController:detail animated:YES];
         
-    }else if ([pushType isEqualToString:@"6"])
+    }else if ([pushType isEqualToString:@"2"])
     {
-//        //        社区商圈-商圈公告
+        //物业公告－行政公告
 //        ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc] init];
 //        detail.proclamationId = Id;
 //        detail.type = 1;
 //        [self.navigationController pushViewController:detail animated:YES];
         
-    }else if ([pushType isEqualToString:@"7"])
+    }else if ([pushType isEqualToString:@"3"])
     {
-//        //        缴费台账
+        //物业公告－商圈公告
 //        ComplainDetailViewController *detail = [[ComplainDetailViewController alloc]init];
 //        
 //        detail.complianId = Id;
 //        
 //        [self pushViewController:detail animated:YES];
+    }else if ([pushType isEqualToString:@"4"])
+    {
+        
+        //报修接单
+        //        ComplainDetailViewController *detail = [[ComplainDetailViewController alloc]init];
+        //
+        //        detail.complianId = Id;
+        //
+        //        [self pushViewController:detail animated:YES];
     }
     if (_userInfo) {
         _userInfo = nil;
@@ -60,6 +69,13 @@
 
 -(void)showAlertWithUserInfo:(NSDictionary *)userInfo
 {
+    NSString* pushType = userInfo[@"push_type"];
+    if ([pushType isEqualToString:@"1"])
+    {
+        
+        return;
+    }
+    
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     _userInfo = userInfo;
     tapGestureBool = YES;

@@ -22,7 +22,12 @@
         self.ctime = JSON[@"ctime"];
         self.open_to = JSON[@"open_to"];
         self.do_copy = JSON[@"do_copy"];
-        self.real_name = JSON[@"real_name"];
+        if ([JSON[@"real_name"] isKindOfClass:[NSString class]] && [JSON[@"real_name"] length]>0) {
+            self.real_name = JSON[@"real_name"];
+        }else
+        {
+            self.real_name = JSON[@"false"];
+        }
         self.belong = [JSON[@"belong"] boolValue];
     }
     
