@@ -79,6 +79,7 @@
 
 //通知
 #define NetWorkChanged @"netWorkChanged"
+#define GetNewMessage @"getNewMessage"
 //登录页面通知
 #define Login_Success @"LoginSuccess"
 #define Login_Fail @"Login_Fail"
