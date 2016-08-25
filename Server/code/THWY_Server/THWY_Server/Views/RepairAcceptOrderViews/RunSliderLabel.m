@@ -21,7 +21,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
         self.runTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(runCircle) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:self.runTimer forMode:NSRunLoopCommonModes];
 
     }
     return self;
