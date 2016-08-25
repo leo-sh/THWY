@@ -7,6 +7,7 @@
 //
 
 #import "MainNavigationViewController.h"
+#import "RepairDetailController.h"
 //#import "ProclamationInfoViewController.h"
 //#import "ComplainDetailViewController.h"
 #import "UMessage.h"
@@ -56,11 +57,16 @@
     {
         
         //报修接单
-        //        ComplainDetailViewController *detail = [[ComplainDetailViewController alloc]init];
-        //
-        //        detail.complianId = Id;
-        //
-        //        [self pushViewController:detail animated:YES];
+        RepairDetailController *detail = [[RepairDetailController alloc] init];
+        detail.repairVOId = Id;
+        detail.displayType = RepairStatisticsDetailType;
+        if ([userInfo[@"repair_type"] isEqualToString:@"o"]) {
+            detail.type = 1;
+        }else{
+            detail.type = 2;
+        }
+        [self pushViewController:detail animated:YES];
+    
     }
     if (_userInfo) {
         _userInfo = nil;

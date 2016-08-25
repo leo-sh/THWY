@@ -8,7 +8,7 @@
 
 #import "RepairDetailController.h"
 #import "RecordsDetailCell.h"
-#import "RecordImageCell.h"
+
 #import "RecordVideoCell.h"
 
 @interface RepairDetailController ()<UITableViewDelegate, UITableViewDataSource>
@@ -18,8 +18,6 @@
 //@property (strong, nonatomic) UIButton *footBtn;
 
 @property (strong, nonatomic) RepairVO *repairVO;
-
-@property (strong, nonatomic) RecordImageCell *imageCell;
 
 @end
 
@@ -103,8 +101,8 @@
     [self.view addSubview:self.tableView];
 
     [self.tableView registerClass:[RecordsDetailCell class] forCellReuseIdentifier:@"RecordsDetailCell"];
-    [self.tableView registerClass:[RecordImageCell class] forCellReuseIdentifier:@"RecordImageCell"];
-    [self.tableView registerClass:[RecordVideoCell class] forCellReuseIdentifier:@"RecordVideoCell"];
+//    [self.tableView registerClass:[RecordImageCell class] forCellReuseIdentifier:@"RecordImageCell"];
+//    [self.tableView registerClass:[RecordVideoCell class] forCellReuseIdentifier:@"RecordVideoCell"];
     
     //tableViewFooterView
     self.tableFootView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 60)];
@@ -202,14 +200,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 4) {
-        RecordImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordImageCell" forIndexPath:indexPath];
+        for (id obj in tableView.visibleCells) {
+            if ([obj isKindOfClass:[RecordImageCell class]]) {
+                [obj removeFromSuperview];
+            }
+        }
+        RecordImageCell *cell = [[RecordImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RecordImageCell"];
         cell.tableView = tableView;
         cell.vc = self;
         [cell loadDataWithModel:self.repairVO];
-        self.imageCell = cell;
         return cell;
     }else if (indexPath.section == 5){
-        RecordVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordVideoCell" forIndexPath:indexPath];
+        for (id obj in tableView.visibleCells) {
+            if ([obj isKindOfClass:[RecordVideoCell class]]) {
+                [obj removeFromSuperview];
+            }
+        }
+        RecordVideoCell *cell = [[RecordVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RecordVideoCell"];
         [cell loadDataWithModel:self.repairVO];
         return cell;
     }else {
@@ -225,19 +232,21 @@
     
     if (indexPath.section == 4) {
         if (self.repairVO.pic && ![self.repairVO.pic isEqualToString:@""] && ![self.repairVO.pic isEqualToString:@"http://112.126.75.77:6699"] && ![self.repairVO.pic isEqualToString:@"http://112.126.75.77:7976"]) {
-            if (self.imageCell.imageHeight == 0) {
+
+            if (self.imageHeight == 0) {
+                
                 UIImage *image = [UIImage imageNamed:@"bannerload"];
                 return image.size.height + 20+ 8.0/375*My_ScreenW*3;
                 
             }else{
-                return self.imageCell.imageHeight + 20 + 8.0/375*My_ScreenW*3;
+                return self.imageHeight + 20 + 8.0/375*My_ScreenW*3;
             }
         }else{
             return 0;
         }
     }else if (indexPath.section == 5) {
         if (self.repairVO.vdo && ![self.repairVO.vdo isEqualToString:@""]) {
-            return 220/667.0*My_ScreenH;
+            return 150/667.0*My_ScreenH;
         }else{
             return 0;
         }
@@ -342,6 +351,7 @@
             break;
         }
     }
+    return 0;
 }
 
 - (void)foorterBtnOnclicked:(UIButton *)btn{

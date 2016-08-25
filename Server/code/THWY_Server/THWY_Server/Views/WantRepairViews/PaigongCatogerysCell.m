@@ -24,10 +24,10 @@
     // Initialization code
     self.flag = 1;
     UIImage *imageselect = [UIImage imageNamed:@"repaire_selected"] ;
-    self.selectedImage = [UIImage scaleImage:imageselect toScale:22/33.0];
+    self.selectedImage = [UIImage scaleImage:imageselect toScale:15/33.0];
     [self.btn_kaidan setImage:self.selectedImage forState:UIControlStateNormal];
     
-    self.unselectedImage= [UIImage scaleImage:[UIImage imageNamed:@"repaire_unselected"] toScale:22/33.0];
+    self.unselectedImage= [UIImage scaleImage:[UIImage imageNamed:@"repaire_unselected"] toScale:15/33.0];
     [self.btn_budan setImage:self.unselectedImage forState:UIControlStateNormal];
     
 }

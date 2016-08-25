@@ -21,6 +21,7 @@
 		1EE570011D6B0C7B009B0FE0 /* WhiteListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE56FFF1D6B0C7B009B0FE0 /* WhiteListTableViewCell.m */; };
 		1EEB030E1D6401F800CACF00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB030C1D6401F800CACF00 /* ZYKeyboardUtil.m */; };
 		1EEC53601D6F1025009AFC96 /* WRAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEC535F1D6F1025009AFC96 /* WRAlertView.m */; };
+		1EEC53631D6F2D02009AFC96 /* BlueRedioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEC53621D6F2D02009AFC96 /* BlueRedioButton.m */; };
 		1EEF9A711D6E1C2E0046E688 /* MyFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEF9A701D6E1C2E0046E688 /* MyFriendViewController.m */; };
 		1EEF9A741D6E1ECC0046E688 /* MyFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEF9A731D6E1ECC0046E688 /* MyFriendTableViewCell.m */; };
 		1EEF9A771D6E36F50046E688 /* CommunicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEF9A761D6E36F50046E688 /* CommunicateViewController.m */; };
@@ -253,6 +254,8 @@
 		1EEB030C1D6401F800CACF00 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
 		1EEC535E1D6F1025009AFC96 /* WRAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRAlertView.h; sourceTree = "<group>"; };
 		1EEC535F1D6F1025009AFC96 /* WRAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRAlertView.m; sourceTree = "<group>"; };
+		1EEC53611D6F2D02009AFC96 /* BlueRedioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlueRedioButton.h; path = WorkRecord/View/BlueRedioButton.h; sourceTree = "<group>"; };
+		1EEC53621D6F2D02009AFC96 /* BlueRedioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlueRedioButton.m; path = WorkRecord/View/BlueRedioButton.m; sourceTree = "<group>"; };
 		1EEF9A6F1D6E1C2E0046E688 /* MyFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendViewController.h; sourceTree = "<group>"; };
 		1EEF9A701D6E1C2E0046E688 /* MyFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFriendViewController.m; sourceTree = "<group>"; };
 		1EEF9A721D6E1ECC0046E688 /* MyFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendTableViewCell.h; sourceTree = "<group>"; };
@@ -1387,6 +1390,8 @@
 				1EE56FF91D6B0C7B009B0FE0 /* WhiteList */,
 				1E29C6431D640FC400F1EE26 /* ReviseBtn.h */,
 				1E29C6441D640FC400F1EE26 /* ReviseBtn.m */,
+				1EEC53611D6F2D02009AFC96 /* BlueRedioButton.h */,
+				1EEC53621D6F2D02009AFC96 /* BlueRedioButton.m */,
 				1EC86A791D6C4AD30094BAB5 /* AddBtn.h */,
 				1EC86A7A1D6C4AD30094BAB5 /* AddBtn.m */,
 				79270EA31D61AE2600E29568 /* loginView */,
@@ -1982,6 +1987,7 @@
 				79270F581D61B1EF00E29568 /* UIBarButtonItem+Extension.m in Sources */,
 				79270F2C1D61B0DB00E29568 /* YFLBBannerCell.m in Sources */,
 				79270E591D61ACDA00E29568 /* RepairStatuVO.m in Sources */,
+				1EEC53631D6F2D02009AFC96 /* BlueRedioButton.m in Sources */,
 				79270E561D61ACDA00E29568 /* Repair_RootVO.m in Sources */,
 				1EC86A7B1D6C4AD30094BAB5 /* AddBtn.m in Sources */,
 				79270E4D1D61ACDA00E29568 /* AddRepairVO.m in Sources */,

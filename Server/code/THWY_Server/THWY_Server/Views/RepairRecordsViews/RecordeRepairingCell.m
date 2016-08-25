@@ -415,6 +415,7 @@
     RepairDetailController *detail = [[RepairDetailController alloc] init];
     detail.repairVOId = self.model.Id;
     detail.type = self.flag;
+    detail.displayType = 1;
     [self.vc.navigationController pushViewController:detail animated:YES];
     
 }
