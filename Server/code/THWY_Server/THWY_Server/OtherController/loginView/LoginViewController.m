@@ -68,9 +68,15 @@
             
             if (i == 3) {
                 imageView.userInteractionEnabled = YES;
-                UIButton* button = [[UIButton alloc]initWithFrame:CGRectMake(0, imageView.height/9*7, imageView.width/2, imageView.height/10)];
-                button.backgroundColor = My_AlphaColor(0.1, 0.1, 0.1, 0.0001);
-                button.x = imageView.width/2 - button.width/2;
+                CGFloat buttonWidth = 127/375.0*My_ScreenW;
+                CGFloat buttonHeight = 67/216.0 * buttonWidth;
+                
+                UIButton* button = [[UIButton alloc]initWithFrame:CGRectMake(0, My_ScreenH - 104.5/375.0*My_ScreenW - buttonHeight, buttonWidth, buttonHeight)];
+                [button setBackgroundImage:[UIImage imageNamed:@"btn_start_normal"] forState:UIControlStateNormal];
+                [button setBackgroundImage:[UIImage imageNamed:@"btn_start_pressed"] forState:UIControlStateHighlighted];
+                
+                button.center = CGPointMake(My_ScreenW/2, button.center.y);
+                
                 [button addTarget:self action:@selector(tapOnLastImage:) forControlEvents:UIControlEventTouchUpInside];
                 [imageView addSubview:button];
             }
