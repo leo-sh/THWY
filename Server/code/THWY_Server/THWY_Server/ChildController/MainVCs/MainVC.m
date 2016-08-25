@@ -328,7 +328,7 @@
                          @"WorkRecordViewController",//工作日志 103
                          @"RepairAcceptOrderVC",//报修接单 104
                          @"RepairStatistisVC",//报修统计 105
-                         @"",//我的好友 106
+                         @"MyFriendViewController",//我的好友 106
                          @"ProclamationViewController",//物业公告 107
                          @"",//心得笔记 108
                          @"WhiteListViewController",//ip白名单 109

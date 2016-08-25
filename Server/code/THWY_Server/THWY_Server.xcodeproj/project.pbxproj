@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1E29C6451D640FC400F1EE26 /* ReviseBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E29C6441D640FC400F1EE26 /* ReviseBtn.m */; };
-		1E84CE0E1D6C4EE50010BA7B /* WorkRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E84CE0A1D6C4EE50010BA7B /* WorkRecordViewController.m */; };
 		1E84CE0F1D6C4EE50010BA7B /* WRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E84CE0D1D6C4EE50010BA7B /* WRTableViewCell.m */; };
-		1E84CE171D6C4F040010BA7B /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E84CE131D6C4F040010BA7B /* PersonInfoViewController.m */; };
 		1E84CE181D6C4F040010BA7B /* PersonInfoLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E84CE161D6C4F040010BA7B /* PersonInfoLabel.m */; };
+		1E84CE191D6C65FF0010BA7B /* WorkRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E84CE0A1D6C4EE50010BA7B /* WorkRecordViewController.m */; };
+		1E84CE1A1D6C660F0010BA7B /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E84CE131D6C4F040010BA7B /* PersonInfoViewController.m */; };
+		1E86E19C1D6CB38E0041546C /* UIRunLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E86E19B1D6CB38E0041546C /* UIRunLabel.m */; };
+		1E86E19F1D6CCD950041546C /* AlerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E86E19E1D6CCD950041546C /* AlerView.m */; };
 		1EC86A7B1D6C4AD30094BAB5 /* AddBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC86A7A1D6C4AD30094BAB5 /* AddBtn.m */; };
 		1EC86A851D6C4B470094BAB5 /* ProclamationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC86A7F1D6C4B470094BAB5 /* ProclamationInfoViewController.m */; };
 		1EC86A861D6C4B470094BAB5 /* ProclamationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC86A811D6C4B470094BAB5 /* ProclamationViewController.m */; };
@@ -19,6 +21,9 @@
 		1EE570001D6B0C7B009B0FE0 /* WhiteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE56FFC1D6B0C7B009B0FE0 /* WhiteListViewController.m */; };
 		1EE570011D6B0C7B009B0FE0 /* WhiteListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE56FFF1D6B0C7B009B0FE0 /* WhiteListTableViewCell.m */; };
 		1EEB030E1D6401F800CACF00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB030C1D6401F800CACF00 /* ZYKeyboardUtil.m */; };
+		1EEF9A711D6E1C2E0046E688 /* MyFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEF9A701D6E1C2E0046E688 /* MyFriendViewController.m */; };
+		1EEF9A741D6E1ECC0046E688 /* MyFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEF9A731D6E1ECC0046E688 /* MyFriendTableViewCell.m */; };
+		1EEF9A771D6E36F50046E688 /* CommunicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEF9A761D6E36F50046E688 /* CommunicateViewController.m */; };
 		5BFFCE3D1D41B9C40066B1B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE3C1D41B9C40066B1B9 /* main.m */; };
 		5BFFCE401D41B9C40066B1B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCE3F1D41B9C40066B1B9 /* AppDelegate.m */; };
 		5BFFCE481D41B9C40066B1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BFFCE471D41B9C40066B1B9 /* Assets.xcassets */; };
@@ -234,6 +239,10 @@
 		1E84CE131D6C4F040010BA7B /* PersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoViewController.m; sourceTree = "<group>"; };
 		1E84CE151D6C4F040010BA7B /* PersonInfoLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoLabel.h; sourceTree = "<group>"; };
 		1E84CE161D6C4F040010BA7B /* PersonInfoLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoLabel.m; sourceTree = "<group>"; };
+		1E86E19A1D6CB38E0041546C /* UIRunLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRunLabel.h; sourceTree = "<group>"; };
+		1E86E19B1D6CB38E0041546C /* UIRunLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIRunLabel.m; sourceTree = "<group>"; };
+		1E86E19D1D6CCD950041546C /* AlerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlerView.h; sourceTree = "<group>"; };
+		1E86E19E1D6CCD950041546C /* AlerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlerView.m; sourceTree = "<group>"; };
 		1EC86A791D6C4AD30094BAB5 /* AddBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBtn.h; sourceTree = "<group>"; };
 		1EC86A7A1D6C4AD30094BAB5 /* AddBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBtn.m; sourceTree = "<group>"; };
 		1EC86A7E1D6C4B470094BAB5 /* ProclamationInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProclamationInfoViewController.h; sourceTree = "<group>"; };
@@ -248,6 +257,12 @@
 		1EE56FFF1D6B0C7B009B0FE0 /* WhiteListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteListTableViewCell.m; sourceTree = "<group>"; };
 		1EEB030B1D6401F800CACF00 /* ZYKeyboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYKeyboardUtil.h; sourceTree = "<group>"; };
 		1EEB030C1D6401F800CACF00 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
+		1EEF9A6F1D6E1C2E0046E688 /* MyFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendViewController.h; sourceTree = "<group>"; };
+		1EEF9A701D6E1C2E0046E688 /* MyFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFriendViewController.m; sourceTree = "<group>"; };
+		1EEF9A721D6E1ECC0046E688 /* MyFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendTableViewCell.h; sourceTree = "<group>"; };
+		1EEF9A731D6E1ECC0046E688 /* MyFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFriendTableViewCell.m; sourceTree = "<group>"; };
+		1EEF9A751D6E36F50046E688 /* CommunicateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunicateViewController.h; sourceTree = "<group>"; };
+		1EEF9A761D6E36F50046E688 /* CommunicateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunicateViewController.m; sourceTree = "<group>"; };
 		5B2571CE1D4714E400CB4167 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		5BFFCE381D41B9C40066B1B9 /* THWY_Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THWY_Server.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFFCE3C1D41B9C40066B1B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -680,6 +695,8 @@
 			children = (
 				1E84CE0C1D6C4EE50010BA7B /* WRTableViewCell.h */,
 				1E84CE0D1D6C4EE50010BA7B /* WRTableViewCell.m */,
+				1E86E19A1D6CB38E0041546C /* UIRunLabel.h */,
+				1E86E19B1D6CB38E0041546C /* UIRunLabel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -763,20 +780,10 @@
 			children = (
 				1EE56FFE1D6B0C7B009B0FE0 /* WhiteListTableViewCell.h */,
 				1EE56FFF1D6B0C7B009B0FE0 /* WhiteListTableViewCell.m */,
+				1E86E19D1D6CCD950041546C /* AlerView.h */,
+				1E86E19E1D6CCD950041546C /* AlerView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		1EEB03081D6401A500CACF00 /* MainController */ = {
-			isa = PBXGroup;
-			children = (
-				7973842B1D66D7D100708E62 /* RootVC.h */,
-				7973842C1D66D7D100708E62 /* RootVC.m */,
-				7973842E1D66D7E300708E62 /* MainNavigationViewController.h */,
-				7973842F1D66D7E300708E62 /* MainNavigationViewController.m */,
-			);
-			name = MainController;
-			path = ../../../../Client/code/THWY_Client/THWY_Client;
 			sourceTree = "<group>";
 		};
 		1EEB030D1D6401F800CACF00 /* Keyboard */ = {
@@ -787,6 +794,35 @@
 			);
 			name = Keyboard;
 			path = ../../../../../Client/code/THWY_Client/THWY_Client/Keyboard;
+			sourceTree = "<group>";
+		};
+		1EEF9A6C1D6E1C010046E688 /* Myfriend */ = {
+			isa = PBXGroup;
+			children = (
+				1EEF9A6E1D6E1C0D0046E688 /* Controller */,
+				1EEF9A6D1D6E1C080046E688 /* View */,
+			);
+			name = Myfriend;
+			sourceTree = "<group>";
+		};
+		1EEF9A6D1D6E1C080046E688 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1EEF9A721D6E1ECC0046E688 /* MyFriendTableViewCell.h */,
+				1EEF9A731D6E1ECC0046E688 /* MyFriendTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1EEF9A6E1D6E1C0D0046E688 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1EEF9A6F1D6E1C2E0046E688 /* MyFriendViewController.h */,
+				1EEF9A701D6E1C2E0046E688 /* MyFriendViewController.m */,
+				1EEF9A751D6E36F50046E688 /* CommunicateViewController.h */,
+				1EEF9A761D6E36F50046E688 /* CommunicateViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		5B25718E1D47148000CB4167 /* viewController */ = {
@@ -1372,6 +1408,7 @@
 		79270EA11D61AE2600E29568 /* OtherController */ = {
 			isa = PBXGroup;
 			children = (
+				1EEF9A6C1D6E1C010046E688 /* Myfriend */,
 				1E84CE101D6C4F040010BA7B /* Person */,
 				1E84CE071D6C4EE50010BA7B /* WorkRecord */,
 				1EC86A7C1D6C4B470094BAB5 /* Proclamation */,
@@ -1797,8 +1834,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E84CE1A1D6C660F0010BA7B /* PersonInfoViewController.m in Sources */,
+				1E84CE191D6C65FF0010BA7B /* WorkRecordViewController.m in Sources */,
 				79270DD11D61ACB100E29568 /* MASConstraint.m in Sources */,
 				1EC86A861D6C4B470094BAB5 /* ProclamationViewController.m in Sources */,
+				1EEF9A771D6E36F50046E688 /* CommunicateViewController.m in Sources */,
 				79270DE71D61ACB100E29568 /* MJRefreshStateHeader.m in Sources */,
 				79270F571D61B1EF00E29568 /* UIApplication+Extensions.m in Sources */,
 				79F60D801D6A07A600A8E2D2 /* DACircularProgressView.m in Sources */,
@@ -1809,6 +1849,7 @@
 				79270DEA1D61ACB100E29568 /* NSBundle+MJRefresh.m in Sources */,
 				79270DD91D61ACB100E29568 /* ViewController+MASAdditions.m in Sources */,
 				79270E5D1D61ACDA00E29568 /* UserVO.m in Sources */,
+				1E86E19F1D6CCD950041546C /* AlerView.m in Sources */,
 				1EC86A871D6C4B470094BAB5 /* ProclamationTableViewCelll.m in Sources */,
 				79270DCD1D61ACB100E29568 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				79270E0B1D61ACB100E29568 /* UIImage+GIF.m in Sources */,
@@ -1848,7 +1889,10 @@
 				79270E021D61ACB100E29568 /* NSData+ImageContentType.m in Sources */,
 				79F60D711D6A07A600A8E2D2 /* ZLPhotoPickerBrowserPhotoView.m in Sources */,
 				793B8EE11D65AEA500290EAB /* RepairStatisticsCell.m in Sources */,
-				1E84CE171D6C4F040010BA7B /* PersonInfoViewController.m in Sources */,
+				79F60D791D6A07A600A8E2D2 /* ZLPhotoPickerGroupViewController.m in Sources */,
+				79F60D671D6A07A600A8E2D2 /* ZLCamera.m in Sources */,
+				79F60D721D6A07A600A8E2D2 /* ZLPhotoPickerCustomToolBarView.m in Sources */,
+				79F60D7A1D6A07A600A8E2D2 /* ZLPhotoPickerViewController.m in Sources */,
 				94BCF14B1D66DCB800FF1B13 /* SVProgressHUD.m in Sources */,
 				79270E1F1D61ACB100E29568 /* TYShowAlertView.m in Sources */,
 				79270F521D61B1EF00E29568 /* NSArray+Extension.m in Sources */,
@@ -1871,6 +1915,7 @@
 				79270E5B1D61ACDA00E29568 /* RepairVO.m in Sources */,
 				5BFFCE401D41B9C40066B1B9 /* AppDelegate.m in Sources */,
 				79270DDB1D61ACB100E29568 /* MJRefreshBackFooter.m in Sources */,
+				1EEF9A711D6E1C2E0046E688 /* MyFriendViewController.m in Sources */,
 				79270DD71D61ACB100E29568 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				791B4E181D64606F00AF9371 /* MySegmentedControl.m in Sources */,
 				79270F5F1D61B1EF00E29568 /* UIScreen+Extension.m in Sources */,
@@ -1896,8 +1941,6 @@
 				79270F891D61BF6800E29568 /* BlueCheckButton.m in Sources */,
 				79270E001D61ACB100E29568 /* Reachability.m in Sources */,
 				1E84CE0F1D6C4EE50010BA7B /* WRTableViewCell.m in Sources */,
-				797384301D66D7E300708E62 /* MainNavigationViewController.m in Sources */,
-				791B4DE31D645D9B00AF9371 /* RepairDetailController.m in Sources */,
 				1EC86A851D6C4B470094BAB5 /* ProclamationInfoViewController.m in Sources */,
 				79270E201D61ACB100E29568 /* UIView+TYAlertView.m in Sources */,
 				79F60D741D6A07A600A8E2D2 /* ZLPhotoPickerDatas.m in Sources */,
@@ -1915,6 +1958,7 @@
 				79270E551D61ACDA00E29568 /* NoticVO.m in Sources */,
 				79270E1C1D61ACB100E29568 /* TYAlertScaleFadeAnimation.m in Sources */,
 				79270F5D1D61B1EF00E29568 /* UIImage+ScreenShot.m in Sources */,
+				1EEF9A741D6E1ECC0046E688 /* MyFriendTableViewCell.m in Sources */,
 				79270F591D61B1EF00E29568 /* UIButton+Extension.m in Sources */,
 				79270F5E1D61B1EF00E29568 /* UILabel+Extension.m in Sources */,
 				79270E521D61ACDA00E29568 /* GroupVO.m in Sources */,
@@ -1952,12 +1996,13 @@
 				79270DCA1D61ACB100E29568 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				1EE570001D6B0C7B009B0FE0 /* WhiteListViewController.m in Sources */,
 				79270F5C1D61B1EF00E29568 /* UIImage+Extension.m in Sources */,
-				1E84CE0E1D6C4EE50010BA7B /* WorkRecordViewController.m in Sources */,
+				79F60D761D6A07A600A8E2D2 /* UIViewController+Alert.m in Sources */,
 				79270E0A1D61ACB100E29568 /* UIButton+WebCache.m in Sources */,
 				79270DDC1D61ACB100E29568 /* MJRefreshComponent.m in Sources */,
 				5BFFCE3D1D41B9C40066B1B9 /* main.m in Sources */,
 				79270E531D61ACDA00E29568 /* IPAllowVO.m in Sources */,
 				79270E051D61ACB100E29568 /* SDWebImageDecoder.m in Sources */,
+				1E86E19C1D6CB38E0041546C /* UIRunLabel.m in Sources */,
 				79F60D701D6A07A600A8E2D2 /* ZLPhotoPickerBrowserPhotoScrollView.m in Sources */,
 				79270E4C1D61ACDA00E29568 /* AddPublicRepairVO.m in Sources */,
 				79F60D691D6A07A600A8E2D2 /* ZLCameraView.m in Sources */,
@@ -2087,6 +2132,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/THWY_Server/PrefixHeader.pch";
 				INFOPLIST_FILE = THWY_Server/Info.plist;
@@ -2099,6 +2145,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.YTWY.sever;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2107,6 +2154,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/THWY_Server/PrefixHeader.pch";
 				INFOPLIST_FILE = THWY_Server/Info.plist;
@@ -2119,6 +2167,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.YTWY.sever;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

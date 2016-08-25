@@ -8,7 +8,9 @@
 
 #import "WhiteListViewController.h"
 #import "ServicesManager.h"
+#import "AddBtn.h"
 #import "WhiteListTableViewCell.h"
+#import "AlerView.h"
 @interface WhiteListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property UITableView *tableView;
 @property NSMutableArray *data;
@@ -62,11 +64,35 @@
         make.right.mas_equalTo(-5);
         make.bottom.mas_equalTo(-10);
     }];
+    
+    UIView *view = [[UIView alloc]init];
+    
+    view.backgroundColor = WhiteAlphaColor;
+    [self.view addSubview:view];
+    
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(self.tableView.mas_bottom).with.offset(-70);
+        make.bottom.mas_equalTo(0);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        
+    }];
+    
+    AddBtn *btn = [[AddBtn alloc]initWithFrame:CGRectMake(40, 15, self.view.width - 80, 40)];
+    [btn setLeftImageView:@"记录" andTitle:@"记录"];
+    [btn addTarget:self action:@selector(clickAdd) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btn];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.data.count;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,11 +103,19 @@
         cell = [[WhiteListTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     cell.width = tableView.width;
-    [cell setEstate:[self.data[indexPath.row] Id] IP:[self.data[indexPath.row] ip]];
+    [cell setEstate:[self.data[indexPath.row] the_user] IP:[self.data[indexPath.row] ip]];
     cell.backgroundColor = WhiteAlphaColor;
     
     NSLog(@"tableViewWidth:%f",tableView.width);
     return cell;
+}
+
+- (void)clickAdd
+{
+    NSLog(@"添加");
+    AlerView * view =[[AlerView alloc]initWithFrame:CGRectMake(10,0, self.view.width - 20, 0)];
+    view.method = Add;
+    [view showInWindow];
 }
 
 - (void)didReceiveMemoryWarning {

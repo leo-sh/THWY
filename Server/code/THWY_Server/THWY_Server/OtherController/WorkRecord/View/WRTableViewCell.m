@@ -7,8 +7,20 @@
 //
 
 #import "WRTableViewCell.h"
+#import "RunSliderLabel.h"
+@interface WRTableViewCell()
+@property UILabel *contentLabel;
+@property UILabel *timeLabel;
 
+@end
 @implementation WRTableViewCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    }
+    return self;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

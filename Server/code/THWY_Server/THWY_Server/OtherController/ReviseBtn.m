@@ -22,8 +22,8 @@
 {
     CGRect rect = [super imageRectForContentRect:contentRect];
     
-    rect.size.width = self.height * 0.4;
-    rect.origin.y = self.height * 0.3;
+    rect.size.width = self.height;
+    rect.origin.y = 0;
     rect.origin.x = 5;
     rect.size.height = rect.size.width;
     
@@ -34,7 +34,7 @@
 {
     CGRect rect = [super titleRectForContentRect:contentRect];
     
-    rect.origin.x = self.height * 0.4 + 10;
+    rect.origin.x = self.height + 10;
     return rect;
 }
 
@@ -45,6 +45,8 @@
     [self setTitle:title forState:UIControlStateNormal];
 //    [self setBackgroundImage:[UIImage imageNamed:@"信息修改按钮"] forState:UIControlStateNormal];
 //    [self setBackgroundImage:[UIImage imageNamed:@"信息修改按钮按下"] forState:UIControlStateHighlighted];
+    [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.titleLabel.font = FontSize(CONTENT_FONT);
     self.adjustsImageWhenHighlighted = NO;
 }
 

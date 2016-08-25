@@ -12,6 +12,9 @@
 #import "ProclamationTableViewCell.h"
 #import "ProclamationInfoViewController.h"
 #import "ReviseBtn.h"
+#import "AddBtn.h"
+#import "WRTableViewCell.h"
+#import "UIRunLabel.h"
 #define TopViewH 60
 @interface WorkRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property UITableView *tableView;
@@ -21,6 +24,7 @@
 @property UIImageView *segementBackgroundImageView;
 @property GetMethod method;
 @property int page;
+@property NSMutableArray *clickStatuA;
 @property NSDictionary *rowAndHeight;
 @end
 
@@ -36,17 +40,17 @@
 
 - (void)ViewInitSetting
 {
-    self.title = @"物业公告";
+    self.title = @"工作日志";
     
     UIImage *image = [UIImage imageNamed:@"背景2"];
     
     self.view.layer.contents = (id)image.CGImage;
     
     self.data = [NSMutableArray array];
+    self.clickStatuA = [NSMutableArray array];
     self.method = GetAdministrationData;
     self.page = 0;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change:) name:@"giveHeight" object:nil];
     
     //    self.automaticallyAdjustsScrollViewInsets = NO;
     //    self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -55,8 +59,11 @@
 - (void)getData
 {
     [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+//    [[ServicesManager getAPI]getDocTypes:^(NSString *errorMsg, NSArray *list) {
+//        NSLog(@"12313");
+//    }];
     if (self.method == GetAdministrationData) {
-        [[ServicesManager getAPI]getNotice:self.page onComplete:^(NSString *errorMsg, NSArray *list) {
+        [[ServicesManager getAPI]getDocs:self.page docTypeId:@"1" public:2 belong:2 onComplete:^(NSString *errorMsg, NSArray *list) {
             
             if (errorMsg) {
                 [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -74,7 +81,9 @@
             else
             {
                 [self.data addObjectsFromArray:list];
-                
+                for (int i = 0; i < list.count; i ++) {
+                    [self.clickStatuA addObject:[NSNumber numberWithBool:NO]];
+                }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
                     
@@ -89,7 +98,7 @@
     
     else
     {
-        [[ServicesManager getAPI]getAds:self.page onComplete:^(NSString *errorMsg, NSArray *list) {
+        [[ServicesManager getAPI]getDocs:0 docTypeId:@"2" public:2 belong:2 onComplete:^(NSString *errorMsg, NSArray *list) {
             
             if (errorMsg) {
                 [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -106,8 +115,9 @@
             else
             {
                 [self.data addObjectsFromArray:list];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
+                for (int i = 0; i < list.count; i ++) {
+                    [self.clickStatuA addObject:[NSNumber numberWithBool:NO]];
+                }                dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
                     
                     [SVProgressHUD dismiss];
@@ -138,7 +148,7 @@
         make.right.mas_equalTo(0);
         make.height.mas_equalTo(TopViewH);
     }];
-    self.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"行政公告",@"商圈公告"]];
+    self.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"工作日志",@"心得笔记"]];
     self.segmentedControl.selectedSegmentIndex = 0;
     self.segmentedControl.frame = CGRectMake(40, 15,My_ScreenW - 100 ,  40);
     self.segmentedControl.center = CGPointMake(My_ScreenW/2, self.segmentedControl.center.y);
@@ -153,6 +163,14 @@
     
     [self.segmentedControl addTarget:self action:@selector(change) forControlEvents:UIControlEventValueChanged];
     
+    UIButton *refreshBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, self.segmentedControl.y, self.segmentedControl.height, self.segmentedControl.height)];
+    refreshBtn.backgroundColor = [UIColor greenColor];
+    
+    refreshBtn.centerX = self.segmentedControl.centerX;
+    refreshBtn.layer.cornerRadius = self.segmentedControl.height/2;
+    [refreshBtn addTarget:self action:@selector(clickRefreshBtn) forControlEvents:UIControlEventTouchUpInside];
+    [self.topView addSubview:refreshBtn];
+    
     
     self.tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.tableView.alpha = 1;
@@ -165,6 +183,7 @@
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self.data removeAllObjects];
+        [self.clickStatuA removeAllObjects];
         self.page = 0;
         [self getData];
     }];
@@ -178,6 +197,27 @@
         make.left.mas_equalTo(5);
         make.right.mas_equalTo(-5);
         make.bottom.mas_equalTo(0);
+        
+        
+        UIView *view = [[UIView alloc]init];
+        
+        view.backgroundColor = WhiteAlphaColor;
+        [self.view addSubview:view];
+        
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.equalTo(self.tableView.mas_bottom).with.offset(-70);
+            make.bottom.mas_equalTo(0);
+            make.left.mas_equalTo(0);
+            make.right.mas_equalTo(0);
+            
+        }];
+        
+        AddBtn *btn = [[AddBtn alloc]initWithFrame:CGRectMake(40, 15, self.view.width - 80, 40)];
+        [btn setLeftImageView:@"记录" andTitle:@"记录"];
+        [btn addTarget:self action:@selector(clickAdd) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:btn];
+
     }];
     
     
@@ -186,7 +226,10 @@
 #pragma mark --tableViewDelegate与tableViewDataSource方法的实现
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if ([self.clickStatuA[section] boolValue]) {
+        return 1;
+    }
+    return 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -196,13 +239,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProclamationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
     if (cell == nil) {
-        cell = [[ProclamationTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
-    NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd HH:mm"];
-    [cell setTitle:[self.data[indexPath.section] title] time:time content:[self.data[indexPath.section] content] width:tableView.width];
+    cell.textLabel.text = [self.data[indexPath.section] content];
     cell.preservesSuperviewLayoutMargins = NO;
     cell.separatorInset = UIEdgeInsetsZero;
     cell.layoutMargins = UIEdgeInsetsZero;
@@ -214,48 +256,83 @@
 {
     UIView *view = [[UIView alloc]init];
     
-    view.backgroundColor = [UIColor clearColor];
+    view.backgroundColor = WhiteAlphaColor;
+
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 15, 15)];
+    
+    CGFloat top = 10;
+    CGFloat height = 20;
+    
+    CGFloat btnW = 70;
+//    CGFloat btnH = 20;
+    CGFloat btnL = 10;
+    
+    CGFloat labelL = imageView.right + 10;
+    CGFloat labelW = tableView.width - (btnW + btnL) * 2 - imageView.right - 10;
+    
+    UIRunLabel *label = [[UIRunLabel alloc]initWithFrame:CGRectMake(labelL, top, labelW, height) Title:[self.data[section] title]];
+    
+    [view addSubview:label];
+    
+    imageView.image = [UIImage imageNamed:@"属性-公开"];
+//    imageView.backgroundColor = [UIColor whiteColor];
+    [view addSubview:imageView];
+    
+    view.tag = 300 + section;
+    
+    ReviseBtn *revise = [[ReviseBtn alloc]initWithFrame:CGRectMake(0, top, btnW, CONTENT_FONT)];
+    
+    revise.centerY = imageView.centerY;
+    
+    revise.x = label.right + btnL;
+    
+    [revise setLeftImageView:@"b修改" andTitle:@"修改"];
+    
+    revise.titleLabel.font = FontSize(CONTENT_FONT);
+    
+    [view addSubview:revise];
+    
+    ReviseBtn *delete = [[ReviseBtn alloc]initWithFrame:CGRectMake(0, top, btnW, CONTENT_FONT)];
+    
+    delete.x = revise.right + btnL;
+    
+    delete.centerY = imageView.centerY;
+
+    [delete setLeftImageView:@"b删除" andTitle:@"删除"];
+    
+    delete.titleLabel.font = FontSize(CONTENT_FONT);
+    
+    [view addSubview:delete];
+    
+    UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(labelL, label.bottom + 10, tableView.width, Content_Ip_Font)];
+    
+    NSString *time = [self.data[section] ctime];
+    
+    timeLabel.text = [NSString stringDateFromTimeInterval:[time integerValue] withFormat:@"YYYY-MM-dd hh:ss"];
+    timeLabel.font = FontSize(Content_Ip_Font);
+    [view addSubview:timeLabel];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(click:)];
+    
+    [view addGestureRecognizer:tap];
     
     return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 10;
+    return 60;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if (self.data) {
-        //        NSLog(@"%f",tableView.width);
-        NSArray *cellArray = @[[NSNumber numberWithFloat:200],[NSNumber numberWithFloat:tableView.width]];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"cellHeight" object:cellArray];
-        
-        NSString *rowS = [self.rowAndHeight allKeys][0];
-        
-        if (rowS != nil && indexPath.section == [rowS integerValue]) {
-            
-            return [self.rowAndHeight[rowS] integerValue];
-        }
-        else
-        {
-            //添加上面固定内容的高度 + 下面内容的高度 + 与下边界的距离
-            return 200;
-        }
-    }
-    else
-    {
-        return 0;
-    }
+    return 100;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == self.data.count - 1) {
-        return 80;
-    }
+
     return 0.01;
 }
 
@@ -264,6 +341,7 @@
 {
     self.method =(int)self.segmentedControl.selectedSegmentIndex;
     [self.data removeAllObjects];
+    [self.clickStatuA removeAllObjects];
     self.rowAndHeight = nil;
     [self getData];
 }
@@ -282,12 +360,30 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)change:(NSNotification *)notification
+#pragma mark -- 点击刷新按钮
+- (void)clickRefreshBtn
 {
-    //    self.changeHeightStatu = YES;
-    //    self.cellHeight = [[notification.object firstObject] floatValue];
-    self.rowAndHeight = notification.object;
-    [self.tableView reloadData];
+    NSLog(@"刷新");
 }
-
+#pragma mark -- 点击添加按钮
+- (void)clickAdd
+{
+    NSLog(@"添加");
+}
+#pragma mark -- view点击事件
+- (void)click:(UIGestureRecognizer *)sender
+{
+    if ([self.clickStatuA[sender.view.tag - 300] boolValue]) {
+        [self.clickStatuA replaceObjectAtIndex:sender.view.tag - 300 withObject:[NSNumber numberWithBool:NO]];
+    }
+    else
+    {
+        [self.clickStatuA replaceObjectAtIndex:sender.view.tag - 300 withObject:[NSNumber numberWithBool:YES]];
+    }
+    
+    NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:sender.view.tag - 300];
+    
+    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+    NSLog(@"%ld",sender.view.tag - 300);
+}
 @end

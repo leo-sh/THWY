@@ -159,6 +159,8 @@
         NSArray *cellArray = @[[NSNumber numberWithFloat:200],[NSNumber numberWithFloat:tableView.width]];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"cellHeight" object:cellArray];
         
+//        NSString *key = [NSString stringWithFormat:@"%d",indexPath.section]
+        
         NSString *rowS = [self.rowAndHeight allKeys][0];
         
         if (indexPath.section == [rowS integerValue]) {

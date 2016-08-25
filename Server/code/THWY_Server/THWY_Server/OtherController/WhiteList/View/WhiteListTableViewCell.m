@@ -8,6 +8,7 @@
 
 #import "WhiteListTableViewCell.h"
 #import "ReviseBtn.h"
+#import "AlerView.h"
 @interface WhiteListTableViewCell()
 @property UILabel *estateLabel;
 @property UILabel *IPLabel;
@@ -34,6 +35,7 @@
 - (void)setEstate:(NSString *)estate IP:(NSString *)ip
 {
     self.estateLabel.text = estate;
+    self.estateLabel.font = FontSize(CONTENT_FONT);
     self.IPLabel.text = ip;
     self.IPLabel.font = FontSize(Content_Ip_Font);
     [self.ReviseBtn setLeftImageView:@"b修改" andTitle:@"修改"];
@@ -44,15 +46,16 @@
     
     CGFloat IpWidth = GetContentWidth(ip, Content_Ip_Font);
     
-    self.IPLabel.frame = CGRectMake(self.estateLabel.left + 15, 0, IpWidth, self.height);
+    self.IPLabel.frame = CGRectMake(self.estateLabel.right + 15, 0, IpWidth, self.height);
     
     [self.ReviseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(70, self.height));
+        make.size.mas_equalTo(CGSizeMake(70, CONTENT_FONT));
+        make.centerY.equalTo(self.IPLabel);
     }];
 //    self.ReviseBtn.backgroundColor = [UIColor blackColor];
-    [self.ReviseBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    self.ReviseBtn.titleLabel.font = FontSize(CONTENT_FONT);
+//    [self.ReviseBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    self.ReviseBtn.titleLabel.font = FontSize(CONTENT_FONT);
     
     [self.ReviseBtn addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
     
@@ -61,6 +64,11 @@
 - (void)click
 {
     NSLog(@"修改");
+    AlerView *view = [[AlerView alloc]initWithFrame:CGRectMake(10, 0, self.width, 0)];
+    
+    [view setUser:self.estateLabel.text IP:self.IPLabel.text];
+    view.method = Edit;
+    [view showInWindow];
 }
 
 - (void)awakeFromNib {
