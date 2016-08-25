@@ -101,8 +101,8 @@
     [self.view addSubview:self.tableView];
 
     [self.tableView registerClass:[RecordsDetailCell class] forCellReuseIdentifier:@"RecordsDetailCell"];
-    [self.tableView registerClass:[RecordImageCell class] forCellReuseIdentifier:@"RecordImageCell"];
-    [self.tableView registerClass:[RecordVideoCell class] forCellReuseIdentifier:@"RecordVideoCell"];
+//    [self.tableView registerClass:[RecordImageCell class] forCellReuseIdentifier:@"RecordImageCell"];
+//    [self.tableView registerClass:[RecordVideoCell class] forCellReuseIdentifier:@"RecordVideoCell"];
     
     //tableViewFooterView
     self.tableFootView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 60)];
@@ -200,13 +200,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 4) {
-        RecordImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordImageCell" forIndexPath:indexPath];
+        for (id obj in tableView.visibleCells) {
+            if ([obj isKindOfClass:[RecordImageCell class]]) {
+                [obj removeFromSuperview];
+            }
+        }
+        RecordImageCell *cell = [[RecordImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RecordImageCell"];
         cell.tableView = tableView;
         cell.vc = self;
         [cell loadDataWithModel:self.repairVO];
         return cell;
     }else if (indexPath.section == 5){
-        RecordVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordVideoCell" forIndexPath:indexPath];
+        for (id obj in tableView.visibleCells) {
+            if ([obj isKindOfClass:[RecordVideoCell class]]) {
+                [obj removeFromSuperview];
+            }
+        }
+        RecordVideoCell *cell = [[RecordVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RecordVideoCell"];
         [cell loadDataWithModel:self.repairVO];
         return cell;
     }else {
@@ -255,18 +265,6 @@
     
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (![cell isKindOfClass:[RecordsDetailCell class]]) {
-        NSLog(@"%@", cell);
-    }
-}
-
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
-    if (![cell isKindOfClass:[RecordsDetailCell class]]) {
-        NSLog(@"end %@", cell);
-    }
-}
-
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIImageView *head = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 1)];
     head.image = [UIImage imageNamed:@"records_虚线"];
@@ -304,10 +302,10 @@
 
             break;
         }
-//        default:{
-//            return head;
-//            break;
-//        }
+        default:{
+            return head;
+            break;
+        }
     }
     return nil;
     
@@ -348,10 +346,10 @@
             
             break;
         }
-//        default:{
-//            return 1;
-//            break;
-//        }
+        default:{
+            return 1;
+            break;
+        }
     }
     return 0;
 }
