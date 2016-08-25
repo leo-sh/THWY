@@ -7,30 +7,34 @@
 //
 
 #import "WRAlertView.h"
-@interface WRAlertView()<UIGestureRecognizerDelegate>
+#import "BlueRedioButton.h"
+#import "ServicesManager.h"
+#import "SVProgressHUD.h"
+@interface WRAlertView()<UIGestureRecognizerDelegate,UITextViewDelegate>
 @property UITextField *title;
 @property UITextView *textView;
 @property UIButton *leftBtn;
 @property UIButton *rightBtn;
 @property NSInteger number;
 @property UILabel *placeholderLabel;
+@property NSString *typeId;
+@property NSString *docId;
+@property BlueRedioButton *public;
 @end
 @implementation WRAlertView
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         
+        self.backgroundColor = [UIColor whiteColor];
         self.textView.text = @"";
-        
-        [self addSubview:self.title];
-        
         CGFloat heighAndWidth = 50;
         
         self.leftBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, heighAndWidth, heighAndWidth)];
         [self.leftBtn setImage:[UIImage imageNamed:@"√"] forState:UIControlStateNormal];
         self.leftBtn.contentEdgeInsets = UIEdgeInsetsMake(15, 14.5,  15 , 14.5);
         [self addSubview:self.leftBtn];
-        
+        [self.leftBtn addTarget:self action:@selector(clickLeft) forControlEvents:UIControlEventTouchUpInside];
         self.rightBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.right - heighAndWidth - 10, 0, heighAndWidth, heighAndWidth)];
         
         [self.rightBtn setImage:[UIImage imageNamed:@"X"] forState:UIControlStateNormal];
@@ -42,31 +46,88 @@
         [self.rightBtn addTarget:self action:@selector(clickRight) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.rightBtn];
         
-        self.title = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, self.width - self.leftBtn.right * 2, 50)];
+        self.title = [[UITextField alloc]initWithFrame:CGRectMake(self.leftBtn.right, 0, self.width - self.leftBtn.right * 2, 50)];
         self.number = 1;
-        self.title.text = @"";
+        self.title.text = @"填入工作日志标题";
         self.title.textAlignment = NSTextAlignmentCenter;
         self.title.font = [UIFont systemFontOfSize:20];
+        [self addSubview:self.title];
         
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.title.frame), self.width, 0.5)];
-        label.backgroundColor = CellUnderLineColor;
-        [self addSubview:label];
-        
-        self.textView = [[UITextView alloc]init];
+        self.textView = [[UITextView alloc]initWithFrame:CGRectMake(15, self.title.bottom, self.width - 30, 100)];
         self.textView.autocorrectionType = UITextAutocorrectionTypeNo;
         self.textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
         self.textView.textAlignment = NSTextAlignmentLeft;
+        self.textView.layer.borderColor = CellUnderLineColor.CGColor;
+        self.textView.layer.borderWidth = 0.5;
+        self.textView.delegate = self;
+        [self addSubview:self.textView];
         //        self.textView.font = FontSize(CONTENT_FONT);
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide) name:UIKeyboardDidHideNotification object:nil];
         
+        CGFloat top = self.textView.bottom + 20;
+        
+        self.public = [[BlueRedioButton alloc]initWithFrame:CGRectMake(15, top, 70, 20)];
+        [self.public initDefaultImageName:@"repaire_unselected" choosedImageName:@"repaire_selected" title:@"公开"];
+        self.public.titleLabel.font = FontSize(CONTENT_FONT);
+        [self.public setChoosed];
+        [self addSubview:self.public];
+
+        
+        BlueRedioButton *private = [[BlueRedioButton alloc]initWithFrame:CGRectMake(self.public.right, top, 70, 20)];
+        [private initDefaultImageName:@"repaire_unselected" choosedImageName:@"repaire_selected" title:@"个人"];
+        private.titleLabel.font = FontSize(CONTENT_FONT);
+    
+        
+        [self addSubview:private];
+        
+        self.height = private.bottom + 20;
+        
+
         
     }
     return self;
 }
 
+- (void)setTitle:(NSString *)title Content:(NSString *)content typeId:(NSString *)typeId docId:(NSString *)docId{
+    self.title.text = title;
+    self.textView.text = content;
+    self.typeId = typeId;
+    self.docId = docId;
+}
+
 - (void)clickRight
 {
     [self hide];
+}
+
+- (void)clickLeft
+{
+    if (self.reviseStatu) {
+        [[ServicesManager getAPI]editDoc:self.docId typeId:self.typeId public:self.public.chooseStatu title:self.title.text content:self.textView.text onComplete:^(NSString *errorMsg) {
+           
+            if (errorMsg) {
+                [SVProgressHUD showWithStatus:errorMsg];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:@"修改成功"];
+            }
+            
+        }];
+    }
+    else
+    {
+        [[ServicesManager getAPI]addDoc:self.typeId public:self.public.chooseStatu title:self.title.text content:self.textView.text onComplete:^(NSString *errorMsg) {
+            
+            if (errorMsg) {
+                [SVProgressHUD showWithStatus:errorMsg];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:@"修改成功"];
+            }
+        }];
+    }
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -108,7 +169,7 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    if ([NSStringFromClass([touch.view class]) isEqualToString:@"AlerView"]) {
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"WRAlertView"]) {
         return NO;
     }
     return  YES;
@@ -125,9 +186,13 @@
     
 }
 
-- (void)addLeftBtnTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    [self.leftBtn addTarget:target action:action forControlEvents:controlEvents];
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 
 /*

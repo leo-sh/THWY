@@ -15,6 +15,7 @@
 #import "AddBtn.h"
 #import "WRTableViewCell.h"
 #import "RunSliderLabel.h"
+#import "WRAlertView.h"
 #define TopViewH 60
 @interface WorkRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property UITableView *tableView;
@@ -307,6 +308,8 @@
         
         revise.titleLabel.font = FontSize(CONTENT_FONT);
         
+        [revise addTarget:self action:@selector(clickRevise:) forControlEvents:UIControlEventTouchUpInside];
+        
         [view addSubview:revise];
         
         ReviseBtn *delete = [[ReviseBtn alloc]initWithFrame:CGRectMake(0, top, btnW, CONTENT_FONT)];
@@ -316,6 +319,9 @@
         delete.centerY = imageView.centerY;
         
         [delete setLeftImageView:@"b删除" andTitle:@"删除"];
+        
+        [delete addTarget:self action:@selector(clickDelete:) forControlEvents:UIControlEventTouchUpInside];
+
         
         delete.titleLabel.font = FontSize(CONTENT_FONT);
         
@@ -328,7 +334,7 @@
         nameLabel.x = label.right +btnL;
         nameLabel.centerY = imageView.centerY;
         
-        if ([[self.data[section] real_name] isEqualToString:@"0"]) {
+        if ([self.data[section] real_name].length == 0) {
             NSLog(@"%@",[self.data[section] real_name]);
             nameLabel.text = @"false";
         }
@@ -338,7 +344,7 @@
 
         }
         nameLabel.font = FontSize(CONTENT_FONT);
-        
+        nameLabel.textAlignment = NSTextAlignmentCenter;
         [view addSubview:nameLabel];
 
     }
@@ -411,7 +417,30 @@
 - (void)clickAdd
 {
     NSLog(@"添加");
+    WRAlertView *view = [[WRAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
+    
+    [view showInWindow];
+    
 }
+
+- (void)clickRevise:(UIButton *)sender
+{
+    NSLog(@"修改");
+    WRAlertView *view = [[WRAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
+    
+    int section = sender.superview.tag - 300;
+    
+    [view setTitle:[self.data[section] title]Content:[self.data[section] content] typeId:[self.data[section] Id] docId:[self.data[section] doc_type_id]];
+    
+    [view showInWindow];
+}
+
+- (void)clickDelete:(UIButton *)sender
+{
+    NSLog(@"删除");
+}
+#
+
 #pragma mark -- view点击事件
 - (void)click:(UIGestureRecognizer *)sender
 {

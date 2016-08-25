@@ -7,13 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef enum
-{
-    Edit,
-    Add
-}
-GetMethod;
 @interface WRAlertView : UIView
-@property GetMethod method;
-- (void)addLeftBtnTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
+@property BOOL reviseStatu;
+- (void)setTitle:(NSString *)title Content:(NSString *)content typeId:(NSString *)typeId docId:(NSString *)docId;
 @end
