@@ -780,9 +780,11 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* docDic in responseObject[@"datas"][@"datas"]) {
-                DocVO* doc = [[DocVO alloc]initWithJSON:docDic];
-                [listArr addObject:doc];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* docDic in responseObject[@"datas"][@"datas"]) {
+                    DocVO* doc = [[DocVO alloc]initWithJSON:docDic];
+                    [listArr addObject:doc];
+                }
             }
             
             onComplete(nil,listArr);
@@ -1577,9 +1579,12 @@ savePassWord:(BOOL)save
     if ([self isLogin]) {
 //        UserVO *user = [[UDManager getUD] getUser];
 //        NSLog(@"admin_id:%@",user.admin_id);
-        [self getATask:@"43" isPublic:YES onComplete:^(NSString *errorMsg, RepairVO *repair) {
-            
+        [self getDocTypes:^(NSString *errorMsg, NSArray *list) {
+            [self getDocs:0 docTypeId:[list.firstObject Id] public:1 belong:1 onComplete:^(NSString *errorMsg, NSArray *list) {
+                
+            }];
         }];
+        
     }else
     {
 //        [self login:@"fzq" password:@"123456" savePassWord:NO onComplete:^(NSString *errorMsg, UserVO *user) {
