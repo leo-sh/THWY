@@ -7,8 +7,8 @@
 //
 
 #import "MainNavigationViewController.h"
-//#import "ProclamationInfoViewController.h"
-//#import "ComplainDetailViewController.h"
+#import "ProclamationInfoViewController.h"
+#import "ComplainDetailViewController.h"
 #import "UMessage.h"
 #import "BannerNotice.h"
 
@@ -30,28 +30,28 @@
     if ([pushType isEqualToString:@"5"])
     {
 //        //        业主公告
-//        ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc]init];
-//        
-//        detail.proclamationId = Id;
-//        
-//        [self pushViewController:detail animated:YES];
+        ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc]init];
+        
+        detail.proclamationId = Id;
+        
+        [self pushViewController:detail animated:YES];
         
     }else if ([pushType isEqualToString:@"6"])
     {
 //        //        社区商圈-商圈公告
-//        ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc] init];
-//        detail.proclamationId = Id;
-//        detail.type = 1;
-//        [self.navigationController pushViewController:detail animated:YES];
+        ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc] init];
+        detail.proclamationId = Id;
+        detail.type = 1;
+        [self.navigationController pushViewController:detail animated:YES];
         
     }else if ([pushType isEqualToString:@"7"])
     {
 //        //        缴费台账
-//        ComplainDetailViewController *detail = [[ComplainDetailViewController alloc]init];
-//        
-//        detail.complianId = Id;
-//        
-//        [self pushViewController:detail animated:YES];
+        ComplainDetailViewController *detail = [[ComplainDetailViewController alloc]init];
+        
+        detail.complianId = Id;
+        
+        [self pushViewController:detail animated:YES];
     }
     if (_userInfo) {
         _userInfo = nil;

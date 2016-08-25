@@ -1575,18 +1575,18 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-        UserVO *user = [[UDManager getUD] getUser];
-        NSLog(@"admin_id:%@",user.admin_id);
-        [self getTaskList:All page:0 onComplete:^(NSString *errorMsg, NSArray *list) {
+//        UserVO *user = [[UDManager getUD] getUser];
+//        NSLog(@"admin_id:%@",user.admin_id);
+        [self getATask:@"43" isPublic:YES onComplete:^(NSString *errorMsg, RepairVO *repair) {
             
         }];
     }else
     {
-        [self login:@"fzq" password:@"123456" savePassWord:NO onComplete:^(NSString *errorMsg, UserVO *user) {
-            if (errorMsg == nil) {
-                [self test];
-            }
-        }];
+//        [self login:@"fzq" password:@"123456" savePassWord:NO onComplete:^(NSString *errorMsg, UserVO *user) {
+//            if (errorMsg == nil) {
+//                [self test];
+//            }
+//        }];
     }
 }
 @end
