@@ -76,7 +76,7 @@
     self.navigationItem.leftBarButtonItem  = left;
     
     self.dropView = [[DropMenuTableView alloc] initWithWidth:145.f itemHeight:45.f itemNames:@[@"我要报修", @"物业公告", @"个人信息", @"推送设置", @"技术支持"] ItemImages:@[@"main_1", @"main_2", @"main_6", @"main_4", @"main_5"]];
-    self.dropView.backColor = My_NAV_BG_Color;
+    self.dropView.backColor = My_Color(2, 134, 200);
     self.dropView.textColor = [UIColor whiteColor];
     
     self.dropView.dropDelegate = self;
