@@ -15,7 +15,7 @@
 @end
 
 @interface AlertTableView : UIView
-
+//弹出框类型 业主: 1 公共: 2
 @property (assign, nonatomic) NSInteger flag;
 
 @property (strong, nonatomic) NSArray *data;

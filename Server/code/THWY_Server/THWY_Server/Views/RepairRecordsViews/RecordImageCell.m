@@ -23,6 +23,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -36,11 +37,14 @@
         self.leftLabel.text = @"图片:";
         [self setLabelAttributes:self.leftLabel];
         
-        self.picImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"beijing"]];
+        UIImage *image = [UIImage imageNamed:@"bannerload"];
+        CGSize size = image.size;
+        self.picImage = [[UIImageView alloc] initWithImage:image];
         self.picImage.contentMode = UIViewContentModeScaleAspectFit;
         [self.picImage addTarget:self action:@selector(showImage)];
         [self.contentView addSubview:self.leftLabel];
         [self.contentView addSubview:self.picImage];
+        
         
         CGFloat topMargin = 8.0/375*My_ScreenW;
         [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -53,7 +57,8 @@
             make.left.mas_equalTo(self.leftLabel.mas_left);
             make.right.mas_equalTo(self.contentView.mas_right).offset(-topMargin);
             make.top.mas_equalTo(self.leftLabel.mas_bottom).offset(topMargin);
-            make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-topMargin);
+            make.height.mas_equalTo(size.height);
+//            make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-topMargin);
         }];
         
     }
@@ -65,18 +70,39 @@
     label.numberOfLines = 0;
     label.font = FontSize(CONTENT_FONT);
     label.textColor = [UIColor darkGrayColor];
-    [label sizeToFit];
+//    [label sizeToFit];
     
 }
 
 - (void)loadDataWithModel:(RepairVO *)model{
     self.repair = model;
-    [self.picImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"bannerload"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (image) {
+    
+    if ([self.picImage.image isEqual:[UIImage imageNamed:@"bannerload"]]) {
+        
+        [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:model.pic] options:SDWebImageLowPriority progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             
-        }
-    }];
+        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            
+            CGFloat topMargin = 8.0/375*My_ScreenW;
+            
+            self.picImage.image = image;
+            CGSize size = image.size;
+            self.imageHeight = (self.contentView.width-2*topMargin)*size.height/size.width;
+            
+            [self.picImage mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo((self.contentView.width-2*topMargin)*size.height/size.width);
+            }];
+            [self layoutIfNeeded];
+            //        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:4]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:4] withRowAnimation:UITableViewRowAnimationAutomatic];
+            
+        }];
+        
+    }
+    
 }
+
+
 
 -(void)showImage
 {
@@ -98,7 +124,7 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+    [super setSelected:NO animated:animated];
 
     // Configure the view for the selected state
 }

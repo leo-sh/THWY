@@ -56,7 +56,7 @@
         
         [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.contentView.mas_left).offset(15);
-            make.height.mas_equalTo(0.4);
+            make.height.mas_equalTo(0.5);
             make.right.mas_equalTo(self.contentView.mas_right).offset(-15);
             make.bottom.mas_equalTo(self.contentView.mas_bottom);
         }];
@@ -71,7 +71,7 @@
         case 0:{
             switch (indexpath.row) {
                 case 0:{
-                    self.detailLabel.text = model.real_name;
+                    self.detailLabel.text = model.call_name;
                     break;
                 }
                 case 1:{
@@ -143,7 +143,6 @@
                         }];
                         [self layoutIfNeeded];                        
                     }
-//                    CGFloat topMargin = 8.0/375*My_ScreenW;
                     break;
                 }
                 case 2:{
@@ -247,7 +246,7 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+    [super setSelected:NO animated:animated];
 
     // Configure the view for the selected state
 }

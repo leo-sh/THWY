@@ -137,7 +137,7 @@
     [button addTarget:self action:@selector(sectionFolded:) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(0, button.height-0.4, button.width, 0.4)];
-    line.backgroundColor = [UIColor lightGrayColor];
+    line.backgroundColor = My_LineColor;
     [button addSubview:line];
 
     return button;

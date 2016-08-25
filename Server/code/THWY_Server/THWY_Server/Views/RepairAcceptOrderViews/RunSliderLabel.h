@@ -10,6 +10,6 @@
 
 @interface RunSliderLabel : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title;
+@property (copy, nonatomic) NSString *title;
 
 @end

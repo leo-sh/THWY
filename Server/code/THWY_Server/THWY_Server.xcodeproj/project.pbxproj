@@ -59,10 +59,6 @@
 		79270DC71D61ACB100E29568 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270CFB1D61ACB100E29568 /* AFURLRequestSerialization.m */; };
 		79270DC81D61ACB100E29568 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270CFD1D61ACB100E29568 /* AFURLResponseSerialization.m */; };
 		79270DC91D61ACB100E29568 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270CFF1D61ACB100E29568 /* AFURLSessionManager.m */; };
-		79270DCA1D61ACB100E29568 /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270D021D61ACB100E29568 /* UITableView+FDIndexPathHeightCache.m */; };
-		79270DCB1D61ACB100E29568 /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270D041D61ACB100E29568 /* UITableView+FDKeyedHeightCache.m */; };
-		79270DCC1D61ACB100E29568 /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270D061D61ACB100E29568 /* UITableView+FDTemplateLayoutCell.m */; };
-		79270DCD1D61ACB100E29568 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270D081D61ACB100E29568 /* UITableView+FDTemplateLayoutCellDebug.m */; };
 		79270DCE1D61ACB100E29568 /* libUMessage_Sdk_1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79270D091D61ACB100E29568 /* libUMessage_Sdk_1.3.0.a */; };
 		79270DCF1D61ACB100E29568 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79270D0B1D61ACB100E29568 /* Info.plist */; };
 		79270DD01D61ACB100E29568 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270D0D1D61ACB100E29568 /* MASCompositeConstraint.m */; };
@@ -329,14 +325,6 @@
 		79270CFD1D61ACB100E29568 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		79270CFE1D61ACB100E29568 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		79270CFF1D61ACB100E29568 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		79270D011D61ACB100E29568 /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
-		79270D021D61ACB100E29568 /* UITableView+FDIndexPathHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDIndexPathHeightCache.m"; sourceTree = "<group>"; };
-		79270D031D61ACB100E29568 /* UITableView+FDKeyedHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDKeyedHeightCache.h"; sourceTree = "<group>"; };
-		79270D041D61ACB100E29568 /* UITableView+FDKeyedHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDKeyedHeightCache.m"; sourceTree = "<group>"; };
-		79270D051D61ACB100E29568 /* UITableView+FDTemplateLayoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCell.h"; sourceTree = "<group>"; };
-		79270D061D61ACB100E29568 /* UITableView+FDTemplateLayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCell.m"; sourceTree = "<group>"; };
-		79270D071D61ACB100E29568 /* UITableView+FDTemplateLayoutCellDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCellDebug.h"; sourceTree = "<group>"; };
-		79270D081D61ACB100E29568 /* UITableView+FDTemplateLayoutCellDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCellDebug.m"; sourceTree = "<group>"; };
 		79270D091D61ACB100E29568 /* libUMessage_Sdk_1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.3.0.a; sourceTree = "<group>"; };
 		79270D0B1D61ACB100E29568 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79270D0C1D61ACB100E29568 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
@@ -1058,7 +1046,6 @@
 				1EEB030D1D6401F800CACF00 /* Keyboard */,
 				79270F241D61B0DB00E29568 /* ZYBannerView */,
 				79270CF21D61ACB100E29568 /* AFNetworking */,
-				79270D001D61ACB100E29568 /* FDTableviewHeightCell */,
 				79270D0A1D61ACB100E29568 /* Masonry */,
 				79270D251D61ACB100E29568 /* MJRefresh */,
 				79270D791D61ACB100E29568 /* Reachability */,
@@ -1088,21 +1075,6 @@
 				79270CFF1D61ACB100E29568 /* AFURLSessionManager.m */,
 			);
 			path = AFNetworking;
-			sourceTree = "<group>";
-		};
-		79270D001D61ACB100E29568 /* FDTableviewHeightCell */ = {
-			isa = PBXGroup;
-			children = (
-				79270D011D61ACB100E29568 /* UITableView+FDIndexPathHeightCache.h */,
-				79270D021D61ACB100E29568 /* UITableView+FDIndexPathHeightCache.m */,
-				79270D031D61ACB100E29568 /* UITableView+FDKeyedHeightCache.h */,
-				79270D041D61ACB100E29568 /* UITableView+FDKeyedHeightCache.m */,
-				79270D051D61ACB100E29568 /* UITableView+FDTemplateLayoutCell.h */,
-				79270D061D61ACB100E29568 /* UITableView+FDTemplateLayoutCell.m */,
-				79270D071D61ACB100E29568 /* UITableView+FDTemplateLayoutCellDebug.h */,
-				79270D081D61ACB100E29568 /* UITableView+FDTemplateLayoutCellDebug.m */,
-			);
-			path = FDTableviewHeightCell;
 			sourceTree = "<group>";
 		};
 		79270D0A1D61ACB100E29568 /* Masonry */ = {
@@ -1770,6 +1742,9 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = XFDA7223K5;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -1842,7 +1817,6 @@
 				79270DE71D61ACB100E29568 /* MJRefreshStateHeader.m in Sources */,
 				79270F571D61B1EF00E29568 /* UIApplication+Extensions.m in Sources */,
 				79F60D801D6A07A600A8E2D2 /* DACircularProgressView.m in Sources */,
-				79270DCB1D61ACB100E29568 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				79FA4CC11D6AE3190018816C /* RunSliderLabel.m in Sources */,
 				791B4DC51D645CC000AF9371 /* TechSupportVC.m in Sources */,
 				791B4DF01D645DC900AF9371 /* RepaireCategorysCell.m in Sources */,
@@ -1857,7 +1831,6 @@
 				79270DE11D61ACB100E29568 /* MJRefreshAutoStateFooter.m in Sources */,
 				79270E0F1D61ACB100E29568 /* UIImageView+WebCache.m in Sources */,
 				79F60D7C1D6A07A600A8E2D2 /* ZLPhotoPickerCollectionViewCell.m in Sources */,
-				79270DCC1D61ACB100E29568 /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				79270F511D61B1EF00E29568 /* Foundation+Log.m in Sources */,
 				79270DE41D61ACB100E29568 /* MJRefreshBackStateFooter.m in Sources */,
 				79270E061D61ACB100E29568 /* SDWebImageDownloader.m in Sources */,

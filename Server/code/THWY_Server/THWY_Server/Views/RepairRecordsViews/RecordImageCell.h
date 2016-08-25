@@ -10,7 +10,9 @@
 
 @interface RecordImageCell : UITableViewCell
 
-@property UIViewController* vc;
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) UIViewController *vc;
+@property (assign, nonatomic) CGFloat imageHeight;
 
 - (void)loadDataWithModel:(RepairVO *)model;
 
