@@ -1577,7 +1577,7 @@ savePassWord:(BOOL)save
     if ([self isLogin]) {
         UserVO *user = [[UDManager getUD] getUser];
         NSLog(@"admin_id:%@",user.admin_id);
-        [self getPublicRepairs:0 repairStatu:nil onComplete:^(NSString *errorMsg, NSArray *list) {
+        [self getTaskList:All page:0 onComplete:^(NSString *errorMsg, NSArray *list) {
             
         }];
     }else
