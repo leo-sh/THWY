@@ -164,8 +164,7 @@
     [self.segmentedControl addTarget:self action:@selector(change) forControlEvents:UIControlEventValueChanged];
     
     UIButton *refreshBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, self.segmentedControl.y, self.segmentedControl.height, self.segmentedControl.height)];
-    refreshBtn.backgroundColor = [UIColor greenColor];
-    
+    [refreshBtn setImage:[UIImage imageNamed:@"icon_work_diary_switch"] forState:UIControlStateNormal];
     refreshBtn.centerX = self.segmentedControl.centerX;
     refreshBtn.layer.cornerRadius = self.segmentedControl.height/2;
     [refreshBtn addTarget:self action:@selector(clickRefreshBtn) forControlEvents:UIControlEventTouchUpInside];

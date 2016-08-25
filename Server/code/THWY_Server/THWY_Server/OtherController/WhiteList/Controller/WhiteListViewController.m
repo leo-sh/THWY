@@ -103,7 +103,7 @@
         cell = [[WhiteListTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     cell.width = tableView.width;
-    [cell setEstate:[self.data[indexPath.row] the_user] IP:[self.data[indexPath.row] ip]];
+    [cell setEstate:[self.data[indexPath.row] the_user] IP:[self.data[indexPath.row] ip]Id:[self.data[indexPath.row] Id]];
     cell.backgroundColor = WhiteAlphaColor;
     
     NSLog(@"tableViewWidth:%f",tableView.width);

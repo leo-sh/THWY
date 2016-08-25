@@ -20,6 +20,7 @@
 		1EE570001D6B0C7B009B0FE0 /* WhiteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE56FFC1D6B0C7B009B0FE0 /* WhiteListViewController.m */; };
 		1EE570011D6B0C7B009B0FE0 /* WhiteListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE56FFF1D6B0C7B009B0FE0 /* WhiteListTableViewCell.m */; };
 		1EEB030E1D6401F800CACF00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB030C1D6401F800CACF00 /* ZYKeyboardUtil.m */; };
+		1EEC53601D6F1025009AFC96 /* WRAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEC535F1D6F1025009AFC96 /* WRAlertView.m */; };
 		1EEF9A711D6E1C2E0046E688 /* MyFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEF9A701D6E1C2E0046E688 /* MyFriendViewController.m */; };
 		1EEF9A741D6E1ECC0046E688 /* MyFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEF9A731D6E1ECC0046E688 /* MyFriendTableViewCell.m */; };
 		1EEF9A771D6E36F50046E688 /* CommunicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEF9A761D6E36F50046E688 /* CommunicateViewController.m */; };
@@ -250,6 +251,8 @@
 		1EE56FFF1D6B0C7B009B0FE0 /* WhiteListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteListTableViewCell.m; sourceTree = "<group>"; };
 		1EEB030B1D6401F800CACF00 /* ZYKeyboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYKeyboardUtil.h; sourceTree = "<group>"; };
 		1EEB030C1D6401F800CACF00 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
+		1EEC535E1D6F1025009AFC96 /* WRAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRAlertView.h; sourceTree = "<group>"; };
+		1EEC535F1D6F1025009AFC96 /* WRAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRAlertView.m; sourceTree = "<group>"; };
 		1EEF9A6F1D6E1C2E0046E688 /* MyFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendViewController.h; sourceTree = "<group>"; };
 		1EEF9A701D6E1C2E0046E688 /* MyFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFriendViewController.m; sourceTree = "<group>"; };
 		1EEF9A721D6E1ECC0046E688 /* MyFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendTableViewCell.h; sourceTree = "<group>"; };
@@ -680,6 +683,8 @@
 			children = (
 				1E84CE0C1D6C4EE50010BA7B /* WRTableViewCell.h */,
 				1E84CE0D1D6C4EE50010BA7B /* WRTableViewCell.m */,
+				1EEC535E1D6F1025009AFC96 /* WRAlertView.h */,
+				1EEC535F1D6F1025009AFC96 /* WRAlertView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1938,6 +1943,7 @@
 				79270F561D61B1EF00E29568 /* NSString+BXExtension.m in Sources */,
 				1EE570011D6B0C7B009B0FE0 /* WhiteListTableViewCell.m in Sources */,
 				79270E031D61ACB100E29568 /* SDImageCache.m in Sources */,
+				1EEC53601D6F1025009AFC96 /* WRAlertView.m in Sources */,
 				79270DD61D61ACB100E29568 /* NSArray+MASAdditions.m in Sources */,
 				79270E0E1D61ACB100E29568 /* UIImageView+HighlightedWebCache.m in Sources */,
 				791B4E0F1D645ECF00AF9371 /* AlertTableView.m in Sources */,

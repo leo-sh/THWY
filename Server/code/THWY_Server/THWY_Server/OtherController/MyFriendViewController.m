@@ -50,6 +50,7 @@
     if (self.index == 0) {
         [self.searchFriend removeFromSuperview];
         self.topView.height = TopViewH;
+        self.tableView.y = self.topView.bottom + 10;
         [[ServicesManager getAPI] getFriends:^(NSString *errorMsg, NSArray *list) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -62,7 +63,8 @@
     }
     else
     {
-        self.searchFriend = [[UITextField alloc]initWithFrame:CGRectMake(10, self.segmentedControl.bottom, self.tableView.width - 20, 40)];
+        [self.data removeAllObjects];
+        self.searchFriend = [[UITextField alloc]initWithFrame:CGRectMake(20, self.segmentedControl.bottom + 20, self.topView.width - 40, 40)];
         self.searchFriend.font = FontSize(CONTENT_FONT);
         self.searchFriend.placeholder = @"请输入好友手机号或姓名";
         self.searchFriend.layer.borderColor = CellUnderLineColor.CGColor;
@@ -70,8 +72,12 @@
         self.searchFriend.backgroundColor = WhiteAlphaColor;
         self.searchFriend.delegate = self;
         [self.topView addSubview:self.searchFriend];
-        self.topView.height = self.searchFriend.bottom;
+        [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
+
+            make.height.mas_equalTo(self.searchFriend.bottom);
+        }];
         [self.tableView reloadData];
+
     }
     
 
@@ -152,7 +158,8 @@
     NSString *content = [NSString stringWithFormat:@"%@/%@",temp.real_name,temp.up_group.group];
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setImage:@"" Content:content ID:@"1"];
+    [cell setImage:@"Avatar" Content:content ID:@"1"];
+    cell.phoneNumber = temp.cellphone;
     return cell;
 }
 

@@ -10,5 +10,6 @@
 
 @interface MyFriendTableViewCell : UITableViewCell
 @property BOOL clickStatu;
+@property NSString *phoneNumber;
 - (void)setImage:(NSString *)image Content:(NSString *)content ID:(NSString *)Id;
 @end

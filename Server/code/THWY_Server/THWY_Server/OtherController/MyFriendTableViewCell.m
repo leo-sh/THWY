@@ -60,7 +60,7 @@
     
     self.icon.frame = CGRectMake(10, 5, 50, 50);
     
-    self.icon.backgroundColor = [UIColor greenColor];
+//    self.icon.backgroundColor = [UIColor greenColor];
     
     NSRange range = [content rangeOfString:@"/"];
     
@@ -98,6 +98,23 @@
 - (void)clickPhone
 {
     NSLog(@"点击通话");
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:self.phoneNumber message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"拨打" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *phoneNum = self.phoneNumber;// 电话号码
+        NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]];
+        [[UIApplication sharedApplication] openURL:phoneURL];
+        
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:sure];
+    [alert addAction:cancel];
+    
+    [self.superview.viewController presentViewController:alert animated:YES completion:^{
+        
+    }];
+    
 }
 
 - (void)clickCM
