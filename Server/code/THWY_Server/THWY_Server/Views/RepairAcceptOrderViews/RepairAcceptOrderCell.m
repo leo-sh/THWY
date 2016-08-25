@@ -154,6 +154,8 @@
             make.top.mas_equalTo(self.contentView.mas_bottom).offset(-1);
         }];
         
+        [self layoutIfNeeded];
+        
     }
     return self;
     

@@ -22,9 +22,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.runTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(runCircle) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:self.runTimer forMode:NSRunLoopCommonModes];
-
+        
     }
     return self;
 }
@@ -37,6 +35,10 @@
     
     for (UIView *subView in self.subviews) {
         [subView removeFromSuperview];
+    }
+    
+    if (self.runTimer) {
+        [self.runTimer invalidate];
     }
     
     self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
@@ -57,25 +59,41 @@
     
     self.clipsToBounds = YES;
     
+//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT),NSFontAttributeName, nil];
+//    CGRect rect = [_title boundingRectWithSize:CGSizeMake(0, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+//    if (self.width<rect.size.width) {
+//        //启动定时器
+//        self.runTimer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(runCircle) userInfo:nil repeats:YES];
+//        [[NSRunLoop currentRunLoop] addTimer:self.runTimer forMode:NSRunLoopCommonModes];
+//
+//    }
+    
     //启动定时器
-    [self.runTimer fire];
+    self.runTimer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(runCircle) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.runTimer forMode:NSRunLoopCommonModes];
     
 }
 
 - (void)runCircle{
     
-    CGFloat _x = 2.0;
+    CGFloat _x = 0.5;
     __block CGRect frame = self.label.frame;
     if (frame.origin.x<-self.label.width) {
         frame = CGRectMake(self.width, 0, frame.size.width, frame.size.height);
+        self.label.frame = frame;
     }else if (frame.origin.x == 0){
 //        [NSThread sleepForTimeInterval:1.0];
         frame = CGRectMake(frame.origin.x-=_x, frame.origin.y, frame.size.width, frame.size.height);
+        [UIView animateWithDuration:0.03 animations:^{
+            self.label.frame = frame;
+        }];
     }else{
         frame = CGRectMake(frame.origin.x-=_x, frame.origin.y, frame.size.width, frame.size.height);
+        [UIView animateWithDuration:0.03 animations:^{
+            self.label.frame = frame;
+        }];
     }
-    self.label.frame = frame;
-//    NSLog(@"%@", NSStringFromCGRect(frame));
+//    self.label.frame = frame;
     
 }
 
