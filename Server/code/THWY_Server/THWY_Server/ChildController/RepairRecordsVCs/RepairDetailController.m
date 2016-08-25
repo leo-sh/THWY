@@ -8,7 +8,7 @@
 
 #import "RepairDetailController.h"
 #import "RecordsDetailCell.h"
-#import "RecordImageCell.h"
+
 #import "RecordVideoCell.h"
 
 @interface RepairDetailController ()<UITableViewDelegate, UITableViewDataSource>
@@ -18,8 +18,6 @@
 //@property (strong, nonatomic) UIButton *footBtn;
 
 @property (strong, nonatomic) RepairVO *repairVO;
-
-@property (strong, nonatomic) RecordImageCell *imageCell;
 
 @end
 
@@ -206,7 +204,6 @@
         cell.tableView = tableView;
         cell.vc = self;
         [cell loadDataWithModel:self.repairVO];
-        self.imageCell = cell;
         return cell;
     }else if (indexPath.section == 5){
         RecordVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordVideoCell" forIndexPath:indexPath];
@@ -225,19 +222,21 @@
     
     if (indexPath.section == 4) {
         if (self.repairVO.pic && ![self.repairVO.pic isEqualToString:@""] && ![self.repairVO.pic isEqualToString:@"http://112.126.75.77:6699"] && ![self.repairVO.pic isEqualToString:@"http://112.126.75.77:7976"]) {
-            if (self.imageCell.imageHeight == 0) {
+
+            if (self.imageHeight == 0) {
+                
                 UIImage *image = [UIImage imageNamed:@"bannerload"];
                 return image.size.height + 20+ 8.0/375*My_ScreenW*3;
                 
             }else{
-                return self.imageCell.imageHeight + 20 + 8.0/375*My_ScreenW*3;
+                return self.imageHeight + 20 + 8.0/375*My_ScreenW*3;
             }
         }else{
             return 0;
         }
     }else if (indexPath.section == 5) {
         if (self.repairVO.vdo && ![self.repairVO.vdo isEqualToString:@""]) {
-            return 220/667.0*My_ScreenH;
+            return 150/667.0*My_ScreenH;
         }else{
             return 0;
         }
@@ -254,6 +253,18 @@
         return 44;
     }
     
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (![cell isKindOfClass:[RecordsDetailCell class]]) {
+        NSLog(@"%@", cell);
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
+    if (![cell isKindOfClass:[RecordsDetailCell class]]) {
+        NSLog(@"end %@", cell);
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -293,10 +304,10 @@
 
             break;
         }
-        default:{
-            return head;
-            break;
-        }
+//        default:{
+//            return head;
+//            break;
+//        }
     }
     return nil;
     
@@ -337,11 +348,12 @@
             
             break;
         }
-        default:{
-            return 1;
-            break;
-        }
+//        default:{
+//            return 1;
+//            break;
+//        }
     }
+    return 0;
 }
 
 - (void)foorterBtnOnclicked:(UIButton *)btn{

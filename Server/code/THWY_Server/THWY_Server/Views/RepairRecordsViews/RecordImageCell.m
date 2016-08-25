@@ -8,6 +8,7 @@
 
 #import "RecordImageCell.h"
 #import "ZLPhoto.h"
+#import "RepairDetailController.h"
 
 @interface RecordImageCell ()
 
@@ -87,8 +88,9 @@
             
             self.picImage.image = image;
             CGSize size = image.size;
-            self.imageHeight = (self.contentView.width-2*topMargin)*size.height/size.width;
+            self.imageHeight = (self.tableView.width-2*topMargin)*size.height/size.width;
             
+            [(RepairDetailController *)self.vc setImageHeight:self.imageHeight];
             [self.picImage mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo((self.contentView.width-2*topMargin)*size.height/size.width);
             }];
@@ -101,7 +103,6 @@
     }
     
 }
-
 
 
 -(void)showImage

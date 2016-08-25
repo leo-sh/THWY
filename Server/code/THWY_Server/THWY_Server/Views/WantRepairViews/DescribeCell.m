@@ -10,6 +10,7 @@
 
 @interface DescribeCell ()
 
+@property (weak, nonatomic) IBOutlet UIButton *commitBtn;
 
 @end
 
@@ -18,6 +19,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.commitBtn.layer.cornerRadius= 5;
+    self.commitBtn.clipsToBounds = YES;
     
     self.textView.layer.borderWidth = 0.5;
     self.textView.layer.borderColor = [UIColor lightGrayColor].CGColor;
