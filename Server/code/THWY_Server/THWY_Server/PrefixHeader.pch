@@ -143,4 +143,8 @@ static inline int sizeValue(int sizefont) {
 #define GetContentWidth(content,font) [content sizeWithFont:FontSize(font) maxSize:CGSizeMake(4000, 4000)].width
 //获取内容高度
 #define GetContentHeight(content,font) [content sizeWithFont:FontSize(font) maxSize:CGSizeMake(4000, 4000)].height
+
+//误差精度
+#define EPSINON  0.00000001
+
 #endif /* PrefixHeader_pch */

@@ -14,7 +14,7 @@
 #import "ReviseBtn.h"
 #import "AddBtn.h"
 #import "WRTableViewCell.h"
-#import "UIRunLabel.h"
+#import "RunSliderLabel.h"
 #define TopViewH 60
 @interface WorkRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property UITableView *tableView;
@@ -270,7 +270,8 @@
     CGFloat labelL = imageView.right + 10;
     CGFloat labelW = tableView.width - (btnW + btnL) * 2 - imageView.right - 10;
     
-    UIRunLabel *label = [[UIRunLabel alloc]initWithFrame:CGRectMake(labelL, top, labelW, height) Title:[self.data[section] title]];
+    RunSliderLabel *label = [[RunSliderLabel alloc]initWithFrame:CGRectMake(labelL, top, labelW, height)];
+    [label setTitle:[self.data[section] title]];
     
     [view addSubview:label];
     
@@ -369,6 +370,7 @@
 - (void)clickAdd
 {
     NSLog(@"添加");
+    NSString *typeId = [NSString stringWithFormat:@"%d",self.segmentedControl.selectedSegmentIndex];
 }
 #pragma mark -- view点击事件
 - (void)click:(UIGestureRecognizer *)sender

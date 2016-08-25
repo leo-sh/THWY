@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WhiteListTableViewCell : UITableViewCell
-- (void)setEstate:(NSString *)estate IP:(NSString *)ip;
+- (void)setEstate:(NSString *)estate IP:(NSString *)ip Id:(NSString *)idString;
 @end

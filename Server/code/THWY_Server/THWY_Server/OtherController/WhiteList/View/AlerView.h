@@ -14,5 +14,6 @@ typedef enum
 }GetMethod;
 @interface AlerView : UIView
 @property GetMethod method;
+@property NSString *allowId;
 - (void)setUser:(NSString *)user IP:(NSString *)ip;
 @end

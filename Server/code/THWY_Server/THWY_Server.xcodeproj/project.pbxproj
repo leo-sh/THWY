@@ -12,7 +12,6 @@
 		1E84CE181D6C4F040010BA7B /* PersonInfoLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E84CE161D6C4F040010BA7B /* PersonInfoLabel.m */; };
 		1E84CE191D6C65FF0010BA7B /* WorkRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E84CE0A1D6C4EE50010BA7B /* WorkRecordViewController.m */; };
 		1E84CE1A1D6C660F0010BA7B /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E84CE131D6C4F040010BA7B /* PersonInfoViewController.m */; };
-		1E86E19C1D6CB38E0041546C /* UIRunLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E86E19B1D6CB38E0041546C /* UIRunLabel.m */; };
 		1E86E19F1D6CCD950041546C /* AlerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E86E19E1D6CCD950041546C /* AlerView.m */; };
 		1EC86A7B1D6C4AD30094BAB5 /* AddBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC86A7A1D6C4AD30094BAB5 /* AddBtn.m */; };
 		1EC86A851D6C4B470094BAB5 /* ProclamationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC86A7F1D6C4B470094BAB5 /* ProclamationInfoViewController.m */; };
@@ -235,8 +234,6 @@
 		1E84CE131D6C4F040010BA7B /* PersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoViewController.m; sourceTree = "<group>"; };
 		1E84CE151D6C4F040010BA7B /* PersonInfoLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoLabel.h; sourceTree = "<group>"; };
 		1E84CE161D6C4F040010BA7B /* PersonInfoLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoLabel.m; sourceTree = "<group>"; };
-		1E86E19A1D6CB38E0041546C /* UIRunLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRunLabel.h; sourceTree = "<group>"; };
-		1E86E19B1D6CB38E0041546C /* UIRunLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIRunLabel.m; sourceTree = "<group>"; };
 		1E86E19D1D6CCD950041546C /* AlerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlerView.h; sourceTree = "<group>"; };
 		1E86E19E1D6CCD950041546C /* AlerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlerView.m; sourceTree = "<group>"; };
 		1EC86A791D6C4AD30094BAB5 /* AddBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBtn.h; sourceTree = "<group>"; };
@@ -683,8 +680,6 @@
 			children = (
 				1E84CE0C1D6C4EE50010BA7B /* WRTableViewCell.h */,
 				1E84CE0D1D6C4EE50010BA7B /* WRTableViewCell.m */,
-				1E86E19A1D6CB38E0041546C /* UIRunLabel.h */,
-				1E86E19B1D6CB38E0041546C /* UIRunLabel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1825,7 +1820,6 @@
 				79270E5D1D61ACDA00E29568 /* UserVO.m in Sources */,
 				1E86E19F1D6CCD950041546C /* AlerView.m in Sources */,
 				1EC86A871D6C4B470094BAB5 /* ProclamationTableViewCelll.m in Sources */,
-				79270DCD1D61ACB100E29568 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				79270E0B1D61ACB100E29568 /* UIImage+GIF.m in Sources */,
 				79270E8F1D61AD0E00E29568 /* ServicesManager.m in Sources */,
 				79270DE11D61ACB100E29568 /* MJRefreshAutoStateFooter.m in Sources */,
@@ -1966,7 +1960,6 @@
 				791B4DCE1D645D6F00AF9371 /* UploadCell.m in Sources */,
 				797384331D66D94500708E62 /* RepairStatisticsFinishCell.m in Sources */,
 				1E84CE181D6C4F040010BA7B /* PersonInfoLabel.m in Sources */,
-				79270DCA1D61ACB100E29568 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				1EE570001D6B0C7B009B0FE0 /* WhiteListViewController.m in Sources */,
 				79270F5C1D61B1EF00E29568 /* UIImage+Extension.m in Sources */,
 				79F60D761D6A07A600A8E2D2 /* UIViewController+Alert.m in Sources */,
@@ -1975,7 +1968,6 @@
 				5BFFCE3D1D41B9C40066B1B9 /* main.m in Sources */,
 				79270E531D61ACDA00E29568 /* IPAllowVO.m in Sources */,
 				79270E051D61ACB100E29568 /* SDWebImageDecoder.m in Sources */,
-				1E86E19C1D6CB38E0041546C /* UIRunLabel.m in Sources */,
 				79F60D701D6A07A600A8E2D2 /* ZLPhotoPickerBrowserPhotoScrollView.m in Sources */,
 				79270E4C1D61ACDA00E29568 /* AddPublicRepairVO.m in Sources */,
 				79F60D691D6A07A600A8E2D2 /* ZLCameraView.m in Sources */,

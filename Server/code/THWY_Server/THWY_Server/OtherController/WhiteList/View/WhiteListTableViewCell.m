@@ -13,6 +13,7 @@
 @property UILabel *estateLabel;
 @property UILabel *IPLabel;
 @property ReviseBtn *ReviseBtn;
+@property NSString *Id;
 @end
 @implementation WhiteListTableViewCell
 
@@ -32,12 +33,15 @@
     return self;
 }
 
-- (void)setEstate:(NSString *)estate IP:(NSString *)ip
+- (void)setEstate:(NSString *)estate IP:(NSString *)ip Id:(NSString *)idString
 {
     self.estateLabel.text = estate;
     self.estateLabel.font = FontSize(CONTENT_FONT);
     self.IPLabel.text = ip;
     self.IPLabel.font = FontSize(Content_Ip_Font);
+    
+    self.Id = idString;
+    
     [self.ReviseBtn setLeftImageView:@"b修改" andTitle:@"修改"];
     
     CGFloat estateWidth = GetContentWidth(estate, CONTENT_FONT);
@@ -68,6 +72,7 @@
     
     [view setUser:self.estateLabel.text IP:self.IPLabel.text];
     view.method = Edit;
+    view.allowId = self.Id;
     [view showInWindow];
 }
 

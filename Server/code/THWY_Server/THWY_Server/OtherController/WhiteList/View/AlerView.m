@@ -100,17 +100,62 @@
 //    NSLog(@"添加");
     if (self.method == Edit) {
         
-        [[ServicesManager getAPI]editAIpAllow:nil onComplete:^(NSString *errorMsg) {
+        IPAllowVO *temp = [[IPAllowVO alloc]init];
+        temp.Id = self.allowId;
+        temp.the_user = self.userTF.text;
+        NSMutableString *ipString = [[NSMutableString alloc]init];
+        for (int i = 0 ;i < self.ipTFArray.count; i ++) {
+            
+            UITextField *temp = self.ipTFArray[i];
+            
+            [ipString appendString:temp.text];
+            if (i != self.ipTFArray.count) {
+                [ipString appendString:@"."];
+            }
+            
+        }
+        temp.ip = ipString;
+        
+        [[ServicesManager getAPI]editAIpAllow:temp onComplete:^(NSString *errorMsg) {
            
             if (errorMsg) {
                 [SVProgressHUD showWithStatus:errorMsg];
+            }
+            else
+            {
+                [self hide];
             }
             
         }];
     }
     else
     {
-        
+        IPAllowVO *temp = [[IPAllowVO alloc]init];
+        temp.the_user = self.userTF.text;
+        NSMutableString *ipString = [[NSMutableString alloc]init];
+        for (int i = 0 ;i < self.ipTFArray.count; i ++) {
+            
+            UITextField *temp = self.ipTFArray[i];
+            
+            [ipString appendString:temp.text];
+            if (i != self.ipTFArray.count) {
+                [ipString appendString:@"."];
+            }
+            
+        }
+        temp.ip = ipString;
+        [[ServicesManager getAPI] addAIpAllow:temp onComplete:^(NSString *errorMsg) {
+            
+            if (errorMsg) {
+                [SVProgressHUD showWithStatus:errorMsg];
+            }
+            
+            else
+            {
+                [self hide];
+            }
+            
+        }];
     }
     
 }

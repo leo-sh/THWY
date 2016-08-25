@@ -154,8 +154,8 @@
     height = height * frame.height / clientheight;
     //再次设置WebView高度（点）
     webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
-    if (self.number == 1) {
-        NSString *rowS = [NSString stringWithFormat:@"%d",self.row];
+    if (self.number <= 1) {
+        NSString *rowS = [NSString stringWithFormat:@"%d",(int)self.row];
         NSString *heightS = [NSString stringWithFormat:@"%lf",self.time.bottom + height + 8];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
         self.number ++;
