@@ -48,7 +48,9 @@
         [self.videoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.contentView.mas_centerX);
             make.centerY.mas_equalTo(self.contentView.mas_centerY);
-            make.width.and.height.mas_equalTo(200.0/667*My_ScreenH);
+            make.width.mas_equalTo(self.contentView.mas_height);
+            make.top.mas_equalTo(self.contentView.mas_top).offset(topMargin);
+            make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-topMargin);
         }];
         
     }

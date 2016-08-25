@@ -189,6 +189,11 @@
                     }else{
                         self.detailLabel.text = [NSString stringDateFromTimeInterval:time withFormat:nil];
                     }
+                    if([model._st intValue] == 1 || [model._st intValue] == 2){
+                        self.line.hidden = YES;
+                    }else{
+                        self.line.hidden = NO;
+                    }
                     break;
                 }
                 case 1:{
@@ -197,6 +202,11 @@
                         self.detailLabel.text = @"";
                     }else{
                         self.detailLabel.text = [NSString stringDateFromTimeInterval:time withFormat:nil];
+                    }
+                    if([model._st intValue] == 3){
+                        self.line.hidden = YES;
+                    }else{
+                        self.line.hidden = NO;
                     }
                     break;
                 }

@@ -14,4 +14,6 @@
 @property (copy, nonatomic) NSString *repairVOId;
 @property (assign, nonatomic) RepairType type;
 
+@property (assign, nonatomic) CGFloat imageHeight;
+
 @end

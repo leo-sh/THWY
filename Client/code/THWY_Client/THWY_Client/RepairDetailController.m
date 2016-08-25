@@ -65,8 +65,7 @@
     [self.view addSubview:self.tableView];
 
     [self.tableView registerClass:[RecordsDetailCell class] forCellReuseIdentifier:@"RecordsDetailCell"];
-    [self.tableView registerClass:[RecordImageCell class] forCellReuseIdentifier:@"RecordImageCell"];
-    [self.tableView registerClass:[RecordVideoCell class] forCellReuseIdentifier:@"RecordVideoCell"];
+ 
 }
 
 #pragma mark - UITableViewDelegate
@@ -138,12 +137,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 4) {
-        RecordImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordImageCell" forIndexPath:indexPath];
+        for (id obj in tableView.visibleCells) {
+            if ([obj isKindOfClass:[RecordImageCell class]]) {
+                [obj removeFromSuperview];
+            }
+        }
+        RecordImageCell *cell = [[RecordImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RecordImageCell"];
         cell.vc = self;
+        cell.tableView = tableView;
         [cell loadDataWithModel:self.model];
         return cell;
     }else if (indexPath.section == 5){
-        RecordVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordVideoCell" forIndexPath:indexPath];
+        for (id obj in tableView.visibleCells) {
+            if ([obj isKindOfClass:[RecordVideoCell class]]) {
+                [obj removeFromSuperview];
+            }
+        }
+        RecordVideoCell *cell = [[RecordVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RecordVideoCell"];
         [cell loadDataWithModel:self.model];
         return cell;
     }else {
@@ -159,15 +169,22 @@
     
     if (indexPath.section == 4) {
         if (self.model.pic && ![self.model.pic isEqualToString:@""]) {
-            CGSize size = [RemoteImageSize downloadImageSizeWithURL: [NSURL URLWithString:self.model.pic]];
-            return (My_ScreenW-8.0/375*My_ScreenW*4)/size.width*size.height + 20 + 8.0/375*My_ScreenW*3;
-//            return My_ScreenH*0.4+40;
+            
+            if (self.imageHeight == 0) {
+                
+                UIImage *image = [UIImage imageNamed:@"bannerload"];
+                return image.size.height + 20+ 8.0/375*My_ScreenW*3;
+                
+            }else{
+                return self.imageHeight + 20 + 8.0/375*My_ScreenW*3;
+            }
+            
         }else{
             return 0;
         }
     }else if (indexPath.section == 5) {
         if (self.model.vdo && ![self.model.vdo isEqualToString:@""]) {
-            return 240/667.0*My_ScreenH;
+            return 150/667.0*My_ScreenH;
         }else{
             return 0;
         }
