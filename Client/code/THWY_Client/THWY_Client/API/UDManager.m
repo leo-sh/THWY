@@ -63,6 +63,42 @@
     return [[ud objectForKey:SHOW_STATE] boolValue];
 }
 
+-(void)saveShakeState:(BOOL)show
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:[NSNumber numberWithBool:show] forKey:@"ShakeState"];
+    [ud synchronize];
+}
+
+-(BOOL)showShakeState
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    if (![ud objectForKey:@"ShakeState"]) {
+        return YES;
+    }else
+    {
+        return [[ud objectForKey:@"ShakeState"] boolValue];
+    }
+}
+
+-(void)saveSoundState:(BOOL)show
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:[NSNumber numberWithBool:show] forKey:@"SoundState"];
+    [ud synchronize];
+}
+
+-(BOOL)showSoundState
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    if (![ud objectForKey:@"SoundState"]) {
+        return YES;
+    }else
+    {
+        return [[ud objectForKey:@"SoundState"] boolValue];
+    }
+}
+
 -(UserVO *)getUser{
     if (user == nil) {
         user = [UserVO fromCodingObject];

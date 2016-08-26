@@ -69,14 +69,14 @@
     self.title = @"业主客服系统";
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"yitailogo"]];
     self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [self.leftButton setImage:[UIImage scaleImage:[UIImage imageNamed:@"main_快捷菜单"] toScale:0.5] forState:UIControlStateNormal];
+    [self.leftButton setImage:[UIImage imageNamed:@"main_快捷菜单"] forState:UIControlStateNormal];
 //    [self.leftButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [self.leftButton addTarget:self action:@selector(leftItemOnclicked:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithCustomView:self.leftButton];
     self.navigationItem.leftBarButtonItem  = left;
     
     self.dropView = [[DropMenuTableView alloc] initWithWidth:145.f itemHeight:45.f itemNames:@[@"我要报修", @"物业公告", @"个人信息", @"推送设置", @"技术支持"] ItemImages:@[@"main_1", @"main_2", @"main_6", @"main_4", @"main_5"]];
-    self.dropView.backColor = My_NAV_BG_Color;
+    self.dropView.backColor = My_Color(2, 134, 200);
     self.dropView.textColor = [UIColor whiteColor];
     
     self.dropView.dropDelegate = self;
@@ -90,7 +90,6 @@
     }
     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
     [window addSubview:self.dropView];
-    
 }
 
 - (void)itemSelected:(NSInteger)index{
@@ -295,8 +294,8 @@
     [xindebiji mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(baoxiujiedan.mas_left);
         make.top.mas_equalTo(gongzuorizhi.mas_top);
-        make.width.and.height.mas_equalTo(woyaobaoxiu);
-//        make.height.mas_equalTo(gongzuorizhi.mas_height).multipliedBy(0.5).offset(-topMargin*0.5);
+        make.width.mas_equalTo(woyaobaoxiu);
+        make.height.mas_equalTo(gongzuorizhi.mas_height).multipliedBy(0.5).offset(-topMargin*0.5);
     }];
     
     UIButton *ipbaimingdan = [[UIButton alloc] init];

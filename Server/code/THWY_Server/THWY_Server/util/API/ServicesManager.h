@@ -32,6 +32,11 @@
 
 +(ServicesManager *)getAPI;
 
+#pragma mark 音频播放
+-(void)palySend;
+-(void)palyReceive;
+-(void)palyPush;
+
 #pragma mark 环境参数判定函数
 /**
  *  判断是否已登陆

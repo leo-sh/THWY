@@ -221,8 +221,12 @@
 		79FA4CBB1D6A879F0018816C /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA4CB91D6A879F0018816C /* RootVC.m */; };
 		79FA4CBE1D6ADF210018816C /* RepairAcceptOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA4CBD1D6ADF210018816C /* RepairAcceptOrderCell.m */; };
 		79FA4CC11D6AE3190018816C /* RunSliderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA4CC01D6AE3190018816C /* RunSliderLabel.m */; };
+		94A7D3CE1D6FCA01008E4780 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A7D3CD1D6FCA00008E4780 /* AudioToolbox.framework */; };
+		94A7D3CF1D6FD034008E4780 /* tuisong.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9400B97B1D6188BF00E49F0E /* tuisong.caf */; };
+		94A7D3D01D6FD034008E4780 /* fasong.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9400B9791D6188B200E49F0E /* fasong.caf */; };
+		94A7D3D11D6FD034008E4780 /* shou.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9400B97A1D6188B200E49F0E /* shou.caf */; };
+		94A7D3D51D6FDCEE008E4780 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A7D3D41D6FDCEE008E4780 /* SVProgressHUD.m */; };
 		94BCF14A1D66DCB800FF1B13 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCF1471D66DCB800FF1B13 /* MBProgressHUD.m */; };
-		94BCF14B1D66DCB800FF1B13 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCF1491D66DCB800FF1B13 /* SVProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -645,10 +649,11 @@
 		9400B9791D6188B200E49F0E /* fasong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fasong.caf; sourceTree = "<group>"; };
 		9400B97A1D6188B200E49F0E /* shou.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shou.caf; sourceTree = "<group>"; };
 		9400B97B1D6188BF00E49F0E /* tuisong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tuisong.caf; sourceTree = "<group>"; };
+		94A7D3CD1D6FCA00008E4780 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		94A7D3D31D6FDCEE008E4780 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = THWY_Server/3rd/MBProgressHUD/SVProgressHUD.h; sourceTree = SOURCE_ROOT; };
+		94A7D3D41D6FDCEE008E4780 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = THWY_Server/3rd/MBProgressHUD/SVProgressHUD.m; sourceTree = SOURCE_ROOT; };
 		94BCF1461D66DCB800FF1B13 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		94BCF1471D66DCB800FF1B13 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		94BCF1481D66DCB800FF1B13 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		94BCF1491D66DCB800FF1B13 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -656,6 +661,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94A7D3CE1D6FCA01008E4780 /* AudioToolbox.framework in Frameworks */,
 				79270DCE1D61ACB100E29568 /* libUMessage_Sdk_1.3.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -845,9 +851,6 @@
 		5BFFCE3A1D41B9C40066B1B9 /* THWY_Server */ = {
 			isa = PBXGroup;
 			children = (
-				9400B97B1D6188BF00E49F0E /* tuisong.caf */,
-				9400B9791D6188B200E49F0E /* fasong.caf */,
-				9400B97A1D6188B200E49F0E /* shou.caf */,
 				79270E681D61AD0E00E29568 /* util */,
 				79270CF11D61ACB100E29568 /* 3rd */,
 				79270E271D61ACDA00E29568 /* Model */,
@@ -865,6 +868,10 @@
 		5BFFCE3B1D41B9C40066B1B9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9400B97B1D6188BF00E49F0E /* tuisong.caf */,
+				9400B9791D6188B200E49F0E /* fasong.caf */,
+				9400B97A1D6188B200E49F0E /* shou.caf */,
+				94A7D3CD1D6FCA00008E4780 /* AudioToolbox.framework */,
 				5B2571CE1D4714E400CB4167 /* PrefixHeader.pch */,
 				5BFFCE3C1D41B9C40066B1B9 /* main.m */,
 				5BFFCE4C1D41B9C40066B1B9 /* Info.plist */,
@@ -1306,6 +1313,8 @@
 		79270E221D61ACC300E29568 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				94A7D3D31D6FDCEE008E4780 /* SVProgressHUD.h */,
+				94A7D3D41D6FDCEE008E4780 /* SVProgressHUD.m */,
 				791B4E071D645EBE00AF9371 /* BannerNotice.h */,
 				791B4E081D645EBE00AF9371 /* BannerNotice.m */,
 				791B4E221D64660300AF9371 /* RepairAcceptOrderViews */,
@@ -1708,8 +1717,6 @@
 			children = (
 				94BCF1461D66DCB800FF1B13 /* MBProgressHUD.h */,
 				94BCF1471D66DCB800FF1B13 /* MBProgressHUD.m */,
-				94BCF1481D66DCB800FF1B13 /* SVProgressHUD.h */,
-				94BCF1491D66DCB800FF1B13 /* SVProgressHUD.m */,
 			);
 			path = MBProgressHUD;
 			sourceTree = "<group>";
@@ -1780,6 +1787,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94A7D3CF1D6FD034008E4780 /* tuisong.caf in Resources */,
+				94A7D3D01D6FD034008E4780 /* fasong.caf in Resources */,
+				94A7D3D11D6FD034008E4780 /* shou.caf in Resources */,
 				79F60D9F1D6A07EE00A8E2D2 /* kr-video-player-point@3x.png in Resources */,
 				79F60D821D6A07A600A8E2D2 /* ZLPhotoLib.bundle in Resources */,
 				79270F2F1D61B0DB00E29568 /* ZYBannerView.bundle in Resources */,
@@ -1870,7 +1880,6 @@
 				79F60D671D6A07A600A8E2D2 /* ZLCamera.m in Sources */,
 				79F60D721D6A07A600A8E2D2 /* ZLPhotoPickerCustomToolBarView.m in Sources */,
 				79F60D7A1D6A07A600A8E2D2 /* ZLPhotoPickerViewController.m in Sources */,
-				94BCF14B1D66DCB800FF1B13 /* SVProgressHUD.m in Sources */,
 				79270E1F1D61ACB100E29568 /* TYShowAlertView.m in Sources */,
 				79270F521D61B1EF00E29568 /* NSArray+Extension.m in Sources */,
 				79270F541D61B1EF00E29568 /* NSDate+Helper.m in Sources */,
@@ -1961,6 +1970,7 @@
 				79270E041D61ACB100E29568 /* SDWebImageCompat.m in Sources */,
 				79270E081D61ACB100E29568 /* SDWebImageManager.m in Sources */,
 				791B4DDA1D645D8100AF9371 /* TextFieldCell.m in Sources */,
+				94A7D3D51D6FDCEE008E4780 /* SVProgressHUD.m in Sources */,
 				79F60D6C1D6A07A600A8E2D2 /* ZLPhotoRect.m in Sources */,
 				791B4DD61D645D7800AF9371 /* WantRepairTableView2.m in Sources */,
 				79270E571D61ACDA00E29568 /* RepairClassVO.m in Sources */,

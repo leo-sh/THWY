@@ -8,6 +8,7 @@
 
 #import "RootVC.h"
 #import "RepairVO.h"
+#import "RecordImageCell.h"
 
 //记录详情 or 接单详情
 typedef NS_ENUM(NSUInteger, DisplayType) {
@@ -22,5 +23,6 @@ typedef NS_ENUM(NSUInteger, DisplayType) {
 
 @property (assign, nonatomic) DisplayType displayType;
 
+@property (assign, nonatomic) CGFloat imageHeight;
 
 @end

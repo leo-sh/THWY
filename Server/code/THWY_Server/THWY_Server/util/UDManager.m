@@ -63,6 +63,82 @@
     return [[ud objectForKey:SHOW_STATE] boolValue];
 }
 
+-(void)saveEndId:(NSString *)endId andUserId:(NSString *)userId
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSMutableDictionary* dic = nil;
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        if ([ud objectForKey:@"EndId"]) {
+            dic = [NSMutableDictionary dictionaryWithDictionary:[ud objectForKey:@"EndId"]];
+            
+        }else
+        {
+            dic = [[NSMutableDictionary alloc]init];
+        }
+        dic[userId] = endId;
+        
+        [ud setObject:dic forKey:@"EndId"];
+        [ud synchronize];
+    });
+}
+
+-(NSString *)getEndId:(NSString *)userId
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    if ([ud objectForKey:@"EndId"]) {
+        NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:[ud objectForKey:@"EndId"]];
+        if (dic[userId]) {
+            return dic[userId];
+        }
+    }
+    return @"1";
+}
+
+-(void)removeEndId
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud removeObjectForKey:@"EndId"];
+    [ud synchronize];
+}
+
+-(void)saveShakeState:(BOOL)show
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:[NSNumber numberWithBool:show] forKey:@"ShakeState"];
+    [ud synchronize];
+}
+
+-(BOOL)showShakeState
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    if (![ud objectForKey:@"ShakeState"]) {
+        return YES;
+    }else
+    {
+        BOOL show = [[ud objectForKey:@"ShakeState"] boolValue];
+        return show;
+    }
+}
+
+-(void)saveSoundState:(BOOL)show
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:[NSNumber numberWithBool:show] forKey:@"SoundState"];
+    [ud synchronize];
+}
+
+-(BOOL)showSoundState
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    if (![ud objectForKey:@"SoundState"]) {
+        return YES;
+    }else
+    {
+        BOOL show = [[ud objectForKey:@"SoundState"] boolValue];
+        return show;
+    }
+}
+
 -(UserVO *)getUser{
     if (user == nil) {
         user = [UserVO fromCodingObject];
@@ -107,6 +183,7 @@
     user = nil;
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     [ud removeObjectForKey:THWY_USER];
+    [ud removeObjectForKey:@"EndId"];
     [ud synchronize];
 }
 @end

@@ -180,6 +180,7 @@
             break;
         }
         case 3:{
+
             switch (indexpath.row) {
                 case 0:{
                     NSInteger time = [model.st_1_time integerValue];
@@ -187,6 +188,11 @@
                         self.detailLabel.text = @"";
                     }else{
                         self.detailLabel.text = [NSString stringDateFromTimeInterval:time withFormat:nil];
+                    }
+                    if([model.st intValue] == 1 || [model.st intValue] == 2){
+                        self.line.hidden = YES;
+                    }else{
+                        self.line.hidden = NO;
                     }
                     break;
                 }
@@ -196,6 +202,11 @@
                         self.detailLabel.text = @"";
                     }else{
                         self.detailLabel.text = [NSString stringDateFromTimeInterval:time withFormat:nil];
+                    }
+                    if([model.st intValue] == 3){
+                        self.line.hidden = YES;
+                    }else{
+                        self.line.hidden = NO;
                     }
                     break;
                 }

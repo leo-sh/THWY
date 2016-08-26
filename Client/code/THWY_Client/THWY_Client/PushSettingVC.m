@@ -28,7 +28,7 @@
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
     [self initViews];
     
-    self.bools = [NSMutableArray arrayWithArray:@[@YES, @NO, @NO]];
+    self.bools = [NSMutableArray arrayWithArray:@[[NSMutableArray arrayWithArray:@[[NSNumber numberWithBool:[[UIApplication sharedApplication] isRegisteredForRemoteNotifications]], [NSNumber numberWithBool:[[UDManager getUD] showSoundState]], [NSNumber numberWithBool:[[UDManager getUD] showShakeState]]]]]];
 }
 
 - (void)initViews{
@@ -100,7 +100,11 @@
     
     self.button1 = [[UIButton alloc] init];
     self.button1.tag = 11;
-    [self.button1 setBackgroundImage:[UIImage imageNamed:@"pushsetting_开"] forState:UIControlStateNormal];
+    if (![[UIApplication sharedApplication] isRegisteredForRemoteNotifications]) {
+        [self.button1 setBackgroundImage:[UIImage imageNamed:@"pushsetting_关"] forState:UIControlStateNormal];
+    }else{
+        [self.button1 setBackgroundImage:[UIImage imageNamed:@"pushsetting_开"] forState:UIControlStateNormal];
+    }
     [self.button1 addTarget:self action:@selector(btnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
     [accept addSubview:self.button1];
     [self.button1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -112,7 +116,11 @@
     
     self.button2 = [[UIButton alloc] init];
     self.button2.tag = 12;
-    [self.button2 setBackgroundImage:[UIImage imageNamed:@"pushsetting_关"] forState:UIControlStateNormal];
+    if (![[UDManager getUD] showSoundState]) {
+        [self.button2 setBackgroundImage:[UIImage imageNamed:@"pushsetting_关"] forState:UIControlStateNormal];
+    }else{
+        [self.button2 setBackgroundImage:[UIImage imageNamed:@"pushsetting_开"] forState:UIControlStateNormal];
+    }
     [self.button2 addTarget:self action:@selector(btnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
     [lisheng addSubview:self.button2];
     [self.button2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -125,7 +133,11 @@
 
     self.button3 = [[UIButton alloc] init];
     self.button3.tag = 13;
-    [self.button3 setBackgroundImage:[UIImage imageNamed:@"pushsetting_关"] forState:UIControlStateNormal];
+    if (![[UDManager getUD] showShakeState]) {
+        [self.button3 setBackgroundImage:[UIImage imageNamed:@"pushsetting_关"] forState:UIControlStateNormal];
+    }else{
+        [self.button3 setBackgroundImage:[UIImage imageNamed:@"pushsetting_开"] forState:UIControlStateNormal];
+    }
     [self.button3 addTarget:self action:@selector(btnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
     [zhendong addSubview:self.button3];
     
@@ -175,6 +187,7 @@
                 types7 = UIRemoteNotificationTypeAlert| UIRemoteNotificationTypeSound;
                 types8 = UIUserNotificationTypeAlert|UIUserNotificationTypeSound|UIUserNotificationTypeBadge;
             }
+            [[UDManager getUD] saveSoundState:[self.bools[index] boolValue]];
             [UMessage registerForRemoteNotifications:nil withTypesForIos7:types7 withTypesForIos8:types8];
             break;
         }
@@ -186,8 +199,8 @@
                 types7 = UIRemoteNotificationTypeAlert| UIRemoteNotificationTypeSound;
                 types8 = UIUserNotificationTypeAlert|UIUserNotificationTypeSound|UIUserNotificationTypeBadge;
             }
+            [[UDManager getUD] saveShakeState:[self.bools[index] boolValue]];
             [UMessage registerForRemoteNotifications:nil withTypesForIos7:types7 withTypesForIos8:types8];
-
             break;
         }
         default:
