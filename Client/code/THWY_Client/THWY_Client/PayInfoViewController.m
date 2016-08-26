@@ -40,10 +40,7 @@
         
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView.mj_footer endRefreshing];
-                [self.tableView.mj_header endRefreshing];
-            });
+            [self.navigationController popViewControllerAnimated:YES];
             return ;
         }
         
@@ -51,11 +48,9 @@
         
         self.sectionHead = [[NSMutableArray alloc]initWithObjects:sectionOneHead, nil];
         for (int i = 0;  i< ad.fee_history.count; i++) {
-            NSArray *sectionTwoHead = @[@"缴纳时间",@"金额",@"操作人",@"备注"];
+            NSArray *sectionTwoHead = @[@"票据号",@"收费人",@"缴纳时间",@"金额",@"操作人",@"备注"];
             [self.sectionHead addObject:sectionTwoHead];
         }
-        
-        NSLog(@"213213")
         
         NSString *sourceInfo = [NSString stringWithFormat:@"%@栋%@单元%@室",ad.block,ad.unit,ad.mph];
         NSString *feeScale = [NSString stringConvertFloatString:ad.cls_fee addEndString:ad.cls_unit];
@@ -66,15 +61,10 @@
         
         NSArray *sectionOneData = @[ad.real_name,ad.estate_name,sourceInfo,houseSizeString,ad.cls_name,feeScale,totalPrice,actualString,qianfeiString];
         
-        
-        
-//        NSString *fee = [NSString stringConvertFloatString:item.fee addEndString:@"元"];
-        
-        
         self.data = [[NSMutableArray alloc]initWithObjects:sectionOneData, nil];
         for (FeeHistoryVO* item in ad.fee_history) {
             NSString *time = [NSString stringDateFromTimeInterval:[item.fee_time intValue] withFormat:@"YYYY-MM-dd HH:mm:ss"];
-            NSArray *sectionTwoData = @[time,actualString,item.real_name,item.remark];
+            NSArray *sectionTwoData = @[item.invoice_no,item.real_name,time,actualString,item.real_name,item.remark];
             
             [self.data addObject:sectionTwoData];
         }

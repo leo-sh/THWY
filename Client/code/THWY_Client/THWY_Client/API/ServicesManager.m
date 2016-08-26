@@ -692,15 +692,29 @@ savePassWord:(BOOL)save
             }];
         }else
         {
-            NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
-                for (NSDictionary* complaintDic in responseObject[@"datas"][@"datas"]) {
-                    ComplaintVO *complaint = [[ComplaintVO alloc]initWithJSON:complaintDic];
-                    [listArr addObject:complaint];
+            [self getComplaintStates:^(NSString *errorMsg, NSArray *list) {
+                if (errorMsg == nil) {
+                    NSMutableArray* listArr = [[NSMutableArray alloc]init];
+                    if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                        for (NSDictionary* complaintDic in responseObject[@"datas"][@"datas"]) {
+                            ComplaintVO *complaint = [[ComplaintVO alloc]initWithJSON:complaintDic];
+                            for (ComplaintStateVO* state in list) {
+                                if ([state.st integerValue] == [complaint.st integerValue]) {
+                                    complaint.state = state;
+                                }
+                            }
+                            [listArr addObject:complaint];
+                        }
+                    }
+                    
+                    onComplete(nil,listArr);
+                }else
+                {
+                    onComplete(errorMsg,nil);
                 }
-            }
+                
+            }];
             
-            onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         onComplete(@"网络连接错误",nil);
