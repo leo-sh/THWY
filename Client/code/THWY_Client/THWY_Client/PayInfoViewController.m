@@ -11,8 +11,8 @@
 #import "ServicesManager.h"
 @interface PayInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property UITableView *tableView;
-@property NSArray *data;
-@property NSArray *sectionHead;
+@property NSMutableArray *data;
+@property NSMutableArray *sectionHead;
 @end
 
 @implementation PayInfoViewController
@@ -35,23 +35,22 @@
 - (void)getData
 {
     [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
-
-    NSArray *sectionOneHead = @[@"业主姓名",@"所在楼层",@"房源信息",@"面积",@"缴费科目",@"收费标准",@"应缴金额",@"月数",@"实收金额",@"欠费金额"];
-    NSArray *sectionTwoHead = @[@"缴纳时间",@"金额",@"操作人",@"备注"];
-    self.sectionHead = @[sectionOneHead,sectionTwoHead];
     
     [[ServicesManager getAPI]getAFee:self.feeId onComplete:^(NSString *errorMsg, FeeVO *ad) {
         
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView.mj_footer endRefreshing];
-                [self.tableView.mj_header endRefreshing];
-            });
-            
+            [self.navigationController popViewControllerAnimated:YES];
+            return ;
         }
         
-        NSLog(@"213213")
+        NSArray *sectionOneHead = @[@"业主姓名",@"所在楼层",@"房源信息",@"面积",@"缴费科目",@"收费标准",@"应缴金额",@"实收金额",@"欠费金额"];
+        
+        self.sectionHead = [[NSMutableArray alloc]initWithObjects:sectionOneHead, nil];
+        for (int i = 0;  i< ad.fee_history.count; i++) {
+            NSArray *sectionTwoHead = @[@"票据号",@"收费人",@"缴纳时间",@"金额",@"操作人",@"备注"];
+            [self.sectionHead addObject:sectionTwoHead];
+        }
         
         NSString *sourceInfo = [NSString stringWithFormat:@"%@栋%@单元%@室",ad.block,ad.unit,ad.mph];
         NSString *feeScale = [NSString stringConvertFloatString:ad.cls_fee addEndString:ad.cls_unit];
@@ -60,20 +59,19 @@
         NSString *qianfeiString = [NSString stringWithFormat:@"%@元",ad.qian_fei];
         NSString *houseSizeString = [NSString stringConvertFloatString:ad.house_size addEndString:@"平方米"];
         
-        NSArray *sectionOneData = @[ad.real_name,ad.estate_name,sourceInfo,houseSizeString,ad.cls_name,feeScale,totalPrice,@"",actualString,qianfeiString];
+        NSArray *sectionOneData = @[ad.real_name,ad.estate_name,sourceInfo,houseSizeString,ad.cls_name,feeScale,totalPrice,actualString,qianfeiString];
         
-        FeeHistoryVO *item = [ad.fee_history firstObject];
-        NSString *time = [NSString stringDateFromTimeInterval:[item.fee_time intValue] withFormat:@"YYYY-MM-dd HH:mm:ss"];
+        self.data = [[NSMutableArray alloc]initWithObjects:sectionOneData, nil];
+        for (FeeHistoryVO* item in ad.fee_history) {
+            NSString *time = [NSString stringDateFromTimeInterval:[item.fee_time intValue] withFormat:@"YYYY-MM-dd HH:mm:ss"];
+            NSArray *sectionTwoData = @[item.invoice_no,item.real_name,time,actualString,item.real_name,item.remark];
+            
+            [self.data addObject:sectionTwoData];
+        }
         
-//        NSString *fee = [NSString stringConvertFloatString:item.fee addEndString:@"元"];
-        
-        NSArray *sectionTwoData = @[time,actualString,item.real_name,item.remark];
-        self.data = @[sectionOneData,sectionTwoData];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self createUI];
-            [self.tableView reloadData];
-            [SVProgressHUD dismiss];
-        });
+        [self createUI];
+        [self.tableView reloadData];
+        [SVProgressHUD dismiss];
     }];
 }
 
@@ -86,8 +84,6 @@
     self.tableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {make.top.mas_equalTo(10);make.left.mas_equalTo(5);make.right.mas_equalTo(-5);make.bottom.mas_equalTo(-10);}];
-
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -127,7 +123,7 @@
     cell.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
     cell.layoutMargins = UIEdgeInsetsZero;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (indexPath.section == 1) {
+    if (indexPath.section != 0) {
         cell.backgroundColor = My_Color(254, 253, 236);
     }
     else
