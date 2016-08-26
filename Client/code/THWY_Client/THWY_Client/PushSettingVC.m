@@ -175,6 +175,7 @@
                 types7 = UIRemoteNotificationTypeAlert| UIRemoteNotificationTypeSound;
                 types8 = UIUserNotificationTypeAlert|UIUserNotificationTypeSound|UIUserNotificationTypeBadge;
             }
+            [[UDManager getUD] saveSoundState:[self.bools[index] boolValue]];
             [UMessage registerForRemoteNotifications:nil withTypesForIos7:types7 withTypesForIos8:types8];
             break;
         }
@@ -186,8 +187,8 @@
                 types7 = UIRemoteNotificationTypeAlert| UIRemoteNotificationTypeSound;
                 types8 = UIUserNotificationTypeAlert|UIUserNotificationTypeSound|UIUserNotificationTypeBadge;
             }
+            [[UDManager getUD] saveShakeState:[self.bools[index] boolValue]];
             [UMessage registerForRemoteNotifications:nil withTypesForIos7:types7 withTypesForIos8:types8];
-
             break;
         }
         default:

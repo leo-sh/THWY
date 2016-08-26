@@ -9,7 +9,7 @@
 #import "MainNavigationViewController.h"
 #import "RepairDetailController.h"
 //#import "ProclamationInfoViewController.h"
-//#import "ComplainDetailViewController.h"
+#import "CommunicateViewController.h"
 #import "UMessage.h"
 #import "BannerNotice.h"
 
@@ -31,31 +31,25 @@
     if ([pushType isEqualToString:@"1"])
     {
         //聊天消息
-//        ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc]init];
-//        
-//        detail.proclamationId = Id;
-//        
-//        [self pushViewController:detail animated:YES];
+        [[UDManager getUD] saveEndId:Id andUserId:userInfo[@"s_admin_id"]];
+//        Id                 聊天记录ID值
+//        s_photo            发送方头像绝对路径
+//        re_photo           接收方头像绝对路径
+//        s_admin_id         发送方账号ID值
+//        re_admin_id        接收方账号ID值
+        
         
     }else if ([pushType isEqualToString:@"2"])
     {
         //物业公告－行政公告
-//        ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc] init];
-//        detail.proclamationId = Id;
-//        detail.type = 1;
-//        [self.navigationController pushViewController:detail animated:YES];
+
         
     }else if ([pushType isEqualToString:@"3"])
     {
         //物业公告－商圈公告
-//        ComplainDetailViewController *detail = [[ComplainDetailViewController alloc]init];
-//        
-//        detail.complianId = Id;
-//        
-//        [self pushViewController:detail animated:YES];
+
     }else if ([pushType isEqualToString:@"4"])
     {
-        
         //报修接单
         RepairDetailController *detail = [[RepairDetailController alloc] init];
         detail.repairVOId = Id;
@@ -76,9 +70,9 @@
 -(void)showAlertWithUserInfo:(NSDictionary *)userInfo
 {
     NSString* pushType = userInfo[@"push_type"];
-    if ([pushType isEqualToString:@"1"])
+    if ([pushType isEqualToString:@"1"] && [self.topViewController isKindOfClass:[CommunicateViewController class]])
     {
-        
+        [My_NoteCenter postNotificationName:GetNewMessage object:userInfo];
         return;
     }
     

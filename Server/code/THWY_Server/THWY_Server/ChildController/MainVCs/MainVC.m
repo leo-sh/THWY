@@ -90,7 +90,6 @@
     }
     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
     [window addSubview:self.dropView];
-    
 }
 
 - (void)itemSelected:(NSInteger)index{

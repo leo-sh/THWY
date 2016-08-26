@@ -310,6 +310,9 @@ savePassWord:(BOOL)save
                 [[UDManager getUD] saveUserName:userName];
                 [[UDManager getUD] saveUserPassWord:password];
                 [[UDManager getUD] saveShowState:save];
+                
+                [[UDManager getUD] saveSoundState:YES];
+                [[UDManager getUD] saveShakeState:YES];
             });
             
             onComplete(nil,user);

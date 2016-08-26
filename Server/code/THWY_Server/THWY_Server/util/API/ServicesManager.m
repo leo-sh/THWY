@@ -13,6 +13,7 @@
 {
     NSString* _userName;
     NSString* _passWord;
+    SystemSoundID _ringSystemSoundID;
 }
 
 @property (nonatomic, strong) Reachability* baiduReach;
@@ -29,6 +30,51 @@
         service = [[self alloc] init];
     });
     return service;
+}
+
+-(void)palySend
+{
+    [self play:@"fasong.caf"];
+}
+
+-(void)palyReceive
+{
+    [self play:@"shou.caf"];
+}
+
+-(void)palyPush
+{
+    [self play:@"tuisong.caf"];
+}
+
+-(void)play:(NSString *)soundName
+{
+    BOOL shake = [[UDManager getUD] showShakeState];
+    BOOL sound = [[UDManager getUD] showSoundState];
+    if (!shake && !sound) {
+        return;
+    }
+    
+    NSString *path = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], soundName];
+    if (path) {
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategorySoloAmbient
+                                               error:nil];
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef) [NSURL fileURLWithPath:path], &_ringSystemSoundID);
+        
+        if (shake && sound) {
+            AudioServicesPlayAlertSound(_ringSystemSoundID);
+        }else if (shake && !sound)
+        {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        }else if (!shake && sound)
+        {
+            AudioServicesPlaySystemSound(_ringSystemSoundID);
+        }
+    }else
+    {
+        NSLog(@"获取音频文件 %@ 失败！",soundName);
+    }
+    
 }
 
 -(instancetype)init
@@ -263,6 +309,9 @@ savePassWord:(BOOL)save
                 [[UDManager getUD] saveUserName:userName];
                 [[UDManager getUD] saveUserPassWord:password];
                 [[UDManager getUD] saveShowState:save];
+                
+                [[UDManager getUD] saveSoundState:YES];
+                [[UDManager getUD] saveShakeState:YES];
             });
             
             onComplete(nil,user);
@@ -1530,6 +1579,7 @@ savePassWord:(BOOL)save
             }];
         }else
         {
+            [self palySend];
             onComplete(nil);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

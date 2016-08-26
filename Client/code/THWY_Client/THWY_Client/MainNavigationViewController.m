@@ -29,7 +29,7 @@
     NSString* Id = userInfo[@"pk"];
     if ([pushType isEqualToString:@"5"])
     {
-//        //        业主公告
+//              业主公告
         ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc]init];
         
         detail.proclamationId = Id;
@@ -38,7 +38,7 @@
         
     }else if ([pushType isEqualToString:@"6"])
     {
-//        //        社区商圈-商圈公告
+//              社区商圈-商圈公告
         ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc] init];
         detail.proclamationId = Id;
         detail.type = 1;
@@ -46,7 +46,7 @@
         
     }else if ([pushType isEqualToString:@"7"])
     {
-//        //        缴费台账
+//              缴费台账
         ComplainDetailViewController *detail = [[ComplainDetailViewController alloc]init];
         
         detail.complianId = Id;

@@ -197,7 +197,6 @@
 		79F2B6C11D4E2ECF00AA94E0 /* BussnessADCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F2B6BF1D4E2ECF00AA94E0 /* BussnessADCell.m */; };
 		79F2B6C21D4E2ECF00AA94E0 /* BussnessADCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F2B6C01D4E2ECF00AA94E0 /* BussnessADCell.xib */; };
 		79F2B6C51D4E3CC000AA94E0 /* RecommandBussnessADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F2B6C41D4E3CC000AA94E0 /* RecommandBussnessADVC.m */; };
-		9400B9781D6187EE00E49F0E /* tuisong.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9400B9771D6187EE00E49F0E /* tuisong.caf */; };
 		9400B97F1D619BBC00E49F0E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400B97E1D619BBC00E49F0E /* MBProgressHUD.m */; };
 		9400B9821D619C0D00E49F0E /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400B9811D619C0D00E49F0E /* SVProgressHUD.m */; };
 		94300F351D684DC80037546A /* UIImage+ZLPhotoLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300EEF1D684DC70037546A /* UIImage+ZLPhotoLib.m */; };
@@ -232,6 +231,7 @@
 		9449430D1D5C320200AD2B00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */; };
 		9490C3E31D63F66400988649 /* AssetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490C3E21D63F66400988649 /* AssetView.m */; };
 		9490C3E51D63F8D400988649 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9490C3E41D63F8D400988649 /* Photos.framework */; };
+		94A7D3D21D6FD7EC008E4780 /* tuisong.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9400B9771D6187EE00E49F0E /* tuisong.caf */; };
 		94D708931D4C68EE00C5009D /* ComplaintStateVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B197EF81D48A0BD00B95DE5 /* ComplaintStateVO.m */; };
 		94E5DAD31D58731900300585 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5DAD21D58731900300585 /* Reachability.m */; };
 		94F7CE801D6149D90034E9FC /* BannerNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F7CE7F1D6149D90034E9FC /* BannerNotice.m */; };
@@ -1333,7 +1333,6 @@
 		5BFFCE171D41B9A30066B1B9 /* THWY_Client */ = {
 			isa = PBXGroup;
 			children = (
-				9400B9771D6187EE00E49F0E /* tuisong.caf */,
 				5B2571CF1D47169600CB4167 /* 3rd */,
 				5B25714D1D47105E00CB4167 /* util */,
 				5B25714C1D47105800CB4167 /* model */,
@@ -1356,6 +1355,7 @@
 				5BFFCE291D41B9A30066B1B9 /* Info.plist */,
 				5BFFCE191D41B9A30066B1B9 /* main.m */,
 				5B25714A1D470E6800CB4167 /* PrefixHeader.pch */,
+				9400B9771D6187EE00E49F0E /* tuisong.caf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1846,6 +1846,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94A7D3D21D6FD7EC008E4780 /* tuisong.caf in Resources */,
 				79D2D2741D4F534B00463CC5 /* UploadCell.xib in Resources */,
 				79D2D2731D4F533A00463CC5 /* RepaireCategorysCell.xib in Resources */,
 				79D2D2721D4F533000463CC5 /* DescribeCell.xib in Resources */,
@@ -1853,7 +1854,6 @@
 				79D2D2701D4F530400463CC5 /* MerchargeListCell.xib in Resources */,
 				5B197EE61D487DAC00B95DE5 /* Info.plist in Resources */,
 				5BFFCE281D41B9A30066B1B9 /* LaunchScreen.storyboard in Resources */,
-				9400B9781D6187EE00E49F0E /* tuisong.caf in Resources */,
 				1E7527B61D52349F00AEDEC0 /* MJRefresh.bundle in Resources */,
 				79F2B6BD1D4E22CC00AA94E0 /* RecommandMerchantCell.xib in Resources */,
 				5BFFCE251D41B9A30066B1B9 /* Assets.xcassets in Resources */,

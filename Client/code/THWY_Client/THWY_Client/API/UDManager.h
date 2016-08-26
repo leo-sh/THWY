@@ -18,15 +18,19 @@ typedef enum : NSUInteger {
 
 +(UDManager *)getUD;
 
--(void)saveShowState:(BOOL)show;
+-(void)saveShakeState:(BOOL)show;
+-(BOOL)showShakeState;
 
+-(void)saveSoundState:(BOOL)show;
+-(BOOL)showSoundState;
+
+-(void)saveShowState:(BOOL)show;
 -(BOOL)showPassWord;
 
 -(void)saveNotification:(NSDictionary *)userInfo;
-
 -(NSDictionary *)getNotification;
-
 -(void)delNotification;
+
 /**
  *  获取已登录用户
  *
