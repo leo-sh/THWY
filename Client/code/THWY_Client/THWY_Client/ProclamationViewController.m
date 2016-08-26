@@ -155,15 +155,10 @@
 {
 
     if (self.data) {
-//        NSLog(@"%f",tableView.width);
-        NSArray *cellArray = @[[NSNumber numberWithFloat:200],[NSNumber numberWithFloat:tableView.width]];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"cellHeight" object:cellArray];
-        
-//        NSString *key = [NSString stringWithFormat:@"%d",indexPath.section]
         
         NSString *rowS = [self.rowAndHeight allKeys][0];
         
-        if (indexPath.section == [rowS integerValue]) {
+        if (indexPath.section == [rowS integerValue] && [self.rowAndHeight[rowS] integerValue] != 0) {
             
             return [self.rowAndHeight[rowS] integerValue];
         }

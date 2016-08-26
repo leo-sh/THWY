@@ -30,6 +30,7 @@
 @property BOOL refreshBtnClickStatu;
 @property int public;
 @property int belong;
+@property NSString *cellHeightString;
 @end
 
 @implementation WorkRecordViewController
@@ -55,6 +56,7 @@
     self.method = GetAdministrationData;
     self.page = 0;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeHeight:) name:@"giveCell" object:nil];
     //    self.automaticallyAdjustsScrollViewInsets = NO;
     //    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
@@ -254,12 +256,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    WRTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        cell = [[WRTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
-    cell.textLabel.text = [self.data[indexPath.section] content];
+    [cell setTitle:[self.data[indexPath.section] content]];
     cell.preservesSuperviewLayoutMargins = NO;
     cell.separatorInset = UIEdgeInsetsZero;
     cell.layoutMargins = UIEdgeInsetsZero;
@@ -371,7 +373,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return [self.cellHeightString floatValue];
 }
 
 
@@ -457,4 +459,11 @@
     [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
     NSLog(@"%d",sender.view.tag - 300);
 }
+
+#pragma mark -- 通知中心
+- (void)changeHeight:(NSNotification *)sender
+{
+    self.cellHeightString = sender.object;
+}
+
 @end

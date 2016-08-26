@@ -20,7 +20,6 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getHeight:) name:@"cellHeight" object:nil];
         self.number = 0;
         self.backgroundColor = [UIColor clearColor];
         
@@ -74,29 +73,19 @@
     return self;
 }
 
-- (void)updateFrame:(CGFloat)height Width:(CGFloat)width
-{
-    CGFloat contentWidth = width;
-    self.backView.frame = CGRectMake(0, 0, contentWidth, self.height);
-    self.head.width = contentWidth;
-    self.time.width = contentWidth;
-    self.title.width = contentWidth;
-    self.content.width = contentWidth;
-    self.right.center = CGPointMake(contentWidth - 9, 0);
-
-}
-
-- (void)getHeight:(NSNotification *)notification
-{
-
-    [self updateFrame:[notification.object[0] floatValue] Width:[notification.object[1] floatValue]];
-}
 
 - (void)setTitle:(NSString *)title time:(NSString *)time content:(NSString *)content width:(CGFloat)width
 {
     self.title.text = title;
     self.time.text = time;
     self.lastTitle = title;
+    
+    self.head.width = width;
+    self.time.width = width;
+    self.title.width = width;
+    self.content.width = width;
+    self.right.center = CGPointMake(width - 9, 0);
+    
     NSArray *array = @[content];
     NSPredicate * prdicate = [NSPredicate predicateWithFormat:@"SELF LIKE '<*?>'"];
     NSArray *a = [array filteredArrayUsingPredicate:prdicate];
@@ -118,6 +107,8 @@
         webView.backgroundColor = My_clearColor;
         webView.delegate = self;
         webView.opaque = NO;
+        webView.userInteractionEnabled = NO;
+        webView.backgroundColor = [UIColor clearColor];
         NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", content];
         [webView loadHTMLString:htmlcontent baseURL:nil];
         
@@ -129,6 +120,7 @@
         self.content.text = content;
         CGFloat contenHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
         self.content.frame = CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, contenHeight);
+        self.backView.frame = CGRectMake(0, 0, width, 200);
         [self.backView addSubview:self.content];
     }
 }
@@ -140,32 +132,35 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    //获取页面高度（像素）
-    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"];
-    float clientheight = [clientheight_str floatValue];
-    //设置到WebView上
-    webView.frame = CGRectMake(webView.x, webView.y, webView.width, clientheight);
-    //获取WebView最佳尺寸（点）
-    CGSize frame = [webView sizeThatFits:webView.frame.size];
-    //获取内容实际高度（像素）
-    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-top'))  + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-bottom'))"];
-    float height = [height_str floatValue];
-    //内容实际高度（像素）* 点和像素的比
-    height = height * frame.height / clientheight;
-    //再次设置WebView高度（点）
-    webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
-    if (self.number <= 1) {
-        NSString *rowS = [NSString stringWithFormat:@"%d",(int)self.row];
-        NSString *heightS = [NSString stringWithFormat:@"%lf",self.time.bottom + height + 8];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
-        self.number ++;
-    }
-    else
-    {
-        self.number = 0;
-//        [SVProgressHUD dismiss];
-
-    }
+  dispatch_async(dispatch_get_main_queue(), ^{
+      //获取页面高度（像素）
+      NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"];
+      float clientheight = [clientheight_str floatValue];
+      //设置到WebView上
+      webView.frame = CGRectMake(webView.x, webView.y, webView.width, clientheight);
+      //获取WebView最佳尺寸（点）
+      CGSize frame = [webView sizeThatFits:webView.frame.size];
+      //获取内容实际高度（像素）
+      NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-top'))  + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-bottom'))"];
+      float height = [height_str floatValue];
+      //内容实际高度（像素）* 点和像素的比
+      height = height * frame.height / clientheight;
+      //再次设置WebView高度（点）
+      webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
+      if (self.number == 0) {
+          NSString *rowS = [NSString stringWithFormat:@"%d",(int)self.row];
+          NSString *heightS = [NSString stringWithFormat:@"%lf",self.time.bottom + height + 8];
+          [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
+          self.backView.frame = CGRectMake(0, 0, self.width, [heightS floatValue]);
+          self.number ++;
+      }
+      else
+      {
+          self.number = 0;
+          //        [SVProgressHUD dismiss];
+          
+      }
+  });
 }
 
 - (void)awakeFromNib {
