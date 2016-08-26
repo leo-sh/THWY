@@ -196,25 +196,16 @@
             [SVProgressHUD showErrorWithStatus:errorMsg];
 //            return ;
         }else{
-            for (int i = 0; i < list.count;i++) {
-                AdVO *model = list[i];
-                self.adLabelScrollView.contentSize = CGSizeMake(self.view.width*6/7.0, HEIGHT*list.count);
-                if (model) {
-                    [self.adLabels addObject:model];
-                    UIButton *adbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, HEIGHT*i, self.view.width*6/7.0, HEIGHT)];
-                    adbtn.tag = 500+i;
-                    [adbtn addTarget:self action:@selector(showAdDetail:) forControlEvents:UIControlEventTouchUpInside];
-                    adbtn.titleLabel.font = FontSize(CONTENT_FONT+1);
-                    [adbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                    adbtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-                    adbtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, (70-18)*0.5, 0);
-//                    adbtn.titleLabel.centerY = self.laba.centerY;
-                    [self.adLabelScrollView addSubview:adbtn];
-                    [adbtn setTitle:model.title forState:UIControlStateNormal];
-                    if (i == list.count-1){
-                        [self.adLabels addObject:list[0]];
-                        UIButton *adbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, HEIGHT*(i+1), self.view.width*6/7.0, HEIGHT)];
-                        adbtn.tag = 500+i+1;
+            if(list.count == 0){
+                self.ADLabel.text = @"暂无公告信息";
+            }else{
+                for (int i = 0; i < list.count;i++) {
+                    AdVO *model = list[i];
+                    self.adLabelScrollView.contentSize = CGSizeMake(self.view.width*6/7.0, HEIGHT*list.count);
+                    if (model) {
+                        [self.adLabels addObject:model];
+                        UIButton *adbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, HEIGHT*i, self.view.width*6/7.0, HEIGHT)];
+                        adbtn.tag = 500+i;
                         [adbtn addTarget:self action:@selector(showAdDetail:) forControlEvents:UIControlEventTouchUpInside];
                         adbtn.titleLabel.font = FontSize(CONTENT_FONT+1);
                         [adbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -222,10 +213,24 @@
                         adbtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, (70-18)*0.5, 0);
                         //                    adbtn.titleLabel.centerY = self.laba.centerY;
                         [self.adLabelScrollView addSubview:adbtn];
-                        [adbtn setTitle:[list[0] title] forState:UIControlStateNormal];
+                        [adbtn setTitle:model.title forState:UIControlStateNormal];
+                        if (i == list.count-1){
+                            [self.adLabels addObject:list[0]];
+                            UIButton *adbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, HEIGHT*(i+1), self.view.width*6/7.0, HEIGHT)];
+                            adbtn.tag = 500+i+1;
+                            [adbtn addTarget:self action:@selector(showAdDetail:) forControlEvents:UIControlEventTouchUpInside];
+                            adbtn.titleLabel.font = FontSize(CONTENT_FONT+1);
+                            [adbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                            adbtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+                            adbtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, (70-18)*0.5, 0);
+                            //                    adbtn.titleLabel.centerY = self.laba.centerY;
+                            [self.adLabelScrollView addSubview:adbtn];
+                            [adbtn setTitle:[list[0] title] forState:UIControlStateNormal];
+                        }
                     }
+                    self.ADLabel.hidden = YES;
                 }
-                self.ADLabel.hidden = YES;
+
             }
             
             if (self.adLabels.count>0) {

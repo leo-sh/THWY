@@ -236,7 +236,7 @@
             webView.scrollView.bounces = NO;
             webView.delegate = self;
             webView.userInteractionEnabled = NO;
-            webView.backgroundColor = [UIColor clearColor];
+            webView.backgroundColor = My_clearColor;
             [content removeFromSuperview];
             [backView addSubview:webView];
             
