@@ -227,13 +227,10 @@
 {
     
     if (self.data) {
-        //        NSLog(@"%f",tableView.width);
-        NSArray *cellArray = @[[NSNumber numberWithFloat:200],[NSNumber numberWithFloat:tableView.width]];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"cellHeight" object:cellArray];
         
-        NSString *rowS = [self.rowAndHeight allKeys][0];
+        NSString *rowS = [[self.rowAndHeight allKeys] firstObject];
         
-        if (rowS != nil && indexPath.section == [rowS integerValue]) {
+        if (rowS != nil && indexPath.section == [rowS integerValue] && [self.rowAndHeight[rowS] integerValue] != 0) {
             
             return [self.rowAndHeight[rowS] integerValue];
         }
@@ -263,7 +260,7 @@
 {
     self.method =(int)self.segmentedControl.selectedSegmentIndex;
     [self.data removeAllObjects];
-    self.rowAndHeight = nil;
+    self.rowAndHeight = @{};
     [self getData];
 }
 
@@ -283,8 +280,6 @@
 
 - (void)change:(NSNotification *)notification
 {
-    //    self.changeHeightStatu = YES;
-    //    self.cellHeight = [[notification.object firstObject] floatValue];
     self.rowAndHeight = notification.object;
     [self.tableView reloadData];
 }

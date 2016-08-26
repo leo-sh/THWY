@@ -20,7 +20,6 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getHeight:) name:@"cellHeight" object:nil];
         self.number = 0;
         self.backgroundColor = [UIColor clearColor];
         
@@ -74,29 +73,20 @@
     return self;
 }
 
-- (void)updateFrame:(CGFloat)height Width:(CGFloat)width
-{
-    CGFloat contentWidth = width;
-    self.backView.frame = CGRectMake(0, 0, contentWidth, self.height);
-    self.head.width = contentWidth;
-    self.time.width = contentWidth;
-    self.title.width = contentWidth;
-    self.content.width = contentWidth;
-    self.rightImageView.center = CGPointMake(contentWidth - 9, 0);
-
-}
-
-- (void)getHeight:(NSNotification *)notification
-{
-
-    [self updateFrame:[notification.object[0] floatValue] Width:[notification.object[1] floatValue]];
-}
-
 - (void)setTitle:(NSString *)title time:(NSString *)time content:(NSString *)content width:(CGFloat)width
 {
     self.title.text = title;
     self.time.text = time;
     self.lastTitle = title;
+    self.width = width;
+    
+    CGFloat contentWidth = width;
+    self.head.width = contentWidth;
+    self.time.width = contentWidth;
+    self.title.width = contentWidth;
+    self.content.width = contentWidth;
+    self.rightImageView.center = CGPointMake(contentWidth - 9, 0);
+    
     NSArray *array = @[content];
     NSPredicate * prdicate = [NSPredicate predicateWithFormat:@"SELF LIKE '<*?>'"];
     NSArray *a = [array filteredArrayUsingPredicate:prdicate];
@@ -130,6 +120,8 @@
         CGFloat contenHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
         self.content.frame = CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, contenHeight);
         [self.backView addSubview:self.content];
+        self.backView.frame = CGRectMake(0, 0, contentWidth, 200);
+
     }
 }
 
@@ -158,6 +150,7 @@
         NSString *rowS = [NSString stringWithFormat:@"%ld",self.row];
         NSString *heightS = [NSString stringWithFormat:@"%lf",self.time.bottom + height + 8];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
+        self.backView.frame = CGRectMake(0, 0, self.width, [heightS floatValue]);
         self.number ++;
     }
     else
