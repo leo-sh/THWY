@@ -139,16 +139,16 @@
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }else{
             
-            if (merchant.products.count == 0){
-                self.btnShowDetail.hidden = YES;
-//                [SVProgressHUD showErrorWithStatus:@"没有商品"];
-            }else{
-                self.btnShowDetail.hidden = NO;
-            }
+//            if (merchant.products.count == 0){
+//                self.btnShowDetail.hidden = YES;
+////                [SVProgressHUD showErrorWithStatus:@"没有商品"];
+//            }else{
+//                self.btnShowDetail.hidden = NO;
+//            }
             
-            if ([merchant.telephone isEqualToString:@""]) {
-                self.btnContact.hidden = YES;
-            }
+//            if ([merchant.telephone isEqualToString:@""]) {
+//                self.btnContact.hidden = YES;
+//            }
             
             self.selectedMerchant = merchant;
             [SVProgressHUD dismiss];

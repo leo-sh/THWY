@@ -868,10 +868,10 @@
 		5BFFCE3B1D41B9C40066B1B9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				94A7D3CD1D6FCA00008E4780 /* AudioToolbox.framework */,
 				9400B97B1D6188BF00E49F0E /* tuisong.caf */,
 				9400B9791D6188B200E49F0E /* fasong.caf */,
 				9400B97A1D6188B200E49F0E /* shou.caf */,
-				94A7D3CD1D6FCA00008E4780 /* AudioToolbox.framework */,
 				5B2571CE1D4714E400CB4167 /* PrefixHeader.pch */,
 				5BFFCE3C1D41B9C40066B1B9 /* main.m */,
 				5BFFCE4C1D41B9C40066B1B9 /* Info.plist */,

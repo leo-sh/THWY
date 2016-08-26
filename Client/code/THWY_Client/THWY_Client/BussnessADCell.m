@@ -56,7 +56,9 @@
             }
         }
         
-        self.webView = [[UIWebView alloc]initWithFrame:self.desc.frame];
+        if (!self.webView){
+            self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.desc.x, self.desc.y, My_ScreenW-36, 100)];
+        }
         
         self.webView.scrollView.bounces = NO;
         self.webView.backgroundColor = My_clearColor;
@@ -65,7 +67,8 @@
         NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", merchant.content];
         [self.webView loadHTMLString:htmlcontent baseURL:nil];
         
-        [self.desc.superview addSubview:self.webView];
+        [self.contentView addSubview:self.webView];
+        [self.contentView bringSubviewToFront:self.webView];
         self.desc.alpha = 0;
     }
     else
