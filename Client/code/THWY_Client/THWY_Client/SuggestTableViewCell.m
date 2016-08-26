@@ -68,23 +68,14 @@
 - (void)setTime:(NSString *)time content:(NSString *)content width:(CGFloat)width
 {
     self.time.text = time;
+    
+    self.content.frame = CGRectMake(5, self.time.bottom + 8, width - 20, My_ScreenH);
     self.content.text = content;
     self.content.numberOfLines = 0;
     self.content.font = FontSize(CONTENT_FONT);
+    [self.content sizeToFit];
     
-    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, width - 10, My_ScreenH*2)];
-    label.font = FontSize(CONTENT_FONT);
-    label.numberOfLines = 0;
-    label.text = content;
-    [label sizeToFit];
-    CGFloat contenHeight = label.height;
-    self.content.frame = CGRectMake(5, self.time.bottom + 8, width - 10, contenHeight);
-    
-    self.backView.frame = CGRectMake(10, 0, width - 20, contenHeight + 32 + 8 + 10);
-}
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+    self.backView.frame = CGRectMake(10, 0, width - 20, self.content.height + 32 + 8 + 10);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

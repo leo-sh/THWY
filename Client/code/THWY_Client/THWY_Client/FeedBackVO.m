@@ -19,7 +19,8 @@
         if ([JSON[@"answer"] isKindOfClass:[NSString class]] && [JSON[@"answer"] length] > 0) {
             
             self.answer = JSON[@"answer"];
-            self.content = [NSString stringWithFormat:@"%@\n回复：%@",JSON[@"content"],JSON[@"answer"]];
+            self.answer_time = JSON[@"answer_time"];
+            self.content = [NSString stringWithFormat:@"%@\n回复：%@\n%@",JSON[@"content"],JSON[@"answer"],[NSString stringDateFromTimeInterval:[self.answer_time integerValue] withFormat:@"YYYY-MM-dd HH:mm"]];
         }else
         {
             self.content = JSON[@"content"];
