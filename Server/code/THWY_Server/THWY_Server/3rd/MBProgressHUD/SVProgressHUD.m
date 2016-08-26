@@ -16,7 +16,6 @@
 
 @property UIImageView* loadingView;
 @property UIImageView* loadingImv;
-@property UILabel* loadingLabel;
 
 @property UILabel* hintLabel;
 
@@ -118,6 +117,13 @@
     });
 }
 
++(void)showSubTitle:(NSString*)subTitle
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[self shareMBManager] showSubTitle:subTitle];
+    });
+}
+
 +(void)dismiss
 {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -126,6 +132,25 @@
 }
 
 #pragma mark -Private
+-(void)showSubTitle:(NSString*)subTitle
+{
+    [self.hud hideAnimated:NO];
+    [self hudInit];
+    
+    self.loadingLabel.text = [self.loadingLabel.text componentsSeparatedByString:@"\n"].firstObject;
+    self.loadingLabel.width = [[NSString stringWithFormat:@"%@\n%@",self.loadingLabel.text,subTitle] sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].width + 45;
+    self.loadingLabel.height = [[NSString stringWithFormat:@"%@\n%@",self.loadingLabel.text,subTitle] sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].height + 25;
+    self.loadingLabel.center = CGPointMake(20, 20);
+    
+    self.loadingLabel.text = [NSString stringWithFormat:@"%@\n%@",self.loadingLabel.text,subTitle];
+    self.loadingLabel.layer.cornerRadius = self.loadingLabel.height/2;
+    
+    [self.hud.bezelView addSubview:self.loadingLabel];
+    [self.hud.bezelView bringSubviewToFront:self.loadingLabel];
+    
+    [self.hud showAnimated:NO];
+}
+
 -(void)hudHideWithText:(NSString*)title
 {
     [self hudInit];

@@ -11,10 +11,13 @@
 
 @interface SVProgressHUD : NSObject
 
+@property UILabel* loadingLabel;
+
 +(instancetype)shareMBManager;
 
 +(void)hudHideWithSuccess:(NSString*)title;
 +(void)showErrorWithStatus:(NSString*)title;
++(void)showSubTitle:(NSString*)subTitle;
 +(void)dismiss;
 
 +(void)showWithStatus:(NSString*)title;

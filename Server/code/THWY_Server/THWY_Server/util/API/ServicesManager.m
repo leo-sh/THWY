@@ -189,62 +189,76 @@
 {
     NSData *imageData = nil;
     if (repair.image) {
-        imageData = UIImagePNGRepresentation(repair.image);
+        imageData = UIImageJPEGRepresentation(repair.image, 1);
     }
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    // 设置时间格式
-    formatter.dateFormat = @"yyyyMMddHHmmss";
-    NSString *str = [formatter stringFromDate:[NSDate date]];
+    CGFloat sizeOfImage = imageData.length/1000.0/1024.0;
+    CGFloat ratio = 0.95;
+    while (sizeOfImage >= 2.0) {
+        [SVProgressHUD showSubTitle:@"压缩图片"];
+        imageData = UIImageJPEGRepresentation(repair.image, ratio);
+        sizeOfImage = imageData.length/1000.0/1024.0;
+        ratio -= 0.05;
+    }
     
-    NSURL *newVideoUrl = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4", str]] ;
-    
-    [self convertVideoQuailtyWithInputURL:repair.videoPath outputURL:newVideoUrl completeHandler:^(AVAssetExportSession * exportSession) {
+    if (repair.videoPath.length > 0) {
+        [SVProgressHUD showSubTitle:@"转换视频格式"];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        // 设置时间格式
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
         
-        switch (exportSession.status) {
-            case AVAssetExportSessionStatusCancelled:
-            {
-                onComplete(@"Cancelled");
-                NSLog(@"AVAssetExportSessionStatusCancelled");
+        NSURL *newVideoUrl = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4", str]] ;
+        [self convertVideoQuailtyWithInputURL:repair.videoPath outputURL:newVideoUrl completeHandler:^(AVAssetExportSession * exportSession) {
+            
+            switch (exportSession.status) {
+                case AVAssetExportSessionStatusCancelled:
+                {
+                    onComplete(@"Cancelled");
+                    NSLog(@"AVAssetExportSessionStatusCancelled");
+                }
+                    break;
+                case AVAssetExportSessionStatusUnknown:
+                {
+                    onComplete(@"Unknown");
+                    NSLog(@"AVAssetExportSessionStatusUnknown");
+                }
+                    break;
+                case AVAssetExportSessionStatusWaiting:
+                {
+                    onComplete(@"Waiting");
+                    NSLog(@"AVAssetExportSessionStatusWaiting");
+                }
+                    break;
+                case AVAssetExportSessionStatusExporting:
+                {
+                    onComplete(@"Exporting");
+                    NSLog(@"AVAssetExportSessionStatusExporting");
+                }
+                    break;
+                case AVAssetExportSessionStatusCompleted:
+                {
+                    NSLog(@"AVAssetExportSessionStatusCompleted");
+                    NSLog(@"%@",[NSString stringWithFormat:@"%f s", [self getVideoLength:newVideoUrl]]);
+                    NSLog(@"%@", [NSString stringWithFormat:@"%.2f kb", [self getFileSize:[newVideoUrl path]]]);
+                    NSData *videoData = [NSData dataWithContentsOfURL:newVideoUrl];
+                    [self subMitRepair:params image:imageData video:videoData urlString:urlString onComplete:onComplete];
+                }
+                    break;
+                case AVAssetExportSessionStatusFailed:
+                {
+                    onComplete(@"Failed");
+                    NSLog(@"AVAssetExportSessionStatusFailed");
+                }
+                    break;
+                default:
+                    break;
             }
-                break;
-            case AVAssetExportSessionStatusUnknown:
-            {
-                onComplete(@"Unknown");
-                NSLog(@"AVAssetExportSessionStatusUnknown");
-            }
-                break;
-            case AVAssetExportSessionStatusWaiting:
-            {
-                onComplete(@"Waiting");
-                NSLog(@"AVAssetExportSessionStatusWaiting");
-            }
-                break;
-            case AVAssetExportSessionStatusExporting:
-            {
-                onComplete(@"Exporting");
-                NSLog(@"AVAssetExportSessionStatusExporting");
-            }
-                break;
-            case AVAssetExportSessionStatusCompleted:
-            {
-                NSLog(@"AVAssetExportSessionStatusCompleted");
-                NSLog(@"%@",[NSString stringWithFormat:@"%f s", [self getVideoLength:newVideoUrl]]);
-                NSLog(@"%@", [NSString stringWithFormat:@"%.2f kb", [self getFileSize:[newVideoUrl path]]]);
-                NSData *videoData = [NSData dataWithContentsOfURL:newVideoUrl];
-                [self subMitRepair:params image:imageData video:videoData urlString:urlString onComplete:onComplete];
-            }
-                break;
-            case AVAssetExportSessionStatusFailed:
-            {
-                onComplete(@"Failed");
-                NSLog(@"AVAssetExportSessionStatusFailed");
-            }
-                break;
-            default:
-                break;
-        }
-    }];
+        }];
+    }else
+    {
+        [self subMitRepair:params image:imageData video:nil urlString:urlString onComplete:onComplete];
+    }
 }
 
 -(void)getErrorMessage:(NSString *)code
@@ -1113,31 +1127,37 @@ savePassWord:(BOOL)save
 
 -(void)addPublicRepair:(AddPublicRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@add_public_repair",API_HOST];
-    NSMutableDictionary* params = [[NSMutableDictionary alloc]init];
-    params[@"login_name"] = _userName;
-    params[@"login_password"] = _passWord;
-    params[@"kb"] = [NSString stringWithFormat:@"%d",repair.kb];
-    params[@"estate_id"] = repair.estate_id;
-    params[@"block"] = repair.block;
-    params[@"unit"] = repair.unit;
-    params[@"layer"] = repair.layer;
-    params[@"call_name"] = repair.call_name;
-    params[@"call_phone"] = repair.call_phone;
-    params[@"cls"] = repair.cls;
-    params[@"repair_detail"] = repair.repair_detail;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *urlString = [NSString stringWithFormat:@"%@add_public_repair",API_HOST];
+        NSMutableDictionary* params = [[NSMutableDictionary alloc]init];
+        params[@"login_name"] = _userName;
+        params[@"login_password"] = _passWord;
+        params[@"kb"] = [NSString stringWithFormat:@"%d",repair.kb];
+        params[@"estate_id"] = repair.estate_id;
+        params[@"block"] = repair.block;
+        params[@"unit"] = repair.unit;
+        params[@"layer"] = repair.layer;
+        params[@"call_name"] = repair.call_name;
+        params[@"call_phone"] = repair.call_phone;
+        params[@"cls"] = repair.cls;
+        params[@"repair_detail"] = repair.repair_detail;
+        
+        [self handleRepair:repair params:params urlStr:urlString onComplete:onComplete];
+    });
     
-    [self handleRepair:repair params:params urlStr:urlString onComplete:onComplete];
 }
 
 -(void)subMitRepair:(NSDictionary* )params image:(NSData* )imageData video:(NSData *)videoData urlString:(NSString *)urlString onComplete:(void (^)(NSString *errorMsg))onComplete
 {
+    [SVProgressHUD showSubTitle:@"上传中 0.00％"];
     AFHTTPSessionManager *manager = [self getManager];
     [manager POST:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         // 设置时间格式
         formatter.dateFormat = @"yyyyMMddHHmmss";
-        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *str = [NSString stringWithFormat:@"%@%d",[formatter stringFromDate:[NSDate date]],arc4random() % 99999];
+        
         if (imageData) {
             NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
             [formData appendPartWithFileData:imageData name:@"pic" fileName:fileName mimeType:@"image/png"];
@@ -1148,10 +1168,10 @@ savePassWord:(BOOL)save
         }
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-        
+        [SVProgressHUD showSubTitle:[NSString stringWithFormat:@"上传中 %.2f％",uploadProgress.fractionCompleted*100]];
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg);
             }];
         }else

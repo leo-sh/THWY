@@ -115,7 +115,8 @@
         return YES;
     }else
     {
-        return [[ud objectForKey:@"ShakeState"] boolValue];
+        BOOL show = [[ud objectForKey:@"ShakeState"] boolValue];
+        return show;
     }
 }
 
@@ -133,7 +134,8 @@
         return YES;
     }else
     {
-        return [[ud objectForKey:@"SoundState"] boolValue];
+        BOOL show = [[ud objectForKey:@"SoundState"] boolValue];
+        return show;
     }
 }
 
