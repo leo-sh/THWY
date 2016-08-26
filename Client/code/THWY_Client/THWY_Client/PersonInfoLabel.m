@@ -126,6 +126,8 @@
     }
     else
     {
+        [self.textField removeFromSuperview];
+        
         CGFloat lbHeight = CONTENT_FONT;
         CGFloat lbLeft = 50;
         CGFloat lbTop = 0;
