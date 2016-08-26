@@ -158,7 +158,7 @@
         
         NSString *rowS = [self.rowAndHeight allKeys][0];
         
-        if (indexPath.section == [rowS integerValue] && [self.rowAndHeight[rowS] integerValue] != 0) {
+        if (rowS && rowS.length > 0 && indexPath.section == [rowS integerValue] && [self.rowAndHeight[rowS] integerValue] != 0) {
             
             return [self.rowAndHeight[rowS] integerValue];
         }
