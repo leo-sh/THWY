@@ -110,10 +110,12 @@
         webView.userInteractionEnabled = NO;
         webView.backgroundColor = [UIColor clearColor];
         NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", content];
-        [webView loadHTMLString:htmlcontent baseURL:nil];
         
+        [webView loadHTMLString:htmlcontent baseURL:nil];
+
         [self.backView addSubview:webView];
         [self.content removeFromSuperview];
+
     }
     else
     {
@@ -132,7 +134,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-  dispatch_async(dispatch_get_main_queue(), ^{
+//  dispatch_async(dispatch_get_main_queue(), ^{
       //获取页面高度（像素）
       NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"];
       float clientheight = [clientheight_str floatValue];
@@ -150,8 +152,8 @@
       if (self.number == 0) {
           NSString *rowS = [NSString stringWithFormat:@"%d",(int)self.row];
           NSString *heightS = [NSString stringWithFormat:@"%lf",self.time.bottom + height + 8];
-          [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
           self.backView.frame = CGRectMake(0, 0, self.width, [heightS floatValue]);
+          [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
           self.number ++;
       }
       else
@@ -160,7 +162,7 @@
           //        [SVProgressHUD dismiss];
           
       }
-  });
+//  });
 }
 
 - (void)awakeFromNib {

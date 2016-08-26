@@ -16,7 +16,7 @@
 @property CGFloat topHeight;
 @property UITableView *tableView;
 @property int pageNumber;
-@property NSDictionary *rowAndHeight;
+@property NSMutableDictionary *rowAndHeight;
 @end
 
 @implementation ProclamationViewController
@@ -37,6 +37,7 @@
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.data = [NSMutableArray array];
     self.pageNumber = 0;
+    self.rowAndHeight = [[NSMutableDictionary alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change:) name:@"giveHeight" object:nil];
 }
 
@@ -127,8 +128,11 @@
     NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd HH:mm"];
     cell.row = indexPath.section;
     [cell setTitle:[self.data[indexPath.section] title]  time:time content:[self.data[indexPath.section] content] width:tableView.width];
+    NSLog(@"cell Height%f",cell.height);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
+//    cell.backgroundColor = [UIColor yellowColor];
+
     return cell;
 }
 
@@ -156,22 +160,19 @@
 
     if (self.data) {
         
-        NSString *rowS = [self.rowAndHeight allKeys][0];
-        
-        if (rowS && rowS.length > 0 && indexPath.section == [rowS integerValue] && [self.rowAndHeight[rowS] integerValue] != 0) {
+        NSString *key = [NSString stringWithFormat:@"%ld",indexPath.section];
+        NSInteger cellHeight = [self.rowAndHeight[key] integerValue];
+        if (cellHeight != 0) {
             
-            return [self.rowAndHeight[rowS] integerValue];
+            return cellHeight;
         }
         else
         {
-        //添加上面固定内容的高度 + 下面内容的高度 + 与下边界的距离
             return 200;
         }
     }
-    else
-    {
-        return 0;
-    }
+    return 0;
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -191,8 +192,14 @@
 - (void)change:(NSNotification *)notification
 {
 //    self.changeHeightStatu = YES;
-//    self.cellHeight = [[notification.object firstObject] floatValue];
-    self.rowAndHeight = notification.object;
+    
+    [self.rowAndHeight setValuesForKeysWithDictionary:notification.object];
+    
+//    NSInteger section = [[[notification.object allKeys] firstObject] integerValue];
+//    
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
+//    
+//    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView reloadData];
 }
 
