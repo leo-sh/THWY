@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WRTableViewCell : UITableViewCell
-
+- (void)setTitle:(NSString *)title;
 @end

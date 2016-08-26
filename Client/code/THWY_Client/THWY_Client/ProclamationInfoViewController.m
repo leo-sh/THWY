@@ -116,14 +116,13 @@
     
     time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), backView.width, 14);
     
-    CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(4000, 4000)];
+    CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width, 4000)];
     
     
     content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
-    
+    content.numberOfLines = 0;
     backView.height = content.bottom + 10;
     
-    backView.backgroundColor = [UIColor whiteColor];
     
     head.image = [UIImage imageNamed:@"彩条"];
     
@@ -161,7 +160,8 @@
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, backView.width - 2*content.x, My_ScreenH)];
         webView.delegate = self;
         webView.scrollView.bounces = NO;
-        webView.backgroundColor = My_clearColor;
+        webView.userInteractionEnabled = NO;
+        webView.backgroundColor = [UIColor clearColor];
         [content removeFromSuperview];
         [backView addSubview:webView];
         
@@ -178,80 +178,78 @@
 
 - (void)createUIWithAd:(AdVO *)noteVO
 {
-    
-    UIImageView *head = [[UIImageView alloc]init];
-    UIImageView *right = [[UIImageView alloc]init];
-    UILabel *titleLabel = [[UILabel alloc]init];
-    UILabel *time = [[UILabel alloc]init];
-    UILabel *content = [[UILabel alloc]init];
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(10, 10 , self.view.width - 20, 0)];
-    
-    head.frame = CGRectMake(0, 0, backView.width, 3);
-    right.frame = CGRectMake(0, 0, 20, 20);
-    right.center = CGPointMake(backView.width -9, 0);
-    titleLabel.frame = CGRectMake(0, CGRectGetMaxY(head.frame) + 5, backView.width, 30);
-    
-    time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), backView.width, 14);
-    
-    CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(4000, 4000)];
-    
-    
-    content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
-    
-    backView.height = content.bottom + 10;
-    
-    backView.backgroundColor = [UIColor whiteColor];
-    
-    head.image = [UIImage imageNamed:@"彩条"];
-    
-    UIImageView *left = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
-    left.center = CGPointMake(19, 10);
-    left.image = [UIImage imageNamed:@"左"];
-    
-    right.image = [UIImage imageNamed:@"右"];
-    
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    
-    time.font = FontSize(Content_Time_Font);
-    
-    time.textAlignment = NSTextAlignmentCenter;
-    
-    time.textColor = [UIColor lightGrayColor];
-    
-    content.font = FontSize(CONTENT_FONT);
-    [backView addSubview:titleLabel];
-    [backView addSubview:time];
-    [backView addSubview:head];
-    [backView addSubview:content];
-    [self.view addSubview:left];
-    [backView addSubview:right];
-    
-    
-    backView.backgroundColor = WhiteAlphaColor;
-    
-    [self.view addSubview:backView];
-    
-    titleLabel.text = noteVO.title;
-    NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:SS"];
-    time.text = showtime;
-    if ([noteVO.content rangeOfString:@"<"].location == 0 && [[noteVO.content substringFromIndex:noteVO.content.length - 1] isEqualToString:@">"]) {
-        UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, backView.width - 2*content.x, My_ScreenH)];
-        webView.scrollView.bounces = NO;
-        webView.delegate = self;
-        webView.backgroundColor = My_clearColor;
-        [content removeFromSuperview];
-        [backView addSubview:webView];
+        UIImageView *head = [[UIImageView alloc]init];
+        UIImageView *right = [[UIImageView alloc]init];
+        UILabel *titleLabel = [[UILabel alloc]init];
+        UILabel *time = [[UILabel alloc]init];
+        UILabel *content = [[UILabel alloc]init];
+        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(10, 10 , self.view.width - 20, 0)];
         
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"giveHeight" object:@[[NSNumber numberWithFloat:webView.bottom + 10]]];
-
-        NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", noteVO.content];
-        [webView loadHTMLString:htmlcontent baseURL:nil];
+        head.frame = CGRectMake(0, 0, backView.width, 3);
+        right.frame = CGRectMake(0, 0, 20, 20);
+        right.center = CGPointMake(backView.width -9, 0);
+        titleLabel.frame = CGRectMake(0, CGRectGetMaxY(head.frame) + 5, backView.width, 30);
         
-    }else
-    {
-        [SVProgressHUD dismiss];
-        content.text = noteVO.content;
-    }
+        time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), backView.width, 14);
+        
+        CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width, 4000)];
+        
+        
+        content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
+        content.numberOfLines = 0;
+        backView.height = content.bottom + 10;
+    
+        head.image = [UIImage imageNamed:@"彩条"];
+        
+        UIImageView *left = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+        left.center = CGPointMake(19, 10);
+        left.image = [UIImage imageNamed:@"左"];
+        
+        right.image = [UIImage imageNamed:@"右"];
+        
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        
+        time.font = FontSize(Content_Time_Font);
+        
+        time.textAlignment = NSTextAlignmentCenter;
+        
+        time.textColor = [UIColor lightGrayColor];
+        
+        content.font = FontSize(CONTENT_FONT);
+        [backView addSubview:titleLabel];
+        [backView addSubview:time];
+        [backView addSubview:head];
+        [backView addSubview:content];
+        [self.view addSubview:left];
+        [backView addSubview:right];
+        
+        
+        backView.backgroundColor = WhiteAlphaColor;
+        
+        [self.view addSubview:backView];
+        
+        titleLabel.text = noteVO.title;
+        NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:SS"];
+        time.text = showtime;
+        if ([noteVO.content rangeOfString:@"<"].location == 0 && [[noteVO.content substringFromIndex:noteVO.content.length - 1] isEqualToString:@">"]) {
+            UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, backView.width - 2*content.x, My_ScreenH)];
+            webView.scrollView.bounces = NO;
+            webView.delegate = self;
+            webView.userInteractionEnabled = NO;
+            webView.backgroundColor = [UIColor clearColor];
+            [content removeFromSuperview];
+            [backView addSubview:webView];
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"giveHeight" object:@[[NSNumber numberWithFloat:webView.bottom + 10]]];
+            
+            NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", noteVO.content];
+            [webView loadHTMLString:htmlcontent baseURL:nil];
+            
+        }else
+        {
+            [SVProgressHUD dismiss];
+            content.text = noteVO.content;
+        }
     
 }
 
