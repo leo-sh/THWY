@@ -161,7 +161,7 @@
     if (self.data) {
         
         NSString *key = [NSString stringWithFormat:@"%ld",indexPath.section];
-        NSInteger cellHeight = [self.rowAndHeight[key] integerValue];
+        CGFloat cellHeight = [self.rowAndHeight[key] floatValue];
         if (cellHeight != 0) {
             
             return cellHeight;

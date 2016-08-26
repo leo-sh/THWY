@@ -20,7 +20,7 @@
 @property UIImageView *segementBackgroundImageView;
 @property GetMethod method;
 @property int page;
-@property NSDictionary *rowAndHeight;
+@property NSMutableDictionary *rowAndHeight;
 @end
 
 @implementation ProclamationViewController
@@ -44,7 +44,7 @@
     self.data = [NSMutableArray array];
     self.method = GetAdministrationData;
     self.page = 0;
-    
+    self.rowAndHeight = [[NSMutableDictionary alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change:) name:@"giveHeight" object:nil];
 
     //    self.automaticallyAdjustsScrollViewInsets = NO;
@@ -228,11 +228,11 @@
     
     if (self.data) {
         
-        NSString *rowS = [[self.rowAndHeight allKeys] firstObject];
-        
-        if (rowS != nil && indexPath.section == [rowS integerValue] && [self.rowAndHeight[rowS] integerValue] != 0) {
+        NSString *key = [NSString stringWithFormat:@"%ld",indexPath.section];
+        CGFloat value = [self.rowAndHeight[key] floatValue];
+        if (value != 0) {
             
-            return [self.rowAndHeight[rowS] integerValue];
+            return value;
         }
         else
         {
@@ -260,7 +260,7 @@
 {
     self.method =(int)self.segmentedControl.selectedSegmentIndex;
     [self.data removeAllObjects];
-    self.rowAndHeight = @{};
+    self.rowAndHeight = nil;
     [self getData];
 }
 
@@ -280,7 +280,12 @@
 
 - (void)change:(NSNotification *)notification
 {
-    self.rowAndHeight = notification.object;
+    if (self.rowAndHeight == nil) {
+        self.rowAndHeight = [NSMutableDictionary dictionary];
+    }
+    self.rowAndHeight.dictionary = notification.object;
+    NSLog(@"%@",notification.object);
+    NSLog(@"%@",self.rowAndHeight);
     [self.tableView reloadData];
 }
 

@@ -210,12 +210,17 @@
                 
             case 0:
             case 2:
-            case 3:
             {
                 [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] infoTitle:tfTextArray[i]];
 
             }
                 break;
+            case 3:
+            {
+                [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] Array:self.userInfo.houses];
+            }
+                break;
+
             default:
                 [label setImageName:imageNameArray[i] Label:[NSString stringWithFormat:@"%@：",labelTitleArry[i]] TextField:tfTextArray[i]];
                 break;

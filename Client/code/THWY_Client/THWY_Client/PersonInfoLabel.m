@@ -8,10 +8,12 @@
 
 #import "PersonInfoLabel.h"
 #import "Masonry/Masonry.h"
+#import "HouseVO.h"
 @interface PersonInfoLabel()
 @property UIImageView *imageView;
 @property UILabel *label;
 @property UILabel *infoLabel;
+@property NSArray *labelInfos;
 @end
 @implementation PersonInfoLabel
 - (instancetype)init
@@ -72,8 +74,8 @@
 {
     NSLog(@"%f-%f-%f-%f",self.frame.origin.x,self.frame.origin.y,self.frame.size.width,self.frame.size.height);
     
-    CGFloat topOffSet = self.frame.size.height * 0.3;
-    CGFloat imageViewWidthAndHeight = self.frame.size.height * 0.4;
+    CGFloat topOffSet = 10;
+    CGFloat imageViewWidthAndHeight = 20;
     CGFloat imageViewLeft = self.frame.size.height * 0.2;
     
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -84,13 +86,13 @@
     
     CGFloat labelLeft = imageViewLeft;
     CGFloat labelWidth = CONTENT_FONT * 5;
-    CGFloat labelHeight = self.height;
+    CGFloat labelHeight = 20;
     
     [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(topOffSet);
+        make.top.mas_equalTo(topOffSet);
         make.size.mas_equalTo(CGSizeMake(labelWidth, labelHeight));
         make.left.equalTo(self.imageView.mas_right).with.offset(labelLeft);
-        make.centerY.mas_equalTo(self.imageView.centerY);
+//        make.centerY.mas_equalTo(self.imageView.centerY);
     }];
     
     self.label.font = FontSize(CONTENT_FONT);
@@ -107,7 +109,7 @@
         [self.infoLabel removeFromSuperview];
 
     }
-    else
+    else if([string isEqualToString:@"lb"])
     {
         CGFloat lbHeight = self.height;
         CGFloat lbWidht = self.frame.size.width - labelLeft -labelWidth -imageViewWidthAndHeight -imageViewLeft;
@@ -119,21 +121,34 @@
             make.size.mas_equalTo(CGSizeMake(lbWidht, lbHeight));
             make.left.equalTo(self.label.mas_right).with.offset(0);
         }];
-
-        CGFloat fontSizeWidth = [self.infoLabel.text sizeWithFont:[UIFont systemFontOfSize:CONTENT_FONT] maxSize:CGSizeMake(4000, 4000)].width;
-        if (fontSizeWidth > lbWidht) {
-            self.height *=2;
-            [self.infoLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo(self.height);
-            }];
-            [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(topOffSet + self.height/4);
-            }];
-            self.infoLabel.numberOfLines = 0;
+        
+        self.infoLabel.numberOfLines = 1;
+    }
+    else
+    {
+        CGFloat lbHeight = CONTENT_FONT;
+        CGFloat lbLeft = 50;
+        CGFloat lbTop = 0;
+        CGFloat lbWidth = self.width - lbLeft;
+        for (int i = 0; i < self.labelInfos.count; i ++) {
+            
+            lbTop = self.height - 5 + (lbHeight + 5) * i ;
+            
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(lbLeft, lbTop, lbWidth, lbHeight)];
+            
+            HouseVO *house = self.labelInfos[i];
+            
+             NSString *addressString = [NSString stringWithFormat:@"%@·%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
+            
+            label.text = addressString;
+            label.font = FontSize(CONTENT_FONT);
+            label.textColor = CellUnderLineColor;
+            [self addSubview:label];
+            if (i == self.labelInfos.count - 1) {
+                
+                self.height = label.bottom + 10;
+            }
         }
-        
-        
-
     }
     
     self.clipsToBounds = NO;
@@ -168,6 +183,22 @@
     [self updateFrame:@"lb"];
 
 }
+
+- (void)setImageName:(NSString *)imageName Label:(NSString *)title Array:(NSArray *)array
+{
+    self.imageView.image = [UIImage imageNamed:imageName];
+    
+    self.label.text = title;
+    
+    self.infoLabel.font = FontSize(CONTENT_FONT);
+    
+    self.infoLabel.textColor = CellUnderLineColor;
+    
+    self.labelInfos = array;
+    
+    [self updateFrame:@"lbs"];
+}
+
 
 - (void)setNoEnable
 {

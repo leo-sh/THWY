@@ -119,8 +119,9 @@
         self.content.text = content;
         CGFloat contenHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
         self.content.frame = CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, contenHeight);
-        [self.backView addSubview:self.content];
+        
         self.backView.frame = CGRectMake(0, 0, contentWidth, 200);
+        [self.backView addSubview:self.content];
 
     }
 }
@@ -149,8 +150,8 @@
     if (self.number == 0) {
         NSString *rowS = [NSString stringWithFormat:@"%ld",self.row];
         NSString *heightS = [NSString stringWithFormat:@"%lf",self.time.bottom + height + 8];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
         self.backView.frame = CGRectMake(0, 0, self.width, [heightS floatValue]);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
         self.number ++;
     }
     else
