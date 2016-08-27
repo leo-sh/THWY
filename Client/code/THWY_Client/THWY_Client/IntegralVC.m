@@ -154,8 +154,19 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    self.topView.height = TOPVIEW_HEIGHT - scrollView.contentOffset.y;
-    [self updateTopSubViewsFrame];
+    if (TOPVIEW_HEIGHT - scrollView.contentOffset.y >= 0) {
+        if (scrollView.contentOffset.y >= 0) {
+            self.topView.y = -scrollView.contentOffset.y;
+        }else
+        {
+            self.topView.height = TOPVIEW_HEIGHT - scrollView.contentOffset.y;
+            [self updateTopSubViewsFrame];
+            
+        }
+//        self.topView.height = TOPVIEW_HEIGHT - scrollView.contentOffset.y;
+//        [self updateTopSubViewsFrame];
+    }
+
 }
 
 /*

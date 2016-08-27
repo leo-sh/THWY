@@ -79,9 +79,10 @@
     CGFloat imageViewLeft = self.frame.size.height * 0.2;
     
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(topOffSet);
+        make.top.mas_equalTo(self.height/2 - imageViewWidthAndHeight/2);
         make.size.mas_equalTo(CGSizeMake(imageViewWidthAndHeight, imageViewWidthAndHeight));
         make.left.mas_equalTo(imageViewLeft);
+        
     }];
     
     CGFloat labelLeft = imageViewLeft;
@@ -89,10 +90,9 @@
     CGFloat labelHeight = 20;
     
     [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(topOffSet);
+        make.top.mas_equalTo(self.imageView.mas_top);
         make.size.mas_equalTo(CGSizeMake(labelWidth, labelHeight));
         make.left.equalTo(self.imageView.mas_right).with.offset(labelLeft);
-//        make.centerY.mas_equalTo(self.imageView.centerY);
     }];
     
     self.label.font = FontSize(CONTENT_FONT);
@@ -138,6 +138,25 @@
             
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(lbLeft, lbTop, lbWidth, lbHeight)];
             
+            [self addSubview:label];
+            
+            if (i == 0) {
+                [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.mas_equalTo(self.label.mas_top);
+                    make.width.mas_equalTo(lbWidth);
+                    make.height.mas_equalTo(self.label.mas_height);
+                    make.left.equalTo(self.label.mas_right).with.offset(0);
+                }];
+            }else
+            {
+                [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.mas_equalTo(self.label.mas_top).offset(i*(lbHeight + 10/375.0*My_ScreenW));
+                    make.width.mas_equalTo(lbWidth);
+                    make.height.mas_equalTo(self.label.mas_height);
+                    make.left.equalTo(self.label.mas_right).with.offset(0);
+                }];
+            }
+            
             HouseVO *house = self.labelInfos[i];
             
              NSString *addressString = [NSString stringWithFormat:@"%@·%@栋%@单元%@室",house.estate,house.block,house.unit,house.mph];
@@ -145,10 +164,8 @@
             label.text = addressString;
             label.font = FontSize(CONTENT_FONT);
             label.textColor = CellUnderLineColor;
-            [self addSubview:label];
             if (i == self.labelInfos.count - 1) {
-                
-                self.height = label.bottom + 10;
+                self.height = self.height/2 - imageViewWidthAndHeight/2 + i*(lbHeight + 10/375.0*My_ScreenW) + 20/375.0*My_ScreenW + lbHeight - 0.5;
             }
         }
     }

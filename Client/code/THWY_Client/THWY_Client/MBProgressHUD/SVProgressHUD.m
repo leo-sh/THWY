@@ -11,6 +11,7 @@
 
 @interface SVProgressHUD ()
 
+@property BOOL isShow;
 @property (strong, nonatomic) MBProgressHUD* hud;
 @property UIWindow* window;
 
@@ -98,6 +99,7 @@
 #pragma mark -Public
 +(void)showErrorWithStatus:(NSString*)title
 {
+    [[self shareMBManager] setIsShow:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
         [[self shareMBManager] hudHideWithText:title];
     });
@@ -105,6 +107,7 @@
 
 +(void)hudHideWithSuccess:(NSString*)title
 {
+    [[self shareMBManager] setIsShow:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
         [[self shareMBManager] hudHideWithSuccess:title];
     });
@@ -126,6 +129,7 @@
 
 +(void)dismiss
 {
+    [[self shareMBManager] setIsShow:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
         [[[self shareMBManager] hud] hideAnimated:YES];
     });
@@ -134,7 +138,10 @@
 #pragma mark -Private
 -(void)showSubTitle:(NSString*)subTitle
 {
-    [self.hud hideAnimated:NO];
+    if (!self.isShow) {
+        self.isShow = YES;
+        [self.hud hideAnimated:NO];
+    }
     [self hudInit];
     
     self.loadingLabel.text = [self.loadingLabel.text componentsSeparatedByString:@"\n"].firstObject;
@@ -179,8 +186,11 @@
 
 -(void)showLoadingWithTitle:(NSString*)title
 {
+    if (!self.isShow) {
+        self.isShow = YES;
+        [self.hud showAnimated:YES];
+    }
     [self hudInit];
-    [self.hud showAnimated:YES];
     
     self.loadingLabel.width = [title sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].width + 45;
     self.loadingLabel.height = [title sizeWithFont:self.loadingLabel.font maxSize:self.loadingLabel.size].height + 25;
