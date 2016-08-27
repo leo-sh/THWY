@@ -98,14 +98,14 @@
         make.centerX.equalTo(self.view);
     }];
     
-    icon.backgroundColor = [UIColor blueColor];
-    
     icon.layer.cornerRadius = iconWidth/2;
     
     icon.clipsToBounds = YES;
     [icon addTarget:self action:@selector(clickIcon) forControlEvents:UIControlEventTouchUpInside];
     
     self.iconImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, iconWidth, iconHeight)];
+    
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"Avatar"]];
     
     [icon addSubview:self.iconImageView];
     

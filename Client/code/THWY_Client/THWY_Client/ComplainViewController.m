@@ -37,7 +37,7 @@
     UIImage *backgroundImage = [UIImage imageNamed:@"背景2"];
     self.view.layer.contents = (id) backgroundImage.CGImage;
     
-    self.contentHead = @[@"投诉类型：",@"所在项目：",@"投诉人：",@"联系电话：",@"投诉日期："];
+    self.contentHead = @[@"投诉类型：",@"所在项目：",@"投诉人：",@"联系电话：",@"投诉日期：",@"投诉状态："];
     self.contentEnd = [NSMutableArray array];
     self.data = [NSMutableArray array];
     
@@ -62,7 +62,7 @@
             [self.data addObjectsFromArray:list];
             
             for (ComplaintVO *temp in list) {
-                NSArray *array = @[temp.complaint_type_name,temp.estate,temp.complaint_person,temp.complaint_phone,temp.ctime,temp.Id];
+                NSArray *array = @[temp.complaint_type_name,temp.estate,temp.complaint_person,temp.complaint_phone,temp.ctime,temp.state.name,temp.Id];
                 [self.contentEnd addObject:array];
             }
             [self.tableView reloadData];
@@ -163,7 +163,10 @@
     cell.layoutMargins = UIEdgeInsetsZero;
     cell.backgroundColor =WhiteAlphaColor;
     if (self.data && indexPath.section < self.data.count) {
-        if (indexPath.row < 4) {
+        if (indexPath.row < 4 || indexPath.row == self.contentHead.count-1) {
+            if (indexPath.row == self.contentHead.count-1) {
+                
+            }
             cell.textLabel.text = [NSString stringWithFormat:@"%@%@",self.contentHead[indexPath.row],self.contentEnd[indexPath.section][indexPath.row]];
         }
         else

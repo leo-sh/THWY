@@ -20,7 +20,7 @@
 @property UIImageView *segementBackgroundImageView;
 @property GetMethod method;
 @property int page;
-@property NSDictionary *rowAndHeight;
+@property NSMutableDictionary *rowAndHeight;
 @end
 
 @implementation ProclamationViewController
@@ -44,7 +44,7 @@
     self.data = [NSMutableArray array];
     self.method = GetAdministrationData;
     self.page = 0;
-    
+    self.rowAndHeight = [[NSMutableDictionary alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change:) name:@"giveHeight" object:nil];
 
     //    self.automaticallyAdjustsScrollViewInsets = NO;
@@ -227,15 +227,12 @@
 {
     
     if (self.data) {
-        //        NSLog(@"%f",tableView.width);
-        NSArray *cellArray = @[[NSNumber numberWithFloat:200],[NSNumber numberWithFloat:tableView.width]];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"cellHeight" object:cellArray];
         
-        NSString *rowS = [self.rowAndHeight allKeys][0];
-        
-        if (rowS != nil && indexPath.section == [rowS integerValue]) {
+        NSString *key = [NSString stringWithFormat:@"%ld",indexPath.section];
+        CGFloat value = [self.rowAndHeight[key] floatValue];
+        if (value != 0) {
             
-            return [self.rowAndHeight[rowS] integerValue];
+            return value;
         }
         else
         {
@@ -283,9 +280,12 @@
 
 - (void)change:(NSNotification *)notification
 {
-    //    self.changeHeightStatu = YES;
-    //    self.cellHeight = [[notification.object firstObject] floatValue];
-    self.rowAndHeight = notification.object;
+    if (self.rowAndHeight == nil) {
+        self.rowAndHeight = [NSMutableDictionary dictionary];
+    }
+    self.rowAndHeight.dictionary = notification.object;
+    NSLog(@"%@",notification.object);
+    NSLog(@"%@",self.rowAndHeight);
     [self.tableView reloadData];
 }
 

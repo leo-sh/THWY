@@ -24,7 +24,15 @@
         self.sign = JSON[@"sign"];
         self.charging_method = JSON[@"charging_method"];
         self.cashier_id = JSON[@"cashier_id"];
-        self.invoice_no = JSON[@"invoice_no"];
+        
+        if ([JSON[@"invoice_no"] isKindOfClass:[NSString class]] && [JSON[@"invoice_no"] length]>0) {
+            
+            self.invoice_no = JSON[@"invoice_no"];
+        }else{
+            
+            self.invoice_no = @"";
+        }
+        
         self.admin_name = JSON[@"admin_name"];
         self.real_name = JSON[@"real_name"];
     }

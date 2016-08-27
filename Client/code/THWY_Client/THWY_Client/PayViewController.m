@@ -177,11 +177,6 @@
     [self.navigationController pushViewController:pushView animated:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)clickSearchBtn
 {
     self.year = [self.chooseYearBtn.postID intValue];

@@ -13,6 +13,7 @@
 @property (nonatomic , copy) NSString              * category;
 @property (nonatomic , copy) NSString              * content;
 @property (nonatomic , copy) NSString              * answer;
+@property (nonatomic , copy) NSString              * answer_time;
 @property (nonatomic , copy) NSString              * Id;
 @property (nonatomic , copy) NSString              * ctime;
 @property (nonatomic , copy) NSString              * oid;
