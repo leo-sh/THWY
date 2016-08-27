@@ -164,33 +164,54 @@
     [self.userInfoView addSubview:username];
     
     [username mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(headImage.mas_centerY).multipliedBy(0.75);
+        make.centerY.mas_equalTo(headImage.mas_centerY).multipliedBy(0.5);
         make.left.mas_equalTo(headImage.mas_right).offset(15);
+        make.right.mas_equalTo(self.userInfoView.right);
     }];
     
-    UILabel *addr = [[UILabel alloc] init];
-    addr.text = @"";
-    addr.font = FontSize(CONTENT_FONT+1);
-    [addr sizeToFit];
-    [self.userInfoView addSubview:addr];
-    [addr mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(username.mas_left);
-        make.centerY.mas_equalTo(headImage.mas_centerY).multipliedBy(1.25);
-    }];
     
     UserVO *user = [[UDManager getUD] getUser];
     if (user) {
         [headImage sd_setImageWithURL:[NSURL URLWithString: user.avatar] placeholderImage:[UIImage imageNamed:@"Avatar"]];
         username.text = user.real_name;
-        addr.text = [NSString stringWithFormat:@"%@·%@栋%@单元%@室",[user.houses[0] estate],[user.houses[0] block],[user.houses[0] unit],[user.houses[0] mph]];
+//        addr.text = [NSString stringWithFormat:@"%@·%@栋%@单元%@室",[user.houses[0] estate],[user.houses[0] block],[user.houses[0] unit],[user.houses[0] mph]];
     }
+    [self.view layoutIfNeeded];
+    
+    UIScrollView *scroll = [[UIScrollView alloc] init];
+    scroll.bounces = NO;
+    scroll.showsVerticalScrollIndicator = NO;
+    scroll.showsHorizontalScrollIndicator = NO;
+    [self.userInfoView addSubview:scroll];
+    [scroll mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(username.mas_left);
+        make.top.mas_equalTo(username.mas_bottom);
+        make.right.mas_equalTo(self.userInfoView.mas_right);
+        make.bottom.mas_equalTo(headImage.mas_bottom);
+    }];
+    NSArray *houses = user.houses;
+    scroll.contentSize = CGSizeMake(username.width, username.height*houses.count);
+    
+    for (int i = 0; i < houses.count; i++) {
+        UILabel *addr = [[UILabel alloc] init];
+        addr.text = [NSString stringWithFormat:@"%@·%@栋%@单元%@室",[user.houses[i] estate],[user.houses[i] block],[user.houses[i] unit],[user.houses[i] mph]];
+        addr.font = FontSize(CONTENT_FONT+1);
+//        [addr sizeToFit];
+        [scroll addSubview:addr];
+        [addr mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(username.mas_left);
+            make.right.mas_equalTo(self.userInfoView.mas_right);
+            make.top.mas_equalTo(username.mas_bottom).offset(i*username.height);
+        }];
+    }
+    
     
 }
 
 #pragma mark - ADViews
 - (void)getADLabels{
 
-    [[ServicesManager getAPI] getAds:1 onComplete:^(NSString *errorMsg, NSArray *list) {
+    [[ServicesManager getAPI] getRecommendAds:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];

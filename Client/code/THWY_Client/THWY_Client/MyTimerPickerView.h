@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PickerViewProtocol.h"
 
-@interface MyTimerPickerView : UIPickerView
+@interface MyTimerPickerView : UIControl
 
 @property (strong, nonatomic) UIColor *fontColor;
 
@@ -20,5 +21,7 @@
 
 @property (assign, nonatomic) NSInteger hour;
 @property (assign, nonatomic) NSInteger minute;
+
+@property (weak, nonatomic) id<PickerViewProtocol> delegate;
 
 @end

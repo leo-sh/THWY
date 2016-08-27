@@ -182,7 +182,7 @@
 //        CGFloat topMargin = 5;
         if ([self.cells[0] isKindOfClass:[PaigongCatogerysCell class]]) {
             if ([(PaigongCatogerysCell *)self.cells[0] showPikerView]) {
-                return 60.0/713*My_ScreenH + 40*2;
+                return 60.0/713*My_ScreenH + 60*2-15;
             }else{
                 return 60.0/713*My_ScreenH;
             }

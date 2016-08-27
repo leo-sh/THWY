@@ -10,6 +10,7 @@
 
 @interface MyDatePickerView ()<UIPickerViewDelegate, UIPickerViewDataSource>
 
+@property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) NSCalendar *calendar;
 @property (strong, nonatomic) NSDateComponents *selectedDateComponets;
 
@@ -17,12 +18,26 @@
 
 @implementation MyDatePickerView
 
+-(void)drawRect:(CGRect)rect{
+    for (UIView *view in self.pickerView.subviews) {
+        if (view.height<1) {
+            [view removeFromSuperview];
+        }
+    }
+
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.delegate = self;
-        self.dataSource = self;
+        
+        [My_NoteCenter addObserver:self selector:@selector(updateDate:) name:@"dateFailed" object:nil];
+        
+        self.backgroundColor = My_clearColor;
+        self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        self.pickerView.delegate = self;
+        self.pickerView.dataSource = self;
         self.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         self.calendar.timeZone = [NSTimeZone localTimeZone];
         self.selectedDate = [[NSDate date] dateByAddingTimeInterval:8*60*60];
@@ -32,9 +47,10 @@
         self.startDate = [NSDate date];
         self.endDate = [NSDate date];
         
-        [self selectRow:[self.selectedDateComponets month]-1 inComponent:1 animated:NO];
-        [self selectRow:[self.selectedDateComponets day]-1 inComponent:2 animated:NO];
+        [self.pickerView selectRow:[self.selectedDateComponets month]-1 inComponent:1 animated:NO];
+        [self.pickerView selectRow:[self.selectedDateComponets day]-1 inComponent:2 animated:NO];
         
+        [self addSubview:self.pickerView];
     }
     return self;
 }
@@ -58,7 +74,7 @@
             NSRange dayRange = [self.calendar rangeOfUnit:NSCalendarUnitDay
                                                    inUnit:NSCalendarUnitMonth
                                                   forDate:self.selectedDate];
-            NSLog(@"current month: %ld, day number: %ld", [[self.calendar components:NSCalendarUnitMonth fromDate:self.selectedDate] month], dayRange.length);
+//            NSLog(@"current month: %ld, day number: %ld", [[self.calendar components:NSCalendarUnitMonth fromDate:self.selectedDate] month], dayRange.length);
             return dayRange.length;
         }
         default:
@@ -134,7 +150,7 @@
                 [targetComponents setDay:oldDay];
             }
             self.selectedDateComponets = targetComponents;
-            NSLog(@"day:-- %ld > length:-- %ld", [self.selectedDateComponets day], [self.calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:[[self.calendar dateFromComponents:targetComponents] dateByAddingTimeInterval:8*60*60]].length);
+//            NSLog(@"day:-- %ld > length:-- %ld", [self.selectedDateComponets day], [self.calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:[[self.calendar dateFromComponents:targetComponents] dateByAddingTimeInterval:8*60*60]].length);
             break;
         }
         case 2: {
@@ -148,16 +164,23 @@
     }
     self.selectedDate = [self.calendar dateFromComponents:self.selectedDateComponets];
     [pickerView reloadAllComponents]; // 注意，这一句不能掉，否则选择后每一栏的数据不会重载，其作用与UITableView中的reloadData相似
+    [self.delegate scrollEnded:@{@"date":self.selectedDate} pickerViewType:DatePickerType];
     NSLog(@"%ld", self.selectedDateComponets.day);
     NSLog(@"selectedData:  %@", self.selectedDate);
 }
 
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
-    return self.rowHeight?:48.0;
-}
-
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
     return self.size.width / 3;
+}
+
+- (void)updateDate:(NSNotification *)notification{
+    if ((PickerViewType)notification.userInfo[@"PickerViewType"] == DatePickerType) {
+        
+    }
+}
+
+- (void)dealloc{
+    [My_NoteCenter removeObserver:self name:@"dateFailed" object:nil];
 }
 
 @end

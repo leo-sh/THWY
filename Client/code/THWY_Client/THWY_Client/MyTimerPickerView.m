@@ -10,6 +10,7 @@
 
 @interface MyTimerPickerView ()<UIPickerViewDelegate, UIPickerViewDataSource>
 
+@property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) NSCalendar *calendar;
 @property (strong, nonatomic) NSDateComponents *selectedDateComponets;
 
@@ -17,22 +18,42 @@
 
 @implementation MyTimerPickerView
 
+-(void)drawRect:(CGRect)rect{
+    for (UIView *view in self.pickerView.subviews) {
+        if (view.height<1) {
+            [view removeFromSuperview];
+        }
+    }
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.delegate = self;
-        self.dataSource = self;
+        [My_NoteCenter addObserver:self selector:@selector(updateDate:) name:@"dateFailed" object:nil];
+        self.backgroundColor = My_clearColor;
+        self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        self.pickerView.backgroundColor = My_clearColor;
+        self.pickerView.delegate = self;
+        self.pickerView.dataSource = self;
         self.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-                self.selectedDateComponets.timeZone = [[NSTimeZone alloc] initWithName:@"GMT"];
+        self.selectedDateComponets.timeZone = [[NSTimeZone alloc] initWithName:@"GMT"];
         self.selectedDate = [[NSDate date] dateByAddingTimeInterval:8*60*60];
         self.selectedDateComponets = [self.calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:[NSDate date]];
         
         self.hour = self.selectedDateComponets.hour;
         self.minute = self.selectedDateComponets.minute;
         
-        [self selectRow:[self.selectedDateComponets hour]-1 inComponent:0 animated:NO];
-        [self selectRow:[self.selectedDateComponets minute]-1 inComponent:2 animated:NO];
+        [self.pickerView selectRow:[self.selectedDateComponets hour]-1 inComponent:0 animated:NO];
+        [self.pickerView selectRow:[self.selectedDateComponets minute]-1 inComponent:2 animated:NO];
+        
+        [self addSubview:self.pickerView];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+        label.text = @":";
+        label.backgroundColor = My_clearColor;
+        label.center = self.pickerView.center;
+        [self addSubview:label];
     }
     return self;
 }
@@ -48,9 +69,9 @@
             return 24;
         }
         case 1:
-            return 1;
+            return 0;
         case 2:
-            return 59;
+            return 60;
         default:
             return 0;
     }
@@ -61,7 +82,7 @@
     UILabel *dateLabel = (UILabel *)view;
     if (!dateLabel) {
         dateLabel = [[UILabel alloc] init];
-//        dateLabel.height = 40;
+        dateLabel.height = 40;
         [dateLabel setFont:self.font];
         [dateLabel setTextColor:self.fontColor];
         [dateLabel setBackgroundColor:[UIColor clearColor]];
@@ -70,19 +91,17 @@
     switch (component) {
         case 0: {
 //            NSDateComponents *components = [self.calendar components:NSCalendarUnitYear fromDate:self.selectedDate];
-            NSString *currentHour = [NSString stringWithFormat:@"%02ld", 1 + row];
+            NSString *currentHour = [NSString stringWithFormat:@"%02ld", row];
             [dateLabel setText:currentHour];
             dateLabel.textAlignment = NSTextAlignmentRight;
             break;
         }
         case 1:{
-            [dateLabel setText:@":"];
-            dateLabel.textAlignment = NSTextAlignmentCenter;
-            break;
+            
         }
         case 2: {
 
-            NSString *currentHour = [NSString stringWithFormat:@"%02ld", 1 + row];
+            NSString *currentHour = [NSString stringWithFormat:@"%02ld", row];
             [dateLabel setText:currentHour];
             dateLabel.textAlignment = NSTextAlignmentLeft;
             break;
@@ -100,11 +119,11 @@
 
     switch (component) {
         case 0: {
-            self.hour = ++row;
+            self.hour = row;
             break;
         }
         case 2: {
-            self.minute = ++row;
+            self.minute = row;
             break;
         }
         default:
@@ -112,17 +131,24 @@
     }
 
     [pickerView reloadAllComponents]; // 注意，这一句不能掉，否则选择后每一栏的数据不会重载，其作用与UITableView中的reloadData相似
+    [self.delegate scrollEnded:@{@"hour":@(self.hour), @"minute":@(self.minute)} pickerViewType:DatePickerType];
 //    NSLog(@"%d", self.selectedDateComponets.day);
 //    NSLog(@"%@", self.selectedDate);
 }
 
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
-    return self.rowHeight?:48.0;
-}
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
-    return self.size.width / 3-30;
+    return self.size.width / 3;
 }
 
+- (void)updateDate:(NSNotification *)notification{
+    if ((PickerViewType)notification.userInfo[@"PickerViewType"] == TimePickerType) {
+        
+    }
+}
+
+- (void)dealloc{
+    [My_NoteCenter removeObserver:self name:@"dateFailed" object:nil];
+}
 
 @end

@@ -563,6 +563,7 @@
 		79340ED81D66D09D00437AA8 /* AdVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdVO.m; sourceTree = "<group>"; };
 		7934F28D1D5DBCA800643B4D /* MySegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySegmentedControl.h; sourceTree = "<group>"; };
 		7934F28E1D5DBCA800643B4D /* MySegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySegmentedControl.m; sourceTree = "<group>"; };
+		79367C491D7040050076E65B /* PickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewProtocol.h; sourceTree = "<group>"; };
 		794E73D71D4A3A5100267C84 /* WantRepairesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairesVC.h; sourceTree = "<group>"; };
 		794E73D81D4A3A5100267C84 /* WantRepairesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantRepairesVC.m; sourceTree = "<group>"; };
 		794E73DA1D4A3A8800267C84 /* RepairRecordsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairRecordsVC.h; sourceTree = "<group>"; };
@@ -1406,6 +1407,7 @@
 				792824271D541D74001764EB /* WantRepairTableView1.m */,
 				792824291D541D8F001764EB /* WantRepairTableView2.h */,
 				7928242A1D541D8F001764EB /* WantRepairTableView2.m */,
+				79367C491D7040050076E65B /* PickerViewProtocol.h */,
 				798C24ED1D68B3740078D1D9 /* MyDatePickerView.h */,
 				798C24EE1D68B3740078D1D9 /* MyDatePickerView.m */,
 				798C24F01D68DC640078D1D9 /* MyTimerPickerView.h */,

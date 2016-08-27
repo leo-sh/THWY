@@ -184,7 +184,7 @@
         }
     }else if (indexPath.section == 5) {
         if (self.model.vdo && ![self.model.vdo isEqualToString:@""]) {
-            return 150/667.0*My_ScreenH;
+            return 130/667.0*My_ScreenH;
         }else{
             return 0;
         }
