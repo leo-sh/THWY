@@ -56,24 +56,17 @@
 
 + (int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay{
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-    NSString *oneDayStr = [dateFormatter stringFromDate:oneDay];
-    NSString *anotherDayStr = [dateFormatter stringFromDate:anotherDay];
-    NSDate *dateA = [dateFormatter dateFromString:oneDayStr];
-    NSDate *dateB = [dateFormatter dateFromString:anotherDayStr];
-    NSComparisonResult result = [dateA compare:dateB];
-    NSLog(@"date1 : %@, date2 : %@", oneDay, anotherDay);
-    if (result == NSOrderedDescending) {
-        //NSLog(@"Date1  is in the future");
-        return 1;
+    NSUInteger interval1 = [oneDay timeIntervalSince1970];
+    NSUInteger interval2 = [anotherDay timeIntervalSince1970];
+    int result = 0;
+    if (interval1 > interval2) {
+        result = 1;
+    }else if(interval1 < interval2){
+        result = -1;
     }
-    else if (result == NSOrderedAscending){
-        //NSLog(@"Date1 is in the past");
-        return -1;
-    }
-    //NSLog(@"Both dates are the same");
-    return 0;
+    
+    NSLog(@"date1 : %@, date2 : %@ result:%d", oneDay, anotherDay, result);
+    return result;
     
 }
 

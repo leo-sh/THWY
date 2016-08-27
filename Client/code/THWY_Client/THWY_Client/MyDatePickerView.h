@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PickerViewProtocol.h"
 
-@interface MyDatePickerView : UIControl
+@interface MyDatePickerView : UIView
 
 @property (strong, nonatomic) NSDate *startDate;
 @property (strong, nonatomic) NSDate *endDate;

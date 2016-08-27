@@ -49,10 +49,12 @@
     self.datePickerView.fontColor = [UIColor blackColor];
     self.datePickerView.startDate = [NSDate date];
     self.datePickerView.endDate = [NSDate dateWithTimeIntervalSinceNow:180*24*60*60];
+    self.datePickerView.delegate = self;
     
     self.timePickerView = [[MyTimerPickerView alloc] initWithFrame:CGRectMake(10, self.datePickerView.bottom-15 , My_ScreenW-40, 65)];
     self.timePickerView.font = FontSize(CONTENT_FONT+1);
     self.timePickerView.fontColor = [UIColor blackColor];
+    self.timePickerView.delegate = self;
     
     [self.contentView addSubview:self.datePickerView];
     [self.contentView addSubview:self.timePickerView];
@@ -153,12 +155,11 @@
 }
 
 - (void)scrollEnded:(NSDictionary *)data pickerViewType:(PickerViewType)type{
-//    NSDate *date = data[@"date"];
-//    NSInteger hour = [data[@"hour"] integerValue];
-//    NSInteger minute = [data[@"minute"] integerValue];
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    calendar.timeZone = [NSTimeZone localTimeZone];
     NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:self.datePickerView.selectedDate];
+    comp.timeZone = calendar.timeZone;
     [comp setHour:self.timePickerView.hour];
     [comp setMinute:self.timePickerView.minute];
     
@@ -170,7 +171,9 @@
             
         }];
         [alert addAction:action];
-        
+        [self.vc presentViewController:alert animated:YES completion:^{
+            
+        }];
     }
     
 }
