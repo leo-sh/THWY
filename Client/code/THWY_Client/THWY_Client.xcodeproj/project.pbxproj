@@ -232,6 +232,7 @@
 		9437B8721D713EC500B5555C /* IntegralRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437B8711D713EC400B5555C /* IntegralRootCell.m */; };
 		9437B8751D713F0100B5555C /* IntegralTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437B8741D713F0100B5555C /* IntegralTitleCell.m */; };
 		9437B8781D713F8000B5555C /* IntegralDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437B8771D713F8000B5555C /* IntegralDetailCell.m */; };
+		9437B87B1D7161A700B5555C /* FindPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437B87A1D7161A700B5555C /* FindPasswordVC.m */; };
 		9449430D1D5C320200AD2B00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */; };
 		9490C3E31D63F66400988649 /* AssetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490C3E21D63F66400988649 /* AssetView.m */; };
 		9490C3E51D63F8D400988649 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9490C3E41D63F8D400988649 /* Photos.framework */; };
@@ -693,6 +694,8 @@
 		9437B8741D713F0100B5555C /* IntegralTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralTitleCell.m; sourceTree = "<group>"; };
 		9437B8761D713F8000B5555C /* IntegralDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralDetailCell.h; sourceTree = "<group>"; };
 		9437B8771D713F8000B5555C /* IntegralDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralDetailCell.m; sourceTree = "<group>"; };
+		9437B8791D7161A700B5555C /* FindPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPasswordVC.h; sourceTree = "<group>"; };
+		9437B87A1D7161A700B5555C /* FindPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPasswordVC.m; sourceTree = "<group>"; };
 		9449430B1D5C320200AD2B00 /* ZYKeyboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYKeyboardUtil.h; sourceTree = "<group>"; };
 		9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
 		9490C3E11D63F66400988649 /* AssetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetView.h; sourceTree = "<group>"; };
@@ -761,6 +764,8 @@
 			children = (
 				1E0489EB1D48818B00D6B0CC /* LoginViewController.h */,
 				1E0489EC1D48818B00D6B0CC /* LoginViewController.m */,
+				9437B8791D7161A700B5555C /* FindPasswordVC.h */,
+				9437B87A1D7161A700B5555C /* FindPasswordVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1950,6 +1955,7 @@
 				7928242F1D544130001764EB /* AlertEstateTableView.m in Sources */,
 				1E60484A1D4D0E51007CDE32 /* ProclamationTableViewCelll.m in Sources */,
 				94300F411D684DC80037546A /* ZLPhotoPickerCustomToolBarView.m in Sources */,
+				9437B87B1D7161A700B5555C /* FindPasswordVC.m in Sources */,
 				5B197EFF1D48A47800B95DE5 /* ComplaintVO.m in Sources */,
 				5B2571791D47110B00CB4167 /* Foundation+Log.m in Sources */,
 				94300F371D684DC80037546A /* ZLCameraImageView.m in Sources */,

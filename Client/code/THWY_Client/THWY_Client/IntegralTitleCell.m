@@ -23,7 +23,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self updateMainViewHeight:90/375.0*My_ScreenW andTopCell:YES andBottomCell:NO];
         
-        self.usedIntegral = [[UIButton alloc]initWithFrame:CGRectMake(25/375.0*My_ScreenW, 20/375.0*My_ScreenW, 125/375.0*My_ScreenW, 30/375.0*My_ScreenW)];
+        self.usedIntegral = [[UIButton alloc]initWithFrame:CGRectMake(25/375.0*My_ScreenW, 20/375.0*My_ScreenW, 125/375.0*My_ScreenW, 32/375.0*My_ScreenW)];
         self.usedIntegral.titleLabel.font = FontSize(CONTENT_FONT + 1);
         self.usedIntegral.titleLabel.adjustsFontSizeToFitWidth = YES;
         [self.usedIntegral setTitle:@"积分抵扣:0" forState:UIControlStateNormal];
@@ -32,7 +32,7 @@
         self.usedIntegral.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.usedIntegral.layer.borderWidth = 0.5;
         self.usedIntegral.layer.borderColor = CellUnderLineColor.CGColor;
-        self.usedIntegral.layer.cornerRadius = 4.0;
+        self.usedIntegral.layer.cornerRadius = 3.0/375.0*My_ScreenW;
         [self.mainView addSubview:self.usedIntegral];
         
         self.surplusIntegral = [[UIButton alloc]initWithFrame:CGRectMake(self.mainView.width - self.usedIntegral.x - self.usedIntegral.width, self.usedIntegral.y, self.usedIntegral.width, self.usedIntegral.height)];

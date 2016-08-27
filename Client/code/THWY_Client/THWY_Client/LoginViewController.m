@@ -7,8 +7,7 @@
 //
 
 #import "LoginViewController.h"
-#import "Masonry.h"
-#import "UIView+Extension.h"
+#import "FindPasswordVC.h"
 #import "userAndPassWordTextField.h"
 #import "BlueCheckButton.h"
 #import "ServicesManager.h"
@@ -44,8 +43,14 @@
     [self createButton];
 }
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 -(void)showIntroView
@@ -216,8 +221,6 @@
     self.findPsdBtn = [[BlueCheckButton alloc]initDefaultImageName:@"" choosedImageName:@"" title:@"密码找回"];
     [self.view addSubview:self.findPsdBtn];
     
-    //隐藏按钮
-    self.findPsdBtn.alpha = 0;
     CGFloat adminLoginBtnRightOffset = -self.view.width *0.036;
     CGFloat adminLoginBtnWidth = self.view.width *0.2;
     CGFloat adminLoginBtnHeight = self.view.height *0.02;
@@ -230,8 +233,6 @@
     }];
     
     self.findPsdBtn.titleLabel.font = [UIFont systemFontOfSize:adminLoginBtnHeight];
-    
-    
     [self.findPsdBtn addTarget:self action:@selector(clickAdminLoginBtn) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -267,7 +268,9 @@
 
 - (void)clickAdminLoginBtn
 {
-    NSLog(@"密码找回");
+    FindPasswordVC* findVC = [[FindPasswordVC alloc]init];
+    
+    [self.navigationController pushViewController:findVC animated:YES];
 }
 
 - (void)clickRememberPassWordBtn
