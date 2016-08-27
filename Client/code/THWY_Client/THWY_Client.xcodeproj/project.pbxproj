@@ -228,6 +228,10 @@
 		94300F4F1D684DC80037546A /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F311D684DC70037546A /* DACircularProgressView.m */; };
 		94300F501D684DC80037546A /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300F331D684DC70037546A /* DALabeledCircularProgressView.m */; };
 		94300F511D684DC80037546A /* ZLPhotoLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 94300F341D684DC70037546A /* ZLPhotoLib.bundle */; };
+		9437B86E1D7134E100B5555C /* IntegralVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437B86D1D7134E100B5555C /* IntegralVC.m */; };
+		9437B8721D713EC500B5555C /* IntegralRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437B8711D713EC400B5555C /* IntegralRootCell.m */; };
+		9437B8751D713F0100B5555C /* IntegralTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437B8741D713F0100B5555C /* IntegralTitleCell.m */; };
+		9437B8781D713F8000B5555C /* IntegralDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437B8771D713F8000B5555C /* IntegralDetailCell.m */; };
 		9449430D1D5C320200AD2B00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */; };
 		9490C3E31D63F66400988649 /* AssetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490C3E21D63F66400988649 /* AssetView.m */; };
 		9490C3E51D63F8D400988649 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9490C3E41D63F8D400988649 /* Photos.framework */; };
@@ -681,6 +685,14 @@
 		94300F321D684DC70037546A /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
 		94300F331D684DC70037546A /* DALabeledCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DALabeledCircularProgressView.m; sourceTree = "<group>"; };
 		94300F341D684DC70037546A /* ZLPhotoLib.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZLPhotoLib.bundle; sourceTree = "<group>"; };
+		9437B86C1D7134E100B5555C /* IntegralVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralVC.h; sourceTree = "<group>"; };
+		9437B86D1D7134E100B5555C /* IntegralVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralVC.m; sourceTree = "<group>"; };
+		9437B8701D713EC400B5555C /* IntegralRootCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralRootCell.h; sourceTree = "<group>"; };
+		9437B8711D713EC400B5555C /* IntegralRootCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralRootCell.m; sourceTree = "<group>"; };
+		9437B8731D713F0100B5555C /* IntegralTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralTitleCell.h; sourceTree = "<group>"; };
+		9437B8741D713F0100B5555C /* IntegralTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralTitleCell.m; sourceTree = "<group>"; };
+		9437B8761D713F8000B5555C /* IntegralDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralDetailCell.h; sourceTree = "<group>"; };
+		9437B8771D713F8000B5555C /* IntegralDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralDetailCell.m; sourceTree = "<group>"; };
 		9449430B1D5C320200AD2B00 /* ZYKeyboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYKeyboardUtil.h; sourceTree = "<group>"; };
 		9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
 		9490C3E11D63F66400988649 /* AssetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetView.h; sourceTree = "<group>"; };
@@ -1142,6 +1154,7 @@
 		5B25714E1D47106500CB4167 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				9437B86F1D713E8C00B5555C /* IntegralViews */,
 				9490C3E11D63F66400988649 /* AssetView.h */,
 				9490C3E21D63F66400988649 /* AssetView.m */,
 				9400B9801D619C0D00E49F0E /* SVProgressHUD.h */,
@@ -1363,6 +1376,7 @@
 		790506491D4C88F900072AAC /* MainVCs */ = {
 			isa = PBXGroup;
 			children = (
+				9437B86B1D7134BA00B5555C /* IntegralVCs */,
 				5B2571891D47120700CB4167 /* MainVC.h */,
 				5B25718A1D47120700CB4167 /* MainVC.m */,
 				79F2B6A41D4DF0C400AA94E0 /* WantRepaireVCs */,
@@ -1762,6 +1776,28 @@
 			path = DACircularProgress;
 			sourceTree = "<group>";
 		};
+		9437B86B1D7134BA00B5555C /* IntegralVCs */ = {
+			isa = PBXGroup;
+			children = (
+				9437B86C1D7134E100B5555C /* IntegralVC.h */,
+				9437B86D1D7134E100B5555C /* IntegralVC.m */,
+			);
+			name = IntegralVCs;
+			sourceTree = "<group>";
+		};
+		9437B86F1D713E8C00B5555C /* IntegralViews */ = {
+			isa = PBXGroup;
+			children = (
+				9437B8701D713EC400B5555C /* IntegralRootCell.h */,
+				9437B8711D713EC400B5555C /* IntegralRootCell.m */,
+				9437B8731D713F0100B5555C /* IntegralTitleCell.h */,
+				9437B8741D713F0100B5555C /* IntegralTitleCell.m */,
+				9437B8761D713F8000B5555C /* IntegralDetailCell.h */,
+				9437B8771D713F8000B5555C /* IntegralDetailCell.m */,
+			);
+			name = IntegralViews;
+			sourceTree = "<group>";
+		};
 		9449430A1D5C320200AD2B00 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1904,6 +1940,7 @@
 				94300F3C1D684DC80037546A /* ZLPhotoPickerBrowserViewController+SignlePhotoBrowser.m in Sources */,
 				1E5F6CDB1D507239004DC6F6 /* PayInfoViewController.m in Sources */,
 				5B2572211D47177B00CB4167 /* SDWebImageDownloaderOperation.m in Sources */,
+				9437B86E1D7134E100B5555C /* IntegralVC.m in Sources */,
 				1E8E8F371D66567A003D8CBC /* TYAlertView.m in Sources */,
 				5B2572231D47177B00CB4167 /* SDWebImagePrefetcher.m in Sources */,
 				5BED6BC11D499DB900C137C5 /* EstateVO.m in Sources */,
@@ -1920,6 +1957,7 @@
 				79340ED91D66D09D00437AA8 /* AdVO.m in Sources */,
 				5B197F0B1D48AD2C00B95DE5 /* GoodVO.m in Sources */,
 				798C24F21D68DC640078D1D9 /* MyTimerPickerView.m in Sources */,
+				9437B8781D713F8000B5555C /* IntegralDetailCell.m in Sources */,
 				94F7CE801D6149D90034E9FC /* BannerNotice.m in Sources */,
 				5B25717C1D47110B00CB4167 /* NSDate+Helper.m in Sources */,
 				1E7527B41D52349F00AEDEC0 /* MJRefreshNormalHeader.m in Sources */,
@@ -1934,6 +1972,7 @@
 				9400B9821D619C0D00E49F0E /* SVProgressHUD.m in Sources */,
 				1E7527B21D52349F00AEDEC0 /* MJRefreshBackStateFooter.m in Sources */,
 				94300F4B1D684DC80037546A /* ZLPhotoPickerCollectionViewCell.m in Sources */,
+				9437B8751D713F0100B5555C /* IntegralTitleCell.m in Sources */,
 				79270C401D61875900E29568 /* BussnessSelectButton.m in Sources */,
 				1E7527711D51EF4E00AEDEC0 /* BlueRedioButton.m in Sources */,
 				5B2572241D47177B00CB4167 /* UIButton+WebCache.m in Sources */,
@@ -2001,6 +2040,7 @@
 				5B2572221D47177B00CB4167 /* SDWebImageManager.m in Sources */,
 				79F2B6AB1D4DF18500AA94E0 /* BussnessDetailVC.m in Sources */,
 				5B197EEA1D487DAC00B95DE5 /* MASLayoutConstraint.m in Sources */,
+				9437B8721D713EC500B5555C /* IntegralRootCell.m in Sources */,
 				79F2B6B31D4E010700AA94E0 /* MerchargeListCell.m in Sources */,
 				1E7527B11D52349F00AEDEC0 /* MJRefreshBackNormalFooter.m in Sources */,
 				1E7527BA1D52349F00AEDEC0 /* UIScrollView+MJRefresh.m in Sources */,

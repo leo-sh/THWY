@@ -403,7 +403,7 @@
                          @"BussnessCircleVC",//社区商圈
                          @"PayViewController",//缴费台账
                          @"ComplainViewController",//我要投诉
-                         @"PersonInfoViewController",//账号信息
+                         @"IntegralVC",//我的积分
                          @"SuggestViewController",//建议意见
                          @"ProclamationViewController",//业主和公告
                          @"PushSettingVC",//推送设置
@@ -418,9 +418,13 @@
 }
 
 - (void)showUserInfoVC{
-    UIButton *button = [[UIButton alloc] init];
-    button.tag = 106;
-    [self showVC:button];
+    id vc = [[NSClassFromString(@"PersonInfoViewController") alloc]init];
+    
+    if (vc) {
+        [self.navigationController pushViewController:(UIViewController *)vc animated:YES];
+    }else{
+        NSLog(@"vc  is  nill");
+    }
 }
 
 - (void)dealloc{
