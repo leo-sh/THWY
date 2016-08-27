@@ -360,12 +360,12 @@
 
 - (void)showAdDetail:(UIButton *)btn{
     
-    if (self.adLabels.count-1<btn.tag-501) {
+    if (self.adLabels.count-1<btn.tag-500) {
         return;
     }
     
     ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc] init];
-    if (self.adLabels[btn.tag-501]) {
+    if (self.adLabels[btn.tag-500]) {
         detail.proclamationId = [self.adLabels[self.scrollIndex] Id];
         detail.type = 1;
         [self.navigationController pushViewController:detail animated:YES];
