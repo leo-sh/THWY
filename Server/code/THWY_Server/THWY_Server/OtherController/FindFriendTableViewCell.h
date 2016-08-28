@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface FindFriendTableViewCell : UITableViewCell
-
+@property NSString *admin_id;
+- (void)setIcon:(NSString *)icon NameAndphone:(NSString *)nameAndPhone EstateAndJob:(NSString *)estateAndJob;
 @end

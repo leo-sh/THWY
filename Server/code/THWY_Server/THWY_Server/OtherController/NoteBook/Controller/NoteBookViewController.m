@@ -6,7 +6,7 @@
 //  Copyright © 2016年 SXZ. All rights reserved.
 //
 
-#import "WorkRecordViewController.h"
+#import "NoteBookViewController.h"
 
 #import "Masonry.h"
 #import "ProclamationTableViewCell.h"
@@ -17,7 +17,7 @@
 #import "RunSliderLabel.h"
 #import "WRAlertView.h"
 #define TopViewH 60
-@interface WorkRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface NoteBookViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property UITableView *tableView;
 @property UISegmentedControl *segmentedControl;
 @property NSMutableArray *data;
@@ -33,7 +33,7 @@
 @property NSString *cellHeightString;
 @end
 
-@implementation WorkRecordViewController
+@implementation NoteBookViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,7 +53,7 @@
     
     self.data = [NSMutableArray array];
     self.clickStatuA = [NSMutableArray array];
-    self.method = GetAdministrationData;
+    self.method = GetBusinessData;
     self.page = 0;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeHeight:) name:@"giveCell" object:nil];
@@ -64,9 +64,9 @@
 - (void)getData
 {
     [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
-//    [[ServicesManager getAPI]getDocTypes:^(NSString *errorMsg, NSArray *list) {
-//        NSLog(@"12313");
-//    }];
+    //    [[ServicesManager getAPI]getDocTypes:^(NSString *errorMsg, NSArray *list) {
+    //        NSLog(@"12313");
+    //    }];
     if (!self.refreshBtnClickStatu) {
         self.public = 2;
         self.belong = 0;
@@ -78,7 +78,7 @@
     }
     if (self.method == GetAdministrationData) {
         
-
+        
         
         [[ServicesManager getAPI]getDocs:self.page docTypeId:@"1" public:self.public belong:self.belong onComplete:^(NSString *errorMsg, NSArray *list) {
             
@@ -132,7 +132,7 @@
             else
             {
                 [self.data addObjectsFromArray:list];
-
+                
                 for (int i = 0; i < list.count; i ++) {
                     [self.clickStatuA addObject:[NSNumber numberWithBool:NO]];
                 }                dispatch_async(dispatch_get_main_queue(), ^{
@@ -167,7 +167,7 @@
         make.height.mas_equalTo(TopViewH);
     }];
     self.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"工作日志",@"心得笔记"]];
-    self.segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl.selectedSegmentIndex = 1;
     self.segmentedControl.frame = CGRectMake(40, 15,My_ScreenW - 100 ,  40);
     self.segmentedControl.center = CGPointMake(My_ScreenW/2, self.segmentedControl.center.y);
     self.segmentedControl.layer.cornerRadius = 10;
@@ -234,7 +234,7 @@
         [btn setLeftImageView:@"记录" andTitle:@"记录"];
         [btn addTarget:self action:@selector(clickAdd) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:btn];
-
+        
     }];
     
     
@@ -274,14 +274,14 @@
     UIView *view = [[UIView alloc]init];
     
     view.backgroundColor = WhiteAlphaColor;
-
+    
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 15, 15)];
     
     CGFloat top = 10;
     CGFloat height = 20;
     
     CGFloat btnW = 70;
-//    CGFloat btnH = 20;
+    //    CGFloat btnH = 20;
     CGFloat btnL = 10;
     
     CGFloat labelL = imageView.right + 10;
@@ -293,7 +293,7 @@
     [view addSubview:label];
     
     imageView.image = [UIImage imageNamed:@"属性-公开"];
-//    imageView.backgroundColor = [UIColor whiteColor];
+    //    imageView.backgroundColor = [UIColor whiteColor];
     [view addSubview:imageView];
     
     view.tag = 300 + section;
@@ -323,12 +323,12 @@
         [delete setLeftImageView:@"b删除" andTitle:@"删除"];
         
         [delete addTarget:self action:@selector(clickDelete:) forControlEvents:UIControlEventTouchUpInside];
-
+        
         
         delete.titleLabel.font = FontSize(CONTENT_FONT);
         
         [view addSubview:delete];
-
+        
     }
     else
     {
@@ -343,12 +343,12 @@
         else
         {
             nameLabel.text = [self.data[section] real_name];
-
+            
         }
         nameLabel.font = FontSize(CONTENT_FONT);
         nameLabel.textAlignment = NSTextAlignmentCenter;
         [view addSubview:nameLabel];
-
+        
     }
     
     UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(labelL, label.bottom + 10, tableView.width, Content_Ip_Font)];
@@ -357,8 +357,6 @@
     
     timeLabel.text = [NSString stringDateFromTimeInterval:[time integerValue] withFormat:@"YYYY-MM-dd hh:ss"];
     timeLabel.font = FontSize(Content_Ip_Font);
-    timeLabel.textColor = CellUnderLineColor;
-    
     [view addSubview:timeLabel];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(click:)];
@@ -381,7 +379,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-
+    
     return 0.01;
 }
 

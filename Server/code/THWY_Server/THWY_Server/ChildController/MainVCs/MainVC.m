@@ -329,7 +329,7 @@
                          @"RepairStatistisVC",//报修统计 105
                          @"MyFriendViewController",//我的好友 106
                          @"ProclamationViewController",//物业公告 107
-                         @"",//心得笔记 108
+                         @"NoteBookViewController",//心得笔记 108
                          @"WhiteListViewController",//ip白名单 109
                          @"PersonInfoViewController",//个人信息 110
                          @"PushSettingVC",//推送设置 //111

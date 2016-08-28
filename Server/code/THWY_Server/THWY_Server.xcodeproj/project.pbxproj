@@ -20,6 +20,7 @@
 		1EC86A861D6C4B470094BAB5 /* ProclamationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC86A811D6C4B470094BAB5 /* ProclamationViewController.m */; };
 		1EC86A871D6C4B470094BAB5 /* ProclamationTableViewCelll.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC86A841D6C4B470094BAB5 /* ProclamationTableViewCelll.m */; };
 		1EDB8D871D713D0000DDEE56 /* FindFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB8D861D713D0000DDEE56 /* FindFriendTableViewCell.m */; };
+		1EDEE6B01D72FBC200A1755F /* NoteBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDEE6AF1D72FBC200A1755F /* NoteBookViewController.m */; };
 		1EE570001D6B0C7B009B0FE0 /* WhiteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE56FFC1D6B0C7B009B0FE0 /* WhiteListViewController.m */; };
 		1EE570011D6B0C7B009B0FE0 /* WhiteListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE56FFF1D6B0C7B009B0FE0 /* WhiteListTableViewCell.m */; };
 		1EEB030E1D6401F800CACF00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB030C1D6401F800CACF00 /* ZYKeyboardUtil.m */; };
@@ -259,6 +260,8 @@
 		1EC86A841D6C4B470094BAB5 /* ProclamationTableViewCelll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProclamationTableViewCelll.m; sourceTree = "<group>"; };
 		1EDB8D851D713D0000DDEE56 /* FindFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindFriendTableViewCell.h; sourceTree = "<group>"; };
 		1EDB8D861D713D0000DDEE56 /* FindFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindFriendTableViewCell.m; sourceTree = "<group>"; };
+		1EDEE6AE1D72FBC200A1755F /* NoteBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBookViewController.h; sourceTree = "<group>"; };
+		1EDEE6AF1D72FBC200A1755F /* NoteBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBookViewController.m; sourceTree = "<group>"; };
 		1EE56FFB1D6B0C7B009B0FE0 /* WhiteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteListViewController.h; sourceTree = "<group>"; };
 		1EE56FFC1D6B0C7B009B0FE0 /* WhiteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteListViewController.m; sourceTree = "<group>"; };
 		1EE56FFE1D6B0C7B009B0FE0 /* WhiteListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteListTableViewCell.h; sourceTree = "<group>"; };
@@ -759,6 +762,31 @@
 			children = (
 				1EC86A831D6C4B470094BAB5 /* ProclamationTableViewCell.h */,
 				1EC86A841D6C4B470094BAB5 /* ProclamationTableViewCelll.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1EDEE6AB1D72FBAB00A1755F /* NoteBook */ = {
+			isa = PBXGroup;
+			children = (
+				1EDEE6AC1D72FBAB00A1755F /* Controller */,
+				1EDEE6AD1D72FBAB00A1755F /* View */,
+			);
+			path = NoteBook;
+			sourceTree = "<group>";
+		};
+		1EDEE6AC1D72FBAB00A1755F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1EDEE6AE1D72FBC200A1755F /* NoteBookViewController.h */,
+				1EDEE6AF1D72FBC200A1755F /* NoteBookViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1EDEE6AD1D72FBAB00A1755F /* View */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1407,6 +1435,7 @@
 		79270EA11D61AE2600E29568 /* OtherController */ = {
 			isa = PBXGroup;
 			children = (
+				1EDEE6AB1D72FBAB00A1755F /* NoteBook */,
 				1EEF9A6C1D6E1C010046E688 /* Myfriend */,
 				1E84CE101D6C4F040010BA7B /* Person */,
 				1E84CE071D6C4EE50010BA7B /* WorkRecord */,
@@ -1983,6 +2012,7 @@
 				1E4704B31D706C5100C3F1B1 /* COTableViewCell.m in Sources */,
 				79270DD51D61ACB100E29568 /* MASViewConstraint.m in Sources */,
 				79F60D7F1D6A07A600A8E2D2 /* ZLPhotoPickerImageView.m in Sources */,
+				1EDEE6B01D72FBC200A1755F /* NoteBookViewController.m in Sources */,
 				791B4DF51D645DD500AF9371 /* ProjectCell.m in Sources */,
 				79270E041D61ACB100E29568 /* SDWebImageCompat.m in Sources */,
 				79270E081D61ACB100E29568 /* SDWebImageManager.m in Sources */,
