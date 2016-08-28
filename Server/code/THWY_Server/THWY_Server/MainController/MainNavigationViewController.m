@@ -34,7 +34,10 @@
         //聊天消息
         [[UDManager getUD] saveEndId:Id andUserId:userInfo[@"s_admin_id"]];
         
+        CommunicateViewController *vc = [CommunicateViewController shareCommunicateViewController];
         
+            vc.s_admin_id = userInfo[@"s_admin_id"];
+
 //        Id                 聊天记录ID值
 //        s_photo            发送方头像绝对路径
 //        re_photo           接收方头像绝对路径

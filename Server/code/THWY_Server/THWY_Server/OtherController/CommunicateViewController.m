@@ -21,7 +21,7 @@
 @implementation CommunicateViewController
 + (instancetype)shareCommunicateViewController
 {
-    static CommunicateViewController *vc;
+    static CommunicateViewController *vc = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         vc = [[CommunicateViewController alloc]init];
