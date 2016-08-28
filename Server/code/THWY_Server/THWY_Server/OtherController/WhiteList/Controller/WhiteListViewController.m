@@ -56,13 +56,14 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
 
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(10);
         make.left.mas_equalTo(5);
         make.right.mas_equalTo(-5);
-        make.bottom.mas_equalTo(-10);
+        make.bottom.mas_equalTo(-70);
     }];
     
     UIView *view = [[UIView alloc]init];
@@ -72,7 +73,7 @@
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(self.tableView.mas_bottom).with.offset(-70);
+        make.top.equalTo(self.tableView.mas_bottom).with.offset(0);
         make.bottom.mas_equalTo(0);
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
@@ -104,6 +105,13 @@
     }
     cell.width = tableView.width;
     [cell setEstate:[self.data[indexPath.row] the_user] IP:[self.data[indexPath.row] ip]Id:[self.data[indexPath.row] Id]];
+    
+    if (indexPath.row != self.data.count - 1) {
+        UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, cell.bottom, tableView.width, 0.5)];
+        line.backgroundColor = CellUnderLineColor;
+        
+        [cell.contentView addSubview:line];
+    }
     cell.backgroundColor = WhiteAlphaColor;
     
     NSLog(@"tableViewWidth:%f",tableView.width);

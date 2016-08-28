@@ -9,6 +9,8 @@
 #import "MyFriendViewController.h"
 #import "ServicesManager.h"
 #import "MyFriendTableViewCell.h"
+#import "SVProgressHUD.h"
+#import "FindFriendTableViewCell.h"
 #define TopViewH 60
 @interface MyFriendViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property UITableView *tableView;
@@ -146,21 +148,52 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MyFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    UITableViewCell *returnCell;
     
-    if (cell == nil) {
-        cell = [[MyFriendTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    if (self.index == 0) {
+        MyFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        
+        if (cell == nil) {
+            cell = [[MyFriendTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        }
+        cell.width = tableView.width;
+        
+        UserVO *temp = self.data[indexPath.row];
+        
+        NSString *content = [NSString stringWithFormat:@"%@/%@",temp.real_name,temp.up_group.group];
+        
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [cell setImage:@"Avatar" Content:content ID:@"1"];
+        cell.phoneNumber = temp.cellphone;
+        
+        returnCell = cell;
+
     }
-    cell.width = tableView.width;
+    else
+    {
+        FindFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
+        
+        if (cell == nil) {
+            cell = [[FindFriendTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell2"];
+        }
+        
+        cell.width = tableView.width;
+        
+        UserVO *temp = self.data[indexPath.section];
+        
+        cell.admin_id = temp.admin_id;
+
+        NSString *nameAndPhone = [NSString stringWithFormat:@"%@  %@",temp.real_name,temp.cellphone];
+        
+        NSString *estateAndJob = [NSString stringWithFormat:@"%@ %@",temp.up_group.project,temp.up_group.group];
+        
+        [cell setIcon:@"" NameAndphone:nameAndPhone EstateAndJob:estateAndJob];
+        
+        returnCell = cell;
+        
+    }
     
-    UserVO *temp = self.data[indexPath.row];
-    
-    NSString *content = [NSString stringWithFormat:@"%@/%@",temp.real_name,temp.up_group.group];
-    
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setImage:@"Avatar" Content:content ID:@"1"];
-    cell.phoneNumber = temp.cellphone;
-    return cell;
+    return returnCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -180,9 +213,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MyFriendTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (self.index == 0) {
+        MyFriendTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        cell.clickStatu =!cell.clickStatu;
+    }
     
-    cell.clickStatu =!cell.clickStatu;
 }
 
 #pragma mark -- segmentIndex改变的方法
@@ -205,7 +241,60 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    
+    [self searchFriendInfo];
+    
     return YES;
+}
+
+- (void)searchFriendInfo
+{
+ 
+    NSString *string = @"^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d{8}$";
+    NSString *string2 = @"([\u4e00-\u9fa5]{2,4})";
+    NSPredicate *phonePredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",string];
+    NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",string2];
+    if ([phonePredicate evaluateWithObject:self.searchFriend.text]) {
+        [[ServicesManager getAPI] findFriends:self.searchFriend.text name:@"" onComplete:^(NSString *errorMsg, NSArray *list) {
+            
+            if (errorMsg) {
+                [SVProgressHUD showWithStatus:errorMsg];
+            }
+            else if(list.count != 0)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    self.data.array = list;
+                    
+                    [self.tableView reloadData];
+                    
+                });
+            }
+            
+        }];
+    }
+    else if ([namePredicate evaluateWithObject:self.searchFriend.text])
+    {
+        [[ServicesManager getAPI] findFriends:@"" name:self.searchFriend.text onComplete:^(NSString *errorMsg, NSArray *list) {
+            
+            if (errorMsg) {
+                [SVProgressHUD showWithStatus:errorMsg];
+            }
+            else if(list.count != 0)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    self.data.array = list;
+                    
+                    [self.tableView reloadData];
+                    
+                });
+            }
+            
+        }];
+    }
+    
+
 }
 
 /*

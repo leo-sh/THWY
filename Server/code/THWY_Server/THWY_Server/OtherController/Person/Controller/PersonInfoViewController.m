@@ -248,17 +248,11 @@
     if (isChanged) {
         
         if ([[[self.canUpdateInfo[4] textField] text] length] == 0) {
-            [SVProgressHUD showWithStatus:@"联系电话不能为空"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [SVProgressHUD dismiss];
-            });
+            [SVProgressHUD showErrorWithStatus:@"联系电话不能为空"];
         }
         else if([[[self.canUpdateInfo[5] textField] text] length] == 0)
         {
-            [SVProgressHUD showWithStatus:@"密码不能为空"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [SVProgressHUD dismiss];
-            });
+            [SVProgressHUD showErrorWithStatus:@"密码不能为空"];
 
         }
         else

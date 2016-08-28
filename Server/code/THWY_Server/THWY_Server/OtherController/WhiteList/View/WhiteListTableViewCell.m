@@ -52,6 +52,8 @@
     
     self.IPLabel.frame = CGRectMake(self.estateLabel.right + 15, 0, IpWidth, self.height);
     
+    self.IPLabel.textColor = CellUnderLineColor;
+    
     [self.ReviseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(70, CONTENT_FONT));
