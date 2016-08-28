@@ -21,4 +21,14 @@
 ///     -   yyyy-MM-dd HH:mm(更早期)
 - (NSString *)ff_dateDescription;
 
+/**
+ *  @brief 比较两个日期
+ *
+ *  @param oneDay     <#oneDay description#>
+ *  @param anotherDay <#anotherDay description#>
+ *
+ *  @return 1 0 -1
+ */
++ (int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay;
+
 @end

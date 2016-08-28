@@ -10,31 +10,51 @@
 
 @interface MyDatePickerView ()<UIPickerViewDelegate, UIPickerViewDataSource>
 
+@property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) NSCalendar *calendar;
 @property (strong, nonatomic) NSDateComponents *selectedDateComponets;
+@property (strong, nonatomic) NSDate *originDate;
 
 @end
 
 @implementation MyDatePickerView
 
+-(void)drawRect:(CGRect)rect{
+    for (UIView *view in self.pickerView.subviews) {
+        if (view.height<1) {
+            [view removeFromSuperview];
+        }
+    }
+
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.delegate = self;
-        self.dataSource = self;
+        
+        [My_NoteCenter addObserver:self selector:@selector(updateDate:) name:@"dateFailed" object:nil];
+        
+        self.backgroundColor = My_clearColor;
+        self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        self.pickerView.delegate = self;
+        self.pickerView.dataSource = self;
         self.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         self.calendar.timeZone = [NSTimeZone localTimeZone];
         self.selectedDate = [[NSDate date] dateByAddingTimeInterval:8*60*60];
+        self.originDate = self.selectedDate;
         self.selectedDateComponets = [self.calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:[NSDate date]];
         self.selectedDateComponets.timeZone = self.calendar.timeZone;
 
         self.startDate = [NSDate date];
         self.endDate = [NSDate date];
         
-        [self selectRow:[self.selectedDateComponets month]-1 inComponent:1 animated:NO];
-        [self selectRow:[self.selectedDateComponets day]-1 inComponent:2 animated:NO];
+        [self.pickerView selectRow:[self.selectedDateComponets month]-1 inComponent:1 animated:NO];
+        [self.pickerView selectRow:[self.selectedDateComponets day]-1 inComponent:2 animated:NO];
         
+        [self addSubview:self.pickerView];
+        NSLog(@"selectedData:  %@", self.selectedDate);
+
     }
     return self;
 }
@@ -49,7 +69,6 @@
         case 0: { // 第一栏为年，这里startDate和endDate为起始时间和截止时间，请自行指定
             NSDateComponents *startCpts = [self.calendar components:NSCalendarUnitYear fromDate:self.startDate];
             NSDateComponents *endCpts = [self.calendar components:NSCalendarUnitYear fromDate:self.endDate];
-//            NSDateComponents *endCpts = self.selectedDateComponets;
             return [endCpts year] - [startCpts year] + 1;
         }
         case 1: // 第二栏为月份
@@ -58,7 +77,7 @@
             NSRange dayRange = [self.calendar rangeOfUnit:NSCalendarUnitDay
                                                    inUnit:NSCalendarUnitMonth
                                                   forDate:self.selectedDate];
-            NSLog(@"current month: %ld, day number: %ld", [[self.calendar components:NSCalendarUnitMonth fromDate:self.selectedDate] month], dayRange.length);
+//            NSLog(@"current month: %ld, day number: %ld", [[self.calendar components:NSCalendarUnitMonth fromDate:self.selectedDate] month], dayRange.length);
             return dayRange.length;
         }
         default:
@@ -78,8 +97,8 @@
     
     switch (component) {
         case 0: {
-            NSDateComponents *components = [self.calendar components:NSCalendarUnitYear fromDate:self.selectedDate];
-            NSString *currentYear = [NSString stringWithFormat:@"%ld", [components year] + row];
+            NSDateComponents *components = [self.calendar components:NSCalendarUnitYear fromDate:self.startDate];
+            NSString *currentYear = [NSString stringWithFormat:@"%ld", [components year]+row];
             [dateLabel setText:currentYear];
             dateLabel.textAlignment = NSTextAlignmentRight;
             break;
@@ -93,18 +112,14 @@
             break;
         }
         case 2: {
-            NSRange dateRange = [self.calendar rangeOfUnit:NSCalendarUnitDay
-                                                    inUnit:NSCalendarUnitMonth
-                                                   forDate:self.selectedDate];
-            NSString *currentDay = [NSString stringWithFormat:@"%ld", (row + 1) % (dateRange.length + 1)];
-            [dateLabel setText:currentDay];
+            [dateLabel setText:[NSString stringWithFormat:@"%ld", row+1]];
             dateLabel.textAlignment = NSTextAlignmentLeft;
             break;
         }
         default:
             break;
     }
-    
+    self.originDate = self.selectedDate;
     return dateLabel;
 }
 
@@ -116,29 +131,32 @@
             NSDateComponents *indicatorComponents = [self.calendar components:NSCalendarUnitYear
                                                                      fromDate:self.startDate];
             NSInteger year = [indicatorComponents year] + row;
-            NSDateComponents *targetComponents = [self.calendar components:unitFlags
-                                                                  fromDate:self.selectedDate];
-            [targetComponents setYear:year];
-            self.selectedDateComponets = targetComponents;
+            [self.selectedDateComponets setYear:year];
             break;
         }
         case 1: {
             NSDateComponents *targetComponents = [self.calendar components:unitFlags fromDate:self.selectedDate];
-            targetComponents.timeZone = [NSTimeZone localTimeZone];
+            targetComponents.timeZone = self.calendar.timeZone;
             [targetComponents setMonth:row + 1];
             NSInteger oldDay = [targetComponents day];
             [targetComponents setDay:1];
             if ([self.selectedDateComponets day]>[self.calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:[self.calendar dateFromComponents:targetComponents]].length) {
-                [pickerView selectRow:0 inComponent:2 animated:YES];
+                [pickerView selectRow:0 inComponent:2 animated:NO];
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                    if ([NSDate compareOneDay:[self.calendar dateFromComponents:targetComponents] withAnotherDay:[[NSDate date] dateByAddingTimeInterval:8*60*60]] == -1) {
+//                        [My_NoteCenter postNotificationName:@"dateFailed" object:nil userInfo:@{@"PickerViewType":@(DatePickerType)}];
+//                        
+//                    }
+//                });
             }else{
                 [targetComponents setDay:oldDay];
             }
             self.selectedDateComponets = targetComponents;
-            NSLog(@"day:-- %ld > length:-- %ld", [self.selectedDateComponets day], [self.calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:[[self.calendar dateFromComponents:targetComponents] dateByAddingTimeInterval:8*60*60]].length);
             break;
         }
         case 2: {
             NSDateComponents *targetComponents = [self.calendar components:unitFlags fromDate:self.selectedDate];
+            targetComponents.timeZone = self.calendar.timeZone;
             [targetComponents setDay:row+1];
             self.selectedDateComponets = targetComponents;
             break;
@@ -148,16 +166,33 @@
     }
     self.selectedDate = [self.calendar dateFromComponents:self.selectedDateComponets];
     [pickerView reloadAllComponents]; // 注意，这一句不能掉，否则选择后每一栏的数据不会重载，其作用与UITableView中的reloadData相似
-    NSLog(@"%ld", self.selectedDateComponets.day);
     NSLog(@"selectedData:  %@", self.selectedDate);
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
-    return self.rowHeight?:48.0;
+    [self.delegate scrollEnded:@{@"date":self.selectedDate} pickerViewType:DatePickerType];
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
     return self.size.width / 3;
+}
+
+- (void)updateDate:(NSNotification *)notification{
+    if ([notification.userInfo[@"PickerViewType"] integerValue] == DatePickerType) {
+        self.selectedDate = self.originDate;
+        self.selectedDateComponets = [self.calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:self.selectedDate];
+        NSInteger year = [self.selectedDateComponets year];
+        NSInteger month = [self.selectedDateComponets month];
+        NSInteger day = [self.selectedDateComponets day];
+        [self.pickerView selectRow:month-1 inComponent:1 animated:NO];
+        [self.pickerView selectRow:day-1 inComponent:2 animated:NO];
+        
+        NSDateComponents *indicatorComponents = [self.calendar components:NSCalendarUnitYear
+                                                                 fromDate:self.startDate];
+        NSInteger yeaRow = year - [indicatorComponents year];
+        [self.pickerView selectRow:yeaRow inComponent:0 animated:NO];
+    }
+}
+
+- (void)dealloc{
+    [My_NoteCenter removeObserver:self name:@"dateFailed" object:nil];
 }
 
 @end

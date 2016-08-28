@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PickerViewProtocol.h"
 
-@interface MyDatePickerView : UIPickerView
+@interface MyDatePickerView : UIView
 
 @property (strong, nonatomic) NSDate *startDate;
 @property (strong, nonatomic) NSDate *endDate;
@@ -20,5 +21,7 @@
 @property (assign, nonatomic) CGFloat rowHeight;
 
 @property (strong, nonatomic) NSDate *selectedDate;
+
+@property (weak, nonatomic) id<PickerViewProtocol> delegate;
 
 @end

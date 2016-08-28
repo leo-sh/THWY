@@ -54,4 +54,20 @@
     return [fmt stringFromDate:self];
 }
 
++ (int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay{
+    
+    NSUInteger interval1 = [oneDay timeIntervalSince1970];
+    NSUInteger interval2 = [anotherDay timeIntervalSince1970];
+    int result = 0;
+    if (interval1 > interval2) {
+        result = 1;
+    }else if(interval1 < interval2){
+        result = -1;
+    }
+    
+    NSLog(@"date1 : %@, date2 : %@ result:%d", oneDay, anotherDay, result);
+    return result;
+    
+}
+
 @end

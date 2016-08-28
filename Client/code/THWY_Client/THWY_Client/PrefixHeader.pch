@@ -148,3 +148,4 @@ static inline int sizeValue(int sizefont) {
 //cell下线颜色
 #define CellUnderLineColor My_Color(200, 199, 204)
 //灰色
+#define CellTextColor My_Color(104, 104, 104)

@@ -9,15 +9,12 @@
 #import "PaigongCatogerysCell.h"
 #import "MyDatePickerView.h"
 #import "MyTimerPickerView.h"
+#import "PickerViewProtocol.h"
 
-@interface PaigongCatogerysCell ()
+@interface PaigongCatogerysCell ()<PickerViewProtocol>
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_kaidan;
 @property (weak, nonatomic) IBOutlet UIButton *btn_budan;
-
-
-
-
 
 @property (strong, nonatomic) UIImage *selectedImage;
 @property (strong, nonatomic) UIImage *unselectedImage;
@@ -47,15 +44,17 @@
    
 //    CGFloat topMargin = 5.0;
 
-    self.datePickerView = [[MyDatePickerView alloc] initWithFrame:CGRectMake(10, self.btn_kaidan.bottom, My_ScreenW-40, 40)];
+    self.datePickerView = [[MyDatePickerView alloc] initWithFrame:CGRectMake(10, self.btn_kaidan.bottom, My_ScreenW-40, 65)];
     self.datePickerView.font = FontSize(CONTENT_FONT+1);
     self.datePickerView.fontColor = [UIColor blackColor];
     self.datePickerView.startDate = [NSDate date];
     self.datePickerView.endDate = [NSDate dateWithTimeIntervalSinceNow:180*24*60*60];
+    self.datePickerView.delegate = self;
     
-    self.timePickerView = [[MyTimerPickerView alloc] initWithFrame:CGRectMake(10, self.datePickerView.bottom , My_ScreenW-40, 40)];
+    self.timePickerView = [[MyTimerPickerView alloc] initWithFrame:CGRectMake(10, self.datePickerView.bottom-15 , My_ScreenW-40, 65)];
     self.timePickerView.font = FontSize(CONTENT_FONT+1);
     self.timePickerView.fontColor = [UIColor blackColor];
+    self.timePickerView.delegate = self;
     
     [self.contentView addSubview:self.datePickerView];
     [self.contentView addSubview:self.timePickerView];
@@ -155,18 +154,42 @@
     
 }
 
-- (NSUInteger)order_timestamp{
-   
+- (void)scrollEnded:(NSDictionary *)data pickerViewType:(PickerViewType)type{
+    
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    calendar.timeZone = [NSTimeZone localTimeZone];
     NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:self.datePickerView.selectedDate];
+    comp.timeZone = calendar.timeZone;
     [comp setHour:self.timePickerView.hour];
     [comp setMinute:self.timePickerView.minute];
     
-    NSUInteger timeInterval = [[[calendar dateFromComponents:comp] dateByAddingTimeInterval:8*60*60]timeIntervalSince1970];
+    NSDate *date = [[calendar dateFromComponents:comp] dateByAddingTimeInterval:8*60*60];
+    if ([NSDate compareOneDay:date withAnotherDay:[[NSDate date] dateByAddingTimeInterval:8*60*60]] == -1) {
+        [My_NoteCenter postNotificationName:@"dateFailed" object:nil userInfo:@{@"PickerViewType":@(type)}];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"请选择正确的时间" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alert addAction:action];
+        [self.vc presentViewController:alert animated:YES completion:^{
+            
+        }];
+    }
     
-//    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
-    return timeInterval;
 }
+
+//- (NSUInteger)order_timestamp{
+//   
+//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:self.datePickerView.selectedDate];
+//    [comp setHour:self.timePickerView.hour];
+//    [comp setMinute:self.timePickerView.minute];
+//    
+//    NSUInteger timeInterval = [[[calendar dateFromComponents:comp] dateByAddingTimeInterval:8*60*60]timeIntervalSince1970];
+//    
+////    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+//    return timeInterval;
+//}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:NO animated:animated];
