@@ -70,7 +70,7 @@
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"yitailogo"]];
     self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [self.leftButton setImage:[UIImage imageNamed:@"main_快捷菜单"] forState:UIControlStateNormal];
-//    [self.leftButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [self.leftButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [self.leftButton addTarget:self action:@selector(leftItemOnclicked:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithCustomView:self.leftButton];
     self.navigationItem.leftBarButtonItem  = left;
@@ -86,10 +86,13 @@
     
     if (self.dropView.superview) {
         [self.dropView removeFromSuperview];
+        [self.leftButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         return;
+    }else{
+        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+        [window addSubview:self.dropView];
+        [self.leftButton setBackgroundImage:[UIImage imageNamed:@"main_anxia"] forState:UIControlStateNormal];
     }
-    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-    [window addSubview:self.dropView];
 }
 
 - (void)itemSelected:(NSInteger)index{
@@ -125,11 +128,12 @@
             break;
     }
     [self.dropView removeFromSuperview];
+    [self.leftButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
 
 }
 
 - (void)dropMenuHidden{
-    
+    [self.leftButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
 }
 
 #pragma mark - UserInfo
