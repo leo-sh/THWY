@@ -9,6 +9,7 @@
 #import "MyFriendViewController.h"
 #import "ServicesManager.h"
 #import "MyFriendTableViewCell.h"
+#import "SVProgressHUD.h"
 #define TopViewH 60
 @interface MyFriendViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property UITableView *tableView;
@@ -205,7 +206,55 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    
+    
     return YES;
+}
+
+- (void)searchFriendInfo
+{
+ 
+    NSString *string = @"^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d{8}$";
+    NSString *string2 = @"([\u4e00-\u9fa5]{2,4})";
+    NSPredicate *phonePredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",string];
+    NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",string2];
+    if ([phonePredicate evaluateWithObject:self.searchFriend.text]) {
+        [[ServicesManager getAPI] findFriends:self.searchFriend.text name:@"" onComplete:^(NSString *errorMsg, NSArray *list) {
+            
+            if (errorMsg) {
+                [SVProgressHUD showWithStatus:errorMsg];
+            }
+            else if(list.count != 0)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [self.tableView reloadData];
+                    
+                });
+            }
+            
+        }];
+    }
+    else if ([namePredicate evaluateWithObject:self.searchFriend.text])
+    {
+        [[ServicesManager getAPI] findFriends:@"" name:self.searchFriend.text onComplete:^(NSString *errorMsg, NSArray *list) {
+            
+            if (errorMsg) {
+                [SVProgressHUD showWithStatus:errorMsg];
+            }
+            else if(list.count != 0)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [self.tableView reloadData];
+                    
+                });
+            }
+            
+        }];
+    }
+    
+
 }
 
 /*

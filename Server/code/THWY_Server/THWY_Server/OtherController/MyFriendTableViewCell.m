@@ -121,8 +121,8 @@
 {
     NSLog(@"点击聊天");
     
-    CommunicateViewController *pushView = [[CommunicateViewController alloc]init];
-    pushView.friendId = self.Id;
+    CommunicateViewController *pushView = [CommunicateViewController shareCommunicateViewController];
+    pushView.s_admin_id = self.Id;
     [self.superview.viewController.navigationController pushViewController:pushView animated:YES];
 }
 

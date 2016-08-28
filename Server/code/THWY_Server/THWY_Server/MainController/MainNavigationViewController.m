@@ -12,6 +12,7 @@
 #import "CommunicateViewController.h"
 #import "UMessage.h"
 #import "BannerNotice.h"
+#import "CommunicateViewController.h"
 
 @interface MainNavigationViewController () <UINavigationControllerDelegate>
 //@property (nonatomic, strong) id popDelegate;
@@ -32,6 +33,8 @@
     {
         //聊天消息
         [[UDManager getUD] saveEndId:Id andUserId:userInfo[@"s_admin_id"]];
+        
+        
 //        Id                 聊天记录ID值
 //        s_photo            发送方头像绝对路径
 //        re_photo           接收方头像绝对路径

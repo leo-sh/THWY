@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CommunicateViewController : UIViewController
-@property NSString *friendId;
+@property NSString *Id;
+@property NSString *s_photo;
+@property NSString *s_admin_id;
++ (instancetype)shareCommunicateViewController;
 @end
