@@ -95,12 +95,7 @@
     [[ServicesManager getAPI] addFriend:self.admin_id onComplete:^(NSString *errorMsg) {
         
         if (errorMsg) {
-            [SVProgressHUD showWithStatus:errorMsg];
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                [SVProgressHUD dismiss];
-            });
+            [SVProgressHUD showErrorWithStatus:errorMsg];
             
         }
         else

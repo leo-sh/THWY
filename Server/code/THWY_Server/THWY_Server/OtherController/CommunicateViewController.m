@@ -35,7 +35,11 @@
     [self ViewInitSetting];
     [self getData];
     [self createUI];
-    // Do any additional setup after loading the view.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.msgTextField becomeFirstResponder];
 }
 
 - (void)ViewInitSetting
@@ -58,14 +62,11 @@
     [[ServicesManager getAPI] getMsgs:self.s_admin_id endId:[[UDManager getUD]getEndId:self.s_admin_id] onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg) {
-            [SVProgressHUD showWithStatus:errorMsg];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [SVProgressHUD dismiss];
-            });
+            [SVProgressHUD showErrorWithStatus:errorMsg];
         }
         else
         {
-            
+            [SVProgressHUD dismiss];
         }
         
     }];
@@ -114,8 +115,6 @@
     [send addTarget:self action:@selector(clickSendBtn) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:bottomView];
-    
-    
 
 }
 
@@ -132,7 +131,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     
     UITableViewCell *returnCell;
     
@@ -182,7 +180,18 @@
 #pragma  mark --点击发送按钮
 - (void)clickSendBtn
 {
-    
+    [self.msgTextField endEditing:YES];
+    if (self.msgTextField.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
+        return;
+    }
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    if (![self.msgTextField isExclusiveTouch]) {
+        [self.msgTextField endEditing:YES];
+    }
 }
 
 - (void)change:(NSNotification *)notification
@@ -198,30 +207,9 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    [self clickSendBtn];
     
     return YES;
-}
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    return YES;
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    [self.view endEditing:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

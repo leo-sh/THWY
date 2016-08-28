@@ -8,6 +8,8 @@
 
 #import "RootVC.h"
 #import "LoginViewController.h"
+#import "MainNavigationViewController.h"
+
 @interface RootVC ()
 
 
@@ -43,7 +45,9 @@
 {
     if (![My_ServicesManager isLogin]) {
         LoginViewController *presentView = [[LoginViewController alloc]init];
-        [self.navigationController presentViewController:presentView animated:animated completion:nil];
+        MainNavigationViewController* logInNav = [[MainNavigationViewController alloc]initWithRootViewController:presentView];
+        
+        [self.navigationController presentViewController:logInNav animated:animated completion:nil];
     }
 }
 
@@ -67,10 +71,12 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"退出登录" message:@"您确定要退出吗?" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [My_ServicesManager logOut:^{
-            LoginViewController *presentView = [[LoginViewController alloc]init];
+            [self.navigationController popViewControllerAnimated:YES];
             
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            [self.navigationController presentViewController:presentView animated:YES completion:nil];
+            LoginViewController *presentView = [[LoginViewController alloc]init];
+            MainNavigationViewController* logInNav = [[MainNavigationViewController alloc]initWithRootViewController:presentView];
+            
+            [self.navigationController presentViewController:logInNav animated:YES completion:nil];
         }];
     }];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -90,6 +96,5 @@
     [super didReceiveMemoryWarning];
     NSLog(@"didReceiveMemoryWarning");
 }
-
 
 @end

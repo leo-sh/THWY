@@ -34,10 +34,20 @@
         //聊天消息
         [[UDManager getUD] saveEndId:Id andUserId:userInfo[@"s_admin_id"]];
         
-        CommunicateViewController *vc = [CommunicateViewController shareCommunicateViewController];
+        CommunicateViewController *vc = [[CommunicateViewController alloc]init];
         
             vc.s_admin_id = userInfo[@"s_admin_id"];
-
+        if ([userInfo[@"s_photo"] rangeOfString:@"http"].location == NSNotFound) {
+            
+            vc.s_photo = [NSString stringWithFormat:@"%@%@",API_Prefix,userInfo[@"s_photo"]];
+        }else
+        {
+            
+            vc.s_photo = userInfo[@"s_photo"];
+        }
+        
+        vc.Id = Id;
+        [self pushViewController:vc animated:YES];
 //        Id                 聊天记录ID值
 //        s_photo            发送方头像绝对路径
 //        re_photo           接收方头像绝对路径
@@ -78,8 +88,11 @@
     NSString* pushType = userInfo[@"push_type"];
     if ([pushType isEqualToString:@"1"] && [self.topViewController isKindOfClass:[CommunicateViewController class]])
     {
-        [My_NoteCenter postNotificationName:GetNewMessage object:userInfo];
-        return;
+        CommunicateViewController* vc = (CommunicateViewController *)self.topViewController;
+        if ([userInfo[@"s_admin_id"] isEqualToString:vc.s_admin_id]) {
+            [My_NoteCenter postNotificationName:GetNewMessage object:userInfo];
+            return;
+        }
     }
     
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;

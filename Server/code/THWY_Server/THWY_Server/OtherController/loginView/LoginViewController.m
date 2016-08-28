@@ -13,6 +13,8 @@
 #import "BlueCheckButton.h"
 #import "ServicesManager.h"
 #import "MainVC.h"
+#import "FindPasswordVC.h"
+
 @interface LoginViewController ()<UITextFieldDelegate>
 
 @property (strong, nonatomic) UIScrollView* introScrollView;
@@ -44,6 +46,15 @@
     [self createButton];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 
 -(void)showIntroView
 {
@@ -214,7 +225,7 @@
     [self.view addSubview:self.findPsdBtn];
     
     //隐藏按钮
-    self.findPsdBtn.alpha = 0;
+//    self.findPsdBtn.alpha = 0;
     CGFloat adminLoginBtnRightOffset = -self.view.width *0.036;
     CGFloat adminLoginBtnWidth = self.view.width *0.2;
     CGFloat adminLoginBtnHeight = self.view.height *0.02;
@@ -264,7 +275,8 @@
 
 - (void)clickAdminLoginBtn
 {
-    NSLog(@"密码找回");
+    FindPasswordVC * vc = [[FindPasswordVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)clickRememberPassWordBtn

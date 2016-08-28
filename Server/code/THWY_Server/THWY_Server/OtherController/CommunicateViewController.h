@@ -6,11 +6,10 @@
 //  Copyright © 2016年 SXZ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RootVC.h"
 
-@interface CommunicateViewController : UIViewController
+@interface CommunicateViewController : RootVC
 @property NSString *Id;
 @property NSString *s_photo;
 @property NSString *s_admin_id;
-+ (instancetype)shareCommunicateViewController;
 @end
