@@ -182,7 +182,21 @@
 #pragma  mark --点击发送按钮
 - (void)clickSendBtn
 {
-    
+    [[ServicesManager getAPI]sendMsg:self.s_admin_id msg:self.msgTextField.text onComplete:^(NSString *errorMsg) {
+        
+        if (errorMsg) {
+            [SVProgressHUD showWithStatus:errorMsg];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+            });
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:@"发送成功"];
+        }
+        
+    }];
 }
 
 - (void)change:(NSNotification *)notification

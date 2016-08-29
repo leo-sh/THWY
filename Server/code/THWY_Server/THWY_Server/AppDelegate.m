@@ -28,7 +28,6 @@
         
         //1.3.0版本开始简化初始化过程。如不需要交互式的通知，下面用下面一句话注册通知即可。
         [UMessage registerForRemoteNotifications];
-        
         if (My_ServicesManager.isLogin) {
             UserVO* user = [[UDManager getUD] getUser];
             
@@ -107,4 +106,5 @@
     
     [UMessage didReceiveRemoteNotification:userInfo];
 }
+
 @end

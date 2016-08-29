@@ -135,7 +135,7 @@
     TFbackgroundView.layer.cornerRadius = 5;
     TFbackgroundView.clipsToBounds = YES;
     
-    TFbackgroundView.backgroundColor = [UIColor blackColor];
+//    TFbackgroundView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:TFbackgroundView];
     
     [TFbackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
