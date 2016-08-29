@@ -166,7 +166,7 @@
         NSString *content = [NSString stringWithFormat:@"%@/%@",temp.real_name,temp.up_group.group];
         
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        [cell setImage:@"Avatar" Content:content ID:@"1"];
+        [cell setImage:@"Avatar" Content:content ID:temp.admin_id];
         cell.phoneNumber = temp.cellphone;
         
         returnCell = cell;

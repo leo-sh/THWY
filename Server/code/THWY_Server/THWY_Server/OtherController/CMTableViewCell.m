@@ -47,18 +47,10 @@
         self.contentLabel.height = contentHeight;
         self.backView.height += contentHeight - CONTENT_FONT;
     }
-    NSString *rowS = [NSString stringWithFormat:@"%ld",self.section];
+    NSString *rowS = [NSString stringWithFormat:@"%d",self.section];
     NSString *heightS = [NSString stringWithFormat:@"%lf",self.backView.bottom];
-    if (self.number == 0) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
-        
-        self.number ++;
-    }
-    else
-    {
-        self.number = 0;
-    }
-
+    NSLog(@"cell.section:%@",rowS);
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
     
 }
 

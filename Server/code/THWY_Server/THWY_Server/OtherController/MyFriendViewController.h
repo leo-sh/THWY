@@ -6,8 +6,8 @@
 //  Copyright © 2016年 SXZ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RootVC.h"
 
-@interface MyFriendViewController : UIViewController
+@interface MyFriendViewController : RootVC
 
 @end
