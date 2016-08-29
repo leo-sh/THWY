@@ -1575,6 +1575,36 @@ savePassWord:(BOOL)save
     
 }
 
+-(void)getMyPoints:(void (^)(NSString *errorMsg,NSArray* list,NSString *total))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@my_points",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* pointDic in responseObject[@"datas"]) {
+                    PointVO* point = [[PointVO alloc]initWithJSON:pointDic];
+                    [listArr addObject:point];
+                }
+            }
+            
+            onComplete(nil,listArr,responseObject[@"datas"][@"total"]);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil,nil);
+    }];
+}
+
 #pragma mark 环境参数判定函数
 -(BOOL)isLogin{
     UserVO *user = [[UDManager getUD] getUser];
@@ -1611,7 +1641,9 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-        
+        [self getMyPoints:^(NSString *errorMsg, NSArray *list, NSString *total) {
+            
+        }];
     }else
     {
 //        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {

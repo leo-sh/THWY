@@ -35,12 +35,12 @@
     return self;
 }
 
--(void)fillCell:(BOOL)isBottom andTitle:(NSString *)title andValue:(NSString *)value
+-(void)fillCell:(BOOL)isBottom andPoint:(PointVO *)point
 {
     self.titleLabel.width = self.mainView.width/2;
     self.valueLabel.width = self.mainView.width/2;
-    self.titleLabel.text = title;
-    self.valueLabel.text = value;
+    self.titleLabel.text = point.s;
+    self.valueLabel.text = [NSString stringWithFormat:@"%@分",point.sub_total];
     
     [self.titleLabel sizeToFit];
     [self.valueLabel sizeToFit];

@@ -10,6 +10,6 @@
 
 @interface IntegralTitleCell : IntegralRootCell
 
--(void)fillCellWith:(NSDictionary* )dic;
+-(void)fillCellWith:(NSString* )used andUnUsed:(NSString *)unUsed;
 
 @end
