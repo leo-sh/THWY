@@ -37,18 +37,21 @@
     self.contentLabel.text = content;
     self.contentLabel.font = FontSize(CONTENT_FONT);
     self.contentLabel.numberOfLines = 0;
-    self.backView.frame = CGRectMake(self.icon.right + 5, 0, 150, 30);
+    CGFloat width = self.width * 0.5;
+
+    self.backView.frame = CGRectMake(self.icon.right + 5, 0, width + 25, 30);
     self.backView.centerY = self.icon.centerY;
     self.backView.image = [UIImage imageNamed:@"白对话框"];
     
-    self.contentLabel.frame = CGRectMake(15, 5, 125, 20);
-    CGFloat contentHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(125, 4000)].height;
+    
+    self.contentLabel.frame = CGRectMake(15, 5, width, 20);
+    CGFloat contentHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
     if (contentHeight > CONTENT_FONT) {
         self.contentLabel.height = contentHeight;
         self.backView.height += contentHeight - CONTENT_FONT;
     }
     NSString *rowS = [NSString stringWithFormat:@"%d",self.section];
-    NSString *heightS = [NSString stringWithFormat:@"%lf",self.backView.bottom];
+    NSString *heightS = [NSString stringWithFormat:@"%f",self.backView.bottom];
     NSLog(@"cell.section:%@",rowS);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
     

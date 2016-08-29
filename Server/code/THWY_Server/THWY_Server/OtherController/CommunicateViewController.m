@@ -179,7 +179,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 30;
+    return 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -191,10 +191,18 @@
 {
     UIView *view = [[UIView alloc]init];
     
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 5, 200, 20)];
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 12.5, 120, 25)];
     
-    [btn setTitle:[self.data[section] ctime] forState:UIControlStateNormal];
+    btn.titleLabel.font = FontSize(Content_Ip_Font);
     
+    NSString *title = [NSString stringDateFromTimeInterval:[[self.data[section] ctime] intValue] withFormat:@"YYYY-MM-dd HH:SS"];
+    
+    [btn setTitle:title forState:UIControlStateNormal];
+    
+    [btn setBackgroundImage:[UIImage imageNamed:@"时间背景"] forState:UIControlStateNormal];
+    
+    btn.userInteractionEnabled = NO;
+
     btn.centerX = self.view.centerX;
     
     [view addSubview:btn];
