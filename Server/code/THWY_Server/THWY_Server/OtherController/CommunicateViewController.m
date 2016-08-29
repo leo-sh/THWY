@@ -54,6 +54,7 @@
     self.rowAndHeight = [NSMutableDictionary dictionary];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNew:) name:GetNewMessage object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change:) name:@"giveHeight" object:nil];
+    [self addObserver:self forKeyPath:@"s_admin_id" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     
 }
 
@@ -225,6 +226,11 @@
     [self clickSendBtn];
     
     return YES;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    [self getData];
 }
 
 /*
