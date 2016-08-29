@@ -61,7 +61,6 @@
 - (void)getData
 {
     [[ServicesManager getAPI] getMsgs:self.s_admin_id endId:[[UDManager getUD]getEndId:self.s_admin_id] onComplete:^(NSString *errorMsg, NSArray *list) {
-        
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }
@@ -113,7 +112,7 @@
     
     [bottomView addSubview:send];
     
-    [send addTarget:self action:@selector(clickSendBtn) forControlEvents:UIControlEventTouchUpInside];
+    [send addTarget:self action:@selector(clickSendBtn:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:bottomView];
 
@@ -168,6 +167,11 @@
     return value;
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.msgTextField endEditing:YES];
+}
+
 #pragma mark --收到消息
 - (void)receiveNew:(NSNotification *)new
 {
@@ -175,6 +179,7 @@
     if ([dic[@"s_admin_id"] isEqualToString:self.s_admin_id]) {
         
         [self getData];
+        [My_ServicesManager palyReceive];
     }
     else
     {
@@ -183,27 +188,24 @@
     
 }
 #pragma  mark --点击发送按钮
-- (void)clickSendBtn
+- (void)clickSendBtn:(UIButton *)sender
 {
+    sender.enabled = NO;
     [self.msgTextField endEditing:YES];
     if (self.msgTextField.text.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
-        return;
-    }
-    else
+        sender.enabled = YES;
+    }else
     {
-        [[ServicesManager getAPI]sendMsg:self.s_admin_id msg:self.msgTextField.text onComplete:^(NSString *errorMsg) {
-            
+        [My_ServicesManager sendMsg:self.s_admin_id msg:self.msgTextField.text onComplete:^(NSString *errorMsg) {
             if (errorMsg) {
                 [SVProgressHUD showErrorWithStatus:errorMsg];
-            }
-            else
+            }else
             {
-                [SVProgressHUD showErrorWithStatus:@"发送成功"];
+                self.msgTextField.text = @"";
             }
-            
+            sender.enabled = YES;
         }];
-
     }
 }
 
@@ -227,7 +229,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [self clickSendBtn];
+    [textField endEditing:YES];
     
     return YES;
 }

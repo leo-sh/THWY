@@ -215,6 +215,8 @@
         
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];
+            self.ADLabel.text = @"暂无公告信息";
+            
 //            return ;
         }else{
             if(list.count == 0){
@@ -258,9 +260,9 @@
                 self.scrollIndex = 0;
                 self.adLabelTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(runloopAdLabel) userInfo:nil repeats:YES];
                 
-            }        
+            }
+            [SVProgressHUD dismiss];
         }
-        [SVProgressHUD dismiss];
         
     }];
 }

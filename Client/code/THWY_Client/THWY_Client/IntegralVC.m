@@ -38,6 +38,7 @@
     self.used = @"0";
     self.unUsed = @"0";
     self.total = @"0";
+    [self createUI];
     [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     [self loadPage];
 }
@@ -49,7 +50,7 @@
             [SVProgressHUD dismiss];
             self.datas = list;
             self.unUsed = [NSString stringWithFormat:@"%ld",[total integerValue]];
-            [self createUI];
+            [self.tableView reloadData];
         }else
         {
             [SVProgressHUD showErrorWithStatus:errorMsg];
