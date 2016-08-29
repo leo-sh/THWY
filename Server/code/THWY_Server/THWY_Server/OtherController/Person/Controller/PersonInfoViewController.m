@@ -161,7 +161,7 @@
     
     NSArray *imageNameArray = @[@"姓名",@"项目",@"部门",@"职位",@"联系电话",@"账号密码"];
     GroupVO *TPgroup = self.userInfo.up_group;
-    NSArray *tfTextArray = @[self.userInfo.real_name,TPgroup.project,TPgroup.group,@"占位",self.userInfo.cellphone,@""];
+    NSArray *tfTextArray = @[self.userInfo.real_name,TPgroup.project,TPgroup.group,@"",self.userInfo.cellphone,[[UDManager getUD] getPassWord]];
     CGFloat labelHeight = self.bottomView.height/(imageNameArray.count + 3);
     CGFloat labelLeft = self.view.width * 0.02;
     CGFloat labelWidth = self.view.width - 2 *labelLeft;

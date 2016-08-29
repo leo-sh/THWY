@@ -54,6 +54,7 @@
     self.rowAndHeight = [NSMutableDictionary dictionary];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNew:) name:GetNewMessage object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change:) name:@"giveHeight" object:nil];
+    [self addObserver:self forKeyPath:@"s_admin_id" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     
 }
 
@@ -180,6 +181,10 @@
         [self getData];
         [My_ServicesManager palyReceive];
     }
+    else
+    {
+        self.s_admin_id = dic[@"s_admin_id"];
+    }
     
 }
 #pragma  mark --点击发送按钮
@@ -201,6 +206,21 @@
             }
             sender.enabled = YES;
         }];
+    }
+    else
+    {
+        [[ServicesManager getAPI]sendMsg:self.s_admin_id msg:self.msgTextField.text onComplete:^(NSString *errorMsg) {
+            
+            if (errorMsg) {
+                [SVProgressHUD showErrorWithStatus:errorMsg];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:@"发送成功"];
+            }
+            
+        }];
+
     }
 }
 
@@ -227,6 +247,11 @@
     [textField endEditing:YES];
     
     return YES;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    [self getData];
 }
 
 /*

@@ -51,7 +51,10 @@
     
     if (self.index == 0) {
         [self.searchFriend removeFromSuperview];
-        self.topView.height = TopViewH;
+        [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
+            
+            make.height.mas_equalTo(TopViewH);
+        }];
         self.tableView.y = self.topView.bottom + 10;
         [[ServicesManager getAPI] getFriends:^(NSString *errorMsg, NSArray *list) {
             
@@ -225,6 +228,8 @@
 - (void)change
 {
     self.index =(int)self.segmentedControl.selectedSegmentIndex;
+    [self.searchFriend endEditing:YES];
+    NSLog(@"height:%f",self.topView.height);
     [self getData];
 }
 
