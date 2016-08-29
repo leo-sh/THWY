@@ -432,7 +432,7 @@
     NSLog(@"修改");
     WRAlertView *view = [[WRAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
     
-    int section = sender.superview.tag - 300;
+    NSInteger section = sender.superview.tag - 300;
     
     [view setTitle:[self.data[section] title]Content:[self.data[section] content] typeId:[self.data[section] Id] docId:[self.data[section] doc_type_id]];
     
@@ -459,7 +459,7 @@
     NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:sender.view.tag - 300];
     
     [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
-    NSLog(@"%d",sender.view.tag - 300);
+    NSLog(@"%ld",sender.view.tag - 300);
 }
 
 #pragma mark -- 通知中心

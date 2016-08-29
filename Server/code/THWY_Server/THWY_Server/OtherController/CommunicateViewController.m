@@ -207,21 +207,6 @@
             sender.enabled = YES;
         }];
     }
-    else
-    {
-        [[ServicesManager getAPI]sendMsg:self.s_admin_id msg:self.msgTextField.text onComplete:^(NSString *errorMsg) {
-            
-            if (errorMsg) {
-                [SVProgressHUD showErrorWithStatus:errorMsg];
-            }
-            else
-            {
-                [SVProgressHUD showErrorWithStatus:@"发送成功"];
-            }
-            
-        }];
-
-    }
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
