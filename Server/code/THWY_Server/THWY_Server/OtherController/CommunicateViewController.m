@@ -203,6 +203,7 @@
             }else
             {
                 self.msgTextField.text = @"";
+                [self getData];
             }
             sender.enabled = YES;
         }];
