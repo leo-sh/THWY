@@ -180,21 +180,33 @@
 #pragma  mark --点击发送按钮
 - (void)clickSendBtn
 {
-    [[ServicesManager getAPI]sendMsg:self.s_admin_id msg:self.msgTextField.text onComplete:^(NSString *errorMsg) {
-        
-        if (errorMsg) {
-            [SVProgressHUD showWithStatus:errorMsg];
+    [self.msgTextField endEditing:YES];
+    if (self.msgTextField.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
+        return;
+    }
+    else
+    {
+        [[ServicesManager getAPI]sendMsg:self.s_admin_id msg:self.msgTextField.text onComplete:^(NSString *errorMsg) {
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [SVProgressHUD dismiss];
-            });
-        }
-        else
-        {
-            [SVProgressHUD showErrorWithStatus:@"发送成功"];
-        }
-        
-    }];
+            if (errorMsg) {
+                [SVProgressHUD showErrorWithStatus:errorMsg];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:@"发送成功"];
+            }
+            
+        }];
+
+    }
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    if (![self.msgTextField isExclusiveTouch]) {
+        [self.msgTextField endEditing:YES];
+    }
 }
 
 - (void)change:(NSNotification *)notification
