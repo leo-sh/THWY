@@ -176,6 +176,10 @@
         
         [self getData];
     }
+    else
+    {
+        self.s_admin_id = dic[@"s_admin_id"];
+    }
     
 }
 #pragma  mark --点击发送按钮
