@@ -88,7 +88,7 @@
     NSString* pushType = [NSString stringWithFormat:@"%ld",[userInfo[@"push_type"] integerValue]];
     if ([pushType isEqualToString:@"1"] && [self.topViewController isKindOfClass:[CommunicateViewController class]])
     {
-        CommunicateViewController* vc = (CommunicateViewController *)self.topViewController;
+        CommunicateViewController* vc = [CommunicateViewController shareCommunicateViewController];
         if ([[NSString stringWithFormat:@"%ld",[userInfo[@"s_admin_id"] integerValue]] isEqualToString:vc.s_admin_id]) {
             [My_NoteCenter postNotificationName:GetNewMessage object:userInfo];
             return;

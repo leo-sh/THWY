@@ -12,4 +12,5 @@
 @property NSString *Id;
 @property NSString *s_photo;
 @property NSString *s_admin_id;
++ (instancetype)shareCommunicateViewController;
 @end
