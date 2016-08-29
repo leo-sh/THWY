@@ -75,7 +75,7 @@
         {
             dic = [[NSMutableDictionary alloc]init];
         }
-        dic[userId] = endId;
+        dic[[NSString stringWithFormat:@"%ld",[userId integerValue]]] = [NSString stringWithFormat:@"%ld",[endId integerValue]];
         
         [ud setObject:dic forKey:@"EndId"];
         [ud synchronize];
@@ -84,6 +84,9 @@
 
 -(NSString *)getEndId:(NSString *)userId
 {
+    if ([userId isKindOfClass:[NSNumber class]]) {
+        userId = [NSString stringWithFormat:@"%ld",userId.integerValue];
+    }
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     if ([ud objectForKey:@"EndId"]) {
         NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:[ud objectForKey:@"EndId"]];

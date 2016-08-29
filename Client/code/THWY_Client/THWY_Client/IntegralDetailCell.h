@@ -10,6 +10,6 @@
 
 @interface IntegralDetailCell : IntegralRootCell
 
--(void)fillCell:(BOOL)isBottom andTitle:(NSString *)title andValue:(NSString *)value;
+-(void)fillCell:(BOOL)isBottom andPoint:(PointVO *)point;
 
 @end

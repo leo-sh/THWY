@@ -25,6 +25,7 @@
 #import "RepairVO.h"
 #import "AddRepairVO.h"
 #import "AddPublicRepairVO.h"
+#import "PointVO.h"
 #import "SVProgressHUD.h"
 #import "MJRefresh.h"
 #import "Reachability.h"
@@ -315,9 +316,9 @@ savePassWord:(BOOL)save
  */
 -(void)getLayer:(NSString *)estateId block:(NSString *)block unit:(NSString *)unit onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
-#pragma mark 保修相关API
+#pragma mark 报修相关API
 /**
- *  获取保修状态
+ *  获取报修状态
  *
  *  @param type       报修类型
  *  @param onComplete 获取完成回调block
@@ -366,6 +367,9 @@ savePassWord:(BOOL)save
  *  @param onComplete 添加完成回调block
  */
 -(void)addPublicRepair:(AddPublicRepairVO *)repair onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+#pragma mark 积分相关API
+-(void)getMyPoints:(void (^)(NSString *errorMsg,NSArray* list,NSString *total))onComplete;
 
 #pragma mark 测试用函数
 -(void)test;

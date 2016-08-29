@@ -19,7 +19,10 @@
 @property UILabel* titleLabel;
 @property UILabel* integralLabel;
 
-@property NSArray* detailTitles;
+@property NSArray* datas;
+@property NSString* total;
+@property NSString* used;
+@property NSString* unUsed;
 
 @property UITableView* tableView;
 
@@ -32,8 +35,26 @@
     // Do any additional setup after loading the view.
     self.title = @"我的积分";
     
-    self.detailTitles = @[@"App业主维修",@"App公共报修",@"建议意见",@"业主公告查阅",@"我要投诉",@"APP缴费",@"缴费台账查阅"];
-    [self createUI];
+    self.used = @"0";
+    self.unUsed = @"0";
+    self.total = @"0";
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+    [self loadPage];
+}
+
+-(void)loadPage
+{
+    [My_ServicesManager getMyPoints:^(NSString *errorMsg, NSArray *list, NSString *total) {
+        if (errorMsg == nil) {
+            [SVProgressHUD dismiss];
+            self.datas = list;
+            self.unUsed = [NSString stringWithFormat:@"%ld",[total integerValue]];
+            [self createUI];
+        }else
+        {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
+    }];
 }
 
 -(void)createUI
@@ -73,7 +94,7 @@
     self.integralLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, My_ScreenW, My_ScreenH)];
     self.integralLabel.font = FontSize(CONTENT_FONT+8);
     self.integralLabel.textColor = [UIColor whiteColor];
-    self.integralLabel.text = @"1124";
+    self.integralLabel.text = self.total;
     self.integralLabel.adjustsFontSizeToFitWidth = YES;
     self.integralLabel.textAlignment = NSTextAlignmentCenter;
     [self.integralLabel sizeToFit];
@@ -108,25 +129,25 @@
 #pragma mark -TableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 8;
+    return self.datas.count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
         IntegralTitleCell* cell = [tableView dequeueReusableCellWithIdentifier:@"titleCell"];
-        [cell fillCellWith:nil];
+        [cell fillCellWith:self.used andUnUsed:self.unUsed];
         return cell;
     }else
     {
         IntegralDetailCell* cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell"];
         
         BOOL isBottom = NO;
-        if (indexPath.row == 7) {
+        if (indexPath.row == self.datas.count - 1) {
             isBottom = YES;
         }
         
-        [cell fillCell:isBottom andTitle:self.detailTitles[indexPath.row - 1] andValue:@"参数值"];
+        [cell fillCell:isBottom andPoint:self.datas[indexPath.row - 1]];
         return cell;
     }
     return nil;

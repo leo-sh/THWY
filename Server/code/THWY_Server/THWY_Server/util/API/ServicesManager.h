@@ -414,6 +414,27 @@ savePassWord:(BOOL)save
  */
 -(void)getMsgs:(NSString *)friendId endId:(NSString *)endId onComplete:(void (^)(NSString *errorMsg,NSArray *list))onComplete;
 
+#pragma mark 找回密码相关API
+/**
+ *  发送验证码
+ *
+ *  @param name       登录帐号
+ *  @param phoneNum   手机号码
+ *  @param onComplete 发送完成回调block
+ */
+-(void)sendCode:(NSString *)name phoneNum:(NSString *)phoneNum onComplete:(void (^)(NSString *errorMsg))onComplete;
+
+/**
+ *  重置密码
+ *
+ *  @param name        登录账号
+ *  @param phoneNum    手机号码
+ *  @param code        短信验证码
+ *  @param newPassword 新密码
+ *  @param onComplete  重置完成回调
+ */
+-(void)setNewPassword:(NSString *)name phoneNum:(NSString *)phoneNum code:(NSString *)code newPassword:(NSString *)newPassword onComplete:(void (^)(NSString *errorMsg))onComplete;
+
 #pragma mark 测试用函数
 -(void)test;
 @end

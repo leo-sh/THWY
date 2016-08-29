@@ -27,7 +27,7 @@
 -(void)popWithUserInfo:(NSDictionary *)userInfo
 {
     [UMessage sendClickReportForRemoteNotification:userInfo];
-    NSString* pushType = userInfo[@"push_type"];
+    NSString* pushType = [NSString stringWithFormat:@"%ld",[userInfo[@"push_type"] integerValue]];
     NSString* Id = userInfo[@"pk"];
     if ([pushType isEqualToString:@"1"])
     {
@@ -85,11 +85,11 @@
 
 -(void)showAlertWithUserInfo:(NSDictionary *)userInfo
 {
-    NSString* pushType = userInfo[@"push_type"];
+    NSString* pushType = [NSString stringWithFormat:@"%ld",[userInfo[@"push_type"] integerValue]];
     if ([pushType isEqualToString:@"1"] && [self.topViewController isKindOfClass:[CommunicateViewController class]])
     {
         CommunicateViewController* vc = (CommunicateViewController *)self.topViewController;
-        if ([userInfo[@"s_admin_id"] isEqualToString:vc.s_admin_id]) {
+        if ([[NSString stringWithFormat:@"%ld",[userInfo[@"s_admin_id"] integerValue]] isEqualToString:vc.s_admin_id]) {
             [My_NoteCenter postNotificationName:GetNewMessage object:userInfo];
             return;
         }

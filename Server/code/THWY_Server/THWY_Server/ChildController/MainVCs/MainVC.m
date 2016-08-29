@@ -48,6 +48,13 @@
     [self refreshUserInfo];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    if (self.dropView.superview) {
+        [self leftItemOnclicked:self.leftButton];
+    }
+}
+
 - (void)refreshUserInfo{
     if ([My_ServicesManager isLogin]) {
         [My_ServicesManager getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {

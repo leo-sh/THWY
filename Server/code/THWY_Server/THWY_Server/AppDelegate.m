@@ -28,6 +28,8 @@
         
         //1.3.0版本开始简化初始化过程。如不需要交互式的通知，下面用下面一句话注册通知即可。
         [UMessage registerForRemoteNotifications];
+        [UMessage setLogEnabled:YES];
+        [UMessage setAutoAlert:NO];
         
         if (My_ServicesManager.isLogin) {
             UserVO* user = [[UDManager getUD] getUser];
@@ -44,7 +46,9 @@
             
             [UMessage removeAllTags:^(id  _Nonnull responseObject, NSInteger remain, NSError * _Nonnull error) {
                 [UMessage addTag:tagArr response:^(id  _Nonnull responseObject, NSInteger remain, NSError * _Nonnull error) {
-                    
+                    [UMessage getTags:^(NSSet * _Nonnull responseTags, NSInteger remain, NSError * _Nonnull error) {
+                        
+                    }];
                 }];
             }];
         }else

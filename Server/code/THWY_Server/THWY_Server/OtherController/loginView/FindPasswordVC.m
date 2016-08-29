@@ -7,7 +7,7 @@
 //
 
 #import "FindPasswordVC.h"
-#define CODE_MAX 4
+#define CODE_MAX 6
 
 @interface FindPasswordVC ()<UITextFieldDelegate>
 
@@ -17,9 +17,6 @@
 @property UITextField* phoneNumTf;
 @property UITextField* numTf;
 @property UITextField* passWordTf;
-
-@property NSString* phoneNum;
-@property NSString* codeNum;
 
 @property UIButton* subMitBtn;
 @property UIButton* sendCodeBtn;
@@ -63,18 +60,18 @@
     
     self.phoneNumTf = [[UITextField alloc]init];
     self.phoneNumTf.placeholder = @"请输入手机号码";
-    self.phoneNumTf.keyboardType = UIKeyboardTypePhonePad;
+//    self.phoneNumTf.keyboardType = UIKeyboardTypeNumberPad;
     self.phoneNumTf.delegate = self;
     
     self.numTf = [[UITextField alloc]init];
     self.numTf.placeholder = @"请输入验证码";
-    self.numTf.keyboardType = UIKeyboardTypeNumberPad;
+//    self.numTf.keyboardType = UIKeyboardTypeNumberPad;
     self.numTf.delegate = self;
     
     self.passWordTf = [[UITextField alloc]init];
     self.passWordTf.placeholder = @"请输入6-20位字符的新密码";
     self.passWordTf.keyboardType = UIKeyboardTypeASCIICapable;
-    self.passWordTf.keyboardAppearance = UIKeyboardAppearanceDark;
+//    self.passWordTf.keyboardAppearance = UIKeyboardAppearanceDark;
     self.passWordTf.delegate = self;
     self.passWordTf.secureTextEntry = YES;
     
@@ -147,25 +144,11 @@
     }
     
     if ([self.phoneNumTf.text isValidateMobile]) {
-        if (self.phoneNum.length > 0) {
-            if (![self.phoneNumTf.text isEqualToString:self.phoneNum]) {
-                [SVProgressHUD showErrorWithStatus:@"请重新获取验证码"];
-                return;
-            }else
-            {
-                if (![self.codeNum isEqualToString:self.numTf.text]) {
-                    [SVProgressHUD showErrorWithStatus:@"验证码错误"];
-                    [self.numTf becomeFirstResponder];
-                    return;
-                }
-            }
-        }else
-        {
-            [SVProgressHUD showErrorWithStatus:@"请获取验证码"];
+        if (self.numTf.text.length < 4) {
+            [SVProgressHUD showErrorWithStatus:@"验证码错误"];
             [self.numTf becomeFirstResponder];
             return;
         }
-        
         
         if (self.userNameTf.text.length == 0) {
             [SVProgressHUD showErrorWithStatus:@"请输入用户名"];
@@ -193,27 +176,55 @@
         
     }
     
+    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+    [My_ServicesManager setNewPassword:self.userNameTf.text phoneNum:self.phoneNumTf.text code:self.numTf.text newPassword:self.passWordTf.text onComplete:^(NSString *errorMsg) {
+        if (errorMsg == nil) {
+            [SVProgressHUD showErrorWithStatus:@"重置成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else
+        {
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+        }
+    }];
+    
 }
 
 -(void)sendCode
 {
-    if ([self.phoneNumTf.text isValidateMobile]) {
-        [self.phoneNumTf endEditing:YES];
-        [self.numTf becomeFirstResponder];
-        self.sendCodeBtn.enabled = NO;
-        self.phoneNum = self.phoneNumTf.text;
-        
-        self.time = 60;
-        if (self.sendCodeTimer) {
-            [self.sendCodeTimer invalidate];
+    if (self.userNameTf.text.length > 0) {
+        if ([self.phoneNumTf.text isValidateMobile]) {
+            [self.phoneNumTf endEditing:YES];
+            [self.numTf becomeFirstResponder];
+            self.sendCodeBtn.enabled = NO;
+            
+            [SVProgressHUD showWithStatus:@"发送中..."];
+            [My_ServicesManager sendCode:self.userNameTf.text phoneNum:self.phoneNumTf.text onComplete:^(NSString *errorMsg) {
+                if (errorMsg == nil) {
+                    [SVProgressHUD showErrorWithStatus:@"发送成功"];
+                    self.time = 60;
+                    if (self.sendCodeTimer) {
+                        [self.sendCodeTimer invalidate];
+                    }
+                    
+                    self.sendCodeTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateSendTime) userInfo:nil repeats:YES];
+                    [self.sendCodeBtn setTitle:[NSString stringWithFormat:@"%dS",self.time] forState:UIControlStateDisabled];
+                    [self.numTf becomeFirstResponder];
+                }else
+                {
+                    self.sendCodeBtn.enabled = YES;
+                    [SVProgressHUD showErrorWithStatus:errorMsg];
+                }
+            }];
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"手机号码格式不正确"];
+            return;
         }
-        
-        self.sendCodeTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateSendTime) userInfo:nil repeats:YES];
-        [self.sendCodeBtn setTitle:[NSString stringWithFormat:@"%dS",self.time] forState:UIControlStateDisabled];
     }else{
-        [SVProgressHUD showErrorWithStatus:@"手机号码格式不正确"];
+        [SVProgressHUD showErrorWithStatus:@"请输入用户名"];
         return;
     }
+    
     
 }
 
@@ -318,7 +329,7 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     for (UITextField* tf in self.tfArr) {
-        if (![tf isExclusiveTouch]) {
+        if (![tf isExclusiveTouch] && [tf isEditing]) {
             [tf endEditing:YES];
         }
     }

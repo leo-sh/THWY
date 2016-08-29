@@ -58,9 +58,10 @@
     return self;
 }
 
--(void)fillCellWith:(NSDictionary* )dic
+-(void)fillCellWith:(NSString* )used andUnUsed:(NSString *)unUsed
 {
-    
+    [self.surplusIntegral setTitle:[NSString stringWithFormat:@"积分余额:%@",unUsed] forState:UIControlStateNormal];
+    [self.usedIntegral setTitle:[NSString stringWithFormat:@"积分抵扣:%@",used] forState:UIControlStateNormal];
 }
 
 @end
