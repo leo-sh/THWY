@@ -8,6 +8,7 @@
 
 #import "RootVC.h"
 #import "LoginViewController.h"
+#import "FindPasswordVC.h"
 #import "MainNavigationViewController.h"
 
 @interface RootVC ()
@@ -39,16 +40,32 @@
     [self.keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^(ZYKeyboardUtil *keyboardUtil) {
         [keyboardUtil adaptiveViewHandleWithController:weakSelf adaptiveView:weakSelf.view, nil];
     }];
+    
+    [My_NoteCenter addObserver:self selector:@selector(showLoginWithError) name:@"userError" object:nil];
+}
+
+-(void)showLoginWithError
+{
+    if (self == self.navigationController.topViewController && ![self isKindOfClass:[LoginViewController class]] && ![self isKindOfClass:[FindPasswordVC class]]) {
+        [My_ServicesManager logOut:^{
+            [self login:YES];
+        }];
+    }
 }
 
 -(void)showLogin:(BOOL)animated
 {
     if (![My_ServicesManager isLogin]) {
-        LoginViewController *presentView = [[LoginViewController alloc]init];
-        MainNavigationViewController* logInNav = [[MainNavigationViewController alloc]initWithRootViewController:presentView];
-        
-        [self.navigationController presentViewController:logInNav animated:animated completion:nil];
+        [self login:animated];
     }
+}
+
+-(void)login:(BOOL)animated
+{
+    LoginViewController *presentView = [[LoginViewController alloc]init];
+    MainNavigationViewController* logInNav = [[MainNavigationViewController alloc]initWithRootViewController:presentView];
+    
+    [self.navigationController presentViewController:logInNav animated:animated completion:nil];
 }
 
 - (void)customNVBar{
@@ -73,10 +90,7 @@
         [My_ServicesManager logOut:^{
             [self.navigationController popViewControllerAnimated:YES];
             
-            LoginViewController *presentView = [[LoginViewController alloc]init];
-            MainNavigationViewController* logInNav = [[MainNavigationViewController alloc]initWithRootViewController:presentView];
-            
-            [self.navigationController presentViewController:logInNav animated:YES completion:nil];
+            [self login:YES];
         }];
     }];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
