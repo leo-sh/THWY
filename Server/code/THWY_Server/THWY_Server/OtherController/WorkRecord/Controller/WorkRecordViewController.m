@@ -266,8 +266,9 @@
     if (cell == nil) {
         cell = [[WRTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
-    [cell setTitle:[self.data[indexPath.section] content]];
+    cell.width = tableView.width;
     cell.backgroundColor = WhiteAlphaColor;
+    [cell setTitle:[self.data[indexPath.section] content]];
     cell.preservesSuperviewLayoutMargins = NO;
     cell.separatorInset = UIEdgeInsetsZero;
     cell.layoutMargins = UIEdgeInsetsZero;

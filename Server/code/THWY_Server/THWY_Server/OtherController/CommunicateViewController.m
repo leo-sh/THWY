@@ -163,9 +163,10 @@
     
         COTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CO"];
         cell.section = indexPath.section;
+        cell.width = tableView.width;
         [cell setIcon:[[self.data[indexPath.section] sender] photo] Content:[self.data[indexPath.section] msg]];
         NSLog(@"indexpath.section %ld",indexPath.section);
-        cell.width = tableView.width;
+//        cell.backgroundColor = [UIColor yellowColor];
         returnCell = cell;
     
     }
@@ -173,8 +174,10 @@
     {
         CMTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CM"];
         cell.section = indexPath.section;
-        [cell setIcon:[[self.data[indexPath.section] sender] photo] Content:[self.data[indexPath.section] msg]];
         cell.width = tableView.width;
+        [cell setIcon:[[self.data[indexPath.section] sender] photo] Content:[self.data[indexPath.section] msg]];
+        NSLog(@"indexpath.section %ld",indexPath.section);
+//        cell.backgroundColor = [UIColor greenColor];
         returnCell = cell;
     }
     
@@ -187,7 +190,9 @@
 {
     NSString *key = [NSString stringWithFormat:@"%ld",indexPath.section];
     CGFloat value = [self.rowAndHeight[key] floatValue];
-    
+//    if ([key integerValue] == 26) {
+//        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%f",value);
+//    }
     if (value == 0) {
         return 44;
     }
@@ -201,7 +206,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.001;
+    if (section != self.data.count - 1) {
+    
+        return 0.001;
+    }
+    return 10;
+
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
