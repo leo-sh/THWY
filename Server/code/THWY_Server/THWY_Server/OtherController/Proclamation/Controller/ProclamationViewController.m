@@ -276,20 +276,17 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)change:(NSNotification *)notification
 {
     if (self.rowAndHeight == nil) {
         self.rowAndHeight = [NSMutableDictionary dictionary];
     }
-    self.rowAndHeight.dictionary = notification.object;
-    NSLog(@"%@",notification.object);
-    NSLog(@"%@",self.rowAndHeight);
-    [self.tableView reloadData];
+    if ([notification.object isKindOfClass:[NSDictionary class]]) {
+        self.rowAndHeight.dictionary = notification.object;
+        NSLog(@"%@",notification.object);
+        NSLog(@"%@",self.rowAndHeight);
+        [self.tableView reloadData];
+    }
 }
 
 @end
