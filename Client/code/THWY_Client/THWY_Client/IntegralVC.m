@@ -15,7 +15,7 @@
 @interface IntegralVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property UIView* topView;
-@property UIView* integralBG;
+@property UIImageView* integralBG;
 @property UILabel* titleLabel;
 @property UILabel* integralLabel;
 
@@ -78,9 +78,8 @@
     self.topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, My_ScreenW, TOPVIEW_HEIGHT)];
     [self.view addSubview:self.topView];
     
-    self.integralBG = [UIView new];
-    self.integralBG.backgroundColor = My_NAV_BG_Color;
-    self.integralBG.clipsToBounds = YES;
+    self.integralBG = [UIImageView new];
+    self.integralBG.image = [UIImage imageNamed:@"我的积分-背景框"];
     [self.topView addSubview:self.integralBG];
     
     self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, My_ScreenW, My_ScreenH)];
@@ -106,8 +105,8 @@
 
 -(void)updateTopSubViewsFrame
 {
-    self.integralBG.frame = CGRectMake(0, 20/375.0*My_ScreenW, self.topView.height - 40/375.0*My_ScreenW, self.topView.height - 40/375.0*My_ScreenW);
-    self.integralBG.layer.cornerRadius = self.integralBG.height/2;
+    self.integralBG.frame = CGRectMake(0, 20/375.0*My_ScreenW, 0, self.topView.height - 40/375.0*My_ScreenW);
+    self.integralBG.width = self.integralBG.height;
     self.integralBG.center = CGPointMake(My_ScreenW/2, self.integralBG.center.y);
     
     if (self.topView.height - 40/375.0*My_ScreenW <= 0.0) {

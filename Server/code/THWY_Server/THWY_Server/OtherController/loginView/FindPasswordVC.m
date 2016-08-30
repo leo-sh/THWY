@@ -46,7 +46,7 @@
 
 -(void)createUI
 {
-    UIImageView* imv = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Integral_背景"]];
+    UIImageView* imv = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"repaire_背景"]];
     imv.frame = CGRectMake(0, 0, self.view.width, self.view.height);
     imv.userInteractionEnabled = YES;
     [self.view addSubview:imv];
@@ -195,7 +195,6 @@
     if (self.userNameTf.text.length > 0) {
         if ([self.phoneNumTf.text isValidateMobile]) {
             [self.phoneNumTf endEditing:YES];
-            [self.numTf becomeFirstResponder];
             self.sendCodeBtn.enabled = NO;
             
             [SVProgressHUD showWithStatus:@"发送中..."];
