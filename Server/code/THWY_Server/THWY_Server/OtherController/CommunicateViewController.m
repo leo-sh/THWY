@@ -54,19 +54,28 @@
     self.rowAndHeight = [NSMutableDictionary dictionary];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNew:) name:GetNewMessage object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change:) name:@"giveHeight" object:nil];
-    [self addObserver:self forKeyPath:@"s_admin_id" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     
 }
 
 - (void)getData
 {
     [[ServicesManager getAPI] getMsgs:self.s_admin_id endId:[[UDManager getUD]getEndId:self.s_admin_id] onComplete:^(NSString *errorMsg, NSArray *list) {
+        
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }
         else
         {
-            [SVProgressHUD dismiss];
+            self.data.array = list;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self.tableView reloadData];
+                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+
+                
+            });
+            
         }
         
     }];
@@ -134,12 +143,12 @@
     
     UITableViewCell *returnCell;
     
-    if ([self.data[indexPath.section] reciver_admin_id] == self.s_admin_id) {
+    if ([[self.data[indexPath.section] sender_admin_id] isEqualToString: self.s_admin_id]) {
     
         COTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CO"];
-        
-        [cell setIcon:@"" Content:[self.data[indexPath.section] msg]];
         cell.section = indexPath.section;
+        [cell setIcon:@"" Content:[self.data[indexPath.section] msg]];
+        NSLog(@"indexpath.section%d",indexPath.section);
         cell.width = tableView.width;
         returnCell = cell;
     
@@ -147,24 +156,61 @@
     else
     {
         CMTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CM"];
-        
-        [cell setIcon:@"" Content:[self.data[indexPath.section] msg]];
         cell.section = indexPath.section;
+        [cell setIcon:@"" Content:[self.data[indexPath.section] msg]];
         cell.width = tableView.width;
         returnCell = cell;
     }
     
-    returnCell.backgroundColor = WhiteAlphaColor;
-    
+    returnCell.backgroundColor = [UIColor clearColor];
+    returnCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return returnCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *key = [NSString stringWithFormat:@"%ld",indexPath.section];
+    NSString *key = [NSString stringWithFormat:@"%d",indexPath.section];
     CGFloat value = [self.rowAndHeight[key] floatValue];
+    
+    if (value == 0) {
+        return 44;
+    }
         
     return value;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.001;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc]init];
+    
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 12.5, self.view.width * 0.4, 25)];
+    
+    btn.titleLabel.font = FontSize(Content_Ip_Font);
+    
+    NSString *title = [NSString stringDateFromTimeInterval:[[self.data[section] ctime] intValue] withFormat:@"YYYY-MM-dd HH:SS"];
+    
+    [btn setTitle:title forState:UIControlStateNormal];
+    
+    [btn setBackgroundImage:[UIImage imageNamed:@"时间背景"] forState:UIControlStateNormal];
+    
+    btn.userInteractionEnabled = NO;
+
+    btn.centerX = self.view.centerX;
+    
+    [view addSubview:btn];
+    
+    return view;
+    
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -176,16 +222,18 @@
 - (void)receiveNew:(NSNotification *)new
 {
     NSDictionary *dic = new.object;
-    if ([dic[@"s_admin_id"] isEqualToString:self.s_admin_id]) {
+    if ([[NSString stringWithFormat:@"%d",[dic[@"s_admin_id"] intValue]] isEqualToString:self.s_admin_id]) {
         
-        [self getData];
         [My_ServicesManager palyReceive];
     }
     else
     {
         self.s_admin_id = dic[@"s_admin_id"];
     }
+    [self getData];
     
+//    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+
 }
 #pragma  mark --点击发送按钮
 - (void)clickSendBtn:(UIButton *)sender
@@ -203,6 +251,9 @@
             }else
             {
                 self.msgTextField.text = @"";
+                [self getData];
+//                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+
             }
             sender.enabled = YES;
         }];
@@ -221,10 +272,9 @@
     if (self.rowAndHeight == nil) {
         self.rowAndHeight = [NSMutableDictionary dictionary];
     }
+    
     [self.rowAndHeight setValuesForKeysWithDictionary:notification.object];
-    NSLog(@"%@",notification.object);
-    NSLog(@"%@",self.rowAndHeight);
-    [self.tableView reloadData];
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -232,11 +282,6 @@
     [textField endEditing:YES];
     
     return YES;
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
-{
-    [self getData];
 }
 
 /*

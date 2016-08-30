@@ -43,45 +43,39 @@
     self.contentLabel.text = content;
     self.contentLabel.font = FontSize(CONTENT_FONT);
     self.contentLabel.numberOfLines = 0;
-    
-//    self.contentLabel.backgroundColor = [UIColor yellowColor];
-    
-    [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.right.equalTo(self.icon.mas_left).with.offset(-5);
-        
-        make.centerY.equalTo(self.contentView);
-        
-        make.size.mas_equalTo(CGSizeMake(150, 30));
-    }];
-    
+    self.contentLabel.textColor = [UIColor whiteColor];
     self.backView.image = [UIImage imageNamed:@"绿对话框"];
     
-    self.contentLabel.frame = CGRectMake(10, 5, 125, 20);
-    CGFloat contentHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(140, 4000)].height;
-    NSString *rowS = [NSString stringWithFormat:@"%ld",self.section];
+    CGFloat width = self.width * 0.5;
+    
+    self.contentLabel.frame = CGRectMake(10, 5, width, 20);
+    CGFloat contentHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
+    NSString *rowS = [NSString stringWithFormat:@"%d",self.section];
    __block NSString *heightS;
     if (contentHeight > CONTENT_FONT) {
         self.contentLabel.height = contentHeight;
+        
         [self.backView mas_updateConstraints:^(MASConstraintMaker *make) {
-          
-            make.height.mas_equalTo(contentHeight + 10);
-            heightS = [NSString stringWithFormat:@"%lf",contentHeight + 10];
+            
+            make.right.equalTo(self.icon.mas_left).with.offset(-5);
+            
+            make.centerY.equalTo(self.contentView);
+            
+            make.size.mas_equalTo(CGSizeMake(width + 25, self.contentLabel.height + 10));
+            
         }];
+        
+        heightS = [NSString stringWithFormat:@"%lf",contentHeight + 10];
+            
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
+
     }
     else
     {
         heightS = [NSString stringWithFormat:@"%lf",self.height];
-    }
-    if (self.number == 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
-        
-        self.number ++;
-    }
-    else
-    {
-        self.number = 0;
-    }
+
+    }    
 
     
 }
