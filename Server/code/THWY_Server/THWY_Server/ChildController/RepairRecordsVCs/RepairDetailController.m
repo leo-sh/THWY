@@ -187,7 +187,7 @@
             break;
         }
         case 5:{
-            if (self.repairVO.vdo && ![self.repairVO.vdo isEqualToString:@""]) {
+            if (self.repairVO.vdo && ![self.repairVO.vdo isEqualToString:@""] && ![self.repairVO.vdo isEqualToString:@"http://112.126.75.77:6699"] && ![self.repairVO.vdo isEqualToString:@"http://112.126.75.77:7976"]) {
                 return 1;
             }else{
                 return 0;
@@ -245,7 +245,7 @@
             return 0;
         }
     }else if (indexPath.section == 5) {
-        if (self.repairVO.vdo && ![self.repairVO.vdo isEqualToString:@""]) {
+        if (self.repairVO.vdo && ![self.repairVO.vdo isEqualToString:@""] && ![self.repairVO.vdo isEqualToString:@"http://112.126.75.77:6699"] && ![self.repairVO.vdo isEqualToString:@"http://112.126.75.77:7976"]) {
             return 130/667.0*My_ScreenH;
         }else{
             return 0;
@@ -294,7 +294,7 @@
             break;
         }
         case 5:{
-            if (self.repairVO.vdo && ![self.repairVO.vdo isEqualToString:@""]) {
+            if (self.repairVO.vdo && ![self.repairVO.vdo isEqualToString:@""] && ![self.repairVO.vdo isEqualToString:@"http://112.126.75.77:6699"] && ![self.repairVO.vdo isEqualToString:@"http://112.126.75.77:7976"]) {
                 return head;
             }else{
                 return nil;
@@ -338,7 +338,7 @@
             break;
         }
         case 5:{
-            if (self.repairVO.vdo && ![self.repairVO.vdo isEqualToString:@""]) {
+            if (self.repairVO.vdo && ![self.repairVO.vdo isEqualToString:@""] && ![self.repairVO.vdo isEqualToString:@"http://112.126.75.77:6699"] && ![self.repairVO.vdo isEqualToString:@"http://112.126.75.77:7976"]) {
                 return 1;
             }else{
                 return 0;
