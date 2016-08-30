@@ -35,7 +35,7 @@
        
         make.centerY.equalTo(self.contentView);
         make.right.mas_equalTo(-5);
-        make.size.mas_equalTo(CGSizeMake(30, 30));
+        make.size.mas_equalTo(CGSizeMake(40, 40));
         
         
     }];
