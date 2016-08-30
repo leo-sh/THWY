@@ -50,7 +50,7 @@
 {
     
     if (self.index == 0) {
-        [SVProgressHUD showWithStatus:@"正在加载中，请稍等·······"];
+        [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
         [self.searchFriend removeFromSuperview];
         [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
             

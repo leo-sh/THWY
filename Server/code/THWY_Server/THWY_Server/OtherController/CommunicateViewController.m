@@ -39,7 +39,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self.msgTextField becomeFirstResponder];
+//    [self.msgTextField becomeFirstResponder];
 }
 
 - (void)ViewInitSetting
@@ -72,15 +72,7 @@
         {
             self.data.array = list;
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                [self.tableView reloadData];
-                //滑动到最下面
-                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-
-                
-            });
-            
+            [self.tableView reloadData];
         }
         
     }];
@@ -140,7 +132,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.data.count;
-//    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,7 +144,7 @@
         COTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CO"];
         cell.section = indexPath.section;
         [cell setIcon:[[self.data[indexPath.section] sender] photo] Content:[self.data[indexPath.section] msg]];
-        NSLog(@"indexpath.section%d",indexPath.section);
+        NSLog(@"indexpath.section %ld",indexPath.section);
         cell.width = tableView.width;
         returnCell = cell;
     
@@ -174,13 +165,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *key = [NSString stringWithFormat:@"%d",indexPath.section];
+    NSString *key = [NSString stringWithFormat:@"%ld",indexPath.section];
     CGFloat value = [self.rowAndHeight[key] floatValue];
     
     if (value == 0) {
         return 44;
     }
-        
     return value;
 }
 
@@ -191,6 +181,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
+    if (section == self.data.count - 1) {
+        return 40;
+    }
     return 0.001;
 }
 
@@ -203,7 +196,7 @@
     btn.titleLabel.font = FontSize(Content_Ip_Font);
     
     
-    NSLog(@"section :%d,timeString:%@",section,[self.data[section] ctime]);
+    NSLog(@"section :%ld,timeString:%@",section,[self.data[section] ctime]);
     
     NSString *title = [NSString stringDateFromTimeInterval:[[self.data[section] ctime] longLongValue] withFormat:@"YYYY-MM-dd HH:mm"];
     
@@ -226,6 +219,11 @@
     [self.msgTextField endEditing:YES];
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSLog(@"%.f,%.f",scrollView.contentOffset.y,scrollView.contentSize.height);
+}
+
 #pragma mark --收到消息
 - (void)receiveNew:(NSNotification *)new
 {
@@ -239,8 +237,6 @@
         self.s_admin_id = dic[@"s_admin_id"];
     }
     [self getData];
-    
-//    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 
 }
 #pragma  mark --点击发送按钮
@@ -260,7 +256,6 @@
             {
                 self.msgTextField.text = @"";
                 [self getData];
-//                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 
             }
             sender.enabled = YES;
