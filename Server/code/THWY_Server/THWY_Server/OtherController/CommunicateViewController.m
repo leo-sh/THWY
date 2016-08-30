@@ -201,7 +201,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.001;
+    if (section != self.data.count - 1) {
+    
+        return 0.001;
+    }
+    return 10;
+
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
