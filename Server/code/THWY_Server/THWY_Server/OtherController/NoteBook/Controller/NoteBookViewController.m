@@ -57,6 +57,8 @@
     self.page = 0;
     self.rowAndHeight = [NSMutableDictionary dictionary];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeHeight:) name:@"giveHeight" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:Relodata object:nil];
+
     //    self.automaticallyAdjustsScrollViewInsets = NO;
     //    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
@@ -76,10 +78,6 @@
         self.public = 1;
         self.belong = 1;
     }
-    
-    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
-    
-    [userdefaults setObject:nil forKey:@"RefrashRows"];
     
     if (self.method == GetAdministrationData) {
         
@@ -208,6 +206,7 @@
     [self.view addSubview:self.tableView];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        clearLocalDictionry
         [self.data removeAllObjects];
         [self.clickStatuA removeAllObjects];
         self.page = 0;
@@ -419,6 +418,7 @@
 {
 
     self.method =(int)self.segmentedControl.selectedSegmentIndex;
+    clearLocalDictionry
     [self.data removeAllObjects];
     [self.clickStatuA removeAllObjects];
     [self getData];
@@ -441,8 +441,10 @@
     NSLog(@"刷新");
     
     self.refreshBtnClickStatu = !self.refreshBtnClickStatu;
+    clearLocalDictionry
     [self.data removeAllObjects];
-    
+    [self.clickStatuA removeAllObjects];
+
     [self getData];
 }
 #pragma mark -- 点击添加按钮
@@ -450,7 +452,7 @@
 {
     NSLog(@"添加");
     WRAlertView *view = [[WRAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
-    
+    view.typeId = [NSString stringWithFormat:@"%d",(int)self.segmentedControl.selectedSegmentIndex + 1];
     [view showInWindow];
     
 }
@@ -485,6 +487,11 @@
             else
             {
                 [SVProgressHUD showErrorWithStatus:@"删除成功"];
+                self.page = 0;
+                clearLocalDictionry
+                [self.data removeAllObjects];
+                [self.clickStatuA removeAllObjects];
+
                 [self getData];
             }
         }];
@@ -534,5 +541,14 @@
         NSLog(@"%@",self.rowAndHeight);
         [self.tableView reloadData];
     }
+}
+- (void)reloadData
+{
+    self.page = 0;
+    clearLocalDictionry
+    [self.data removeAllObjects];
+    [self.clickStatuA removeAllObjects];
+
+    [self getData];
 }
 @end

@@ -2186,7 +2186,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.YTWY.sever;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "33dbd4b8-bf62-4f43-8047-def667fff79c";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2208,7 +2208,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.YTWY.sever;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "33dbd4b8-bf62-4f43-8047-def667fff79c";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

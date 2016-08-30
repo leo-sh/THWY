@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 @interface WRAlertView : UIView
 @property BOOL reviseStatu;
+@property NSString *typeId;
 - (void)setTitle:(NSString *)title Content:(NSString *)content typeId:(NSString *)typeId docId:(NSString *)docId;
 @end

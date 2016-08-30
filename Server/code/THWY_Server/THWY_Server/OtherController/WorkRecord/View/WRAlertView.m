@@ -17,7 +17,6 @@
 @property UIButton *rightBtn;
 @property NSInteger number;
 @property UILabel *placeholderLabel;
-@property NSString *typeId;
 @property NSString *docId;
 @property BlueRedioButton *public;
 @end
@@ -103,31 +102,52 @@
 
 - (void)clickLeft
 {
+    NSLog(@"%@",self.typeId);
     if (self.reviseStatu) {
-        [[ServicesManager getAPI]editDoc:self.docId typeId:self.typeId public:self.public.chooseStatu title:self.title.text content:self.textView.text onComplete:^(NSString *errorMsg) {
-           
-            if (errorMsg) {
-                [SVProgressHUD showWithStatus:errorMsg];
-            }
-            else
-            {
-                [SVProgressHUD showErrorWithStatus:@"修改成功"];
-            }
-            
-        }];
+        if (self.textView.text.length == 0) {
+            [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
+
+        }
+        else
+        {
+            [[ServicesManager getAPI]editDoc:self.docId typeId:self.typeId public:self.public.chooseStatu title:self.title.text content:self.textView.text onComplete:^(NSString *errorMsg) {
+                
+                if (errorMsg) {
+                    [SVProgressHUD showErrorWithStatus:errorMsg];
+                }
+                else
+                {
+                    [SVProgressHUD showErrorWithStatus:@"修改成功"];
+                    [self hide];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:Relodata object:nil];
+                }
+                
+            }];
+        }
     }
     else
     {
-        [[ServicesManager getAPI]addDoc:self.typeId public:self.public.chooseStatu title:self.title.text content:self.textView.text onComplete:^(NSString *errorMsg) {
+        if (self.textView.text.length == 0) {
+            [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
             
-            if (errorMsg) {
-                [SVProgressHUD showWithStatus:errorMsg];
-            }
-            else
-            {
-                [SVProgressHUD showErrorWithStatus:@"修改成功"];
-            }
-        }];
+        }
+        else
+        {
+            [[ServicesManager getAPI]addDoc:self.typeId public:self.public.chooseStatu title:self.title.text content:self.textView.text onComplete:^(NSString *errorMsg) {
+                
+                if (errorMsg) {
+                    [SVProgressHUD showErrorWithStatus:errorMsg];
+                }
+                else
+                {
+                    [SVProgressHUD showErrorWithStatus:@"修改成功"];
+                    [self hide];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:Relodata object:nil];
+                    
+                }
+            }];
+        }
+
     }
 }
 
@@ -202,9 +222,9 @@
     
     
     
-    if (self.y - self.bottom + (rect.origin.y - rect.size.height) > 20 ) {
+    if ([UIScreen mainScreen].bounds.size.height - rect.size.height - self.height > 20 ) {
         
-        self.centerY -=(self.bottom - (rect.origin.y - rect.size.height));
+        self.y = [UIScreen mainScreen].bounds.size.height - rect.size.height - self.height;
     }
     else
     {

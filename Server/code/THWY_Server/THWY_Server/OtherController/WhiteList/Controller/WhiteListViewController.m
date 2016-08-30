@@ -105,7 +105,9 @@
     }
     cell.width = tableView.width;
     [cell setEstate:[self.data[indexPath.row] the_user] IP:[self.data[indexPath.row] ip]Id:[self.data[indexPath.row] Id]];
-    
+    UIView *view = [[UIView alloc]init];
+    view.backgroundColor = My_AlphaColor(236, 252, 245, 0.5);
+    [cell setSelectedBackgroundView:view];
     if (indexPath.row != self.data.count - 1) {
         UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, cell.bottom, tableView.width, 0.5)];
         line.backgroundColor = CellUnderLineColor;
