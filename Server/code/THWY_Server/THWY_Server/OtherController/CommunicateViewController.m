@@ -152,7 +152,7 @@
     
         COTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CO"];
         cell.section = indexPath.section;
-        [cell setIcon:@"" Content:[self.data[indexPath.section] msg]];
+        [cell setIcon:[[self.data[indexPath.section] sender] photo] Content:[self.data[indexPath.section] msg]];
         NSLog(@"indexpath.section%d",indexPath.section);
         cell.width = tableView.width;
         returnCell = cell;
@@ -162,7 +162,7 @@
     {
         CMTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CM"];
         cell.section = indexPath.section;
-        [cell setIcon:@"" Content:[self.data[indexPath.section] msg]];
+        [cell setIcon:[[self.data[indexPath.section] sender] photo] Content:[self.data[indexPath.section] msg]];
         cell.width = tableView.width;
         returnCell = cell;
     }
@@ -202,7 +202,10 @@
     
     btn.titleLabel.font = FontSize(Content_Ip_Font);
     
-    NSString *title = [NSString stringDateFromTimeInterval:[[self.data[section] ctime] intValue] withFormat:@"YYYY-MM-dd HH:SS"];
+    
+    NSLog(@"section :%d,timeString:%@",section,[self.data[section] ctime]);
+    
+    NSString *title = [NSString stringDateFromTimeInterval:[[self.data[section] ctime] longLongValue] withFormat:@"YYYY-MM-dd HH:mm"];
     
     [btn setTitle:title forState:UIControlStateNormal];
     

@@ -31,7 +31,6 @@
 
 - (void)setIcon:(NSString *)icon Content:(NSString *)content
 {
-    [self.icon sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"Avatar"]];
     [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.centerY.equalTo(self.contentView);
@@ -40,6 +39,11 @@
         
         
     }];
+    
+    [self.icon sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"Avatar"]];
+    
+    NSLog(@"iamge%@",icon);
+    
     self.contentLabel.text = content;
     self.contentLabel.font = FontSize(CONTENT_FONT);
     self.contentLabel.numberOfLines = 0;

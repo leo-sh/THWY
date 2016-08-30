@@ -31,9 +31,12 @@
 
 - (void)setIcon:(NSString *)icon Content:(NSString *)content
 {
-    [self.icon sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"Avatar"]];
+    
     self.icon.frame = CGRectMake(10, 5, 30, 30);
     
+    [self.icon sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"Avatar"]];
+
+    NSLog(@"iamge%@",icon);
     self.contentLabel.text = content;
     self.contentLabel.font = FontSize(CONTENT_FONT);
     self.contentLabel.numberOfLines = 0;
