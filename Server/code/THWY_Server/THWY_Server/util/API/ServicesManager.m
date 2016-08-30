@@ -769,9 +769,11 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* adDic in responseObject[@"datas"][@"datas"]) {
-                AdVO* ad = [[AdVO alloc]initWithJSON:adDic];
-                [listArr addObject:ad];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* adDic in responseObject[@"datas"][@"datas"]) {
+                    AdVO* ad = [[AdVO alloc]initWithJSON:adDic];
+                    [listArr addObject:ad];
+                }
             }
             
             onComplete(nil,listArr);
