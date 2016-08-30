@@ -16,6 +16,7 @@
 @property NSMutableArray *data;
 @property NSMutableDictionary *rowAndHeight;
 @property UITextField *msgTextField;
+@property CGFloat contentHeight;
 @end
 
 @implementation CommunicateViewController
@@ -32,7 +33,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.contentHeight = 0.0;
     [self ViewInitSetting];
+    [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
     [self getData];
     [self createUI];
 }
@@ -40,6 +43,11 @@
 -(void)viewDidAppear:(BOOL)animated
 {
 //    [self.msgTextField becomeFirstResponder];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.tableView removeObserver:self forKeyPath:@"contentSize"];
 }
 
 - (void)ViewInitSetting
@@ -73,6 +81,7 @@
             self.data.array = list;
             
             [self.tableView reloadData];
+            [SVProgressHUD dismiss];
         }
         
     }];
@@ -89,6 +98,8 @@
     [self.tableView registerClass:[CMTableViewCell class] forCellReuseIdentifier:@"CM"];
     [self.tableView registerClass:[COTableViewCell class] forCellReuseIdentifier:@"CO"];
     [self.view addSubview:self.tableView];
+    
+    [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);
@@ -122,6 +133,15 @@
     
     [self.view addSubview:bottomView];
 
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    CGSize size = [change[@"new"] CGSizeValue];
+    if (size.height > self.contentHeight) {
+        self.contentHeight = size.height;
+        self.tableView.contentOffset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.height);
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -181,9 +201,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == self.data.count - 1) {
-        return 40;
-    }
     return 0.001;
 }
 
@@ -217,11 +234,6 @@
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self.msgTextField endEditing:YES];
-}
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    NSLog(@"%.f,%.f",scrollView.contentOffset.y,scrollView.contentSize.height);
 }
 
 #pragma mark --收到消息
