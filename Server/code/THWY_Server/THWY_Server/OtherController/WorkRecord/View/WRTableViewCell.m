@@ -48,14 +48,10 @@
         NSLog(@"%@",title);
     }
     
-    NSString *heightString = [NSString stringWithFormat:@"%f",self.contentTextView.bottom + 10];
+    NSString *heightString = [NSString stringWithFormat:@"%f",self.contentTextView.bottom];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"giveCell" object:heightString];
     
     self.backGroundView.frame = CGRectMake(0, 0, self.width, self.contentTextView.bottom);
-    self.contentView.clipsToBounds = NO;
-    self.clipsToBounds = NO;
-    
-    
     
 }
 
