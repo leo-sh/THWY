@@ -26,11 +26,11 @@
 @property GetMethod method;
 @property int page;
 @property NSMutableArray *clickStatuA;
-@property NSDictionary *rowAndHeight;
+@property NSMutableDictionary *rowAndHeight;
 @property BOOL refreshBtnClickStatu;
 @property int public;
 @property int belong;
-@property NSString *cellHeightString;
+@property UILabel *line;
 @end
 
 @implementation NoteBookViewController
@@ -45,7 +45,7 @@
 
 - (void)ViewInitSetting
 {
-    self.title = @"工作日志";
+    self.title = @"心得笔记";
     
     UIImage *image = [UIImage imageNamed:@"背景2"];
     
@@ -55,8 +55,8 @@
     self.clickStatuA = [NSMutableArray array];
     self.method = GetBusinessData;
     self.page = 0;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeHeight:) name:@"giveCell" object:nil];
+    self.rowAndHeight = [NSMutableDictionary dictionary];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeHeight:) name:@"giveHeight" object:nil];
     //    self.automaticallyAdjustsScrollViewInsets = NO;
     //    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
@@ -91,8 +91,12 @@
                 self.page --;
             }
             else if (list.count == 0 && errorMsg == nil) {
-                [self.tableView.mj_footer endRefreshing];
-                [SVProgressHUD dismiss];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                    [self.tableView.mj_footer endRefreshing];
+                    [SVProgressHUD dismiss];
+                    
+                });
             }
             
             else
@@ -262,6 +266,7 @@
         cell = [[WRTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     cell.width = tableView.width;
+    cell.section = indexPath.section;
     cell.backgroundColor = WhiteAlphaColor;
     [cell setTitle:[self.data[indexPath.section] content]];
     cell.preservesSuperviewLayoutMargins = NO;
@@ -349,6 +354,7 @@
         }
         nameLabel.font = FontSize(CONTENT_FONT);
         nameLabel.textAlignment = NSTextAlignmentCenter;
+        
         [view addSubview:nameLabel];
         
     }
@@ -359,11 +365,19 @@
     
     timeLabel.text = [NSString stringDateFromTimeInterval:[time integerValue] withFormat:@"YYYY-MM-dd hh:ss"];
     timeLabel.font = FontSize(Content_Ip_Font);
+    timeLabel.textColor = CellUnderLineColor;
+    
     [view addSubview:timeLabel];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(click:)];
     
     [view addGestureRecognizer:tap];
+    
+    self.line = [[UILabel alloc]initWithFrame:CGRectMake(0, view.bottom, tableView.width, 0.5)];
+    
+    self.line.backgroundColor = CellUnderLineColor;
+    
+    [view addSubview:self.line];
     
     return view;
 }
@@ -375,7 +389,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.cellHeightString floatValue];
+    if (self.data) {
+        NSString *key = [NSString stringWithFormat:@"%d",indexPath.section];
+        
+        CGFloat value = [self.rowAndHeight[key] floatValue];
+        if (value != 0) {
+            return value;
+        }
+    }
+    
+    
+    return 0;
 }
 
 
@@ -388,15 +412,18 @@
 
 - (void)change
 {
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userdefaults setObject:nil forKey:@"RefrashRows"];
     self.method =(int)self.segmentedControl.selectedSegmentIndex;
     [self.data removeAllObjects];
     [self.clickStatuA removeAllObjects];
-    self.rowAndHeight = nil;
     [self getData];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     
 }
 
@@ -409,8 +436,14 @@
 - (void)clickRefreshBtn
 {
     NSLog(@"刷新");
+    
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userdefaults setObject:nil forKey:@"RefrashRows"];
+    
     self.refreshBtnClickStatu = !self.refreshBtnClickStatu;
     [self.data removeAllObjects];
+    
     [self getData];
 }
 #pragma mark -- 点击添加按钮
@@ -428,7 +461,7 @@
     NSLog(@"修改");
     WRAlertView *view = [[WRAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
     
-    int section = sender.superview.tag - 300;
+    NSInteger section = sender.superview.tag - 300;
     
     [view setTitle:[self.data[section] title]Content:[self.data[section] content] typeId:[self.data[section] Id] docId:[self.data[section] doc_type_id]];
     
@@ -446,10 +479,19 @@
 {
     if ([self.clickStatuA[sender.view.tag - 300] boolValue]) {
         [self.clickStatuA replaceObjectAtIndex:sender.view.tag - 300 withObject:[NSNumber numberWithBool:NO]];
+        
+        //        [self.line removeFromSuperview];
+        
     }
     else
     {
         [self.clickStatuA replaceObjectAtIndex:sender.view.tag - 300 withObject:[NSNumber numberWithBool:YES]];
+        //        UIView *view = sender.view;
+        //        self.line = [[UILabel alloc]initWithFrame:CGRectMake(0, view.bottom, self.tableView.width, 0.5)];
+        //
+        //        self.line.backgroundColor = CellUnderLineColor;
+        //
+        //        [view addSubview:self.line];
     }
     
     NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:sender.view.tag - 300];
@@ -461,7 +503,14 @@
 #pragma mark -- 通知中心
 - (void)changeHeight:(NSNotification *)sender
 {
-    self.cellHeightString = sender.object;
+    if (self.rowAndHeight == nil) {
+        self.rowAndHeight = [NSMutableDictionary dictionary];
+    }
+    if ([sender.object isKindOfClass:[NSDictionary class]]) {
+        self.rowAndHeight.dictionary = sender.object;
+        NSLog(@"%@",sender.object);
+        NSLog(@"%@",self.rowAndHeight);
+        [self.tableView reloadData];
+    }
 }
-
 @end
