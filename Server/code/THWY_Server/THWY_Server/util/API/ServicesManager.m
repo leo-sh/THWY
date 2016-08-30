@@ -269,6 +269,17 @@
 -(void)getErrorMessage:(NSString *)code
             onComplete:(void (^)(NSString *errorMsg))onComplete
 {
+    NSInteger codeNum = [code integerValue];
+    NSArray* errorArr = @[@3,@5,@8];
+    
+    for (NSNumber* num in errorArr) {
+        NSInteger errNum = [num integerValue];
+        if (errNum == codeNum) {
+            [My_NoteCenter postNotificationName:@"userError" object:nil];
+            break;
+        }
+    }
+    
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@get_op_msg_by_code",API_HOST];
     NSDictionary *params = @{@"k":code};
