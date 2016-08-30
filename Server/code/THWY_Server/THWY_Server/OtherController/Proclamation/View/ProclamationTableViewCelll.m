@@ -99,10 +99,7 @@
     }
     
     if (a.count) {
-//        if (self.number == 0)
-//        {
-//        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
-//        }
+
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.time.frame) + 8, width, 0)];
         webView.scrollView.bounces = NO;
         webView.backgroundColor = My_clearColor;
@@ -110,7 +107,6 @@
         webView.opaque = NO;
         NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", content];
         [webView loadHTMLString:htmlcontent baseURL:nil];
-        
         [self.backView addSubview:webView];
         [self.content removeFromSuperview];
     }

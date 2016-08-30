@@ -19,6 +19,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide) name:UIKeyboardDidHideNotification object:nil];
 
         self.ipTFArray = [NSMutableArray array];
         
@@ -37,6 +38,7 @@
         self.userTF = [[UITextField alloc]initWithFrame:CGRectMake(left, userLabel.bottom + top, width, height)];
         self.userTF.layer.borderWidth = 0.5;
         self.userTF.layer.borderColor = CellUnderLineColor.CGColor;
+        self.userTF.delegate = self;
         [self addSubview:self.userTF];
         
         UILabel *ipLabel = [[UILabel alloc]initWithFrame:CGRectMake(left, self.userTF.bottom + top, width, height)];
@@ -58,6 +60,7 @@
                 UITextField *ipTF = [[UITextField alloc]initWithFrame:CGRectMake(tf_L + tf_W * i, tf_Y, tf_W, tf_H)];
                 ipTF.layer.borderWidth = 0.5;
                 ipTF.layer.borderColor = CellUnderLineColor.CGColor;
+                ipTF.delegate = self;
                 [self.ipTFArray addObject:ipTF];
                 
                 [self addSubview:ipTF];
@@ -232,14 +235,19 @@
 {
     [textField resignFirstResponder];
     
-    return NO;
+    return YES;
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    [textField resignFirstResponder];
     return YES;
 }
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+}
+
 #pragma 键盘监听
 - (void)keyboardShow:(NSNotification *)notification
 {
@@ -251,19 +259,23 @@
     
     CGRect rect = [value CGRectValue];
     
-    NSLog(@"------------keyboradHeight%f,self.frame.y%f",rect.size.height,self.y);
+    NSLog(@"------------keyboradHeight%f,self.frame.y%f,self.frame.bottom%f",rect.size.height,self.y,self.bottom);
     
     
     
-    if (self.y - self.bottom + (rect.origin.y - rect.size.height) > 20 ) {
+    if ([UIScreen mainScreen].bounds.size.height - rect.size.height - self.height > 20 ) {
         
-        self.centerY -=(self.bottom - (rect.origin.y - rect.size.height));
+        self.y = [UIScreen mainScreen].bounds.size.height - rect.size.height - self.height;
     }
     else
     {
         self.y = 20;
     }
     
+}
+- (void)keyboardHide
+{
+    self.center = self.superview.center;
 }
 /*
 // Only override drawRect: if you perform custom drawing.
