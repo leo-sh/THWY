@@ -97,7 +97,7 @@
         make.top.mas_equalTo(0);
         make.left.mas_equalTo(5);
         make.right.mas_equalTo(-5);
-        make.bottom.mas_equalTo(-100);
+        make.bottom.mas_equalTo(-60);
     }];
     
     UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, self.view.height - 124, self.view.width, 60)];
