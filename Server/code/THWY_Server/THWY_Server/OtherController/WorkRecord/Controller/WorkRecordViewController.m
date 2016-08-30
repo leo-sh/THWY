@@ -372,7 +372,7 @@
     
     [view addGestureRecognizer:tap];
     
-    self.line = [[UILabel alloc]initWithFrame:CGRectMake(0, timeLabel.bottom, tableView.width, 0.5)];
+    self.line = [[UILabel alloc]initWithFrame:CGRectMake(0, view.bottom, tableView.width, 0.5)];
     
     self.line.backgroundColor = CellUnderLineColor;
     
@@ -461,10 +461,18 @@
     if ([self.clickStatuA[sender.view.tag - 300] boolValue]) {
         [self.clickStatuA replaceObjectAtIndex:sender.view.tag - 300 withObject:[NSNumber numberWithBool:NO]];
         
+//        [self.line removeFromSuperview];
+        
     }
     else
     {
         [self.clickStatuA replaceObjectAtIndex:sender.view.tag - 300 withObject:[NSNumber numberWithBool:YES]];
+//        UIView *view = sender.view;
+//        self.line = [[UILabel alloc]initWithFrame:CGRectMake(0, view.bottom, self.tableView.width, 0.5)];
+//
+//        self.line.backgroundColor = CellUnderLineColor;
+//        
+//        [view addSubview:self.line];
     }
     
     NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:sender.view.tag - 300];

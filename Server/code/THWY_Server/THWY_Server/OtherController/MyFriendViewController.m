@@ -22,6 +22,8 @@
 @property NSDictionary *rowAndHeight;
 @property int index;
 @property UITextField *searchFriend;
+@property NSArray *tempData;
+@property BOOL addFriendStatu;
 @end
 
 @implementation MyFriendViewController
@@ -41,8 +43,12 @@
     self.page = 0;
     self.index = 0;
     
+    self.addFriendStatu = YES;
+    
     UIImage *image = [UIImage imageNamed:@"b背景"];
     self.view.layer.contents = (id)image.CGImage;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addSuccess) name:@"AddStatu" object:nil];
     
 }
 
@@ -50,7 +56,9 @@
 {
     
     if (self.index == 0) {
-        [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
+        if (self.addFriendStatu) {
+            [SVProgressHUD showWithStatus:@"正在加载中，请稍等·······"];
+        }
         [self.searchFriend removeFromSuperview];
         [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
             
@@ -61,7 +69,17 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                self.data.array = list;
+                if (self.addFriendStatu) {
+                    self.data.array = list;
+                    self.tempData = list;
+
+                }
+                else
+                {
+                    self.data.array = self.tempData;
+                }
+                
+                
                 [self.tableView reloadData];
                 [SVProgressHUD dismiss];
                 
@@ -70,6 +88,7 @@
     }
     else
     {
+        self.addFriendStatu = NO;
         [self.data removeAllObjects];
         self.searchFriend = [[UITextField alloc]initWithFrame:CGRectMake(20, self.segmentedControl.bottom + 20, self.topView.width - 40, 40)];
         self.searchFriend.font = FontSize(CONTENT_FONT);
@@ -302,6 +321,11 @@
     }
     
 
+}
+
+- (void)addSuccess
+{
+    self.addFriendStatu = YES;
 }
 
 /*

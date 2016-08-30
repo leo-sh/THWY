@@ -101,6 +101,8 @@
         else
         {
             [SVProgressHUD showErrorWithStatus:@"添加成功"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"AddStatu" object:nil];
+
         }
     }];
 }

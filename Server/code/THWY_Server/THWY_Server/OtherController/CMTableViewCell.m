@@ -32,7 +32,9 @@
 - (void)setIcon:(NSString *)icon Content:(NSString *)content
 {
     
-    self.icon.frame = CGRectMake(10, 5, 30, 30);
+    self.icon.frame = CGRectMake(10, 0, 40, 40);
+    
+    self.icon.centerY = self.contentView.centerY;
     
     [self.icon sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"Avatar"]];
 
@@ -52,6 +54,7 @@
     if (contentHeight > CONTENT_FONT) {
         self.contentLabel.height = contentHeight;
         self.backView.height += contentHeight - CONTENT_FONT;
+        self.icon.centerY = self.backView.centerY;
     }
     NSString *rowS = [NSString stringWithFormat:@"%d",self.section];
     NSString *heightS = [NSString stringWithFormat:@"%f",self.backView.bottom];
