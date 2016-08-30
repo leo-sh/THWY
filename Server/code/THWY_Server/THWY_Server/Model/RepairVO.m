@@ -17,18 +17,23 @@
         self.owner_id = JSON[@"owner_id"];
         self.estate_id = JSON[@"estate_id"];
         self.house_id = JSON[@"house_id"];
-        if ([JSON[@"pic"] rangeOfString:@"http"].location != NSNotFound) {
-            self.pic = JSON[@"pic"];
-        }else
-        {
-            self.pic = [NSString stringWithFormat:@"%@%@",API_Prefix,JSON[@"pic"]];
+        
+        if ([JSON[@"pic"] length]>0) {
+            if ([JSON[@"pic"] rangeOfString:@"http"].location != NSNotFound) {
+                self.pic = JSON[@"pic"];
+            }else
+            {
+                self.pic = [NSString stringWithFormat:@"%@%@",API_Prefix,JSON[@"pic"]];
+            }
         }
         
-        if ([JSON[@"vdo"] rangeOfString:@"http"].location != NSNotFound) {
-            self.vdo = JSON[@"vdo"];
-        }else
-        {
-            self.vdo = [NSString stringWithFormat:@"%@%@",API_Prefix,JSON[@"vdo"]];
+        if ([JSON[@"vdo"] length]>0) {
+            if ([JSON[@"vdo"] rangeOfString:@"http"].location != NSNotFound) {
+                self.vdo = JSON[@"vdo"];
+            }else
+            {
+                self.vdo = [NSString stringWithFormat:@"%@%@",API_Prefix,JSON[@"vdo"]];
+            }
         }
         
         if (JSON[@"repair_detail"]) {

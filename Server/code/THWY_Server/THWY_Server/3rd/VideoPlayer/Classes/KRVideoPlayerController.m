@@ -60,6 +60,7 @@ static const CGFloat kVideoPlayerControllerAnimationTimeInterval = 0.3f;
     }
     [keyWindow addSubview:self.view];
     self.view.alpha = 0.0;
+    [self.videoControl.indicatorView startAnimating];
     [UIView animateWithDuration:kVideoPlayerControllerAnimationTimeInterval animations:^{
         self.view.alpha = 1.0;
     } completion:^(BOOL finished) {
@@ -133,8 +134,10 @@ static const CGFloat kVideoPlayerControllerAnimationTimeInterval = 0.3f;
 
 - (void)onMPMoviePlayerLoadStateDidChangeNotification
 {
-    if (self.loadState & MPMovieLoadStateStalled) {
+    if (self.loadState && self.loadState == MPMovieLoadStateStalled) {
         [self.videoControl.indicatorView startAnimating];
+    }else if (self.loadState && (self.loadState == MPMovieLoadStatePlaythroughOK || self.loadState == MPMovieLoadStatePlayable)){
+        [self.videoControl.indicatorView stopAnimating];
     }
 }
 
