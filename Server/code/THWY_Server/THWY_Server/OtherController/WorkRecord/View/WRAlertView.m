@@ -25,7 +25,8 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide) name:UIKeyboardDidHideNotification object:nil];
         self.backgroundColor = [UIColor whiteColor];
         self.textView.text = @"";
         CGFloat heighAndWidth = 50;
@@ -183,6 +184,32 @@
         self.center = [self superview].center;
     }];
     
+    
+}
+
+- (void)keyboardShow:(NSNotification *)notification
+{
+    NSLog(@"弹出键盘");
+    
+    NSDictionary *info = notification.userInfo;
+    
+    NSValue *value = [info valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    
+    CGRect rect = [value CGRectValue];
+    
+    
+    //    NSLog(@"------------keyboradHeight%f,self.frame.y%f",rect.size.height,rect.origin.y - rect.size.height - self.bottom);
+    
+    
+    
+    if (self.y - self.bottom + (rect.origin.y - rect.size.height) > 20 ) {
+        
+        self.centerY -=(self.bottom - (rect.origin.y - rect.size.height));
+    }
+    else
+    {
+        self.y = 20;
+    }
     
 }
 

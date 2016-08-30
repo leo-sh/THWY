@@ -8,7 +8,7 @@
 
 #import "WRTableViewCell.h"
 #import "RunSliderLabel.h"
-@interface WRTableViewCell()
+@interface WRTableViewCell()<UIWebViewDelegate>
 @property UITextView *contentTextView;
 @property UIImageView *backGroundView;
 @end
@@ -37,21 +37,137 @@
     self.contentTextView.backgroundColor = [UIColor clearColor];
     CGFloat height = [title sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(self.width - 20, 4000)].height;
     
-    if (height < 60) {
+//    NSArray *array = @[title];
+//    NSPredicate * prdicate = [NSPredicate predicateWithFormat:@"SELF LIKE '<*?>'"];
+//    NSArray *a = [array filteredArrayUsingPredicate:prdicate];
+    
+    for (UIView* subView in self.contentView.subviews) {
+        if ([subView isKindOfClass:[UIWebView class]]) {
+            [subView removeFromSuperview];
+            break;
+        }
+    }
+    if ([title containsString:@"<"] && [title containsString:@">"]) {
         
-        self.contentTextView.frame = CGRectMake(10, 10, self.width - 20, 60);
-
+        UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.width, 0)];
+        webView.scrollView.bounces = NO;
+        webView.backgroundColor = My_clearColor;
+        webView.delegate = self;
+        webView.opaque = NO;
+        NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", title];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [webView loadHTMLString:htmlcontent baseURL:nil];
+        });
+        [self.contentView addSubview:webView];
+        [self.contentTextView removeFromSuperview];
     }
     else
     {
-        self.contentTextView.frame = CGRectMake(10, 10, self.width - 20, height + 10);
-        NSLog(@"%@",title);
+        if (self.contentTextView.superview == nil) {
+            [self.contentView addSubview:self.contentTextView];
+        }
+        if (height < 60) {
+            
+            self.contentTextView.frame = CGRectMake(10, 10, self.width - 20, 60);
+            
+        }
+        else
+        {
+            self.contentTextView.frame = CGRectMake(10, 10, self.width - 20, height + 10);
+            NSLog(@"%@",title);
+        }
+        
+        NSString *heightString = [NSString stringWithFormat:@"%f",self.contentTextView.bottom];
+        
+        NSString *rowS = [NSString stringWithFormat:@"%ld",self.section];
+        
+        
+        NSUserDefaults *userdefaulst = [NSUserDefaults standardUserDefaults];
+        
+        NSArray *array = [userdefaulst objectForKey:@"RefrashRows"];
+        
+        BOOL isRefrash = YES;
+        
+        if (array && array.count != 0) {
+            for (NSString *temp in array) {
+                
+                if ([temp intValue] == self.section) {
+                    
+                    isRefrash = NO;
+                }
+            }
+        }
+        
+        if (isRefrash) {
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightString}];
+            
+            NSMutableArray *marray = [[NSMutableArray alloc]initWithArray:array];
+            
+            [marray addObject:rowS];
+            
+            NSArray *exsitArray = [NSArray arrayWithArray:marray];
+            
+            [userdefaulst setObject:exsitArray forKey:@"RefrashRows"];
+            
+        }
+        
+        self.backGroundView.frame = CGRectMake(0, 0, self.width, self.contentTextView.bottom);
     }
     
-    NSString *heightString = [NSString stringWithFormat:@"%f",self.contentTextView.bottom];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"giveCell" object:heightString];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //获取页面高度（像素）
+    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"];
+    float clientheight = [clientheight_str floatValue];
+    //设置到WebView上
+    webView.frame = CGRectMake(webView.x, webView.y, webView.width, clientheight);
+    //获取WebView最佳尺寸（点）
+    CGSize frame = [webView sizeThatFits:webView.frame.size];
+    //获取内容实际高度（像素）
+    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-top'))  + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-bottom'))"];
+    float height = [height_str floatValue];
+    //内容实际高度（像素）* 点和像素的比
+    height = height * frame.height / clientheight;
+    //再次设置WebView高度（点）
+    webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
+    NSString *rowS = [NSString stringWithFormat:@"%ld",self.section];
+    NSString *heightS = [NSString stringWithFormat:@"%lf",height];
+    self.backGroundView.frame = CGRectMake(0, 0, self.width, [heightS floatValue]);
     
-    self.backGroundView.frame = CGRectMake(0, 0, self.width, self.contentTextView.bottom);
+    NSUserDefaults *userdefaulst = [NSUserDefaults standardUserDefaults];
+    
+    NSArray *array = [userdefaulst objectForKey:@"RefrashRows"];
+    
+    BOOL isRefrash = YES;
+    
+    if (array && array.count != 0) {
+        for (NSString *temp in array) {
+            
+            if ([temp intValue] == self.section) {
+                
+                isRefrash = NO;
+            }
+        }
+    }
+    
+    if (isRefrash) {
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
+        
+        NSMutableArray *marray = [[NSMutableArray alloc]initWithArray:array];
+        
+        [marray addObject:rowS];
+        
+        NSArray *exsitArray = [NSArray arrayWithArray:marray];
+        
+        [userdefaulst setObject:exsitArray forKey:@"RefrashRows"];
+        
+    }
+    
+    //        [SVProgressHUD dismiss];
     
 }
 

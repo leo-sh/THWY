@@ -105,7 +105,12 @@
     
     
 }
-
+- (void)viewWillDisappear:(BOOL)animated
+{
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userdefaults setObject:nil forKey:@"RefrashRows"];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     NSLog(@"didReceiveMemoryWarning");

@@ -54,6 +54,11 @@
 - (void)getData
 {
     [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+    
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userdefaults setObject:nil forKey:@"RefrashRows"];
+    
     if (self.method == GetAdministrationData) {
         [[ServicesManager getAPI]getNotice:self.page onComplete:^(NSString *errorMsg, NSArray *list) {
             
@@ -66,8 +71,13 @@
                 self.page --;
             }
             else if (list.count == 0 && errorMsg == nil) {
-                [self.tableView.mj_footer endRefreshing];
-                [SVProgressHUD dismiss];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                    
+                    [SVProgressHUD dismiss];
+                    [self.tableView.mj_footer endRefreshing];
+                    [self.tableView.mj_header endRefreshing];
+                });
             }
 
             else
@@ -200,6 +210,7 @@
     if (cell == nil) {
         cell = [[ProclamationTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
+    cell.row = indexPath.section;
     NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd HH:mm"];
     [cell setTitle:[self.data[indexPath.section] title] time:time content:[self.data[indexPath.section] content] width:tableView.width];
     cell.preservesSuperviewLayoutMargins = NO;
@@ -249,9 +260,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == self.data.count - 1) {
-        return 80;
-    }
     return 0.01;
 }
 
@@ -261,6 +269,7 @@
     self.method =(int)self.segmentedControl.selectedSegmentIndex;
     [self.data removeAllObjects];
     self.rowAndHeight = nil;
+
     [self getData];
 }
 
@@ -273,20 +282,17 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)change:(NSNotification *)notification
 {
     if (self.rowAndHeight == nil) {
         self.rowAndHeight = [NSMutableDictionary dictionary];
     }
-    self.rowAndHeight.dictionary = notification.object;
-    NSLog(@"%@",notification.object);
-    NSLog(@"%@",self.rowAndHeight);
-    [self.tableView reloadData];
+    if ([notification.object isKindOfClass:[NSDictionary class]]) {
+        self.rowAndHeight.dictionary = notification.object;
+        NSLog(@"%@",notification.object);
+        NSLog(@"%@",self.rowAndHeight);
+        [self.tableView reloadData];
+    }
 }
 
 @end

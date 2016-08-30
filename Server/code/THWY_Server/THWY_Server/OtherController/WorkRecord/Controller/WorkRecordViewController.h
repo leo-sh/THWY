@@ -6,8 +6,8 @@
 //  Copyright © 2016年 SXZ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RootVC.h"
 
-@interface WorkRecordViewController : UIViewController
+@interface WorkRecordViewController : RootVC
 
 @end

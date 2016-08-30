@@ -34,7 +34,7 @@
     
     self.icon.frame = CGRectMake(10, 0, 40, 40);
     
-    self.icon.centerY = self.contentView.centerY;
+    self.icon.centerY = self.centerY;
     
     [self.icon sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"Avatar"]];
 
@@ -42,23 +42,25 @@
     self.contentLabel.text = content;
     self.contentLabel.font = FontSize(CONTENT_FONT);
     self.contentLabel.numberOfLines = 0;
+    
     CGFloat width = self.width * 0.5;
-
-    self.backView.frame = CGRectMake(self.icon.right + 5, 0, width + 25, 30);
-    self.backView.centerY = self.icon.centerY;
-    self.backView.image = [UIImage imageNamed:@"白对话框"];
     
-    
-    self.contentLabel.frame = CGRectMake(15, 5, width, 20);
     CGFloat contentHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
     if (contentHeight > CONTENT_FONT) {
-        self.contentLabel.height = contentHeight;
-        self.backView.height += contentHeight - CONTENT_FONT;
+        self.contentLabel.frame = CGRectMake(25, 5, width, contentHeight);
+        self.backView.frame = CGRectMake(self.icon.right + 5, 0, width + 25, contentHeight + 10);
         self.icon.centerY = self.backView.centerY;
     }
+    else
+    {
+        self.contentLabel.frame = CGRectMake(25, 5, width, 20);
+        self.backView.frame = CGRectMake(self.icon.right + 5, 0, width + 25, 30);
+        self.backView.centerY = self.icon.centerY;
+    }
+    self.backView.image = [UIImage imageNamed:@"白对话框"];
     NSString *rowS = [NSString stringWithFormat:@"%d",self.section];
     NSString *heightS = [NSString stringWithFormat:@"%f",self.backView.bottom];
-    NSLog(@"cell.section:%@",rowS);
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
     
 }

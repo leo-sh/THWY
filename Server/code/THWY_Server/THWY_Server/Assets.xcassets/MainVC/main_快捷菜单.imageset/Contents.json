@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "快捷菜单.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "common_title_menu.png",
       "scale" : "2x"
     },
     {

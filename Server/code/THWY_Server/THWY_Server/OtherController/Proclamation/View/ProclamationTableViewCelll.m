@@ -99,18 +99,16 @@
     }
     
     if (a.count) {
-//        if (self.number == 0)
-//        {
-//        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
-//        }
+
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.time.frame) + 8, width, 0)];
         webView.scrollView.bounces = NO;
         webView.backgroundColor = My_clearColor;
         webView.delegate = self;
         webView.opaque = NO;
         NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", content];
-        [webView loadHTMLString:htmlcontent baseURL:nil];
-        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [webView loadHTMLString:htmlcontent baseURL:nil];
+        });
         [self.backView addSubview:webView];
         [self.content removeFromSuperview];
     }
@@ -147,19 +145,42 @@
     height = height * frame.height / clientheight;
     //再次设置WebView高度（点）
     webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
-    if (self.number == 0) {
-        NSString *rowS = [NSString stringWithFormat:@"%ld",self.row];
-        NSString *heightS = [NSString stringWithFormat:@"%lf",self.time.bottom + height + 8];
-        self.backView.frame = CGRectMake(0, 0, self.width, [heightS floatValue]);
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
-        self.number ++;
+    NSString *rowS = [NSString stringWithFormat:@"%ld",self.row];
+    NSString *heightS = [NSString stringWithFormat:@"%lf",self.time.bottom + height + 8];
+    self.backView.frame = CGRectMake(0, 0, self.width, [heightS floatValue]);
+    
+    NSUserDefaults *userdefaulst = [NSUserDefaults standardUserDefaults];
+    
+    NSArray *array = [userdefaulst objectForKey:@"RefrashRows"];
+    
+    BOOL isRefrash = YES;
+    
+    if (array && array.count != 0) {
+        for (NSString *temp in array) {
+            
+            if ([temp intValue] == self.row) {
+                
+                isRefrash = NO;
+            }
+        }
     }
-    else
-    {
-        self.number = 0;
-//        [SVProgressHUD dismiss];
+    
+    if (isRefrash) {
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
+        
+        NSMutableArray *marray = [[NSMutableArray alloc]initWithArray:array];
+        
+        [marray addObject:rowS];
+        
+        NSArray *exsitArray = [NSArray arrayWithArray:marray];
+        
+        [userdefaulst setObject:exsitArray forKey:@"RefrashRows"];
 
     }
+    
+//        [SVProgressHUD dismiss];
+
 }
 
 - (void)awakeFromNib {

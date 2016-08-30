@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface WRTableViewCell : UITableViewCell
+@property int section;
 - (void)setTitle:(NSString *)title;
 @end

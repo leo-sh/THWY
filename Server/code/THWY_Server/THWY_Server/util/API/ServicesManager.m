@@ -713,9 +713,11 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* noticDic in responseObject[@"datas"][@"datas"]) {
-                NoticVO* notic = [[NoticVO alloc]initWithJSON:noticDic];
-                [listArr addObject:notic];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* noticDic in responseObject[@"datas"][@"datas"]) {
+                    NoticVO* notic = [[NoticVO alloc]initWithJSON:noticDic];
+                    [listArr addObject:notic];
+                }
             }
             
             onComplete(nil,listArr);
@@ -767,9 +769,11 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* adDic in responseObject[@"datas"][@"datas"]) {
-                AdVO* ad = [[AdVO alloc]initWithJSON:adDic];
-                [listArr addObject:ad];
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* adDic in responseObject[@"datas"][@"datas"]) {
+                    AdVO* ad = [[AdVO alloc]initWithJSON:adDic];
+                    [listArr addObject:ad];
+                }
             }
             
             onComplete(nil,listArr);
