@@ -1605,6 +1605,56 @@ savePassWord:(BOOL)save
     }];
 }
 
+-(void)sendCode:(NSString *)name phoneNum:(NSString *)phoneNum onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@get_password_forgotten_sms_code",API_HOST];
+    NSDictionary *params = @{@"login_name":name,
+                             @"cellphone":phoneNum};
+    
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg);
+            }];
+        }else
+        {
+            
+            onComplete(nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误");
+    }];
+}
+
+-(void)setNewPassword:(NSString *)name phoneNum:(NSString *)phoneNum code:(NSString *)code newPassword:(NSString *)newPassword onComplete:(void (^)(NSString *errorMsg))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@set_new_password",API_HOST];
+    NSDictionary *params = @{@"login_name":name,
+                             @"cellphone":phoneNum,
+                             @"sms_code":code,
+                             @"new_password":newPassword};
+    
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg);
+            }];
+        }else
+        {
+            
+            onComplete(nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误");
+    }];
+}
+
 #pragma mark 环境参数判定函数
 -(BOOL)isLogin{
     UserVO *user = [[UDManager getUD] getUser];
