@@ -31,6 +31,7 @@
 @property int public;
 @property int belong;
 @property NSString *cellHeightString;
+@property UILabel *line;
 @end
 
 @implementation WorkRecordViewController
@@ -91,8 +92,12 @@
                 self.page --;
             }
             else if (list.count == 0 && errorMsg == nil) {
-                [self.tableView.mj_footer endRefreshing];
-                [SVProgressHUD dismiss];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                    [self.tableView.mj_footer endRefreshing];
+                    [SVProgressHUD dismiss];
+
+                });
             }
             
             else
@@ -262,6 +267,7 @@
         cell = [[WRTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     [cell setTitle:[self.data[indexPath.section] content]];
+    cell.backgroundColor = WhiteAlphaColor;
     cell.preservesSuperviewLayoutMargins = NO;
     cell.separatorInset = UIEdgeInsetsZero;
     cell.layoutMargins = UIEdgeInsetsZero;
@@ -347,6 +353,7 @@
         }
         nameLabel.font = FontSize(CONTENT_FONT);
         nameLabel.textAlignment = NSTextAlignmentCenter;
+        
         [view addSubview:nameLabel];
 
     }
@@ -364,6 +371,12 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(click:)];
     
     [view addGestureRecognizer:tap];
+    
+    self.line = [[UILabel alloc]initWithFrame:CGRectMake(0, timeLabel.bottom, tableView.width, 0.5)];
+    
+    self.line.backgroundColor = CellUnderLineColor;
+    
+    [view addSubview:self.line];
     
     return view;
 }
@@ -447,6 +460,7 @@
 {
     if ([self.clickStatuA[sender.view.tag - 300] boolValue]) {
         [self.clickStatuA replaceObjectAtIndex:sender.view.tag - 300 withObject:[NSNumber numberWithBool:NO]];
+        
     }
     else
     {
@@ -456,7 +470,7 @@
     NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:sender.view.tag - 300];
     
     [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
-    NSLog(@"%ld",sender.view.tag - 300);
+    NSLog(@"%d",sender.view.tag - 300);
 }
 
 #pragma mark -- 通知中心

@@ -75,6 +75,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 [self.tableView reloadData];
+                //滑动到最下面
                 [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 
                 
@@ -101,7 +102,7 @@
         make.top.mas_equalTo(0);
         make.left.mas_equalTo(5);
         make.right.mas_equalTo(-5);
-        make.bottom.mas_equalTo(-100);
+        make.bottom.mas_equalTo(-60);
     }];
     
     UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, self.view.height - 124, self.view.width, 60)];
