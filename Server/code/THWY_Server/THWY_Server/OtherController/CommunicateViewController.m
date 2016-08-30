@@ -59,7 +59,11 @@
 
 - (void)getData
 {
-    [[ServicesManager getAPI] getMsgs:self.s_admin_id endId:[[UDManager getUD]getEndId:self.s_admin_id] onComplete:^(NSString *errorMsg, NSArray *list) {
+    if (!self.Id) {
+        self.Id = [[UDManager getUD]getEndId:self.s_admin_id];
+    }
+    
+    [[ServicesManager getAPI] getMsgs:self.s_admin_id endId:self.Id onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];

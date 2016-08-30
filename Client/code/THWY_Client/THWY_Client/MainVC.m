@@ -271,8 +271,8 @@
     
     UIButton *zhanghaoxinxi = [[UIButton alloc] init];
     zhanghaoxinxi.tag = 106;
-    [zhanghaoxinxi setBackgroundImage:[UIImage imageNamed:@"账号信息"] forState:UIControlStateNormal];
-    [zhanghaoxinxi setBackgroundImage:[UIImage imageNamed:@"账号信息anxia"] forState:UIControlStateHighlighted];
+    [zhanghaoxinxi setBackgroundImage:[UIImage imageNamed:@"我的积分"] forState:UIControlStateNormal];
+    [zhanghaoxinxi setBackgroundImage:[UIImage imageNamed:@"我的积分anxia"] forState:UIControlStateHighlighted];
     [self.bgScrollView addSubview:zhanghaoxinxi];
     [zhanghaoxinxi mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(woyaotousu.mas_right).offset(topMargin*0.8);

@@ -34,23 +34,28 @@
 
 -(void)palySend
 {
-    [self play:@"fasong.caf"];
+    [self play:@"fasong.caf" withShake:NO];
 }
 
 -(void)palyReceive
 {
-    [self play:@"shou.caf"];
+    [self play:@"shou.caf" withShake:YES];
 }
 
 -(void)palyPush
 {
-    [self play:@"tuisong.caf"];
+    [self play:@"tuisong.caf" withShake:YES];
 }
 
--(void)play:(NSString *)soundName
+-(void)play:(NSString *)soundName withShake:(BOOL)isShake
 {
     BOOL shake = [[UDManager getUD] showShakeState];
     BOOL sound = [[UDManager getUD] showSoundState];
+    
+    if (!isShake && shake) {
+        shake = isShake;
+    }
+    
     if (!shake && !sound) {
         return;
     }
