@@ -56,6 +56,14 @@
 }
 
 - (void)refreshUserInfo{
+    
+    if ([UDManager getUD].getUser) {
+        UserVO *user = [UDManager getUD].getUser;
+        [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.photo] placeholderImage:[UIImage imageNamed:@"Avatar"]];
+        self.username.text = user.real_name;
+        self.addr.text = [user.up_group project];
+    }
+    
     if ([My_ServicesManager isLogin]) {
         [My_ServicesManager getUserInfoOnComplete:^(NSString *errorMsg, UserVO *user) {
             if (errorMsg) {
