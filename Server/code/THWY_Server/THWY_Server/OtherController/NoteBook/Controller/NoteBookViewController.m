@@ -76,6 +76,11 @@
         self.public = 1;
         self.belong = 1;
     }
+    
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userdefaults setObject:nil forKey:@"RefrashRows"];
+    
     if (self.method == GetAdministrationData) {
         
         
@@ -412,9 +417,7 @@
 
 - (void)change
 {
-    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
-    
-    [userdefaults setObject:nil forKey:@"RefrashRows"];
+
     self.method =(int)self.segmentedControl.selectedSegmentIndex;
     [self.data removeAllObjects];
     [self.clickStatuA removeAllObjects];
@@ -436,10 +439,6 @@
 - (void)clickRefreshBtn
 {
     NSLog(@"刷新");
-    
-    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
-    
-    [userdefaults setObject:nil forKey:@"RefrashRows"];
     
     self.refreshBtnClickStatu = !self.refreshBtnClickStatu;
     [self.data removeAllObjects];
@@ -471,6 +470,29 @@
 - (void)clickDelete:(UIButton *)sender
 {
     NSLog(@"删除");
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除" message:@"确定要删除此条记录？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        int index = sender.superview.tag - 300;
+        
+        [[ServicesManager getAPI] delDoc:[self.data[index] Id] onComplete:^(NSString *errorMsg) {
+            if (errorMsg) {
+                [SVProgressHUD showErrorWithStatus:errorMsg];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:@"删除成功"];
+                [self getData];
+            }
+        }];
+        
+    }];
+    [alert addAction:cancel];
+    [alert addAction:sure];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 #
 

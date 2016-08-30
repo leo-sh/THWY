@@ -54,6 +54,11 @@
 - (void)getData
 {
     [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+    
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userdefaults setObject:nil forKey:@"RefrashRows"];
+    
     if (self.method == GetAdministrationData) {
         [[ServicesManager getAPI]getNotice:self.page onComplete:^(NSString *errorMsg, NSArray *list) {
             
@@ -264,9 +269,7 @@
     self.method =(int)self.segmentedControl.selectedSegmentIndex;
     [self.data removeAllObjects];
     self.rowAndHeight = nil;
-    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
-    
-    [userdefaults setObject:nil forKey:@"RefrashRows"];
+
     [self getData];
 }
 
