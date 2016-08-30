@@ -122,7 +122,7 @@
     
     else
     {
-        [[ServicesManager getAPI]getDocs:0 docTypeId:@"2" public:self.public belong:self.belong onComplete:^(NSString *errorMsg, NSArray *list) {
+        [[ServicesManager getAPI]getDocs:self.page docTypeId:@"2" public:self.public belong:self.belong onComplete:^(NSString *errorMsg, NSArray *list) {
             
             if (errorMsg) {
                 [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -421,6 +421,7 @@
     clearLocalDictionry
     [self.data removeAllObjects];
     [self.clickStatuA removeAllObjects];
+    self.page = 0;
     [self getData];
 }
 
@@ -442,6 +443,7 @@
     
     self.refreshBtnClickStatu = !self.refreshBtnClickStatu;
     clearLocalDictionry
+    self.page = 0;
     [self.data removeAllObjects];
     [self.clickStatuA removeAllObjects];
 

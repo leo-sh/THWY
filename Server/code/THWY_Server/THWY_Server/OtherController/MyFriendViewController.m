@@ -216,7 +216,7 @@
         returnCell = cell;
         
     }
-    
+    [returnCell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return returnCell;
 }
 
