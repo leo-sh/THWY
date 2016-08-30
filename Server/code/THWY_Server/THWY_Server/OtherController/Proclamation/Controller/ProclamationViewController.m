@@ -264,6 +264,9 @@
     self.method =(int)self.segmentedControl.selectedSegmentIndex;
     [self.data removeAllObjects];
     self.rowAndHeight = nil;
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userdefaults setObject:nil forKey:@"RefrashRows"];
     [self getData];
 }
 
