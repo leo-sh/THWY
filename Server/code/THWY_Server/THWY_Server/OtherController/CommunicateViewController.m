@@ -71,6 +71,8 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 [self.tableView reloadData];
+                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+
                 
             });
             
@@ -191,7 +193,7 @@
 {
     UIView *view = [[UIView alloc]init];
     
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 12.5, 120, 25)];
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 12.5, self.view.width * 0.4, 25)];
     
     btn.titleLabel.font = FontSize(Content_Ip_Font);
     
@@ -230,7 +232,7 @@
     }
     [self getData];
     
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+//    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 
 }
 #pragma  mark --点击发送按钮
@@ -250,7 +252,7 @@
             {
                 self.msgTextField.text = @"";
                 [self getData];
-                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+//                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 
             }
             sender.enabled = YES;
