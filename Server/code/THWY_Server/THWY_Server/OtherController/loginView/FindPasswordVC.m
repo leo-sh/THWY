@@ -76,6 +76,7 @@
     self.passWordTf.secureTextEntry = YES;
     
     self.tfArr = @[self.userNameTf,self.phoneNumTf,self.numTf,self.passWordTf];
+    NSArray* leftImage = @[@"User-副本-拷贝",@"iphone",@"yanzhengma",@"mima"];
     
     for (int i = 0; i < self.tfArr.count; i++) {
         UITextField* tf = self.tfArr[i];
@@ -86,8 +87,8 @@
         tf.leftViewMode = UITextFieldViewModeAlways;
         
         UIView* leftView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, tf.height, tf.height)];
-        UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5/375.0*My_ScreenW, 0, leftView.width - 15/375.0*My_ScreenW, leftView.height - 10/375.0*My_ScreenW)];
-        imageView.backgroundColor = My_RandomColor;
+        UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(15/375.0*My_ScreenW, 0, (leftView.height - 30/375.0*My_ScreenW)*(28.0/32.0), leftView.height - 30/375.0*My_ScreenW)];
+        imageView.image = [UIImage imageNamed:leftImage[i]];
         imageView.center = CGPointMake(imageView.center.x, leftView.height/2);
         [leftView addSubview:imageView];
         tf.leftView = leftView;

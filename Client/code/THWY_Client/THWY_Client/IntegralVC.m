@@ -144,7 +144,7 @@
         IntegralDetailCell* cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell"];
         
         BOOL isBottom = NO;
-        if (indexPath.row == self.datas.count - 1) {
+        if (indexPath.row == self.datas.count) {
             isBottom = YES;
         }
         

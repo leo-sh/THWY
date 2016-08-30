@@ -50,27 +50,27 @@
     [self addSubview:self.label];
     
     UIView *left = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, self.frame.size.height)];
-    left.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.4];
+    left.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.25];
     [self addSubview:left];
     
     UIView *right = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width-10, 0, 10, self.frame.size.height)];
-    right.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.4];
+    right.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.25];
     [self addSubview:right];
     
     self.clipsToBounds = YES;
     
-//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT),NSFontAttributeName, nil];
-//    CGRect rect = [_title boundingRectWithSize:CGSizeMake(0, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-//    if (self.width<rect.size.width) {
-//        //启动定时器
-//        self.runTimer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(runCircle) userInfo:nil repeats:YES];
-//        [[NSRunLoop currentRunLoop] addTimer:self.runTimer forMode:NSRunLoopCommonModes];
-//
-//    }
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT),NSFontAttributeName, nil];
+    CGRect rect = [_title boundingRectWithSize:CGSizeMake(0, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+    if (self.width-10<rect.size.width) {
+        //启动定时器
+        self.runTimer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(runCircle) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:self.runTimer forMode:NSRunLoopCommonModes];
+
+    }
     
-    //启动定时器
-    self.runTimer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(runCircle) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.runTimer forMode:NSRunLoopCommonModes];
+//    //启动定时器
+//    self.runTimer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(runCircle) userInfo:nil repeats:YES];
+//    [[NSRunLoop currentRunLoop] addTimer:self.runTimer forMode:NSRunLoopCommonModes];
     
 }
 

@@ -38,7 +38,7 @@
     self.data = [NSMutableArray array];
     self.pageNumber = 0;
     self.rowAndHeight = [[NSMutableDictionary alloc]init];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change:) name:@"giveHeight" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change:) name:@"giveHeightDetail" object:nil];
 }
 
 - (void)getData

@@ -59,7 +59,7 @@
         if (!self.webView){
             self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.desc.x, self.desc.y, My_ScreenW-36, 100)];
         }
-        
+        self.webView.userInteractionEnabled = NO;
         self.webView.scrollView.bounces = NO;
         self.webView.backgroundColor = My_clearColor;
         self.webView.delegate = self;
