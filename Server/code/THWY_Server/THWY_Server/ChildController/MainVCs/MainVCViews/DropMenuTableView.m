@@ -55,9 +55,12 @@
     cell.textLabel.font = [UIFont fontWithName:My_RegularFontName size:self.fontSize];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentView.backgroundColor = self.backColor;
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, cell.frame.size.height-0.5, cell.frame.size.width, 0.5)];
-    label.backgroundColor = My_Color(229.f, 229.f, 229.f);
-    [cell.contentView addSubview:label];
+    
+    if (indexPath.row < self.itemNames.count - 1) {
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, cell.frame.size.height - 0.5, cell.frame.size.width, 0.5)];
+        line.backgroundColor = My_Color(229.f, 229.f, 229.f);
+        [cell.contentView addSubview:line];
+    }
     return cell;
 }
 
