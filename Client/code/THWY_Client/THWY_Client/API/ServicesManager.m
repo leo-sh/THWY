@@ -1591,8 +1591,8 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
-                for (NSDictionary* pointDic in responseObject[@"datas"]) {
+            if ([responseObject[@"datas"][@"types"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* pointDic in responseObject[@"datas"][@"types"]) {
                     PointVO* point = [[PointVO alloc]initWithJSON:pointDic];
                     [listArr addObject:point];
                 }
@@ -1641,9 +1641,9 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-        [self getMyPoints:^(NSString *errorMsg, NSArray *list, NSString *total) {
-            
-        }];
+//        [self getMyPoints:^(NSString *errorMsg, NSArray *list, NSString *total) {
+//            
+//        }];
     }else
     {
 //        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {

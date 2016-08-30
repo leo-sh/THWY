@@ -153,7 +153,7 @@
           NSString *rowS = [NSString stringWithFormat:@"%d",(int)self.row];
           NSString *heightS = [NSString stringWithFormat:@"%lf",self.time.bottom + height + 8];
           self.backView.frame = CGRectMake(0, 0, self.width, [heightS floatValue]);
-          [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
+          [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeightDetail" object:@{rowS:heightS}];
           self.number ++;
       }
       else
