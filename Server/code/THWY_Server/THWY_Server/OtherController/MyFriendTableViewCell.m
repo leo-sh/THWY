@@ -56,7 +56,10 @@
 {
     self.Id = Id;
     
-    self.icon.image = [UIImage imageNamed:image];
+    
+    NSLog(@"image:%@",image);
+    
+    [self.icon sd_setImageWithURL:[NSURL URLWithString:image] placeholderImage:[UIImage imageNamed:@"Avatar"]];
     
     self.icon.frame = CGRectMake(10, 5, 50, 50);
     
