@@ -16,6 +16,7 @@
 @property NSMutableArray *data;
 @property NSMutableDictionary *rowAndHeight;
 @property UITextField *msgTextField;
+@property CGFloat contentHeight;
 @end
 
 @implementation CommunicateViewController
@@ -32,14 +33,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.contentHeight = 0.0;
     [self ViewInitSetting];
+    [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
     [self getData];
     [self createUI];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self.msgTextField becomeFirstResponder];
+//    [self.msgTextField becomeFirstResponder];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.tableView removeObserver:self forKeyPath:@"contentSize"];
 }
 
 - (void)ViewInitSetting
@@ -72,15 +80,8 @@
         {
             self.data.array = list;
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                [self.tableView reloadData];
-                //滑动到最下面
-                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-
-                
-            });
-            
+            [self.tableView reloadData];
+            [SVProgressHUD dismiss];
         }
         
     }];
@@ -97,6 +98,8 @@
     [self.tableView registerClass:[CMTableViewCell class] forCellReuseIdentifier:@"CM"];
     [self.tableView registerClass:[COTableViewCell class] forCellReuseIdentifier:@"CO"];
     [self.view addSubview:self.tableView];
+    
+    [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);
@@ -132,6 +135,15 @@
 
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    CGSize size = [change[@"new"] CGSizeValue];
+    if (size.height > self.contentHeight) {
+        self.contentHeight = size.height;
+        self.tableView.contentOffset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.height);
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 1;
@@ -140,7 +152,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.data.count;
-//    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,7 +164,7 @@
         COTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CO"];
         cell.section = indexPath.section;
         [cell setIcon:[[self.data[indexPath.section] sender] photo] Content:[self.data[indexPath.section] msg]];
-        NSLog(@"indexpath.section%d",indexPath.section);
+        NSLog(@"indexpath.section %ld",indexPath.section);
         cell.width = tableView.width;
         returnCell = cell;
     
@@ -174,13 +185,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *key = [NSString stringWithFormat:@"%d",indexPath.section];
+    NSString *key = [NSString stringWithFormat:@"%ld",indexPath.section];
     CGFloat value = [self.rowAndHeight[key] floatValue];
     
     if (value == 0) {
         return 44;
     }
-        
     return value;
 }
 
@@ -203,7 +213,7 @@
     btn.titleLabel.font = FontSize(Content_Ip_Font);
     
     
-    NSLog(@"section :%d,timeString:%@",section,[self.data[section] ctime]);
+    NSLog(@"section :%ld,timeString:%@",section,[self.data[section] ctime]);
     
     NSString *title = [NSString stringDateFromTimeInterval:[[self.data[section] ctime] longLongValue] withFormat:@"YYYY-MM-dd HH:mm"];
     
@@ -239,8 +249,6 @@
         self.s_admin_id = dic[@"s_admin_id"];
     }
     [self getData];
-    
-//    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 
 }
 #pragma  mark --点击发送按钮
@@ -260,7 +268,6 @@
             {
                 self.msgTextField.text = @"";
                 [self getData];
-//                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.data.count - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 
             }
             sender.enabled = YES;
