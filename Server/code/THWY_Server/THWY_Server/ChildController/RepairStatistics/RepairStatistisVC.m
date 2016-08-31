@@ -10,6 +10,7 @@
 #import "RepairStatisticsButton.h"
 #import "RepairStatisticsCell.h"
 #import "RepairStatisticsFinishCell.h"
+#import "RepairStatisticsDataCell.h"
 #import "AlertEstateTableView.h"
 #import "RepairStatisticVO.h"
 
@@ -35,6 +36,7 @@
 @property (strong, nonatomic) NSMutableArray *dataArray;
 //全部数据
 @property (strong, nonatomic) NSMutableArray *allDataArray;
+
 
 @end
 
@@ -100,9 +102,6 @@
                         }
                     }else{
                         [self.dataArray removeAllObjects];
-//                        for (id obj in list) {
-//                            [self.dataArray addObject:obj];
-//                        }
                         [self.dataArray addObjectsFromArray:list[0]];
                     }
                     [self.tableView1 reloadData];
@@ -147,6 +146,7 @@
             break;
         }
         case 3:{
+            
             [SVProgressHUD dismiss];
             break;
         }
@@ -174,7 +174,7 @@
     
     self.labelNames = @[@"业主报修", @"公共报修", @"维修统计"];
 
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(leftMargin, self.bgView.height+4*topMargin, self.bgView.width, My_ScreenH-64-6*topMargin-self.bgView.height)];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(leftMargin, self.bgView.height+3*topMargin, self.bgView.width, My_ScreenH-64-4*topMargin-self.bgView.height)];
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.backgroundColor = [UIColor clearColor];
@@ -209,6 +209,9 @@
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(self.scrollView.width*i, 0, self.scrollView.width, self.scrollView.height) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
+        tableView.showsVerticalScrollIndicator = NO;
+        tableView.showsHorizontalScrollIndicator = NO;
+        tableView.bounces = NO;
         tableView.backgroundColor = [UIColor clearColor];
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         tableView.rowHeight = 50.0<self.scrollView.height/6.0?self.scrollView.height/6.0:50.0;
@@ -228,7 +231,9 @@
                 break;
             case 2:
                 self.tableView3 = tableView;
+                [self.tableView3 registerClass:[RepairStatisticsDataCell class] forCellReuseIdentifier:@"RepairStatisticsDataCell"];
                 [self.scrollView addSubview:self.tableView3];
+                self.tableView3.rowHeight = 24*4+16*3+10;
                 break;
             default:
                 break;
@@ -245,9 +250,13 @@
     [oldBtn setImage:nil forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:@"records_按下"] forState:UIControlStateNormal];
     self.switchFlag = btn.tag - 310+1;
-    self.estateId = -1;
-    [self.unitBtn setTitle:@"全部小区" forState:UIControlStateNormal];
-    [self getStatisticsData:nil];
+//    self.estateId = -1;
+//    [self.unitBtn setTitle:@"全部小区" forState:UIControlStateNormal];
+    if (self.estateId == -1) {
+        [self getStatisticsData:nil];
+    }else{
+        [self getStatisticsData:[self.estatesArray[self.estateId] estate_id]];
+    }
     
     self.scrollView.contentOffset = CGPointMake(self.scrollView.width*(self.switchFlag-1), 0);
     
@@ -288,7 +297,12 @@
     }else if ([tableView isEqual:self.tableView2]){
         return 4;
     }else{
-        return 0;
+//        if (self.estateId == -1) {
+//            return self.allDataArray.count;
+//        }else{
+//            return self.dataArray.count;
+//        }
+        return 4;
     }
     return 0;
     
@@ -296,7 +310,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([tableView isEqual:self.tableView3]) {
-        
+        RepairStatisticsDataCell *cell = (RepairStatisticsDataCell *)[tableView dequeueReusableCellWithIdentifier:@"RepairStatisticsDataCell" forIndexPath:indexPath];
+        [cell loadDataFromModel:@""];
+        return cell;
     }else{
         if (indexPath.row == 4) {
             RepairStatisticsFinishCell *cell = (RepairStatisticsFinishCell *)[tableView dequeueReusableCellWithIdentifier:@"RepairStatisticsFinishCell" forIndexPath:indexPath];
