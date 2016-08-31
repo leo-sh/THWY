@@ -92,6 +92,8 @@
         [self.data removeAllObjects];
         self.searchFriend = [[UITextField alloc]initWithFrame:CGRectMake(20, self.segmentedControl.bottom + 20, self.topView.width - 40, 40)];
         self.searchFriend.font = FontSize(CONTENT_FONT);
+        self.searchFriend.leftViewMode = UITextFieldViewModeAlways;
+        self.searchFriend.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 0)];
         self.searchFriend.placeholder = @"请输入好友手机号或姓名";
         self.searchFriend.layer.borderColor = CellUnderLineColor.CGColor;
         self.searchFriend.layer.borderWidth = 0.5;
@@ -241,6 +243,21 @@
         MyFriendTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
         cell.clickStatu =!cell.clickStatu;
+        
+        if (cell.clickStatu) {
+            for (int i = 0; i <self.data.count; i ++) {
+                
+                if (i != indexPath.row) {
+                    NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:i inSection:0];
+                    
+                    MyFriendTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath1];
+                    
+                    cell.clickStatu = NO;
+                }
+                
+            }
+        }
+        
     }
     
 }

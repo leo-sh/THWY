@@ -11,6 +11,7 @@
 @interface WRTableViewCell()<UIWebViewDelegate>
 @property UITextView *contentTextView;
 @property UIImageView *backGroundView;
+@property NSString *content;
 @end
 @implementation WRTableViewCell
 
@@ -56,9 +57,10 @@
         webView.delegate = self;
         webView.opaque = NO;
         NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", title];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [webView loadHTMLString:htmlcontent baseURL:nil];
-        });
+//            if (![self.content isEqualToString:title]) {
+                [webView loadHTMLString:htmlcontent baseURL:nil];
+//            }
+//            self.content = title;
         [self.contentView addSubview:webView];
         [self.contentTextView removeFromSuperview];
     }

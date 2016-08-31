@@ -113,8 +113,8 @@
     bottomView.backgroundColor = WhiteAlphaColor;
     
     self.msgTextField = [[UITextField alloc]initWithFrame:CGRectMake(5, 10, self.view.width * 0.8 , 40)];
-    
-    
+    self.msgTextField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 0)];
+    self.msgTextField.leftViewMode = UITextFieldViewModeAlways;
     self.msgTextField.backgroundColor = [UIColor whiteColor];
     
     self.msgTextField.layer.borderColor = CellUnderLineColor.CGColor;
