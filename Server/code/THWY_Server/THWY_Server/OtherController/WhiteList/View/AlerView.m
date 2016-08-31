@@ -26,7 +26,7 @@
         CGFloat left = 10;
         CGFloat top = 10;
         CGFloat width = self.width - left * 2;
-        CGFloat height = 25;
+        CGFloat height = 35;
         UILabel *userLabel = [[UILabel alloc]initWithFrame:CGRectMake(left, top, width, height)];
         userLabel.text = @"使用者";
         userLabel.font = FontSize(CONTENT_FONT);
@@ -39,6 +39,7 @@
         self.userTF.layer.borderWidth = 0.5;
         self.userTF.layer.borderColor = CellUnderLineColor.CGColor;
         self.userTF.delegate = self;
+        self.userTF.tag = 301;
         [self addSubview:self.userTF];
         
         UILabel *ipLabel = [[UILabel alloc]initWithFrame:CGRectMake(left, self.userTF.bottom + top, width, height)];
@@ -51,16 +52,31 @@
         
         CGFloat tf_L = 10;
         CGFloat tf_W = self.width/7.5;
-        CGFloat tf_H = 25;
+        CGFloat tf_H = 35;
         CGFloat tf_Y =ipLabel.bottom + 10;
+        
+        int ipTfTag = 302;
+        
         for (int i = 0; i < 7; i ++) {
-            
             if (i % 2 == 0) {
                 
                 UITextField *ipTF = [[UITextField alloc]initWithFrame:CGRectMake(tf_L + tf_W * i, tf_Y, tf_W, tf_H)];
                 ipTF.layer.borderWidth = 0.5;
                 ipTF.layer.borderColor = CellUnderLineColor.CGColor;
                 ipTF.delegate = self;
+                ipTF.keyboardType = UIKeyboardTypeNumberPad;
+                ipTF.textAlignment = NSTextAlignmentCenter;
+                ipTF.tag = ipTfTag;
+                ipTfTag ++;
+                [ipTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+                
+                if (i != 6) {
+                    ipTF.returnKeyType = UIReturnKeyNext;
+                }
+                else
+                {
+                    ipTF.returnKeyType = UIReturnKeyDone;
+                }
                 [self.ipTFArray addObject:ipTF];
                 
                 [self addSubview:ipTF];
@@ -262,6 +278,20 @@
     [textField resignFirstResponder];
 }
 
+- (void)textFieldDidChange:(UITextField *)textfield
+{
+    if (textfield.text.length >= 3 && textfield.tag != 301) {
+       textfield.text = [textfield.text substringToIndex:3];
+        
+        if (textfield.tag < 305) {
+            UITextField *tempTf = [self viewWithTag:textfield.tag + 1];
+            
+            [tempTf becomeFirstResponder];
+        }
+        
+    }
+}
+
 #pragma 键盘监听
 - (void)keyboardShow:(NSNotification *)notification
 {
@@ -287,6 +317,7 @@
     }
     
 }
+
 - (void)keyboardHide
 {
     [UIView animateWithDuration:0.3 animations:^{
