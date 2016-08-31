@@ -115,7 +115,7 @@
         }
         //上传图片
         [self.delegate select:image type:ImageType];
-        self.textField.text = mediaType;
+        self.textField.text = NSHomeDirectory();
         
     }else{
         //如果是视频

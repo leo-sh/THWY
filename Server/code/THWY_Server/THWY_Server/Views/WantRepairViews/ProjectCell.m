@@ -153,6 +153,7 @@
     switch (self.alertTableView.type) {
         case 1:{
             self.estateIndex = index;
+            self.selectEstate_id = @(self.estateIndex).stringValue;
             [btn setTitle:[self.estateArray[index] estate_name] forState:UIControlStateNormal];
             break;
         }
