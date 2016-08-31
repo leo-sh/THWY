@@ -370,7 +370,7 @@
     
     NSString *time = [self.data[section] ctime];
     
-    timeLabel.text = [NSString stringDateFromTimeInterval:[time integerValue] withFormat:@"YYYY-MM-dd hh:ss"];
+    timeLabel.text = [NSString stringDateFromTimeInterval:[time integerValue] withFormat:@"YYYY-MM-dd HH:mm"];
     timeLabel.font = FontSize(Content_Ip_Font);
     timeLabel.textColor = CellUnderLineColor;
     
