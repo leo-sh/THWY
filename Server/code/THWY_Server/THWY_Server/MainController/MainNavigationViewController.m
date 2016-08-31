@@ -8,7 +8,7 @@
 
 #import "MainNavigationViewController.h"
 #import "RepairDetailController.h"
-//#import "ProclamationInfoViewController.h"
+#import "ProclamationInfoViewController.h"
 #import "CommunicateViewController.h"
 #import "UMessage.h"
 #import "BannerNotice.h"
@@ -58,11 +58,23 @@
     }else if ([pushType isEqualToString:@"2"])
     {
         //物业公告－行政公告
+        ProclamationInfoViewController *infoVC = [[ProclamationInfoViewController alloc]init];
+        
+        infoVC.type = GetAdministrationData;
+        infoVC.proclamationId = Id;
+        
+        [self pushViewController:infoVC animated:YES];
 
         
     }else if ([pushType isEqualToString:@"3"])
     {
         //物业公告－商圈公告
+        ProclamationInfoViewController *infoVC = [[ProclamationInfoViewController alloc]init];
+        
+        infoVC.type = GetBusinessData;
+        infoVC.proclamationId = Id;
+        
+        [self pushViewController:infoVC animated:YES];
 
     }else if ([pushType isEqualToString:@"4"])
     {
