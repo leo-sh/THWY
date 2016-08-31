@@ -57,6 +57,8 @@
     self.page = 0;
     self.rowAndHeight = [NSMutableDictionary dictionary];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeHeight:) name:@"giveHeight" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:Relodata object:nil];
+
     //    self.automaticallyAdjustsScrollViewInsets = NO;
     //    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
@@ -76,9 +78,6 @@
         self.public = 1;
         self.belong = 1;
     }
-    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
-    
-    [userdefaults setObject:nil forKey:@"RefrashRows"];
     
     if (self.method == GetAdministrationData) {
         
@@ -123,7 +122,7 @@
     
     else
     {
-        [[ServicesManager getAPI]getDocs:0 docTypeId:@"2" public:self.public belong:self.belong onComplete:^(NSString *errorMsg, NSArray *list) {
+        [[ServicesManager getAPI]getDocs:self.page docTypeId:@"2" public:self.public belong:self.belong onComplete:^(NSString *errorMsg, NSArray *list) {
             
             if (errorMsg) {
                 [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -207,6 +206,7 @@
     [self.view addSubview:self.tableView];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        clearLocalDictionry
         [self.data removeAllObjects];
         [self.clickStatuA removeAllObjects];
         self.page = 0;
@@ -416,7 +416,9 @@
 
 - (void)change
 {
+    
     self.method =(int)self.segmentedControl.selectedSegmentIndex;
+    clearLocalDictionry
     [self.data removeAllObjects];
     [self.clickStatuA removeAllObjects];
     [self getData];
@@ -439,7 +441,13 @@
     NSLog(@"刷新");
     
     self.refreshBtnClickStatu = !self.refreshBtnClickStatu;
+    clearLocalDictionry
+    
+    self.page = 0;
+    
     [self.data removeAllObjects];
+    [self.clickStatuA removeAllObjects];
+
     
     [self getData];
 }
@@ -448,7 +456,7 @@
 {
     NSLog(@"添加");
     WRAlertView *view = [[WRAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
-    
+    view.typeId = [NSString stringWithFormat:@"%d",(int)self.segmentedControl.selectedSegmentIndex + 1];
     [view showInWindow];
     
 }
@@ -483,6 +491,10 @@
             else
             {
                 [SVProgressHUD showErrorWithStatus:@"删除成功"];
+                self.page = 0;
+                clearLocalDictionry
+                [self.data removeAllObjects];
+                [self.clickStatuA removeAllObjects];
                 [self getData];
             }
         }];
@@ -514,11 +526,12 @@
 //        
 //        [view addSubview:self.line];
     }
-    
-    NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:sender.view.tag - 300];
-    
-    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
-    NSLog(@"%d",sender.view.tag - 300);
+    [self.tableView reloadData];
+//    NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:sender.view.tag - 300];
+//    
+//    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+    NSLog(@"tag%d",sender.view.tag - 300);
+    NSLog(@"dictionary%@",self.rowAndHeight);
 }
 
 #pragma mark -- 通知中心
@@ -528,11 +541,20 @@
         self.rowAndHeight = [NSMutableDictionary dictionary];
     }
     if ([sender.object isKindOfClass:[NSDictionary class]]) {
-        self.rowAndHeight.dictionary = sender.object;
+        [self.rowAndHeight setValuesForKeysWithDictionary:sender.object];
         NSLog(@"%@",sender.object);
         NSLog(@"%@",self.rowAndHeight);
         [self.tableView reloadData];
     }
+}
+
+- (void)reloadData
+{
+    self.page = 0;
+    clearLocalDictionry
+    [self.data removeAllObjects];
+    [self.clickStatuA removeAllObjects];
+    [self getData];
 }
 
 @end

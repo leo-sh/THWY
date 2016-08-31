@@ -51,6 +51,7 @@
         
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.width, 0)];
         webView.scrollView.bounces = NO;
+        webView.userInteractionEnabled = NO;
         webView.backgroundColor = My_clearColor;
         webView.delegate = self;
         webView.opaque = NO;

@@ -147,4 +147,8 @@ static inline int sizeValue(int sizefont) {
 //误差精度
 #define EPSINON  0.00000001
 
+
+#define clearLocalDictionry NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];[userdefaults setObject:nil forKey:@"RefrashRows"];
+
+#define Relodata @"relodata"
 #endif /* PrefixHeader_pch */
