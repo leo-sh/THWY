@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Server/OtherController/MyFriendTableViewCell.m"
-            timestampString = "494240369.044931"
+            timestampString = "494340713.204321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "-setImage:Content:ID:"
             landmarkType = "5">
          </BreakpointContent>
@@ -531,11 +531,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Server/OtherController/COTableViewCell.m"
-            timestampString = "494240868.073425"
+            timestampString = "494340762.548856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "-setIcon:Content:"
             landmarkType = "5">
          </BreakpointContent>
@@ -547,11 +547,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Server/OtherController/COTableViewCell.m"
-            timestampString = "494240868.073425"
+            timestampString = "494340762.548856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "-setIcon:Content:"
             landmarkType = "5">
          </BreakpointContent>

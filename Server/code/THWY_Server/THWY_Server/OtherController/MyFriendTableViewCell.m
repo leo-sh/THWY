@@ -63,6 +63,10 @@
     
     self.icon.frame = CGRectMake(10, 5, 50, 50);
     
+    self.icon.layer.cornerRadius = 25;
+    
+    self.icon.clipsToBounds = YES;
+    
 //    self.icon.backgroundColor = [UIColor greenColor];
     
     NSRange range = [content rangeOfString:@"/"];

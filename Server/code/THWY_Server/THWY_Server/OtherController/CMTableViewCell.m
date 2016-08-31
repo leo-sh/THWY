@@ -36,6 +36,10 @@
     
     self.icon.centerY = self.centerY;
     
+    self.icon.layer.cornerRadius = 20;
+    
+    self.icon.clipsToBounds = YES;
+    
     [self.icon sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"Avatar"]];
 
     NSLog(@"iamge%@",icon);
