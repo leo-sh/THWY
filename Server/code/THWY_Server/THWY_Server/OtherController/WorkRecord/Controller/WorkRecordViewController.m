@@ -69,6 +69,8 @@
 //    [[ServicesManager getAPI]getDocTypes:^(NSString *errorMsg, NSArray *list) {
 //        NSLog(@"12313");
 //    }];
+    self.rowAndHeight = nil;
+
     if (!self.refreshBtnClickStatu) {
         self.public = 2;
         self.belong = 0;
@@ -206,7 +208,7 @@
     [self.view addSubview:self.tableView];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        clearLocalDictionry
+        
         [self.data removeAllObjects];
         [self.clickStatuA removeAllObjects];
         self.page = 0;
@@ -271,6 +273,7 @@
     }
     cell.width = tableView.width;
     cell.section = indexPath.section;
+    cell.dictionry = self.rowAndHeight;
     cell.backgroundColor = WhiteAlphaColor;
     [cell setTitle:[self.data[indexPath.section] content]];
     cell.preservesSuperviewLayoutMargins = NO;
@@ -418,7 +421,9 @@
 {
     
     self.method =(int)self.segmentedControl.selectedSegmentIndex;
-    clearLocalDictionry
+    
+    self.rowAndHeight = nil;
+    
     [self.data removeAllObjects];
     [self.clickStatuA removeAllObjects];
     [self getData];
@@ -441,7 +446,7 @@
     NSLog(@"刷新");
     
     self.refreshBtnClickStatu = !self.refreshBtnClickStatu;
-    clearLocalDictionry
+    
     
     self.page = 0;
     
@@ -492,7 +497,7 @@
             {
                 [SVProgressHUD showErrorWithStatus:@"删除成功"];
                 self.page = 0;
-                clearLocalDictionry
+                
                 [self.data removeAllObjects];
                 [self.clickStatuA removeAllObjects];
                 [self getData];
@@ -545,16 +550,19 @@
         NSLog(@"%@",sender.object);
         NSLog(@"%@",self.rowAndHeight);
 //        [self.tableView reloadData];
-        NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:[[[sender.object allKeys] firstObject] intValue]];
-        
-        [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+        if ([[[sender.object allKeys] firstObject] intValue] < self.data.count) {
+            NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:[[[sender.object allKeys] firstObject] intValue]];
+            
+            [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+        }
+
     }
 }
 
 - (void)reloadData
 {
     self.page = 0;
-    clearLocalDictionry
+    
     [self.data removeAllObjects];
     [self.clickStatuA removeAllObjects];
     [self getData];

@@ -18,6 +18,8 @@
 @property NSInteger number;
 @property UILabel *placeholderLabel;
 @property NSString *docId;
+@property NSString *titleString;
+@property NSString *contentString;
 @property BlueRedioButton *public;
 @end
 @implementation WRAlertView
@@ -91,6 +93,8 @@
 - (void)setTitle:(NSString *)title Content:(NSString *)content typeId:(NSString *)typeId docId:(NSString *)docId{
     self.title.text = title;
     self.textView.text = content;
+    self.contentString = content;
+    self.titleString = title;
     self.typeId = typeId;
     self.docId = docId;
 }
@@ -108,6 +112,12 @@
             [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
 
         }
+        
+        else if ([self.textView.text isEqualToString:self.contentString] && [self.title.text isEqualToString:self.titleString])
+        {
+            [self hide];
+        }
+        
         else
         {
             [[ServicesManager getAPI]editDoc:self.docId typeId:self.typeId public:self.public.chooseStatu title:self.title.text content:self.textView.text onComplete:^(NSString *errorMsg) {
@@ -131,6 +141,11 @@
             [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
             
         }
+        else if ([self.textView.text isEqualToString:self.contentString] && [self.title.text isEqualToString:self.titleString])
+        {
+            [self hide];
+        }
+        
         else
         {
             [[ServicesManager getAPI]addDoc:self.typeId public:self.public.chooseStatu title:self.title.text content:self.textView.text onComplete:^(NSString *errorMsg) {

@@ -85,9 +85,7 @@
         NSString *rowS = [NSString stringWithFormat:@"%ld",self.section];
         
         
-        NSUserDefaults *userdefaulst = [NSUserDefaults standardUserDefaults];
-        
-        NSArray *array = [userdefaulst objectForKey:@"RefrashRows"];
+        NSArray *array = [self.dictionry allKeys];
         
         BOOL isRefrash = YES;
         
@@ -104,14 +102,6 @@
         if (isRefrash) {
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightString}];
-            
-            NSMutableArray *marray = [[NSMutableArray alloc]initWithArray:array];
-            
-            [marray addObject:rowS];
-            
-            NSArray *exsitArray = [NSArray arrayWithArray:marray];
-            
-            [userdefaulst setObject:exsitArray forKey:@"RefrashRows"];
             
         }
         
@@ -140,9 +130,8 @@
     NSString *heightS = [NSString stringWithFormat:@"%lf",height];
     self.backGroundView.frame = CGRectMake(0, 0, self.width, [heightS floatValue]);
     
-    NSUserDefaults *userdefaulst = [NSUserDefaults standardUserDefaults];
     
-    NSArray *array = [userdefaulst objectForKey:@"RefrashRows"];
+    NSArray *array = [self.dictionry allKeys];
     
     BOOL isRefrash = YES;
     
@@ -159,14 +148,6 @@
     if (isRefrash) {
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
-        
-        NSMutableArray *marray = [[NSMutableArray alloc]initWithArray:array];
-        
-        [marray addObject:rowS];
-        
-        NSArray *exsitArray = [NSArray arrayWithArray:marray];
-        
-        [userdefaulst setObject:exsitArray forKey:@"RefrashRows"];
         
     }
     
