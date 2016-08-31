@@ -526,10 +526,10 @@
 //        
 //        [view addSubview:self.line];
     }
-    [self.tableView reloadData];
-//    NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:sender.view.tag - 300];
-//    
-//    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+//    [self.tableView reloadData];
+    NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:sender.view.tag - 300];
+    
+    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
     NSLog(@"tag%d",sender.view.tag - 300);
     NSLog(@"dictionary%@",self.rowAndHeight);
 }
@@ -544,7 +544,10 @@
         [self.rowAndHeight setValuesForKeysWithDictionary:sender.object];
         NSLog(@"%@",sender.object);
         NSLog(@"%@",self.rowAndHeight);
-        [self.tableView reloadData];
+//        [self.tableView reloadData];
+        NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:[[[sender.object allKeys] firstObject] intValue]];
+        
+        [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
