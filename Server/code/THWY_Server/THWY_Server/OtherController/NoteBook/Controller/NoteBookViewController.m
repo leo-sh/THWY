@@ -31,6 +31,7 @@
 @property int public;
 @property int belong;
 @property UILabel *line;
+@property UIView *sectionHeaderView;
 @end
 
 @implementation NoteBookViewController
@@ -55,6 +56,7 @@
     self.clickStatuA = [NSMutableArray array];
     self.method = GetBusinessData;
     self.page = 0;
+    clearLocalDictionry
     self.rowAndHeight = [NSMutableDictionary dictionary];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeHeight:) name:@"giveHeight" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:Relodata object:nil];
@@ -282,9 +284,10 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *view = [[UIView alloc]init];
     
-    view.backgroundColor = WhiteAlphaColor;
+    self.sectionHeaderView = [[UIView alloc]init];
+    
+    self.sectionHeaderView.backgroundColor = WhiteAlphaColor;
     
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 15, 15)];
     
@@ -301,13 +304,13 @@
     RunSliderLabel *label = [[RunSliderLabel alloc]initWithFrame:CGRectMake(labelL, top, labelW, height)];
     [label setTitle:[self.data[section] title]];
     
-    [view addSubview:label];
+    [self.sectionHeaderView addSubview:label];
     
     imageView.image = [UIImage imageNamed:@"属性-公开"];
     //    imageView.backgroundColor = [UIColor whiteColor];
-    [view addSubview:imageView];
+    [self.sectionHeaderView addSubview:imageView];
     
-    view.tag = 300 + section;
+    self.sectionHeaderView.tag = 300 + section;
     
     
     if (!self.refreshBtnClickStatu) {
@@ -323,7 +326,7 @@
         
         [revise addTarget:self action:@selector(clickRevise:) forControlEvents:UIControlEventTouchUpInside];
         
-        [view addSubview:revise];
+        [self.sectionHeaderView addSubview:revise];
         
         ReviseBtn *delete = [[ReviseBtn alloc]initWithFrame:CGRectMake(0, top, btnW, CONTENT_FONT)];
         
@@ -338,12 +341,12 @@
         
         delete.titleLabel.font = FontSize(CONTENT_FONT);
         
-        [view addSubview:delete];
+        [self.sectionHeaderView addSubview:delete];
         
     }
     else
     {
-        UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, top, view.width - label.right - btnL, CONTENT_FONT)];
+        UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, top, self.sectionHeaderView.width - label.right - btnL, CONTENT_FONT)];
         nameLabel.x = label.right +btnL;
         nameLabel.centerY = imageView.centerY;
         
@@ -359,7 +362,7 @@
         nameLabel.font = FontSize(CONTENT_FONT);
         nameLabel.textAlignment = NSTextAlignmentCenter;
         
-        [view addSubview:nameLabel];
+        [self.sectionHeaderView addSubview:nameLabel];
         
     }
     
@@ -371,20 +374,21 @@
     timeLabel.font = FontSize(Content_Ip_Font);
     timeLabel.textColor = CellUnderLineColor;
     
-    [view addSubview:timeLabel];
+    [self.sectionHeaderView addSubview:timeLabel];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(click:)];
     
-    [view addGestureRecognizer:tap];
+    [self.sectionHeaderView addGestureRecognizer:tap];
     
-    self.line = [[UILabel alloc]initWithFrame:CGRectMake(0, view.bottom, tableView.width, 0.5)];
+    self.line = [[UILabel alloc]initWithFrame:CGRectMake(0, self.sectionHeaderView.bottom, tableView.width, 0.5)];
     
     self.line.backgroundColor = CellUnderLineColor;
     
-    [view addSubview:self.line];
+    [self.sectionHeaderView addSubview:self.line];
     
-    return view;
-}
+    return self.sectionHeaderView;
+
+    }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -519,17 +523,14 @@
     else
     {
         [self.clickStatuA replaceObjectAtIndex:sender.view.tag - 300 withObject:[NSNumber numberWithBool:YES]];
-        //        UIView *view = sender.view;
-        //        self.line = [[UILabel alloc]initWithFrame:CGRectMake(0, view.bottom, self.tableView.width, 0.5)];
-        //
-        //        self.line.backgroundColor = CellUnderLineColor;
-        //
-        //        [view addSubview:self.line];
+
     }
-    [self.tableView reloadData];
-    //    NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:sender.view.tag - 300];
-    //
-    //    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+//    [self.tableView reloadData];
+        NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:sender.view.tag - 300];
+    
+        [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:sender.view.tag - 300];
+//    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     NSLog(@"tag%d",sender.view.tag - 300);
     NSLog(@"dictionary%@",self.rowAndHeight);
 }
@@ -544,7 +545,10 @@
         [self.rowAndHeight setValuesForKeysWithDictionary:sender.object];
         NSLog(@"%@",sender.object);
         NSLog(@"%@",self.rowAndHeight);
-        [self.tableView reloadData];
+//        [self.tableView reloadData];
+        NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:[[[sender.object allKeys] firstObject] intValue]];
+        
+        [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
