@@ -113,10 +113,10 @@
         for (int i = 0 ;i < self.ipTFArray.count; i ++) {
             
             UITextField *temp = self.ipTFArray[i];
-            if (temp.text.length ==0) {
-                [SVProgressHUD showErrorWithStatus:@"ip地址格式错误"];
-                isError = YES;
-            }
+//            if (temp.text.length ==0) {
+//                [SVProgressHUD showErrorWithStatus:@"ip地址格式错误"];
+//                isError = YES;
+//            }
             [ipString appendString:temp.text];
             if (i != self.ipTFArray.count) {
                 [ipString appendString:@"."];
@@ -126,9 +126,9 @@
         temp.ip = ipString;
         if (!isError) {
             [[ServicesManager getAPI]editAIpAllow:temp onComplete:^(NSString *errorMsg) {
-                
+                [self endEditing:YES];
                 if (errorMsg) {
-                    [SVProgressHUD showWithStatus:errorMsg];
+                    [SVProgressHUD showErrorWithStatus:errorMsg];
                 }
                 else
                 {
@@ -147,10 +147,10 @@
         for (int i = 0 ;i < self.ipTFArray.count; i ++) {
             
             UITextField *temp = self.ipTFArray[i];
-            if (temp.text.length ==0 || [temp.text intValue] >255) {
-                [SVProgressHUD showErrorWithStatus:@"ip地址格式错误"];
-                isError = YES;
-            }
+//            if (temp.text.length ==0 || [temp.text intValue] >255) {
+//                [SVProgressHUD showErrorWithStatus:@"ip地址格式错误"];
+//                isError = YES;
+//            }
             [ipString appendString:temp.text];
             if (i != self.ipTFArray.count) {
                 [ipString appendString:@"."];
@@ -160,9 +160,9 @@
         temp.ip = ipString;
         if (!isError) {
             [[ServicesManager getAPI] addAIpAllow:temp onComplete:^(NSString *errorMsg) {
-                
+                [self endEditing:YES];
                 if (errorMsg) {
-                    [SVProgressHUD showWithStatus:errorMsg];
+                    [SVProgressHUD showErrorWithStatus:errorMsg];
                 }
                 
                 else
@@ -289,7 +289,10 @@
 }
 - (void)keyboardHide
 {
-    self.center = self.superview.center;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.center = self.superview.center;
+
+    }];
 }
 /*
 // Only override drawRect: if you perform custom drawing.
