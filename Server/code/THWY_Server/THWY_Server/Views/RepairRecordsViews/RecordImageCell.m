@@ -95,9 +95,11 @@
                 make.height.mas_equalTo((self.tableView.width-2*topMargin)*size.height/size.width);
             }];
             [self layoutIfNeeded];
-            //        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:4]] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:4] withRowAnimation:UITableViewRowAnimationAutomatic];
-            
+            if (cacheType == 2) {
+            }else{
+                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:4]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+
         }];
         
     }
