@@ -98,6 +98,7 @@
         self.searchFriend.layer.borderColor = CellUnderLineColor.CGColor;
         self.searchFriend.layer.borderWidth = 0.5;
         self.searchFriend.backgroundColor = WhiteAlphaColor;
+        self.searchFriend.returnKeyType = UIReturnKeySearch;
         self.searchFriend.delegate = self;
         [self.topView addSubview:self.searchFriend];
         [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
