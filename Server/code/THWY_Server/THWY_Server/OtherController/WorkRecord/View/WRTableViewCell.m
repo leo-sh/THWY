@@ -58,6 +58,8 @@
         webView.opaque = NO;
         NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", title];
 //            if (![self.content isEqualToString:title]) {
+        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+
                 [webView loadHTMLString:htmlcontent baseURL:nil];
 //            }
 //            self.content = title;
@@ -150,6 +152,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
         
     }
+    [SVProgressHUD dismiss];
     
     //        [SVProgressHUD dismiss];
     
