@@ -739,22 +739,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "THWY_Server/OtherController/NoteBook/Controller/NoteBookViewController.m"
-            timestampString = "494256269.843756"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "-getData"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "THWY_Server/OtherController/WorkRecord/Controller/WorkRecordViewController.m"
             timestampString = "494254500.699727"
             startingColumnNumber = "9223372036854775807"
@@ -883,22 +867,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "THWY_Server/OtherController/NoteBook/Controller/NoteBookViewController.m"
-            timestampString = "494260091.138133"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "550"
-            endingLineNumber = "550"
-            landmarkName = "-reloadData"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "THWY_Server/OtherController/WorkRecord/Controller/WorkRecordViewController.m"
             timestampString = "494256810.380978"
             startingColumnNumber = "9223372036854775807"
@@ -906,22 +874,6 @@
             startingLineNumber = "553"
             endingLineNumber = "553"
             landmarkName = "-reloadData"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "THWY_Server/OtherController/NoteBook/Controller/NoteBookViewController.m"
-            timestampString = "494260144.923219"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
-            landmarkName = "-createUI"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

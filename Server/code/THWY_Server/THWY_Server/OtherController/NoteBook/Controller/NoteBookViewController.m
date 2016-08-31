@@ -58,7 +58,7 @@
     self.rowAndHeight = [NSMutableDictionary dictionary];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeHeight:) name:@"giveHeight" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:Relodata object:nil];
-
+    
     //    self.automaticallyAdjustsScrollViewInsets = NO;
     //    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
@@ -416,12 +416,11 @@
 
 - (void)change
 {
-
+    
     self.method =(int)self.segmentedControl.selectedSegmentIndex;
     clearLocalDictionry
     [self.data removeAllObjects];
     [self.clickStatuA removeAllObjects];
-    self.page = 0;
     [self getData];
 }
 
@@ -443,10 +442,13 @@
     
     self.refreshBtnClickStatu = !self.refreshBtnClickStatu;
     clearLocalDictionry
+    
     self.page = 0;
+    
     [self.data removeAllObjects];
     [self.clickStatuA removeAllObjects];
-
+    
+    
     [self getData];
 }
 #pragma mark -- 点击添加按钮
@@ -493,7 +495,6 @@
                 clearLocalDictionry
                 [self.data removeAllObjects];
                 [self.clickStatuA removeAllObjects];
-
                 [self getData];
             }
         }];
@@ -502,6 +503,7 @@
     [alert addAction:cancel];
     [alert addAction:sure];
     [self presentViewController:alert animated:YES completion:nil];
+    
 }
 #
 
@@ -524,11 +526,12 @@
         //
         //        [view addSubview:self.line];
     }
-    
-    NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:sender.view.tag - 300];
-    
-    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
-    NSLog(@"%d",sender.view.tag - 300);
+    [self.tableView reloadData];
+    //    NSIndexSet *indexSet = [[NSIndexSet alloc]initWithIndex:sender.view.tag - 300];
+    //
+    //    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+    NSLog(@"tag%d",sender.view.tag - 300);
+    NSLog(@"dictionary%@",self.rowAndHeight);
 }
 
 #pragma mark -- 通知中心
@@ -538,19 +541,19 @@
         self.rowAndHeight = [NSMutableDictionary dictionary];
     }
     if ([sender.object isKindOfClass:[NSDictionary class]]) {
-        self.rowAndHeight.dictionary = sender.object;
+        [self.rowAndHeight setValuesForKeysWithDictionary:sender.object];
         NSLog(@"%@",sender.object);
         NSLog(@"%@",self.rowAndHeight);
         [self.tableView reloadData];
     }
 }
+
 - (void)reloadData
 {
     self.page = 0;
     clearLocalDictionry
     [self.data removeAllObjects];
     [self.clickStatuA removeAllObjects];
-
     [self getData];
 }
 @end
