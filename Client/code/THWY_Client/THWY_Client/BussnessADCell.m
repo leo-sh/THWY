@@ -65,6 +65,8 @@
         self.webView.delegate = self;
         self.webView.opaque = NO;
         NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", merchant.content];
+        
+        htmlcontent = [NSString stringWithFormat:@"<body width=%dpx style=\"word-wrap:break-word; font-family:Arial\">%@",(int)self.webView.width,htmlcontent];
         [self.webView loadHTMLString:htmlcontent baseURL:nil];
         
         [self.contentView addSubview:self.webView];

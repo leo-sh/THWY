@@ -102,7 +102,7 @@
 //        {
 //        [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
 //        }
-        UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.time.frame) + 8, width, 0)];
+        UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, 0)];
         webView.scrollView.bounces = NO;
         webView.backgroundColor = My_clearColor;
         webView.delegate = self;
@@ -110,6 +110,8 @@
         webView.userInteractionEnabled = NO;
         webView.backgroundColor = [UIColor clearColor];
         NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", content];
+        
+        htmlcontent = [NSString stringWithFormat:@"<body width=%dpx style=\"word-wrap:break-word; font-family:Arial\">%@",(int)(width - 10),htmlcontent];
         
         [webView loadHTMLString:htmlcontent baseURL:nil];
 
@@ -120,8 +122,8 @@
     else
     {
         self.content.text = content;
-        CGFloat contenHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
-        self.content.frame = CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, contenHeight);
+        self.content.frame = CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, My_ScreenH * 2);
+        [self.content sizeToFit];
         self.backView.frame = CGRectMake(0, 0, width, 200);
         [self.backView addSubview:self.content];
     }
@@ -139,7 +141,7 @@
       NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"];
       float clientheight = [clientheight_str floatValue];
       //设置到WebView上
-      webView.frame = CGRectMake(webView.x, webView.y, webView.width, clientheight);
+      webView.frame = CGRectMake(webView.x, webView.y, webView.width, My_ScreenH*2);
       //获取WebView最佳尺寸（点）
       CGSize frame = [webView sizeThatFits:webView.frame.size];
       //获取内容实际高度（像素）

@@ -258,7 +258,7 @@
             
             if (self.adLabels.count>0) {
                 self.scrollIndex = 0;
-                self.adLabelTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(runloopAdLabel) userInfo:nil repeats:YES];
+                self.adLabelTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(runloopAdLabel) userInfo:nil repeats:YES];
                 
             }
             [SVProgressHUD dismiss];
@@ -387,7 +387,7 @@
             [self.navigationController pushViewController:list animated:YES];
             break;
         }
-        case 2:{//商区广告
+        case 2:{//商圈广告
             RecommandBussnessADVC *list = [[RecommandBussnessADVC alloc] init];
             [self.navigationController pushViewController:list animated:YES];
             break;

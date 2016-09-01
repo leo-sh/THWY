@@ -95,6 +95,7 @@
         [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"报修提交失败\n%@",errorMsg]];
     }else{
         [SVProgressHUD showErrorWithStatus:@"报修提交成功"];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
 }

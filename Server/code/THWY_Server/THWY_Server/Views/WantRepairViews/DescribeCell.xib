@@ -51,15 +51,17 @@
                             <action selector="commit:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fZ7-wI-DZU"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="repaire_提交" translatesAutoresizingMaskIntoConstraints="NO" id="6Yv-PO-FaP">
-                        <rect key="frame" x="153" y="261" width="24" height="24"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="修改" translatesAutoresizingMaskIntoConstraints="NO" id="6Yv-PO-FaP">
+                        <rect key="frame" x="154.5" y="263" width="21" height="20"/>
                         <constraints>
+                            <constraint firstAttribute="width" secondItem="6Yv-PO-FaP" secondAttribute="height" multiplier="31:29" id="3IL-Du-IkV"/>
                             <constraint firstAttribute="width" secondItem="6Yv-PO-FaP" secondAttribute="height" multiplier="1:1" id="AeI-NQ-mTg"/>
                             <constraint firstAttribute="height" constant="22" id="ERu-1E-sYe"/>
                             <constraint firstAttribute="width" constant="22" id="m18-Ex-k10"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="AeI-NQ-mTg"/>
                                 <exclude reference="ERu-1E-sYe"/>
                                 <exclude reference="m18-Ex-k10"/>
                             </mask>
@@ -69,6 +71,7 @@
                 <constraints>
                     <constraint firstItem="jgn-c2-MyG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="2Wn-NO-haH"/>
                     <constraint firstItem="r2x-z1-5VT" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.55" id="4iT-qY-yLD"/>
+                    <constraint firstItem="6Yv-PO-FaP" firstAttribute="width" secondItem="NCh-Nc-YUS" secondAttribute="width" id="7xC-oS-PvT"/>
                     <constraint firstAttribute="trailingMargin" secondItem="r2x-z1-5VT" secondAttribute="trailing" constant="8" id="Dan-Pp-9Wc"/>
                     <constraint firstItem="6Yv-PO-FaP" firstAttribute="centerY" secondItem="NCh-Nc-YUS" secondAttribute="centerY" id="FTH-eF-qtZ"/>
                     <constraint firstItem="jgn-c2-MyG" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="22:375" id="G6c-AJ-3MF"/>
@@ -82,11 +85,14 @@
                     <constraint firstItem="jgn-c2-MyG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="dOr-eq-HxJ"/>
                     <constraint firstItem="jgn-c2-MyG" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.087" id="eMH-6b-1Yd"/>
                     <constraint firstItem="NCh-Nc-YUS" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="eph-3U-qOF"/>
+                    <constraint firstItem="6Yv-PO-FaP" firstAttribute="height" secondItem="NCh-Nc-YUS" secondAttribute="height" multiplier="1/3" id="lDl-Uy-hWd"/>
                     <constraint firstItem="r2x-z1-5VT" firstAttribute="top" secondItem="jgn-c2-MyG" secondAttribute="bottom" constant="10" id="rQy-pa-qFB"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="eMH-6b-1Yd"/>
+                        <exclude reference="7xC-oS-PvT"/>
+                        <exclude reference="S8h-dn-jFN"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -100,6 +106,6 @@
     </objects>
     <resources>
         <image name="repaire_具体描述" width="30" height="30"/>
-        <image name="repaire_提交" width="31" height="30"/>
+        <image name="修改" width="31" height="29"/>
     </resources>
 </document>

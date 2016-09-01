@@ -305,7 +305,7 @@
         }
         else
         {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改个人信息" message:@"是否确定修改？" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改账号信息" message:@"是否确定修改？" preferredStyle:UIAlertControllerStyleAlert];
             
             UIAlertAction *agreeAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
