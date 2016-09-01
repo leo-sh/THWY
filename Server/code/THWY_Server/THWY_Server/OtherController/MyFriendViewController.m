@@ -184,7 +184,7 @@
             cell = [[MyFriendTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
         }
         cell.width = tableView.width;
-        
+        [cell setValue:@60 forKey:@"height"];
         UserVO *temp = self.data[indexPath.row];
         
         NSString *content = [NSString stringWithFormat:@"%@/%@",temp.real_name,temp.up_group.group];

@@ -8,12 +8,15 @@
 
 #import "MyFriendTableViewCell.h"
 #import "CommunicateViewController.h"
-@interface MyFriendTableViewCell()
+@interface MyFriendTableViewCell()<UIGestureRecognizerDelegate>
 @property UIImageView *icon;
 @property  UILabel *label;
 @property UIButton *phoneBtn;
 @property UIButton * communionBtn;
+@property UIButton *fixedPhoneBtn;
+@property UIButton * fixedCommunionBtn;
 @property NSString *Id;
+@property UIView *scrollView;
 @end
 @implementation MyFriendTableViewCell
 
@@ -40,13 +43,44 @@
         
         [self.communionBtn addTarget:self action:@selector(clickCM) forControlEvents:UIControlEventTouchUpInside];
         
-        [self.contentView addSubview:self.icon];
-        [self.contentView addSubview:self.label];
-        [self.contentView addSubview:self.phoneBtn];
-        [self.contentView addSubview:self.communionBtn];
+        self.scrollView = [[UIView alloc]init];
+        self.scrollView.backgroundColor = [UIColor whiteColor];
+        UIPanGestureRecognizer *panG = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
+        panG.maximumNumberOfTouches = 1;
+        [self.scrollView addGestureRecognizer:panG];
         
+        [self.scrollView addSubview:self.icon];
+        [self.scrollView addSubview:self.label];
+        [self.scrollView addSubview:self.phoneBtn];
+        [self.scrollView addSubview:self.communionBtn];
+        
+        
+        self.fixedPhoneBtn = [[UIButton alloc]init];
+        self.fixedCommunionBtn = [[UIButton alloc]init];
+        
+        [self.contentView addSubview:self.fixedCommunionBtn];
+        [self.contentView addSubview:self.fixedPhoneBtn];
+        
+        [self.fixedPhoneBtn setImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
+        
+        [self.fixedPhoneBtn addTarget:self action:@selector(clickPhone) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        [self.fixedCommunionBtn setImage:[UIImage imageNamed:@"2"] forState:UIControlStateNormal];
+        
+        [self.fixedCommunionBtn addTarget:self action:@selector(clickCM) forControlEvents:UIControlEventTouchUpInside];
+
+        [self.fixedCommunionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(15);
+            make.left.equalTo(self).with.offset(5);
+            make.size.mas_equalTo(CGSizeMake(35, 35));
+            
+        }];
+        
+        [self.contentView addSubview:self.scrollView];
+
         [self addObserver:self forKeyPath:@"clickStatu" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-        
         
     }
     return self;
@@ -56,6 +90,7 @@
 {
     self.Id = Id;
     
+    self.scrollView.frame = CGRectMake(0, 0, self.width, self.height);
     
     NSLog(@"image:%@",image);
     
@@ -88,7 +123,7 @@
     [self.communionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
       
         make.top.mas_equalTo(15);
-        make.right.equalTo(self).with.offset(-5);
+        make.right.equalTo(self.scrollView).with.offset(-5);
         make.size.mas_equalTo(CGSizeMake(35, 35));
         
     }];
@@ -96,6 +131,13 @@
     [self.phoneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(15);
         make.right.equalTo(self.communionBtn.mas_left).with.offset(-5);
+        make.size.mas_equalTo(CGSizeMake(35, 35));
+        
+    }];
+    
+    [self.fixedPhoneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(15);
+        make.right.equalTo(self).with.offset(-5);
         make.size.mas_equalTo(CGSizeMake(35, 35));
         
     }];
@@ -164,5 +206,80 @@
 {
     [self removeObserver:self forKeyPath:@"clickStatu"];
 }
+#pragma mark --手势处理
+- (void)pan:(UIPanGestureRecognizer *)gestureRecognizer
+{
+    static int x = 0;
+    
+    CGPoint point = [gestureRecognizer translationInView:self];
+    
+    gestureRecognizer.view.x = x + point.x;
+    
+    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        
+        switch (x) {
+            case 0:
+            {
+                if (point.x > 0 && point.x < 50) {
+                    gestureRecognizer.view.x = 0;
+                }
+                else if (point.x >= 50)
+                {
+                    gestureRecognizer.view.x = 50;
+                }
+                else if (point.x < 0 && point.x > -50)
+                {
+                    gestureRecognizer.view.x = 0;
+                }
+                else if (point.x <= -50)
+                {
+                    gestureRecognizer.view.x = -50;
+                }
+            
+            }
+                break;
+            case 50:
+            {
+                if ( point.x > -50) {
+                    gestureRecognizer.view.x = 50;
+                }
+                else if (point.x <= -50 && point.x > -100)
+                {
+                    gestureRecognizer.view.x = 0;
+                }
+                else if (point.x <= -100)
+                {
+                    gestureRecognizer.view.x = -50;
+                }
+                
+            }
+                break;
+                
+            case -50:
+            {
+                if ( point.x <= 50) {
+                    gestureRecognizer.view.x = -50;
+                }
+                else if (point.x >= 50 && point.x < 100)
+                {
+                    gestureRecognizer.view.x = 0;
+                }
+                else if (point.x >= 100)
+                {
+                    gestureRecognizer.view.x = 50;
+                }
+                
+            }
+                break;
+            default:
+                break;
+        }
+        
+        x = gestureRecognizer.view.x;
+    }
+    
+}
+
+
 
 @end

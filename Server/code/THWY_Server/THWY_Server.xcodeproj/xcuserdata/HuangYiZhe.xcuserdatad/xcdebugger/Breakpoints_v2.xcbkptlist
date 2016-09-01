@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Server/OtherController/MyFriendTableViewCell.m"
-            timestampString = "494340713.204321"
+            timestampString = "494392777.715705"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "-setImage:Content:ID:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1129,6 +1129,22 @@
             startingLineNumber = "283"
             endingLineNumber = "283"
             landmarkName = "-textFieldDidChange:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "THWY_Server/OtherController/MyFriendTableViewCell.m"
+            timestampString = "494394836.592486"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "-pan:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
