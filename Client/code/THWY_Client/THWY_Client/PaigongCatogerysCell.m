@@ -51,7 +51,11 @@
     self.datePickerView.endDate = [NSDate dateWithTimeIntervalSinceNow:180*24*60*60];
     self.datePickerView.delegate = self;
     
-    self.timePickerView = [[MyTimerPickerView alloc] initWithFrame:CGRectMake(10, self.datePickerView.bottom-15 , My_ScreenW-40, 65)];
+    UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(10, self.datePickerView.bottom-5, My_ScreenW-40, 1.0)];
+    line.backgroundColor = My_LineColor;
+    [self.contentView addSubview:line];
+    
+    self.timePickerView = [[MyTimerPickerView alloc] initWithFrame:CGRectMake(10, self.datePickerView.bottom-10 , My_ScreenW-40, 65)];
     self.timePickerView.font = FontSize(CONTENT_FONT+1);
     self.timePickerView.fontColor = [UIColor blackColor];
     self.timePickerView.delegate = self;
@@ -178,18 +182,16 @@
     
 }
 
-//- (NSUInteger)order_timestamp{
-//   
-//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-//    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:self.datePickerView.selectedDate];
-//    [comp setHour:self.timePickerView.hour];
-//    [comp setMinute:self.timePickerView.minute];
-//    
-//    NSUInteger timeInterval = [[[calendar dateFromComponents:comp] dateByAddingTimeInterval:8*60*60]timeIntervalSince1970];
-//    
-////    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
-//    return timeInterval;
-//}
+- (NSUInteger)order_timestamp{
+   
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:self.datePickerView.selectedDate];
+    [comp setHour:self.timePickerView.hour];
+    [comp setMinute:self.timePickerView.minute];
+    
+    NSUInteger timeInterval = [[[calendar dateFromComponents:comp] dateByAddingTimeInterval:8*60*60]timeIntervalSince1970];
+    return timeInterval;
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:NO animated:animated];

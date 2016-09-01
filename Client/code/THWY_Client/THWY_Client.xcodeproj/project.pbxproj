@@ -1161,8 +1161,8 @@
 				9437B86F1D713E8C00B5555C /* IntegralViews */,
 				9490C3E11D63F66400988649 /* AssetView.h */,
 				9490C3E21D63F66400988649 /* AssetView.m */,
-				9400B9801D619C0D00E49F0E /* SVProgressHUD.h */,
 				9400B9811D619C0D00E49F0E /* SVProgressHUD.m */,
+				9400B9801D619C0D00E49F0E /* SVProgressHUD.h */,
 				94F7CE7E1D6149D90034E9FC /* BannerNotice.h */,
 				94F7CE7F1D6149D90034E9FC /* BannerNotice.m */,
 				793296741D51963B000FD426 /* RepaireRecordsViews */,
@@ -2214,6 +2214,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2242,6 +2243,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

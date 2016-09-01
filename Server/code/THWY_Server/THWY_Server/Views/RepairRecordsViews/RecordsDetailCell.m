@@ -198,7 +198,7 @@
                     break;
                 }
                 case 1:{
-                    NSInteger time = [model.st_2_time integerValue];
+                    NSInteger time = [model.st_3_time integerValue];
                     if (time == 0) {
                         self.detailLabel.text = @"";
                     }else{
@@ -212,7 +212,7 @@
                     break;
                 }
                 case 2:{
-                    NSInteger time = [model.st_3_time integerValue];
+                    NSInteger time = [model.callback_time integerValue];
                     if (time == 0) {
                         self.detailLabel.text = @"";
                     }else{

@@ -106,13 +106,13 @@
         case 1: { // 返回月份可以用DateFormatter，这样可以支持本地化
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             formatter.locale = [NSLocale currentLocale];
-            NSArray *monthSymbols = [formatter monthSymbols];
+            NSArray *monthSymbols = [formatter shortMonthSymbols];
             [dateLabel setText:[monthSymbols objectAtIndex:row]];
             dateLabel.textAlignment = NSTextAlignmentCenter;
             break;
         }
         case 2: {
-            [dateLabel setText:[NSString stringWithFormat:@"%ld", row+1]];
+            [dateLabel setText:[NSString stringWithFormat:@" %ld", row+1]];
             dateLabel.textAlignment = NSTextAlignmentLeft;
             break;
         }
@@ -125,6 +125,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    AudioServicesPlayAlertSound(1103);
     NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
     switch (component) {
         case 0: {
