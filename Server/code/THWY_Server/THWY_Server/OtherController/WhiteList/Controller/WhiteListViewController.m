@@ -108,6 +108,7 @@
 //    UIView *view = [[UIView alloc]init];
 //    view.backgroundColor = My_AlphaColor(236, 252, 245, 0.5);
 //    [cell setSelectedBackgroundView:view];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row != self.data.count - 1) {
         UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, cell.bottom, tableView.width, 0.5)];
         line.backgroundColor = CellUnderLineColor;
