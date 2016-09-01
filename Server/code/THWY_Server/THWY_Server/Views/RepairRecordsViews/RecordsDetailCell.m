@@ -157,9 +157,10 @@
             break;
         }
         case 2:{
+            UserVO *user = model.repair_task.admins.firstObject;
             switch (indexpath.row) {
                 case 0:{
-                    self.detailLabel.text = model.repair_task.admins.firstObject.real_name;
+                    self.detailLabel.text = [user real_name];
                     break;
                 }
                 case 1:{
@@ -167,7 +168,7 @@
                     if (time == 0) {
                         self.detailLabel.text = @"";
                     }else{
-                        self.detailLabel.text = model.repair_task.admins.firstObject.cellphone;
+                        self.detailLabel.text = user.cellphone;
                     }
 //                    self.detailLabel.text = model._st;
                     [self.line setHidden:YES];
