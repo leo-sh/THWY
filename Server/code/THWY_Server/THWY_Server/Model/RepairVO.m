@@ -71,7 +71,14 @@
         self.estate = JSON[@"estate"];
         self.phone = JSON[@"phone"];
         self.addr = JSON[@"addr"];
-        self.st = JSON[@"_st"];
+        if (JSON[@"_st"]) {
+            
+            self.st = JSON[@"_st"];
+        }else
+        {
+            
+            self.st = JSON[@"st"];
+        }
         self.repair_admin_id_arr = JSON[@"repair_admin_id_arr"];
         self.classes_ids = JSON[@"classes_ids"];
         self.class_names = JSON[@"class_names"];
