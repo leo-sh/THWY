@@ -93,7 +93,7 @@
 }
 
 - (void)leftItemOnclicked:(UIButton *)button{
-    
+
     if (self.dropView.superview) {
         [self.leftButton setBackgroundImage:nil forState:UIControlStateNormal];
         [self.dropView removeFromSuperview];

@@ -63,6 +63,7 @@
         
         self.data = [[NSMutableArray alloc]initWithObjects:sectionOneData, nil];
         for (FeeHistoryVO* item in ad.fee_history) {
+            actualString = [NSString stringConvertFloatString:item.fee addEndString:@"元"];
             NSString *time = [NSString stringDateFromTimeInterval:[item.fee_time intValue] withFormat:@"YYYY-MM-dd HH:mm:ss"];
             NSArray *sectionTwoData = @[item.invoice_no,item.real_name,time,actualString,item.real_name,item.remark];
             
