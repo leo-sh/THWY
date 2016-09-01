@@ -94,6 +94,13 @@
         self.searchFriend.font = FontSize(CONTENT_FONT);
         self.searchFriend.leftViewMode = UITextFieldViewModeAlways;
         self.searchFriend.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 0)];
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 20, 20)];
+        [btn setImage:[UIImage imageNamed:@"添加好友"] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(searchFriendInfo) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:btn];
+        self.searchFriend.rightViewMode = UITextFieldViewModeAlways;
+        self.searchFriend.rightView = view;
         self.searchFriend.placeholder = @"请输入好友手机号或姓名";
         self.searchFriend.layer.borderColor = CellUnderLineColor.CGColor;
         self.searchFriend.layer.borderWidth = 0.5;
