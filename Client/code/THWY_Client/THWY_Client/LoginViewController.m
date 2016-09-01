@@ -203,8 +203,8 @@
 
     CGFloat rememberPassWordBtnLeft = self.view.width *0.056;
     CGFloat topOffset = self.view.height * 0.03;
-    CGFloat rememberPassWordBtnWidth = self.view.width *0.26;
-    CGFloat rememberPassWordBtnHeight = self.view.height *0.02;
+    CGFloat rememberPassWordBtnWidth = Content_Time_Font * 5.5;
+    CGFloat rememberPassWordBtnHeight = Content_Time_Font;
     
     [self.rememberPassWordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(rememberPassWordBtnLeft);
@@ -213,26 +213,24 @@
         make.height.mas_equalTo(rememberPassWordBtnHeight);
     }];
     
-    self.rememberPassWordBtn.titleLabel.font = [UIFont systemFontOfSize:rememberPassWordBtnHeight];
+    self.rememberPassWordBtn.titleLabel.font = FontSize(Content_Time_Font);
 
-    
     [self.rememberPassWordBtn addTarget:self action:@selector(clickRememberPassWordBtn) forControlEvents:UIControlEventTouchUpInside];
     
-    self.findPsdBtn = [[BlueCheckButton alloc]initDefaultImageName:@"" choosedImageName:@"" title:@"密码找回"];
+    self.findPsdBtn = [[BlueCheckButton alloc]initDefaultImageName:@"找回密码" choosedImageName:@"" title:@"密码找回"];
     [self.view addSubview:self.findPsdBtn];
     
     CGFloat adminLoginBtnRightOffset = -self.view.width *0.036;
-    CGFloat adminLoginBtnWidth = self.view.width *0.2;
-    CGFloat adminLoginBtnHeight = self.view.height *0.02;
+    CGFloat adminLoginBtnWidth = rememberPassWordBtnWidth;
     
     [self.findPsdBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.view.mas_right).with.offset(adminLoginBtnRightOffset);
         make.top.equalTo(self.passWordTF.mas_bottom).with.offset(topOffset);
         make.width.mas_equalTo(adminLoginBtnWidth);
-        make.height.mas_equalTo(adminLoginBtnHeight);
+        make.height.mas_equalTo(rememberPassWordBtnHeight);
     }];
     
-    self.findPsdBtn.titleLabel.font = [UIFont systemFontOfSize:adminLoginBtnHeight];
+    self.findPsdBtn.titleLabel.font = FontSize(Content_Time_Font);
     [self.findPsdBtn addTarget:self action:@selector(clickAdminLoginBtn) forControlEvents:UIControlEventTouchUpInside];
     
     

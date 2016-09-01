@@ -51,6 +51,7 @@
     [self addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
     [self setImage:self.defualtImage forState:UIControlStateNormal];
     [self setTitle:title forState:UIControlStateNormal];
+    
 }
 
 - (void)initDefaultImageName:(NSString *)defaultImageName choosedImageName:(NSString *)choosedImageName
