@@ -161,7 +161,7 @@
     [self.userInfoView addTarget:self action:@selector(showUserInfoVC) forControlEvents:UIControlEventTouchUpInside];
     self.headImage = [[UIImageView alloc] init];
     self.headImage.image = [UIImage imageNamed:@"Avatar"];
-    self.headImage.userInteractionEnabled = YES;
+    self.headImage.userInteractionEnabled = NO;
     self.headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/3;
 //    self.headImage.layer.borderWidth = 3;
 //    self.headImage.layer.borderColor = [UIColor whiteColor].CGColor;

@@ -33,8 +33,20 @@
             self.invoice_no = @"";
         }
         
-        self.admin_name = JSON[@"admin_name"];
-        self.real_name = JSON[@"real_name"];
+        if ([JSON[@"admin_name"] isKindOfClass:[NSString class]] && [JSON[@"admin_name"] length]>0) {
+            
+            self.admin_name = JSON[@"admin_name"];
+        }else{
+            
+            self.admin_name = @"";
+        }
+        if ([JSON[@"real_name"] isKindOfClass:[NSString class]] && [JSON[@"real_name"] length]>0) {
+            
+            self.real_name = JSON[@"real_name"];
+        }else{
+            
+            self.real_name = @"";
+        }
     }
     
     return self;

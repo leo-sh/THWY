@@ -122,8 +122,8 @@
     else
     {
         self.content.text = content;
-        CGFloat contenHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
-        self.content.frame = CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, contenHeight);
+        self.content.frame = CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, My_ScreenH * 2);
+        [self.content sizeToFit];
         self.backView.frame = CGRectMake(0, 0, width, 200);
         [self.backView addSubview:self.content];
     }

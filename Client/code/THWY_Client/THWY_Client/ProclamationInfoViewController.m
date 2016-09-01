@@ -160,7 +160,6 @@
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, backView.width - 2*content.x, My_ScreenH)];
         webView.delegate = self;
         webView.scrollView.bounces = NO;
-        webView.userInteractionEnabled = NO;
         webView.backgroundColor = [UIColor clearColor];
         [content removeFromSuperview];
         [backView addSubview:webView];
@@ -237,7 +236,6 @@
             UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, backView.width - 2*content.x, My_ScreenH)];
             webView.scrollView.bounces = NO;
             webView.delegate = self;
-            webView.userInteractionEnabled = NO;
             webView.backgroundColor = My_clearColor;
             [content removeFromSuperview];
             [backView addSubview:webView];
@@ -271,6 +269,10 @@
     //内容实际高度（像素）* 点和像素的比
     height = height * frame.height / clientheight;
     //再次设置WebView高度（点）
+    
+    if (height > My_ScreenH - 64 - 90/375.0*My_ScreenW) {
+        height = My_ScreenH - 64 - 90/375.0*My_ScreenW;
+    }
     webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
     
     webView.superview.height = webView.bottom + 10;
