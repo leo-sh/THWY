@@ -10,7 +10,7 @@
 #import "BlueRedioButton.h"
 #import "ServicesManager.h"
 #import "SVProgressHUD.h"
-@interface WRAlertView()<UIGestureRecognizerDelegate,UITextViewDelegate>
+@interface WRAlertView()<UIGestureRecognizerDelegate,UITextViewDelegate,UITextFieldDelegate>
 @property UITextField *title;
 @property UITextView *textView;
 @property UIButton *leftBtn;
@@ -51,6 +51,8 @@
         
         self.title = [[UITextField alloc]initWithFrame:CGRectMake(self.leftBtn.right, 0, self.width - self.leftBtn.right * 2, 50)];
         self.number = 1;
+        self.title.delegate = self;
+        [self.title becomeFirstResponder];
         self.title.textAlignment = NSTextAlignmentCenter;
         self.title.font = [UIFont systemFontOfSize:20];
         [self addSubview:self.title];
@@ -272,6 +274,12 @@
 - (void)dealloc
 {
     [self removeObserver:self forKeyPath:@"typeId"];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 /*
