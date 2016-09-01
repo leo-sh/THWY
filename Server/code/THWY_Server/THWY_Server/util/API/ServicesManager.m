@@ -1422,7 +1422,7 @@ savePassWord:(BOOL)save
         params = @{@"login_name":_userName,
                    @"login_password":_passWord,
                    @"page":[NSString stringWithFormat:@"%d",page],
-                   @"repair_status":repairStatuId};
+                   @"st":repairStatuId};
     }else
     {
         params = @{@"login_name":_userName,
@@ -1751,13 +1751,6 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-//        UserVO *user = [[UDManager getUD] getUser];
-//        NSLog(@"admin_id:%@",user.admin_id);
-//        [self getDocTypes:^(NSString *errorMsg, NSArray *list) {
-//            [self getDocs:0 docTypeId:[list.firstObject Id] public:1 belong:1 onComplete:^(NSString *errorMsg, NSArray *list) {
-//                
-//            }];
-//        }];
         
     }else
     {
