@@ -94,6 +94,16 @@
                 user.cellphone = adminDic[@"cellphone"];
                 [self.repair_task addObject:user];
             }
+        }else if ([JSON[@"admins"] isKindOfClass:[NSArray class]])
+        {
+            self.repair_task = [[NSMutableArray alloc]init];
+            for (NSDictionary* adminDic in JSON[@"admins"]) {
+                UserVO* user = [[UserVO alloc]init];
+                user.Id = adminDic[@"admin_id"];
+                user.real_name = adminDic[@"real_name"];
+                user.cellphone = adminDic[@"cellphone"];
+                [self.repair_task addObject:user];
+            }
         }
         
         self.repair_admin_id_arr = JSON[@"repair_admin_id_arr"];
