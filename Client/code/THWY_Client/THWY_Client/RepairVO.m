@@ -76,12 +76,30 @@
         self.estate = JSON[@"estate"];
         self.phone = JSON[@"phone"];
         self.addr = JSON[@"addr"];
-        self._st = JSON[@"_st"];
+        
+        if (JSON[@"_st"]) {
+            
+            self._st = JSON[@"_st"];
+        }else
+        {
+            
+            self._st = JSON[@"st"];
+        }
         
         if ([JSON[@"repair_task"] isKindOfClass:[NSDictionary class]] && JSON[@"repair_task"][@"admins"] && [JSON[@"repair_task"][@"admins"] isKindOfClass:[NSArray class]]) {
             self.repair_task = [[NSMutableArray alloc]init];
             for (NSDictionary* adminDic in JSON[@"repair_task"][@"admins"]) {
                 UserVO* user = [[UserVO alloc]init];
+                user.real_name = adminDic[@"real_name"];
+                user.cellphone = adminDic[@"cellphone"];
+                [self.repair_task addObject:user];
+            }
+        }else if ([JSON[@"admins"] isKindOfClass:[NSArray class]])
+        {
+            self.repair_task = [[NSMutableArray alloc]init];
+            for (NSDictionary* adminDic in JSON[@"admins"]) {
+                UserVO* user = [[UserVO alloc]init];
+                user.Id = adminDic[@"admin_id"];
                 user.real_name = adminDic[@"real_name"];
                 user.cellphone = adminDic[@"cellphone"];
                 [self.repair_task addObject:user];
