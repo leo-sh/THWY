@@ -199,6 +199,7 @@
 		79F2B6C51D4E3CC000AA94E0 /* RecommandBussnessADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F2B6C41D4E3CC000AA94E0 /* RecommandBussnessADVC.m */; };
 		9400B97F1D619BBC00E49F0E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400B97E1D619BBC00E49F0E /* MBProgressHUD.m */; };
 		9400B9821D619C0D00E49F0E /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400B9811D619C0D00E49F0E /* SVProgressHUD.m */; };
+		942E4CCB1D77CABD002C4D22 /* FileVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 942E4CCA1D77CABD002C4D22 /* FileVO.m */; };
 		94300F351D684DC80037546A /* UIImage+ZLPhotoLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300EEF1D684DC70037546A /* UIImage+ZLPhotoLib.m */; };
 		94300F361D684DC80037546A /* ZLCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300EF41D684DC70037546A /* ZLCamera.m */; };
 		94300F371D684DC80037546A /* ZLCameraImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94300EF61D684DC70037546A /* ZLCameraImageView.m */; };
@@ -629,6 +630,8 @@
 		9400B97E1D619BBC00E49F0E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		9400B9801D619C0D00E49F0E /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = MBProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
 		9400B9811D619C0D00E49F0E /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = MBProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
+		942E4CC91D77CABD002C4D22 /* FileVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileVO.h; sourceTree = "<group>"; };
+		942E4CCA1D77CABD002C4D22 /* FileVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileVO.m; sourceTree = "<group>"; };
 		94300EEE1D684DC70037546A /* UIImage+ZLPhotoLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZLPhotoLib.h"; sourceTree = "<group>"; };
 		94300EEF1D684DC70037546A /* UIImage+ZLPhotoLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZLPhotoLib.m"; sourceTree = "<group>"; };
 		94300EF31D684DC70037546A /* ZLCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCamera.h; sourceTree = "<group>"; };
@@ -1118,6 +1121,8 @@
 				5B197EFE1D48A47800B95DE5 /* ComplaintVO.m */,
 				5B197F001D48A86E00B95DE5 /* NoteVO.h */,
 				5B197F011D48A86E00B95DE5 /* NoteVO.m */,
+				942E4CC91D77CABD002C4D22 /* FileVO.h */,
+				942E4CCA1D77CABD002C4D22 /* FileVO.m */,
 				5B197F031D48A9E600B95DE5 /* MerchantTypeVO.h */,
 				5B197F041D48A9E600B95DE5 /* MerchantTypeVO.m */,
 				5B197F061D48AD0300B95DE5 /* MerchantVO.h */,
@@ -1984,6 +1989,7 @@
 				79E862D71D5C687300D8E527 /* MerchantDetailVC.m in Sources */,
 				9400B9821D619C0D00E49F0E /* SVProgressHUD.m in Sources */,
 				1E7527B21D52349F00AEDEC0 /* MJRefreshBackStateFooter.m in Sources */,
+				942E4CCB1D77CABD002C4D22 /* FileVO.m in Sources */,
 				94300F4B1D684DC80037546A /* ZLPhotoPickerCollectionViewCell.m in Sources */,
 				9437B8751D713F0100B5555C /* IntegralTitleCell.m in Sources */,
 				79270C401D61875900E29568 /* BussnessSelectButton.m in Sources */,

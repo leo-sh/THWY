@@ -33,6 +33,8 @@
 @interface ServicesManager : NSObject
 
 @property NetworkStatus status;
+@property (nonatomic, strong) UIDocumentInteractionController *documentInteractionController;
+@property (nonatomic, strong) UIViewController *vc;
 
 /**
  *  单例
@@ -40,6 +42,8 @@
  *  @return API调用实例对象
  */
 +(ServicesManager *)getAPI;
+
+-(void)showFile:(NSURL *)filePath;
 
 #pragma mark 环境参数判定函数
 /**

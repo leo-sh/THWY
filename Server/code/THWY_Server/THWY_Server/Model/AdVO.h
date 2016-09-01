@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FileVO.h"
 
 @interface AdVO : NSObject
 
@@ -16,6 +17,7 @@
 @property NSString              * estate_ids;
 @property NSString              * ctime;
 @property NSString              * admin_view;
+@property NSMutableArray<FileVO *> * files;
 @property BOOL is_tuijian;
 
 -(AdVO* )initWithJSON:(NSDictionary *)JSON;

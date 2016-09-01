@@ -9,7 +9,7 @@
 #import "ServicesManager.h"
 #import "UMessage.h"
 
-@interface ServicesManager ()
+@interface ServicesManager ()<UIDocumentInteractionControllerDelegate>
 {
     NSString* _userName;
     NSString* _passWord;
@@ -76,6 +76,20 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     return manager;
+}
+
+-(void)showFile:(NSURL *)filePath
+{
+    self.documentInteractionController = [UIDocumentInteractionController
+                                          interactionControllerWithURL:filePath];
+    [self.documentInteractionController setDelegate:self];
+    
+    [self.documentInteractionController presentOptionsMenuFromRect:self.vc.view.bounds inView:self.vc.view animated:YES];
+}
+
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller
+{
+    return self.vc;
 }
 
 -(UIImage *)getFitImageData:(UIImage *)image{

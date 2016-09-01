@@ -19,6 +19,13 @@
         self.content = JSON[@"content"];
         self.is_tuijian = [JSON[@"is_tuijian"] boolValue];
         
+        self.files = [[NSMutableArray alloc]init];
+        if ([JSON[@"files"] isKindOfClass:[NSArray class]]) {
+            for (NSDictionary* fileDic in JSON[@"files"]) {
+                FileVO* file = [[FileVO alloc]initWithJSON:fileDic];
+                [self.files addObject:file];
+            }
+        }
     }
     
     return self;

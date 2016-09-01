@@ -233,6 +233,7 @@
 		94A7D3D51D6FDCEE008E4780 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A7D3D41D6FDCEE008E4780 /* SVProgressHUD.m */; };
 		94AAE0E21D730208003E2414 /* FindPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AAE0E11D730208003E2414 /* FindPasswordVC.m */; };
 		94BCF14A1D66DCB800FF1B13 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCF1471D66DCB800FF1B13 /* MBProgressHUD.m */; };
+		94FC85A81D77B9E100820AB3 /* FileVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FC85A71D77B9E100820AB3 /* FileVO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -672,6 +673,8 @@
 		94AAE0E11D730208003E2414 /* FindPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPasswordVC.m; sourceTree = "<group>"; };
 		94BCF1461D66DCB800FF1B13 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		94BCF1471D66DCB800FF1B13 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		94FC85A61D77B9E100820AB3 /* FileVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileVO.h; sourceTree = "<group>"; };
+		94FC85A71D77B9E100820AB3 /* FileVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileVO.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1400,6 +1403,8 @@
 				79270E391D61ACDA00E29568 /* MsgVO.m */,
 				79270E3A1D61ACDA00E29568 /* NoticVO.h */,
 				79270E3B1D61ACDA00E29568 /* NoticVO.m */,
+				94FC85A61D77B9E100820AB3 /* FileVO.h */,
+				94FC85A71D77B9E100820AB3 /* FileVO.m */,
 				79270E3C1D61ACDA00E29568 /* Repair_RootVO.h */,
 				79270E3D1D61ACDA00E29568 /* Repair_RootVO.m */,
 				79270E3E1D61ACDA00E29568 /* RepairClassVO.h */,
@@ -1914,6 +1919,7 @@
 				791B4E091D645EBE00AF9371 /* BannerNotice.m in Sources */,
 				7902B0541D64136C00ADDAE0 /* MainVC.m in Sources */,
 				79270E0C1D61ACB100E29568 /* UIImage+MultiFormat.m in Sources */,
+				94FC85A81D77B9E100820AB3 /* FileVO.m in Sources */,
 				79270DD01D61ACB100E29568 /* MASCompositeConstraint.m in Sources */,
 				79F60D1A1D6A074300A8E2D2 /* RecordImageCell.m in Sources */,
 				79270E4F1D61ACDA00E29568 /* DocTypeVO.m in Sources */,

@@ -9,7 +9,7 @@
 #import "ServicesManager.h"
 #import "UMessage.h"
 
-@interface ServicesManager ()
+@interface ServicesManager ()<UIDocumentInteractionControllerDelegate>
 {
     NSString* _userName;
     NSString* _passWord;
@@ -89,6 +89,14 @@
             _userName = [[UDManager getUD] getUserName];
             _passWord = [[UDManager getUD] getPassWord];
         }
+        self.baiduReach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
+        
+        [My_NoteCenter addObserver:self
+                          selector:@selector(reachabilityChanged)
+                              name:kReachabilityChangedNotification
+                            object:nil];
+        
+        self.status = 3;
         [self.baiduReach startNotifier];
         
     }
@@ -113,6 +121,20 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.requestSerializer.timeoutInterval = 10.f;
     return manager;
+}
+
+-(void)showFile:(NSURL *)filePath
+{
+    self.documentInteractionController = [UIDocumentInteractionController
+                                                        interactionControllerWithURL:filePath];
+    [self.documentInteractionController setDelegate:self];
+    
+    [self.documentInteractionController presentOptionsMenuFromRect:self.vc.view.bounds inView:self.vc.view animated:YES];
+}
+
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller
+{
+    return self.vc;
 }
 
 -(UIImage *)getFitImageData:(UIImage *)image{
