@@ -248,7 +248,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
-    if (format != nil) {
+    if (format != nil && ![format isEqualToString:@""]) {
         [formatter setDateFormat:format];
     }else{
         [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
