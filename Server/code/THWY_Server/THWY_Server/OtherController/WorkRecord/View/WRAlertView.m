@@ -239,9 +239,9 @@
     
     
     
-    if ([UIScreen mainScreen].bounds.size.height - rect.size.height - self.height > 20 ) {
+    if ([UIScreen mainScreen].bounds.size.height - rect.size.height - self.height - 40 > 20 ) {
         
-        self.y = [UIScreen mainScreen].bounds.size.height - rect.size.height - self.height;
+        self.y = [UIScreen mainScreen].bounds.size.height - rect.size.height - self.height - 40;
     }
     else
     {

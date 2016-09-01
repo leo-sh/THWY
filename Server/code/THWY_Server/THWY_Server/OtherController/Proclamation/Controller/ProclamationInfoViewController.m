@@ -139,7 +139,7 @@
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
             btn.tag = 400 + i;
             [btn addTarget:self action:@selector(clickFujian:) forControlEvents:UIControlEventTouchUpInside];
-            y += Content_Ip_Font;
+            y += Content_Ip_Font + 5;
             
             [backView addSubview:btn];
             

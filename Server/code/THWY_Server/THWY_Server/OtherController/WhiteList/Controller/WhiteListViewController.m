@@ -81,7 +81,7 @@
     }];
     
     AddBtn *btn = [[AddBtn alloc]initWithFrame:CGRectMake(40, 15, self.view.width - 80, 40)];
-    [btn setLeftImageView:@"记录" andTitle:@"记录"];
+    [btn setLeftImageView:@"记录" andTitle:@"添加"];
     [btn addTarget:self action:@selector(clickAdd) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:btn];
 }
