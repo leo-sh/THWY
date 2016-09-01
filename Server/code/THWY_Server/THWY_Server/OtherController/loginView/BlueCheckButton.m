@@ -48,6 +48,7 @@
 {
     CGRect rect = [super titleRectForContentRect:contentRect];
     rect.origin.x = self.height *1.2;
+    rect.size.width =self.width - self.height *1.2;
     return rect;
 }
 

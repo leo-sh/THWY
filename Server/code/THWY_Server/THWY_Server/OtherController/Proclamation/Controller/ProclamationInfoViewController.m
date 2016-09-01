@@ -28,7 +28,7 @@
             self.title = @"行政公告详情";
             break;
         case GetBusinessData:
-            self.title = @"商圈广告详情";
+            self.title = @"商圈公告详情";
             break;
         default:
             break;
@@ -115,7 +115,7 @@
     
     time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), backView.width, 14);
     
-    CGSize size = [noticVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(4000, 4000)];
+    CGSize size = [noticVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width, 4000)];
     
     
     content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
@@ -153,6 +153,13 @@
     backView.backgroundColor = WhiteAlphaColor;
     
     [self.view addSubview:backView];
+    
+    
+    if (noticVO.files.count != 0) {
+        for (FileVO *temp in noticVO.files) {
+            [temp showInVC:self];
+        }
+    }
     
     titleLabel.text = noticVO.title;
     NSString *showtime = [NSString stringDateFromTimeInterval:[noticVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:mm"];
@@ -193,7 +200,7 @@
     
     time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), backView.width, 14);
     
-    CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(4000, 4000)];
+    CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width, 4000)];
     
     
     content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
