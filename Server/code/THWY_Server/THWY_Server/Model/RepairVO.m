@@ -93,7 +93,16 @@
         }
         self.task_time = JSON[@"task_time"];
         self.bg_color = JSON[@"bg_color"];
-        self.estate_name = JSON[@"estate_name"];
+        
+        if (JSON[@"estate_name"]) {
+            
+            self.estate_name = JSON[@"estate_name"];
+        }else
+        {
+            
+            self.estate_name = JSON[@"estate"];
+        }
+        
         self.now_status = JSON[@"now_status"];
         
         if ([JSON[@"repair_task"] isKindOfClass:[NSDictionary class]]) {

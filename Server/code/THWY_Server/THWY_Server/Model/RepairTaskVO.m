@@ -37,12 +37,15 @@
         self.during = JSON[@"during"];
         self.group_name = JSON[@"group_name"];
         
-        NSMutableArray* arr = [[NSMutableArray alloc]init];
-        for (NSDictionary* adminDic in JSON[@"admins"]) {
-            UserVO* user = [[UserVO alloc]initWithJSON:adminDic];
-            [arr addObject:user];
+        if ([JSON[@"admins"] isKindOfClass:[NSArray class]]) {
+            NSMutableArray* arr = [[NSMutableArray alloc]init];
+            for (NSDictionary* adminDic in JSON[@"admins"]) {
+                UserVO* user = [[UserVO alloc]initWithJSON:adminDic];
+                [arr addObject:user];
+            }
+            self.admins = arr;
         }
-        self.admins = arr;
+        
     }
     
     return self;

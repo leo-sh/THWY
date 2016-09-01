@@ -1751,7 +1751,7 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-        [self getAPublicRepair:@"14" onComplete:^(NSString *errorMsg, RepairVO *repair) {
+        [self getATask:@"14" isPublic:NO onComplete:^(NSString *errorMsg, RepairVO *repair) {
             
         }];
     }else
