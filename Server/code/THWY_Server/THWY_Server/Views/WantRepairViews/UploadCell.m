@@ -115,7 +115,10 @@
         }
         //上传图片
         [self.delegate select:image type:ImageType];
-        self.textField.text = NSHomeDirectory();
+        
+        NSURL *url = info[UIImagePickerControllerReferenceURL];
+        NSString *urlStr = [url path];
+        self.textField.text = [NSString stringWithFormat:@"/private/var/mobile/Containers/Data/Application%@",urlStr];
         
     }else{
         //如果是视频

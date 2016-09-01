@@ -462,7 +462,16 @@ savePassWord:(BOOL)save
 -(void)upLoadAvatar:(UIImage *)image OnComplete:(void (^)(NSString *errorMsg, NSString *avatar))onComplete
 {
     UIImage *newImage = [self getFitImageData:image];
-    NSData *data = UIImagePNGRepresentation(newImage);
+    NSData *imageData = UIImageJPEGRepresentation(newImage, 1);
+    
+    CGFloat sizeOfImage = imageData.length/1000.0/1024.0;
+    CGFloat ratio = 0.95;
+    while (sizeOfImage >= 2.0) {
+        [SVProgressHUD showSubTitle:@"压缩图片"];
+        imageData = UIImageJPEGRepresentation(image, ratio);
+        sizeOfImage = imageData.length/1000.0/1024.0;
+        ratio -= 0.05;
+    }
     
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@avatar",API_HOST];
@@ -475,7 +484,7 @@ savePassWord:(BOOL)save
         NSString *str = [formatter stringFromDate:[NSDate date]];
         NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
         
-        [formData appendPartWithFileData:data name:@"pic" fileName:fileName mimeType:@"image/png"];
+        [formData appendPartWithFileData:imageData name:@"pic" fileName:fileName mimeType:@"image/png"];
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
