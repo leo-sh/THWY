@@ -166,6 +166,8 @@
         [backView addSubview:webView];
         
         NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", noteVO.content];
+        htmlcontent = [NSString stringWithFormat:@"<body width=%dpx style=\"word-wrap:break-word; font-family:Arial\">%@",(int)webView.width,htmlcontent];
+        
         [webView loadHTMLString:htmlcontent baseURL:nil];
         
     }else
@@ -243,6 +245,7 @@
             [[NSNotificationCenter defaultCenter]postNotificationName:@"giveHeight" object:@[[NSNumber numberWithFloat:webView.bottom + 10]]];
             
             NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", noteVO.content];
+            htmlcontent = [NSString stringWithFormat:@"<body width=%dpx style=\"word-wrap:break-word; font-family:Arial\">%@",(int)webView.width,htmlcontent];
             [webView loadHTMLString:htmlcontent baseURL:nil];
             
         }else

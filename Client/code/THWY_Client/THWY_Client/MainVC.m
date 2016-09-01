@@ -85,7 +85,7 @@
     UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithCustomView:self.leftButton];
     self.navigationItem.leftBarButtonItem  = left;
     
-    self.dropView = [[DropMenuTableView alloc] initWithWidth:145.f itemHeight:45.f itemNames:@[@"我要报修", @"我要投诉", @"个人信息", @"推送设置", @"技术支持"] ItemImages:@[@"main_1", @"main_2", @"main_6", @"main_4", @"main_5"]];
+    self.dropView = [[DropMenuTableView alloc] initWithWidth:145.f itemHeight:45.f itemNames:@[@"我要报修", @"我要投诉", @"账号信息", @"推送设置", @"技术支持"] ItemImages:@[@"main_1", @"main_2", @"main_6", @"main_4", @"main_5"]];
     self.dropView.backColor = My_Color(2, 134, 200);
     self.dropView.textColor = [UIColor whiteColor];
     
@@ -121,8 +121,13 @@
             break;
         }
         case 2:{
-            button.tag = 106;
-            [self showVC:button];
+            id vc = [[NSClassFromString(@"PersonInfoViewController") alloc]init];
+            
+            if (vc) {
+                [self.navigationController pushViewController:(UIViewController *)vc animated:YES];
+            }else{
+                NSLog(@"vc  is  nill");
+            }
             break;
         }
         case 3:{
