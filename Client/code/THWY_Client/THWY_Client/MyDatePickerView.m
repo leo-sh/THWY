@@ -125,7 +125,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    AudioServicesPlayAlertSound(1103);
+//    AudioServicesPlayAlertSound(1103);
     NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
     switch (component) {
         case 0: {
