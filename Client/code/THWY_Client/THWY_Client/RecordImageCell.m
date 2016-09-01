@@ -47,7 +47,6 @@
         [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.contentView.mas_left).offset(topMargin);
             make.top.mas_equalTo(self.contentView.mas_top).offset(topMargin);
-            make.height.mas_equalTo(20);
         }];
         
         [self.picImage mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -78,7 +77,6 @@
         [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:model.pic] options:SDWebImageLowPriority progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             
         } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-            
             CGFloat topMargin = 8.0/375*My_ScreenW;
             
             self.picImage.image = image;
@@ -86,11 +84,8 @@
             self.imageHeight = (self.tableView.width-2*topMargin)*size.height/size.width;
             
             [(RepairDetailController *)self.vc setImageHeight:self.imageHeight];
-            [self.picImage mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo((self.tableView.width-2*topMargin)*size.height/size.width);
-            }];
+
             [self layoutIfNeeded];
-            //        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:4]] withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:4] withRowAnimation:UITableViewRowAnimationAutomatic];
             
         }];

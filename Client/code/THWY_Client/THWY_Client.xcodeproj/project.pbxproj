@@ -155,11 +155,7 @@
 		7928242B1D541D8F001764EB /* WantRepairTableView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7928242A1D541D8F001764EB /* WantRepairTableView2.m */; };
 		7928242F1D544130001764EB /* AlertEstateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7928242E1D544130001764EB /* AlertEstateTableView.m */; };
 		792A24621D5300D10005B085 /* RecordsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A24611D5300D10005B085 /* RecordsDetailCell.m */; };
-		792A24661D5314700005B085 /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A24651D5314700005B085 /* UITableView+FDIndexPathHeightCache.m */; };
-		792A24691D5314A80005B085 /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A24681D5314A80005B085 /* UITableView+FDTemplateLayoutCell.m */; };
 		792A246C1D5315F70005B085 /* RecordImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A246B1D5315F70005B085 /* RecordImageCell.m */; };
-		792A246F1D531A070005B085 /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A246E1D531A070005B085 /* UITableView+FDKeyedHeightCache.m */; };
-		792A24721D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A24711D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.m */; };
 		792E8B4B1D5325C500D70FB7 /* AlertTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 792E8B4A1D5325C500D70FB7 /* AlertTableView.m */; };
 		793296771D5197A2000FD426 /* RecordeRepairingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 793296761D5197A2000FD426 /* RecordeRepairingCell.m */; };
 		7932967C1D51BCFF000FD426 /* RepairDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7932967B1D51BCFF000FD426 /* RepairDetailController.m */; };
@@ -550,16 +546,8 @@
 		7928242E1D544130001764EB /* AlertEstateTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertEstateTableView.m; sourceTree = "<group>"; };
 		792A24601D5300D10005B085 /* RecordsDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsDetailCell.h; sourceTree = "<group>"; };
 		792A24611D5300D10005B085 /* RecordsDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsDetailCell.m; sourceTree = "<group>"; };
-		792A24641D5314700005B085 /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
-		792A24651D5314700005B085 /* UITableView+FDIndexPathHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDIndexPathHeightCache.m"; sourceTree = "<group>"; };
-		792A24671D5314A80005B085 /* UITableView+FDTemplateLayoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCell.h"; sourceTree = "<group>"; };
-		792A24681D5314A80005B085 /* UITableView+FDTemplateLayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCell.m"; sourceTree = "<group>"; };
 		792A246A1D5315F70005B085 /* RecordImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordImageCell.h; sourceTree = "<group>"; };
 		792A246B1D5315F70005B085 /* RecordImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordImageCell.m; sourceTree = "<group>"; };
-		792A246D1D531A070005B085 /* UITableView+FDKeyedHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDKeyedHeightCache.h"; sourceTree = "<group>"; };
-		792A246E1D531A070005B085 /* UITableView+FDKeyedHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDKeyedHeightCache.m"; sourceTree = "<group>"; };
-		792A24701D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCellDebug.h"; sourceTree = "<group>"; };
-		792A24711D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCellDebug.m"; sourceTree = "<group>"; };
 		792E8B491D5325C500D70FB7 /* AlertTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTableView.h; sourceTree = "<group>"; };
 		792E8B4A1D5325C500D70FB7 /* AlertTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTableView.m; sourceTree = "<group>"; };
 		793296751D5197A2000FD426 /* RecordeRepairingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordeRepairingCell.h; sourceTree = "<group>"; };
@@ -1272,7 +1260,6 @@
 				9400B97C1D619BBC00E49F0E /* MBProgressHUD */,
 				9449430A1D5C320200AD2B00 /* Keyboard */,
 				94E5DAD01D58731900300585 /* Reachability */,
-				792A24631D5314700005B085 /* FDTableviewHeightCell */,
 				1E7527791D52349E00AEDEC0 /* MJRefresh */,
 				79F2B6981D4DD28F00AA94E0 /* ZYBannerView */,
 				5B197ECB1D487DAC00B95DE5 /* Masonry */,
@@ -1452,21 +1439,6 @@
 				790FBEBD1D5B726100C00509 /* DropMenuTableView.m */,
 			);
 			name = MainViews;
-			sourceTree = "<group>";
-		};
-		792A24631D5314700005B085 /* FDTableviewHeightCell */ = {
-			isa = PBXGroup;
-			children = (
-				792A24671D5314A80005B085 /* UITableView+FDTemplateLayoutCell.h */,
-				792A24681D5314A80005B085 /* UITableView+FDTemplateLayoutCell.m */,
-				792A24641D5314700005B085 /* UITableView+FDIndexPathHeightCache.h */,
-				792A24651D5314700005B085 /* UITableView+FDIndexPathHeightCache.m */,
-				792A246D1D531A070005B085 /* UITableView+FDKeyedHeightCache.h */,
-				792A246E1D531A070005B085 /* UITableView+FDKeyedHeightCache.m */,
-				792A24701D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.h */,
-				792A24711D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.m */,
-			);
-			path = FDTableviewHeightCell;
 			sourceTree = "<group>";
 		};
 		793296741D51963B000FD426 /* RepaireRecordsViews */ = {
@@ -2014,13 +1986,11 @@
 				1E7527B51D52349F00AEDEC0 /* MJRefreshStateHeader.m in Sources */,
 				79F2B6C51D4E3CC000AA94E0 /* RecommandBussnessADVC.m in Sources */,
 				5B197EEB1D487DAC00B95DE5 /* MASViewAttribute.m in Sources */,
-				792A24691D5314A80005B085 /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				1E7527B01D52349F00AEDEC0 /* MJRefreshBackGifFooter.m in Sources */,
 				79F2B6A21D4DD28F00AA94E0 /* YFLBBannerView.m in Sources */,
 				5B3631FF1D4AFEC700D276D1 /* Repair_RootVO.m in Sources */,
 				5B2571831D47110B00CB4167 /* UIFont+Extension.m in Sources */,
 				1E7527741D52029700AEDEC0 /* ComplainAlertView.m in Sources */,
-				792A246F1D531A070005B085 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				5B25717E1D47110B00CB4167 /* NSString+BXExtension.m in Sources */,
 				797B23431D64C31B0033903C /* KRVideoPlayerControlView.m in Sources */,
 				5B197F021D48A86E00B95DE5 /* NoteVO.m in Sources */,
@@ -2089,7 +2059,6 @@
 				79F2B6BC1D4E22CC00AA94E0 /* RecommandMerchantCell.m in Sources */,
 				5BFFCE1A1D41B9A30066B1B9 /* main.m in Sources */,
 				1E8E8F331D66567A003D8CBC /* TYAlertController.m in Sources */,
-				792A24661D5314700005B085 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				94300F461D684DC80037546A /* ZLNavigationController.m in Sources */,
 				94300F351D684DC80037546A /* UIImage+ZLPhotoLib.m in Sources */,
 				5B2571821D47110B00CB4167 /* UIDevice+DeviceType.m in Sources */,
@@ -2108,7 +2077,6 @@
 				5B197EE91D487DAC00B95DE5 /* MASConstraintMaker.m in Sources */,
 				94300F431D684DC80037546A /* ZLPhotoPickerDatas.m in Sources */,
 				94300F441D684DC80037546A /* ZLPhotoPickerGroup.m in Sources */,
-				792A24721D531A180005B085 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				5B25721B1D47177B00CB4167 /* MKAnnotationView+WebCache.m in Sources */,
 				1E3BA3B91D4B4FC600633D0B /* ReviseBtn.m in Sources */,
 				79A653E01D586CE100D03025 /* GoodsVC.m in Sources */,
