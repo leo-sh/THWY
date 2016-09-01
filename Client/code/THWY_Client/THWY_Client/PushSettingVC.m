@@ -28,7 +28,7 @@
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]]];
     [self initViews];
     
-    self.bools = [NSMutableArray arrayWithArray:@[[NSMutableArray arrayWithArray:@[[NSNumber numberWithBool:[[UIApplication sharedApplication] isRegisteredForRemoteNotifications]], [NSNumber numberWithBool:[[UDManager getUD] showSoundState]], [NSNumber numberWithBool:[[UDManager getUD] showShakeState]]]]]];
+    self.bools = [NSMutableArray arrayWithArray:@[[NSNumber numberWithBool:[[UIApplication sharedApplication] isRegisteredForRemoteNotifications]], [NSNumber numberWithBool:[[UDManager getUD] showSoundState]], [NSNumber numberWithBool:[[UDManager getUD] showShakeState]]]];
 }
 
 - (void)initViews{
@@ -158,6 +158,7 @@
 - (void)btnOnclicked:(UIButton *)sender{
 
     NSInteger index = sender.tag-11;
+    
     if ([self.bools[index] boolValue]) {
         [sender setBackgroundImage:[UIImage imageNamed:@"pushsetting_关"] forState:UIControlStateNormal];
     }else{

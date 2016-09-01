@@ -121,8 +121,13 @@
             break;
         }
         case 2:{
-            button.tag = 106;
-            [self showVC:button];
+            id vc = [[NSClassFromString(@"PersonInfoViewController") alloc]init];
+            
+            if (vc) {
+                [self.navigationController pushViewController:(UIViewController *)vc animated:YES];
+            }else{
+                NSLog(@"vc  is  nill");
+            }
             break;
         }
         case 3:{
