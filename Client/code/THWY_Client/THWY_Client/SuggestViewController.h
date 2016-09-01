@@ -9,5 +9,4 @@
 #import "RootVC.h"
 
 @interface SuggestViewController : RootVC
-
 @end

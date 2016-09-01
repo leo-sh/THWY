@@ -11,5 +11,6 @@
 @interface SuggestTableViewCell : UITableViewCell
 @property UILabel *time;
 @property UILabel *content;
+@property int section;
 - (void)setTime:(NSString *)time content:(NSString *)content width:(CGFloat)width;
 @end

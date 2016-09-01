@@ -22,6 +22,7 @@
 @property NSArray *data;
 @property UIView *topView;
 @property UIImageView *segementBackgroundImageView;
+@property NSMutableDictionary *rowsAndHeight;
 @end
 
 @implementation SuggestViewController
@@ -46,6 +47,9 @@
     
     self.FeedBackTypeArray = [NSMutableArray array];
     
+    self.rowsAndHeight = [NSMutableDictionary dictionary];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change:) name:@"giveHeight" object:nil];
+
     //    self.automaticallyAdjustsScrollViewInsets = NO;
     //    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
@@ -183,6 +187,7 @@
         cell = [[SuggestTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     NSString *time = [NSString stringDateFromTimeInterval:[[self.data[indexPath.section] ctime] intValue] withFormat:@"YYYY-MM-dd HH:mm"];
+    cell.section = (int)indexPath.section;
     [cell setTime:time content:[self.data[indexPath.section] content] width:tableView.width];
     cell.preservesSuperviewLayoutMargins = NO;
     cell.separatorInset = UIEdgeInsetsZero;
@@ -215,17 +220,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, tableView.width - 10, My_ScreenH*2)];
-    label.font = FontSize(CONTENT_FONT);
-    label.numberOfLines = 0;
-    label.text = [self.data[indexPath.section] content];
-    [label sizeToFit];
-    CGFloat contenHeight = label.height;
+//    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, tableView.width - 10, My_ScreenH*2)];
+//    label.font = FontSize(CONTENT_FONT);
+//    label.numberOfLines = 0;
+//    label.text = [self.data[indexPath.section] content];
+//    [label sizeToFit];
+//    CGFloat contenHeight = label.height;
+//    
+//    NSArray *cellArray = @[[NSNumber numberWithFloat:contenHeight + 32 + 8 + 10],[NSNumber numberWithFloat:tableView.width]];
     
-    NSArray *cellArray = @[[NSNumber numberWithFloat:contenHeight + 32 + 8 + 10],[NSNumber numberWithFloat:tableView.width]];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"cellHeight" object:cellArray];
-    //添加上面固定内容的高度 + 下面内容的高度 + 与下边界的距离
-    return contenHeight + 32 + 8 + 10;
+//    //添加上面固定内容的高度 + 下面内容的高度 + 与下边界的距离
+//    return contenHeight + 32 + 8 + 10;
+    NSString *key = [NSString stringWithFormat:@"%ld",indexPath.section];
+    CGFloat value = [self.rowsAndHeight[key] floatValue];
+    
+    return value;
+
 }
 
 - (void)change
@@ -289,6 +299,17 @@
         }];
     }
 
+}
+
+- (void)change:(NSNotification *)notification
+{
+    if (self.rowsAndHeight == nil) {
+        self.rowsAndHeight = [NSMutableDictionary dictionary];
+    }
+    if ([notification.object isKindOfClass:[NSDictionary class]]) {
+        [self.rowsAndHeight setValuesForKeysWithDictionary:notification.object];
+        
+    }
 }
 
 /*
