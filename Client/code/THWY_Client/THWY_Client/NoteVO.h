@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FileVO.h"
 
 @interface NoteVO : NSObject
 
@@ -17,6 +18,7 @@
 @property (nonatomic , copy) NSString              * Id;
 @property (nonatomic , copy) NSString              * note_txt_type_id;
 @property (nonatomic , copy) NSString              * title;
+@property NSMutableArray<FileVO *> * files;
 
 @property BOOL is_index;
 

@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FileVO.h"
 
 @interface NoticVO : NSObject
 
-@property NSString              * Id;
-@property NSString              * note_txt_type_id;
-@property NSString              * title;
-@property NSString              * content;
-@property NSString              * ctime;
-@property NSString              * note_type;
-@property NSString              * files;
+@property NSString                 * Id;
+@property NSString                 * note_txt_type_id;
+@property NSString                 * title;
+@property NSString                 * content;
+@property NSString                 * ctime;
+@property NSString                 * note_type;
+@property NSMutableArray<FileVO *> * files;
 
 -(NoticVO* )initWithJSON:(NSDictionary *)JSON;
 

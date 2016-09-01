@@ -47,7 +47,7 @@
 
 - (void)getData
 {
-    if ([ServicesManager getAPI].status != NotReachable) {
+    if ([ServicesManager getAPI].status == NotReachable) {
         [SVProgressHUD showErrorWithStatus:@"网络访问错误"];
     }
     else
@@ -141,6 +141,7 @@
     time.textColor = [UIColor lightGrayColor];
     
     content.font = FontSize(CONTENT_FONT);
+    content.numberOfLines = 0;
     [backView addSubview:titleLabel];
     [backView addSubview:time];
     [backView addSubview:head];

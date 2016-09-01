@@ -9,7 +9,7 @@
 #import "ServicesManager.h"
 #import "UMessage.h"
 
-@interface ServicesManager ()
+@interface ServicesManager ()<UIDocumentInteractionControllerDelegate>
 {
     NSString* _userName;
     NSString* _passWord;
@@ -89,6 +89,14 @@
             _userName = [[UDManager getUD] getUserName];
             _passWord = [[UDManager getUD] getPassWord];
         }
+        self.baiduReach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
+        
+        [My_NoteCenter addObserver:self
+                          selector:@selector(reachabilityChanged)
+                              name:kReachabilityChangedNotification
+                            object:nil];
+        
+        self.status = 3;
         [self.baiduReach startNotifier];
         
     }
@@ -113,6 +121,20 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.requestSerializer.timeoutInterval = 10.f;
     return manager;
+}
+
+-(void)showFile:(NSURL *)filePath
+{
+    self.documentInteractionController = [UIDocumentInteractionController
+                                                        interactionControllerWithURL:filePath];
+    [self.documentInteractionController setDelegate:self];
+    
+    [self.documentInteractionController presentOptionsMenuFromRect:self.vc.view.bounds inView:self.vc.view animated:YES];
+}
+
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller
+{
+    return self.vc;
 }
 
 -(UIImage *)getFitImageData:(UIImage *)image{
@@ -462,7 +484,16 @@ savePassWord:(BOOL)save
 -(void)upLoadAvatar:(UIImage *)image OnComplete:(void (^)(NSString *errorMsg, NSString *avatar))onComplete
 {
     UIImage *newImage = [self getFitImageData:image];
-    NSData *data = UIImagePNGRepresentation(newImage);
+    NSData *imageData = UIImageJPEGRepresentation(newImage, 1);
+    
+    CGFloat sizeOfImage = imageData.length/1000.0/1024.0;
+    CGFloat ratio = 0.95;
+    while (sizeOfImage >= 2.0) {
+        [SVProgressHUD showSubTitle:@"压缩图片"];
+        imageData = UIImageJPEGRepresentation(image, ratio);
+        sizeOfImage = imageData.length/1000.0/1024.0;
+        ratio -= 0.05;
+    }
     
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@avatar",API_HOST];
@@ -475,7 +506,7 @@ savePassWord:(BOOL)save
         NSString *str = [formatter stringFromDate:[NSDate date]];
         NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
         
-        [formData appendPartWithFileData:data name:@"pic" fileName:fileName mimeType:@"image/png"];
+        [formData appendPartWithFileData:imageData name:@"pic" fileName:fileName mimeType:@"image/png"];
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -1391,7 +1422,7 @@ savePassWord:(BOOL)save
         params = @{@"login_name":_userName,
                    @"login_password":_passWord,
                    @"page":[NSString stringWithFormat:@"%d",page],
-                   @"repair_status":repairStatuId};
+                   @"st":repairStatuId};
     }else
     {
         params = @{@"login_name":_userName,
@@ -1720,14 +1751,9 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-//        UserVO *user = [[UDManager getUD] getUser];
-//        NSLog(@"admin_id:%@",user.admin_id);
-//        [self getDocTypes:^(NSString *errorMsg, NSArray *list) {
-//            [self getDocs:0 docTypeId:[list.firstObject Id] public:1 belong:1 onComplete:^(NSString *errorMsg, NSArray *list) {
-//                
-//            }];
-//        }];
-        
+        [self getATask:@"14" isPublic:NO onComplete:^(NSString *errorMsg, RepairVO *repair) {
+            
+        }];
     }else
     {
 //        [self login:@"fzq" password:@"123456" savePassWord:NO onComplete:^(NSString *errorMsg, UserVO *user) {

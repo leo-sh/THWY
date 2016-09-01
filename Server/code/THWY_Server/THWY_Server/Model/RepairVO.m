@@ -71,18 +71,45 @@
         self.estate = JSON[@"estate"];
         self.phone = JSON[@"phone"];
         self.addr = JSON[@"addr"];
-        self.st = JSON[@"_st"];
+        if (JSON[@"_st"]) {
+            
+            self.st = JSON[@"_st"];
+        }else
+        {
+            
+            self.st = JSON[@"st"];
+        }
         self.repair_admin_id_arr = JSON[@"repair_admin_id_arr"];
         self.classes_ids = JSON[@"classes_ids"];
         self.class_names = JSON[@"class_names"];
-        self.classes_str = JSON[@"classes_str"];
+        
+        if (JSON[@"classes_str"]) {
+            
+            self.classes_str = JSON[@"classes_str"];
+        }else if(JSON[@"cls"])
+        {
+            
+            self.classes_str = JSON[@"cls"];
+        }
         self.task_time = JSON[@"task_time"];
         self.bg_color = JSON[@"bg_color"];
-        self.estate_name = JSON[@"estate_name"];
+        
+        if (JSON[@"estate_name"]) {
+            
+            self.estate_name = JSON[@"estate_name"];
+        }else
+        {
+            
+            self.estate_name = JSON[@"estate"];
+        }
+        
         self.now_status = JSON[@"now_status"];
         
         if ([JSON[@"repair_task"] isKindOfClass:[NSDictionary class]]) {
             self.repair_task = [[RepairTaskVO alloc]initWithJSON:JSON[@"repair_task"]];
+        }else
+        {
+            self.repair_task = [[RepairTaskVO alloc]initWithJSON:JSON];
         }
         
         NSMutableArray* statuArr = [[NSMutableArray alloc]init];

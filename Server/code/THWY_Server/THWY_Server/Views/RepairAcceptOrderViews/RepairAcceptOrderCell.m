@@ -100,7 +100,7 @@
         }];
 
         self.timeLabel = [[UILabel alloc] init];
-        self.timeLabel.text = @"维修时间:";
+        self.timeLabel.text = @"报修时间:";
         [self setAttributesForLabel:self.timeLabel];
         [self.contentView addSubview:self.timeLabel];
         [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {

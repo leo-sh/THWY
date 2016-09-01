@@ -14,18 +14,38 @@
 {
     if (self = [super init]) {
         self.Id = JSON[@"id"];
-        self.acl_group_id = JSON[@"acl_group_id"];
+        if (JSON[@"acl_group_id"]) {
+            
+            self.acl_group_id = JSON[@"acl_group_id"];
+        }else
+        {
+            
+            self.acl_group_id = JSON[@"admin_group_id"];
+        }
+        
         self.repair_id = JSON[@"repair_id"];
-        self.acl_admin_id = JSON[@"acl_admin_id"];
+        
+        if (JSON[@"acl_admin_id"]) {
+            
+            self.acl_admin_id = JSON[@"acl_admin_id"];
+        }else
+        {
+            
+            self.acl_admin_id = JSON[@"admin_id"];
+        }
+        
         self.during = JSON[@"during"];
         self.group_name = JSON[@"group_name"];
         
-        NSMutableArray* arr = [[NSMutableArray alloc]init];
-        for (NSDictionary* adminDic in JSON[@"admins"]) {
-            UserVO* user = [[UserVO alloc]initWithJSON:adminDic];
-            [arr addObject:user];
+        if ([JSON[@"admins"] isKindOfClass:[NSArray class]]) {
+            NSMutableArray* arr = [[NSMutableArray alloc]init];
+            for (NSDictionary* adminDic in JSON[@"admins"]) {
+                UserVO* user = [[UserVO alloc]initWithJSON:adminDic];
+                [arr addObject:user];
+            }
+            self.admins = arr;
         }
-        self.admins = arr;
+        
     }
     
     return self;

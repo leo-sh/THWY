@@ -29,8 +29,12 @@
 @interface ServicesManager : NSObject
 
 @property NetworkStatus status;
+@property (nonatomic, strong) UIDocumentInteractionController *documentInteractionController;
+@property (nonatomic, strong) UIViewController *vc;
 
 +(ServicesManager *)getAPI;
+
+-(void)showFile:(NSURL *)filePath;
 
 #pragma mark 音频播放
 -(void)palySend;
