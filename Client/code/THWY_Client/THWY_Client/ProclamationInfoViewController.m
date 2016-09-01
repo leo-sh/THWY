@@ -9,6 +9,7 @@
 #import "ProclamationInfoViewController.h"
 #import "ServicesManager.h"
 @interface ProclamationInfoViewController ()<UIWebViewDelegate>
+@property NoteVO *data;
 @end
 
 @implementation ProclamationInfoViewController
@@ -101,7 +102,7 @@
 
 - (void)createUI:(NoteVO *)noteVO
 {
-    
+    self.data = noteVO;
     UIImageView *head = [[UIImageView alloc]init];
     UIImageView *right = [[UIImageView alloc]init];
     UILabel *titleLabel = [[UILabel alloc]init];
@@ -120,9 +121,50 @@
     
     
     content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
+    if (noteVO.files.count != 0) {
+        
+        UILabel *fujian = [[UILabel alloc]initWithFrame:CGRectMake(10, content.bottom + 20, 60, 20)];
+        fujian.text = @"附件：";
+        fujian.textColor = CellUnderLineColor;
+        [backView addSubview:fujian];
+        
+        CGFloat y = content.bottom + 20;
+        CGFloat x = 60;
+        for (int i = 0; i < noteVO.files.count; i ++ ) {
+            
+            CGFloat width = GetContentWidth(noteVO.files[i].file_name, Content_Time_Font);
+            
+            UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, width , Content_Time_Font)];
+            [btn setTitle:noteVO.files[i].file_name forState:UIControlStateNormal];
+            btn.titleLabel.font = FontSize(Content_Time_Font);
+            [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+            btn.tag = 400 + i;
+            [btn addTarget:self action:@selector(clickFujian:) forControlEvents:UIControlEventTouchUpInside];
+            y += Content_Time_Font + 5;
+            
+            [backView addSubview:btn];
+            
+            if (i == noteVO.files.count - 1) {
+                if (fujian.bottom < btn.bottom) {
+                    backView.height = btn.bottom + 10;
+                    
+                }
+                else
+                {
+                    backView.height = fujian.bottom + 10;
+                    
+                }
+            }
+        }
+        
+    }
+    else
+    {
+        backView.height = content.bottom + 10;
+    }
+
     content.numberOfLines = 0;
-    backView.height = content.bottom + 10;
-    
     
     head.image = [UIImage imageNamed:@"彩条"];
     
@@ -197,6 +239,8 @@
         
         
         content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
+    
+    
         content.numberOfLines = 0;
         backView.height = content.bottom + 10;
     
@@ -280,6 +324,12 @@
     [SVProgressHUD dismiss];
 }
 
+- (void)clickFujian:(UIButton *)btn
+{
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.data.files[btn.tag - 400] showInVC:self];
+    
+}
 /*
 #pragma mark - Navigation
 

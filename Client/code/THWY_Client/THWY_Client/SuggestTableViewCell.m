@@ -15,9 +15,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getHeight:) name:@"cellHeight" object:nil];
-        
+                
         self.backgroundColor = [UIColor clearColor];
         
         self.head = [[UIImageView alloc]init];
@@ -50,32 +48,31 @@
     return self;
 }
 
-- (void)updateFrame:(CGFloat)height Width:(CGFloat)width
+- (void)setTime:(NSString *)time content:(NSString *)content width:(CGFloat)width
 {
     CGFloat contentWidth = width - 20;
     self.head.width = contentWidth;
     self.time.width = contentWidth;
     self.content.width = contentWidth;
     
-}
-
-- (void)getHeight:(NSNotification *)notification
-{
-    
-    [self updateFrame:[notification.object[0] floatValue] Width:[notification.object[1] floatValue]];
-}
-
-- (void)setTime:(NSString *)time content:(NSString *)content width:(CGFloat)width
-{
     self.time.text = time;
     
-    self.content.frame = CGRectMake(5, self.time.bottom + 8, width - 20, My_ScreenH);
+    CGFloat content_H = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width - 20, 4000)].height;
+    
+    self.content.frame = CGRectMake(5, self.time.bottom + 8, width - 20, content_H);
     self.content.text = content;
     self.content.numberOfLines = 0;
     self.content.font = FontSize(CONTENT_FONT);
-    [self.content sizeToFit];
     
     self.backView.frame = CGRectMake(10, 0, width - 20, self.content.height + 32 + 8 + 10);
+    
+    
+    NSString *key = [NSString stringWithFormat:@"%d",self.section];
+    NSString *value = [NSString stringWithFormat:@"%f",self.content.height + 32 + 8 + 10];
+    
+    NSDictionary *dic = @{key:value};
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"giveHeight" object:dic];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

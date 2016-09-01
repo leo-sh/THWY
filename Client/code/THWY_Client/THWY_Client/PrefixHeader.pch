@@ -149,3 +149,5 @@ static inline int sizeValue(int sizefont) {
 #define CellUnderLineColor My_Color(200, 199, 204)
 //灰色
 #define CellTextColor My_Color(104, 104, 104)
+
+#define GetContentWidth(content,font) [content sizeWithFont:FontSize(font) maxSize:CGSizeMake(4000, 4000)].width

@@ -131,7 +131,7 @@
         CGFloat lbHeight = CONTENT_FONT;
         CGFloat lbLeft = 50;
         CGFloat lbTop = 0;
-        CGFloat lbWidth = self.width - lbLeft;
+        CGFloat lbWidth = self.width - labelLeft -labelWidth -imageViewWidthAndHeight -imageViewLeft;
         for (int i = 0; i < self.labelInfos.count; i ++) {
             
             lbTop = self.height - 5 + (lbHeight + 5) * i ;
