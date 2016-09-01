@@ -1558,9 +1558,22 @@ savePassWord:(BOOL)save
             }];
         }else
         {
-            RepairVO *estate = [[RepairVO alloc]initWithJSON:responseObject[@"datas"]];
+            RepairVO *repair = [[RepairVO alloc]initWithJSON:responseObject[@"datas"]];
             
-            onComplete(nil,estate);
+            [self getEstates:^(NSString *errorMsg, NSArray *list) {
+                repair.estate = @"";
+                if (errorMsg == nil) {
+                    for (EstateVO *estate in list) {
+                        if ([estate.estate_id isEqualToString:repair.estate_id]) {
+                            repair.estate_name = estate.estate_name;
+                            repair.estate = estate.estate_name;
+                            break;
+                        }
+                    }
+                }
+                onComplete(nil,repair);
+            }];
+            
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         onComplete(@"网络连接错误",nil);
@@ -1751,9 +1764,9 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-        [self getATask:@"14" isPublic:YES onComplete:^(NSString *errorMsg, RepairVO *repair) {
-            
-        }];
+//        [self getATask:@"16" isPublic:YES onComplete:^(NSString *errorMsg, RepairVO *repair) {
+//            
+//        }];
     }else
     {
 //        [self login:@"fzq" password:@"123456" savePassWord:NO onComplete:^(NSString *errorMsg, UserVO *user) {
