@@ -258,7 +258,7 @@
             
             if (self.adLabels.count>0) {
                 self.scrollIndex = 0;
-                self.adLabelTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(runloopAdLabel) userInfo:nil repeats:YES];
+                self.adLabelTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(runloopAdLabel) userInfo:nil repeats:YES];
                 
             }
             [SVProgressHUD dismiss];

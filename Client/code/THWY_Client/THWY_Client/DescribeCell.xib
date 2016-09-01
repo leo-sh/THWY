@@ -34,14 +34,14 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="r2x-z1-5VT">
-                        <rect key="frame" x="14" y="53" width="384" height="160"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="r2x-z1-5VT">
+                        <rect key="frame" x="14" y="53" width="384" height="175.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
                     </textView>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCh-Nc-YUS">
-                        <rect key="frame" x="62" y="228" width="290" height="60"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCh-Nc-YUS">
+                        <rect key="frame" x="62" y="243" width="290" height="60"/>
                         <color key="backgroundColor" red="0.12628173828125" green="0.64699685573577881" blue="0.88424164056777954" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="XeV-qS-9nt"/>
@@ -56,15 +56,17 @@
                             <action selector="commit:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fZ7-wI-DZU"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="repaire_提交" translatesAutoresizingMaskIntoConstraints="NO" id="6Yv-PO-FaP">
-                        <rect key="frame" x="153" y="246" width="24" height="24"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="修改" translatesAutoresizingMaskIntoConstraints="NO" id="6Yv-PO-FaP">
+                        <rect key="frame" x="154.5" y="263.5" width="21" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="6Yv-PO-FaP" secondAttribute="height" multiplier="1:1" id="AeI-NQ-mTg"/>
                             <constraint firstAttribute="height" constant="22" id="ERu-1E-sYe"/>
+                            <constraint firstAttribute="width" secondItem="6Yv-PO-FaP" secondAttribute="height" multiplier="31:29" id="KYo-rI-UA2"/>
                             <constraint firstAttribute="width" constant="22" id="m18-Ex-k10"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="AeI-NQ-mTg"/>
                                 <exclude reference="ERu-1E-sYe"/>
                                 <exclude reference="m18-Ex-k10"/>
                             </mask>
@@ -79,6 +81,7 @@
                     <constraint firstItem="jgn-c2-MyG" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="22:375" id="G6c-AJ-3MF"/>
                     <constraint firstItem="6Yv-PO-FaP" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="0.8" id="GhW-EQ-vKa"/>
                     <constraint firstItem="NCh-Nc-YUS" firstAttribute="top" secondItem="r2x-z1-5VT" secondAttribute="bottom" constant="15" id="Ip7-1S-t71"/>
+                    <constraint firstItem="6Yv-PO-FaP" firstAttribute="height" secondItem="NCh-Nc-YUS" secondAttribute="height" multiplier="1/3" id="Iso-rJ-s1C"/>
                     <constraint firstItem="NCh-Nc-YUS" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.7" id="Qeb-T4-YM3"/>
                     <constraint firstItem="r2x-z1-5VT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="R39-Bz-7FF"/>
                     <constraint firstItem="6Yv-PO-FaP" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="22:375" id="S8h-dn-jFN"/>
@@ -92,6 +95,7 @@
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="eMH-6b-1Yd"/>
+                        <exclude reference="S8h-dn-jFN"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -104,6 +108,6 @@
     </objects>
     <resources>
         <image name="repaire_具体描述" width="30" height="30"/>
-        <image name="repaire_提交" width="31" height="30"/>
+        <image name="修改" width="31" height="29"/>
     </resources>
 </document>
