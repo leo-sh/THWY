@@ -10,7 +10,7 @@
 #import "BlueRedioButton.h"
 #import "ServicesManager.h"
 #import "SVProgressHUD.h"
-@interface WRAlertView()<UIGestureRecognizerDelegate,UITextViewDelegate>
+@interface WRAlertView()<UIGestureRecognizerDelegate,UITextViewDelegate,UITextFieldDelegate>
 @property UITextField *title;
 @property UITextView *textView;
 @property UIButton *leftBtn;
@@ -28,6 +28,7 @@
     if (self = [super initWithFrame:frame]) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide) name:UIKeyboardDidHideNotification object:nil];
+        [self addObserver:self forKeyPath:@"typeId" options:NSKeyValueObservingOptionNew context:nil];
         self.backgroundColor = [UIColor whiteColor];
         self.textView.text = @"";
         CGFloat heighAndWidth = 50;
@@ -50,7 +51,8 @@
         
         self.title = [[UITextField alloc]initWithFrame:CGRectMake(self.leftBtn.right, 0, self.width - self.leftBtn.right * 2, 50)];
         self.number = 1;
-        self.title.text = @"填入工作日志标题";
+        self.title.delegate = self;
+        [self.title becomeFirstResponder];
         self.title.textAlignment = NSTextAlignmentCenter;
         self.title.font = [UIFont systemFontOfSize:20];
         [self addSubview:self.title];
@@ -237,9 +239,9 @@
     
     
     
-    if ([UIScreen mainScreen].bounds.size.height - rect.size.height - self.height > 20 ) {
+    if ([UIScreen mainScreen].bounds.size.height - rect.size.height - self.height - 40 > 20 ) {
         
-        self.y = [UIScreen mainScreen].bounds.size.height - rect.size.height - self.height;
+        self.y = [UIScreen mainScreen].bounds.size.height - rect.size.height - self.height - 40;
     }
     else
     {
@@ -254,6 +256,29 @@
         [textView resignFirstResponder];
         return NO;
     }
+    return YES;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if ([self.typeId isEqualToString:@"1"]) {
+        self.title.text = @"填入工作日志标题";
+    }
+    else
+    {
+        self.title.text = @"填入心得笔记标题";
+        
+    }
+}
+
+- (void)dealloc
+{
+    [self removeObserver:self forKeyPath:@"typeId"];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
     return YES;
 }
 

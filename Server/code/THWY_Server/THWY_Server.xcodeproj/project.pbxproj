@@ -243,6 +243,7 @@
 		1E4704AF1D706C4600C3F1B1 /* CMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMTableViewCell.m; sourceTree = "<group>"; };
 		1E4704B11D706C5100C3F1B1 /* COTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COTableViewCell.h; sourceTree = "<group>"; };
 		1E4704B21D706C5100C3F1B1 /* COTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COTableViewCell.m; sourceTree = "<group>"; };
+		1E7FB5F11D7706D0006EEDEF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		1E84CE091D6C4EE50010BA7B /* WorkRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkRecordViewController.h; sourceTree = "<group>"; };
 		1E84CE0A1D6C4EE50010BA7B /* WorkRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkRecordViewController.m; sourceTree = "<group>"; };
 		1E84CE0C1D6C4EE50010BA7B /* WRTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRTableViewCell.h; sourceTree = "<group>"; };
@@ -2091,6 +2092,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5BFFCE4A1D41B9C40066B1B9 /* Base */,
+				1E7FB5F11D7706D0006EEDEF /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

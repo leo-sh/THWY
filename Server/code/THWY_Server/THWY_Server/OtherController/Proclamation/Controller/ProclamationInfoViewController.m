@@ -9,6 +9,7 @@
 #import "ProclamationInfoViewController.h"
 #import "ServicesManager.h"
 @interface ProclamationInfoViewController ()<UIWebViewDelegate>
+@property NoticVO *data;
 @end
 
 @implementation ProclamationInfoViewController
@@ -28,7 +29,7 @@
             self.title = @"行政公告详情";
             break;
         case GetBusinessData:
-            self.title = @"商圈广告详情";
+            self.title = @"商圈公告详情";
             break;
         default:
             break;
@@ -100,7 +101,7 @@
 
 - (void)createUI:(NoticVO *)noticVO;
 {
-    
+    self.data = noticVO;
     UIImageView *head = [[UIImageView alloc]init];
     UIImageView *right = [[UIImageView alloc]init];
     UILabel *titleLabel = [[UILabel alloc]init];
@@ -115,13 +116,51 @@
     
     time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), backView.width, 14);
     
-    CGSize size = [noticVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(4000, 4000)];
-    
+    CGSize size = [noticVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width, 4000)];
     
     content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
-    
-    backView.height = content.bottom + 10;
-    
+    if (noticVO.files.count != 0) {
+
+        UILabel *fujian = [[UILabel alloc]initWithFrame:CGRectMake(10, content.bottom + 20, 60, 20)];
+        fujian.text = @"附件：";
+        fujian.textColor = CellUnderLineColor;
+        [backView addSubview:fujian];
+        
+        CGFloat y = content.bottom + 20;
+        CGFloat x = 60;
+        for (int i = 0; i < noticVO.files.count; i ++ ) {
+            
+           CGFloat width = GetContentWidth(noticVO.files[i].file_name, Content_Ip_Font);
+            
+            UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, width , Content_Ip_Font)];
+            [btn setTitle:noticVO.files[i].file_name forState:UIControlStateNormal];
+            btn.titleLabel.font = FontSize(Content_Ip_Font);
+            [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+            btn.tag = 400 + i;
+            [btn addTarget:self action:@selector(clickFujian:) forControlEvents:UIControlEventTouchUpInside];
+            y += Content_Ip_Font + 5;
+            
+            [backView addSubview:btn];
+            
+            if (i == noticVO.files.count - 1) {
+                if (fujian.bottom < btn.bottom) {
+                    backView.height = btn.bottom + 10;
+
+                }
+                else
+                {
+                    backView.height = fujian.bottom + 10;
+
+                }
+            }
+        }
+
+    }
+    else
+    {
+        backView.height = content.bottom + 10;
+    }
     backView.backgroundColor = [UIColor whiteColor];
     
     head.image = [UIImage imageNamed:@"彩条"];
@@ -193,7 +232,7 @@
     
     time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), backView.width, 14);
     
-    CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(4000, 4000)];
+    CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width, 4000)];
     
     
     content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
@@ -275,6 +314,14 @@
     webView.superview.height = webView.bottom + 10;
     
     [SVProgressHUD dismiss];
+}
+
+#pragma mark --点击附件按钮
+- (void)clickFujian:(UIButton *)btn
+{
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.data.files[btn.tag - 400] showInVC:self];
+    
 }
 
 /*

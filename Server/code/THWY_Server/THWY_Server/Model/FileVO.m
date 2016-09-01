@@ -85,7 +85,7 @@
     
     _downloadTask = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
         
-        [SVProgressHUD showSubTitle:[NSString stringWithFormat:@"下载中 %.2f％",downloadProgress.completedUnitCount / downloadProgress.totalUnitCount * 100.0]];
+        [SVProgressHUD showSubTitle:[NSString stringWithFormat:@"下载中 %.2f％",downloadProgress.fractionCompleted*100]];
         
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
         

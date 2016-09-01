@@ -221,24 +221,22 @@
     
     [self.rememberPassWordBtn addTarget:self action:@selector(clickRememberPassWordBtn) forControlEvents:UIControlEventTouchUpInside];
     
-    self.findPsdBtn = [[BlueCheckButton alloc]initDefaultImageName:@"" choosedImageName:@"" title:@"密码找回"];
+    self.findPsdBtn = [[BlueCheckButton alloc]initDefaultImageName:@"找回密码" choosedImageName:@"" title:@"密码找回"];
     [self.view addSubview:self.findPsdBtn];
     
+//    self.findPsdBtn.backgroundColor = [UIColor blackColor];
     //隐藏按钮
 //    self.findPsdBtn.alpha = 0;
     CGFloat adminLoginBtnRightOffset = -self.view.width *0.036;
-    CGFloat adminLoginBtnWidth = self.view.width *0.2;
-    CGFloat adminLoginBtnHeight = self.view.height *0.02;
-    
+    CGFloat adminLoginBtnRightWidth = self.view.width *0.24;
     [self.findPsdBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.view.mas_right).with.offset(adminLoginBtnRightOffset);
         make.top.equalTo(self.passWordTF.mas_bottom).with.offset(topOffset);
-        make.width.mas_equalTo(adminLoginBtnWidth);
-        make.height.mas_equalTo(adminLoginBtnHeight);
+        make.width.mas_equalTo(adminLoginBtnRightWidth);
+        make.height.mas_equalTo(rememberPassWordBtnHeight);
     }];
     
-    self.findPsdBtn.titleLabel.font = [UIFont systemFontOfSize:adminLoginBtnHeight];
-    
+    self.findPsdBtn.titleLabel.font = [UIFont systemFontOfSize:rememberPassWordBtnHeight];
     
     [self.findPsdBtn addTarget:self action:@selector(clickAdminLoginBtn) forControlEvents:UIControlEventTouchUpInside];
     

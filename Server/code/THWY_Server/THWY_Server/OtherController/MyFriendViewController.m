@@ -94,10 +94,18 @@
         self.searchFriend.font = FontSize(CONTENT_FONT);
         self.searchFriend.leftViewMode = UITextFieldViewModeAlways;
         self.searchFriend.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 0)];
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 20, 20)];
+        [btn setImage:[UIImage imageNamed:@"添加好友"] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(searchFriendInfo) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:btn];
+        self.searchFriend.rightViewMode = UITextFieldViewModeAlways;
+        self.searchFriend.rightView = view;
         self.searchFriend.placeholder = @"请输入好友手机号或姓名";
         self.searchFriend.layer.borderColor = CellUnderLineColor.CGColor;
         self.searchFriend.layer.borderWidth = 0.5;
         self.searchFriend.backgroundColor = WhiteAlphaColor;
+        self.searchFriend.returnKeyType = UIReturnKeySearch;
         self.searchFriend.delegate = self;
         [self.topView addSubview:self.searchFriend];
         [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -183,7 +191,7 @@
             cell = [[MyFriendTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
         }
         cell.width = tableView.width;
-        
+        [cell setValue:@60 forKey:@"height"];
         UserVO *temp = self.data[indexPath.row];
         
         NSString *content = [NSString stringWithFormat:@"%@/%@",temp.real_name,temp.up_group.group];
@@ -292,7 +300,8 @@
 
 - (void)searchFriendInfo
 {
- 
+    [self.searchFriend resignFirstResponder];
+    [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
     NSString *string = @"^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d{8}$";
     NSString *string2 = @"([\u4e00-\u9fa5]{2,4})";
     NSPredicate *phonePredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",string];
@@ -313,6 +322,7 @@
                     
                 });
             }
+            [SVProgressHUD dismiss];
             
         }];
     }
@@ -333,10 +343,16 @@
                     
                 });
             }
-            
+            [SVProgressHUD dismiss];
+
         }];
     }
-    
+    else
+    {
+        [SVProgressHUD showErrorWithStatus:@"输入有误！请重新输入"];
+
+        [SVProgressHUD dismiss];
+    }
 
 }
 

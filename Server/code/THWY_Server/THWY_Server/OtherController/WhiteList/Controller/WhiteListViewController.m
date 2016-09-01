@@ -81,7 +81,7 @@
     }];
     
     AddBtn *btn = [[AddBtn alloc]initWithFrame:CGRectMake(40, 15, self.view.width - 80, 40)];
-    [btn setLeftImageView:@"记录" andTitle:@"记录"];
+    [btn setLeftImageView:@"记录" andTitle:@"添加"];
     [btn addTarget:self action:@selector(clickAdd) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:btn];
 }
@@ -108,6 +108,7 @@
 //    UIView *view = [[UIView alloc]init];
 //    view.backgroundColor = My_AlphaColor(236, 252, 245, 0.5);
 //    [cell setSelectedBackgroundView:view];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row != self.data.count - 1) {
         UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, cell.bottom, tableView.width, 0.5)];
         line.backgroundColor = CellUnderLineColor;
