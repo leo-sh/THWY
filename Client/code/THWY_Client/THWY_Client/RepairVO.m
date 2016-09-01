@@ -76,7 +76,15 @@
         self.estate = JSON[@"estate"];
         self.phone = JSON[@"phone"];
         self.addr = JSON[@"addr"];
-        self._st = JSON[@"_st"];
+        
+        if (JSON[@"_st"]) {
+            
+            self._st = JSON[@"_st"];
+        }else
+        {
+            
+            self._st = JSON[@"st"];
+        }
         
         if ([JSON[@"repair_task"] isKindOfClass:[NSDictionary class]] && JSON[@"repair_task"][@"admins"] && [JSON[@"repair_task"][@"admins"] isKindOfClass:[NSArray class]]) {
             self.repair_task = [[NSMutableArray alloc]init];
