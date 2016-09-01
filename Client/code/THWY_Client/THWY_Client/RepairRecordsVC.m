@@ -11,7 +11,6 @@
 #import "RepairStatuVO.h"
 #import "MySegmentedControl.h"
 #import "RepairDetailController.h"
-#import "UITableView+FDTemplateLayoutCell.h"
 
 @interface RepairRecordsVC ()<UITableViewDelegate, UITableViewDataSource, SegmentDelegate>
 

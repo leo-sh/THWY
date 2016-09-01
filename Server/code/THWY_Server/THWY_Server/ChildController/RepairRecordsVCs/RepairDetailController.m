@@ -203,7 +203,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 4) {
-
         RecordImageCell *cell = [[RecordImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RecordImageCell"];
         cell.tableView = tableView;
         cell.vc = self;

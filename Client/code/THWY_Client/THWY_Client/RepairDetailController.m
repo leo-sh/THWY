@@ -10,7 +10,6 @@
 #import "RecordsDetailCell.h"
 #import "RecordImageCell.h"
 #import "RecordVideoCell.h"
-#import "UITableView+FDTemplateLayoutCell.h"
 
 @interface RepairDetailController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -65,7 +64,8 @@
     [self.view addSubview:self.tableView];
 
     [self.tableView registerClass:[RecordsDetailCell class] forCellReuseIdentifier:@"RecordsDetailCell"];
- 
+    [self.tableView registerClass:[RecordImageCell class] forCellReuseIdentifier:@"RecordImageCell"];
+    [self.tableView registerClass:[RecordVideoCell class] forCellReuseIdentifier:@"RecordVideoCell"];
 }
 
 #pragma mark - UITableViewDelegate
