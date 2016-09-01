@@ -387,7 +387,7 @@
             [self.navigationController pushViewController:list animated:YES];
             break;
         }
-        case 2:{//商区广告
+        case 2:{//商圈广告
             RecommandBussnessADVC *list = [[RecommandBussnessADVC alloc] init];
             [self.navigationController pushViewController:list animated:YES];
             break;
