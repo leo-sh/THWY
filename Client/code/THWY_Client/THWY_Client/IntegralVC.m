@@ -47,10 +47,20 @@
 {
     [My_ServicesManager getMyPoints:^(NSString *errorMsg, NSArray *list, NSString *total) {
         if (errorMsg == nil) {
-            [SVProgressHUD dismiss];
             self.datas = list;
             self.unUsed = [NSString stringWithFormat:@"%ld",[total integerValue]];
+            
+            NSInteger totalNum = 0;
+            for (PointVO* point in list) {
+                totalNum += [point.sub_total integerValue];
+            }
+            self.total = [NSString stringWithFormat:@"%ld",totalNum];
+            
+            self.used = [NSString stringWithFormat:@"%ld",totalNum - [total integerValue]];
+            
             [self.tableView reloadData];
+            self.integralLabel.text = self.total;
+            [SVProgressHUD dismiss];
         }else
         {
             [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -61,7 +71,7 @@
 -(void)createUI
 {
     UIImageView* imv = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Integral_背景"]];
-    imv.frame = CGRectMake(0, 0, self.view.width, self.view.height);
+    imv.frame = CGRectMake(0, 0, self.view.width, self.view.height - 64);
     imv.userInteractionEnabled = YES;
     [self.view addSubview:imv];
     
@@ -175,15 +185,8 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (TOPVIEW_HEIGHT - scrollView.contentOffset.y >= 0) {
-        if (scrollView.contentOffset.y >= 0) {
-            self.topView.y = -scrollView.contentOffset.y;
-        }else
-        {
-            self.topView.height = TOPVIEW_HEIGHT - scrollView.contentOffset.y;
-            [self updateTopSubViewsFrame];
-            
-        }
+    if (TOPVIEW_HEIGHT - scrollView.contentOffset.y > 0) {
+        self.topView.y = -scrollView.contentOffset.y;
 //        self.topView.height = TOPVIEW_HEIGHT - scrollView.contentOffset.y;
 //        [self updateTopSubViewsFrame];
     }
