@@ -232,7 +232,7 @@
     [self.scrollView addSubview: self.bgView2];
     
     for(int i = 0; i<3; i++){
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.bgView2.width*(1.5/4.0)*i, 0, self.bgView2.width/4.0, self.bgView2.height)];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.bgView2.width/3.0*i, 0, self.bgView2.width/3.0, self.bgView2.height)];
         
         btn.tag = 310 + i;
         [btn addTarget:self action:@selector(btnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -241,11 +241,11 @@
         }
         [self.bgView2 addSubview:btn];
         
-        UIImageView *btnImage = [[UIImageView alloc] initWithFrame:CGRectMake(btn.width/5.0, 0, btn.width*0.6, btn.height*0.6)];
+        UIImageView *btnImage = [[UIImageView alloc] initWithFrame:CGRectMake(0.5*(btn.width-btn.height*0.6), 0, btn.height*0.6, btn.height*0.6)];
         btnImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"records_%@",self.labelNames[i]]];
         [btn addSubview:btnImage];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, btn.width*0.75, 0, 0)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, btn.height*0.75, 0, 0)];
         label.text = self.labelNames[i];
         [label sizeToFit];
         label.centerX = btnImage.centerX;
