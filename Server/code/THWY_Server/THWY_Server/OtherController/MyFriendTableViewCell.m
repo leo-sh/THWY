@@ -61,20 +61,20 @@
         [self.contentView addSubview:self.fixedCommunionBtn];
         [self.contentView addSubview:self.fixedPhoneBtn];
         
-        [self.fixedPhoneBtn setImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
+        [self.fixedPhoneBtn setImage:[UIImage imageNamed:@"打电话1"] forState:UIControlStateNormal];
         
         [self.fixedPhoneBtn addTarget:self action:@selector(clickPhone) forControlEvents:UIControlEventTouchUpInside];
         
         
-        [self.fixedCommunionBtn setImage:[UIImage imageNamed:@"2"] forState:UIControlStateNormal];
+        [self.fixedCommunionBtn setImage:[UIImage imageNamed:@"发消息1"] forState:UIControlStateNormal];
         
         [self.fixedCommunionBtn addTarget:self action:@selector(clickCM) forControlEvents:UIControlEventTouchUpInside];
 
         [self.fixedCommunionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             
-            make.top.mas_equalTo(15);
+            make.top.mas_equalTo(20);
             make.left.equalTo(self).with.offset(5);
-            make.size.mas_equalTo(CGSizeMake(35, 35));
+            make.size.mas_equalTo(CGSizeMake(25, 20));
             
         }];
         
@@ -136,9 +136,9 @@
     }];
     
     [self.fixedPhoneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(15);
+        make.top.mas_equalTo(17.5);
         make.right.equalTo(self).with.offset(-5);
-        make.size.mas_equalTo(CGSizeMake(35, 35));
+        make.size.mas_equalTo(CGSizeMake(20, 25));
         
     }];
     
