@@ -38,7 +38,10 @@
 
 - (void)getData
 {
+    [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
+    
     [[ServicesManager getAPI] getIpAllows:^(NSString *errorMsg, NSArray *list) {
+        [SVProgressHUD dismiss];
         self.data.array = list;
         
         dispatch_async(dispatch_get_main_queue(), ^{

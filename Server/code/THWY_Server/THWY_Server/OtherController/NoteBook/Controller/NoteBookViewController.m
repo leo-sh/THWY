@@ -66,7 +66,7 @@
 
 - (void)getData
 {
-    [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
+    [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
     //    [[ServicesManager getAPI]getDocTypes:^(NSString *errorMsg, NSArray *list) {
     //        NSLog(@"12313");
     //    }];

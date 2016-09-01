@@ -70,7 +70,7 @@
     if (!self.Id) {
         self.Id = [[UDManager getUD]getEndId:self.s_admin_id];
     }
-    
+    [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
     [[ServicesManager getAPI] getMsgs:self.s_admin_id endId:self.Id onComplete:^(NSString *errorMsg, NSArray *list) {
         
         if (errorMsg) {
@@ -83,7 +83,7 @@
             [self.tableView reloadData];
             [SVProgressHUD dismiss];
         }
-        
+        [SVProgressHUD dismiss];
     }];
 }
 
