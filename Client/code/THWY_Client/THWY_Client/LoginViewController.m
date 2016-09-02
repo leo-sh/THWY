@@ -305,10 +305,11 @@
         }
         else {
             
-            [SVProgressHUD dismiss];
             [[NSNotificationCenter defaultCenter] postNotificationName:Login_Success object:nil];
             
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissViewControllerAnimated:YES completion:^{
+                [SVProgressHUD dismiss];
+            }];
         }
         
     }];
