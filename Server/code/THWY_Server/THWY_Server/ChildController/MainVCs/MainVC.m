@@ -381,6 +381,11 @@
     [self showVC:button];
 }
 
+- (void)signOut{
+    [self.dropView removeFromSuperview];
+    [super signOut];
+}
+
 - (void)dealloc{
     [My_NoteCenter removeObserver:self name:Login_Success object:nil];
 }

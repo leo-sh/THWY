@@ -164,13 +164,15 @@
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     calendar.timeZone = [NSTimeZone localTimeZone];
-    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:self.datePickerView.selectedDate];
+    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:[self.datePickerView.selectedDate dateByAddingTimeInterval:-8*60*60]];
     comp.timeZone = calendar.timeZone;
     [comp setHour:self.timePickerView.hour];
     [comp setMinute:self.timePickerView.minute];
     
     NSDate *date = [[calendar dateFromComponents:comp] dateByAddingTimeInterval:8*60*60];
-    if ([NSDate compareOneDay:date withAnotherDay:[[NSDate date] dateByAddingTimeInterval:8*60*60]] == -1) {
+    NSDate *now = [[NSDate date] dateByAddingTimeInterval:8*60*60];
+//    NSDate *date = [calendar dateFromComponents:comp];
+    if ([date compare:now] == NSOrderedAscending) {
         [My_NoteCenter postNotificationName:@"dateFailed" object:nil userInfo:@{@"PickerViewType":@(type)}];
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"请选择正确的时间" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -187,11 +189,11 @@
 - (NSUInteger)order_timestamp{
    
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:self.datePickerView.selectedDate];
+    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:[self.datePickerView.selectedDate dateByAddingTimeInterval:-8*60*60]];
     [comp setHour:self.timePickerView.hour];
     [comp setMinute:self.timePickerView.minute];
     
-    NSUInteger timeInterval = [[[calendar dateFromComponents:comp] dateByAddingTimeInterval:8*60*60]timeIntervalSince1970];
+    NSUInteger timeInterval = [[[calendar dateFromComponents:comp] dateByAddingTimeInterval:8*60*60] timeIntervalSince1970];
     return timeInterval;
 }
 
