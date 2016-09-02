@@ -110,7 +110,6 @@
     UILabel *titleLabel = [[UILabel alloc]init];
     UILabel *time = [[UILabel alloc]init];
     UILabel *content = [[UILabel alloc]init];
-    self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
     self.backView = [[UIView alloc]initWithFrame:CGRectMake(10, 10 , self.view.width - 20, 0)];
 
     head.frame = CGRectMake(0, 0, self.backView.width, 3);
@@ -195,8 +194,9 @@
     
     self.backView.backgroundColor = WhiteAlphaColor;
     
-    if (self.backView.height > self.scrollView.height - 64) {
+    if (self.backView.height > self.view.height - 64) {
         
+        self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
         self.scrollView.contentSize = CGSizeMake(self.scrollView.width, self.backView.height + 10);
         [self.scrollView addSubview:self.backView];
         [self.view addSubview:self.scrollView];
@@ -280,9 +280,19 @@
         
         
         self.backView.backgroundColor = WhiteAlphaColor;
+    
+    if (self.backView.height > self.view.height - 64) {
         
+        self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.width, self.backView.height + 10);
+        [self.scrollView addSubview:self.backView];
+        [self.view addSubview:self.scrollView];
+    }
+    else
+    {
         [self.view addSubview:self.backView];
-        
+    }
+    
         titleLabel.text = noteVO.title;
         NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:SS"];
         time.text = showtime;

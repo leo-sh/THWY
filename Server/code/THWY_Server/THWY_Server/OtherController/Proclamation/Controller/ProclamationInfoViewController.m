@@ -162,6 +162,9 @@
     {
         self.backView.height = content.bottom + 10;
     }
+    
+    
+    
     self.backView.backgroundColor = [UIColor whiteColor];
     
     head.image = [UIImage imageNamed:@"彩条"];
