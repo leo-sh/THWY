@@ -94,11 +94,11 @@
 }
 
 - (void)setTitle:(NSString *)title Content:(NSString *)content typeId:(NSString *)typeId docId:(NSString *)docId{
+    self.typeId = typeId;
     self.title.text = title;
     self.textView.text = content;
     self.contentString = content;
     self.titleString = title;
-    self.typeId = typeId;
     self.docId = docId;
 }
 
