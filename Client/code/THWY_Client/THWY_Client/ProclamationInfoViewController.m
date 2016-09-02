@@ -122,49 +122,7 @@
     
     
     content.frame = CGRectMake(10, time.bottom + 10, self.backView.width - 20, size.height);
-    if (noteVO.files.count != 0) {
-        
-        UILabel *fujian = [[UILabel alloc]initWithFrame:CGRectMake(10, content.bottom + 20, 60, 20)];
-        fujian.text = @"附件：";
-        fujian.textColor = CellUnderLineColor;
-        [self.backView addSubview:fujian];
-        
-        CGFloat y = content.bottom + 20;
-        CGFloat x = 60;
-        for (int i = 0; i < noteVO.files.count; i ++ ) {
-            
-            CGFloat width = GetContentWidth(noteVO.files[i].file_name, Content_Time_Font);
-            
-            UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, width , Content_Time_Font)];
-            [btn setTitle:noteVO.files[i].file_name forState:UIControlStateNormal];
-            btn.titleLabel.font = FontSize(Content_Time_Font);
-            [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-            btn.tag = 400 + i;
-            [btn addTarget:self action:@selector(clickFujian:) forControlEvents:UIControlEventTouchUpInside];
-            y += Content_Time_Font + 5;
-            
-            [self.backView addSubview:btn];
-            
-            if (i == noteVO.files.count - 1) {
-                if (fujian.bottom < btn.bottom) {
-                    self.backView.height = btn.bottom + 10;
-                    
-                }
-                else
-                {
-                    self.backView.height = fujian.bottom + 10;
-                    
-                }
-            }
-        }
-        
-    }
-    else
-    {
-        self.backView.height = content.bottom + 10;
-    }
-
+   
     content.numberOfLines = 0;
     
     head.image = [UIImage imageNamed:@"彩条"];
@@ -214,6 +172,51 @@
     {
         [SVProgressHUD dismiss];
         content.text = noteVO.content;
+        
+        if (noteVO.files.count != 0) {
+            
+            UILabel *fujian = [[UILabel alloc]initWithFrame:CGRectMake(10, content.bottom + 20, 60, 20)];
+            fujian.text = @"附件：";
+            fujian.textColor = CellUnderLineColor;
+            [self.backView addSubview:fujian];
+            
+            CGFloat y = content.bottom + 20;
+            CGFloat x = 60;
+            for (int i = 0; i < noteVO.files.count; i ++ ) {
+                
+                CGFloat width = GetContentWidth(noteVO.files[i].file_name, Content_Time_Font);
+                
+                UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, width , Content_Time_Font)];
+                [btn setTitle:noteVO.files[i].file_name forState:UIControlStateNormal];
+                btn.titleLabel.font = FontSize(Content_Time_Font);
+                [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+                [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+                btn.tag = 400 + i;
+                [btn addTarget:self action:@selector(clickFujian:) forControlEvents:UIControlEventTouchUpInside];
+                y += Content_Time_Font + 5;
+                
+                [self.backView addSubview:btn];
+                
+                if (i == noteVO.files.count - 1) {
+                    if (fujian.bottom < btn.bottom) {
+                        self.backView.height = btn.bottom + 10;
+                        
+                    }
+                    else
+                    {
+                        self.backView.height = fujian.bottom + 10;
+                        
+                    }
+                }
+            }
+            
+        }
+        else
+        {
+            self.backView.height = content.bottom + 10;
+        }
+
+        
         if (self.backView.height > self.view.height - 64) {
             
             UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
