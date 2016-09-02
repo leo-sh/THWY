@@ -161,7 +161,7 @@
     
     UITableViewCell *returnCell;
     
-    if ([[self.data[indexPath.section] sender_admin_id] isEqualToString: self.s_admin_id]) {
+    if (![self.data[indexPath.section] fromMe]) {
     
         COTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CO"];
         cell.section = indexPath.section;
@@ -249,6 +249,7 @@
 - (void)receiveNew:(NSNotification *)new
 {
     NSDictionary *dic = new.object;
+    NSLog(@"%@",dic);
     if ([[NSString stringWithFormat:@"%d",[dic[@"s_admin_id"] intValue]] isEqualToString:self.s_admin_id]) {
         
         [My_ServicesManager palyReceive];
@@ -275,8 +276,12 @@
                 [SVProgressHUD showErrorWithStatus:errorMsg];
             }else
             {
+                MsgVO *msg = [[MsgVO alloc]init];
+                msg.fromMe = YES;
+                msg.msg = self.msgTextField.text;
                 self.msgTextField.text = @"";
-                [self getData];
+                [self.data addObject:msg];
+                [self.tableView reloadData];
 
             }
             sender.enabled = YES;
