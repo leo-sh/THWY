@@ -194,18 +194,7 @@
     
     self.backView.backgroundColor = WhiteAlphaColor;
     
-    if (self.backView.height > self.view.height - 64) {
-        
-        self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.width, self.backView.height + 10);
-        [self.scrollView addSubview:self.backView];
-        [self.view addSubview:self.scrollView];
-    }
-    else
-    {
-        [self.view addSubview:self.backView];
-    }
-    titleLabel.text = noteVO.title;
+        titleLabel.text = noteVO.title;
     NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:mm"];
     time.text = showtime;
     if ([noteVO.content rangeOfString:@"<"].location == 0 && [[noteVO.content substringFromIndex:noteVO.content.length - 1] isEqualToString:@">"]) {
@@ -225,6 +214,18 @@
     {
         [SVProgressHUD dismiss];
         content.text = noteVO.content;
+        if (self.backView.height > self.view.height - 64) {
+            
+            self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+            self.scrollView.contentSize = CGSizeMake(self.scrollView.width, self.backView.height + 10);
+            [self.scrollView addSubview:self.backView];
+            [self.view addSubview:self.scrollView];
+        }
+        else
+        {
+            [self.view addSubview:self.backView];
+        }
+
     }
     
 }
@@ -281,17 +282,6 @@
         
         self.backView.backgroundColor = WhiteAlphaColor;
     
-    if (self.backView.height > self.view.height - 64) {
-        
-        self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.width, self.backView.height + 10);
-        [self.scrollView addSubview:self.backView];
-        [self.view addSubview:self.scrollView];
-    }
-    else
-    {
-        [self.view addSubview:self.backView];
-    }
     
         titleLabel.text = noteVO.title;
         NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:SS"];
@@ -314,6 +304,18 @@
         {
             [SVProgressHUD dismiss];
             content.text = noteVO.content;
+            if (self.backView.height > self.view.height - 64) {
+                
+                self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+                self.scrollView.contentSize = CGSizeMake(self.scrollView.width, self.backView.height + 10);
+                [self.scrollView addSubview:self.backView];
+                [self.view addSubview:self.scrollView];
+            }
+            else
+            {
+                [self.view addSubview:self.backView];
+            }
+
         }
     
 }
