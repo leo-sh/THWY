@@ -29,7 +29,7 @@
             self.title = @"行政公告详情";
             break;
         case GetBusinessData:
-            self.title = @"商圈公告详情";
+            self.title = @"商圈广告详情";
             break;
         default:
             break;
@@ -199,7 +199,6 @@
     if ([noticVO.content rangeOfString:@"<"].location == 0 && [[noticVO.content substringFromIndex:noticVO.content.length - 1] isEqualToString:@">"]) {
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, backView.width - 2*content.x, My_ScreenH)];
         webView.delegate = self;
-        webView.scrollView.bounces = NO;
         webView.backgroundColor = My_clearColor;
         [content removeFromSuperview];
         [backView addSubview:webView];
@@ -275,7 +274,6 @@
     time.text = showtime;
     if ([noteVO.content rangeOfString:@"<"].location == 0 && [[noteVO.content substringFromIndex:noteVO.content.length - 1] isEqualToString:@">"]) {
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, backView.width - 2*content.x, My_ScreenH)];
-        webView.scrollView.bounces = NO;
         webView.delegate = self;
         webView.backgroundColor = My_clearColor;
         [content removeFromSuperview];
@@ -323,6 +321,8 @@
     [self.data.files[btn.tag - 400] showInVC:self];
     
 }
+
+
 
 /*
 #pragma mark - Navigation

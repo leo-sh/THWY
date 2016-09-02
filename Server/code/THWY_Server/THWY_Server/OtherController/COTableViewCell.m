@@ -35,12 +35,12 @@
        
         make.centerY.equalTo(self.contentView);
         make.right.mas_equalTo(-5);
-        make.size.mas_equalTo(CGSizeMake(40, 40));
+        make.size.mas_equalTo(CGSizeMake(50, 50));
         
         
     }];
     
-    self.icon.layer.cornerRadius = 20;
+    self.icon.layer.cornerRadius = 25;
     
     self.icon.clipsToBounds = YES;
     
@@ -49,18 +49,18 @@
     NSLog(@"iamge%@",icon);
     
     self.contentLabel.text = content;
-    self.contentLabel.font = FontSize(CONTENT_FONT);
+    self.contentLabel.font = FontSize(CONTENT_FONT + 1);
     self.contentLabel.numberOfLines = 0;
     self.contentLabel.textColor = [UIColor whiteColor];
     self.backView.image = [UIImage imageNamed:@"绿对话框"];
     
     CGFloat width = self.width * 0.5;
     
-    self.contentLabel.frame = CGRectMake(10, 5, width, 20);
-    CGFloat contentHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
+    self.contentLabel.frame = CGRectMake(10, 5, width, 30);
+    CGFloat contentHeight = [content sizeWithFont:FontSize(CONTENT_FONT + 1) maxSize:CGSizeMake(width, 4000)].height;
     NSString *rowS = [NSString stringWithFormat:@"%d",self.section];
    __block NSString *heightS;
-    if (contentHeight > CONTENT_FONT) {
+    if (contentHeight > 60) {
         self.contentLabel.height = contentHeight;
         
         [self.backView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -73,14 +73,23 @@
             
         }];
         
-        heightS = [NSString stringWithFormat:@"%lf",contentHeight + 10];
+        heightS = [NSString stringWithFormat:@"%lf",contentHeight + 30];
             
         [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
 
     }
     else
     {
-        heightS = [NSString stringWithFormat:@"%lf",self.height];
+        [self.backView mas_updateConstraints:^(MASConstraintMaker *make) {
+        
+        make.right.equalTo(self.icon.mas_left).with.offset(-5);
+        
+        make.centerY.equalTo(self.contentView);
+        
+        make.size.mas_equalTo(CGSizeMake(width + 25, 40));
+        
+    }];
+        heightS = [NSString stringWithFormat:@"%lf",60.0];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
 
     }    

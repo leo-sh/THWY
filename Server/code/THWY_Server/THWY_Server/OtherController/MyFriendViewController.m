@@ -302,7 +302,7 @@
 {
     [self.searchFriend resignFirstResponder];
     [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
-    NSString *string = @"^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d{8}$";
+    NSString *string = @"^[0-9]*$";
     NSString *string2 = @"([\u4e00-\u9fa5]{2,4})";
     NSPredicate *phonePredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",string];
     NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",string2];
@@ -347,18 +347,14 @@
 
         }];
     }
-    else
-    {
-        [SVProgressHUD showErrorWithStatus:@"输入有误！请重新输入"];
-
-        [SVProgressHUD dismiss];
-    }
-
 }
 
 - (void)addSuccess
 {
     self.addFriendStatu = YES;
+    self.segmentedControl.selectedSegmentIndex = 0;
+    self.index = 0;
+    [self getData];
 }
 
 /*

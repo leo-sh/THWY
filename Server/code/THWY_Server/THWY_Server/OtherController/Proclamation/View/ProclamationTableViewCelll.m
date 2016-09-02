@@ -102,6 +102,7 @@
 
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.time.frame) + 8, width, 0)];
         webView.scrollView.bounces = NO;
+        webView.userInteractionEnabled = NO;
         webView.backgroundColor = My_clearColor;
         webView.delegate = self;
         webView.opaque = NO;
@@ -115,9 +116,18 @@
     else
     {
         self.content.text = content;
-        CGFloat contenHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width, 4000)].height;
-        self.content.frame = CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, contenHeight);
+        CGFloat contenHeight = [content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(width - 10, 4000)].height;
         
+        
+        if (contenHeight > 210 - self.time.bottom - 8) {
+            self.content.frame = CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, 210 - self.time.bottom - 8);
+        }
+        else
+        {
+            self.content.frame = CGRectMake(5, CGRectGetMaxY(self.time.frame) + 8, width - 10, contenHeight);
+        }
+        NSLog(@"%f",CGRectGetMaxY(self.time.frame) + 8);
+//        self.content.backgroundColor = [UIColor greenColor];
         self.backView.frame = CGRectMake(0, 0, contentWidth, 210);
         [self.backView addSubview:self.content];
 

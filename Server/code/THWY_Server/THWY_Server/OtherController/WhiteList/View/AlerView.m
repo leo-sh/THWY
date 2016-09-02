@@ -12,6 +12,7 @@
 @interface AlerView()<UIGestureRecognizerDelegate,UITextFieldDelegate>
 @property UITextField *userTF;
 @property NSMutableArray *ipTFArray;
+@property UIButton *btn;
 @end
 @implementation AlerView
 - (instancetype)initWithFrame:(CGRect)frame
@@ -20,7 +21,7 @@
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide) name:UIKeyboardDidHideNotification object:nil];
-
+        [self addObserver:self forKeyPath:@"method" options:NSKeyValueObservingOptionNew context:nil];
         self.ipTFArray = [NSMutableArray array];
         
         CGFloat left = 10;
@@ -93,20 +94,20 @@
         
         UITextField *temp = [self.ipTFArray firstObject];
         
-        CGFloat btnY = temp.bottom + 15;
+        CGFloat btnY = temp.bottom + 25;
         
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(left, btnY, width, 40)];
+        self.btn = [[UIButton alloc]initWithFrame:CGRectMake(left, btnY, width, 40)];
         
-        btn.backgroundColor = My_NAV_BG_Color;
+        self.btn.backgroundColor = My_NAV_BG_Color;
         
-        [btn setTitle:@"添加" forState:UIControlStateNormal];
+        [self.btn setTitle:@"添加" forState:UIControlStateNormal];
         
-        [self addSubview:btn];
+        [self addSubview:self.btn];
         
-        [btn addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchUpInside];
+        [self.btn addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchUpInside];
         
         
-        self.height = btn.bottom + 15;
+        self.height = self.btn.bottom + 25;
         
         self.backgroundColor = [UIColor whiteColor];
 
@@ -324,6 +325,24 @@
         self.center = self.superview.center;
 
     }];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if (self.method == Edit ) {
+        
+        [self.btn setTitle:@"修改" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self.btn setTitle:@"添加" forState:UIControlStateNormal];
+
+    }
+}
+
+- (void)dealloc
+{
+    [self removeObserver:self forKeyPath:@"method"];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

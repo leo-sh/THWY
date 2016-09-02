@@ -166,7 +166,7 @@
         cell.width = tableView.width;
         [cell setIcon:[[self.data[indexPath.section] sender] photo] Content:[self.data[indexPath.section] msg]];
         NSLog(@"indexpath.section %ld",indexPath.section);
-//        cell.backgroundColor = [UIColor yellowColor];
+        cell.backgroundColor = [UIColor yellowColor];
         returnCell = cell;
     
     }
@@ -177,7 +177,7 @@
         cell.width = tableView.width;
         [cell setIcon:[[self.data[indexPath.section] sender] photo] Content:[self.data[indexPath.section] msg]];
         NSLog(@"indexpath.section %ld",indexPath.section);
-//        cell.backgroundColor = [UIColor greenColor];
+        cell.backgroundColor = [UIColor greenColor];
         returnCell = cell;
     }
     
@@ -193,9 +193,6 @@
 //    if ([key integerValue] == 26) {
 //        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%f",value);
 //    }
-    if (value == 0) {
-        return 44;
-    }
     return value;
 }
 
@@ -218,7 +215,7 @@
 {
     UIView *view = [[UIView alloc]init];
     
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 12.5, self.view.width * 0.4, 25)];
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 10, 120, 30)];
     
     btn.titleLabel.font = FontSize(Content_Ip_Font);
     
@@ -299,6 +296,7 @@
     }
     
     [self.rowAndHeight setValuesForKeysWithDictionary:notification.object];
+    NSLog(@"%@",self.rowAndHeight);
     
 }
 

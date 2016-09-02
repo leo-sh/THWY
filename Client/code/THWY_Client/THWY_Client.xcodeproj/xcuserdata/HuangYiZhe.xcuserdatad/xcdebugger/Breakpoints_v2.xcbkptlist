@@ -329,7 +329,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "181"
             endingLineNumber = "181"
-            landmarkName = "-didReceiveMemoryWarning"
+            landmarkName = "-clickSearchBtn"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -484,7 +484,7 @@
                   moduleName = "THWY_Client"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaa/Desktop/THWY/Client/code/THWY_Client/THWY_Client/ComplainViewController.m"
-                  timestampString = "494424967.5849"
+                  timestampString = "494428221.281654"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "67"
@@ -499,7 +499,7 @@
                   moduleName = "THWY_Client"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaa/Desktop/THWY/Client/code/THWY_Client/THWY_Client/ComplainViewController.m"
-                  timestampString = "494424967.585004"
+                  timestampString = "494428221.281744"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "67"
@@ -786,7 +786,7 @@
                   moduleName = "THWY_Client"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaa/Desktop/THWY/Client/code/THWY_Client/THWY_Client/LoginViewController.m"
-                  timestampString = "494424967.590125"
+                  timestampString = "494428221.286051"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "296"
@@ -801,7 +801,7 @@
                   moduleName = "THWY_Client"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaa/Desktop/THWY/Client/code/THWY_Client/THWY_Client/LoginViewController.m"
-                  timestampString = "494424967.590229"
+                  timestampString = "494428221.286271"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "297"
@@ -1010,7 +1010,7 @@
                   moduleName = "THWY_Client"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaa/Desktop/THWY/Client/code/THWY_Client/THWY_Client/PayInfoViewController.m"
-                  timestampString = "494424967.595902"
+                  timestampString = "494428221.291426"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "39"
@@ -1025,7 +1025,7 @@
                   moduleName = "THWY_Client"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaa/Desktop/THWY/Client/code/THWY_Client/THWY_Client/PayInfoViewController.m"
-                  timestampString = "494424967.596049"
+                  timestampString = "494428221.291512"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "41"
@@ -1432,6 +1432,22 @@
             startingLineNumber = "124"
             endingLineNumber = "124"
             landmarkName = "-createUI:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "THWY_Client/PayInfoViewController.m"
+            timestampString = "494428221.087673"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "-getData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

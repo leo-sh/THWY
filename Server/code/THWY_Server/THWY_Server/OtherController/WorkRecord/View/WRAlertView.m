@@ -60,6 +60,7 @@
         self.textView = [[UITextView alloc]initWithFrame:CGRectMake(15, self.title.bottom, self.width - 30, 100)];
         self.textView.autocorrectionType = UITextAutocorrectionTypeNo;
         self.textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        self.textView.font = FontSize(CONTENT_FONT);
         self.textView.textAlignment = NSTextAlignmentLeft;
         self.textView.layer.borderColor = CellUnderLineColor.CGColor;
         self.textView.layer.borderWidth = 0.5;
