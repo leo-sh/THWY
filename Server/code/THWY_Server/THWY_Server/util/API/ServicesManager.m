@@ -1779,9 +1779,7 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-//        [self getATask:@"16" isPublic:YES onComplete:^(NSString *errorMsg, RepairVO *repair) {
-//            
-//        }];
+        
     }else
     {
 //        [self login:@"fzq" password:@"123456" savePassWord:NO onComplete:^(NSString *errorMsg, UserVO *user) {
