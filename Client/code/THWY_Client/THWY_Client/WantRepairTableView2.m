@@ -46,7 +46,7 @@
         self.delegate = self;
         self.dataSource = self;
         self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        self.separatorColor = [UIColor lightGrayColor];
+        self.separatorColor = My_LineColor;
 //        self.bounces = NO;
         self.showsVerticalScrollIndicator = NO;
         self.sectionFooterHeight = 0;

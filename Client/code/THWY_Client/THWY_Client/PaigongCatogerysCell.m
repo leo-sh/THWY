@@ -51,8 +51,8 @@
     self.datePickerView.endDate = [NSDate dateWithTimeIntervalSinceNow:180*24*60*60];
     self.datePickerView.delegate = self;
     
-    self.line = [[UILabel alloc] initWithFrame:CGRectMake(10, self.datePickerView.bottom-5, My_ScreenW-40, 1.0)];
-    self.line.backgroundColor = My_LineColor;
+    self.line = [[UILabel alloc] initWithFrame:CGRectMake(15, self.datePickerView.bottom-5, My_ScreenW-50, 0.5)];
+    self.line.backgroundColor = [UIColor lightGrayColor];
     [self.contentView addSubview:self.line];
     
     self.timePickerView = [[MyTimerPickerView alloc] initWithFrame:CGRectMake(10, self.datePickerView.bottom-10 , My_ScreenW-40, 65)];
