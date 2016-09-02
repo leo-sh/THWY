@@ -105,11 +105,15 @@
     
     self.iconImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, iconWidth, iconHeight)];
     
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.userInfo.photo] placeholderImage:[UIImage imageNamed:@"Avatar"]];
+    if (self.userInfo.photo.length > 0) {
+        
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString: self.userInfo.photo] placeholderImage:[UIImage imageNamed:@"头像1"]];
+    }else
+    {
+        self.iconImageView.image = [UIImage imageNamed:@"Avatar"];
+    }
     
     [icon addSubview:self.iconImageView];
-    
-//    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userInfo.avatar]]];
     
     UILabel *nameLabel = [[UILabel alloc]init];
     
