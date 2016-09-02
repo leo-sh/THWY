@@ -21,7 +21,7 @@
 
 @property (strong, nonatomic) MyDatePickerView *datePickerView;
 @property (strong, nonatomic) MyTimerPickerView *timePickerView;
-
+@property (strong, nonatomic) UILabel *line;
 @end
 
 @implementation PaigongCatogerysCell
@@ -51,7 +51,11 @@
     self.datePickerView.endDate = [NSDate dateWithTimeIntervalSinceNow:180*24*60*60];
     self.datePickerView.delegate = self;
     
-    self.timePickerView = [[MyTimerPickerView alloc] initWithFrame:CGRectMake(10, self.datePickerView.bottom-15 , My_ScreenW-40, 65)];
+    self.line = [[UILabel alloc] initWithFrame:CGRectMake(10, self.datePickerView.bottom-5, My_ScreenW-40, 1.0)];
+    self.line.backgroundColor = My_LineColor;
+    [self.contentView addSubview:self.line];
+    
+    self.timePickerView = [[MyTimerPickerView alloc] initWithFrame:CGRectMake(10, self.datePickerView.bottom-10 , My_ScreenW-40, 65)];
     self.timePickerView.font = FontSize(CONTENT_FONT+1);
     self.timePickerView.fontColor = [UIColor blackColor];
     self.timePickerView.delegate = self;
@@ -60,6 +64,7 @@
     [self.contentView addSubview:self.timePickerView];
     [self.datePickerView setHidden:YES];
     [self.timePickerView setHidden:YES];
+    [self.line setHidden:YES];
 }
 
 - (void)updateView{
@@ -72,6 +77,7 @@
             
             [self.datePickerView setHidden:YES];
             [self.timePickerView setHidden:YES];
+            [self.line setHidden:YES];
 
             break;
         }
@@ -82,7 +88,7 @@
             
             [self.datePickerView setHidden:YES];
             [self.timePickerView setHidden:YES];
-
+            [self.line setHidden:YES];
             break;
         }
         case 3:{
@@ -92,7 +98,7 @@
             
             [self.datePickerView setHidden:NO];
             [self.timePickerView setHidden:NO];
-
+            [self.line setHidden:NO];
             break;
         }
         default:
@@ -111,7 +117,7 @@
     
     [self.datePickerView setHidden:YES];
     [self.timePickerView setHidden:YES];
-    
+    [self.line setHidden:YES];
     if (self.showPikerView) {
         self.showPikerView = NO;
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -129,7 +135,7 @@
     
     [self.datePickerView setHidden:YES];
     [self.timePickerView setHidden:YES];
-
+    [self.line setHidden:YES];
     if (self.showPikerView) {
         self.showPikerView = NO;
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -146,7 +152,7 @@
     
     [self.datePickerView setHidden:NO];
     [self.timePickerView setHidden:NO];
-    
+    [self.line setHidden:NO];
     if (!self.showPikerView) {
         self.showPikerView = YES;
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -178,18 +184,16 @@
     
 }
 
-//- (NSUInteger)order_timestamp{
-//   
-//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-//    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:self.datePickerView.selectedDate];
-//    [comp setHour:self.timePickerView.hour];
-//    [comp setMinute:self.timePickerView.minute];
-//    
-//    NSUInteger timeInterval = [[[calendar dateFromComponents:comp] dateByAddingTimeInterval:8*60*60]timeIntervalSince1970];
-//    
-////    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
-//    return timeInterval;
-//}
+- (NSUInteger)order_timestamp{
+   
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:self.datePickerView.selectedDate];
+    [comp setHour:self.timePickerView.hour];
+    [comp setMinute:self.timePickerView.minute];
+    
+    NSUInteger timeInterval = [[[calendar dateFromComponents:comp] dateByAddingTimeInterval:8*60*60]timeIntervalSince1970];
+    return timeInterval;
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:NO animated:animated];

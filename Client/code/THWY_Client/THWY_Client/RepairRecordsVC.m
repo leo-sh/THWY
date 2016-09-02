@@ -58,7 +58,7 @@
     [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     [My_ServicesManager getRepairs:type page:page repairStatu:statusID onComplete:^(NSString *errorMsg, NSArray *list) {
         
-//        NSLog(@"page==%d, list.count--%ld", page, list.count);
+//        NSLog(@"type==%ld,  statusID:%@ page==%d, list.count--%ld", type, statusID, page, list.count);
         if (errorMsg) {
             
             [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -74,6 +74,7 @@
             }
             
             for (RepairVO *model in list) {
+//                NSLog(@"%@", model.Id);
                 [self.repairDataArray addObject:model];
             }
             
@@ -95,7 +96,7 @@
             }
     
             [SVProgressHUD dismiss];
-//            [SVProgressHUD hudHideWithSuccess:@"加载完毕"];
+
         }
       
         if (self.switchFlag == 1) {
@@ -256,8 +257,10 @@
         
         self.scrollView.contentOffset = CGPointMake(self.tableView.frame.size.width, 0);
         self.tableView2.contentOffset = CGPointMake(0, 0);
-        [self.tableView2.mj_header beginRefreshing];
-        [self btnOnclicked:[self.bgView viewWithTag:300]];
+        
+        UIButton *btn = [self.bgView viewWithTag:300+self.selectIndex];
+        [btn setImage:nil forState:UIControlStateNormal];
+
         self.switchFlag = 2;
         self.selectIndex = 0;
         [self btnOnclicked:[self.bgView2 viewWithTag:310]];
@@ -266,8 +269,10 @@
     }else if (index == 0){
         self.scrollView.contentOffset = CGPointMake(0, 0);
         self.tableView.contentOffset = CGPointMake(0, 0);
-        [self.tableView.mj_header beginRefreshing];
-        [self btnOnclicked:[self.bgView2 viewWithTag:310]];
+        
+        UIButton *btn = [self.bgView2 viewWithTag:310+self.selectIndex];
+        [btn setImage:nil forState:UIControlStateNormal];
+        
         self.switchFlag = 1;
         self.selectIndex = 0;
         [self btnOnclicked:[self.bgView viewWithTag:300]];

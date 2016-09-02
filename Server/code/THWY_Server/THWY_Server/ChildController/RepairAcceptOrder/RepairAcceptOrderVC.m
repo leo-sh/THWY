@@ -39,7 +39,6 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]];
     self.dataArray = [NSMutableArray array];
     [self initViews];
-    [self getDataListPage:self.page];
     
 }
 
@@ -237,6 +236,12 @@
     
     [self.navigationController pushViewController:detail animated:YES];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self.dataArray removeAllObjects];
+    self.page = 0;
+    [self getDataListPage:self.page];
 }
 
 @end

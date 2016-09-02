@@ -24,6 +24,7 @@
 @property (nonatomic , copy) NSString              * admin_name;
 @property (nonatomic , copy) NSString              * date_month;
 @property (nonatomic , copy) NSString              * sign;
+@property (nonatomic , copy) NSString              * cashier_name;
 
 -(FeeHistoryVO* )initWithJSON:(NSDictionary *)JSON;
 

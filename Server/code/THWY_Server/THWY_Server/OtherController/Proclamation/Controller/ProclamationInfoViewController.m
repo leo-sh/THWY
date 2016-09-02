@@ -116,9 +116,9 @@
     
     time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), backView.width, 14);
     
-    CGSize size = [noticVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width, 4000)];
+    CGSize size = [noticVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width - 10, 4000)];
     
-    content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
+    content.frame = CGRectMake(5, time.bottom + 10, backView.width - 10, size.height);
     if (noticVO.files.count != 0) {
 
         UILabel *fujian = [[UILabel alloc]initWithFrame:CGRectMake(10, content.bottom + 20, 60, 20)];
@@ -145,12 +145,12 @@
             
             if (i == noticVO.files.count - 1) {
                 if (fujian.bottom < btn.bottom) {
-                    backView.height = btn.bottom + 10;
+                    backView.height = btn.bottom + 20;
 
                 }
                 else
                 {
-                    backView.height = fujian.bottom + 10;
+                    backView.height = fujian.bottom + 20;
 
                 }
             }
@@ -231,10 +231,9 @@
     
     time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), backView.width, 14);
     
-    CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width, 4000)];
+    CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width - 10, 4000)];
     
-    
-    content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
+    content.frame = CGRectMake(5, time.bottom + 10, backView.width - 10, size.height);
     
     backView.height = content.bottom + 10;
     

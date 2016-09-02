@@ -85,7 +85,7 @@
     UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithCustomView:self.leftButton];
     self.navigationItem.leftBarButtonItem  = left;
     
-    self.dropView = [[DropMenuTableView alloc] initWithWidth:145.f itemHeight:45.f itemNames:@[@"我要报修", @"我要投诉", @"账号信息", @"推送设置", @"技术支持"] ItemImages:@[@"main_1", @"main_2", @"main_6", @"main_4", @"main_5"]];
+    self.dropView = [[DropMenuTableView alloc] initWithWidth:145.f itemHeight:45.f itemNames:@[@"我要报修", @"我要投诉", @"账号信息",@"我的积分", @"推送设置", @"技术支持"] ItemImages:@[@"main_1", @"main_2", @"main_6",@"main_3", @"main_4", @"main_5"]];
     self.dropView.backColor = My_Color(2, 134, 200);
     self.dropView.textColor = [UIColor whiteColor];
     
@@ -93,7 +93,7 @@
 }
 
 - (void)leftItemOnclicked:(UIButton *)button{
-    
+
     if (self.dropView.superview) {
         [self.leftButton setBackgroundImage:nil forState:UIControlStateNormal];
         [self.dropView removeFromSuperview];
@@ -131,11 +131,16 @@
             break;
         }
         case 3:{
-            button.tag = 109;
+            button.tag = 106;
             [self showVC:button];
             break;
         }
         case 4:{
+            button.tag = 109;
+            [self showVC:button];
+            break;
+        }
+        case 5:{
             button.tag = 110;
             [self showVC:button];
             break;
