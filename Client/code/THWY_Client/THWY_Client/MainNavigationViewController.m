@@ -25,8 +25,8 @@
 -(void)popWithUserInfo:(NSDictionary *)userInfo
 {
     [UMessage sendClickReportForRemoteNotification:userInfo];
-    NSString* pushType = userInfo[@"push_type"];
-    NSString* Id = userInfo[@"pk"];
+    NSString* pushType = [NSString stringWithFormat:@"%ld",[userInfo[@"push_type"] integerValue]];
+    NSString* Id = [NSString stringWithFormat:@"%ld",[userInfo[@"pk"] integerValue]];
     if ([pushType isEqualToString:@"5"])
     {
 //              业主公告

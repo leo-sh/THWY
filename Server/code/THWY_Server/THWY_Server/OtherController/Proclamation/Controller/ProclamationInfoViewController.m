@@ -120,48 +120,7 @@
     CGSize size = [noticVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(self.backView.width - 10, 4000)];
     
     content.frame = CGRectMake(5, time.bottom + 10, self.backView.width - 10, size.height);
-    if (noticVO.files.count != 0) {
-
-        UILabel *fujian = [[UILabel alloc]initWithFrame:CGRectMake(10, content.bottom + 20, 60, 20)];
-        fujian.text = @"附件：";
-        fujian.textColor = CellUnderLineColor;
-        [self.backView addSubview:fujian];
-        
-        CGFloat y = content.bottom + 20;
-        CGFloat x = 60;
-        for (int i = 0; i < noticVO.files.count; i ++ ) {
-            
-           CGFloat width = GetContentWidth(noticVO.files[i].file_name, Content_Ip_Font);
-            
-            UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, width , Content_Ip_Font)];
-            [btn setTitle:noticVO.files[i].file_name forState:UIControlStateNormal];
-            btn.titleLabel.font = FontSize(Content_Ip_Font);
-            [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-            btn.tag = 400 + i;
-            [btn addTarget:self action:@selector(clickFujian:) forControlEvents:UIControlEventTouchUpInside];
-            y += Content_Ip_Font + 5;
-            
-            [self.backView addSubview:btn];
-            
-            if (i == noticVO.files.count - 1) {
-                if (fujian.bottom < btn.bottom) {
-                    self.backView.height = btn.bottom + 20;
-
-                }
-                else
-                {
-                    self.backView.height = fujian.bottom + 20;
-
-                }
-            }
-        }
-
-    }
-    else
-    {
-        self.backView.height = content.bottom + 10;
-    }
+    
     self.backView.backgroundColor = [UIColor whiteColor];
     
     head.image = [UIImage imageNamed:@"彩条"];
@@ -192,12 +151,11 @@
     
     self.backView.backgroundColor = WhiteAlphaColor;
     
-    [self.view addSubview:self.backView];
-    
     titleLabel.text = noticVO.title;
     NSString *showtime = [NSString stringDateFromTimeInterval:[noticVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:mm"];
     time.text = showtime;
     if ([noticVO.content rangeOfString:@"<"].location == 0 && [[noticVO.content substringFromIndex:noticVO.content.length - 1] isEqualToString:@">"]) {
+        [self.view addSubview:self.backView];
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, self.backView.width - 2*content.x, My_ScreenH)];
         webView.delegate = self;
         webView.backgroundColor = My_clearColor;
@@ -211,6 +169,63 @@
     {
         [SVProgressHUD dismiss];
         content.text = noticVO.content;
+        
+        if (noticVO.files.count != 0) {
+            
+            UILabel *fujian = [[UILabel alloc]initWithFrame:CGRectMake(10, content.bottom + 20, 60, 20)];
+            fujian.text = @"附件：";
+            fujian.textColor = CellUnderLineColor;
+            [self.backView addSubview:fujian];
+            
+            CGFloat y = content.bottom + 20;
+            CGFloat x = 60;
+            for (int i = 0; i < noticVO.files.count; i ++ ) {
+                
+                CGFloat width = GetContentWidth(noticVO.files[i].file_name, Content_Ip_Font);
+                
+                UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, width , Content_Ip_Font)];
+                [btn setTitle:noticVO.files[i].file_name forState:UIControlStateNormal];
+                btn.titleLabel.font = FontSize(Content_Ip_Font);
+                [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+                [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+                btn.tag = 400 + i;
+                [btn addTarget:self action:@selector(clickFujian:) forControlEvents:UIControlEventTouchUpInside];
+                y += Content_Ip_Font + 5;
+                
+                [self.backView addSubview:btn];
+                
+                if (i == noticVO.files.count - 1) {
+                    if (fujian.bottom < btn.bottom) {
+                        self.backView.height = btn.bottom + 20;
+                        
+                    }
+                    else
+                    {
+                        self.backView.height = fujian.bottom + 20;
+                        
+                    }
+                }
+            }
+            
+        }
+        else
+        {
+            self.backView.height = content.bottom + 10;
+        }
+
+        
+        if (self.backView.height > self.view.height - 64) {
+            
+            UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+            scrollView.contentSize = CGSizeMake(scrollView.width, self.backView.height + 10);
+            [scrollView addSubview:self.backView];
+            [self.view addSubview:scrollView];
+        }
+        else
+        {
+            [self.view addSubview:self.backView];
+        }
+
     }
     
 }
@@ -267,12 +282,11 @@
     
     self.backView.backgroundColor = WhiteAlphaColor;
     
-    [self.view addSubview:self.backView];
-    
     titleLabel.text = noteVO.title;
     NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:SS"];
     time.text = showtime;
     if ([noteVO.content rangeOfString:@"<"].location == 0 && [[noteVO.content substringFromIndex:noteVO.content.length - 1] isEqualToString:@">"]) {
+        [self.view addSubview:self.backView];
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, self.backView.width - 2*content.x, My_ScreenH)];
         webView.delegate = self;
         webView.backgroundColor = My_clearColor;
@@ -288,6 +302,60 @@
     {
         [SVProgressHUD dismiss];
         content.text = noteVO.content;
+        if (noteVO.files.count != 0) {
+            
+            UILabel *fujian = [[UILabel alloc]initWithFrame:CGRectMake(10, content.bottom + 20, 60, 20)];
+            fujian.text = @"附件：";
+            fujian.textColor = CellUnderLineColor;
+            [self.backView addSubview:fujian];
+            
+            CGFloat y = content.bottom + 20;
+            CGFloat x = 60;
+            for (int i = 0; i < noteVO.files.count; i ++ ) {
+                
+                CGFloat width = GetContentWidth(noteVO.files[i].file_name, Content_Ip_Font);
+                
+                UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, width , Content_Ip_Font)];
+                [btn setTitle:noteVO.files[i].file_name forState:UIControlStateNormal];
+                btn.titleLabel.font = FontSize(Content_Ip_Font);
+                [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+                [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+                btn.tag = 400 + i;
+                [btn addTarget:self action:@selector(clickFujian:) forControlEvents:UIControlEventTouchUpInside];
+                y += Content_Ip_Font + 5;
+                
+                [self.backView addSubview:btn];
+                
+                if (i == noteVO.files.count - 1) {
+                    if (fujian.bottom < btn.bottom) {
+                        self.backView.height = btn.bottom + 20;
+                        
+                    }
+                    else
+                    {
+                        self.backView.height = fujian.bottom + 20;
+                        
+                    }
+                }
+            }
+            
+        }
+        else
+        {
+            self.backView.height = content.bottom + 10;
+        }
+
+        if (self.backView.height > self.view.height - 64) {
+            
+            UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+            scrollView.contentSize = CGSizeMake(scrollView.width, self.backView.height + 10);
+            [scrollView addSubview:self.backView];
+            [self.view addSubview:scrollView];
+        }
+        else
+        {
+            [self.view addSubview:self.backView];
+        }
     }
     
 }

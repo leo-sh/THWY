@@ -84,7 +84,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    NSLog(@"%@",userInfo);
+    NSLog(@"userInfo:%@",userInfo);
 //    推送内容示例
 //    {
 //        aps =     {

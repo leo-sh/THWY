@@ -59,7 +59,13 @@
     
     if ([UDManager getUD].getUser) {
         UserVO *user = [UDManager getUD].getUser;
-        [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.photo] placeholderImage:[UIImage imageNamed:@"Avatar"]];
+        if (user.photo.length > 0) {
+            
+            [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.photo] placeholderImage:[UIImage imageNamed:@"头像1"]];
+        }else
+        {
+            self.headImage.image = [UIImage imageNamed:@"Avatar"];
+        }
         self.username.text = user.real_name;
         self.addr.text = [user.up_group project];
     }
@@ -72,7 +78,13 @@
             }
             
             if (user) {
-                [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.photo] placeholderImage:[UIImage imageNamed:@"Avatar"]];
+                if (user.photo.length > 0) {
+                    
+                    [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.photo] placeholderImage:[UIImage imageNamed:@"头像1"]];
+                }else
+                {
+                    self.headImage.image = [UIImage imageNamed:@"Avatar"];
+                }
                 self.username.text = user.real_name;
                 self.addr.text = [user.up_group project];
             }

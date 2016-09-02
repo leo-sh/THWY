@@ -20,7 +20,7 @@
         self.gender = JSON[@"gender"];
         self.cellphone = JSON[@"cellphone"];
         self.car_number = JSON[@"car_number"];
-        if ([JSON[@"avatar"] length] > 0) {
+        if ([JSON[@"avatar"] isKindOfClass:[NSString class]] && [JSON[@"avatar"] length] > 0) {
             if ([JSON[@"avatar"] rangeOfString:@"http"].location != NSNotFound) {
                 self.avatar = JSON[@"avatar"];
             }else

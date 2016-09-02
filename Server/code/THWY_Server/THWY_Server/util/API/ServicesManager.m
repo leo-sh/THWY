@@ -900,15 +900,43 @@ savePassWord:(BOOL)save
             }];
         }else
         {
-            NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
-                for (NSDictionary* docDic in responseObject[@"datas"][@"datas"]) {
-                    DocVO* doc = [[DocVO alloc]initWithJSON:docDic];
-                    [listArr addObject:doc];
+            if (isPublic && belong == 1) {
+                [self getFriends:^(NSString *errorMsg, NSArray *list) {
+                    if (errorMsg == nil) {
+                        NSMutableArray* listArr = [[NSMutableArray alloc]init];
+                        if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                            for (NSDictionary* docDic in responseObject[@"datas"][@"datas"]) {
+                                DocVO* doc = [[DocVO alloc]initWithJSON:docDic];
+                                BOOL isFriend = NO;
+                                for (UserVO* user in list) {
+                                    if ([doc.admin_id isEqualToString:user.admin_id] && doc.is_public) {
+                                        isFriend = YES;
+                                        break;
+                                    }
+                                }
+                                if (isFriend) {
+                                    [listArr addObject:doc];
+                                }
+                            }
+                        }
+                        onComplete(nil,listArr);
+                    }else{
+                        onComplete(errorMsg,nil);
+                    }
+                    
+                }];
+            }else
+            {
+                NSMutableArray* listArr = [[NSMutableArray alloc]init];
+                if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
+                    for (NSDictionary* docDic in responseObject[@"datas"][@"datas"]) {
+                        DocVO* doc = [[DocVO alloc]initWithJSON:docDic];
+                        [listArr addObject:doc];
+                    }
                 }
+                onComplete(nil,listArr);
             }
             
-            onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         onComplete(@"网络连接错误",nil);
@@ -1779,9 +1807,7 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-//        [self getATask:@"16" isPublic:YES onComplete:^(NSString *errorMsg, RepairVO *repair) {
-//            
-//        }];
+        
     }else
     {
 //        [self login:@"fzq" password:@"123456" savePassWord:NO onComplete:^(NSString *errorMsg, UserVO *user) {

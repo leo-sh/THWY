@@ -1705,9 +1705,7 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-        [self getARepair:Public repairId:@"14" onComplete:^(NSString *errorMsg, RepairVO *list) {
-            
-        }];
+
     }else
     {
 //        [self login:@"zhanghao" password:@"111111" onComplete:^(NSString *errorMsg, UserVO *user) {

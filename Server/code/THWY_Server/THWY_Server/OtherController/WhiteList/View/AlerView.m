@@ -135,7 +135,7 @@
 //                isError = YES;
 //            }
             [ipString appendString:temp.text];
-            if (i != self.ipTFArray.count) {
+            if (i != self.ipTFArray.count - 1) {
                 [ipString appendString:@"."];
             }
             
@@ -169,7 +169,7 @@
 //                isError = YES;
 //            }
             [ipString appendString:temp.text];
-            if (i != self.ipTFArray.count) {
+            if (i != self.ipTFArray.count - 1) {
                 [ipString appendString:@"."];
             }
             
