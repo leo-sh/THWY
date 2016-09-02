@@ -117,10 +117,10 @@
     
     time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), backView.width, 14);
     
-    CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width, 4000)];
+    CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width - 20, 4000)];
     
     
-    content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
+    content.frame = CGRectMake(10, time.bottom + 10, backView.width - 20, size.height);
     if (noteVO.files.count != 0) {
         
         UILabel *fujian = [[UILabel alloc]initWithFrame:CGRectMake(10, content.bottom + 20, 60, 20)];
@@ -235,10 +235,10 @@
         
         time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), backView.width, 14);
         
-        CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width, 4000)];
+        CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width - 20, 4000)];
         
         
-        content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
+        content.frame = CGRectMake(10, time.bottom + 10, backView.width - 20, size.height);
     
     
         content.numberOfLines = 0;
