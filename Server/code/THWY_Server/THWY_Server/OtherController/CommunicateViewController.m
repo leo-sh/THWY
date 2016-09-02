@@ -140,7 +140,7 @@
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
     CGSize size = [change[@"new"] CGSizeValue];
-    if (size.height > self.contentHeight) {
+    if (size.height > self.contentHeight && self.tableView.contentSize.height > self.tableView.height) {
         self.contentHeight = size.height;
         self.tableView.contentOffset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.height);
     }
