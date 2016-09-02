@@ -44,7 +44,7 @@
             return ;
         }
         
-        NSArray *sectionOneHead = @[@"业主姓名",@"所在楼层",@"房源信息",@"面积",@"缴费科目",@"收费标准",@"应缴金额",@"实收金额",@"欠费金额"];
+        NSArray *sectionOneHead = @[@"业主姓名",@"所在楼层",@"房源信息",@"面积",@"缴费科目",@"收费标准",@"缴费周期",@"应缴金额",@"实收金额",@"欠费金额"];
         
         self.sectionHead = [[NSMutableArray alloc]initWithObjects:sectionOneHead, nil];
         for (int i = 0;  i< ad.fee_history.count; i++) {
@@ -58,8 +58,10 @@
         NSString *actualString = [NSString stringConvertFloatString:ad.actual addEndString:@"元"];
         NSString *qianfeiString = [NSString stringWithFormat:@"%@元",ad.qian_fei];
         NSString *houseSizeString = [NSString stringConvertFloatString:ad.house_size addEndString:@"平方米"];
-        
-        NSArray *sectionOneData = @[ad.real_name,ad.estate_name,sourceInfo,houseSizeString,ad.cls_name,feeScale,totalPrice,actualString,qianfeiString];
+        NSString *beginT = [NSString stringDateFromTimeInterval:[ad.begin_time intValue] withFormat:@"YYYY/MM/dd"];
+        NSString *endT = [NSString stringDateFromTimeInterval:[ad.end_time intValue] withFormat:@"YYYY/MM/dd"];
+
+        NSArray *sectionOneData = @[ad.real_name,ad.estate_name,sourceInfo,houseSizeString,ad.cls_name,feeScale,[NSString stringWithFormat:@"%@~%@",beginT,endT],totalPrice,actualString,qianfeiString];
         
         self.data = [[NSMutableArray alloc]initWithObjects:sectionOneData, nil];
         for (FeeHistoryVO* item in ad.fee_history) {

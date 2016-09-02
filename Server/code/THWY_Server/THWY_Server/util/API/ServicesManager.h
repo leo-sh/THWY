@@ -25,8 +25,15 @@
 #import "TaskVO.h"
 #import "MsgVO.h"
 #import "Reachability.h"
+typedef enum : NSUInteger {
+    Normal = 0,
+    Test,
+} APIMode;
 
 @interface ServicesManager : NSObject
+
+@property NSString* portNum;
+@property APIMode mode;
 
 @property NetworkStatus status;
 @property (nonatomic, strong) UIDocumentInteractionController *documentInteractionController;
