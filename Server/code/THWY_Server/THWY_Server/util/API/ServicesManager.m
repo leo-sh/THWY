@@ -550,9 +550,11 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* ipDic in responseObject[@"datas"]) {
-                IPAllowVO* ip = [[IPAllowVO alloc]initWithJSON:ipDic];
-                [listArr addObject:ip];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* ipDic in responseObject[@"datas"]) {
+                    IPAllowVO* ip = [[IPAllowVO alloc]initWithJSON:ipDic];
+                    [listArr addObject:ip];
+                }
             }
             
             onComplete(nil,listArr);
@@ -658,8 +660,6 @@ savePassWord:(BOOL)save
                     [listArr addObject:user];
                 }
             }
-            
-            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -691,9 +691,11 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* userDic in responseObject[@"datas"]) {
-                UserVO* user = [[UserVO alloc]initWithJSON:userDic];
-                [listArr addObject:user];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* userDic in responseObject[@"datas"]) {
+                    UserVO* user = [[UserVO alloc]initWithJSON:userDic];
+                    [listArr addObject:user];
+                }
             }
             
             onComplete(nil,listArr);
@@ -854,9 +856,11 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* typeDic in responseObject[@"datas"]) {
-                DocTypeVO* type = [[DocTypeVO alloc]initWithJSON:typeDic];
-                [listArr addObject:type];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* typeDic in responseObject[@"datas"]) {
+                    DocTypeVO* type = [[DocTypeVO alloc]initWithJSON:typeDic];
+                    [listArr addObject:type];
+                }
             }
             
             onComplete(nil,listArr);
@@ -1028,10 +1032,13 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"]) {
-                EstateVO *estate = [[EstateVO alloc]initWithJSON:estateDic];
-                [listArr addObject:estate];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                    EstateVO *estate = [[EstateVO alloc]initWithJSON:estateDic];
+                    [listArr addObject:estate];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -1056,9 +1063,12 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"]) {
-                [listArr addObject:estateDic[@"block"]];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                    [listArr addObject:estateDic[@"block"]];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -1084,9 +1094,12 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"]) {
-                [listArr addObject:estateDic[@"unit"]];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                    [listArr addObject:estateDic[@"unit"]];
+                }
             }
+            
             onComplete(nil,listArr);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -1113,8 +1126,10 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            for (NSDictionary* estateDic in responseObject[@"datas"]) {
-                [listArr addObject:estateDic[@"layer"]];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* estateDic in responseObject[@"datas"]) {
+                    [listArr addObject:estateDic[@"layer"]];
+                }
             }
             onComplete(nil,listArr);
         }
