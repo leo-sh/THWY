@@ -48,6 +48,8 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self.tableView removeObserver:self forKeyPath:@"contentSize"];
+    self.rowAndHeight = nil;
+
 }
 
 - (void)ViewInitSetting

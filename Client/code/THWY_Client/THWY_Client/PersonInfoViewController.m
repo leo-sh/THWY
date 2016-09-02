@@ -109,7 +109,7 @@
     
     [icon addSubview:self.iconImageView];
     
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userInfo.avatar]]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userInfo.avatar]] placeholderImage:[UIImage imageNamed:@"头像1"]];
     
     UILabel *nameLabel = [[UILabel alloc]init];
     

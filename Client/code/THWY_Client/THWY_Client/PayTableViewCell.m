@@ -143,7 +143,7 @@
 
 - (void)giveData:(FeeVO *)FeeVO
 {
-    [self.icon sd_setImageWithURL:[NSURL URLWithString:FeeVO.estate_pic]];
+    [self.icon sd_setImageWithURL:[NSURL URLWithString:FeeVO.estate_pic] placeholderImage:[UIImage imageNamed:@"头像1"]];
     self.estateLabel.text = FeeVO.estate_name;
     self.houseOwnerLabel.text = FeeVO.real_name;
     self.AddressLabel.text = [NSString stringWithFormat:@""];

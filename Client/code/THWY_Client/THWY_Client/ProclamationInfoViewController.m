@@ -10,6 +10,8 @@
 #import "ServicesManager.h"
 @interface ProclamationInfoViewController ()<UIWebViewDelegate>
 @property NoteVO *data;
+@property UIScrollView *scrollView;
+@property UIView *backView;
 @end
 
 @implementation ProclamationInfoViewController
@@ -108,25 +110,26 @@
     UILabel *titleLabel = [[UILabel alloc]init];
     UILabel *time = [[UILabel alloc]init];
     UILabel *content = [[UILabel alloc]init];
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(10, 10 , self.view.width - 20, 0)];
+    self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+    self.backView = [[UIView alloc]initWithFrame:CGRectMake(10, 10 , self.view.width - 20, 0)];
 
-    head.frame = CGRectMake(0, 0, backView.width, 3);
+    head.frame = CGRectMake(0, 0, self.backView.width, 3);
     right.frame = CGRectMake(0, 0, 20, 20);
-    right.center = CGPointMake(backView.width -9, 0);
-    titleLabel.frame = CGRectMake(0, CGRectGetMaxY(head.frame) + 5, backView.width, 30);
+    right.center = CGPointMake(self.backView.width -9, 0);
+    titleLabel.frame = CGRectMake(0, CGRectGetMaxY(head.frame) + 5, self.backView.width, 30);
     
-    time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), backView.width, 14);
+    time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), self.backView.width, 14);
     
-    CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width, 4000)];
+    CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(self.backView.width - 20, 4000)];
     
     
-    content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
+    content.frame = CGRectMake(10, time.bottom + 10, self.backView.width - 20, size.height);
     if (noteVO.files.count != 0) {
         
         UILabel *fujian = [[UILabel alloc]initWithFrame:CGRectMake(10, content.bottom + 20, 60, 20)];
         fujian.text = @"附件：";
         fujian.textColor = CellUnderLineColor;
-        [backView addSubview:fujian];
+        [self.backView addSubview:fujian];
         
         CGFloat y = content.bottom + 20;
         CGFloat x = 60;
@@ -143,16 +146,16 @@
             [btn addTarget:self action:@selector(clickFujian:) forControlEvents:UIControlEventTouchUpInside];
             y += Content_Time_Font + 5;
             
-            [backView addSubview:btn];
+            [self.backView addSubview:btn];
             
             if (i == noteVO.files.count - 1) {
                 if (fujian.bottom < btn.bottom) {
-                    backView.height = btn.bottom + 10;
+                    self.backView.height = btn.bottom + 10;
                     
                 }
                 else
                 {
-                    backView.height = fujian.bottom + 10;
+                    self.backView.height = fujian.bottom + 10;
                     
                 }
             }
@@ -161,7 +164,7 @@
     }
     else
     {
-        backView.height = content.bottom + 10;
+        self.backView.height = content.bottom + 10;
     }
 
     content.numberOfLines = 0;
@@ -183,28 +186,35 @@
     time.textColor = [UIColor lightGrayColor];
     
     content.font = FontSize(CONTENT_FONT);
-    [backView addSubview:titleLabel];
-    [backView addSubview:time];
-    [backView addSubview:head];
-    [backView addSubview:content];
+    [self.backView addSubview:titleLabel];
+    [self.backView addSubview:time];
+    [self.backView addSubview:head];
+    [self.backView addSubview:content];
     [self.view addSubview:left];
-    [backView addSubview:right];
+    [self.backView addSubview:right];
     
+    self.backView.backgroundColor = WhiteAlphaColor;
     
-    backView.backgroundColor = WhiteAlphaColor;
-    
-    [self.view addSubview:backView];
-    
+    if (self.backView.height > self.scrollView.height - 64) {
+        
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.width, self.backView.height + 10);
+        [self.scrollView addSubview:self.backView];
+        [self.view addSubview:self.scrollView];
+    }
+    else
+    {
+        [self.view addSubview:self.backView];
+    }
     titleLabel.text = noteVO.title;
     NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:mm"];
     time.text = showtime;
     if ([noteVO.content rangeOfString:@"<"].location == 0 && [[noteVO.content substringFromIndex:noteVO.content.length - 1] isEqualToString:@">"]) {
-        UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, backView.width - 2*content.x, My_ScreenH)];
+        UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, self.backView.width - 2*content.x, My_ScreenH)];
         webView.delegate = self;
         webView.scrollView.bounces = NO;
         webView.backgroundColor = [UIColor clearColor];
         [content removeFromSuperview];
-        [backView addSubview:webView];
+        [self.backView addSubview:webView];
         
         NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", noteVO.content];
         htmlcontent = [NSString stringWithFormat:@"<body width=%dpx style=\"word-wrap:break-word; font-family:Arial\">%@",(int)webView.width,htmlcontent];
@@ -226,23 +236,23 @@
         UILabel *titleLabel = [[UILabel alloc]init];
         UILabel *time = [[UILabel alloc]init];
         UILabel *content = [[UILabel alloc]init];
-        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(10, 10 , self.view.width - 20, 0)];
+        self.backView = [[UIView alloc]initWithFrame:CGRectMake(10, 10 , self.view.width - 20, 0)];
         
-        head.frame = CGRectMake(0, 0, backView.width, 3);
+        head.frame = CGRectMake(0, 0, self.backView.width, 3);
         right.frame = CGRectMake(0, 0, 20, 20);
-        right.center = CGPointMake(backView.width -9, 0);
-        titleLabel.frame = CGRectMake(0, CGRectGetMaxY(head.frame) + 5, backView.width, 30);
+        right.center = CGPointMake(self.backView.width -9, 0);
+        titleLabel.frame = CGRectMake(0, CGRectGetMaxY(head.frame) + 5, self.backView.width, 30);
         
-        time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), backView.width, 14);
+        time.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), self.backView.width, 14);
         
-        CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(backView.width, 4000)];
+        CGSize size = [noteVO.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(self.backView.width - 20, 4000)];
         
         
-        content.frame = CGRectMake(10, time.bottom + 10, size.width, size.height);
+        content.frame = CGRectMake(10, time.bottom + 10, self.backView.width - 20, size.height);
     
     
         content.numberOfLines = 0;
-        backView.height = content.bottom + 10;
+        self.backView.height = content.bottom + 10;
     
         head.image = [UIImage imageNamed:@"彩条"];
         
@@ -261,28 +271,28 @@
         time.textColor = [UIColor lightGrayColor];
         
         content.font = FontSize(CONTENT_FONT);
-        [backView addSubview:titleLabel];
-        [backView addSubview:time];
-        [backView addSubview:head];
-        [backView addSubview:content];
+        [self.backView addSubview:titleLabel];
+        [self.backView addSubview:time];
+        [self.backView addSubview:head];
+        [self.backView addSubview:content];
         [self.view addSubview:left];
-        [backView addSubview:right];
+        [self.backView addSubview:right];
         
         
-        backView.backgroundColor = WhiteAlphaColor;
+        self.backView.backgroundColor = WhiteAlphaColor;
         
-        [self.view addSubview:backView];
+        [self.view addSubview:self.backView];
         
         titleLabel.text = noteVO.title;
         NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:SS"];
         time.text = showtime;
         if ([noteVO.content rangeOfString:@"<"].location == 0 && [[noteVO.content substringFromIndex:noteVO.content.length - 1] isEqualToString:@">"]) {
-            UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, backView.width - 2*content.x, My_ScreenH)];
+            UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, self.backView.width - 2*content.x, My_ScreenH)];
             webView.scrollView.bounces = NO;
             webView.delegate = self;
             webView.backgroundColor = My_clearColor;
             [content removeFromSuperview];
-            [backView addSubview:webView];
+            [self.backView addSubview:webView];
             
             [[NSNotificationCenter defaultCenter]postNotificationName:@"giveHeight" object:@[[NSNumber numberWithFloat:webView.bottom + 10]]];
             
@@ -314,12 +324,65 @@
     height = height * frame.height / clientheight;
     //再次设置WebView高度（点）
     
-    if (height > My_ScreenH - 64 - 90/375.0*My_ScreenW) {
-        height = My_ScreenH - 64 - 90/375.0*My_ScreenW;
-    }
     webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
     
-    webView.superview.height = webView.bottom + 10;
+    if (self.data.files.count > 1) {
+        if (height > self.view.height - self.data.files.count *(Content_Time_Font + 5) - webView.y - 64) {
+            webView.frame = CGRectMake(webView.x, webView.y, webView.width, self.view.height - self.data.files.count *(Content_Time_Font + 5) - webView.y - 64);
+        }
+    }
+    else
+    {
+        if (height > self.view.height - 20 - webView.y - 64) {
+            webView.frame = CGRectMake(webView.x, webView.y, webView.width, self.view.height - self.data.files.count *(Content_Time_Font + 5) - webView.y - 64);
+        }
+        
+    }
+    
+    
+    
+    if (self.data.files.count != 0) {
+        
+        UILabel *fujian = [[UILabel alloc]initWithFrame:CGRectMake(10, webView.bottom + 20, 60, 20)];
+        fujian.text = @"附件：";
+        fujian.textColor = CellUnderLineColor;
+        [self.backView addSubview:fujian];
+        
+        CGFloat y = webView.bottom + 20;
+        CGFloat x = 60;
+        for (int i = 0; i < self.data.files.count; i ++ ) {
+            
+            CGFloat width = GetContentWidth(self.data.files[i].file_name, Content_Time_Font);
+            
+            UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, width , Content_Time_Font)];
+            [btn setTitle:self.data.files[i].file_name forState:UIControlStateNormal];
+            btn.titleLabel.font = FontSize(Content_Time_Font);
+            [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+            btn.tag = 400 + i;
+            [btn addTarget:self action:@selector(clickFujian:) forControlEvents:UIControlEventTouchUpInside];
+            y += Content_Time_Font + 5;
+            
+            [self.backView addSubview:btn];
+            
+            if (i == self.data.files.count - 1) {
+                if (fujian.bottom < btn.bottom) {
+                    self.backView.height = btn.bottom + 10;
+                    
+                }
+                else
+                {
+                    self.backView.height = fujian.bottom + 20;
+                    
+                }
+            }
+        }
+        
+    }
+    else
+    {
+        self.backView.height = webView.bottom + 10;
+    }
     
     [SVProgressHUD dismiss];
 }

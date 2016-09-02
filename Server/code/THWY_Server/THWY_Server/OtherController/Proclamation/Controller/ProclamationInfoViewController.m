@@ -309,9 +309,20 @@
     //再次设置WebView高度（点）
     webView.frame = CGRectMake(webView.x, webView.y, webView.width, height);
 
-    if (height > self.view.height - self.data.files.count *(Content_Ip_Font + 5) - webView.y - 64) {
-        webView.frame = CGRectMake(webView.x, webView.y, webView.width, self.view.height - self.data.files.count *(Content_Ip_Font + 5) - webView.y - 64);
+    if (self.data.files.count > 1) {
+        if (height > self.view.height - self.data.files.count *(Content_Ip_Font + 5) - webView.y - 64) {
+            webView.frame = CGRectMake(webView.x, webView.y, webView.width, self.view.height - self.data.files.count *(Content_Ip_Font + 5) - webView.y - 64);
+        }
     }
+    else
+    {
+        if (height > self.view.height - 20 - webView.y - 64) {
+            webView.frame = CGRectMake(webView.x, webView.y, webView.width, self.view.height - self.data.files.count *(Content_Ip_Font + 5) - webView.y - 64);
+        }
+
+    }
+    
+
     
     if (self.data.files.count != 0) {
         
