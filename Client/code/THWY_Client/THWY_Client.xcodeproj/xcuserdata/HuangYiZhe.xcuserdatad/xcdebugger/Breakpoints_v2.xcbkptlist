@@ -1234,11 +1234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/ProclamationInfoViewController.m"
-            timestampString = "494497036.49287"
+            timestampString = "494498121.018018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "-createUIWithAd:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1426,11 +1426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "THWY_Client/ProclamationInfoViewController.m"
-            timestampString = "494497036.49287"
+            timestampString = "494498018.028066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "-createUI:"
             landmarkType = "5">
          </BreakpointContent>

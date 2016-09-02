@@ -10,7 +10,6 @@
 #import "ServicesManager.h"
 @interface ProclamationInfoViewController ()<UIWebViewDelegate>
 @property NoteVO *data;
-@property UIScrollView *scrollView;
 @property UIView *backView;
 @end
 
@@ -198,6 +197,7 @@
     NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:mm"];
     time.text = showtime;
     if ([noteVO.content rangeOfString:@"<"].location == 0 && [[noteVO.content substringFromIndex:noteVO.content.length - 1] isEqualToString:@">"]) {
+        [self.view addSubview:self.backView];
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, self.backView.width - 2*content.x, My_ScreenH)];
         webView.delegate = self;
         webView.scrollView.bounces = NO;
@@ -216,10 +216,10 @@
         content.text = noteVO.content;
         if (self.backView.height > self.view.height - 64) {
             
-            self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
-            self.scrollView.contentSize = CGSizeMake(self.scrollView.width, self.backView.height + 10);
-            [self.scrollView addSubview:self.backView];
-            [self.view addSubview:self.scrollView];
+            UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+            scrollView.contentSize = CGSizeMake(scrollView.width, self.backView.height + 10);
+            [scrollView addSubview:self.backView];
+            [self.view addSubview:scrollView];
         }
         else
         {
@@ -287,6 +287,7 @@
         NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:SS"];
         time.text = showtime;
         if ([noteVO.content rangeOfString:@"<"].location == 0 && [[noteVO.content substringFromIndex:noteVO.content.length - 1] isEqualToString:@">"]) {
+            [self.view addSubview:self.backView];
             UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(content.x, content.y, self.backView.width - 2*content.x, My_ScreenH)];
             webView.scrollView.bounces = NO;
             webView.delegate = self;
@@ -306,10 +307,10 @@
             content.text = noteVO.content;
             if (self.backView.height > self.view.height - 64) {
                 
-                self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
-                self.scrollView.contentSize = CGSizeMake(self.scrollView.width, self.backView.height + 10);
-                [self.scrollView addSubview:self.backView];
-                [self.view addSubview:self.scrollView];
+                UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+                scrollView.contentSize = CGSizeMake(scrollView.width, self.backView.height + 10);
+                [scrollView addSubview:self.backView];
+                [self.view addSubview:scrollView];
             }
             else
             {
