@@ -1240,7 +1240,7 @@ savePassWord:(BOOL)save
         [SVProgressHUD showSubTitle:[NSString stringWithFormat:@"上传中 %.2f％",uploadProgress.fractionCompleted*100]];
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg);
             }];
         }else

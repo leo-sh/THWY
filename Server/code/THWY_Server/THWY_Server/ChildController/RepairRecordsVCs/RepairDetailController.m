@@ -15,7 +15,7 @@
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIView *tableFootView;
-//@property (strong, nonatomic) UIButton *footBtn;
+@property (strong, nonatomic) UIButton *footBtn;
 
 @property (strong, nonatomic) RepairVO *repairVO;
 
@@ -109,15 +109,15 @@
     
     //tableViewFooterView
     self.tableFootView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 60)];
-    UIButton *footBtn = [[UIButton alloc] initWithFrame:CGRectMake(topMargrin*3, 7.5, self.tableFootView.width-topMargrin*6, 45)];
-    footBtn.center = self.tableFootView.center;
-    [footBtn setTitle:@"接 单" forState:UIControlStateNormal];
-    footBtn.layer.cornerRadius = 4;
-    footBtn.clipsToBounds = YES;
-    [footBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [footBtn setBackgroundColor:My_NAV_BG_Color];
-    [footBtn addTarget:self action:@selector(foorterBtnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.tableFootView addSubview:footBtn];
+    self.footBtn = [[UIButton alloc] initWithFrame:CGRectMake(topMargrin*3, 7.5, self.tableFootView.width-topMargrin*6, 45)];
+    self.footBtn.center = self.tableFootView.center;
+    [self.footBtn setTitle:@"接 单" forState:UIControlStateNormal];
+    [self.footBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.footBtn.layer.cornerRadius = 4;
+    self.footBtn.clipsToBounds = YES;
+    [self.footBtn setBackgroundColor:My_NAV_BG_Color];
+    [self.footBtn addTarget:self action:@selector(foorterBtnOnclicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.tableFootView addSubview:self.footBtn];
     
 }
 
@@ -126,9 +126,14 @@
     if(self.repairVO == nil){
         return 0;
     }else{
-        if (self.displayType == 2 && self.repairVO.st != nil && [self.repairVO.st intValue] == 0) {
-            
-            tableView.tableFooterView = self.tableFootView;
+        if (self.displayType == 2 && self.repairVO.st != nil) {
+            if ([self.repairVO.st intValue] == 0) {
+                [self.footBtn setTitle:@"接 单" forState:UIControlStateNormal];
+                tableView.tableFooterView = self.tableFootView;
+            }else if([self.repairVO.st intValue] == 2){
+                [self.footBtn setTitle:@"完 工" forState:UIControlStateNormal];
+                tableView.tableFooterView = self.tableFootView;
+            }
             
         }else{
             
@@ -349,26 +354,52 @@
 }
 
 - (void)foorterBtnOnclicked:(UIButton *)btn{
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"接单" message:@"确定对该单进行接单操作吗?" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"接单" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [My_ServicesManager takeTask:self.repairVOId isPublic:self.type==2?YES:NO onComplete:^(NSString *errorMsg) {
-            if (errorMsg) {
-                [SVProgressHUD showErrorWithStatus:errorMsg];
-            }else{
-                [SVProgressHUD hudHideWithSuccess:@"接单成功, 请尽快完成维修任务"];
-                [self.navigationController popViewControllerAnimated:YES];
-            }
+    if ([btn.titleLabel.text isEqualToString:@"接 单"]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"接单" message:@"确定对该单进行接单操作吗?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"接单" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [My_ServicesManager takeTask:self.repairVOId isPublic:self.type==2?YES:NO onComplete:^(NSString *errorMsg) {
+                if (errorMsg) {
+                    [SVProgressHUD showErrorWithStatus:errorMsg];
+                }else{
+                    [SVProgressHUD hudHideWithSuccess:@"接单成功, 请尽快完成维修任务"];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    });
+                }
+            }];
         }];
-    }];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    [alert addAction:confirm];
-    [alert addAction:cancel];
-    [self presentViewController:alert animated:YES completion:^{
-        
-    }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alert addAction:confirm];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:^{
+            
+        }];
+    }else if ([btn.titleLabel.text isEqualToString:@"完 工"]){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"完工" message:@"确定对该单进行完工操作吗?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [My_ServicesManager endTask:self.repairVOId isPublic:self.type==2?YES:NO onComplete:^(NSString *errorMsg) {
+                if (errorMsg) {
+                    [SVProgressHUD showErrorWithStatus:errorMsg];
+                }else{
+                    [SVProgressHUD hudHideWithSuccess:@"你已完结本单"];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    });
+                }
+            }];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alert addAction:confirm];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:^{
+            
+        }];
+
+    }
     
 }
 
