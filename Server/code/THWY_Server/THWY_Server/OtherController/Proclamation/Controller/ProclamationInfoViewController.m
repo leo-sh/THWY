@@ -195,7 +195,18 @@
     
     self.backView.backgroundColor = WhiteAlphaColor;
     
-    [self.view addSubview:self.backView];
+    if (self.backView.height > self.view.height - 64) {
+        
+        UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+        scrollView.contentSize = CGSizeMake(scrollView.width, self.backView.height + 10);
+        [scrollView addSubview:self.backView];
+        [self.view addSubview:scrollView];
+    }
+    else
+    {
+        [self.view addSubview:self.backView];
+    }
+
     
     titleLabel.text = noticVO.title;
     NSString *showtime = [NSString stringDateFromTimeInterval:[noticVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:mm"];
@@ -270,7 +281,17 @@
     
     self.backView.backgroundColor = WhiteAlphaColor;
     
-    [self.view addSubview:self.backView];
+    if (self.backView.height > self.view.height - 64) {
+        
+        UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+        scrollView.contentSize = CGSizeMake(scrollView.width, self.backView.height + 10);
+        [scrollView addSubview:self.backView];
+        [self.view addSubview:scrollView];
+    }
+    else
+    {
+        [self.view addSubview:self.backView];
+    }
     
     titleLabel.text = noteVO.title;
     NSString *showtime = [NSString stringDateFromTimeInterval:[noteVO.ctime longLongValue] withFormat:@"YYYY-MM-dd HH:SS"];
