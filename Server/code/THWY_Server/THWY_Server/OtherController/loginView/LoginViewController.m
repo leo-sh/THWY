@@ -25,6 +25,10 @@
 @property BlueCheckButton *rememberPassWordBtn;
 @property BlueCheckButton *findPsdBtn;
 
+@property UIButton* modeBtn;
+@property UISwitch* changeSwitch;
+@property NSInteger tapNum;
+@property NSTimer* tapTimer;
 @end
 
 @implementation LoginViewController
@@ -44,6 +48,87 @@
     [self createLogoImageView];
     [self createUserAndPasswordTextfiled];
     [self createButton];
+    
+    self.tapNum = 0;
+    self.modeBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, My_ScreenH - 30, 50, 30)];
+    self.modeBtn.backgroundColor = My_AlphaColor(153, 153, 153, 0.01);
+    [self.modeBtn addTarget:self action:@selector(modeBtnOnTap) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.modeBtn];
+    
+    self.changeSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(My_ScreenW - self.modeBtn.width, self.modeBtn.y, self.modeBtn.width, self.modeBtn.height)];
+    self.changeSwitch.hidden = YES;
+    self.changeSwitch.alpha = 0.5;
+    [self.changeSwitch addTarget:self action:@selector(changeMode) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.changeSwitch];
+}
+
+-(void)changeMode
+{
+    switch (My_ServicesManager.mode) {
+        case Normal:{
+            My_ServicesManager.mode = Test;
+            My_ServicesManager.portNum = Test_API_Port;
+            [SVProgressHUD showErrorWithStatus:@"T e s t !"];
+        }
+            break;
+        case Test:{
+            My_ServicesManager.mode = Normal;
+            My_ServicesManager.portNum = Normal_API_Port;
+            [SVProgressHUD showErrorWithStatus:@"N o r m a l !"];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+-(void)modeBtnOnTap
+{
+    if (self.tapTimer) {
+        [self.tapTimer invalidate];
+    }
+    
+    self.tapNum ++;
+    
+    if (self.tapNum > 9) {
+        self.tapNum = 0;
+        self.modeBtn.enabled = NO;
+        self.changeSwitch.hidden = NO;
+        
+        self.tapTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(showTimer) userInfo:nil repeats:YES];
+    }else
+    {
+        
+        self.tapTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(modeTimer) userInfo:nil repeats:YES];
+    }
+    NSLog(@"%ld",self.tapNum);
+}
+
+-(void)modeTimer
+{
+    static int timeNum = 0;
+    if (timeNum < 1) {
+        timeNum ++;
+    }else
+    {
+        timeNum = 0;
+        self.tapNum = 0;
+    }
+}
+
+-(void)showTimer
+{
+    static int timeNum = 0;
+    if (timeNum < 6) {
+        timeNum ++;
+    }else
+    {
+        timeNum = 0;
+        [self.tapTimer invalidate];
+        self.modeBtn.enabled = YES;
+        self.changeSwitch.hidden = YES;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
