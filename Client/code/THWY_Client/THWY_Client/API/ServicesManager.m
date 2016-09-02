@@ -35,6 +35,9 @@
 -(instancetype)init
 {
     if (self = [super init]) {
+        self.portNum = Normal_API_Port;
+        self.mode = Normal;
+        
         self.baiduReach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
         
         [My_NoteCenter addObserver:self
