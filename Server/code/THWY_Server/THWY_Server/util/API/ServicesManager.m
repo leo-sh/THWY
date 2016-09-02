@@ -85,6 +85,9 @@
 -(instancetype)init
 {
     if (self = [super init]) {
+        self.portNum = Normal_API_Port;
+        self.mode = Normal;
+        
         if ([self isLogin]) {
             _userName = [[UDManager getUD] getUserName];
             _passWord = [[UDManager getUD] getPassWord];
