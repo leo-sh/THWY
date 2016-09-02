@@ -151,8 +151,14 @@
 - (void)updateDate:(NSNotification *)notification{
     if ([notification.userInfo[@"PickerViewType"] integerValue] == TimePickerType) {
         
-        [self.pickerView selectRow:[self.selectedDateComponets hour] inComponent:0 animated:NO];
-        [self.pickerView selectRow:[self.selectedDateComponets minute] inComponent:2 animated:NO];
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        calendar.timeZone = [NSTimeZone localTimeZone];
+        NSDateComponents *selectedDateComponets = [self.calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:[NSDate date]];
+        self.hour = selectedDateComponets.hour;
+        self.minute = selectedDateComponets.minute;
+
+        [self.pickerView selectRow:self.hour inComponent:0 animated:NO];
+        [self.pickerView selectRow:self.minute inComponent:2 animated:NO];
         
     }
 }

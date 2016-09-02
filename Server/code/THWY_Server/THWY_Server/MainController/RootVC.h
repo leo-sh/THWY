@@ -21,4 +21,6 @@
 
 -(void)showLogin:(BOOL)animated;
 
+- (void)signOut;
+
 @end
