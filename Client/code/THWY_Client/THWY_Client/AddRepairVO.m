@@ -21,6 +21,7 @@
     params[@"kb"] = [NSString stringWithFormat:@"%d",self.kb];
     if (self.kb == 3) {
         if (self.order_timestamp > 0) {
+            self.order_timestamp -= 8*3600;
             params[@"order_timestamp"] = [NSString stringWithFormat:@"%ld",self.order_timestamp];
         }else
         {
