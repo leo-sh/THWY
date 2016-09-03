@@ -44,7 +44,7 @@
    
 //    CGFloat topMargin = 5.0;
 
-    self.datePickerView = [[MyDatePickerView alloc] initWithFrame:CGRectMake(10, self.btn_kaidan.bottom, My_ScreenW-40, 65)];
+    self.datePickerView = [[MyDatePickerView alloc] initWithFrame:CGRectMake(10, self.btn_kaidan.bottom-10, My_ScreenW-40, 65)];
     self.datePickerView.font = FontSize(CONTENT_FONT+1);
     self.datePickerView.fontColor = [UIColor blackColor];
     self.datePickerView.startDate = [NSDate date];
@@ -192,8 +192,8 @@
     NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:[self.datePickerView.selectedDate dateByAddingTimeInterval:-8*60*60]];
     [comp setHour:self.timePickerView.hour];
     [comp setMinute:self.timePickerView.minute];
-    
-    NSUInteger timeInterval = [[[calendar dateFromComponents:comp] dateByAddingTimeInterval:8*60*60] timeIntervalSince1970];
+    NSDate *date = [[calendar dateFromComponents:comp] dateByAddingTimeInterval:8*60*60];
+    NSUInteger timeInterval = [date timeIntervalSince1970];
     return timeInterval;
 }
 

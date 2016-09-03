@@ -177,7 +177,11 @@
     }else if (indexPath.row == 6 || indexPath.row == 7) {
         return 90.0/713*My_ScreenH;
     }else if (indexPath.row == 8){
-        return 330.0/713*My_ScreenH;
+        if ([[UIDevice platformString] isEqualToString:@"iPhone 4s"]) {
+            return 340;
+        }else{
+            return 350.0/713*My_ScreenH;
+        }
     }else if (indexPath.row == 0){
 //        CGFloat topMargin = 5;
         if ([self.cells[0] isKindOfClass:[PaigongCatogerysCell class]]) {

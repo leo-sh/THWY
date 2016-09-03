@@ -51,8 +51,8 @@
         self.originHour = self.hour;
         self.originMinute = self.minute;
         
-        [self.pickerView selectRow:[self.selectedDateComponets hour] inComponent:1 animated:NO];
-        [self.pickerView selectRow:[self.selectedDateComponets minute] inComponent:3 animated:NO];
+        [self.pickerView selectRow:[self.selectedDateComponets hour] inComponent:0 animated:NO];
+        [self.pickerView selectRow:[self.selectedDateComponets minute] inComponent:1 animated:NO];
         
         [self addSubview:self.pickerView];
         
@@ -64,12 +64,12 @@
         
         UILabel *hourLabel = [UILabel new];
         hourLabel.text = @"时";
-        hourLabel.textAlignment = NSTextAlignmentCenter;
+        hourLabel.textAlignment = NSTextAlignmentRight;
         [self addSubview:hourLabel];
         [hourLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.mas_centerY);
-            make.centerX.mas_equalTo(self.mas_centerX).multipliedBy(1-1/5.0);
-            make.width.mas_equalTo(self.mas_width).multipliedBy(0.2);
+            make.centerX.mas_equalTo(self.mas_centerX).multipliedBy(0.95);
+//            make.width.mas_equalTo(self.mas_width).multipliedBy(0.2);
         }];
 
         UILabel *minuteLabel = [UILabel new];
@@ -78,8 +78,8 @@
         [self addSubview:minuteLabel];
         [minuteLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.mas_centerY);
-            make.centerX.mas_equalTo(self.mas_centerX).multipliedBy(1.6);
-            make.width.mas_equalTo(self.mas_width).multipliedBy(0.2);
+            make.centerX.mas_equalTo(self.mas_centerX).multipliedBy(1.35);
+//            make.width.mas_equalTo(self.mas_width).multipliedBy(0.2);
         }];
         
     }
@@ -87,23 +87,17 @@
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 5;
+    return 2;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     switch (component) { // component是栏目index，从0开始，后面的row也一样是从0开始
-        case 1: {
+        case 0: {
             return 24;
         }
-        case 0:
-            return 0;
-        case 2:
-            return 0;
-        case 3:
+        case 1:
             return 60;
-        case 4:
-            return 0;
         default:
             return 0;
     }
@@ -121,7 +115,7 @@
     }
     
     switch (component) {
-        case 1: {
+        case 0: {
 //            NSDateComponents *components = [self.calendar components:NSCalendarUnitYear fromDate:self.selectedDate];
             NSString *currentHour = [NSString stringWithFormat:@"%02ld", row];
             [dateLabel setText:currentHour];
@@ -129,14 +123,11 @@
             self.originHour = row;
             break;
         }
-        case 0:{
-            
-        }
-        case 3: {
+        case 1: {
 
             NSString *currentHour = [NSString stringWithFormat:@"%02ld", row];
             [dateLabel setText:currentHour];
-            dateLabel.textAlignment = NSTextAlignmentLeft;
+            dateLabel.textAlignment = NSTextAlignmentCenter;
             self.originMinute = row;
             break;
         }
@@ -151,11 +142,11 @@
 {
 
     switch (component) {
-        case 1: {
+        case 0: {
             self.hour = row;
             break;
         }
-        case 3: {
+        case 1: {
             self.minute = row;
             break;
         }
@@ -182,8 +173,8 @@
         self.hour = selectedDateComponets.hour;
         self.minute = selectedDateComponets.minute;
 
-        [self.pickerView selectRow:self.hour inComponent:1 animated:NO];
-        [self.pickerView selectRow:self.minute inComponent:3 animated:NO];
+        [self.pickerView selectRow:self.hour inComponent:0 animated:NO];
+        [self.pickerView selectRow:self.minute inComponent:1 animated:NO];
         
     }
 }

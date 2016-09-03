@@ -47,15 +47,15 @@
         self.startDate = [NSDate date];
         self.endDate = [NSDate date];
         
-        [self.pickerView selectRow:[self.selectedDateComponets month]-1 inComponent:2 animated:NO];
-        [self.pickerView selectRow:[self.selectedDateComponets day]-1 inComponent:4 animated:NO];
+        [self.pickerView selectRow:[self.selectedDateComponets month]-1 inComponent:1 animated:NO];
+        [self.pickerView selectRow:[self.selectedDateComponets day]-1 inComponent:2 animated:NO];
         
         UILabel *yearLabel = [UILabel new];
         yearLabel.text = @"年";
         [self addSubview:yearLabel];
         [yearLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.mas_centerY);
-            make.centerX.mas_equalTo(self.mas_centerX).multipliedBy(0.5);
+            make.centerX.mas_equalTo(self.mas_centerX).multipliedBy(0.75);
         }];
         
         UILabel *monthLabel = [UILabel new];
@@ -63,14 +63,14 @@
         [self addSubview:monthLabel];
         [monthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.mas_centerY);
-            make.centerX.mas_equalTo(self.mas_centerX).multipliedBy(1+1/6.0);
+            make.centerX.mas_equalTo(self.mas_centerX).multipliedBy(1.13);
         }];
         UILabel *dayLabel = [UILabel new];
         dayLabel.text = @"日";
         [self addSubview:dayLabel];
         [dayLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.mas_centerY);
-            make.centerX.mas_equalTo(self.mas_centerX).multipliedBy(1+5/6.0);
+            make.centerX.mas_equalTo(self.mas_centerX).multipliedBy(1.52);
         }];
         [self addSubview:self.pickerView];
 
@@ -79,7 +79,7 @@
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 6;
+    return 3;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
@@ -91,27 +91,15 @@
             return [endCpts year] - [startCpts year] + 1;
             break;
         }
-        case 1:{
-            return 0;
-            break;
-        }
-        case 2: // 第二栏为月份
+        case 1: // 第二栏为月份
             return 12;
             break;
-        case 3:{
-            return 0;
-            break;
-        }
-        case 4: { // 第三栏为对应月份的天数
+        case 2: { // 第三栏为对应月份的天数
             NSRange dayRange = [self.calendar rangeOfUnit:NSCalendarUnitDay
                                                    inUnit:NSCalendarUnitMonth
                                                   forDate:self.selectedDate];
 //            NSLog(@"current month: %ld, day number: %ld", [[self.calendar components:NSCalendarUnitMonth fromDate:self.selectedDate] month], dayRange.length);
             return dayRange.length;
-        }
-        case 5:{
-            return 0;
-            break;
         }
         default:
             return 0;
@@ -133,18 +121,18 @@
             NSDateComponents *components = [self.calendar components:NSCalendarUnitYear fromDate:self.startDate];
             NSString *currentYear = [NSString stringWithFormat:@"%ld", [components year]+row];
             [dateLabel setText:currentYear];
-            dateLabel.textAlignment = NSTextAlignmentCenter;
+            dateLabel.textAlignment = NSTextAlignmentRight;
             break;
         }
-        case 2: { // 返回月份可以用DateFormatter，这样可以支持本地化
+        case 1: { // 返回月份可以用DateFormatter，这样可以支持本地化
             
             [dateLabel setText:@(row+1).stringValue];
             dateLabel.textAlignment = NSTextAlignmentCenter;
             break;
         }
-        case 4: {
+        case 2: {
             [dateLabel setText:[NSString stringWithFormat:@"%ld", row+1]];
-            dateLabel.textAlignment = NSTextAlignmentCenter;
+            dateLabel.textAlignment = NSTextAlignmentLeft;
             break;
         }
         default:
@@ -166,21 +154,21 @@
             [self.selectedDateComponets setYear:year];
             break;
         }
-        case 2: {
+        case 1: {
             NSDateComponents *targetComponents = [self.calendar components:unitFlags fromDate:self.selectedDate];
             targetComponents.timeZone = self.calendar.timeZone;
             [targetComponents setMonth:row + 1];
             NSInteger oldDay = [targetComponents day];
             [targetComponents setDay:1];
             if ([self.selectedDateComponets day]>[self.calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:[self.calendar dateFromComponents:targetComponents]].length) {
-                [pickerView selectRow:0 inComponent:4 animated:NO];
+                [pickerView selectRow:0 inComponent:2 animated:NO];
             }else{
                 [targetComponents setDay:oldDay];
             }
             self.selectedDateComponets = targetComponents;
             break;
         }
-        case 4: {
+        case 2: {
             NSDateComponents *targetComponents = [self.calendar components:unitFlags fromDate:[self.selectedDate dateByAddingTimeInterval:-8*60*60]];
             [targetComponents setDay:row+1];
             self.selectedDateComponets = targetComponents;
@@ -196,15 +184,15 @@
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
-    return self.size.width / 6;
+    return self.size.width / 3;
 }
 
 - (void)updateDate:(NSNotification *)notification{
     if ([notification.userInfo[@"PickerViewType"] integerValue] == DatePickerType) {
         self.selectedDate = [[NSDate date] dateByAddingTimeInterval:8*60*60];
         self.selectedDateComponets = [self.calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:[NSDate date]];
-        [self.pickerView selectRow:[self.selectedDateComponets month]-1 inComponent:2 animated:NO];
-        [self.pickerView selectRow:[self.selectedDateComponets day]-1 inComponent:4 animated:NO];
+        [self.pickerView selectRow:[self.selectedDateComponets month]-1 inComponent:1 animated:NO];
+        [self.pickerView selectRow:[self.selectedDateComponets day]-1 inComponent:2 animated:NO];
         [self.pickerView selectRow:[self.selectedDateComponets year]-1 inComponent:0 animated:NO];
     }
 }
