@@ -85,7 +85,7 @@
         }
         case 2:{
             if ([self.model._st intValue]>=1) {
-                return 2;
+                return self.model.repair_task.count * 2;
             }else{
                 return 0;
             }

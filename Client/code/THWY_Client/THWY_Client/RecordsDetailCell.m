@@ -158,27 +158,18 @@
             break;
         }
         case 2:{
-            switch (indexpath.row) {
-                case 0:{
-                    self.detailLabel.text = model.repair_task.firstObject.real_name;
-                    break;
+            if (indexpath.row % 2 != 0) {
+                self.detailLabel.text = model.repair_task[indexpath.row / 2].real_name;
+            }else{
+                NSInteger time = [model._st integerValue];
+                if (time == 0) {
+                    self.detailLabel.text = @"";
+                }else{
+                    self.detailLabel.text = model.repair_task[indexpath.row / 2].cellphone;
                 }
-                case 1:{
-                    NSInteger time = [model._st integerValue];
-                    if (time == 0) {
-                        self.detailLabel.text = @"";
-                    }else{
-                        self.detailLabel.text = model.repair_task.firstObject.cellphone;
-                    }
-//                    self.detailLabel.text = model._st;
-                    [self.line setHidden:YES];
-                    break;
-                }
-                default:
-                    break;
+                //                    self.detailLabel.text = model._st;
+                [self.line setHidden:YES];
             }
-
-            break;
         }
         case 3:{
             switch (indexpath.row) {

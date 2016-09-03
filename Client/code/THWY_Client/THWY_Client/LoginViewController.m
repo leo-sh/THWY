@@ -288,10 +288,10 @@
     self.rememberPassWordBtn.chooseStatu = [[UDManager getUD]showPassWord];
     [self.view addSubview:self.rememberPassWordBtn];
 
-    CGFloat rememberPassWordBtnLeft = self.view.width *0.056;
+    CGFloat rememberPassWordBtnLeft = self.view.width *0.065;
     CGFloat topOffset = self.view.height * 0.03;
-    CGFloat rememberPassWordBtnWidth = Content_Time_Font * 5.5;
-    CGFloat rememberPassWordBtnHeight = Content_Time_Font;
+    CGFloat rememberPassWordBtnWidth = (Content_Time_Font + 2) * 5.5;
+    CGFloat rememberPassWordBtnHeight = Content_Time_Font + 2;
     
     [self.rememberPassWordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(rememberPassWordBtnLeft);
@@ -300,24 +300,24 @@
         make.height.mas_equalTo(rememberPassWordBtnHeight);
     }];
     
-    self.rememberPassWordBtn.titleLabel.font = FontSize(Content_Time_Font);
+    self.rememberPassWordBtn.titleLabel.font = FontSize(Content_Time_Font + 2);
 
     [self.rememberPassWordBtn addTarget:self action:@selector(clickRememberPassWordBtn) forControlEvents:UIControlEventTouchUpInside];
     
-    self.findPsdBtn = [[BlueCheckButton alloc]initDefaultImageName:@"找回密码" choosedImageName:@"" title:@"密码找回"];
+    self.findPsdBtn = [[BlueCheckButton alloc]initDefaultImageName:@"找回密码" choosedImageName:@"" title:@"找回密码"];
     [self.view addSubview:self.findPsdBtn];
     
-    CGFloat adminLoginBtnRightOffset = -self.view.width *0.036;
+    CGFloat adminLoginBtnRightOffset = -self.view.width *0.055;
     CGFloat adminLoginBtnWidth = rememberPassWordBtnWidth;
     
     [self.findPsdBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.view.mas_right).with.offset(adminLoginBtnRightOffset);
-        make.top.equalTo(self.passWordTF.mas_bottom).with.offset(topOffset);
+        make.center.equalTo(self.rememberPassWordBtn.mas_centerY);
         make.width.mas_equalTo(adminLoginBtnWidth);
-        make.height.mas_equalTo(rememberPassWordBtnHeight);
+        make.height.mas_equalTo(rememberPassWordBtnHeight * 1.1);
     }];
     
-    self.findPsdBtn.titleLabel.font = FontSize(Content_Time_Font);
+    self.findPsdBtn.titleLabel.font = FontSize(Content_Time_Font + 2);
     [self.findPsdBtn addTarget:self action:@selector(clickAdminLoginBtn) forControlEvents:UIControlEventTouchUpInside];
     
     
