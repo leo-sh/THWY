@@ -2230,7 +2230,7 @@
 					"$(PROJECT_DIR)/THWY_Client/UMessage_Sdk_1.3.0",
 				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.YTWY.home;
+				PRODUCT_BUNDLE_IDENTIFIER = com.THWY.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -2258,7 +2258,7 @@
 					"$(PROJECT_DIR)/THWY_Client/UMessage_Sdk_1.3.0",
 				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.YTWY.home;
+				PRODUCT_BUNDLE_IDENTIFIER = com.THWY.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

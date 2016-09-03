@@ -158,7 +158,7 @@
         self.introScrollView.showsHorizontalScrollIndicator = NO;
         
         for (int i = 0; i<4; i++) {
-            NSString* imageName = [NSString stringWithFormat:@"yitai引导页%d",i+1];
+            NSString* imageName = [NSString stringWithFormat:@"tonghui引导页%d",i+1];
             UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i*self.introScrollView.width, 0, self.introScrollView.width, self.introScrollView.height)];
             imageView.image = [UIImage imageNamed:imageName];
             
@@ -208,7 +208,7 @@
 {
     self.LogoView = [[UIImageView alloc]init];
     
-    self.LogoView.image = [UIImage imageNamed:@"yitailogo"];
+    self.LogoView.image = [UIImage imageNamed:@"tonghuilogo"];
     
     [self.view addSubview:self.LogoView];
     

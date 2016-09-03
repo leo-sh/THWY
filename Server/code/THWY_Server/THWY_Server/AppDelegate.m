@@ -24,7 +24,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         //此处填写各种key
         //设置 AppKey 及 LaunchOptions
-        [UMessage startWithAppkey:@"57a9300ce0f55a3856000514" launchOptions:launchOptions];
+        [UMessage startWithAppkey:@"57c7f4d2677baa0160000118" launchOptions:launchOptions];
         
         //1.3.0版本开始简化初始化过程。如不需要交互式的通知，下面用下面一句话注册通知即可。
         [UMessage registerForRemoteNotifications];
