@@ -102,6 +102,8 @@
     [self.tableView registerClass:[RepairAcceptOrderCell class] forCellReuseIdentifier:@"RepairAcceptOrderCell"];
     [self.view addSubview:self.tableView];
     
+    [self initRefreshView];
+    
 }
 
 - (void)getDataListPage:(int)page{

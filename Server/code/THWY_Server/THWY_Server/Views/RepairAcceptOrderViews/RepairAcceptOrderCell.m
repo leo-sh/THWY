@@ -154,6 +154,16 @@
             make.top.mas_equalTo(self.contentView.mas_bottom).offset(-1);
         }];
         
+        UIImageView *arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"order_箭头"]];
+        arrow.alpha = 0.7;
+        [self.contentView addSubview:arrow];
+        [arrow mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(self.contentView.mas_centerY);
+            make.right.mas_equalTo(self.contentView.mas_right).offset(-10);
+            make.height.mas_equalTo(15);
+            make.width.mas_equalTo(arrow.mas_height).multipliedBy(0.65);
+        }];
+        
         [self layoutIfNeeded];
         
     }
