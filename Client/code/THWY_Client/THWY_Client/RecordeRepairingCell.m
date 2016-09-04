@@ -364,8 +364,10 @@
     
     if (repaireVO.kb.intValue == 2){
         [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_add"]  toScale:0.5]forState:UIControlStateNormal];
-    }else{
+    }else if (repaireVO.kb.intValue == 1){
         [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_open"]  toScale:0.5]forState:UIControlStateNormal];
+    }else{
+        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"yuyue"]  toScale:0.5]forState:UIControlStateNormal];
     }
     
 //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];

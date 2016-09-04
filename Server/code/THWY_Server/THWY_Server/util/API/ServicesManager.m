@@ -1486,7 +1486,7 @@ savePassWord:(BOOL)save
         }else
         {
             NSMutableArray* listArr = [[NSMutableArray alloc]init];
-            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSDictionary class]]) {
+            if ([responseObject[@"datas"][@"datas"] isKindOfClass:[NSArray class]]) {
                 for (NSDictionary* estateDic in responseObject[@"datas"][@"datas"]) {
                     RepairVO *estate = [[RepairVO alloc]initWithJSON:estateDic];
                     [listArr addObject:estate];

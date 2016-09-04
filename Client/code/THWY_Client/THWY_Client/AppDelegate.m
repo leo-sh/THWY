@@ -27,7 +27,7 @@
         [[UDManager getUD] delNotification];
         //此处填写各种key
         //设置 AppKey 及 LaunchOptions
-        [UMessage startWithAppkey:@"57981a41e0f55a301c0029b6" launchOptions:launchOptions];
+        [UMessage startWithAppkey:@"57c7f5b2f43e48496400014a" launchOptions:launchOptions];
         
         //1.3.0版本开始简化初始化过程。如不需要交互式的通知，下面用下面一句话注册通知即可。
         [UMessage registerForRemoteNotifications];

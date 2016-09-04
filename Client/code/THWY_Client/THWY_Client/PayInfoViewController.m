@@ -9,10 +9,16 @@
 #import "PayInfoViewController.h"
 #import "Masonry.h"
 #import "ServicesManager.h"
+#import "OrderVC.h"
+
 @interface PayInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property UITableView *tableView;
 @property NSMutableArray *data;
 @property NSMutableArray *sectionHead;
+
+@property UIButton* payBtn;
+
+@property FeeVO* fee;
 @end
 
 @implementation PayInfoViewController
@@ -37,14 +43,14 @@
     [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     
     [[ServicesManager getAPI]getAFee:self.feeId onComplete:^(NSString *errorMsg, FeeVO *ad) {
-        
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];
             [self.navigationController popViewControllerAnimated:YES];
             return ;
         }
         
-        NSArray *sectionOneHead = @[@"业主姓名",@"所在楼层",@"房源信息",@"面积",@"缴费科目",@"收费标准",@"缴费起止期",@"应缴金额",@"实收金额",@"欠费金额"];
+        self.fee = ad;
+        NSArray *sectionOneHead = @[@"业主姓名",@"所在楼盘",@"房源信息",@"面积",@"缴费科目",@"收费标准",@"缴费起止期",@"应缴金额",@"实收金额",@"欠费金额"];
         
         self.sectionHead = [[NSMutableArray alloc]initWithObjects:sectionOneHead, nil];
         for (int i = 0;  i< ad.fee_history.count; i++) {
@@ -77,6 +83,10 @@
         
         [self createUI];
         [self.tableView reloadData];
+        
+        if (ad.st == NonPayment || ad.st == Part ) {
+            self.payBtn.enabled = YES;
+        }
         [SVProgressHUD dismiss];
     }];
 }
@@ -88,8 +98,38 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorColor = CellUnderLineColor;
     [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {make.top.mas_equalTo(10);make.left.mas_equalTo(5);make.right.mas_equalTo(-5);make.bottom.mas_equalTo(-10);}];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(10);
+        make.left.mas_equalTo(5);
+        make.right.mas_equalTo(-5);
+        make.bottom.mas_equalTo(-10/375.0*My_ScreenW);
+    }];
+    
+    self.payBtn = [[UIButton alloc]init];
+    [self.payBtn setBackgroundImage:[UIImage createImageWithColor:My_NAV_BG_Color] forState:UIControlStateNormal];
+    [self.payBtn setTitle:@"我要缴费" forState:UIControlStateNormal];
+    self.payBtn.titleLabel.font = FontSize(CONTENT_FONT + 4);
+    self.payBtn.enabled = NO;
+    self.payBtn.clipsToBounds = YES;
+    self.payBtn.layer.cornerRadius = 5/375.0*My_ScreenW;
+    [self.payBtn addTarget:self action:@selector(showOrder) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.payBtn];
+    [self.payBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(40/375.0*My_ScreenW);
+        make.width.mas_equalTo(My_ScreenW/3*2);
+        make.centerX.mas_equalTo(self.tableView.mas_centerX);
+        make.bottom.mas_equalTo(-10/375.0*My_ScreenW);
+    }];
+}
+
+-(void)showOrder
+{
+    OrderVC* orderVC = [[OrderVC alloc]init];
+    orderVC.fee = self.fee;
+    
+    [self.navigationController pushViewController:orderVC animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -157,22 +197,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
+    if (section == self.tableView.numberOfSections - 1) {
+        return 50/375.0*My_ScreenW;
+    }
     return 0.01;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

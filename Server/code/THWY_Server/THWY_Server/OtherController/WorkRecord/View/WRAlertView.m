@@ -110,16 +110,17 @@
 - (void)clickLeft
 {
     NSLog(@"%@",self.typeId);
+    NSLog(@"%d",self.public.chooseStatu);
     if (self.reviseStatu) {
         if (self.textView.text.length == 0) {
             [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
 
         }
         
-        else if ([self.textView.text isEqualToString:self.contentString] && [self.title.text isEqualToString:self.titleString])
-        {
-            [self hide];
-        }
+//        else if ([self.textView.text isEqualToString:self.contentString] && [self.title.text isEqualToString:self.titleString])
+//        {
+//            [self hide];
+//        }
         
         else
         {
@@ -130,8 +131,8 @@
                 }
                 else
                 {
-                    [SVProgressHUD showErrorWithStatus:@"修改成功"];
                     [self hide];
+                    [SVProgressHUD showErrorWithStatus:@"修改成功"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:Relodata object:nil];
                 }
                 
@@ -144,10 +145,10 @@
             [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
             
         }
-        else if ([self.textView.text isEqualToString:self.contentString] && [self.title.text isEqualToString:self.titleString])
-        {
-            [self hide];
-        }
+//        else if ([self.textView.text isEqualToString:self.contentString] && [self.title.text isEqualToString:self.titleString])
+//        {
+//            [self hide];
+//        }
         
         else
         {
@@ -158,8 +159,8 @@
                 }
                 else
                 {
-                    [SVProgressHUD showErrorWithStatus:@"修改成功"];
                     [self hide];
+                    [SVProgressHUD showErrorWithStatus:@"修改成功"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:Relodata object:nil];
                     
                 }

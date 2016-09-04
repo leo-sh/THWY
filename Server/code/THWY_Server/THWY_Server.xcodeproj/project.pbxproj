@@ -2198,7 +2198,7 @@
 					"$(PROJECT_DIR)/THWY_Server",
 					"$(PROJECT_DIR)/THWY_Server/3rd",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.YTWY.sever;
+				PRODUCT_BUNDLE_IDENTIFIER = com.THWY.sever;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -2220,7 +2220,7 @@
 					"$(PROJECT_DIR)/THWY_Server",
 					"$(PROJECT_DIR)/THWY_Server/3rd",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.YTWY.sever;
+				PRODUCT_BUNDLE_IDENTIFIER = com.THWY.sever;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

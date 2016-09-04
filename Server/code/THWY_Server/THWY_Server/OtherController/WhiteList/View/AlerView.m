@@ -149,6 +149,7 @@
                 }
                 else
                 {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"PostSuccess" object:nil];
                     [self hide];
                 }
                 
@@ -184,6 +185,7 @@
                 
                 else
                 {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"PostSuccess" object:nil];
                     [self hide];
                 }
                 

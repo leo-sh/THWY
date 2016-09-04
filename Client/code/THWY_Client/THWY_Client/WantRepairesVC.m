@@ -88,7 +88,7 @@
     self.tableView2.repairDelegate = self;
 
     self.scrollView = [[UIScrollView alloc] init];
-    self.scrollView.contentSize = CGSizeMake((My_ScreenW-20)*2.0, My_ScreenH-94);
+    self.scrollView.contentSize = CGSizeMake((My_ScreenW-20)*2.0, My_ScreenH-74);
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.bounces = NO;
@@ -99,7 +99,7 @@
     
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.switchButton.mas_bottom).offset(10);
-        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-10);
+        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-5);
         make.left.mas_equalTo(self.view.mas_left).offset(10);
         make.right.mas_equalTo(self.view.mas_right).offset(-10);
     }];

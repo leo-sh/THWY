@@ -213,7 +213,7 @@
         
         cell.width = tableView.width;
         
-        UserVO *temp = self.data[indexPath.section];
+        UserVO *temp = self.data[indexPath.row];
         
         cell.admin_id = temp.admin_id;
 
@@ -221,7 +221,7 @@
         
         NSString *estateAndJob = [NSString stringWithFormat:@"%@ %@",temp.up_group.project,temp.up_group.group];
         
-        [cell setIcon:@"" NameAndphone:nameAndPhone EstateAndJob:estateAndJob];
+        [cell setIcon:temp.photo NameAndphone:nameAndPhone EstateAndJob:estateAndJob];
         
         returnCell = cell;
         
@@ -279,11 +279,6 @@
     [self getData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self setEditing:YES];
@@ -301,49 +296,42 @@
 - (void)searchFriendInfo
 {
     [self.searchFriend resignFirstResponder];
-    [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
-    NSString *string = @"^[0-9]*$";
-    NSString *string2 = @"([\u4e00-\u9fa5]{2,4})";
-    NSPredicate *phonePredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",string];
-    NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",string2];
-    if ([phonePredicate evaluateWithObject:self.searchFriend.text]) {
+    if (self.searchFriend.text.length == 0) {
+        return;
+    }
+    
+    if ([self.searchFriend.text substringToIndex:1].intValue > 0) {
+        [SVProgressHUD showWithStatus:@"加载数据中,请稍后..."];
         [[ServicesManager getAPI] findFriends:self.searchFriend.text name:@"" onComplete:^(NSString *errorMsg, NSArray *list) {
             
             if (errorMsg) {
                 [SVProgressHUD showWithStatus:errorMsg];
             }
-            else if(list.count != 0)
+            else
             {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    self.data.array = list;
-                    
-                    [self.tableView reloadData];
-                    
-                });
+                self.data.array = list;
+                
+                [self.tableView reloadData];
+                [SVProgressHUD dismiss];
             }
-            [SVProgressHUD dismiss];
             
         }];
     }
-    else if ([namePredicate evaluateWithObject:self.searchFriend.text])
+    else
     {
+        [SVProgressHUD showWithStatus:@"加载数据中,请稍后..."];
         [[ServicesManager getAPI] findFriends:@"" name:self.searchFriend.text onComplete:^(NSString *errorMsg, NSArray *list) {
             
             if (errorMsg) {
                 [SVProgressHUD showWithStatus:errorMsg];
             }
-            else if(list.count != 0)
+            else
             {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    self.data.array = list;
-                    
-                    [self.tableView reloadData];
-                    
-                });
+                self.data.array = list;
+                
+                [self.tableView reloadData];
+                [SVProgressHUD dismiss];
             }
-            [SVProgressHUD dismiss];
 
         }];
     }
