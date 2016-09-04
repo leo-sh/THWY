@@ -2,17 +2,24 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "yitailogo-1.png",
+      "filename" : "yitialogo.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "yitailogo.png",
+      "filename" : "yitialogo-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "yitialogo-2.png",
       "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "yitailogo.png",
+      "unassigned" : true,
+      "scale" : "2x"
     }
   ],
   "info" : {
