@@ -468,7 +468,7 @@
 {
     NSLog(@"修改");
     WRAlertView *view = [[WRAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
-    
+    view.reviseStatu = YES;
     NSInteger section = sender.superview.tag - 300;
     
     [view setTitle:[self.data[section] title]Content:[self.data[section] content] typeId:[self.data[section] Id] docId:[self.data[section] doc_type_id]];
