@@ -66,7 +66,14 @@
 }
 
 - (void)loadDataWithModel:(RepairVO *)model indexpath:(NSIndexPath *)indexpath{
-    self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
+    if (indexpath.section == 2) {
+        
+        self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row%2];
+    }else
+    {
+        
+        self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
+    }
     switch (indexpath.section) {
         case 0:{
             switch (indexpath.row) {
@@ -157,25 +164,17 @@
             break;
         }
         case 2:{
-            UserVO *user = model.repair_task.admins.firstObject;
-            switch (indexpath.row) {
-                case 0:{
-                    self.detailLabel.text = [user real_name];
-                    break;
+            if (indexpath.row % 2 == 0) {
+                self.detailLabel.text = model.repair_task.admins[indexpath.row / 2].real_name;
+            }else{
+                NSInteger time = [model.st integerValue];
+                if (time == 0) {
+                    self.detailLabel.text = @"";
+                }else{
+                    self.detailLabel.text = model.repair_task.admins[indexpath.row / 2].cellphone;
                 }
-                case 1:{
-                    NSInteger time = [model.st integerValue];
-                    if (time == 0) {
-                        self.detailLabel.text = @"";
-                    }else{
-                        self.detailLabel.text = user.cellphone;
-                    }
-//                    self.detailLabel.text = model._st;
-                    [self.line setHidden:YES];
-                    break;
-                }
-                default:
-                    break;
+                //                    self.detailLabel.text = model._st;
+                [self.line setHidden:YES];
             }
 
             break;

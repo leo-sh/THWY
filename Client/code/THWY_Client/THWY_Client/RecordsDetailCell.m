@@ -66,7 +66,16 @@
 }
 
 - (void)loadDataWithModel:(RepairVO *)model indexpath:(NSIndexPath *)indexpath{
-    self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
+    
+    if (indexpath.section == 2) {
+        
+        self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row%2];
+    }else
+    {
+        
+        self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
+    }
+    
     switch (indexpath.section) {
         case 0:{
             switch (indexpath.row) {
@@ -158,7 +167,7 @@
             break;
         }
         case 2:{
-            if (indexpath.row % 2 != 0) {
+            if (indexpath.row % 2 == 0) {
                 self.detailLabel.text = model.repair_task[indexpath.row / 2].real_name;
             }else{
                 NSInteger time = [model._st integerValue];
@@ -171,6 +180,7 @@
                 [self.line setHidden:YES];
             }
         }
+            break;
         case 3:{
             switch (indexpath.row) {
                 case 0:{

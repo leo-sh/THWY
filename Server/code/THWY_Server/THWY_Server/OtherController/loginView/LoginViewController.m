@@ -158,7 +158,7 @@
         self.introScrollView.showsHorizontalScrollIndicator = NO;
         
         for (int i = 0; i<4; i++) {
-            NSString* imageName = [NSString stringWithFormat:@"tonghui引导页%d",i+1];
+            NSString* imageName = [NSString stringWithFormat:@"引导页%d",i+1];
             UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i*self.introScrollView.width, 0, self.introScrollView.width, self.introScrollView.height)];
             imageView.image = [UIImage imageNamed:imageName];
             
@@ -208,7 +208,7 @@
 {
     self.LogoView = [[UIImageView alloc]init];
     
-    self.LogoView.image = [UIImage imageNamed:@"tonghuilogo"];
+    self.LogoView.image = [UIImage imageNamed:@"logo"];
     
     [self.view addSubview:self.LogoView];
     
@@ -291,8 +291,8 @@
 
     CGFloat rememberPassWordBtnLeft = self.view.width *0.056;
     CGFloat topOffset = self.view.height * 0.03;
-    CGFloat rememberPassWordBtnWidth = Content_Ip_Font *5.5;
-    CGFloat rememberPassWordBtnHeight = Content_Ip_Font;
+    CGFloat rememberPassWordBtnWidth = (Content_Ip_Font + 2) *5.5;
+    CGFloat rememberPassWordBtnHeight = Content_Ip_Font + 2;
     
     [self.rememberPassWordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(rememberPassWordBtnLeft);
@@ -301,12 +301,12 @@
         make.height.mas_equalTo(rememberPassWordBtnHeight);
     }];
     
-    self.rememberPassWordBtn.titleLabel.font = FontSize(Content_Ip_Font);
+    self.rememberPassWordBtn.titleLabel.font = FontSize(Content_Ip_Font + 2);
 
     
     [self.rememberPassWordBtn addTarget:self action:@selector(clickRememberPassWordBtn) forControlEvents:UIControlEventTouchUpInside];
     
-    self.findPsdBtn = [[BlueCheckButton alloc]initDefaultImageName:@"找回密码" choosedImageName:@"" title:@"密码找回"];
+    self.findPsdBtn = [[BlueCheckButton alloc]initDefaultImageName:@"找回密码" choosedImageName:@"" title:@"找回密码"];
     [self.view addSubview:self.findPsdBtn];
     
 //    self.findPsdBtn.backgroundColor = [UIColor blackColor];
@@ -321,7 +321,7 @@
         make.height.mas_equalTo(rememberPassWordBtnHeight);
     }];
     
-    self.findPsdBtn.titleLabel.font = FontSize(Content_Ip_Font);
+    self.findPsdBtn.titleLabel.font = FontSize(Content_Ip_Font + 2);
     
     [self.findPsdBtn addTarget:self action:@selector(clickAdminLoginBtn) forControlEvents:UIControlEventTouchUpInside];
     

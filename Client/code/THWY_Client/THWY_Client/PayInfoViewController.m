@@ -122,6 +122,7 @@
         make.centerX.mas_equalTo(self.tableView.mas_centerX);
         make.bottom.mas_equalTo(-10/375.0*My_ScreenW);
     }];
+    self.payBtn.hidden = YES;
 }
 
 -(void)showOrder

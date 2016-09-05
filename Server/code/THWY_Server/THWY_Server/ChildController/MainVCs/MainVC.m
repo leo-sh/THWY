@@ -94,7 +94,7 @@
 
 - (void)initNVBar{
     self.title = @"业主客服系统";
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tonghuilogo"]];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
     self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [self.leftButton setImage:[UIImage imageNamed:@"main_快捷菜单"] forState:UIControlStateNormal];
     [self.leftButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
@@ -176,6 +176,8 @@
     self.headImage.image = [UIImage imageNamed:@"Avatar"];
     self.headImage.userInteractionEnabled = NO;
     self.headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/3;
+    [self.userInfoView addSubview:self.headImage];
+    
     [self.headImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.userInfoView.mas_centerY);
         make.left.mas_equalTo(self.userInfoView).offset(30/375.0*My_ScreenW);
@@ -184,7 +186,6 @@
     }];
     [self.view layoutIfNeeded];
     self.headImage.clipsToBounds = YES;
-    [self.userInfoView addSubview:self.headImage];
     
     self.username = [[UILabel alloc] init];
     self.username.font = FontBoldSize(CONTENT_FONT+3);
