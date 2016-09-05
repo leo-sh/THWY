@@ -175,16 +175,16 @@
     self.headImage = [[UIImageView alloc] init];
     self.headImage.image = [UIImage imageNamed:@"Avatar"];
     self.headImage.userInteractionEnabled = NO;
-    self.headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/3;
+    [self.userInfoView addSubview:self.headImage];
     [self.headImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.userInfoView.mas_centerY);
-        make.left.mas_equalTo(self.userInfoView).offset(30/375.0*My_ScreenW);
+        make.left.mas_equalTo(self.userInfoView.mas_left).offset(30/375.0*My_ScreenW);
         make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.7);
         make.width.mas_equalTo(self.headImage.mas_height);
     }];
     [self.view layoutIfNeeded];
     self.headImage.clipsToBounds = YES;
-    [self.userInfoView addSubview:self.headImage];
+    self.headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/3;
     
     self.username = [[UILabel alloc] init];
     self.username.font = FontBoldSize(CONTENT_FONT+3);

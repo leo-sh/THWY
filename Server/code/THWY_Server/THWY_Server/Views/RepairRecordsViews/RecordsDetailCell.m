@@ -157,26 +157,29 @@
             break;
         }
         case 2:{
-            UserVO *user = model.repair_task.admins.firstObject;
-            switch (indexpath.row) {
-                case 0:{
-                    self.detailLabel.text = [user real_name];
-                    break;
+            NSMutableString *name = [NSMutableString stringWithString:@""];
+            NSMutableString *cell = [NSMutableString stringWithString:@""];
+            for (UserVO *user in model.repair_task.admins) {
+                if (user) {
+                    [name appendString:@" "];
+                    [name appendString:user.real_name];
+                    [cell appendString:@" "];
+                    [cell appendString:user.cellphone];
                 }
-                case 1:{
-                    NSInteger time = [model.st integerValue];
-                    if (time == 0) {
-                        self.detailLabel.text = @"";
-                    }else{
-                        self.detailLabel.text = user.cellphone;
-                    }
-//                    self.detailLabel.text = model._st;
-                    [self.line setHidden:YES];
-                    break;
-                }
-                default:
-                    break;
             }
+            if (indexpath.row == 0) {
+                self.detailLabel.text = name;
+            }else{
+                NSInteger st = [model.st integerValue];
+                if (st == 0) {
+                    self.detailLabel.text = @"";
+                }else{
+                    self.detailLabel.text = cell;
+                }
+                
+                [self.line setHidden:YES];
+            }
+            break;
 
             break;
         }
