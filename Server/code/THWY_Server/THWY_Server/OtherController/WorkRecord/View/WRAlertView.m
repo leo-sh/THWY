@@ -124,6 +124,9 @@
         
         else
         {
+            [self.title endEditing:YES];
+            [self.textView endEditing:YES];
+            
             [[ServicesManager getAPI]editDoc:self.docId typeId:self.typeId public:self.public.chooseStatu title:self.title.text content:self.textView.text onComplete:^(NSString *errorMsg) {
                 
                 if (errorMsg) {
