@@ -60,6 +60,12 @@
             self.alertTableView.AlertDelegate = self;
             [self.alertTableView initViews];
             self.alertTableView.selectedIndex = self.estateIndex;
+            self.blockIndex = -1;
+            [self.btn_block setTitle:@"" forState:UIControlStateNormal];
+            self.unitIndex = -1;
+            [self.btn_unit setTitle:@"" forState:UIControlStateNormal];
+            self.layerIndex = -1;
+            [self.btn_layer setTitle:@"" forState:UIControlStateNormal];
             [self.alertTableView showInWindow];
         }
     }];
@@ -90,6 +96,10 @@
         self.alertTableView.AlertDelegate = self;
         [self.alertTableView initViews];
         self.alertTableView.selectedIndex = self.blockIndex;
+        self.unitIndex = -1;
+        [self.btn_unit setTitle:@"" forState:UIControlStateNormal];
+        self.layerIndex = -1;
+        [self.btn_layer setTitle:@"" forState:UIControlStateNormal];
         [self.alertTableView showInWindow];
     }];
 }
@@ -116,6 +126,8 @@
         self.alertTableView.AlertDelegate = self;
         [self.alertTableView initViews];
         self.alertTableView.selectedIndex = self.unitIndex;
+        self.layerIndex = -1;
+        [self.btn_layer setTitle:@"" forState:UIControlStateNormal];
         [self.alertTableView showInWindow];
     }];
 }
