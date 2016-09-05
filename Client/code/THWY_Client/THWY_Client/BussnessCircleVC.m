@@ -144,10 +144,6 @@
     UIImageView *headImage = [[UIImageView alloc] init];
     headImage.image = [UIImage imageNamed:@"Avatar"];
     headImage.userInteractionEnabled = YES;
-    headImage.layer.cornerRadius = self.view.height*1.0/12*0.85;
-//    headImage.layer.borderWidth = 3;
-//    headImage.layer.borderColor = [UIColor whiteColor].CGColor;
-    headImage.clipsToBounds = YES;
     [self.userInfoView addSubview:headImage];
     
     [headImage mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -156,6 +152,10 @@
         make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.85);
         make.width.mas_equalTo(headImage.mas_height);
     }];
+    
+    [self.view layoutIfNeeded];
+    headImage.layer.cornerRadius = headImage.height * 0.5;
+    headImage.clipsToBounds = YES;
     
     UILabel *username = [[UILabel alloc] init];
     username.text = @"";

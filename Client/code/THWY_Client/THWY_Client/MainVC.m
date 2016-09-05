@@ -177,22 +177,22 @@
     self.userInfoView = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, My_ScreenW, 1/4.0 * My_ScreenH - topMargin*2)];
     [self.userInfoView setBackgroundImage:[UIImage imageNamed:@"beijing"] forState:UIControlStateNormal];
     [self.userInfoView addTarget:self action:@selector(showUserInfoVC) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.userInfoView];
+    
     self.headImage = [[UIImageView alloc] init];
     self.headImage.image = [UIImage imageNamed:@"Avatar"];
     self.headImage.userInteractionEnabled = NO;
-    self.headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/3;
-//    self.headImage.layer.borderWidth = 3;
-//    self.headImage.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.headImage.clipsToBounds = YES;
     [self.userInfoView addSubview:self.headImage];
-    
     [self.headImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.userInfoView.mas_centerY);
         make.left.mas_equalTo(self.userInfoView).offset(30/375.0*My_ScreenW);
         make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.7);
         make.width.mas_equalTo(self.headImage.mas_height);
     }];
+    [self.view layoutIfNeeded];
     
+    self.headImage.layer.cornerRadius = self.headImage.height*0.5;
+    self.headImage.clipsToBounds = YES;
     
     self.username = [[UILabel alloc] init];
     self.username.font = FontBoldSize(CONTENT_FONT+3);
@@ -228,8 +228,6 @@
         make.size.mas_equalTo(CGSizeMake(12, 20));
         make.right.mas_equalTo(self.userInfoView.mas_right).offset(-30);
     }];
-    
-    [self.view addSubview:self.userInfoView];
 
 }
 

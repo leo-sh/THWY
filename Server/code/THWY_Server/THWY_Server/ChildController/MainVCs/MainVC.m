@@ -176,18 +176,15 @@
     self.headImage.image = [UIImage imageNamed:@"Avatar"];
     self.headImage.userInteractionEnabled = NO;
     self.headImage.layer.cornerRadius = self.userInfoView.bounds.size.height/3;
-//    self.headImage.layer.borderWidth = 3;
-//    self.headImage.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.headImage.clipsToBounds = YES;
-    [self.userInfoView addSubview:self.headImage];
-    
     [self.headImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.userInfoView.mas_centerY);
         make.left.mas_equalTo(self.userInfoView).offset(30/375.0*My_ScreenW);
         make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.7);
         make.width.mas_equalTo(self.headImage.mas_height);
     }];
-    
+    [self.view layoutIfNeeded];
+    self.headImage.clipsToBounds = YES;
+    [self.userInfoView addSubview:self.headImage];
     
     self.username = [[UILabel alloc] init];
     self.username.font = FontBoldSize(CONTENT_FONT+3);
@@ -198,14 +195,6 @@
         make.centerY.mas_equalTo(self.headImage.mas_centerY).multipliedBy(0.8);
         make.left.mas_equalTo(self.headImage.mas_right).offset(15);
     }];
-    
-//    UIImageView *locationImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dizhi"]];
-//    [self.userInfoView addSubview:locationImage];
-//    [locationImage mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.username.mas_left);
-//        make.top.mas_equalTo(self.username.mas_bottom).offset(6);
-//        make.size.mas_equalTo(CGSizeMake(10.5, 15.5));
-//    }];
     
     self.addr = [[UILabel alloc] init];
     self.addr.font = FontBoldSize(CONTENT_FONT+5);
