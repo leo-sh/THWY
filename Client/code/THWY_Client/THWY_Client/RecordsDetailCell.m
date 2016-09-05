@@ -123,38 +123,109 @@
             break;
         }
         case 1:{
-            switch (indexpath.row) {
-                case 0:{
-                    self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_0_time intValue] withFormat:nil];
-                    break;
-                }
-                case 1:{
-                    if ( model.classes_str && ![model.classes_str isEqualToString:@""]) {
-                        self.detailLabel.numberOfLines = 0;
-                        self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
-                        [self.detailLabel sizeToFit];
-                        self.detailLabel.text = model.classes_str;
-                        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
-                        CGRect rect = [model.classes_str boundingRectWithSize:CGSizeMake(self.contentView.width*0.7, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-                        
-                        [self.detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-                            make.height.mas_equalTo(rect.size.height);
-                            make.width.mas_equalTo(rect.size.width);
-                        }];
-                        [self layoutIfNeeded];                        
+            if (indexpath.row == 0) {
+                self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_0_time intValue] withFormat:nil];
+            }else{
+                if ([model.kb intValue] == 3) {
+                    if ([model._st intValue] == 0) {
+                        switch (indexpath.row) {
+                            case 1:{
+                                self.leftLabel.text = @"预约时间:";
+                                self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.] withFormat:<#(NSString *)#>];
+                                break;
+                            }
+                            case 2:{
+                                
+                                
+                                break;
+                            }
+                            case 3:{
+                                if ( model.classes_str && ![model.classes_str isEqualToString:@""]) {
+                                    self.detailLabel.numberOfLines = 0;
+                                    self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
+                                    [self.detailLabel sizeToFit];
+                                    self.detailLabel.text = model.classes_str;
+                                    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
+                                    CGRect rect = [model.classes_str boundingRectWithSize:CGSizeMake(self.contentView.width*0.7, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+                                    
+                                    [self.detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                                        make.height.mas_equalTo(rect.size.height);
+                                        make.width.mas_equalTo(rect.size.width);
+                                    }];
+                                    [self layoutIfNeeded];
+                                }
+                                break;
+                            }
+                            case 4:{
+                                self.detailLabel.text = model.detail;
+                                [self.line setHidden:YES];
+                                break;
+                            }
+                            default:
+                                break;
+                        }
+                    }else{
+                        switch (indexpath.row) {
+                            case 1:{
+                                
+                                if ( model.classes_str && ![model.classes_str isEqualToString:@""]) {
+                                    self.detailLabel.numberOfLines = 0;
+                                    self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
+                                    [self.detailLabel sizeToFit];
+                                    self.detailLabel.text = model.classes_str;
+                                    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
+                                    CGRect rect = [model.classes_str boundingRectWithSize:CGSizeMake(self.contentView.width*0.7, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+                                    
+                                    [self.detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                                        make.height.mas_equalTo(rect.size.height);
+                                        make.width.mas_equalTo(rect.size.width);
+                                    }];
+                                    [self layoutIfNeeded];
+                                }
+                                
+                                break;
+                            }
+                            case 2:{
+                                self.detailLabel.text = model.detail;
+                                [self.line setHidden:YES];
+                                break;
+                            }
+                            default:
+                                break;
+                        }
                     }
-//                    CGFloat topMargin = 8.0/375*My_ScreenW;
-                    break;
-                }
-                case 2:{
-                    self.detailLabel.text = model.detail;
-                    [self.line setHidden:YES];
-                    break;
-                }
-                default:
-                    break;
-            }
+                }else{
+                    switch (indexpath.row) {
+                        case 1:{
+                            
+                            if ( model.classes_str && ![model.classes_str isEqualToString:@""]) {
+                                self.detailLabel.numberOfLines = 0;
+                                self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
+                                [self.detailLabel sizeToFit];
+                                self.detailLabel.text = model.classes_str;
+                                NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
+                                CGRect rect = [model.classes_str boundingRectWithSize:CGSizeMake(self.contentView.width*0.7, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+                                
+                                [self.detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                                    make.height.mas_equalTo(rect.size.height);
+                                    make.width.mas_equalTo(rect.size.width);
+                                }];
+                                [self layoutIfNeeded];
+                            }
+                            
+                            break;
+                        }
+                        case 2:{
+                            self.detailLabel.text = model.detail;
+                            [self.line setHidden:YES];
+                            break;
+                        }
+                        default:
+                            break;
+                    }
 
+                }
+            }
             break;
         }
         case 2:{

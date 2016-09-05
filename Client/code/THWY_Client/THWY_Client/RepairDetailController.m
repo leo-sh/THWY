@@ -80,7 +80,15 @@
             break;
         }
         case 1:{
-            return 3;
+            if ([self.model.kb intValue] == 3) {
+                if ([self.model._st intValue] == 0) {
+                    return 5;
+                }else{
+                    return 4;
+                }
+            }else{
+                return 3;
+            }
             break;
         }
         case 2:{
