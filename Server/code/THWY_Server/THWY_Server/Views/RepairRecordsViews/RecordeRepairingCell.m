@@ -120,7 +120,7 @@
         [self.detail mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(self.contentView.mas_right).offset(-topMagrin);
             make.width.mas_equalTo(self.detail.mas_height);
-            make.height.mas_equalTo(40.0);
+            make.height.mas_equalTo(28.0);
             make.centerY.mas_equalTo(self.numberLabel.mas_centerY);
         }];
         
@@ -298,7 +298,7 @@
         [self.callBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.detail.mas_centerX);
             make.centerY.mas_equalTo(self.cellPhone.mas_centerY);
-            make.height.mas_equalTo(self.detail.mas_height).multipliedBy(0.7);
+            make.height.mas_equalTo(self.detail.mas_height);
             make.width.mas_equalTo(self.callBtn.mas_height).multipliedBy(0.75);
         }];
         
