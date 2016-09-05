@@ -7,12 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E0489ED1D48818B00D6B0CC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E0489EC1D48818B00D6B0CC /* LoginViewController.m */; };
 		1E3BA3911D4AFF2B00633D0B /* PersonInfoLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3BA3901D4AFF2B00633D0B /* PersonInfoLabel.m */; };
 		1E3BA3B91D4B4FC600633D0B /* ReviseBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3BA3B81D4B4FC600633D0B /* ReviseBtn.m */; };
 		1E3BA3BF1D4B759C00633D0B /* ComplainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3BA3BE1D4B759C00633D0B /* ComplainViewController.m */; };
-		1E42BB551D498DEE0021DA01 /* userAndPassWordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E42BB541D498DEE0021DA01 /* userAndPassWordTextField.m */; };
-		1E42BB581D4994E30021DA01 /* BlueCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E42BB571D4994E30021DA01 /* BlueCheckButton.m */; };
 		1E42BB591D49C3670021DA01 /* ServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25725E1D47376E00CB4167 /* ServicesManager.m */; };
 		1E42BB641D49E4240021DA01 /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E42BB631D49E4240021DA01 /* PersonInfoViewController.m */; };
 		1E4CE4C71D4DCCAB00FF528A /* ComplainDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CE4C61D4DCCAB00FF528A /* ComplainDetailViewController.m */; };
@@ -58,6 +55,10 @@
 		1E8E8F3A1D66567A003D8CBC /* UIView+TYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E8E8F2D1D66567A003D8CBC /* UIView+TYAlertView.m */; };
 		1E8E8F3B1D66567A003D8CBC /* UIView+TYAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E8E8F2F1D66567A003D8CBC /* UIView+TYAutoLayout.m */; };
 		1E911BDD1D59A6DE006F15C6 /* AlertTableView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E911BDC1D59A6DE006F15C6 /* AlertTableView2.m */; };
+		1ED91EF51D7D7A7500F91460 /* BlueCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED91EEE1D7D7A7500F91460 /* BlueCheckButton.m */; };
+		1ED91EF61D7D7A7500F91460 /* FindPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED91EF01D7D7A7500F91460 /* FindPasswordVC.m */; };
+		1ED91EF71D7D7A7500F91460 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED91EF21D7D7A7500F91460 /* LoginViewController.m */; };
+		1ED91EF81D7D7A7500F91460 /* userAndPassWordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED91EF41D7D7A7500F91460 /* userAndPassWordTextField.m */; };
 		1EE2841F1D4D037D008D5305 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2841E1D4D037D008D5305 /* PayViewController.m */; };
 		1EE284251D4D0548008D5305 /* ProclamationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE284241D4D0548008D5305 /* ProclamationViewController.m */; };
 		1EE2842B1D4D05D1008D5305 /* SuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2842A1D4D05D1008D5305 /* SuggestViewController.m */; };
@@ -229,7 +230,6 @@
 		9437B8721D713EC500B5555C /* IntegralRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437B8711D713EC400B5555C /* IntegralRootCell.m */; };
 		9437B8751D713F0100B5555C /* IntegralTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437B8741D713F0100B5555C /* IntegralTitleCell.m */; };
 		9437B8781D713F8000B5555C /* IntegralDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437B8771D713F8000B5555C /* IntegralDetailCell.m */; };
-		9437B87B1D7161A700B5555C /* FindPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437B87A1D7161A700B5555C /* FindPasswordVC.m */; };
 		9449430D1D5C320200AD2B00 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */; };
 		9490C3E31D63F66400988649 /* AssetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490C3E21D63F66400988649 /* AssetView.m */; };
 		9490C3E51D63F8D400988649 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9490C3E41D63F8D400988649 /* Photos.framework */; };
@@ -242,18 +242,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1E0489EB1D48818B00D6B0CC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		1E0489EC1D48818B00D6B0CC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		1E3BA38F1D4AFF2B00633D0B /* PersonInfoLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoLabel.h; sourceTree = "<group>"; };
 		1E3BA3901D4AFF2B00633D0B /* PersonInfoLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoLabel.m; sourceTree = "<group>"; };
 		1E3BA3B71D4B4FC600633D0B /* ReviseBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviseBtn.h; sourceTree = "<group>"; };
 		1E3BA3B81D4B4FC600633D0B /* ReviseBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviseBtn.m; sourceTree = "<group>"; };
 		1E3BA3BD1D4B759C00633D0B /* ComplainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplainViewController.h; sourceTree = "<group>"; };
 		1E3BA3BE1D4B759C00633D0B /* ComplainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplainViewController.m; sourceTree = "<group>"; };
-		1E42BB531D498DEE0021DA01 /* userAndPassWordTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userAndPassWordTextField.h; sourceTree = "<group>"; };
-		1E42BB541D498DEE0021DA01 /* userAndPassWordTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userAndPassWordTextField.m; sourceTree = "<group>"; };
-		1E42BB561D4994E30021DA01 /* BlueCheckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCheckButton.h; sourceTree = "<group>"; };
-		1E42BB571D4994E30021DA01 /* BlueCheckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCheckButton.m; sourceTree = "<group>"; };
 		1E42BB621D49E4240021DA01 /* PersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoViewController.h; sourceTree = "<group>"; };
 		1E42BB631D49E4240021DA01 /* PersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoViewController.m; sourceTree = "<group>"; };
 		1E4CE4C51D4DCCAB00FF528A /* ComplainDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplainDetailViewController.h; sourceTree = "<group>"; };
@@ -341,6 +335,14 @@
 		1E8E8F2F1D66567A003D8CBC /* UIView+TYAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TYAutoLayout.m"; sourceTree = "<group>"; };
 		1E911BDB1D59A6DE006F15C6 /* AlertTableView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTableView2.h; sourceTree = "<group>"; };
 		1E911BDC1D59A6DE006F15C6 /* AlertTableView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTableView2.m; sourceTree = "<group>"; };
+		1ED91EED1D7D7A7500F91460 /* BlueCheckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCheckButton.h; sourceTree = "<group>"; };
+		1ED91EEE1D7D7A7500F91460 /* BlueCheckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCheckButton.m; sourceTree = "<group>"; };
+		1ED91EEF1D7D7A7500F91460 /* FindPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPasswordVC.h; sourceTree = "<group>"; };
+		1ED91EF01D7D7A7500F91460 /* FindPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPasswordVC.m; sourceTree = "<group>"; };
+		1ED91EF11D7D7A7500F91460 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		1ED91EF21D7D7A7500F91460 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		1ED91EF31D7D7A7500F91460 /* userAndPassWordTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userAndPassWordTextField.h; sourceTree = "<group>"; };
+		1ED91EF41D7D7A7500F91460 /* userAndPassWordTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userAndPassWordTextField.m; sourceTree = "<group>"; };
 		1EE2841D1D4D037D008D5305 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
 		1EE2841E1D4D037D008D5305 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
 		1EE284231D4D0548008D5305 /* ProclamationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProclamationViewController.h; sourceTree = "<group>"; };
@@ -688,8 +690,6 @@
 		9437B8741D713F0100B5555C /* IntegralTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralTitleCell.m; sourceTree = "<group>"; };
 		9437B8761D713F8000B5555C /* IntegralDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralDetailCell.h; sourceTree = "<group>"; };
 		9437B8771D713F8000B5555C /* IntegralDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralDetailCell.m; sourceTree = "<group>"; };
-		9437B8791D7161A700B5555C /* FindPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPasswordVC.h; sourceTree = "<group>"; };
-		9437B87A1D7161A700B5555C /* FindPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPasswordVC.m; sourceTree = "<group>"; };
 		9449430B1D5C320200AD2B00 /* ZYKeyboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYKeyboardUtil.h; sourceTree = "<group>"; };
 		9449430C1D5C320200AD2B00 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
 		9490C3E11D63F66400988649 /* AssetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetView.h; sourceTree = "<group>"; };
@@ -744,37 +744,6 @@
 			children = (
 				1E7527721D52029700AEDEC0 /* ComplainAlertView.h */,
 				1E7527731D52029700AEDEC0 /* ComplainAlertView.m */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		1E42BB5C1D49DD3F0021DA01 /* loginView */ = {
-			isa = PBXGroup;
-			children = (
-				1E42BB5E1D49DD820021DA01 /* View */,
-				1E42BB5D1D49DD7A0021DA01 /* Controller */,
-			);
-			name = loginView;
-			sourceTree = "<group>";
-		};
-		1E42BB5D1D49DD7A0021DA01 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1E0489EB1D48818B00D6B0CC /* LoginViewController.h */,
-				1E0489EC1D48818B00D6B0CC /* LoginViewController.m */,
-				9437B8791D7161A700B5555C /* FindPasswordVC.h */,
-				9437B87A1D7161A700B5555C /* FindPasswordVC.m */,
-			);
-			name = Controller;
-			sourceTree = "<group>";
-		};
-		1E42BB5E1D49DD820021DA01 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1E42BB531D498DEE0021DA01 /* userAndPassWordTextField.h */,
-				1E42BB541D498DEE0021DA01 /* userAndPassWordTextField.m */,
-				1E42BB561D4994E30021DA01 /* BlueCheckButton.h */,
-				1E42BB571D4994E30021DA01 /* BlueCheckButton.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -947,6 +916,21 @@
 				1E8E8F2F1D66567A003D8CBC /* UIView+TYAutoLayout.m */,
 			);
 			path = TYAlertController;
+			sourceTree = "<group>";
+		};
+		1ED91EEC1D7D7A7500F91460 /* loginView */ = {
+			isa = PBXGroup;
+			children = (
+				1ED91EED1D7D7A7500F91460 /* BlueCheckButton.h */,
+				1ED91EEE1D7D7A7500F91460 /* BlueCheckButton.m */,
+				1ED91EEF1D7D7A7500F91460 /* FindPasswordVC.h */,
+				1ED91EF01D7D7A7500F91460 /* FindPasswordVC.m */,
+				1ED91EF11D7D7A7500F91460 /* LoginViewController.h */,
+				1ED91EF21D7D7A7500F91460 /* LoginViewController.m */,
+				1ED91EF31D7D7A7500F91460 /* userAndPassWordTextField.h */,
+				1ED91EF41D7D7A7500F91460 /* userAndPassWordTextField.m */,
+			);
+			path = loginView;
 			sourceTree = "<group>";
 		};
 		1EE2841A1D4D0358008D5305 /* Pay */ = {
@@ -1199,12 +1183,12 @@
 		5B2571541D4710AD00CB4167 /* OtherController */ = {
 			isa = PBXGroup;
 			children = (
+				1ED91EEC1D7D7A7500F91460 /* loginView */,
 				1EE284261D4D05B4008D5305 /* Suggest */,
 				1EE284201D4D04FB008D5305 /* Proclamation */,
 				1EE2841A1D4D0358008D5305 /* Pay */,
 				1E3BA3BA1D4B754400633D0B /* Complain */,
 				1E42BB5F1D49E3D80021DA01 /* PersonInfo */,
-				1E42BB5C1D49DD3F0021DA01 /* loginView */,
 				1E7527491D519A8500AEDEC0 /* AlertView.h */,
 				1E75274A1D519A8500AEDEC0 /* AlertView.m */,
 				1E911BDB1D59A6DE006F15C6 /* AlertTableView2.h */,
@@ -1918,6 +1902,7 @@
 				5B25717B1D47110B00CB4167 /* NSDate+Extension.m in Sources */,
 				790FBEBE1D5B726100C00509 /* DropMenuTableView.m in Sources */,
 				94300F401D684DC80037546A /* ZLPhotoPickerBrowserPhotoView.m in Sources */,
+				1ED91EF81D7D7A7500F91460 /* userAndPassWordTextField.m in Sources */,
 				5B25717A1D47110B00CB4167 /* NSArray+Extension.m in Sources */,
 				5BED6BBE1D49964800C137C5 /* FeeHistoryVO.m in Sources */,
 				5B2571E11D4716EE00CB4167 /* AFSecurityPolicy.m in Sources */,
@@ -1941,10 +1926,10 @@
 				5B2571851D47110B00CB4167 /* UIImage+ScreenShot.m in Sources */,
 				1E3BA3911D4AFF2B00633D0B /* PersonInfoLabel.m in Sources */,
 				798C24EC1D6894580078D1D9 /* RemoteImageSize.m in Sources */,
+				1ED91EF61D7D7A7500F91460 /* FindPasswordVC.m in Sources */,
 				7928242F1D544130001764EB /* AlertEstateTableView.m in Sources */,
 				1E60484A1D4D0E51007CDE32 /* ProclamationTableViewCelll.m in Sources */,
 				94300F411D684DC80037546A /* ZLPhotoPickerCustomToolBarView.m in Sources */,
-				9437B87B1D7161A700B5555C /* FindPasswordVC.m in Sources */,
 				5B197EFF1D48A47800B95DE5 /* ComplaintVO.m in Sources */,
 				5B2571791D47110B00CB4167 /* Foundation+Log.m in Sources */,
 				94300F371D684DC80037546A /* ZLCameraImageView.m in Sources */,
@@ -1956,7 +1941,6 @@
 				94F7CE801D6149D90034E9FC /* BannerNotice.m in Sources */,
 				5B25717C1D47110B00CB4167 /* NSDate+Helper.m in Sources */,
 				1E7527B41D52349F00AEDEC0 /* MJRefreshNormalHeader.m in Sources */,
-				1E0489ED1D48818B00D6B0CC /* LoginViewController.m in Sources */,
 				79F2B6B81D4E21D600AA94E0 /* RecommandBussnessListVC.m in Sources */,
 				5B2572261D47177B00CB4167 /* UIImage+MultiFormat.m in Sources */,
 				5B25718B1D47120700CB4167 /* MainVC.m in Sources */,
@@ -2058,7 +2042,6 @@
 				5B3631F91D4AED8100D276D1 /* AddRepairVO.m in Sources */,
 				1E3BA3BF1D4B759C00633D0B /* ComplainViewController.m in Sources */,
 				5BFFCE1D1D41B9A30066B1B9 /* AppDelegate.m in Sources */,
-				1E42BB551D498DEE0021DA01 /* userAndPassWordTextField.m in Sources */,
 				7928242B1D541D8F001764EB /* WantRepairTableView2.m in Sources */,
 				1E8E8F381D66567A003D8CBC /* TYBaseAnimation.m in Sources */,
 				94300F391D684DC80037546A /* ZLCameraViewController.m in Sources */,
@@ -2072,6 +2055,8 @@
 				797B23421D64C31B0033903C /* KRVideoPlayerController.m in Sources */,
 				1E7527B81D52349F00AEDEC0 /* NSBundle+MJRefresh.m in Sources */,
 				1E7527AD1D52349F00AEDEC0 /* MJRefreshAutoGifFooter.m in Sources */,
+				1ED91EF51D7D7A7500F91460 /* BlueCheckButton.m in Sources */,
+				1ED91EF71D7D7A7500F91460 /* LoginViewController.m in Sources */,
 				7905065D1D4CE51A00072AAC /* UploadCell.m in Sources */,
 				5B2572291D47177B00CB4167 /* UIImageView+WebCache.m in Sources */,
 				1E7527A91D52349F00AEDEC0 /* MJRefreshBackFooter.m in Sources */,
@@ -2091,7 +2076,6 @@
 				5B197F081D48AD0300B95DE5 /* MerchantVO.m in Sources */,
 				1E8E8F361D66567A003D8CBC /* TYAlertScaleFadeAnimation.m in Sources */,
 				5B25721F1D47177B00CB4167 /* SDWebImageDecoder.m in Sources */,
-				1E42BB581D4994E30021DA01 /* BlueCheckButton.m in Sources */,
 				94300F3D1D684DC80037546A /* ZLPhotoPickerBrowserViewController.m in Sources */,
 				5B25721E1D47177B00CB4167 /* SDWebImageCompat.m in Sources */,
 				1E7527AF1D52349F00AEDEC0 /* MJRefreshAutoStateFooter.m in Sources */,

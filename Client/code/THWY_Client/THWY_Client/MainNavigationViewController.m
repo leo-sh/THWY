@@ -42,7 +42,7 @@
         ProclamationInfoViewController *detail = [[ProclamationInfoViewController alloc] init];
         detail.proclamationId = Id;
         detail.type = 1;
-        [self.navigationController pushViewController:detail animated:YES];
+        [self pushViewController:detail animated:YES];
         
     }else if ([pushType isEqualToString:@"7"])
     {
