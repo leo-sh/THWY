@@ -472,7 +472,8 @@
     view.reviseStatu = YES;
     NSInteger section = sender.superview.tag - 300;
     
-    [view setTitle:[self.data[section] title]Content:[self.data[section] content] typeId:[self.data[section] Id] docId:[self.data[section] doc_type_id]];
+    NSLog(@"doc_type_id%@,Id%@",[self.data[section] doc_type_id],[self.data[section] Id]);
+    [view setTitle:[self.data[section] title]Content:[self.data[section] content] typeId:[self.data[section] doc_type_id] docId:[self.data[section] Id]];
     
     [view showInWindow];
 }
