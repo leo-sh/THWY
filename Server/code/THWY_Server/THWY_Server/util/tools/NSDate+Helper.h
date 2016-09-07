@@ -63,4 +63,6 @@
 
 + (NSString *)currentYear;
 
++ (NSString *)countDownStringFromTimeInterval:(NSInteger)timeinterval;
+
 @end

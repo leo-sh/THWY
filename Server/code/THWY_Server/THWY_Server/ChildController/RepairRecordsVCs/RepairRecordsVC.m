@@ -412,25 +412,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    return 314.0;
-    
-//    if (indexPath.row<self.repairDataArray.count) {
-//        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:16.0],NSFontAttributeName, nil];
-//        CGRect rect = [[self.repairDataArray[indexPath.row] detail] boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-//        
-//        CGRect rect2 = [[self.repairDataArray[indexPath.row] classes_str] boundingRectWithSize:CGSizeMake(320/375.0*My_ScreenW, 4000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-//        if ([[UIDevice platformString] isEqualToString:@"iPhone 4s"]) {
-//            return 245.0/667*My_ScreenH + rect.size.height +rect2.size.height+20;
-//        }else if([[UIDevice platformString] isEqualToString:@"iPhone 5s"] || [[UIDevice platformString] isEqualToString:@"iPhone 5"]){
-//            return 250.0/667*My_ScreenH + rect.size.height +rect2.size.height;
-//        }else if([[UIDevice platformString] isEqualToString:@"iPhone 6s"] || [[UIDevice platformString] isEqualToString:@"iPhone 6"]){
-//            return 240.0/667*My_ScreenH + rect.size.height +rect2.size.height;
-//        }else{
-//            return 220.0/667*My_ScreenH + rect.size.height +rect2.size.height;
-//        }
-//    }
-//    return 0;
-    
+    RepairVO *repair = self.repairDataArray[indexPath.row];
+    if ([[repair kb] intValue] == 3) {
+        if ([[repair st] intValue] == 0) {
+            return 48.0*8;
+        }else{
+            return 48.0*7;
+        }
+    }else{
+        return 48.0*6;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

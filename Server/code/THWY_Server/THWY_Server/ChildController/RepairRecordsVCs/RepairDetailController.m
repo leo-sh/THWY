@@ -151,7 +151,15 @@
             break;
         }
         case 1:{
-            return 3;
+            if ([self.repairVO.kb intValue] == 3) {
+                if ([self.repairVO.st intValue] == 0) {
+                    return 5;
+                }else{
+                    return 4;
+                }
+            }else{
+                return 3;
+            }
             break;
         }
         case 2:{
@@ -250,14 +258,37 @@
             return 0;
         }
 
-    }else if (indexPath.section == 1 && indexPath.row == 1){
+    }else if (indexPath.section == 1){
+        CGFloat height = 0;
         if (self.repairVO.classes_str && ![self.repairVO.classes_str isEqualToString:@""]) {
-            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT),NSFontAttributeName, nil];
+            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:15.0],NSFontAttributeName, nil];
             CGRect rect = [self.repairVO.classes_str boundingRectWithSize:CGSizeMake(self.tableView.width*3.0/4, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-            return rect.size.height+20;
+            height = rect.size.height+20;
         }else{
-            return 44;
+            height = 44;
         }
+        if ([self.repairVO.kb intValue] == 3) {
+            if ([self.repairVO.st intValue] == 0) {
+                if (indexPath.row == 3) {
+                    return height;
+                }else{
+                    return 44;
+                }
+            }else{
+                if (indexPath.row == 2) {
+                    return height;
+                }else{
+                    return 44;
+                }
+            }
+        }else{
+            if (indexPath.row == 1) {
+                return height;
+            }else{
+                return 44;
+            }
+        }
+        
     }else{
         return 44;
     }
