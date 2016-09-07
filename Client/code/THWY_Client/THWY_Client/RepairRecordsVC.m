@@ -65,6 +65,7 @@
             if (self.page != 0) {
                 self.page--;
             }
+            
         }else {
 
             if (list && list.count == 0 && self.page != 0) {
@@ -74,35 +75,30 @@
             }
             
             for (RepairVO *model in list) {
-//                NSLog(@"%@", model.Id);
+//                NSLog(@"%@\n", model.Id);
                 [self.repairDataArray addObject:model];
             }
             
-            if (self.switchFlag == 1) {
-                
-                if (self.page == 0) {
-                    self.tableView.contentOffset = CGPointMake(0, 0);
-                }
-                
-                [self.tableView reloadData];
-                
-            }else if (self.switchFlag == 2){
-                
-                if (self.page == 0) {
-                    self.tableView2.contentOffset = CGPointMake(0, 0);
-                }
-                
-                [self.tableView2 reloadData];
-            }
     
             [SVProgressHUD dismiss];
 
         }
-      
         if (self.switchFlag == 1) {
+            
+            if (self.page == 0) {
+                self.tableView.contentOffset = CGPointMake(0, 0);
+            }
+            
+            [self.tableView reloadData];
             [self.tableView.mj_header endRefreshing];
-
-        }else{
+            
+        }else if (self.switchFlag == 2){
+            
+            if (self.page == 0) {
+                self.tableView2.contentOffset = CGPointMake(0, 0);
+            }
+            
+            [self.tableView2 reloadData];
             [self.tableView2.mj_header endRefreshing];
         }
         

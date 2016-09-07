@@ -352,7 +352,8 @@
         [self.line7 setBackgroundColor:My_LineColor];
         [self.contentView addSubview:self.line7];
         [self.line7 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.and.right.mas_equalTo(self.line);
+            make.left.equalTo(self.contentView.mas_left);
+            make.right.equalTo(self.contentView.mas_right);
             make.height.mas_equalTo(0.5);
             make.bottom.mas_equalTo(self.timerDetailLabel.mas_bottom);
         }];
@@ -465,12 +466,18 @@
                 make.height.mas_equalTo(rowHeight);
             }];
             //预约时间
-            self.orderTimeLabel.text = [NSString stringDateFromTimeInterval:[self.model.st_0_time integerValue] withFormat:nil];
+            self.orderTimeLabel.text = [NSString stringDateFromTimeInterval:[self.model.order_ts integerValue] withFormat:nil];
             //倒计时
             //启动定时器
-            NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.model.st_0_time integerValue]];
-            NSTimeInterval timeinteval = -[date timeIntervalSinceNow];
-            self.timerDetailLabel.text = [NSDate countDownStringFromTimeInterval:timeinteval];
+            NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.model.order_ts integerValue]];
+            NSTimeInterval timeinteval = [date timeIntervalSinceNow];
+            if (timeinteval <= 0) {
+                self.timerDetailLabel.text = [NSString stringWithFormat:@"已超时 %@", [NSDate countDownStringFromTimeInterval:timeinteval]];
+                self.timerDetailLabel.textColor = [UIColor redColor];
+            }else{
+                self.timerDetailLabel.text = [NSDate countDownStringFromTimeInterval:timeinteval];
+                self.timerDetailLabel.textColor = [UIColor darkGrayColor];
+            }
             if (self.timer) {
                 [self.timer invalidate];
             }
@@ -489,18 +496,20 @@
             self.orderTimeLabel.text = [NSString stringDateFromTimeInterval:0 withFormat:nil];
         }
     }
+    [self.contentView layoutIfNeeded];
 }
 
 
 - (void)runCircle:(NSTimer *)timer{
     
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.model.st_0_time integerValue]];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.model.order_ts integerValue]];
     NSTimeInterval timeinteval = [date timeIntervalSinceNow];
     if (timeinteval <= 0) {
-        self.timerDetailLabel.text = @"已超时";
-        [timer invalidate];
+        self.timerDetailLabel.text = [NSString stringWithFormat:@"已超时 %@", [NSDate countDownStringFromTimeInterval:timeinteval]];
+        self.timerDetailLabel.textColor = [UIColor redColor];
     }else{
         self.timerDetailLabel.text = [NSDate countDownStringFromTimeInterval:timeinteval];
+        self.timerDetailLabel.textColor = [UIColor darkGrayColor];
     }
     
 }

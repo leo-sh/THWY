@@ -36,7 +36,7 @@
         self.contentView.backgroundColor = [UIColor clearColor];
         self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
         self.leftLabel = [[UILabel alloc] init];
-        self.leftLabel.text = @"预约时间:";
+        self.leftLabel.text = @"报修时间:";
         self.detailLabel = [[UILabel alloc] init];
         [self setLabelAttributes:self.leftLabel with:0];
         [self setLabelAttributes:self.detailLabel with:-1];
@@ -72,9 +72,9 @@
 
 - (void)loadDataWithModel:(RepairVO *)model indexpath:(NSIndexPath *)indexpath{
     self.model = model;
-    self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
     switch (indexpath.section) {
         case 0:{
+            self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
             switch (indexpath.row) {
                 case 0:{
                     self.detailLabel.text = model.real_name;
@@ -130,6 +130,7 @@
         }
         case 1:{
             if (indexpath.row == 0) {
+                self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
                 self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_0_time intValue] withFormat:nil];
             }else{
                 if ([model.kb intValue] == 3) {
@@ -137,7 +138,7 @@
                         switch (indexpath.row) {
                             case 1:{
                                 self.leftLabel.text = @"预约时间:";
-                                self.detailLabel.text = [NSString stringDateFromTimeInterval:0 withFormat:nil];
+                                self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.order_ts integerValue] withFormat:nil];
                                 break;
                             }
                             case 2:{
@@ -147,12 +148,19 @@
                                     make.centerX.and.centerY.mas_equalTo(self.leftLabel);
                                     make.width.and.height.mas_equalTo(30.0);
                                 }];
-                                self.leftLabel.text = @"";
-                                self.detailLabel.text = @"";
+                                
+                                self.leftLabel.textColor = [UIColor clearColor];
+                                NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.model.order_ts integerValue]];
+                                NSTimeInterval timeinteval = [date timeIntervalSinceNow];
+                                if (timeinteval <= 0) {
+                                    self.detailLabel.text = [NSString stringWithFormat:@"已超时 %@", [NSDate countDownStringFromTimeInterval:timeinteval]];
+                                    self.detailLabel.textColor = [UIColor redColor];
+                                }else{
+                                    self.detailLabel.text = [NSDate countDownStringFromTimeInterval:timeinteval];
+                                    self.detailLabel.textColor = [UIColor darkGrayColor];
+                                }
+
                                 //启动定时器
-                                NSDate *date = [NSDate dateWithTimeIntervalSince1970:[model.st_0_time integerValue]];
-                                NSTimeInterval timeinteval = -[date timeIntervalSinceNow];
-                                self.detailLabel.text = [NSDate countDownStringFromTimeInterval:timeinteval];
                                 if (self.timer) {
                                     [self.timer invalidate];
                                 }
@@ -192,7 +200,7 @@
                         switch (indexpath.row) {
                             case 1:{
                                 self.leftLabel.text = @"预约时间:";
-                                self.detailLabel.text = [NSString stringDateFromTimeInterval:0 withFormat:nil];
+                                self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.order_ts integerValue] withFormat:nil];
                                 break;
                             }
                             case 2:{
@@ -222,9 +230,10 @@
                         }
                     }
                 }else{
+                    
+                    self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
                     switch (indexpath.row) {
                         case 1:{
-                            
                             if ( model.classes_str && ![model.classes_str isEqualToString:@""]) {
                                 self.detailLabel.numberOfLines = 0;
                                 self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -255,6 +264,7 @@
             break;
         }
         case 2:{
+            self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
             NSMutableString *name = [NSMutableString stringWithString:@""];
             NSMutableString *cell = [NSMutableString stringWithString:@""];
             for (UserVO *user in model.repair_task) {
@@ -280,6 +290,7 @@
             break;
         }
         case 3:{
+            self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
             switch (indexpath.row) {
                 case 0:{
                     NSInteger time = [model.st_1_time integerValue];
@@ -345,14 +356,16 @@
 
 - (void)runCircle:(NSTimer *)timer{
     
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.model.st_0_time integerValue]];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.model.order_ts integerValue]];
     NSTimeInterval timeinteval = [date timeIntervalSinceNow];
     if (timeinteval <= 0) {
-        self.detailLabel.text = @"已超时";
-        [timer invalidate];
+        self.detailLabel.text = [NSString stringWithFormat:@"已超时 %@", [NSDate countDownStringFromTimeInterval:timeinteval]];
+        self.detailLabel.textColor = [UIColor redColor];
     }else{
         self.detailLabel.text = [NSDate countDownStringFromTimeInterval:timeinteval];
+        self.detailLabel.textColor = [UIColor darkGrayColor];
     }
+    
 }
 
 - (NSArray *)labelNames{

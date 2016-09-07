@@ -305,18 +305,27 @@ static NSDateFormatter *_displayFormatter = nil;
     return [NSString stringWithFormat:@"%ld", (long)comps.year];
 }
 
-+ (NSString *)countDownStringFromTimeInterval:(NSUInteger)timeinterval{
++ (NSString *)countDownStringFromTimeInterval:(NSInteger)timeinterval{
     
     NSMutableString *string = [NSMutableString string];
-    NSUInteger days = timeinterval/(24*60*60);
-    NSUInteger hours = (timeinterval-days*24*60*60)/(60*60);
-    NSUInteger minus = (timeinterval-days*24*60*60-hours*60*60)/60;
+    if(timeinterval<=0){
+        [string appendFormat:@"+ "];
+        timeinterval *= -1;
+    }else{
+        [string appendFormat:@"- "];
+    }
+    
+    NSInteger days = timeinterval/(24*60*60);
+    NSInteger hours = (timeinterval-days*24*60*60)/(60*60);
+    NSInteger minus = (timeinterval-days*24*60*60-hours*60*60)/60;
     NSInteger seconds = timeinterval%60;
+    
+    
     if (days>0) {
         [string appendFormat:@"%ld天", days];
     }
     
-    [string appendFormat:@"%2ld:%2ld:%2ld", hours, minus, seconds];
+    [string appendFormat:@"%02ld时:%02ld分:%02ld秒", hours, minus, seconds];
     
     return string;
 }

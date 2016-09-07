@@ -69,6 +69,6 @@
  *
  *  @return 倒计时字符串
  */
-+ (NSString *)countDownStringFromTimeInterval:(NSUInteger)timeinterval;
++ (NSString *)countDownStringFromTimeInterval:(NSInteger)timeinterval;
 
 @end
