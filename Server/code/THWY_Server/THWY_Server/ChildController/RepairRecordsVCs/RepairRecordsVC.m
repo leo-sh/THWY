@@ -78,33 +78,29 @@
                     [self.repairDataArray addObject:model];
                 }
                 
-                if (self.switchFlag == 1) {
-                    
-                    if (self.page == 0) {
-                        self.tableView.contentOffset = CGPointMake(0, 0);
-                    }
-                    
-                    [self.tableView reloadData];
-                    
-                }else if (self.switchFlag == 2){
-                    
-                    if (self.page == 0) {
-                        self.tableView2.contentOffset = CGPointMake(0, 0);
-                    }
-                    
-                    [self.tableView2 reloadData];
-                }
                 
                 [SVProgressHUD dismiss];
                 //            [SVProgressHUD hudHideWithSuccess:@"加载完毕"];
             }
-            
             if (self.switchFlag == 1) {
+                
+                if (self.page == 0) {
+                    self.tableView.contentOffset = CGPointMake(0, 0);
+                }
+                
+                [self.tableView reloadData];
                 [self.tableView.mj_header endRefreshing];
-            }else{
+                
+            }else if (self.switchFlag == 2){
+                
+                if (self.page == 0) {
+                    self.tableView2.contentOffset = CGPointMake(0, 0);
+                }
+                
+                [self.tableView2 reloadData];
                 [self.tableView2.mj_header endRefreshing];
             }
-
+            
         }];
     }else{
         [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];

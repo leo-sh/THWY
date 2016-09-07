@@ -60,7 +60,6 @@
     if ([UDManager getUD].getUser) {
         UserVO *user = [UDManager getUD].getUser;
         if (user.photo.length > 0) {
-            
             [self.headImage sd_setImageWithURL:[NSURL URLWithString: user.photo] placeholderImage:[UIImage imageNamed:@"头像1"]];
         }else
         {

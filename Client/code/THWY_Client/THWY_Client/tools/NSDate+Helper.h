@@ -62,5 +62,13 @@
 + (NSString *)dbFormatString;
 
 + (NSString *)currentYear;
+/**
+ *  @brief 根据时间差返回x天 hh:mm:ss形式的倒计时字符串
+ *
+ *  @param timeinterval 时间差
+ *
+ *  @return 倒计时字符串
+ */
++ (NSString *)countDownStringFromTimeInterval:(NSInteger)timeinterval;
 
 @end

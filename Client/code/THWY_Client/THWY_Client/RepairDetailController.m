@@ -53,7 +53,7 @@
 //    [self.view addSubview:imageView];
     
     //tableView
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(topMargrin, topMargrin+2, My_ScreenW-topMargrin*2.0, My_ScreenH-topMargrin*2.0-64) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(topMargrin, topMargrin+2, My_ScreenW-topMargrin*2.0, My_ScreenH-topMargrin*2.0-64) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -63,6 +63,9 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.tableView];
 
+    self.tableView.sectionFooterHeight = 0;
+    self.tableView.sectionHeaderHeight = 0;
+    
     [self.tableView registerClass:[RecordsDetailCell class] forCellReuseIdentifier:@"RecordsDetailCell"];
     [self.tableView registerClass:[RecordImageCell class] forCellReuseIdentifier:@"RecordImageCell"];
     [self.tableView registerClass:[RecordVideoCell class] forCellReuseIdentifier:@"RecordVideoCell"];
@@ -80,7 +83,15 @@
             break;
         }
         case 1:{
-            return 3;
+            if ([self.model.kb intValue] == 3) {
+                if ([self.model._st intValue] == 0) {
+                    return 5;
+                }else{
+                    return 4;
+                }
+            }else{
+                return 3;
+            }
             break;
         }
         case 2:{
@@ -137,22 +148,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 4) {
-        for (id obj in tableView.visibleCells) {
-            if ([obj isKindOfClass:[RecordImageCell class]]) {
-                [obj removeFromSuperview];
-            }
-        }
         RecordImageCell *cell = [[RecordImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RecordImageCell"];
         cell.vc = self;
         cell.tableView = tableView;
         [cell loadDataWithModel:self.model];
         return cell;
     }else if (indexPath.section == 5){
-        for (id obj in tableView.visibleCells) {
-            if ([obj isKindOfClass:[RecordVideoCell class]]) {
-                [obj removeFromSuperview];
-            }
-        }
         RecordVideoCell *cell = [[RecordVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RecordVideoCell"];
         [cell loadDataWithModel:self.model];
         return cell;

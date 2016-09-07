@@ -53,7 +53,8 @@
             make.left.mas_equalTo(self.leftLabel.mas_left);
             make.right.mas_equalTo(self.contentView.mas_right).offset(-topMargin);
             make.top.mas_equalTo(self.leftLabel.mas_bottom).offset(topMargin);
-            make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-topMargin);
+            make.height.mas_equalTo(self.picImage.image.size.height);
+//            make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-topMargin);
         }];
         
     }
@@ -84,10 +85,14 @@
             self.imageHeight = (self.tableView.width-2*topMargin)*size.height/size.width;
             
             [(RepairDetailController *)self.vc setImageHeight:self.imageHeight];
-
+            [self.picImage mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo((self.tableView.width-2*topMargin)*size.height/size.width);
+            }];
             [self layoutIfNeeded];
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:4] withRowAnimation:UITableViewRowAnimationAutomatic];
-            
+            if (cacheType == SDImageCacheTypeNone) {
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:4] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+         
         }];
         
     }

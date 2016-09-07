@@ -8,7 +8,7 @@
 
 #import "AlertTableView.h"
 #import "RepairClassVO.h"
-
+#import "AlertBtn.h"
 @interface AlertTableView ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *flags;
@@ -27,13 +27,13 @@
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, height)];
     headerView.backgroundColor = [UIColor whiteColor];
-    UIButton *confirm = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, headerView.height-10, headerView.height-10)];
-    [confirm setImage:[UIImage scaleImage:[UIImage imageNamed:@"弹出页-提交"] toScale:0.5 ] forState:UIControlStateNormal];
+    AlertBtn *confirm = [[AlertBtn alloc] initWithFrame:CGRectMake(5, 5, headerView.height-10, headerView.height-10)];
+    [confirm setImage:[UIImage scaleImage:[UIImage imageNamed:@"弹出页-提交"] toScale:1] forState:UIControlStateNormal];
     [confirm addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:confirm];
     
-    UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(self.width-5-confirm.width, 5, headerView.height-10, headerView.height-10)];
-    [cancel setImage:[UIImage scaleImage:[UIImage imageNamed:@"弹出页-关闭"] toScale:0.5] forState:UIControlStateNormal];
+    AlertBtn *cancel = [[AlertBtn alloc] initWithFrame:CGRectMake(self.width-5-confirm.width, 5, headerView.height-10, headerView.height-10)];
+    [cancel setImage:[UIImage scaleImage:[UIImage imageNamed:@"弹出页-关闭"] toScale:1] forState:UIControlStateNormal];
     [cancel addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:cancel];
     
