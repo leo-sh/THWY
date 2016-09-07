@@ -34,13 +34,13 @@
         CGFloat heighAndWidth = 50;
         
         self.leftBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, heighAndWidth, heighAndWidth)];
-        [self.leftBtn setImage:[UIImage imageNamed:@"√"] forState:UIControlStateNormal];
+        [self.leftBtn setImage:[UIImage imageNamed:@"弹出页-提交"] forState:UIControlStateNormal];
         self.leftBtn.contentEdgeInsets = UIEdgeInsetsMake(15, 14.5,  15 , 14.5);
         [self addSubview:self.leftBtn];
         [self.leftBtn addTarget:self action:@selector(clickLeft) forControlEvents:UIControlEventTouchUpInside];
         self.rightBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.right - heighAndWidth - 10, 0, heighAndWidth, heighAndWidth)];
         
-        [self.rightBtn setImage:[UIImage imageNamed:@"X"] forState:UIControlStateNormal];
+        [self.rightBtn setImage:[UIImage imageNamed:@"弹出页-关闭"] forState:UIControlStateNormal];
         //        self.rightBtn.backgroundColor = [UIColor blackColor];
         
         self.rightBtn.contentEdgeInsets = UIEdgeInsetsMake(15, 14.5,15, 14.5);
