@@ -150,6 +150,7 @@
 		790FBEBE1D5B726100C00509 /* DropMenuTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 790FBEBD1D5B726100C00509 /* DropMenuTableView.m */; };
 		791B4E321D64B84A00AF9371 /* RecordVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E311D64B84A00AF9371 /* RecordVideoCell.m */; };
 		791B4E341D64BCA400AF9371 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 791B4E331D64BCA400AF9371 /* MediaPlayer.framework */; };
+		79259CDE1D7FE27F00B2031F /* AlertBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 79259CDD1D7FE27F00B2031F /* AlertBtn.m */; };
 		79270C3D1D6174B300E29568 /* MerchantTypeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270C3C1D6174B300E29568 /* MerchantTypeTableView.m */; };
 		79270C401D61875900E29568 /* BussnessSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270C3F1D61875900E29568 /* BussnessSelectButton.m */; };
 		792824281D541D74001764EB /* WantRepairTableView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 792824271D541D74001764EB /* WantRepairTableView1.m */; };
@@ -536,6 +537,8 @@
 		791B4E301D64B84A00AF9371 /* RecordVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordVideoCell.h; sourceTree = "<group>"; };
 		791B4E311D64B84A00AF9371 /* RecordVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordVideoCell.m; sourceTree = "<group>"; };
 		791B4E331D64BCA400AF9371 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		79259CDC1D7FE27F00B2031F /* AlertBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertBtn.h; sourceTree = "<group>"; };
+		79259CDD1D7FE27F00B2031F /* AlertBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertBtn.m; sourceTree = "<group>"; };
 		79270C3B1D6174B300E29568 /* MerchantTypeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantTypeTableView.h; sourceTree = "<group>"; };
 		79270C3C1D6174B300E29568 /* MerchantTypeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantTypeTableView.m; sourceTree = "<group>"; };
 		79270C3E1D61875900E29568 /* BussnessSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BussnessSelectButton.h; sourceTree = "<group>"; };
@@ -1417,6 +1420,8 @@
 				798C24EE1D68B3740078D1D9 /* MyDatePickerView.m */,
 				798C24F01D68DC640078D1D9 /* MyTimerPickerView.h */,
 				798C24F11D68DC640078D1D9 /* MyTimerPickerView.m */,
+				79259CDC1D7FE27F00B2031F /* AlertBtn.h */,
+				79259CDD1D7FE27F00B2031F /* AlertBtn.m */,
 			);
 			name = WantRepaireViews;
 			sourceTree = "<group>";
@@ -2083,6 +2088,7 @@
 				1EE2842B1D4D05D1008D5305 /* SuggestViewController.m in Sources */,
 				5B2572281D47177B00CB4167 /* UIImageView+HighlightedWebCache.m in Sources */,
 				94300F3E1D684DC80037546A /* ZLPhotoPickerBrowserPhotoImageView.m in Sources */,
+				79259CDE1D7FE27F00B2031F /* AlertBtn.m in Sources */,
 				94D708931D4C68EE00C5009D /* ComplaintStateVO.m in Sources */,
 				7932967C1D51BCFF000FD426 /* RepairDetailController.m in Sources */,
 				792A24621D5300D10005B085 /* RecordsDetailCell.m in Sources */,
