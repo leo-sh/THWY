@@ -135,6 +135,7 @@
                 self.page --;
             }
             else if (list.count == 0 && errorMsg == nil) {
+                [self.tableView reloadData];
                 [self.tableView.mj_footer endRefreshing];
                 [SVProgressHUD dismiss];
             }
