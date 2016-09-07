@@ -84,9 +84,13 @@
             self.imageHeight = (self.tableView.width-2*topMargin)*size.height/size.width;
             
             [(RepairDetailController *)self.vc setImageHeight:self.imageHeight];
-
-            [self layoutIfNeeded];
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:4] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            [self.picImage mas_updateConstraints:^(MASConstraintMaker *make) {
+//                make.height.mas_equalTo((self.tableView.width-2*topMargin)*size.height/size.width);
+//            }];
+            if (cacheType == 0) {
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:4] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self layoutIfNeeded];
+            }
             
         }];
         

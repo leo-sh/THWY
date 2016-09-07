@@ -95,8 +95,7 @@
                 make.height.mas_equalTo((self.tableView.width-2*topMargin)*size.height/size.width);
             }];
             [self layoutIfNeeded];
-            if (cacheType == 2) {
-            }else{
+            if (cacheType == 0) {
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:4]] withRowAnimation:UITableViewRowAnimationAutomatic];
             }
 

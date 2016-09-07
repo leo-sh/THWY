@@ -60,6 +60,7 @@
 
 @property (strong, nonatomic) UILabel *line5;
 
+@property (strong, nonatomic) NSTimer *timer;
 
 @end
 
@@ -302,8 +303,9 @@
         [self setLabelAttributes:self.orderTime with:0];
         [self.contentView addSubview:self.orderTime];
         [self.orderTime mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.houseSource.mas_left);
-            make.top.mas_equalTo(self.repairTime.mas_bottom);
+            make.left.mas_equalTo(self.repairTime.mas_left);
+            make.top.mas_equalTo(self.line5.mas_bottom);
+            make.width.mas_equalTo(self.repairTime.mas_width);
             make.height.mas_equalTo(rowHeight);
         }];
         
@@ -341,8 +343,8 @@
         [self.timerImage mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.timerDetailLabel.mas_centerY);
             make.centerX.mas_equalTo(self.orderTime.mas_centerX);
-            make.width.mas_equalTo(35.0);
-            make.height.mas_equalTo(35.0);
+            make.width.mas_equalTo(30.0);
+            make.height.mas_equalTo(30.0);
         }];
         
         
@@ -463,8 +465,17 @@
                 make.height.mas_equalTo(rowHeight);
             }];
             //预约时间
-            self.orderTime.text = [NSString stringDateFromTimeInterval:0 withFormat:nil];
+            self.orderTimeLabel.text = [NSString stringDateFromTimeInterval:[self.model.st_0_time integerValue] withFormat:nil];
             //倒计时
+            //启动定时器
+            NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.model.st_0_time integerValue]];
+            NSTimeInterval timeinteval = -[date timeIntervalSinceNow];
+            self.timerDetailLabel.text = [NSDate countDownStringFromTimeInterval:timeinteval];
+            if (self.timer) {
+                [self.timer invalidate];
+            }
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(runCircle:) userInfo:nil repeats:YES];
+            [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
             
         }else{
             [self.orderTime mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -475,9 +486,23 @@
                 make.height.mas_equalTo(0);
             }];
             //预约时间
-            self.orderTime.text = [NSString stringDateFromTimeInterval:0 withFormat:nil];
+            self.orderTimeLabel.text = [NSString stringDateFromTimeInterval:0 withFormat:nil];
         }
     }
+}
+
+
+- (void)runCircle:(NSTimer *)timer{
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.model.st_0_time integerValue]];
+    NSTimeInterval timeinteval = [date timeIntervalSinceNow];
+    if (timeinteval <= 0) {
+        self.timerDetailLabel.text = @"已超时";
+        [timer invalidate];
+    }else{
+        self.timerDetailLabel.text = [NSDate countDownStringFromTimeInterval:timeinteval];
+    }
+    
 }
 
 - (void)callNumber{
@@ -521,6 +546,12 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)dealloc{
+    if (self.timer) {
+        [self.timer invalidate];
+    };
 }
 
 @end

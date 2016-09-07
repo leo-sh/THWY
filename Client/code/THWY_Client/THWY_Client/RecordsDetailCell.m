@@ -16,6 +16,10 @@
 @property (strong, nonatomic) UILabel *detailLabel;
 @property (strong, nonatomic) UILabel *line;
 
+@property (strong, nonatomic) NSTimer *timer;
+
+@property (strong, nonatomic) RepairVO *model;
+
 @end
 
 @implementation RecordsDetailCell
@@ -32,6 +36,7 @@
         self.contentView.backgroundColor = [UIColor clearColor];
         self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
         self.leftLabel = [[UILabel alloc] init];
+        self.leftLabel.text = @"预约时间:";
         self.detailLabel = [[UILabel alloc] init];
         [self setLabelAttributes:self.leftLabel with:0];
         [self setLabelAttributes:self.detailLabel with:-1];
@@ -66,6 +71,7 @@
 }
 
 - (void)loadDataWithModel:(RepairVO *)model indexpath:(NSIndexPath *)indexpath{
+    self.model = model;
     self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
     switch (indexpath.section) {
         case 0:{
@@ -135,8 +141,24 @@
                                 break;
                             }
                             case 2:{
-                                self.leftLabel.text = @"倒计时:";
+                                UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"daojishi"]];
+                                [self.leftLabel addSubview:icon];
+                                [icon mas_makeConstraints:^(MASConstraintMaker *make) {
+                                    make.centerX.and.centerY.mas_equalTo(self.leftLabel);
+                                    make.width.and.height.mas_equalTo(30.0);
+                                }];
+                                self.leftLabel.text = @"";
                                 self.detailLabel.text = @"";
+                                //启动定时器
+                                NSDate *date = [NSDate dateWithTimeIntervalSince1970:[model.st_0_time integerValue]];
+                                NSTimeInterval timeinteval = -[date timeIntervalSinceNow];
+                                self.detailLabel.text = [NSDate countDownStringFromTimeInterval:timeinteval];
+                                if (self.timer) {
+                                    [self.timer invalidate];
+                                }
+                                self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(runCircle:) userInfo:nil repeats:YES];
+                                [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+
                                 break;
                             }
                             case 3:{
@@ -321,6 +343,18 @@
     
 }
 
+- (void)runCircle:(NSTimer *)timer{
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.model.st_0_time integerValue]];
+    NSTimeInterval timeinteval = [date timeIntervalSinceNow];
+    if (timeinteval <= 0) {
+        self.detailLabel.text = @"已超时";
+        [timer invalidate];
+    }else{
+        self.detailLabel.text = [NSDate countDownStringFromTimeInterval:timeinteval];
+    }
+}
+
 - (NSArray *)labelNames{
     
     if (!_labelNames) {
@@ -337,6 +371,10 @@
     [super setSelected:NO animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)dealloc{
+    [self.timer invalidate];
 }
 
 @end
