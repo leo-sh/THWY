@@ -46,7 +46,7 @@
 
 @property (strong, nonatomic) UILabel *line6;
 
-@property (strong, nonatomic) UILabel *timerLabel;
+@property (strong, nonatomic) UIImageView *timerImage;
 @property (strong, nonatomic) UILabel *timerDetailLabel;
 
 @property (strong, nonatomic) UILabel *line7;
@@ -59,6 +59,7 @@
 @property (strong, nonatomic) UIWebView *phoneCallWebView;
 
 @property (strong, nonatomic) UILabel *line5;
+
 
 @end
 
@@ -124,7 +125,7 @@
         }];
         
         self.detail = [[UIButton alloc] init];
-        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_open"]  toScale:0.5] forState:UIControlStateNormal];
+        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_open"]  toScale:1] forState:UIControlStateNormal];
         [self.detail addTarget:self action:@selector(showDetail) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.detail];
         [self.detail mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -325,24 +326,25 @@
             make.bottom.mas_equalTo(self.orderTime.mas_bottom);
         }];
         
-        self.timerLabel = [UILabel new];
-        self.timerLabel.text = @"倒计时: ";
-        [self setLabelAttributes:self.timerLabel with:0];
-        [self.contentView addSubview:self.timerLabel];
-        [self.timerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.orderTime.mas_left);
-            make.top.mas_equalTo(self.orderTime.mas_bottom);
-            make.height.mas_equalTo(rowHeight);
-        }];
-        
         self.timerDetailLabel = [UILabel new];
         [self setLabelAttributes:self.timerDetailLabel with:0];
         [self.contentView addSubview:self.timerDetailLabel];
         [self.timerDetailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.timerLabel.mas_right);
-            make.centerY.mas_equalTo(self.timerLabel.mas_centerY);
-            make.height.mas_equalTo(self.timerLabel.mas_height);
+            make.left.mas_equalTo(self.orderTimeLabel.mas_left);
+            make.top.mas_equalTo(self.orderTimeLabel.mas_bottom);
+            make.height.mas_equalTo(self.orderTimeLabel.mas_height);
         }];
+        
+        self.timerImage = [UIImageView new];
+        [self.contentView addSubview:self.timerImage];
+        self.timerImage.image = [UIImage imageNamed:@"daojishi"];
+        [self.timerImage mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(self.timerDetailLabel.mas_centerY);
+            make.centerX.mas_equalTo(self.orderTime.mas_centerX);
+            make.width.mas_equalTo(35.0);
+            make.height.mas_equalTo(35.0);
+        }];
+        
         
         self.line7 = [UILabel new];
         [self.line7 setBackgroundColor:My_LineColor];
@@ -350,7 +352,7 @@
         [self.line7 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.and.right.mas_equalTo(self.line);
             make.height.mas_equalTo(0.5);
-            make.bottom.mas_equalTo(self.timerLabel.mas_bottom);
+            make.bottom.mas_equalTo(self.timerDetailLabel.mas_bottom);
         }];
         
         self.cellPhone = [[UILabel alloc] init];
@@ -360,7 +362,7 @@
         [self setLabelAttributes:self.cellPhone with:0];
         [self.cellPhone mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.houseSource.mas_left);
-            make.top.mas_equalTo(self.timerLabel.mas_bottom);
+            make.top.mas_equalTo(self.timerDetailLabel.mas_bottom);
             make.height.mas_equalTo(rowHeight);
         }];
         
@@ -429,15 +431,13 @@
     self.repairDescLabel.text = repaireVO.detail;
     self.repairTimeLabel.text = [NSString stringDateFromTimeInterval:[repaireVO.st_0_time integerValue] withFormat:nil];
     self.cellPhoneLabel.text = repaireVO.call_phone;
-    
+    NSArray *imageNames = @[@"icon_orders_open", @"icon_orders_add", @"yuyue"];
+    [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:imageNames[[repaireVO.kb intValue]-1]]  toScale:1]forState:UIControlStateNormal];
     if (repaireVO.kb.intValue == 2){
-        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_add"]  toScale:0.5]forState:UIControlStateNormal];
         [self orderData:NO st:repaireVO._st];
     }else if (repaireVO.kb.intValue == 1){
-        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"icon_orders_open"]  toScale:0.5]forState:UIControlStateNormal];
         [self orderData:NO st:repaireVO._st];
     }else if(repaireVO.kb.intValue == 3){
-        [self.detail setImage:[UIImage scaleImage:[UIImage imageNamed:@"yuyue"]  toScale:0.5]forState:UIControlStateNormal];
         [self orderData:YES st:repaireVO._st];
     }
 
@@ -448,7 +448,8 @@
         [self.orderTime mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(0);
         }];
-        [self.timerLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        self.timerImage.hidden = YES;
+        [self.timerDetailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(0);
         }];
     }else{
@@ -457,16 +458,24 @@
             [self.orderTime mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(rowHeight);
             }];
-            [self.timerLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            self.timerImage.hidden = NO;
+            [self.timerDetailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(rowHeight);
             }];
+            //预约时间
+            self.orderTime.text = [NSString stringDateFromTimeInterval:0 withFormat:nil];
+            //倒计时
+            
         }else{
             [self.orderTime mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(rowHeight);
             }];
-            [self.timerLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            self.timerImage.hidden = YES;
+            [self.timerDetailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(0);
             }];
+            //预约时间
+            self.orderTime.text = [NSString stringDateFromTimeInterval:0 withFormat:nil];
         }
     }
 }

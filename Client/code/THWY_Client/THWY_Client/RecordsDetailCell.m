@@ -131,15 +131,16 @@
                         switch (indexpath.row) {
                             case 1:{
                                 self.leftLabel.text = @"预约时间:";
-                                self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.] withFormat:<#(NSString *)#>];
+                                self.detailLabel.text = [NSString stringDateFromTimeInterval:0 withFormat:nil];
                                 break;
                             }
                             case 2:{
-                                
-                                
+                                self.leftLabel.text = @"倒计时:";
+                                self.detailLabel.text = @"";
                                 break;
                             }
                             case 3:{
+                                self.leftLabel.text = @"报工类型:";
                                 if ( model.classes_str && ![model.classes_str isEqualToString:@""]) {
                                     self.detailLabel.numberOfLines = 0;
                                     self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -157,6 +158,7 @@
                                 break;
                             }
                             case 4:{
+                                self.leftLabel.text = @"报工描述:";
                                 self.detailLabel.text = model.detail;
                                 [self.line setHidden:YES];
                                 break;
@@ -167,7 +169,12 @@
                     }else{
                         switch (indexpath.row) {
                             case 1:{
-                                
+                                self.leftLabel.text = @"预约时间:";
+                                self.detailLabel.text = [NSString stringDateFromTimeInterval:0 withFormat:nil];
+                                break;
+                            }
+                            case 2:{
+                                self.leftLabel.text = @"报工类别:";
                                 if ( model.classes_str && ![model.classes_str isEqualToString:@""]) {
                                     self.detailLabel.numberOfLines = 0;
                                     self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -182,16 +189,14 @@
                                     }];
                                     [self layoutIfNeeded];
                                 }
-                                
                                 break;
                             }
-                            case 2:{
+                            case 3:{
+                                self.leftLabel.text = @"报工描述:";
                                 self.detailLabel.text = model.detail;
                                 [self.line setHidden:YES];
-                                break;
                             }
-                            default:
-                                break;
+                            break;
                         }
                     }
                 }else{
@@ -223,7 +228,6 @@
                         default:
                             break;
                     }
-
                 }
             }
             break;
@@ -330,7 +334,7 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+    [super setSelected:NO animated:animated];
 
     // Configure the view for the selected state
 }
