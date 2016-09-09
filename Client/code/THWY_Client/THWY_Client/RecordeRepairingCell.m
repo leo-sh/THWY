@@ -334,7 +334,7 @@
         [self.timerDetailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.orderTimeLabel.mas_left);
             make.top.mas_equalTo(self.orderTimeLabel.mas_bottom);
-            make.height.mas_equalTo(self.orderTimeLabel.mas_height);
+            make.height.mas_equalTo(rowHeight);
         }];
         
         self.timerImage = [UIImageView new];
