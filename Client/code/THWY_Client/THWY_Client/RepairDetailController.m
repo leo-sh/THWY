@@ -190,14 +190,38 @@
             return 0;
         }
 
-    }else if (indexPath.section == 1 && indexPath.row == 1){
+    }else if (indexPath.section == 1){
+        CGFloat height = 0;
+        NSLog(@"%@    %@",indexPath, self.model.classes_str);
         if (self.model.classes_str && ![self.model.classes_str isEqualToString:@""]) {
             NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:My_RegularFontName size:15.0],NSFontAttributeName, nil];
             CGRect rect = [self.model.classes_str boundingRectWithSize:CGSizeMake(self.tableView.width*3.0/4, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-            return rect.size.height+20;
+            height = rect.size.height+30;
         }else{
-            return 44;
+            height = 44;
         }
+        if ([self.model.kb intValue] == 3) {
+            if ([self.model._st intValue] == 0) {
+                if (indexPath.row == 3) {
+                    return height;
+                }else{
+                    return 44;
+                }
+            }else{
+                if (indexPath.row == 2) {
+                    return height;
+                }else{
+                    return 44;
+                }
+            }
+        }else{
+            if (indexPath.row == 1) {
+                return height;
+            }else{
+                return 44;
+            }
+        }
+
     }else{
         return 44;
     }

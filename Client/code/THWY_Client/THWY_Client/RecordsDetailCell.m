@@ -166,7 +166,7 @@
                                 }
                                 self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(runCircle:) userInfo:nil repeats:YES];
                                 [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-
+                                self.line.hidden = NO;
                                 break;
                             }
                             case 3:{

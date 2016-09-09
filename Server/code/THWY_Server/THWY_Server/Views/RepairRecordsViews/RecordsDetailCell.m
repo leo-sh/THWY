@@ -15,7 +15,8 @@
 @property (strong, nonatomic) UILabel *leftLabel;
 @property (strong, nonatomic) UILabel *detailLabel;
 @property (strong, nonatomic) UILabel *line;
-
+@property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) RepairVO *model;
 @end
 
 @implementation RecordsDetailCell
@@ -66,9 +67,10 @@
 }
 
 - (void)loadDataWithModel:(RepairVO *)model indexpath:(NSIndexPath *)indexpath{
-    self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
+    self.model = model;
     switch (indexpath.section) {
         case 0:{
+            self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
             switch (indexpath.row) {
                 case 0:{
                     self.detailLabel.text = model.call_name;
@@ -123,40 +125,143 @@
             break;
         }
         case 1:{
-            switch (indexpath.row) {
-                case 0:{
-                    self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_0_time intValue] withFormat:nil];
-                    break;
-                }
-                case 1:{
-                    if ( model.classes_str && ![model.classes_str isEqualToString:@""]) {
-                        self.detailLabel.numberOfLines = 0;
-                        self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
-                        [self.detailLabel sizeToFit];
-                        self.detailLabel.text = model.classes_str;
-                        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
-                        CGRect rect = [model.classes_str boundingRectWithSize:CGSizeMake(self.contentView.width*0.7, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-                        
-                        [self.detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-                            make.height.mas_equalTo(rect.size.height);
-                            make.width.mas_equalTo(rect.size.width);
-                        }];
-                        [self layoutIfNeeded];                        
+            if (indexpath.row == 0) {
+                self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
+                self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.st_0_time intValue] withFormat:nil];
+            }else{
+                if ([model.kb intValue] == 3) {
+                    if ([model.st intValue] == 0) {
+                        switch (indexpath.row) {
+                            case 1:{
+                                self.leftLabel.text = @"预约时间:";
+                                self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.order_ts integerValue] withFormat:nil];
+                                break;
+                            }
+                            case 2:{
+                                self.leftLabel.text = @"预约时间";
+                                UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"daojishi"]];
+                                [self.leftLabel addSubview:icon];
+                                [icon mas_makeConstraints:^(MASConstraintMaker *make) {
+                                    make.centerX.and.centerY.mas_equalTo(self.leftLabel);
+                                    make.width.and.height.mas_equalTo(30.0);
+                                }];
+                                
+                                self.leftLabel.textColor = [UIColor clearColor];
+                                NSDate *date = [NSDate dateWithTimeIntervalSince1970:[model.order_ts integerValue]];
+                                NSTimeInterval timeinteval = [date timeIntervalSinceNow];
+                                if (timeinteval <= 0) {
+                                    self.detailLabel.text = [NSString stringWithFormat:@"已超时 %@", [NSDate countDownStringFromTimeInterval:timeinteval]];
+                                    self.detailLabel.textColor = [UIColor redColor];
+                                }else{
+                                    self.detailLabel.text = [NSDate countDownStringFromTimeInterval:timeinteval];
+                                    self.detailLabel.textColor = [UIColor darkGrayColor];
+                                }
+                                
+                                //启动定时器
+                                if (self.timer) {
+                                    [self.timer invalidate];
+                                }
+                                self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(runCircle:) userInfo:nil repeats:YES];
+                                [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+                                self.line.hidden = NO;
+                                break;
+                            }
+                            case 3:{
+                                self.leftLabel.text = @"报工类型:";
+                                if ( model.classes_str && ![model.classes_str isEqualToString:@""]) {
+                                    self.detailLabel.numberOfLines = 0;
+                                    self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
+                                    [self.detailLabel sizeToFit];
+                                    self.detailLabel.text = model.classes_str;
+                                    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
+                                    CGRect rect = [model.classes_str boundingRectWithSize:CGSizeMake(self.contentView.width*0.7, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+                                    
+                                    [self.detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                                        make.height.mas_equalTo(rect.size.height);
+                                        make.width.mas_equalTo(rect.size.width);
+                                    }];
+                                    [self layoutIfNeeded];
+                                }
+                                break;
+                            }
+                            case 4:{
+                                self.leftLabel.text = @"报工描述:";
+                                self.detailLabel.text = model.detail;
+                                [self.line setHidden:YES];
+                                break;
+                            }
+                            default:
+                                break;
+                        }
+                    }else{
+                        switch (indexpath.row) {
+                            case 1:{
+                                self.leftLabel.text = @"预约时间:";
+                                self.detailLabel.text = [NSString stringDateFromTimeInterval:[model.order_ts integerValue] withFormat:nil];
+                                break;
+                            }
+                            case 2:{
+                                self.leftLabel.text = @"报工类别:";
+                                if ( model.classes_str && ![model.classes_str isEqualToString:@""]) {
+                                    self.detailLabel.numberOfLines = 0;
+                                    self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
+                                    [self.detailLabel sizeToFit];
+                                    self.detailLabel.text = model.classes_str;
+                                    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
+                                    CGRect rect = [model.classes_str boundingRectWithSize:CGSizeMake(self.contentView.width*0.7, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+                                    
+                                    [self.detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                                        make.height.mas_equalTo(rect.size.height);
+                                        make.width.mas_equalTo(rect.size.width);
+                                    }];
+                                    [self layoutIfNeeded];
+                                }
+                                break;
+                            }
+                            case 3:{
+                                self.leftLabel.text = @"报工描述:";
+                                self.detailLabel.text = model.detail;
+                                [self.line setHidden:YES];
+                            }
+                                break;
+                        }
                     }
-                    break;
+                }else{
+                    
+                    self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
+                    switch (indexpath.row) {
+                        case 1:{
+                            if ( model.classes_str && ![model.classes_str isEqualToString:@""]) {
+                                self.detailLabel.numberOfLines = 0;
+                                self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
+                                [self.detailLabel sizeToFit];
+                                self.detailLabel.text = model.classes_str;
+                                NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
+                                CGRect rect = [model.classes_str boundingRectWithSize:CGSizeMake(self.contentView.width*0.7, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+                                
+                                [self.detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                                    make.height.mas_equalTo(rect.size.height);
+                                    make.width.mas_equalTo(rect.size.width);
+                                }];
+                                [self layoutIfNeeded];
+                            }
+                            
+                            break;
+                        }
+                        case 2:{
+                            self.detailLabel.text = model.detail;
+                            [self.line setHidden:YES];
+                            break;
+                        }
+                        default:
+                            break;
+                    }
                 }
-                case 2:{
-                    self.detailLabel.text = model.detail;
-                    [self.line setHidden:YES];
-                    break;
-                }
-                default:
-                    break;
             }
-
             break;
-        }
+    }
         case 2:{
+            self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
             NSMutableString *name = [NSMutableString stringWithString:@""];
             NSMutableString *cell = [NSMutableString stringWithString:@""];
             for (UserVO *user in model.repair_task.admins) {
@@ -184,7 +289,7 @@
             break;
         }
         case 3:{
-
+            self.leftLabel.text = self.labelNames[indexpath.section][indexpath.row];
             switch (indexpath.row) {
                 case 0:{
                     NSInteger time = [model.st_1_time integerValue];
@@ -235,6 +340,20 @@
         default:
             self.line.hidden = YES;
             break;
+    }
+    
+}
+
+- (void)runCircle:(NSTimer *)timer{
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.model.order_ts integerValue]];
+    NSTimeInterval timeinteval = [date timeIntervalSinceNow];
+    if (timeinteval <= 0) {
+        self.detailLabel.text = [NSString stringWithFormat:@"已超时 %@", [NSDate countDownStringFromTimeInterval:timeinteval]];
+        self.detailLabel.textColor = [UIColor redColor];
+    }else{
+        self.detailLabel.text = [NSDate countDownStringFromTimeInterval:timeinteval];
+        self.detailLabel.textColor = [UIColor darkGrayColor];
     }
     
 }
