@@ -307,8 +307,14 @@
     
     [view addSubview:label];
     
-    imageView.image = [UIImage imageNamed:@"属性-公开"];
-    //    imageView.backgroundColor = [UIColor whiteColor];
+    if ([self.data[section] is_public]) {
+        imageView.image = [UIImage imageNamed:@"属性-公开"];
+    }
+    else
+    {
+        imageView.image = [UIImage imageNamed:@"属性-个人"];
+        
+    }    //    imageView.backgroundColor = [UIColor whiteColor];
     [view addSubview:imageView];
     
     view.tag = 300 + section;

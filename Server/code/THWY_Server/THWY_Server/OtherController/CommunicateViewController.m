@@ -17,6 +17,7 @@
 @property NSMutableDictionary *rowAndHeight;
 @property UITextField *msgTextField;
 @property CGFloat contentHeight;
+@property BOOL stop;
 @end
 
 @implementation CommunicateViewController
@@ -69,6 +70,8 @@
 
 - (void)getData
 {
+    
+    
     if (!self.Id) {
         self.Id = [[UDManager getUD]getEndId:self.s_admin_id];
     }
@@ -81,14 +84,16 @@
         else
         {
             self.data.array = list;
-            
-            [self.tableView reloadData];
-            [SVProgressHUD dismiss];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self.tableView reloadData];
+                
+            });
         }
         [SVProgressHUD dismiss];
+
     }];
 }
-
 - (void)createUI
 {
     self.tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
@@ -134,7 +139,6 @@
     [send addTarget:self action:@selector(clickSendBtn:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:bottomView];
-
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
