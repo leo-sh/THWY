@@ -8,7 +8,7 @@
 
 #import "MainNavigationViewController.h"
 #import "ProclamationInfoViewController.h"
-#import "ComplainDetailViewController.h"
+#import "PayInfoViewController.h"
 #import "UMessage.h"
 #import "BannerNotice.h"
 
@@ -47,9 +47,9 @@
     }else if ([pushType isEqualToString:@"7"])
     {
 //              缴费台账
-        ComplainDetailViewController *detail = [[ComplainDetailViewController alloc]init];
+        PayInfoViewController *detail = [[PayInfoViewController alloc]init];
         
-        detail.complianId = Id;
+        detail.feeId = Id;
         
         [self pushViewController:detail animated:YES];
     }

@@ -999,7 +999,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
             endingLineNumber = "39"
-            landmarkName = "-getData"
+            landmarkName = "-ViewInitSetting"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
