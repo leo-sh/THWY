@@ -18,6 +18,8 @@
 @property UITextField *msgTextField;
 @property CGFloat contentHeight;
 @property BOOL stop;
+@property BOOL cancel;
+@property NSString  *endId;
 @end
 
 @implementation CommunicateViewController
@@ -50,6 +52,7 @@
 {
     [self.tableView removeObserver:self forKeyPath:@"contentSize"];
     self.rowAndHeight = nil;
+    self.cancel = YES;
 
 }
 
@@ -70,7 +73,16 @@
 
 - (void)getData
 {
+    dispatch_queue_t queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL);
     
+    dispatch_async(queue, ^{
+        
+    });
+    
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_enter(group);
     
     if (!self.Id) {
         self.Id = [[UDManager getUD]getEndId:self.s_admin_id];
@@ -84,6 +96,7 @@
         else
         {
             self.data.array = list;
+            self.endId = [[list lastObject] Id];
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 [self.tableView reloadData];
@@ -91,9 +104,56 @@
             });
         }
         [SVProgressHUD dismiss];
-
+        
+        dispatch_group_leave(group);
+        
     }];
+    
+    dispatch_group_notify(group, queue, ^{
+            [self GCDGetData];
+    });
+    
 }
+
+- (void)GCDGetData
+{
+    dispatch_queue_t queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL);
+    
+    dispatch_async(queue, ^{
+        
+    });
+
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    
+    dispatch_group_enter(group);
+    [[ServicesManager getAPI] getMsgs:self.s_admin_id endId:self.Id onComplete:^(NSString *errorMsg, NSArray *list) {
+            
+            if (![self.endId isEqualToString:[[list lastObject] Id]]) {
+                self.endId = [[list lastObject] Id];
+                self.data.array = list;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [self.tableView reloadData];
+                    
+                });
+            }
+        dispatch_group_leave(group);
+        
+
+            
+        }];
+    
+    dispatch_group_notify(group, queue, ^{
+        if (!self.cancel) {
+            [self GCDGetData];
+        }
+    });
+    
+    
+}
+
 - (void)createUI
 {
     self.tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
