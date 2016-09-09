@@ -207,7 +207,8 @@
 
 - (void)tap
 {
-    [self hide];
+//    [self hide];
+    [self endEditing:YES];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
