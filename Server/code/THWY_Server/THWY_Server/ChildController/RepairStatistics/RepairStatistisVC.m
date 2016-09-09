@@ -52,6 +52,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]];
 //    [self getEstatesData];
     [self initViews];
+    [self getEstatesData];
     [self getStatisticsData:nil];
     self.dataArray = [NSMutableArray array];
     self.allDataArray = [NSMutableArray array];
@@ -69,7 +70,6 @@
             for (EstateVO * estate in list) {
                 [self.estatesArray addObject:estate];
             }
-            [self initAlertView];
             [SVProgressHUD dismiss];
         }
     }];
@@ -81,6 +81,7 @@
     [SVProgressHUD showWithStatus:@"正在加载数据,请稍后......"];
     switch (self.switchFlag) {
         case 1:{
+            //业主报修统计
             [My_ServicesManager getRepairStatistic:estateId onComplete:^(NSString *errorMsg, NSArray *list) {
                 if (errorMsg) {
                     [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -112,6 +113,7 @@
             break;
         }
         case 2:{
+            //公共报修统计
             [My_ServicesManager getPublicRepairStatistic:estateId onComplete:^(NSString *errorMsg, NSArray *list) {
                 if (errorMsg) {
                     [SVProgressHUD showErrorWithStatus:errorMsg];
@@ -146,7 +148,24 @@
             break;
         }
         case 3:{
-            
+            //维修统计
+            [My_ServicesManager getStaffRepairStatistics:estateId onComplete:^(NSString *errorMsg, NSArray *list) {
+                if (errorMsg) {
+                    [SVProgressHUD showErrorWithStatus:errorMsg];
+                }else{
+                    
+                    if (estateId == nil) {
+                        [self.allDataArray removeAllObjects];
+                        [self.allDataArray addObjectsFromArray:list];
+                    }else{
+                        [self.dataArray removeAllObjects];
+                        [self.dataArray addObjectsFromArray:list];
+                    }
+                    [self.tableView3 reloadData];
+                    [SVProgressHUD dismiss];
+                }
+
+            }];
             [SVProgressHUD dismiss];
             break;
         }
@@ -169,7 +188,7 @@
     
     self.unitBtn = [[RepairStatisticsButton alloc] initWithFrame:CGRectMake(0, 0, self.bgView.width, self.bgView.height*0.3)];
     [self.unitBtn setLeftImageView:@"repairStatistics_展开箭头" andTitle:@"全部小区"];
-    [self.unitBtn addTarget:self action:@selector(getEstatesData) forControlEvents:UIControlEventTouchUpInside];
+    [self.unitBtn addTarget:self action:@selector(initAlertView) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.unitBtn];
     
     self.labelNames = @[@"业主报修", @"公共报修", @"维修统计"];
@@ -265,7 +284,7 @@
 //弹出框
 - (void)initAlertView{
  
-    self.alertView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.estatesArray.count + 45.0/667*My_ScreenH*2)<(My_ScreenH-84)?(44.0*self.estatesArray.count + 45.0/667*My_ScreenH*2):(My_ScreenH-84))];
+    self.alertView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.estatesArray.count + 45.0*2)<(My_ScreenH-84)?(44.0*self.estatesArray.count + 45.0*2):(My_ScreenH-84))];
     self.alertView.type = AlertChooseEstateType;
     self.alertView.data = self.estatesArray;
     self.alertView.AlertDelegate = self;
@@ -297,12 +316,11 @@
     }else if ([tableView isEqual:self.tableView2]){
         return 4;
     }else{
-//        if (self.estateId == -1) {
-//            return self.allDataArray.count;
-//        }else{
-//            return self.dataArray.count;
-//        }
-        return 4;
+        if (self.estateId == -1) {
+            return self.allDataArray.count;
+        }else{
+            return self.dataArray.count;
+        }
     }
     return 0;
     
@@ -311,7 +329,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([tableView isEqual:self.tableView3]) {
         RepairStatisticsDataCell *cell = (RepairStatisticsDataCell *)[tableView dequeueReusableCellWithIdentifier:@"RepairStatisticsDataCell" forIndexPath:indexPath];
-        [cell loadDataFromModel:@""];
+        if (self.estateId == -1) {
+            [cell loadDataFromModel:self.allDataArray[indexPath.row]];
+        }else{
+            [cell loadDataFromModel:self.dataArray[indexPath.row]];
+        }
         return cell;
     }else{
         if (indexPath.row == 4) {

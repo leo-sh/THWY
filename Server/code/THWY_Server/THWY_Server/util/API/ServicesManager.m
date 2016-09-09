@@ -1804,9 +1804,16 @@ savePassWord:(BOOL)save
 {
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@staff_repair_statistics",API_HOST];
-    NSDictionary *params = @{@"login_name":_userName,
-                             @"login_password":_passWord,
-                             @"estate_id":estateId};
+    NSDictionary *params = @{};
+    if (estateId.length > 0) {
+        params = @{@"login_name":_userName,
+                   @"login_password":_passWord,
+                   @"estate_id":estateId};
+    }else
+    {
+        params = @{@"login_name":_userName,
+                   @"login_password":_passWord};
+    }
     [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

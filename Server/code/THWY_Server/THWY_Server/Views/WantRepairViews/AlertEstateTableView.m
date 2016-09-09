@@ -33,8 +33,8 @@
     [cancel addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:cancel];
     
-    UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(0, headerView.height-0.2, headerView.width, 0.2)];
-    line.backgroundColor = [UIColor lightGrayColor];
+    UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(0, headerView.height-0.5, headerView.width, 0.5)];
+    line.backgroundColor = My_LineColor;
     [headerView addSubview:line];
     [self addSubview:headerView];
     

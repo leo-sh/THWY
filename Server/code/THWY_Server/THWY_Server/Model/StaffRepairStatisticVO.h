@@ -13,10 +13,10 @@
 @property (nonatomic , copy) NSString              * admin_id;
 @property (nonatomic , copy) NSString              * admin_name;
 @property (nonatomic , copy) NSString              * real_name;
-@property (nonatomic , copy) NSString              * task_tot;
-@property (nonatomic , copy) NSString              * task_done;
-@property (nonatomic , copy) NSString              * task_tot_time;
-@property (nonatomic , copy) NSString              * task_avg;
+@property (nonatomic , copy) NSNumber              * task_tot;
+@property (nonatomic , copy) NSNumber              * task_done;
+@property (nonatomic , copy) NSNumber              * task_tot_time;
+@property (nonatomic , copy) NSNumber              * task_avg;
 
 -(StaffRepairStatisticVO* )initWithJSON:(NSDictionary *)JSON;
 

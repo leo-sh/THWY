@@ -7,7 +7,7 @@
 //
 
 #import "RepairStatisticsDataCell.h"
-
+#import "StaffRepairStatisticVO.h"
 @interface RepairStatisticsDataCell ()
 
 @property (strong, nonatomic) UILabel *nameLabel;
@@ -167,14 +167,18 @@
     
 }
 
-- (void)loadDataFromModel:(id)model{
+- (void)loadDataFromModel:(StaffRepairStatisticVO *)model{
     if (model) {
-        self.nameDetailLabel.text = @"张光华";
-        self.paiGongCountDetailLabel.text = @"1000";
-        self.finishCountDetailLabel.text = @"200";
-        self.finishRateDetalLabel.text = @"20%";
-        self.timeCountDetailLabel.text = @"100小时";
-        self.averageTimeCountDetailLabel.text = @"0.5小时";
+        self.nameDetailLabel.text = model.real_name;
+        self.paiGongCountDetailLabel.text = model.task_tot.stringValue;
+        self.finishCountDetailLabel.text = model.task_done.stringValue;
+        if ([model.task_tot integerValue] == 0) {
+            self.finishRateDetalLabel.text = @"100%";
+        }else{
+            self.finishRateDetalLabel.text = [NSString stringWithFormat:@"%.2f%%", 100*[model.task_done doubleValue]/[model.task_tot doubleValue]];
+        }
+        self.timeCountDetailLabel.text = [NSString stringWithFormat:@"%.2f小时",[model.task_tot_time doubleValue]];
+        self.averageTimeCountDetailLabel.text = [NSString stringWithFormat:@"%.2f小时",[model.task_avg doubleValue]];
     }
 }
 
