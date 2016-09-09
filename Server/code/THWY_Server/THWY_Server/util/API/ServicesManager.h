@@ -21,6 +21,7 @@
 #import "AddPublicRepairVO.h"
 #import "AddRepairVO.h"
 #import "RepairStatisticVO.h"
+#import "StaffRepairStatisticVO.h"
 #import "RepairVO.h"
 #import "TaskVO.h"
 #import "MsgVO.h"
@@ -368,6 +369,14 @@ savePassWord:(BOOL)save
  *  @param onComplete 获取完成回调block
  */
 -(void)getARepair:(NSString *)repairId onComplete:(void (^)(NSString *errorMsg,RepairVO *repair))onComplete;
+
+/**
+ *  获取维修员工时效统计 - 公共报修
+ *
+ *  @param estateId   楼盘ID
+ *  @param onComplete 获取完成回调block
+ */
+-(void)getStaffRepairStatistics:(NSString *)estateId onComplete:(void (^)(NSString *errorMsg,NSArray* list))onComplete;
 
 #pragma mark 接单相关API
 /**

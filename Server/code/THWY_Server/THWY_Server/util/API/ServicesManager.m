@@ -1800,6 +1800,36 @@ savePassWord:(BOOL)save
     }];
 }
 
+-(void)getStaffRepairStatistics:(NSString *)estateId onComplete:(void (^)(NSString *errorMsg,NSArray* list))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@staff_repair_statistics",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord,
+                             @"estate_id":estateId};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,nil);
+            }];
+        }else
+        {
+            NSMutableArray* listArr = [[NSMutableArray alloc]init];
+            if ([responseObject[@"datas"][@"data"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary* statisticDic in responseObject[@"datas"][@"data"]) {
+                    StaffRepairStatisticVO* statistice = [[StaffRepairStatisticVO alloc]initWithJSON:statisticDic];
+                    [listArr addObject:statistice];
+                }
+            }
+            onComplete(nil,listArr);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",nil);
+    }];
+}
+
 #pragma mark 环境参数判定函数
 -(BOOL)isLogin{
     UserVO *user = [[UDManager getUD] getUser];
@@ -1810,7 +1840,7 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-        
+
     }else
     {
 //        [self login:@"fzq" password:@"123456" savePassWord:NO onComplete:^(NSString *errorMsg, UserVO *user) {

@@ -227,6 +227,7 @@
 		79FA4CBB1D6A879F0018816C /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA4CB91D6A879F0018816C /* RootVC.m */; };
 		79FA4CBE1D6ADF210018816C /* RepairAcceptOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA4CBD1D6ADF210018816C /* RepairAcceptOrderCell.m */; };
 		79FA4CC11D6AE3190018816C /* RunSliderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA4CC01D6AE3190018816C /* RunSliderLabel.m */; };
+		941892AF1D82582B0037F111 /* StaffRepairStatisticVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 941892AE1D82582B0037F111 /* StaffRepairStatisticVO.m */; };
 		94A7D3CE1D6FCA01008E4780 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A7D3CD1D6FCA00008E4780 /* AudioToolbox.framework */; };
 		94A7D3CF1D6FD034008E4780 /* tuisong.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9400B97B1D6188BF00E49F0E /* tuisong.caf */; };
 		94A7D3D01D6FD034008E4780 /* fasong.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9400B9791D6188B200E49F0E /* fasong.caf */; };
@@ -670,6 +671,8 @@
 		9400B9791D6188B200E49F0E /* fasong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fasong.caf; sourceTree = "<group>"; };
 		9400B97A1D6188B200E49F0E /* shou.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shou.caf; sourceTree = "<group>"; };
 		9400B97B1D6188BF00E49F0E /* tuisong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tuisong.caf; sourceTree = "<group>"; };
+		941892AD1D82582A0037F111 /* StaffRepairStatisticVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffRepairStatisticVO.h; sourceTree = "<group>"; };
+		941892AE1D82582B0037F111 /* StaffRepairStatisticVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffRepairStatisticVO.m; sourceTree = "<group>"; };
 		94A7D3CD1D6FCA00008E4780 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		94A7D3D31D6FDCEE008E4780 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = THWY_Server/3rd/MBProgressHUD/SVProgressHUD.h; sourceTree = SOURCE_ROOT; };
 		94A7D3D41D6FDCEE008E4780 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = THWY_Server/3rd/MBProgressHUD/SVProgressHUD.m; sourceTree = SOURCE_ROOT; };
@@ -1417,6 +1420,8 @@
 				79270E3F1D61ACDA00E29568 /* RepairClassVO.m */,
 				79270E401D61ACDA00E29568 /* RepairStatisticVO.h */,
 				79270E411D61ACDA00E29568 /* RepairStatisticVO.m */,
+				941892AD1D82582A0037F111 /* StaffRepairStatisticVO.h */,
+				941892AE1D82582B0037F111 /* StaffRepairStatisticVO.m */,
 				79270E421D61ACDA00E29568 /* RepairStatuVO.h */,
 				79270E431D61ACDA00E29568 /* RepairStatuVO.m */,
 				79270E441D61ACDA00E29568 /* RepairTaskVO.h */,
@@ -1984,6 +1989,7 @@
 				79270E211D61ACB100E29568 /* UIView+TYAutoLayout.m in Sources */,
 				79F60D731D6A07A600A8E2D2 /* ZLPhotoAssets.m in Sources */,
 				7902B0511D64132700ADDAE0 /* DropMenuTableView.m in Sources */,
+				941892AF1D82582B0037F111 /* StaffRepairStatisticVO.m in Sources */,
 				79270F2E1D61B0DB00E29568 /* YFLBBannerView.m in Sources */,
 				79FA4CBB1D6A879F0018816C /* RootVC.m in Sources */,
 				791B4DC21D645C9F00AF9371 /* PushSettingVC.m in Sources */,
