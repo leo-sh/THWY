@@ -164,7 +164,7 @@
         }
         case 2:{
             if ([self.repairVO.st intValue]>=1) {
-                return self.repairVO.repair_task.admins.count * 2;
+                return 2;
             }else{
                 return 0;
             }
