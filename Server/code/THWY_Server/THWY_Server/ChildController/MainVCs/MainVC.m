@@ -7,6 +7,7 @@
 //
 
 #import "MainVC.h"
+#import "MainNavigationViewController.h"
 #import "UserVO.h"
 #import "UDManager.h"
 //#import "PersonInfoViewController.h"
@@ -46,6 +47,15 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self refreshUserInfo];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    if (My_ServicesManager.remoteNotification && [My_ServicesManager isLogin]) {
+        MainNavigationViewController* mainNav = (MainNavigationViewController* )self.navigationController;
+        [mainNav popWithUserInfo:My_ServicesManager.remoteNotification];
+        My_ServicesManager.remoteNotification = nil;
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated

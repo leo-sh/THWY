@@ -39,6 +39,7 @@ typedef enum : NSUInteger {
 
 @property NSString* portNum;
 @property APIMode mode;
+@property NSDictionary* remoteNotification;
 
 @property NetworkStatus status;
 @property (nonatomic, strong) UIDocumentInteractionController *documentInteractionController;

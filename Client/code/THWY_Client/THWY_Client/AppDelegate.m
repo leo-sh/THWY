@@ -73,8 +73,7 @@
         NSDictionary * remoteNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         //这个判断是在程序没有运行的情况下收到通知，点击通知跳转页面
         if (remoteNotification) {
-            NSLog(@"推送消息==== %@",remoteNotification);
-            [mainNav popWithUserInfo:remoteNotification];
+            My_ServicesManager.remoteNotification = remoteNotification;
         }
         
     }

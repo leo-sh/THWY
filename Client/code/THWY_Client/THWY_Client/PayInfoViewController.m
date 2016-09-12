@@ -45,7 +45,7 @@
     [[ServicesManager getAPI]getAFee:self.feeId onComplete:^(NSString *errorMsg, FeeVO *ad) {
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];
-            [self.navigationController popViewControllerAnimated:YES];
+//            [self.navigationController popViewControllerAnimated:YES];
             return ;
         }
         

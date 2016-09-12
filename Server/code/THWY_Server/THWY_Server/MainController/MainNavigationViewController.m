@@ -110,7 +110,13 @@
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     _userInfo = userInfo;
     tapGestureBool = YES;
-    UIView *viewBanner = [BannerNotice bannerWith:[UIImage imageNamed:@"ios4"] bannerName:@"泰生活" bannerContent:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]];
+    
+    NSString* bannerName = @"通惠物业";
+    if (userInfo[@"title"]) {
+        bannerName = userInfo[@"title"];
+    }
+    
+    UIView *viewBanner = [BannerNotice bannerWith:[UIImage imageNamed:@"ios4"] bannerName:bannerName bannerContent:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]];
     UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(event:)];
     [viewBanner addGestureRecognizer:tapGesture];
     
