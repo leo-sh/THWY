@@ -44,9 +44,11 @@
     
     [self.ReviseBtn setLeftImageView:@"b修改" andTitle:@"修改"];
     
-    CGFloat estateWidth = GetContentWidth(estate, CONTENT_FONT);
+    CGFloat estateWidth = 64;
     
     self.estateLabel.frame = CGRectMake(10, 0, estateWidth, self.height);
+    
+    self.estateLabel.numberOfLines = 2;
     
     CGFloat IpWidth = GetContentWidth(ip, Content_Ip_Font);
     

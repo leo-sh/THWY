@@ -59,6 +59,7 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.rowHeight = 50;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
@@ -108,6 +109,7 @@
         cell = [[WhiteListTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     cell.width = tableView.width;
+    cell.height = 50;
     [cell setEstate:[self.data[indexPath.row] the_user] IP:[self.data[indexPath.row] ip]Id:[self.data[indexPath.row] Id]];
 //    UIView *view = [[UIView alloc]init];
 //    view.backgroundColor = My_AlphaColor(236, 252, 245, 0.5);
