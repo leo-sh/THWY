@@ -170,7 +170,7 @@
                                 break;
                             }
                             case 3:{
-                                self.leftLabel.text = @"报工类型:";
+                                self.leftLabel.text = @"派工类型:";
                                 if ( model.classes_str && ![model.classes_str isEqualToString:@""]) {
                                     self.detailLabel.numberOfLines = 0;
                                     self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -188,7 +188,7 @@
                                 break;
                             }
                             case 4:{
-                                self.leftLabel.text = @"报工描述:";
+                                self.leftLabel.text = @"派工描述:";
                                 self.detailLabel.text = model.detail;
                                 [self.line setHidden:YES];
                                 break;
@@ -204,7 +204,7 @@
                                 break;
                             }
                             case 2:{
-                                self.leftLabel.text = @"报工类别:";
+                                self.leftLabel.text = @"派工类别:";
                                 if ( model.classes_str && ![model.classes_str isEqualToString:@""]) {
                                     self.detailLabel.numberOfLines = 0;
                                     self.detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -222,7 +222,7 @@
                                 break;
                             }
                             case 3:{
-                                self.leftLabel.text = @"报工描述:";
+                                self.leftLabel.text = @"派工描述:";
                                 self.detailLabel.text = model.detail;
                                 [self.line setHidden:YES];
                             }
