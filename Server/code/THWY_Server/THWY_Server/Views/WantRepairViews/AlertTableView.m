@@ -8,7 +8,7 @@
 
 #import "AlertTableView.h"
 #import "RepairClassVO.h"
-#import "AlertBtn.h"
+
 @interface AlertTableView ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *flags;
@@ -23,16 +23,18 @@
 
 - (void)initViews{
     
-    NSInteger height = 40.0/667*My_ScreenH;
+    NSInteger height = 50.0;
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, height)];
     headerView.backgroundColor = [UIColor whiteColor];
-    AlertBtn *confirm = [[AlertBtn alloc] initWithFrame:CGRectMake(5, 5, headerView.height-10, headerView.height-10)];
-    [confirm setImage:[UIImage scaleImage:[UIImage imageNamed:@"弹出页-提交"] toScale:1] forState:UIControlStateNormal];
+    UIButton *confirm = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, height, height)];
+    confirm.contentEdgeInsets = UIEdgeInsetsMake(15, 14.5,  15 , 14.5);
+    [confirm setImage:[UIImage imageNamed:@"弹出页-提交"] forState:UIControlStateNormal];
     [confirm addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:confirm];
     
-    AlertBtn *cancel = [[AlertBtn alloc] initWithFrame:CGRectMake(self.width-5-confirm.width, 5, headerView.height-10, headerView.height-10)];
+    UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(self.width-confirm.width, 0, height, height)];
+    cancel.contentEdgeInsets = UIEdgeInsetsMake(15, 14.5,  15 , 14.5);
     [cancel setImage:[UIImage scaleImage:[UIImage imageNamed:@"弹出页-关闭"] toScale:1] forState:UIControlStateNormal];
     [cancel addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:cancel];
@@ -57,7 +59,7 @@
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
     self.tableView.bounces = NO;
     self.tableView.sectionFooterHeight = 0.01;
-    self.tableView.sectionHeaderHeight = 40.0/667*My_ScreenH;
+    self.tableView.sectionHeaderHeight = 50.0;
     [self addSubview:self.tableView];
 }
 

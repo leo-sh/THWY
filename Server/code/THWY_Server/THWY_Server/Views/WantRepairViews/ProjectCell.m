@@ -54,7 +54,7 @@
                 [self.estateArray addObject:estate];
             }
             [SVProgressHUD dismiss];
-            self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.estateArray.count + 40.0/667*My_ScreenH)<(My_ScreenH-84)?(44.0*self.estateArray.count + 40.0/667*My_ScreenH):(My_ScreenH-84))];
+            self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.estateArray.count + 50.0)<(My_ScreenH-84)?(44.0*self.estateArray.count + 50.0):(My_ScreenH-84))];
             self.alertTableView.type = AlertEstateType;
             self.alertTableView.data = self.estateArray;
             self.alertTableView.AlertDelegate = self;
@@ -90,7 +90,7 @@
             [self.blockArray addObject:block];
         }
         [SVProgressHUD dismiss];
-        self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.blockArray.count + 40.0/667*My_ScreenH)<(My_ScreenH-84)?(44.0*self.blockArray.count + 40.0/667*My_ScreenH):(My_ScreenH-84))];
+        self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.blockArray.count + 50.0)<(My_ScreenH-84)?(44.0*self.blockArray.count + 50.0):(My_ScreenH-84))];
         self.alertTableView.type = AlertBlockType;
         self.alertTableView.data = self.blockArray;
         self.alertTableView.AlertDelegate = self;
@@ -120,7 +120,7 @@
             [self.unitArray addObject:unit];
         }
         [SVProgressHUD dismiss];
-        self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.unitArray.count + 40.0/667*My_ScreenH)<(My_ScreenH-84)?(44.0*self.unitArray.count + 40.0/667*My_ScreenH):(My_ScreenH-84))];
+        self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.unitArray.count + 50.0)<(My_ScreenH-84)?(44.0*self.unitArray.count + 50.0):(My_ScreenH-84))];
         self.alertTableView.type = AlertUnitType;
         self.alertTableView.data = self.unitArray;
         self.alertTableView.AlertDelegate = self;
@@ -149,7 +149,7 @@
             [self.layerArray addObject:layer];
         }
         [SVProgressHUD dismiss];
-        self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.layerArray.count + 40.0/667*My_ScreenH)<(My_ScreenH-84)?(44.0*self.layerArray.count + 40.0/667*My_ScreenH):(My_ScreenH-84))];
+        self.alertTableView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.layerArray.count + 50.0)<(My_ScreenH-84)?(44.0*self.layerArray.count + 50.0):(My_ScreenH-84))];
         self.alertTableView.type = AlertLayerType;
         self.alertTableView.data = self.layerArray;
         self.alertTableView.AlertDelegate = self;
