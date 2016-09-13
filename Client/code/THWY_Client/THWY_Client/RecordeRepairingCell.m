@@ -102,7 +102,7 @@
         self.numberLabel = [[UILabel alloc] init];
         [self.contentView addSubview:self.numberLabel];
         
-        self.paiGongLabel.text = @"派工单号: ";
+        self.paiGongLabel.text = @"报修单号: ";
         [self setLabelAttributes:self.paiGongLabel with:0];
         [self.paiGongLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.caiTiaoImage.mas_bottom);
