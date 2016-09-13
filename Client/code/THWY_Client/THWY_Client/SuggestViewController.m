@@ -264,7 +264,8 @@
 - (void)clickAddBtn
 {
     self.alertView = [[SuggestAlertView alloc]initWithFrame:CGRectMake(10, 0, self.view.width - 20, 0)];
-    
+    NSLog(@"%d",self.segmentedControl.selectedSegmentIndex);
+    self.alertView.type = (int)self.segmentedControl.selectedSegmentIndex;
     self.alertView.backgroundColor = [UIColor whiteColor];
     [self.alertView show];
     [self.alertView addLeftBtnTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];

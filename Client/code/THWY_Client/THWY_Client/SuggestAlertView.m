@@ -17,6 +17,7 @@
     if (self = [super initWithFrame:frame]) {
         [self createUI];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+        [self addObserver:self forKeyPath:@"type" options:NSKeyValueObservingOptionNew context:nil];
 
     }
     return self;
@@ -40,7 +41,6 @@
     self.suggestOne = [[BlueRedioButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(suggestLabel.frame), 0, suggestBtn_W , 40)];
     self.suggestOne.tag = 101;
     [self.suggestOne initDefaultImageName:@"repaire_unselected" choosedImageName:@"repaire_selected" title:@"建议"];
-    [self.suggestOne setChoosed];
 //    self.suggestOne.chooseStatu = YES;
     [suggestView addSubview:self.suggestOne];
     
@@ -49,6 +49,7 @@
     [self.suggestTwo initDefaultImageName:@"repaire_unselected" choosedImageName:@"repaire_selected" title:@"意见"];
     
     [suggestView addSubview:self.suggestTwo];
+    
     
 //    BlueRedioButton *suggestT = [[BlueRedioButton alloc]initWithFrame:CGRectMake(220, 0, suggestBtn_W , 30)];
 //    
@@ -96,6 +97,23 @@
         self.y = 20;
     }
     
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if ([change[@"new"] intValue] == 0) {
+            [self.suggestOne setChoosed];
+
+    }
+    else if ([change[@"new"] intValue] == 1)
+    {
+        [self.suggestTwo setChoosed];
+    }
+}
+
+- (void)dealloc
+{
+    [self removeObserver:self forKeyPath:@"type"];
 }
 
 /*

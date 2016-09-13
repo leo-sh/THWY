@@ -455,7 +455,6 @@
     
     self.refreshBtnClickStatu = !self.refreshBtnClickStatu;
     
-    
     self.page = 0;
     
     [self.data removeAllObjects];
