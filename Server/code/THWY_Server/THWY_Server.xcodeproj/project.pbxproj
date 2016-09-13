@@ -59,7 +59,6 @@
 		791B4E291D64666700AF9371 /* RepairAcceptOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E281D64666700AF9371 /* RepairAcceptOrderVC.m */; };
 		791B4E2C1D64667F00AF9371 /* RepairStatistisVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E2B1D64667F00AF9371 /* RepairStatistisVC.m */; };
 		791B4E2F1D64693200AF9371 /* RepairStatisticsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 791B4E2E1D64693200AF9371 /* RepairStatisticsButton.m */; };
-		79259CDB1D7FE19600B2031F /* AlertBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 79259CDA1D7FE19600B2031F /* AlertBtn.m */; };
 		79270DC41D61ACB100E29568 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270CF41D61ACB100E29568 /* AFHTTPSessionManager.m */; };
 		79270DC51D61ACB100E29568 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270CF71D61ACB100E29568 /* AFNetworkReachabilityManager.m */; };
 		79270DC61D61ACB100E29568 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 79270CF91D61ACB100E29568 /* AFSecurityPolicy.m */; };
@@ -339,8 +338,6 @@
 		791B4E2B1D64667F00AF9371 /* RepairStatistisVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatistisVC.m; sourceTree = "<group>"; };
 		791B4E2D1D64693200AF9371 /* RepairStatisticsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticsButton.h; sourceTree = "<group>"; };
 		791B4E2E1D64693200AF9371 /* RepairStatisticsButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatisticsButton.m; sourceTree = "<group>"; };
-		79259CD91D7FE19600B2031F /* AlertBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertBtn.h; sourceTree = "<group>"; };
-		79259CDA1D7FE19600B2031F /* AlertBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertBtn.m; sourceTree = "<group>"; };
 		79270CF31D61ACB100E29568 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		79270CF41D61ACB100E29568 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		79270CF51D61ACB100E29568 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -1041,8 +1038,6 @@
 				791B4DD41D645D7800AF9371 /* WantRepairTableViewDelegate.h */,
 				791B4DD21D645D7800AF9371 /* WantRepairTableView2.h */,
 				791B4DD31D645D7800AF9371 /* WantRepairTableView2.m */,
-				79259CD91D7FE19600B2031F /* AlertBtn.h */,
-				79259CDA1D7FE19600B2031F /* AlertBtn.m */,
 			);
 			name = WantRepairViews;
 			path = THWY_Server/Views/WantRepairViews;
@@ -1929,7 +1924,6 @@
 				79270DED1D61ACB100E29568 /* UIView+MJExtension.m in Sources */,
 				791B4E091D645EBE00AF9371 /* BannerNotice.m in Sources */,
 				7902B0541D64136C00ADDAE0 /* MainVC.m in Sources */,
-				79259CDB1D7FE19600B2031F /* AlertBtn.m in Sources */,
 				79270E0C1D61ACB100E29568 /* UIImage+MultiFormat.m in Sources */,
 				94FC85A81D77B9E100820AB3 /* FileVO.m in Sources */,
 				79270DD01D61ACB100E29568 /* MASCompositeConstraint.m in Sources */,

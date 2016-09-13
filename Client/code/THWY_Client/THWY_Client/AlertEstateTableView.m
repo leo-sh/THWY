@@ -8,7 +8,7 @@
 
 #import "AlertEstateTableView.h"
 #import "EstateVO.h"
-#import "AlertBtn.h"
+
 @interface AlertEstateTableView ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -19,16 +19,18 @@
 
 - (void)initViews{
     
-    NSInteger height = 45.0;
+    NSInteger height = 50.0;
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, height)];
     headerView.backgroundColor = [UIColor whiteColor];
-    AlertBtn *confirm = [[AlertBtn alloc] initWithFrame:CGRectMake(5, 5, headerView.height-10, headerView.height-10)];
-    [confirm setImage:[UIImage scaleImage: [UIImage imageNamed:@"√"] toScale:1] forState:UIControlStateNormal];
+    UIButton *confirm = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, height, height)];
+    confirm.contentEdgeInsets = UIEdgeInsetsMake(15, 14.5,  15 , 14.5);
+    [confirm setImage:[UIImage imageNamed:@"√"] forState:UIControlStateNormal];
     [confirm addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:confirm];
     
-    AlertBtn *cancel = [[AlertBtn alloc] initWithFrame:CGRectMake(self.width-5-confirm.width, 5, headerView.height-10, headerView.height-10)];
-    [cancel setImage:[UIImage scaleImage:[UIImage imageNamed:@"X"] toScale:1] forState:UIControlStateNormal];
+    UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(self.width-confirm.width, 0, height, height)];
+    cancel.contentEdgeInsets = UIEdgeInsetsMake(15, 14.5,  15 , 14.5);
+    [cancel setImage:[UIImage imageNamed:@"X"] forState:UIControlStateNormal];
     [cancel addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:cancel];
     

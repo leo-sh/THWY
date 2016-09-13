@@ -284,7 +284,7 @@
 //弹出框
 - (void)initAlertView{
  
-    self.alertView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.estatesArray.count + 45.0*2)<(My_ScreenH-84)?(44.0*self.estatesArray.count + 45.0*2):(My_ScreenH-84))];
+    self.alertView = [[AlertEstateTableView alloc] initWithFrame:CGRectMake(0, 0, My_ScreenW-40, (44.0*self.estatesArray.count + 45.0+50.0)<(My_ScreenH-84)?(44.0*self.estatesArray.count + 50+45.0):(My_ScreenH-84))];
     self.alertView.type = AlertChooseEstateType;
     self.alertView.data = self.estatesArray;
     self.alertView.AlertDelegate = self;
