@@ -54,13 +54,13 @@
     self.contentLabel.textColor = [UIColor whiteColor];
     self.backView.image = [UIImage imageNamed:@"绿对话框"];
     
-    CGFloat width = self.width * 0.5;
+    CGFloat width = 180;
     
     self.contentLabel.frame = CGRectMake(10, 5, width, 30);
     CGFloat contentHeight = [content sizeWithFont:FontSize(CONTENT_FONT + 1) maxSize:CGSizeMake(width, 4000)].height;
     NSString *rowS = [NSString stringWithFormat:@"%d",self.section];
    __block NSString *heightS;
-    if (contentHeight > 60) {
+    if (contentHeight > 30) {
         self.contentLabel.height = contentHeight;
         
         [self.backView mas_updateConstraints:^(MASConstraintMaker *make) {

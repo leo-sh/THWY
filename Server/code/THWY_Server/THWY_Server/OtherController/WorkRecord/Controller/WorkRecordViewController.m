@@ -92,6 +92,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView.mj_footer endRefreshing];
                     [self.tableView.mj_header endRefreshing];
+                    [self.tableView reloadData];
                 });
                 self.page --;
             }
@@ -131,6 +132,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView.mj_footer endRefreshing];
                     [self.tableView.mj_header endRefreshing];
+                    [self.tableView reloadData];
                 });
                 self.page --;
             }

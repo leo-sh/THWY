@@ -136,7 +136,6 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
                     [self.tableView reloadData];
-                    
                 });
             }
         dispatch_group_leave(group);
@@ -259,6 +258,7 @@
 //    if ([key integerValue] == 26) {
 //        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%f",value);
 //    }
+    NSLog(@"%f",value);
     return value;
 }
 

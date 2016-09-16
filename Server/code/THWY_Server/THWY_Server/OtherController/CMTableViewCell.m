@@ -45,7 +45,7 @@
     self.contentLabel.font = FontSize(CONTENT_FONT + 1);
     self.contentLabel.numberOfLines = 0;
     
-    CGFloat width = self.width * 0.5;
+    CGFloat width = 180;
     CGFloat returnHeight = 60;
     CGFloat contentHeight = [content sizeWithFont:FontSize(CONTENT_FONT + 1) maxSize:CGSizeMake(width, 4000)].height;
     
@@ -53,7 +53,7 @@
     
     self.backView.frame = CGRectMake(self.icon.right + 5, 10, width + 35, 40);
 
-    if (contentHeight > 60 ) {
+    if (contentHeight > 30 ) {
         self.contentLabel.height = contentHeight;
         self.backView.height = contentHeight + 10;
         self.backView.centerY = (contentHeight + 30)/2;
