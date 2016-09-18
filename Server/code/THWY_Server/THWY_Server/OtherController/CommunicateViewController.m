@@ -229,8 +229,9 @@
         COTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CO"];
         cell.section = indexPath.section;
         cell.width = tableView.width;
+        [cell setValue:@60 forKey:@"height"];
         [cell setIcon:[[self.data[indexPath.section] sender] photo] Content:[self.data[indexPath.section] msg]];
-        NSLog(@"indexpath.section %ld",indexPath.section);
+//        NSLog(@"indexpath.section %ld",indexPath.section);
         cell.backgroundColor = [UIColor yellowColor];
         returnCell = cell;
     
@@ -240,8 +241,9 @@
         CMTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CM"];
         cell.section = indexPath.section;
         cell.width = tableView.width;
+        [cell setValue:@60 forKey:@"height"];
         [cell setIcon:[[self.data[indexPath.section] sender] photo] Content:[self.data[indexPath.section] msg]];
-        NSLog(@"indexpath.section %ld",indexPath.section);
+//        NSLog(@"indexpath.section %ld",indexPath.section);
         cell.backgroundColor = [UIColor greenColor];
         returnCell = cell;
     }
@@ -258,7 +260,7 @@
 //    if ([key integerValue] == 26) {
 //        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%f",value);
 //    }
-    NSLog(@"%f",value);
+//    NSLog(@"%f",value);
     return value;
 }
 
@@ -286,7 +288,7 @@
     btn.titleLabel.font = FontSize(Content_Ip_Font);
     
     
-    NSLog(@"section :%ld,timeString:%@",section,[self.data[section] ctime]);
+//    NSLog(@"section :%ld,timeString:%@",section,[self.data[section] ctime]);
     
     NSString *title = [NSString stringDateFromTimeInterval:[[self.data[section] ctime] longLongValue] withFormat:@"YYYY-MM-dd HH:mm"];
     
@@ -313,7 +315,7 @@
 - (void)receiveNew:(NSNotification *)new
 {
     NSDictionary *dic = new.object;
-    NSLog(@"%@",dic);
+//    NSLog(@"%@",dic);
     if ([[NSString stringWithFormat:@"%d",[dic[@"s_admin_id"] intValue]] isEqualToString:self.s_admin_id]) {
         
         [My_ServicesManager palyReceive];
@@ -367,7 +369,7 @@
     }
     
     [self.rowAndHeight setValuesForKeysWithDictionary:notification.object];
-    NSLog(@"%@",self.rowAndHeight);
+//    NSLog(@"%@",self.rowAndHeight);
     
 }
 

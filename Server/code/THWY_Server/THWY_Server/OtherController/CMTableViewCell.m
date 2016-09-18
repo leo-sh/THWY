@@ -11,6 +11,11 @@
 @property UIImageView *icon;
 @property UILabel *contentLabel;
 @property UIImageView *backView;
+@property UIImageView *backViewTop;
+@property UIImageView *backViewCenter;
+@property UIImageView *backViewBottom;
+@property UIImageView *jiantou;
+
 @property int number;
 @end
 @implementation CMTableViewCell
@@ -24,6 +29,14 @@
         self.backView = [[UIImageView alloc]init];
         [self.contentView addSubview:self.backView];
         [self.contentView addSubview:self.icon];
+        self.backViewTop = [[UIImageView alloc]init];
+        self.backViewCenter = [[UIImageView alloc]init];
+        self.backViewBottom = [[UIImageView alloc]init];
+        self.jiantou = [[UIImageView alloc]init];
+        [self.backView addSubview:self.backViewTop];
+        [self.backView addSubview:self.backViewCenter];
+        [self.backView addSubview:self.backViewBottom];
+        [self.backView addSubview:self.jiantou];
         [self.backView addSubview:self.contentLabel];
     }
     return self;
@@ -40,7 +53,7 @@
     
     [self.icon sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"Avatar"]];
 
-    NSLog(@"iamge%@",icon);
+//    NSLog(@"iamge%@",icon);
     self.contentLabel.text = content;
     self.contentLabel.font = FontSize(CONTENT_FONT + 1);
     self.contentLabel.numberOfLines = 0;
@@ -62,7 +75,21 @@
     }
  
 
-    self.backView.image = [UIImage imageNamed:@"白对话框"];
+    self.backViewTop.frame = CGRectMake(15, 0, self.backView.width, 10);
+    self.backViewBottom.frame = CGRectMake(15, self.backView.bottom - 20,self.backView.width , 10);
+    
+    self.backViewCenter.frame = CGRectMake(15, 10, self.backView.width, self.backView.height - 20);
+
+    self.jiantou.frame = CGRectMake(1.5 , 0, 15, 22.0/25*15);
+
+    self.jiantou.centerY = self.backView.centerY - 10;
+    NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%f %f,%d",self.contentView.height,self.contentView.centerY,self.section);
+    self.backViewTop.image = [UIImage imageNamed:@"白-聊天框顶部"];
+    self.backViewCenter.image = [UIImage imageNamed:@"白-聊天内容一行区域"];
+    self.backViewBottom.image = [UIImage imageNamed:@"白-聊天框底部"];
+    self.jiantou.image = [UIImage imageNamed:@"白-聊天框箭头"];
+
+//    self.backView.image = [UIImage imageNamed:@"白对话框"];
     NSString *rowS = [NSString stringWithFormat:@"%d",self.section];
     NSString *heightS = [NSString stringWithFormat:@"%f",returnHeight];
     

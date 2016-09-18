@@ -12,6 +12,10 @@
 @property UIImageView *icon;
 @property UILabel *contentLabel;
 @property UIImageView *backView;
+@property UIImageView *backViewTop;
+@property UIImageView *backViewCenter;
+@property UIImageView *backViewBottom;
+@property UIImageView *jiantou;
 @property int number;
 @end
 @implementation COTableViewCell
@@ -24,6 +28,15 @@
         self.backView = [[UIImageView alloc]init];
         [self.contentView addSubview:self.backView];
         [self.contentView addSubview:self.icon];
+        
+        self.backViewTop = [[UIImageView alloc]init];
+        self.backViewCenter = [[UIImageView alloc]init];
+        self.backViewBottom = [[UIImageView alloc]init];
+        self.jiantou = [[UIImageView alloc]init];
+        [self.backView addSubview:self.backViewTop];
+        [self.backView addSubview:self.backViewCenter];
+        [self.backView addSubview:self.backViewBottom];
+        [self.backView addSubview:self.jiantou];
         [self.backView addSubview:self.contentLabel];
     }
     return self;
@@ -46,20 +59,25 @@
     
     [self.icon sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"Avatar"]];
     
-    NSLog(@"iamge%@",icon);
+//    NSLog(@"iamge%@",icon);
     
     self.contentLabel.text = content;
     self.contentLabel.font = FontSize(CONTENT_FONT + 1);
     self.contentLabel.numberOfLines = 0;
     self.contentLabel.textColor = [UIColor whiteColor];
-    self.backView.image = [UIImage imageNamed:@"绿对话框"];
+//    self.backView.image = [UIImage imageNamed:@"绿对话框"];
     
     CGFloat width = 180;
     
-    self.contentLabel.frame = CGRectMake(10, 5, width, 30);
-    CGFloat contentHeight = [content sizeWithFont:FontSize(CONTENT_FONT + 1) maxSize:CGSizeMake(width, 4000)].height;
+    self.contentLabel.frame = CGRectMake(10, 5, width - 10, 30);
+    CGFloat contentHeight = [content sizeWithFont:FontSize(CONTENT_FONT + 1) maxSize:CGSizeMake(width - 10, 4000)].height;
     NSString *rowS = [NSString stringWithFormat:@"%d",self.section];
    __block NSString *heightS;
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_enter(group);
+    
     if (contentHeight > 30) {
         self.contentLabel.height = contentHeight;
         
@@ -76,6 +94,7 @@
         heightS = [NSString stringWithFormat:@"%lf",contentHeight + 30];
             
         [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
+        dispatch_group_leave(group);
 
     }
     else
@@ -91,10 +110,27 @@
     }];
         heightS = [NSString stringWithFormat:@"%lf",60.0];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"giveHeight" object:@{rowS:heightS}];
+        
+        dispatch_group_leave(group);
 
-    }    
-
+    }
     
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        CGFloat backSubView_W = width + 10;
+        
+        self.backViewTop.frame = CGRectMake(0, 0, backSubView_W, 10);
+        self.backViewBottom.frame = CGRectMake(0, self.backView.bottom - 20,backSubView_W , 10);
+        
+        self.backViewCenter.frame = CGRectMake(0, 10, backSubView_W, self.backView.height - 20);
+        
+        self.jiantou.frame = CGRectMake(backSubView_W - 1, 0, 15, 22.0/25*15);
+        self.jiantou.centerY = self.contentView.height/2 - 10;
+    });
+
+    self.backViewTop.image = [UIImage imageNamed:@"绿-聊天框顶部"];
+    self.backViewCenter.image = [UIImage imageNamed:@"绿-聊天内容一行区域"];
+    self.backViewBottom.image = [UIImage imageNamed:@"绿-聊天框底部"];
+    self.jiantou.image = [UIImage imageNamed:@"绿-聊天框箭头"];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
