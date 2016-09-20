@@ -11,5 +11,5 @@
 @property BOOL reviseStatu;
 @property NSString *typeId;
 @property BOOL is_public;
-- (void)setTitle:(NSString *)title Content:(NSString *)content typeId:(NSString *)typeId docId:(NSString *)docId;
+- (void)setDoc:(DocVO *)doc;
 @end

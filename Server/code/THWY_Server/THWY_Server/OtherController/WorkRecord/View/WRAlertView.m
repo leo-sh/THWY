@@ -21,6 +21,7 @@
 @property NSString *titleString;
 @property NSString *contentString;
 @property BlueRedioButton *public;
+@property BlueRedioButton *private;
 @end
 @implementation WRAlertView
 - (instancetype)initWithFrame:(CGRect)frame
@@ -78,14 +79,14 @@
         [self addSubview:self.public];
 
         
-        BlueRedioButton *private = [[BlueRedioButton alloc]initWithFrame:CGRectMake(self.public.right, top, 70, 20)];
-        [private initDefaultImageName:@"repaire_unselected" choosedImageName:@"repaire_selected" title:@"个人"];
-        private.titleLabel.font = FontSize(CONTENT_FONT);
+        self.private = [[BlueRedioButton alloc]initWithFrame:CGRectMake(self.public.right, top, 70, 20)];
+        [self.private initDefaultImageName:@"repaire_unselected" choosedImageName:@"repaire_selected" title:@"个人"];
+        self.private.titleLabel.font = FontSize(CONTENT_FONT);
     
         
-        [self addSubview:private];
+        [self addSubview:self.private];
         
-        self.height = private.bottom + 20;
+        self.height = self.private.bottom + 20;
         
 
         
@@ -93,13 +94,29 @@
     return self;
 }
 
-- (void)setTitle:(NSString *)title Content:(NSString *)content typeId:(NSString *)typeId docId:(NSString *)docId{
-    self.typeId = typeId;
-    self.title.text = title;
-    self.textView.text = content;
-    self.contentString = content;
-    self.titleString = title;
-    self.docId = docId;
+- (void)setDoc:(DocVO *)doc{
+    self.typeId = doc.doc_type_id;
+    self.title.text = doc.title;
+    self.textView.text = doc.content;
+    self.contentString = doc.content;
+    self.titleString = doc.title;
+    self.docId = doc.Id;
+    self.is_public = doc.is_public;
+    
+    self.public.chooseStatu = NO;
+    [self.public setImage:[UIImage imageNamed:@"repaire_unselected"] forState:UIControlStateNormal];
+    self.private.chooseStatu = NO;
+    [self.private setImage:[UIImage imageNamed:@"repaire_unselected"] forState:UIControlStateNormal];
+    
+    if (self.is_public) {
+        self.public.chooseStatu = YES;
+        [self.public setImage:[UIImage imageNamed:@"repaire_selected"] forState:UIControlStateNormal];
+    }else
+    {
+        
+        self.private.chooseStatu = YES;
+        [self.private setImage:[UIImage imageNamed:@"repaire_selected"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)clickRight

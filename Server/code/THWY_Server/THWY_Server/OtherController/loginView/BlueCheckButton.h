@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 @interface BlueCheckButton : UIButton
+@property UIImage *defualtImage;
+@property UIImage *choosedImage;
 @property BOOL chooseStatu;
 
 - (instancetype)initDefaultImageName:(NSString *)defaultImageName choosedImageName:(NSString *)choosedImageName title:(NSString *)title;
