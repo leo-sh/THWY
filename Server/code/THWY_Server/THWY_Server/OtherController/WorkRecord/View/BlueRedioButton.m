@@ -70,20 +70,17 @@
         [self statuChange];
         
         for (UIView *temp in self.superview.subviews) {
-            if([temp isKindOfClass:[BlueRedioButton class]])
+            if([temp isKindOfClass:[BlueRedioButton class]] && temp != self)
             {
-                if (temp != self) {
-                    BlueRedioButton *btn = (BlueRedioButton *)temp;
-                    if (self.chooseStatu) {
-                        btn.chooseStatu = NO;
-                    }
-                    else
-                    {
-                        btn.chooseStatu = YES;
-                        
-                    }
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"判断" object:nil];
+                BlueRedioButton *btn = (BlueRedioButton *)temp;
+                if (self.chooseStatu) {
+                    btn.chooseStatu = NO;
                 }
+                else
+                {
+                    btn.chooseStatu = YES;
+                }
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"判断" object:nil];
             }
         }
 

@@ -19,6 +19,7 @@
 @property NSString              * open_to;
 @property NSString              * do_copy;
 @property NSString              * real_name;
+@property NSMutableArray<FileVO *> * files;
 @property BOOL                  belong;
 @property BOOL                  is_public;
 

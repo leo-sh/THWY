@@ -272,6 +272,7 @@
     time.textColor = [UIColor lightGrayColor];
     
     content.font = FontSize(CONTENT_FONT);
+    content.numberOfLines = 0;
     [self.backView addSubview:titleLabel];
     [self.backView addSubview:time];
     [self.backView addSubview:head];

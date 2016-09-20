@@ -248,8 +248,8 @@
 
 - (void)tap
 {
-//    [self hide];
-    [self endEditing:YES];
+    [self hide];
+//    [self endEditing:YES];
 
 }
 

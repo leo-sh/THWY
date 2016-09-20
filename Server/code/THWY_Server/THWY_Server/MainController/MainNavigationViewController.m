@@ -31,9 +31,6 @@
     NSString* Id = userInfo[@"pk"];
     if ([pushType isEqualToString:@"1"])
     {
-        //聊天消息
-        [[UDManager getUD] saveEndId:Id andUserId:userInfo[@"s_admin_id"]];
-        
         CommunicateViewController *vc = [[CommunicateViewController alloc]init];
         
             vc.s_admin_id = userInfo[@"s_admin_id"];
@@ -46,7 +43,8 @@
             vc.s_photo = userInfo[@"s_photo"];
         }
         
-        vc.Id = Id;
+        vc.Id = @"1";
+        
         [self pushViewController:vc animated:YES];
 //        Id                 聊天记录ID值
 //        s_photo            发送方头像绝对路径
@@ -97,17 +95,14 @@
 
 -(void)showAlertWithUserInfo:(NSDictionary *)userInfo
 {
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
     NSString* pushType = [NSString stringWithFormat:@"%ld",[userInfo[@"push_type"] integerValue]];
     if ([pushType isEqualToString:@"1"] && [self.topViewController isKindOfClass:[CommunicateViewController class]])
     {
-        CommunicateViewController* vc = [CommunicateViewController shareCommunicateViewController];
-        if ([[NSString stringWithFormat:@"%ld",[userInfo[@"s_admin_id"] integerValue]] isEqualToString:vc.s_admin_id]) {
-            [My_NoteCenter postNotificationName:GetNewMessage object:userInfo];
-            return;
-        }
+        return;
     }
     
-    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     _userInfo = userInfo;
     tapGestureBool = YES;
     

@@ -84,6 +84,7 @@
 
 -(NSString *)getEndId:(NSString *)userId
 {
+    return @"1";
     if ([userId isKindOfClass:[NSNumber class]]) {
         userId = [NSString stringWithFormat:@"%ld",userId.integerValue];
     }

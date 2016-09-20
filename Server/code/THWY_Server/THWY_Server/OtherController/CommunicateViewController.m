@@ -95,6 +95,9 @@
         }
         else
         {
+            if ([[[list lastObject] Id] intValue] != [[[self.data lastObject] Id] intValue] && self.data.count > 0) {
+                [My_ServicesManager palyReceive];
+            }
             self.data.array = list;
             self.endId = [[list lastObject] Id];
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -131,6 +134,10 @@
     [[ServicesManager getAPI] getMsgs:self.s_admin_id endId:self.Id onComplete:^(NSString *errorMsg, NSArray *list) {
             
             if (![self.endId isEqualToString:[[list lastObject] Id]]) {
+                if ([[[list lastObject] Id] intValue] != [[[self.data lastObject] Id] intValue] && self.data.count > 0) {
+                    [My_ServicesManager palyReceive];
+                }
+                
                 self.endId = [[list lastObject] Id];
                 self.data.array = list;
                 dispatch_async(dispatch_get_main_queue(), ^{
