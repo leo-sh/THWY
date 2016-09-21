@@ -43,7 +43,7 @@
     self.contentTextView.font = FontSize(CONTENT_FONT);
     self.contentTextView.userInteractionEnabled = NO;
     self.contentTextView.backgroundColor = [UIColor clearColor];
-    CGFloat height = [docVo.title sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(self.width - 20, 4000)].height;
+    CGFloat height = [docVo.content sizeWithFont:FontSize(CONTENT_FONT) maxSize:CGSizeMake(self.width - 20, 4000)].height;
     
 //    NSArray *array = @[title];
 //    NSPredicate * prdicate = [NSPredicate predicateWithFormat:@"SELF LIKE '<*?>'"];

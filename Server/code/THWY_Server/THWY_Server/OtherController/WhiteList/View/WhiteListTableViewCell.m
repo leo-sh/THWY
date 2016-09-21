@@ -44,7 +44,7 @@
     
     [self.ReviseBtn setLeftImageView:@"b修改" andTitle:@"修改"];
     
-    CGFloat estateWidth = 64;
+    CGFloat estateWidth = 128;
     
     self.estateLabel.frame = CGRectMake(10, 0, estateWidth, self.height);
     

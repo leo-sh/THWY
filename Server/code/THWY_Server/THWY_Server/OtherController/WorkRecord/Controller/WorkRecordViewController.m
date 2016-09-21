@@ -278,12 +278,11 @@
     cell.section = indexPath.section;
     cell.dictionry = self.rowAndHeight;
     cell.backgroundColor = WhiteAlphaColor;
-    
+    [SVProgressHUD showWithStatus:@"正在加载数据,请稍等..."];
     [[ServicesManager getAPI]getADoc:[self.data[indexPath.section] Id]onComplete:^(NSString *errorMsg, DocVO *doc) {
         NSLog(@"%@",[self.data[indexPath.section] Id]);
-        
         [cell setTitle:doc];
-
+        [SVProgressHUD dismiss];
     }];
     cell.preservesSuperviewLayoutMargins = NO;
     cell.separatorInset = UIEdgeInsetsZero;
