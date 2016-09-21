@@ -39,7 +39,7 @@
     }
     
     self.docVo = docVo;
-    self.contentTextView.text = docVo.title;
+    self.contentTextView.text = docVo.content;
     self.contentTextView.font = FontSize(CONTENT_FONT);
     self.contentTextView.userInteractionEnabled = NO;
     self.contentTextView.backgroundColor = [UIColor clearColor];

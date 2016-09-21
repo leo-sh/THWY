@@ -46,6 +46,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    if (My_ServicesManager.remoteNotification && [My_ServicesManager isLogin]) {
+        [SVProgressHUD showWithStatus:@"正在加载数据,请稍等..."];
+    }
     [self refreshUserInfo];
 }
 
@@ -55,6 +58,7 @@
         MainNavigationViewController* mainNav = (MainNavigationViewController* )self.navigationController;
         [mainNav popWithUserInfo:My_ServicesManager.remoteNotification];
         My_ServicesManager.remoteNotification = nil;
+        [SVProgressHUD dismiss];
     }
 }
 
