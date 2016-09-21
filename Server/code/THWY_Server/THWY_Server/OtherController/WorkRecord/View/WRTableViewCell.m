@@ -107,7 +107,7 @@
                 
                 CGFloat width = GetContentWidth(docVo.files[i].file_name, Content_Ip_Font);
                 
-                UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, width , Content_Ip_Font)];
+                UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, width , Content_Ip_Font + 10)];
                 [btn setTitle:docVo.files[i].file_name forState:UIControlStateNormal];
                 btn.titleLabel.font = FontSize(Content_Ip_Font);
                 [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
