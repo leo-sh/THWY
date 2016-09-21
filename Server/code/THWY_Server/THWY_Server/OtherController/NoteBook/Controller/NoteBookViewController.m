@@ -280,7 +280,12 @@
     cell.section = indexPath.section;
     cell.dictionry = self.rowAndHeight;
     cell.backgroundColor = WhiteAlphaColor;
-    [cell setTitle:[self.data[indexPath.section] content]];
+    [[ServicesManager getAPI]getADoc:[self.data[indexPath.section] Id]onComplete:^(NSString *errorMsg, DocVO *doc) {
+        NSLog(@"%@",[self.data[indexPath.section] Id]);
+        
+        [cell setTitle:doc];
+        
+    }];
     cell.preservesSuperviewLayoutMargins = NO;
     cell.separatorInset = UIEdgeInsetsZero;
     cell.layoutMargins = UIEdgeInsetsZero;

@@ -11,5 +11,5 @@
 @interface WRTableViewCell : UITableViewCell
 @property int section;
 @property NSDictionary *dictionry;
-- (void)setTitle:(NSString *)title;
+- (void)setTitle:(DocVO *)docVo;
 @end
