@@ -344,7 +344,7 @@ savePassWord:(BOOL)save
             UserVO* user = [[UserVO alloc]initWithJSON:responseObject[@"datas"]];
             [[UDManager getUD] saveUser:user];
             
-            NSMutableArray* tagArr = [[NSMutableArray alloc]initWithObjects:@"manager",[NSString stringWithFormat:@"admin_id_%@",user.admin_id],[NSString stringWithFormat:@"group_id%@",user.admin_group_id], nil];
+            NSMutableArray* tagArr = [[NSMutableArray alloc]initWithObjects:@"manager",[NSString stringWithFormat:@"admin_id_%@",user.admin_id],[NSString stringWithFormat:@"group_id_%@",user.admin_group_id], nil];
             if ([user.is_serviceman isEqualToString:@"1"]) {
                 [tagArr addObject:@"wx"];
             }
@@ -392,7 +392,7 @@ savePassWord:(BOOL)save
         }else
         {
             UserVO* user = [[UserVO alloc]initWithJSON:responseObject[@"datas"]];
-            NSMutableArray* tagArr = [[NSMutableArray alloc]initWithObjects:@"manager",[NSString stringWithFormat:@"admin_id_%@",user.admin_id],[NSString stringWithFormat:@"group_id%@",user.admin_group_id], nil];
+            NSMutableArray* tagArr = [[NSMutableArray alloc]initWithObjects:@"manager",[NSString stringWithFormat:@"admin_id_%@",user.admin_id],[NSString stringWithFormat:@"group_id_%@",user.admin_group_id], nil];
             if ([user.is_serviceman isEqualToString:@"1"]) {
                 [tagArr addObject:@"wx"];
             }
@@ -1847,7 +1847,9 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-
+        [self getADoc:@"23" onComplete:^(NSString *errorMsg, DocVO *doc) {
+            
+        }];
     }else
     {
 //        [self login:@"fzq" password:@"123456" savePassWord:NO onComplete:^(NSString *errorMsg, UserVO *user) {

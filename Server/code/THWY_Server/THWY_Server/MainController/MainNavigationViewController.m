@@ -39,7 +39,6 @@
             vc.s_photo = [NSString stringWithFormat:@"%@%@",API_Prefix,userInfo[@"s_photo"]];
         }else
         {
-            
             vc.s_photo = userInfo[@"s_photo"];
         }
         

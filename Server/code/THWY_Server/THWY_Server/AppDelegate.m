@@ -34,7 +34,7 @@
         if (My_ServicesManager.isLogin) {
             UserVO* user = [[UDManager getUD] getUser];
             
-            NSMutableArray* tagArr = [[NSMutableArray alloc]initWithObjects:@"manager",[NSString stringWithFormat:@"admin_id_%@",user.admin_id],[NSString stringWithFormat:@"group_id%@",user.admin_group_id], nil];
+            NSMutableArray* tagArr = [[NSMutableArray alloc]initWithObjects:@"manager",[NSString stringWithFormat:@"admin_id_%@",user.admin_id],[NSString stringWithFormat:@"group_id_%@",user.admin_group_id], nil];
             if ([user.is_serviceman isEqualToString:@"1"]) {
                 [tagArr addObject:@"wx"];
             }

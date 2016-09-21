@@ -284,7 +284,7 @@
     [[ServicesManager getAPI]getADoc:[self.data[indexPath.section] Id]onComplete:^(NSString *errorMsg, DocVO *doc) {
         NSLog(@"%@",[self.data[indexPath.section] Id]);
         [cell setTitle:doc];
-        
+        [SVProgressHUD dismiss];
     }];
     cell.preservesSuperviewLayoutMargins = NO;
     cell.separatorInset = UIEdgeInsetsZero;
