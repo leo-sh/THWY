@@ -11,6 +11,7 @@
 @interface WRTableViewCell()<UIWebViewDelegate>
 @property UITextView *contentTextView;
 @property UIImageView *backGroundView;
+@property UIImageView *backGroundBottomView;
 @property NSString *content;
 @property DocVO *docVo;
 @property UIView *fujianView;
@@ -21,9 +22,15 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
 
-        self.backGroundView = [[UIImageView alloc]init];
-        self.backGroundView.image = [UIImage imageNamed:@"WR展开"];
+        self.backGroundView = [[UIImageView alloc]initWithFrame:CGRectMake(self.width * 0.35, 0, 16, 13)];
+//        self.backGroundView.backgroundColor = [UIColor blackColor];
+        self.backGroundView.image = [UIImage imageNamed:@"jiantou"];
         [self.contentView addSubview:self.backGroundView];
+        
+        self.backGroundBottomView = [[UIImageView alloc]init];
+        self.backGroundBottomView.image = [UIImage imageNamed:@"日志&笔记触发内容背景"];
+        
+        [self.contentView addSubview:self.backGroundBottomView];
         
         self.contentTextView = [[UITextView alloc]init];
         [self.contentView addSubview:self.contentTextView];
@@ -55,15 +62,15 @@
             break;
         }
     }
-    if ([docVo.title containsString:@"<"] && [docVo.title containsString:@">"]) {
+    if ([docVo.content containsString:@"<"] && [docVo.content containsString:@">"]) {
         
-        UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.width, 0)];
+        UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 5, self.width, 0)];
         webView.scrollView.bounces = NO;
         webView.userInteractionEnabled = NO;
         webView.backgroundColor = My_clearColor;
         webView.delegate = self;
         webView.opaque = NO;
-        NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", docVo.title];
+        NSString * htmlcontent = [NSString stringWithFormat:@"<div id=\"webview_content_wrapper\">%@</div>", docVo.content];
 //            if (![self.content isEqualToString:title]) {
         [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
 
@@ -139,7 +146,8 @@
         
         NSString *rowS = [NSString stringWithFormat:@"%ld",self.section];
         
-        
+        self.backGroundBottomView.frame = CGRectMake(0, self.backGroundView.bottom, self.width, [heightString floatValue] - self.backGroundView.height);
+
         NSArray *array = [self.dictionry allKeys];
         
         BOOL isRefrash = YES;
@@ -160,7 +168,7 @@
             
         }
         
-        self.backGroundView.frame = CGRectMake(0, 0, self.width, returnHeight);
+
     }
     
 }
@@ -226,7 +234,7 @@
     
     NSString *rowS = [NSString stringWithFormat:@"%ld",self.section];
     NSString *heightS = [NSString stringWithFormat:@"%lf",returnHeight];
-    self.backGroundView.frame = CGRectMake(0, 0, self.width, [heightS floatValue]);
+    self.backGroundBottomView.frame = CGRectMake(0, self.backGroundView.bottom, self.width, [heightS floatValue] - self.backGroundView.height);
     
     
     NSArray *array = [self.dictionry allKeys];

@@ -340,9 +340,14 @@
         
         revise.titleLabel.font = FontSize(CONTENT_FONT);
         
-        [revise addTarget:self action:@selector(clickRevise:) forControlEvents:UIControlEventTouchUpInside];
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(label.right + btnL, 0, btnW, 60)];
+        
         
         [view addSubview:revise];
+        
+        [view addSubview:btn];
+        
+        [btn addTarget:self action:@selector(clickRevise:) forControlEvents:UIControlEventTouchUpInside];
         
         ReviseBtn *delete = [[ReviseBtn alloc]initWithFrame:CGRectMake(0, top, btnW, CONTENT_FONT)];
         
@@ -352,12 +357,17 @@
         
         [delete setLeftImageView:@"b删除" andTitle:@"删除"];
         
-        [delete addTarget:self action:@selector(clickDelete:) forControlEvents:UIControlEventTouchUpInside];
         
         
         delete.titleLabel.font = FontSize(CONTENT_FONT);
         
+        UIButton *btn2 = [[UIButton alloc]initWithFrame:CGRectMake(revise.right + btnL, 0, btnW, 60)];
+        
         [view addSubview:delete];
+        
+        [view addSubview:btn2];
+        
+        [btn2 addTarget:self action:@selector(clickDelete:) forControlEvents:UIControlEventTouchUpInside];
         
     }
     else
