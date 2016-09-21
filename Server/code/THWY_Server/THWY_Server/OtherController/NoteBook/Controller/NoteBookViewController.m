@@ -280,9 +280,9 @@
     cell.section = indexPath.section;
     cell.dictionry = self.rowAndHeight;
     cell.backgroundColor = WhiteAlphaColor;
+    
     [[ServicesManager getAPI]getADoc:[self.data[indexPath.section] Id]onComplete:^(NSString *errorMsg, DocVO *doc) {
         NSLog(@"%@",[self.data[indexPath.section] Id]);
-        
         [cell setTitle:doc];
         
     }];
