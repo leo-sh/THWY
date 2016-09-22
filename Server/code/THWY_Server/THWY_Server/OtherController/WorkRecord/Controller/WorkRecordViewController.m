@@ -210,24 +210,23 @@
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        
-        [self.data removeAllObjects];
-        [self.clickStatuA removeAllObjects];
-        self.page = 0;
-        [self getData];
-    }];
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        self.page ++;
-        [self getData];
-    }];
-    
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.topView.mas_bottom).with.offset(0);
         make.left.mas_equalTo(5);
         make.right.mas_equalTo(-5);
         make.bottom.mas_equalTo(-70);
         
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            
+            [self.data removeAllObjects];
+            [self.clickStatuA removeAllObjects];
+            self.page = 0;
+            [self getData];
+        }];
+        self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            self.page ++;
+            [self getData];
+        }];
         
         UIView *view = [[UIView alloc]init];
         
@@ -236,7 +235,7 @@
         
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
             
-            make.top.equalTo(self.tableView.mas_bottom).with.offset(0);
+            make.top.equalTo(self.tableView.mas_bottom).with.offset(2);
             make.bottom.mas_equalTo(0);
             make.left.mas_equalTo(0);
             make.right.mas_equalTo(0);

@@ -219,13 +219,13 @@
         self.page = 0;
         [self getData];
     }];
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         self.page ++;
         [self getData];
     }];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.topView.mas_bottom).with.offset(0);
+        make.top.equalTo(self.topView.mas_bottom).with.offset(2);
         make.left.mas_equalTo(5);
         make.right.mas_equalTo(-5);
         make.bottom.mas_equalTo(-70);
