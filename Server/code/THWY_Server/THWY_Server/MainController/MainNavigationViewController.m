@@ -86,6 +86,16 @@
         }
         [self pushViewController:detail animated:YES];
     
+    }else if ([pushType isEqualToString:@"6"])
+    {
+        //物业公告－商圈公告
+        ProclamationInfoViewController *infoVC = [[ProclamationInfoViewController alloc]init];
+        
+        infoVC.type = GetBusinessData;
+        infoVC.proclamationId = Id;
+        
+        [self pushViewController:infoVC animated:YES];
+        
     }
     if (_userInfo) {
         _userInfo = nil;
