@@ -23,15 +23,8 @@
 - (instancetype)initWithWidth:(CGFloat)width itemHeight:(CGFloat)itemHeight itemNames:(NSArray *)items ItemImages:(NSArray *)images{
     
     if (self = [super init]) {
-#warning TODO - 判断版本更新
-        //判断是否显示版本更新
-        if(1){
-            self.itemNames = items;
-        }else{
-            NSMutableArray *array = [NSMutableArray arrayWithArray:items];
-            [array removeLastObject];
-            self.itemNames = array;
-        }
+
+        self.itemNames = items;
         self.itemImages = images;
         self.frame = CGRectMake(0, 64, My_ScreenW, My_ScreenH);
         self.backgroundColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.01];
@@ -72,6 +65,18 @@
         [cell.contentView addSubview:line];
     }
     return cell;
+}
+
+- (void)refreshUpdateIcon:(BOOL)haveUpdate{
+    if (haveUpdate) {
+        self.itemNames = @[@"我要报修", @"我要投诉", @"账号信息",@"我的积分", @"推送设置", @"技术支持", @"版本更新"];
+        self.itemImages = @[@"main_1", @"main_2", @"main_6",@"main_3", @"main_4", @"main_5", @"main_versionrefresh"];
+        [self.tableView reloadData];
+    }else{
+        self.itemNames = @[@"我要报修", @"我要投诉", @"账号信息",@"我的积分", @"推送设置", @"技术支持"];
+        self.itemImages = @[@"main_1", @"main_2", @"main_6",@"main_3", @"main_4", @"main_5"];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
