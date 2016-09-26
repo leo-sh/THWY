@@ -24,8 +24,8 @@
 
 @property (strong, nonatomic) id<DropTableMenuDelegate> dropDelegate;
 
+- (void)refreshUpdateIcon:(BOOL)haveUpdate;
+
 - (instancetype)initWithWidth:(CGFloat)width itemHeight:(CGFloat)itemHeight itemNames:(NSArray *)items ItemImages:(NSArray *)images;
-
-
 
 @end

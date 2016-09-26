@@ -170,6 +170,7 @@
 		793B8EDB1D656A9300290EAB /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDA1D656A9300290EAB /* AdVO.m */; };
 		793B8EDE1D6596A000290EAB /* AlertEstateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */; };
 		793B8EE11D65AEA500290EAB /* RepairStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */; };
+		7961641D1D98EC4A00D4C1C6 /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7961641C1D98EC4A00D4C1C6 /* UIViewController+Extension.m */; };
 		797384331D66D94500708E62 /* RepairStatisticsFinishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 797384321D66D94500708E62 /* RepairStatisticsFinishCell.m */; };
 		79F60D0A1D6A070C00A8E2D2 /* RepairRecordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F60D091D6A070C00A8E2D2 /* RepairRecordsVC.m */; };
 		79F60D101D6A072300A8E2D2 /* RepairDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F60D0F1D6A072300A8E2D2 /* RepairDetailController.m */; };
@@ -564,6 +565,8 @@
 		793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertEstateTableView.m; sourceTree = "<group>"; };
 		793B8EDF1D65AEA500290EAB /* RepairStatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticsCell.h; sourceTree = "<group>"; };
 		793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatisticsCell.m; sourceTree = "<group>"; };
+		7961641B1D98EC4A00D4C1C6 /* UIViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extension.h"; sourceTree = "<group>"; };
+		7961641C1D98EC4A00D4C1C6 /* UIViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extension.m"; sourceTree = "<group>"; };
 		797384311D66D94500708E62 /* RepairStatisticsFinishCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticsFinishCell.h; sourceTree = "<group>"; };
 		797384321D66D94500708E62 /* RepairStatisticsFinishCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatisticsFinishCell.m; sourceTree = "<group>"; };
 		79F60D081D6A070C00A8E2D2 /* RepairRecordsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairRecordsVC.h; sourceTree = "<group>"; };
@@ -1524,6 +1527,8 @@
 				79270F4E1D61B1EF00E29568 /* UIScreen+Extension.m */,
 				79270F4F1D61B1EF00E29568 /* UIView+Extension.h */,
 				79270F501D61B1EF00E29568 /* UIView+Extension.m */,
+				7961641B1D98EC4A00D4C1C6 /* UIViewController+Extension.h */,
+				7961641C1D98EC4A00D4C1C6 /* UIViewController+Extension.m */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -1920,6 +1925,7 @@
 				79270DDA1D61ACB100E29568 /* MJRefreshAutoFooter.m in Sources */,
 				79270DEB1D61ACB100E29568 /* UIScrollView+MJExtension.m in Sources */,
 				79270DDE1D61ACB100E29568 /* MJRefreshHeader.m in Sources */,
+				7961641D1D98EC4A00D4C1C6 /* UIViewController+Extension.m in Sources */,
 				79270EA01D61AD0E00E29568 /* UDManager.m in Sources */,
 				79270DDF1D61ACB100E29568 /* MJRefreshAutoGifFooter.m in Sources */,
 				79270DC61D61ACB100E29568 /* AFSecurityPolicy.m in Sources */,

@@ -34,6 +34,8 @@
 #endif
 
 #define APPVersion @"1.0.1"
+#define APPID @""
+
 //API
 #define API_Address @"http://112.126.75.77"
 #define API_Port My_ServicesManager.portNum

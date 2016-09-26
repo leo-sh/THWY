@@ -77,4 +77,16 @@
     [self.dropDelegate dropMenuHidden];
 }
 
+- (void)refreshUpdateIcon:(BOOL)haveUpdate{
+    if (haveUpdate) {
+        self.itemNames = @[@"我要报修", @"我要投诉", @"账号信息",@"我的积分", @"推送设置", @"技术支持", @"版本更新"];
+        self.itemImages = @[@"main_1", @"main_2", @"main_6",@"main_3", @"main_4", @"main_5", @"main_versionrefresh"];
+        [self.tableView reloadData];
+    }else{
+        self.itemNames = @[@"我要报修", @"我要投诉", @"账号信息",@"我的积分", @"推送设置", @"技术支持"];
+        self.itemImages = @[@"main_1", @"main_2", @"main_6",@"main_3", @"main_4", @"main_5"];
+        [self.tableView reloadData];
+    }
+}
+
 @end

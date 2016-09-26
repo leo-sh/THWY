@@ -41,7 +41,15 @@
     [self initModuleViews];
    
     [My_NoteCenter addObserver:self selector:@selector(refreshUserInfo) name:Login_Success object:nil];
-    
+    [My_ServicesManager getUpdate:^(NSString *errorMsg, BOOL haveUpdata, NSDictionary *data) {
+        if(errorMsg){
+            
+        }else{
+            if (haveUpdata) {
+                [self.dropView refreshUpdateIcon:haveUpdata];
+            }
+        }
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated
