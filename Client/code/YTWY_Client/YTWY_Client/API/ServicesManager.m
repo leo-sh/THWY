@@ -1704,6 +1704,37 @@ savePassWord:(BOOL)save
     }];
 }
 
+-(void)getUpdate:(void (^)(NSString *errorMsg,BOOL haveUpdata,NSDictionary* data))onComplete
+{
+    AFHTTPSessionManager *manager = [self getManager];
+    NSString *urlString = [NSString stringWithFormat:@"%@update",API_HOST];
+    NSDictionary *params = @{@"login_name":_userName,
+                             @"login_password":_passWord};
+    [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] != 0) {
+            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
+                onComplete(errorMsg,NO,nil);
+            }];
+        }else
+        {
+            if ([APPVersion isEqualToString:responseObject[@"data"][@"rc_version"]]) {
+                onComplete(nil,NO,nil);
+            }else if(![APPVersion isEqualToString:responseObject[@"data"][@"version"]])
+            {
+                onComplete(nil,YES,responseObject[@"data"]);
+            }else
+            {
+                
+                onComplete(nil,YES,nil);
+            }
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        onComplete(@"网络连接错误",NO,nil);
+    }];
+}
+
 #pragma mark 测试用函数
 -(void)test
 {
