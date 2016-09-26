@@ -23,7 +23,15 @@
 - (instancetype)initWithWidth:(CGFloat)width itemHeight:(CGFloat)itemHeight itemNames:(NSArray *)items ItemImages:(NSArray *)images{
     
     if (self = [super init]) {
-        self.itemNames = items;
+#warning TODO - 判断版本更新
+        //判断是否显示版本更新
+        if(1){
+            self.itemNames = items;
+        }else{
+            NSMutableArray *array = [NSMutableArray arrayWithArray:items];
+            [array removeLastObject];
+            self.itemNames = array;
+        }
         self.itemImages = images;
         self.frame = CGRectMake(0, 64, My_ScreenW, My_ScreenH);
         self.backgroundColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.01];
