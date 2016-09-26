@@ -294,7 +294,6 @@
     self.tableView2.mj_header.automaticallyChangeAlpha = YES;
 //    self.tableView2.mj_footer.automaticallyChangeAlpha = YES;
     
-
 }
 
 //刷新数据

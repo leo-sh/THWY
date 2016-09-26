@@ -274,7 +274,6 @@
     
 }
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     switch (section) {
         case 2:{

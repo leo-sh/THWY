@@ -204,8 +204,6 @@
             make.top.mas_equalTo(username.mas_bottom).offset(i*username.height);
         }];
     }
-    
-    
 }
 
 #pragma mark - ADViews
