@@ -1842,12 +1842,14 @@ savePassWord:(BOOL)save
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@update",API_HOST];
     NSDictionary *params = @{@"login_name":_userName,
-                             @"login_password":_passWord};
+                             @"login_password":_passWord,
+                             @"platform":@"2",
+                             @"user_type":@"1"};
     [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] != 0) {
-            [self getErrorMessage:responseObject onComplete:^(NSString *errorMsg) {
+            [self getErrorMessage:responseObject[@"code"] onComplete:^(NSString *errorMsg) {
                 onComplete(errorMsg,NO,nil);
             }];
         }else
@@ -1877,7 +1879,7 @@ savePassWord:(BOOL)save
 -(void)test
 {
     if ([self isLogin]) {
-        [self getADoc:@"23" onComplete:^(NSString *errorMsg, DocVO *doc) {
+        [self getUpdate:^(NSString *errorMsg, BOOL haveUpdata, NSDictionary *data) {
             
         }];
     }else
