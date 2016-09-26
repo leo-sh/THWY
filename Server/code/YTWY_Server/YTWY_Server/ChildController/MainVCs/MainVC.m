@@ -36,42 +36,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
     [self initNVBar];
+    [self getVersionUpdate];
     [self initUserInfoView];
     [self initModuleViews];
+    
    
-    [My_NoteCenter addObserver:self selector:@selector(refreshUserInfo) name:Login_Success object:nil];
-    if ([My_ServicesManager isLogin]){
-        [My_ServicesManager getUpdate:^(NSString *errorMsg, BOOL haveUpdata, NSDictionary *data) {
-            if(errorMsg){
-                
-            }else{
-                if (haveUpdata) {
-                    [self.dropView refreshUpdateIcon:haveUpdata];
-                }
-                if (data) {
-                    //推送更新
-                    if ([[UIViewController getCurrentVC] isMemberOfClass:[MainVC class]]) {
-                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:data[@"title"] message:data[@"detail"] preferredStyle:UIAlertControllerStyleAlert];
-                        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                            
-                        }];
-                        UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"前往更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                            NSString *str = [NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%@",APPID];
-                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-                        }];
-                        [alert addAction:cancel];
-                        [alert addAction:confirm];
-                        [self presentViewController:alert animated:YES completion:^{
-                            
-                        }];
-                    }
-                }
-                
-            }
-        }];
-    }
-
+    [My_NoteCenter addObserver:self selector:@selector(loginInFunc) name:Login_Success object:nil];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -97,6 +70,51 @@
 {
     if (self.dropView.superview) {
         [self leftItemOnclicked:self.leftButton];
+    }
+}
+
+- (void)loginInFunc{
+    
+    [self refreshUserInfo];
+    
+    [self getVersionUpdate];
+    
+}
+
+- (void)getVersionUpdate{
+    if ([[UDManager getUD] getUser]) {
+        [My_ServicesManager getUpdate:^(NSString *errorMsg, BOOL haveUpdata, NSDictionary *data) {
+            if(errorMsg){
+            }else{
+                if (haveUpdata) {
+                    [self.dropView refreshUpdateIcon:haveUpdata];
+                }
+                
+                if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"update_first"] intValue] == -1) {
+                    if (data) {
+                        //推送更新
+                        if ([[UIViewController getCurrentVC] isMemberOfClass:[MainVC class]]) {
+                            UIAlertController *alert = [UIAlertController alertControllerWithTitle:data[@"title"] message:data[@"detail"] preferredStyle:UIAlertControllerStyleAlert];
+                            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                
+                            }];
+                            UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"前往更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                NSString *str = [NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%@",APPID];
+                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+                            }];
+                            [alert addAction:cancel];
+                            [alert addAction:confirm];
+                            [self presentViewController:alert animated:YES completion:^{
+                                
+                            }];
+                        }
+                    }
+                }
+            }
+        }];
+        [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"update_first"];
+    }else{
+        [[NSUserDefaults standardUserDefaults] setObject:@"-1" forKey:@"update_first"];
     }
 }
 
@@ -134,6 +152,7 @@
             }
         }];
     }
+    
 }
 
 - (void)initNVBar{
@@ -194,6 +213,9 @@
             button.tag = 112;
             [self showVC:button];
             break;
+        }
+        case 5:{
+#warning mark - 版本更新点击事件
         }
         default:
             break;
