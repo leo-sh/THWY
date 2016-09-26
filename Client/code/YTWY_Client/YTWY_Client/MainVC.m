@@ -43,15 +43,37 @@
     [self initModuleViews];
    
     [My_NoteCenter addObserver:self selector:@selector(refreshUserInfo) name:Login_Success object:nil];
-    [My_ServicesManager getUpdate:^(NSString *errorMsg, BOOL haveUpdata, NSDictionary *data) {
-        if(errorMsg){
-            
-        }else{
-            if (haveUpdata) {
-                [self.dropView refreshUpdateIcon:haveUpdata];
+    if ([My_ServicesManager isLogin]){
+        [My_ServicesManager getUpdate:^(NSString *errorMsg, BOOL haveUpdata, NSDictionary *data) {
+            if(errorMsg){
+                
+            }else{
+                if (haveUpdata) {
+                    [self.dropView refreshUpdateIcon:haveUpdata];
+                }
+                if (data) {
+                    //推送更新
+                    if ([[UIViewController getCurrentVC] isMemberOfClass:[MainVC class]]) {
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:data[@"title"] message:data[@"detail"] preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                            
+                        }];
+                        UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"前往更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                            NSString *str = [NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%@",APPID];
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+                        }];
+                        [alert addAction:cancel];
+                        [alert addAction:confirm];
+                        [self presentViewController:alert animated:YES completion:^{
+                            
+                        }];
+                    }
+                }
+                
             }
-        }
-    }];
+        }];
+    }
+
 }
 
 -(void)viewWillAppear:(BOOL)animated

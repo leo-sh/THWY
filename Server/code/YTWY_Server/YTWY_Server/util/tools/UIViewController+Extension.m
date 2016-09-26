@@ -42,7 +42,11 @@
     
     // 判断显示视图的下一个响应者是否为一个UIViewController的类对象
     if ([nextResponder isKindOfClass:[UIViewController class]]) {
-        result = nextResponder;
+        if ([nextResponder isKindOfClass:[UINavigationController class]]){
+            result = [(UINavigationController *)nextResponder viewControllers][0];
+        }else{
+            result = nextResponder;
+        }
     } else {
         result = window.rootViewController;
     }

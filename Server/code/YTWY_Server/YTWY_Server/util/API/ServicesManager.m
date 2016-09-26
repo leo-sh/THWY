@@ -1854,14 +1854,13 @@ savePassWord:(BOOL)save
             }];
         }else
         {
-            if ([APPVersion isEqualToString:responseObject[@"data"][@"rc_version"]]) {
+            if ([APPVersion isEqualToString:responseObject[@"datas"][@"rc_version"]]) {
                 onComplete(nil,NO,nil);
-            }else if(![APPVersion isEqualToString:responseObject[@"data"][@"version"]])
+            }else if(![APPVersion isEqualToString:responseObject[@"datas"][@"version"]])
             {
-                onComplete(nil,YES,responseObject[@"data"]);
+                onComplete(nil,YES,responseObject[@"datas"]);
             }else
             {
-                
                 onComplete(nil,YES,nil);
             }
         }

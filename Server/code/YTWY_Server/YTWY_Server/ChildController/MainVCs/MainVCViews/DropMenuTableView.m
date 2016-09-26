@@ -16,6 +16,8 @@
 
 @property (strong, nonatomic) NSArray *itemImages;
 
+@property (assign, nonatomic) CGFloat itemHeight;
+
 @end
 
 @implementation DropMenuTableView
@@ -25,6 +27,7 @@
     if (self = [super init]) {
         self.itemNames = items;
         self.itemImages = images;
+        self.itemHeight = itemHeight;
         self.frame = CGRectMake(0, 64, My_ScreenW, My_ScreenH);
         self.backgroundColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.01];
         
@@ -79,12 +82,14 @@
 
 - (void)refreshUpdateIcon:(BOOL)haveUpdate{
     if (haveUpdate) {
-        self.itemNames = @[@"我要报修", @"我要投诉", @"账号信息",@"我的积分", @"推送设置", @"技术支持", @"版本更新"];
-        self.itemImages = @[@"main_1", @"main_2", @"main_6",@"main_3", @"main_4", @"main_5", @"main_versionrefresh"];
+        self.itemNames = @[@"我要报修", @"物业公告", @"账号信息", @"推送设置", @"技术支持", @"版本更新"];
+        self.itemImages = @[@"main_1", @"main_2", @"main_6", @"main_4", @"main_5", @"main_versionupdate"];
+        self.tableView.height = self.itemNames.count*self.itemHeight;
         [self.tableView reloadData];
     }else{
-        self.itemNames = @[@"我要报修", @"我要投诉", @"账号信息",@"我的积分", @"推送设置", @"技术支持"];
-        self.itemImages = @[@"main_1", @"main_2", @"main_6",@"main_3", @"main_4", @"main_5"];
+        self.itemNames = @[@"我要报修", @"物业公告", @"账号信息", @"推送设置", @"技术支持"];
+        self.itemImages = @[@"main_1", @"main_2", @"main_6", @"main_4", @"main_5"];
+        self.tableView.height = self.itemNames.count*self.itemHeight;
         [self.tableView reloadData];
     }
 }
