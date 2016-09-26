@@ -456,6 +456,7 @@ savePassWord:(BOOL)save
  */
 -(void)setNewPassword:(NSString *)name phoneNum:(NSString *)phoneNum code:(NSString *)code newPassword:(NSString *)newPassword onComplete:(void (^)(NSString *errorMsg))onComplete;
 
+-(void)getUpdate:(void (^)(NSString *errorMsg,BOOL haveUpdata,NSDictionary* data))onComplete;
 #pragma mark 测试用函数
 -(void)test;
 @end
