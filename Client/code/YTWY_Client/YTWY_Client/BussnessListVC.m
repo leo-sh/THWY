@@ -44,7 +44,7 @@
     self.page = 0;
     [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
     [self getBussnessData];
-    [self.merchantNametextField becomeFirstResponder];
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated

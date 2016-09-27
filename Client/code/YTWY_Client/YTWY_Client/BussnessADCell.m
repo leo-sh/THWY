@@ -12,7 +12,7 @@
 @interface BussnessADCell ()<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UITextView *desc;
+@property (weak, nonatomic) IBOutlet UILabel *desc;
 @property (strong, nonatomic) UIWebView* webView;
 @property (strong, nonatomic) AdVO *advo;
 @end
@@ -48,6 +48,8 @@
     NSArray *a = [array filteredArrayUsingPredicate:prdicate];
     
     if (a.count) {
+        self.desc.hidden = YES;
+        self.webView.hidden = NO;
         [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
         for (UIView* subView in self.desc.superview.subviews) {
             if ([subView isKindOfClass:[UITextView class]]) {
@@ -75,11 +77,12 @@
     }
     else
     {
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
-        CGRect rect = [merchant.content boundingRectWithSize:CGSizeMake(self.desc.width, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-        self.desc.width = rect.size.width;
-        self.desc.height = rect.size.height;
-        
+//        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
+//        CGRect rect = [merchant.content boundingRectWithSize:CGSizeMake(self.desc.width, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+//        self.desc.width = rect.size.width;
+//        self.desc.height = rect.size.height;
+        self.desc.hidden = NO;
+        self.webView.hidden = YES;
         self.desc.text = merchant.content;
         self.desc.alpha = 1;
         
@@ -109,7 +112,7 @@
 - (CGFloat)heightForCell{
     
     if (self.webView == nil) {
-        return 100.0 + self.desc.height + 10 > 300/667.0*My_ScreenH ? 100.0 + self.desc.height + 10:300/667.0*My_ScreenH;
+        return 300;
     }else{
         return 100.0 + self.webView.height + 10 > 300/667.0*My_ScreenH ? 100.0 + self.webView.height +10:300/667.0*My_ScreenH;
     }
