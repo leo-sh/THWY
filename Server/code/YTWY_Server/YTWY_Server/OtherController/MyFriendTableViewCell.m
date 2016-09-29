@@ -172,6 +172,7 @@
     
     CommunicateViewController *pushView = [[CommunicateViewController alloc]init];
     pushView.s_admin_id = self.Id;
+    pushView.name = self.friendName;
     [self.superview.viewController.navigationController pushViewController:pushView animated:YES];
 }
 

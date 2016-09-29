@@ -20,6 +20,7 @@
 @property BOOL stop;
 @property BOOL cancel;
 @property NSString  *endId;
+@property NSString *titleString;
 @end
 
 @implementation CommunicateViewController
@@ -58,7 +59,7 @@
 
 - (void)ViewInitSetting
 {
-    self.title = @"发送短消息";
+    self.title = self.name;
     
     UIImage *image = [UIImage imageNamed:@"CF背景"];
     

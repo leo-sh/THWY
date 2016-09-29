@@ -193,7 +193,8 @@
         cell.width = tableView.width;
         [cell setValue:@60 forKey:@"height"];
         UserVO *temp = self.data[indexPath.row];
-        
+        cell.friendName = temp.real_name;
+
         NSString *content = [NSString stringWithFormat:@"%@/%@",temp.real_name,temp.up_group.group];
         
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
