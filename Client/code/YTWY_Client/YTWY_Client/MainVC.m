@@ -62,6 +62,7 @@
 }
 
 - (void)loginInFunc{
+    
     [self refreshUserInfo];
     
     [self getVersionUpdate];

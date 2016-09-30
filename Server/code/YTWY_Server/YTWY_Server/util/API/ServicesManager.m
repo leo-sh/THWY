@@ -1841,9 +1841,7 @@ savePassWord:(BOOL)save
 {
     AFHTTPSessionManager *manager = [self getManager];
     NSString *urlString = [NSString stringWithFormat:@"%@update",API_HOST];
-    NSDictionary *params = @{@"login_name":_userName,
-                             @"login_password":_passWord,
-                             @"platform":@"2",
+    NSDictionary *params = @{@"platform":@"2",
                              @"user_type":@"1"};
     [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
