@@ -36,7 +36,7 @@
 #endif
 
 #define APPVersion @"1.0.2"
-#define APPID @""
+#define APPID @"1138170237"
 //API
 #define My_ServicesManager [ServicesManager getAPI]
 #define API_Address @"http://112.126.75.77"

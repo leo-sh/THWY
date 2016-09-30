@@ -12,5 +12,6 @@
 @property NSString *Id;
 @property NSString *s_photo;
 @property NSString *s_admin_id;
+@property NSString *name;
 + (instancetype)shareCommunicateViewController;
 @end
