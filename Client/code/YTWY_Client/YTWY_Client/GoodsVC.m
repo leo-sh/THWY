@@ -7,13 +7,13 @@
 //
 
 #import "GoodsVC.h"
-#import "RecommandMerchantCell.h"
 
-@interface GoodsVC ()<UITableViewDelegate, UITableViewDataSource>
+@interface GoodsVC ()
 
-@property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *bussnessModels;
-@property (assign, nonatomic) int page;
+@property (strong, nonatomic) UIImageView *icon;
+@property (strong, nonatomic) UILabel *name;
+@property (strong, nonatomic) UILabel *desc;
+@property (strong, nonatomic) UILabel *location;
 
 @end
 
@@ -23,72 +23,101 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"商品详情";
-    self.page = 0;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"repaire_背景"]];
-    [self initViews];
     [self getBussnessData];
-    
-}
-
-- (void)initViews{
-    
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 10, self.view.width-20, self.view.height-84)];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.tableView.separatorColor = [UIColor lightGrayColor];
-    self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.rowHeight = 100;
-    self.tableView.showsHorizontalScrollIndicator = NO;
-    self.tableView.showsVerticalScrollIndicator = NO;
-    [self.tableView registerNib:[UINib nibWithNibName:@"RecommandMerchantCell" bundle:nil]forCellReuseIdentifier:@"RecommandMerchantCell"];
-//    [self initRefreshView];
-    [self.view addSubview:self.tableView];
-
     
 }
 
 - (void)getBussnessData{
     
     [SVProgressHUD showWithStatus:@"加载数据中，请稍等..."];
-    self.bussnessModels = [NSMutableArray array];
     [My_ServicesManager getAGood:self.good.Id onComplete:^(NSString *errorMsg, GoodVO *merchant) {
 
         if (errorMsg){
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }else{
-            [self.bussnessModels addObject:merchant];
+            [self initView:merchant];
         }
         
-        [self.tableView reloadData];
         [SVProgressHUD dismiss];
     }];
     
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (void)initView:(GoodVO *)merchant{
+    UIView *bgView = [UIView new];
+    [self.view addSubview:bgView];
     
-    return self.bussnessModels.count;
+    NSArray *strings = [merchant.goods_intro componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n<>\t\r"]];
+    NSString *addrString = [NSString string];
+    for (NSString *string in strings) {
+        for(int i=0; i< [string length];i++){
+            int a = [string characterAtIndex:i];
+            if( a > 0x4e00 && a < 0x9fff){
+                addrString = string;
+            }
+            
+        }
+    }
     
-}
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(14.0),NSFontAttributeName, nil];
+    CGRect rect1 = [addrString boundingRectWithSize:CGSizeMake(My_ScreenW-110, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).offset(10);
+        make.right.mas_equalTo(self.view.mas_right).offset(-10);
+        make.height.mas_equalTo(rect1.size.height+100);
+        make.top.mas_equalTo(self.view.mas_top).offset(20);
+    }];
+    
+    bgView.backgroundColor = WhiteAlphaColor;
+    self.icon = [UIImageView new];
+    self.icon.layer.cornerRadius = 40;
+    self.icon.clipsToBounds = YES;
+    [bgView addSubview:self.icon];
+    [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(bgView.mas_left).offset(5);
+        make.centerY.mas_equalTo(bgView.mas_centerY);
+        make.width.and.height.mas_equalTo(80);
+    }];
+    
+    self.name = [UILabel new];
+    self.name.textColor = [UIColor blackColor];
+    self.name.font = FontBoldSize(16.0);
+    [self.name sizeToFit];
+    [bgView addSubview:self.name];
+    [self.name mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.icon.mas_right).offset(10);
+        make.top.mas_equalTo(bgView.mas_top).offset(10);
+    }];
+    
+    self.desc = [UILabel new];
+    self.desc.textColor = [UIColor darkGrayColor];
+    self.desc.font = FontSize(15.0);
+    self.desc.numberOfLines = 0;
+    [bgView addSubview:self.desc];
+    [self.desc mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.name.mas_left);
+        make.top.mas_equalTo(self.name.mas_bottom);
+        make.width.mas_equalTo(My_ScreenW-120);
+    }];
+    
+    self.location = [UILabel new];
+    self.location.textColor = [UIColor darkGrayColor];
+    self.location.font = FontSize(15.0);
+    [self.location sizeToFit];
+    [bgView addSubview:self.location];
+    [self.location mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.name.mas_left);
+        make.bottom.mas_equalTo(bgView.mas_bottom).offset(-10);
+    }];
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.icon sd_setImageWithURL:[NSURL URLWithString:merchant.pic] placeholderImage:[UIImage imageNamed:@"头像1"]];
+    self.name.text = merchant.goods_name;
+    self.desc.text = addrString;
     
-    RecommandMerchantCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecommandMerchantCell" forIndexPath:indexPath];
-    [cell loadDataFromMercharge:self.bussnessModels[indexPath.row]];
-    cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
-    return cell;
-    
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.01;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //    BussnessDetailVC *detail = [[BussnessDetailVC alloc] init];
-    //    detail.merchant = self.bussnessModels[indexPath.row];
+    [[ServicesManager getAPI] getAMerchant:merchant.business_id onComplete:^(NSString *errorMsg, MerchantVO *merchant) {
+        self.location.text = merchant.addr;
+    }];
     
 }
 

@@ -162,6 +162,7 @@
 		7932967C1D51BCFF000FD426 /* RepairDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7932967B1D51BCFF000FD426 /* RepairDetailController.m */; };
 		79340ED91D66D09D00437AA8 /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 79340ED81D66D09D00437AA8 /* AdVO.m */; };
 		7934F28F1D5DBCA800643B4D /* MySegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7934F28E1D5DBCA800643B4D /* MySegmentedControl.m */; };
+		794C4FAD1D9E293E00BBC7FF /* DropMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 794C4FAC1D9E293E00BBC7FF /* DropMenuCell.m */; };
 		794E73D91D4A3A5100267C84 /* WantRepairesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73D81D4A3A5100267C84 /* WantRepairesVC.m */; };
 		794E73DC1D4A3A8800267C84 /* RepairRecordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73DB1D4A3A8800267C84 /* RepairRecordsVC.m */; };
 		794E73DF1D4A3AB700267C84 /* BussnessCircleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E73DE1D4A3AB700267C84 /* BussnessCircleVC.m */; };
@@ -562,6 +563,8 @@
 		7934F28D1D5DBCA800643B4D /* MySegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySegmentedControl.h; sourceTree = "<group>"; };
 		7934F28E1D5DBCA800643B4D /* MySegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySegmentedControl.m; sourceTree = "<group>"; };
 		79367C491D7040050076E65B /* PickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewProtocol.h; sourceTree = "<group>"; };
+		794C4FAB1D9E293E00BBC7FF /* DropMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropMenuCell.h; sourceTree = "<group>"; };
+		794C4FAC1D9E293E00BBC7FF /* DropMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropMenuCell.m; sourceTree = "<group>"; };
 		794E73D71D4A3A5100267C84 /* WantRepairesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantRepairesVC.h; sourceTree = "<group>"; };
 		794E73D81D4A3A5100267C84 /* WantRepairesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantRepairesVC.m; sourceTree = "<group>"; };
 		794E73DA1D4A3A8800267C84 /* RepairRecordsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairRecordsVC.h; sourceTree = "<group>"; };
@@ -1429,6 +1432,8 @@
 			children = (
 				790FBEBC1D5B726100C00509 /* DropMenuTableView.h */,
 				790FBEBD1D5B726100C00509 /* DropMenuTableView.m */,
+				794C4FAB1D9E293E00BBC7FF /* DropMenuCell.h */,
+				794C4FAC1D9E293E00BBC7FF /* DropMenuCell.m */,
 			);
 			name = MainViews;
 			sourceTree = "<group>";
@@ -2084,6 +2089,7 @@
 				5B25721E1D47177B00CB4167 /* SDWebImageCompat.m in Sources */,
 				1E7527AF1D52349F00AEDEC0 /* MJRefreshAutoStateFooter.m in Sources */,
 				9400B97F1D619BBC00E49F0E /* MBProgressHUD.m in Sources */,
+				794C4FAD1D9E293E00BBC7FF /* DropMenuCell.m in Sources */,
 				1EE2842B1D4D05D1008D5305 /* SuggestViewController.m in Sources */,
 				5B2572281D47177B00CB4167 /* UIImageView+HighlightedWebCache.m in Sources */,
 				94300F3E1D684DC80037546A /* ZLPhotoPickerBrowserPhotoImageView.m in Sources */,

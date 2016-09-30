@@ -89,6 +89,8 @@
 //登录页面通知
 #define Login_Success @"LoginSuccess"
 #define Login_Fail @"Login_Fail"
+//更新内容通知
+#define VersionUpdateInfo @"VersionUpdateInfo"
 #endif 
 
 /* PrefixHeader_pch */

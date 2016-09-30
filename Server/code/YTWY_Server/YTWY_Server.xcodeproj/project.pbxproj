@@ -170,6 +170,7 @@
 		793B8EDB1D656A9300290EAB /* AdVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDA1D656A9300290EAB /* AdVO.m */; };
 		793B8EDE1D6596A000290EAB /* AlertEstateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */; };
 		793B8EE11D65AEA500290EAB /* RepairStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */; };
+		794C4FB01D9E2CAD00BBC7FF /* DropMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 794C4FAF1D9E2CAD00BBC7FF /* DropMenuCell.m */; };
 		7961641D1D98EC4A00D4C1C6 /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7961641C1D98EC4A00D4C1C6 /* UIViewController+Extension.m */; };
 		797384331D66D94500708E62 /* RepairStatisticsFinishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 797384321D66D94500708E62 /* RepairStatisticsFinishCell.m */; };
 		79F60D0A1D6A070C00A8E2D2 /* RepairRecordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F60D091D6A070C00A8E2D2 /* RepairRecordsVC.m */; };
@@ -565,6 +566,8 @@
 		793B8EDD1D6596A000290EAB /* AlertEstateTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertEstateTableView.m; sourceTree = "<group>"; };
 		793B8EDF1D65AEA500290EAB /* RepairStatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticsCell.h; sourceTree = "<group>"; };
 		793B8EE01D65AEA500290EAB /* RepairStatisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairStatisticsCell.m; sourceTree = "<group>"; };
+		794C4FAE1D9E2CAD00BBC7FF /* DropMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropMenuCell.h; sourceTree = "<group>"; };
+		794C4FAF1D9E2CAD00BBC7FF /* DropMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropMenuCell.m; sourceTree = "<group>"; };
 		7961641B1D98EC4A00D4C1C6 /* UIViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extension.h"; sourceTree = "<group>"; };
 		7961641C1D98EC4A00D4C1C6 /* UIViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extension.m"; sourceTree = "<group>"; };
 		797384311D66D94500708E62 /* RepairStatisticsFinishCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairStatisticsFinishCell.h; sourceTree = "<group>"; };
@@ -996,6 +999,8 @@
 			children = (
 				7902B04F1D64132700ADDAE0 /* DropMenuTableView.h */,
 				7902B0501D64132700ADDAE0 /* DropMenuTableView.m */,
+				794C4FAE1D9E2CAD00BBC7FF /* DropMenuCell.h */,
+				794C4FAF1D9E2CAD00BBC7FF /* DropMenuCell.m */,
 			);
 			name = MainVCViews;
 			path = YTWY_Server/ChildController/MainVCs/MainVCViews;
@@ -1978,6 +1983,7 @@
 				79270F861D61BF5E00E29568 /* userAndPassWordTextField.m in Sources */,
 				79270E5B1D61ACDA00E29568 /* RepairVO.m in Sources */,
 				5BFFCE401D41B9C40066B1B9 /* AppDelegate.m in Sources */,
+				794C4FB01D9E2CAD00BBC7FF /* DropMenuCell.m in Sources */,
 				79270DDB1D61ACB100E29568 /* MJRefreshBackFooter.m in Sources */,
 				79111C8D1D7680E3003CD03F /* RepairStatisticsDataCell.m in Sources */,
 				1EEF9A711D6E1C2E0046E688 /* MyFriendViewController.m in Sources */,

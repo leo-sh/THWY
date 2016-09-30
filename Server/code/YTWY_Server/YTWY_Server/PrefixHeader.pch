@@ -33,7 +33,7 @@
 #define NSLog(...)
 #endif
 
-#define APPVersion @"1.0.1"
+#define APPVersion @"1.0.0"
 #define APPID @"1142040923"
 
 //API
@@ -88,6 +88,8 @@
 //登录页面通知
 #define Login_Success @"LoginSuccess"
 #define Login_Fail @"Login_Fail"
+//版本更新信息通知
+#define VersionUpdateInfo @"VersionUpdateInfo"
 
 //内容默认文字大小
 #define CONTENT_FONT 16

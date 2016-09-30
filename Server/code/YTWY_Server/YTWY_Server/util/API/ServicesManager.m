@@ -1840,7 +1840,7 @@ savePassWord:(BOOL)save
 -(void)getUpdate:(void (^)(NSString *errorMsg,BOOL haveUpdata,NSDictionary* data))onComplete
 {
     AFHTTPSessionManager *manager = [self getManager];
-    NSString *urlString = [NSString stringWithFormat:@"%@update",API_HOST];
+    NSString *urlString = @"http://112.126.75.77:6699/index.php/api/manager/update";
     NSDictionary *params = @{@"platform":@"2",
                              @"user_type":@"1"};
     [manager GET:urlString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {

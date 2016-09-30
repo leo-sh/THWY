@@ -7,6 +7,7 @@
 //
 
 #import "DropMenuTableView.h"
+#import "DropMenuCell.h"
 
 @interface DropMenuTableView ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -31,13 +32,13 @@
         self.frame = CGRectMake(0, 64, My_ScreenW, My_ScreenH);
         self.backgroundColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.01];
         
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(7, 0, width, items.count*itemHeight) style:UITableViewStylePlain];
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(7, 0, width, 6*itemHeight) style:UITableViewStylePlain];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableView.backgroundColor = [UIColor clearColor];
         self.tableView.rowHeight = itemHeight;
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        [self.tableView registerClass:[DropMenuCell class] forCellReuseIdentifier:@"cell"];
         [self addSubview:self.tableView];
     }
     return self;
@@ -50,13 +51,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.imageView.image = [UIImage imageNamed:self.itemImages[indexPath.row]];
-    cell.textLabel.text = self.itemNames[indexPath.row];
-    cell.textLabel.backgroundColor = My_clearColor;
-    cell.textLabel.textColor = self.textColor;
-    cell.textLabel.font = [UIFont fontWithName:My_RegularFontName size:self.fontSize];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    DropMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.icon.image = [UIImage imageNamed:self.itemImages[indexPath.row]];
+    cell.label.text = self.itemNames[indexPath.row];
+    cell.label.textColor = self.textColor;
     cell.contentView.backgroundColor = self.backColor;
     
     if (indexPath.row < self.itemNames.count - 1) {
