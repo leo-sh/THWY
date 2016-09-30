@@ -33,7 +33,7 @@
 #define NSLog(...)
 #endif
 
-#define APPVersion @"1.0.0"
+#define APPVersion @"1.0.1"
 #define APPID @"1142040923"
 
 //API
