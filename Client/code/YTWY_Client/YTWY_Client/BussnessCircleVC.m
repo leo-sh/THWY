@@ -298,11 +298,13 @@
         make.height.mas_equalTo(self.userInfoView.mas_height).multipliedBy(0.65);
     }];
     
-    self.laba = [[UIImageView alloc] initWithImage:[UIImage scaleImage:[UIImage imageNamed:@"bussness_喇叭"] toScale:0.6]];
+    self.laba = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bussness_喇叭"]];
     [self.ADView addSubview:self.laba];
     [self.laba mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.ADView.centerY).offset(-2);
         make.left.mas_equalTo(self.ADView.mas_left).offset(20);
+        make.width.mas_equalTo(39/414.0*My_ScreenW);
+        make.height.mas_equalTo(26/414.0*My_ScreenW);
     }];
     
     self.adLabelScrollView = [[UIScrollView alloc] init];
