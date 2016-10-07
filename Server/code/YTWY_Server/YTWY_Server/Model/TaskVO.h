@@ -24,6 +24,7 @@ typedef enum : NSUInteger {
 @property (nonatomic , copy) NSString              * st_0_time;
 @property (nonatomic , copy) NSString              * st_2_time;
 @property (nonatomic , copy) NSString              * st_3_time;
+@property (nonatomic , copy) NSString              * order_ts;
 @property (nonatomic , copy) NSString              * call_person;
 @property (nonatomic , copy) NSString              * call_phone;
 @property (nonatomic , copy) NSString              * owner_public;
