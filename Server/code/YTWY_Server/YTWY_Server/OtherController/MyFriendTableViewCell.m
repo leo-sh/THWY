@@ -47,6 +47,7 @@
         self.scrollView.backgroundColor = [UIColor whiteColor];
         UIPanGestureRecognizer *panG = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
         panG.maximumNumberOfTouches = 1;
+        panG.delegate = self;
         [self.scrollView addGestureRecognizer:panG];
         
         [self.scrollView addSubview:self.icon];
@@ -115,9 +116,6 @@
         self.label.attributedText = aString;
     }
     
-
-    
-    
     self.label.frame = CGRectMake(self.icon.right + 10, 0, 200, CONTENT_FONT);
     self.label.centerY = self.icon.centerY;
     [self.communionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -146,7 +144,6 @@
 
 - (void)clickPhone
 {
-    NSLog(@"点击通话");
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:self.phoneNumber message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:@"拨打" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSString *phoneNum = self.phoneNumber;// 电话号码
@@ -168,8 +165,6 @@
 
 - (void)clickCM
 {
-    NSLog(@"点击聊天");
-    
     CommunicateViewController *pushView = [[CommunicateViewController alloc]init];
     pushView.s_admin_id = self.Id;
     pushView.name = self.friendName;
@@ -190,17 +185,9 @@
     }
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return ([gestureRecognizer locationInView:self].x < My_ScreenW / 3)||([gestureRecognizer locationInView:self].x > My_ScreenW / 3*2);
 }
 
 - (void)dealloc

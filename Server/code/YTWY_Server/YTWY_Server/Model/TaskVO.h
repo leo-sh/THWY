@@ -32,6 +32,7 @@ typedef enum : NSUInteger {
 @property (nonatomic , copy) NSString              * unit;
 @property (nonatomic , copy) NSString              * layer;
 @property (nonatomic , copy) NSString              * mph;
+@property (nonatomic , copy) NSString              * kb;
 @property (nonatomic , copy) NSString              * classes_str;
 @property NSArray                                  * repair_classes;
 

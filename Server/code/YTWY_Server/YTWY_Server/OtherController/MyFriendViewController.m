@@ -67,23 +67,19 @@
         self.tableView.y = self.topView.bottom + 10;
         [[ServicesManager getAPI] getFriends:^(NSString *errorMsg, NSArray *list) {
             
-            dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.addFriendStatu) {
+                self.data.array = list;
+                self.tempData = list;
                 
-                if (self.addFriendStatu) {
-                    self.data.array = list;
-                    self.tempData = list;
-
-                }
-                else
-                {
-                    self.data.array = self.tempData;
-                }
-                
-                
-                [self.tableView reloadData];
-                [SVProgressHUD dismiss];
-                
-            });
+            }
+            else
+            {
+                self.data.array = self.tempData;
+            }
+            
+            
+            [self.tableView reloadData];
+            [SVProgressHUD dismiss];
         }];
     }
     else

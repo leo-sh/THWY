@@ -282,7 +282,7 @@
         back = 2;
     }
     if (self.alertView.textView.text.length == 0) {
-        [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
+        [SVProgressHUD showErrorWithStatus:@"请输入详情"];
     }
     else
     {

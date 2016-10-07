@@ -16,6 +16,7 @@
         self.Id = JSON[@"id"];
         self.estate_id = JSON[@"estate_id"];
         self.st = JSON[@"st"];
+        self.kb = JSON[@"kb"];
         self.house_id = JSON[@"house_id"];
         self.st_0_time = JSON[@"st_0_time"];
         self.st_2_time = JSON[@"st_2_time"];

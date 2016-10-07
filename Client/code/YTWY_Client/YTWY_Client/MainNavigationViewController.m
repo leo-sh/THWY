@@ -64,7 +64,7 @@
     _userInfo = userInfo;
     tapGestureBool = YES;
     
-    NSString* bannerName = @"惠•生活";
+    NSString* bannerName = @"泰生活";
     if (userInfo[@"title"]) {
         bannerName = userInfo[@"title"];
     }

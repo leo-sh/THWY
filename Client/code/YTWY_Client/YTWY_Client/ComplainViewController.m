@@ -48,13 +48,16 @@
 
     [[ServicesManager getAPI] getComplaints:self.pageNumber onComplete:^(NSString *errorMsg, NSArray *list) {
         
+        if (self.pageNumber == 0) {
+            [self.data removeAllObjects];
+            [self.contentEnd removeAllObjects];
+        }
+        
         if (errorMsg) {
             [SVProgressHUD showErrorWithStatus:errorMsg];
         }
-        
         else if (list.count == 0)
         {
-            [self.tableView.mj_footer endRefreshing];
             [SVProgressHUD dismiss];
         }
         else
@@ -65,12 +68,12 @@
                 NSArray *array = @[temp.complaint_type_name,temp.estate,temp.complaint_person,temp.complaint_phone,temp.ctime,temp.state.name,temp.Id];
                 [self.contentEnd addObject:array];
             }
-            [self.tableView reloadData];
-            [self.tableView.mj_footer endRefreshing];
-            [self.tableView.mj_header endRefreshing];
             
             [SVProgressHUD dismiss];
         }
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView reloadData];
     }];
         
 }
@@ -256,7 +259,7 @@
             
             if(self.alertview.textView.text.length == 0)
             {
-                [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
+                [SVProgressHUD showErrorWithStatus:@"请输入投诉详情"];
             }
             else{
                 
@@ -269,10 +272,7 @@
                     else
                     {
                         [self.alertview hideInWindow];
-                        self.pageNumber = 1;
-                        [self.data removeAllObjects];
-                        [self.contentEnd removeAllObjects];
-                        [self getData];
+                        [self.tableView.mj_header beginRefreshing];
                         [SVProgressHUD showErrorWithStatus:@"添加成功"];
                     }
                     
