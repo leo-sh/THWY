@@ -16,6 +16,18 @@
         self.Id = JSON[@"id"];
         self.estate_id = JSON[@"estate_id"];
         self.st = JSON[@"st"];
+        if (JSON[@"kb"]) {
+            self.kb = JSON[@"kb"];
+        }else
+        {
+            self.kb = nil;
+        }
+        if (JSON[@"order_ts"]) {
+            self.order_ts = JSON[@"order_ts"];
+        }else
+        {
+            self.order_ts = nil;
+        }
         self.house_id = JSON[@"house_id"];
         self.st_0_time = JSON[@"st_0_time"];
         self.st_2_time = JSON[@"st_2_time"];

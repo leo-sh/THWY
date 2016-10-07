@@ -99,7 +99,7 @@
 }
 
 - (void)versionUpdateFunc:(NSNotification *)notification{
-    BOOL haveUpdate = notification.userInfo[@"haveUpdate"];
+    BOOL haveUpdate = [notification.userInfo[@"haveUpdate"] boolValue];
     self.updateData = notification.userInfo[@"data"];
     if (haveUpdate) {
         [self.dropView refreshUpdateIcon:haveUpdate];
