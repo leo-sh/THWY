@@ -127,18 +127,20 @@
         return 0;
     }else{
         if (self.displayType == 2 && self.repairVO.st != nil) {
-            if ([self.repairVO.st intValue] == 0) {
+            if (self.isPushed) {
                 [self.footBtn setTitle:@"接 单" forState:UIControlStateNormal];
                 tableView.tableFooterView = self.tableFootView;
-            }else if([self.repairVO.st intValue] == 2){
-                [self.footBtn setTitle:@"完 工" forState:UIControlStateNormal];
-                tableView.tableFooterView = self.tableFootView;
+            }else{
+                if ([self.repairVO.st intValue] == 0) {
+                    [self.footBtn setTitle:@"接 单" forState:UIControlStateNormal];
+                    tableView.tableFooterView = self.tableFootView;
+                }else if([self.repairVO.st intValue] == 2){
+                    [self.footBtn setTitle:@"完 工" forState:UIControlStateNormal];
+                    tableView.tableFooterView = self.tableFootView;
+                }
             }
-            
         }else{
-            
             tableView.tableFooterView = nil;
-            
         }
         return 6;
     }

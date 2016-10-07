@@ -190,9 +190,6 @@
             make.height.mas_equalTo(15);
             make.width.mas_equalTo(arrow.mas_height).multipliedBy(0.65);
         }];
-        
-        [self layoutIfNeeded];
-        
     }
     return self;
     
@@ -262,13 +259,13 @@
         }
         
         self.callNumberDetailLabel.text = task.call_phone;
-//        if (task.kb.intValue == 2){
-//            [self orderData:NO st:task.st];
-//        }else if (task.kb.intValue == 1){
-//            [self orderData:NO st:task.st];
-//        }else if(task.kb.intValue == 3){
-//            [self orderData:YES st:task.st];
-//        }
+
+        if(task.kb.intValue == 3){
+            [self orderData:YES st:task.st];
+        }else{
+            [self orderData:NO st:task.st];
+        }
+        
         [self layoutIfNeeded];
         
     }
@@ -289,10 +286,10 @@
                 make.height.mas_equalTo(rowHeight);
             }];
             //预约时间
-            self.timeDetailLabel.text = [NSString stringDateFromTimeInterval:[self.task.st_0_time integerValue] withFormat:nil];
+            self.timeDetailLabel.text = [NSString stringDateFromTimeInterval:[self.task.order_ts integerValue] withFormat:nil];
             //倒计时
             //启动定时器
-            NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.task.st_0_time integerValue]];
+            NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.task.order_ts integerValue]];
             NSTimeInterval timeinteval = [date timeIntervalSinceNow];
             if (timeinteval <= 0) {
                 self.timerDetailLabel.text = [NSString stringWithFormat:@"已超时 %@", [NSDate countDownStringFromTimeInterval:timeinteval]];
@@ -321,7 +318,7 @@
 
 - (void)runCircle:(NSTimer *)timer{
     
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.task.st_0_time integerValue]];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.task.order_ts integerValue]];
     NSTimeInterval timeinteval = [date timeIntervalSinceNow];
     if (timeinteval <= 0) {
         self.timerDetailLabel.text = [NSString stringWithFormat:@"已超时 %@", [NSDate countDownStringFromTimeInterval:timeinteval]];

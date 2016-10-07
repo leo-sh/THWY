@@ -25,4 +25,6 @@ typedef NS_ENUM(NSUInteger, DisplayType) {
 
 @property (assign, nonatomic) CGFloat imageHeight;
 
+@property (assign, nonatomic) BOOL isPushed;
+
 @end

@@ -84,6 +84,7 @@
         }else{
             detail.type = 2;
         }
+        detail.isPushed = YES;
         [self pushViewController:detail animated:YES];
     
     }else if ([pushType isEqualToString:@"6"])

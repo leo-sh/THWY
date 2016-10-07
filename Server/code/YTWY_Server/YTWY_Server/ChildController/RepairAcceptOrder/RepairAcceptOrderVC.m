@@ -10,6 +10,7 @@
 #import "RunSliderLabel.h"
 #import "RepairAcceptOrderCell.h"
 #import "RepairDetailController.h"
+#import "TaskVO.h"
 
 @interface RepairAcceptOrderVC ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -213,6 +214,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    TaskVO *task = self.dataArray[indexPath.row];
     CGFloat topMargin = 10/667.0*My_ScreenH;
     CGFloat leftMargin = topMargin*0.5;
     CGFloat imageWidth = 50/667.0*My_ScreenH;
@@ -220,12 +222,11 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
     CGRect rect = [[self.dataArray[indexPath.row] classes_str] boundingRectWithSize:CGSizeMake(detailWidth, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     
-//    if ([[self.dataArray[indexPath.row] kb] intValue] == 3) {
-//        return rect.size.height+80+30;
-//    }else{
-//        return rect.size.height+80;
-//    }
-    return rect.size.height+80+30;
+    if ([[task kb] intValue] == 3) {
+        return rect.size.height+80+30;
+    }else{
+        return rect.size.height+80;
+    }
     
 }
 
