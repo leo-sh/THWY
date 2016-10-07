@@ -22,6 +22,13 @@
 @property (strong, nonatomic) UILabel *timeDetailLabel;
 @property (strong, nonatomic) UILabel *callNumberDetailLabel;
 
+@property (strong, nonatomic) UIImageView *timerImage;
+@property (strong, nonatomic) UILabel *timerDetailLabel;
+
+@property (strong, nonatomic) NSTimer *timer;
+
+@property (strong, nonatomic) TaskVO *task;
+
 @end
 
 @implementation RepairAcceptOrderCell
@@ -117,6 +124,26 @@
             make.centerY.mas_equalTo(self.timeLabel.mas_centerY);
         }];
         
+        self.timerDetailLabel = [UILabel new];
+        self.timerDetailLabel.textColor = [UIColor darkGrayColor];
+        self.timerDetailLabel.font = FontSize(CONTENT_FONT-1);
+        [self.contentView addSubview:self.timerDetailLabel];
+        [self.timerDetailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.timeDetailLabel.mas_left);
+            make.top.mas_equalTo(self.timeDetailLabel.mas_bottom);
+            make.height.mas_equalTo(30);
+        }];
+        
+        self.timerImage = [UIImageView new];
+        [self.contentView addSubview:self.timerImage];
+        self.timerImage.image = [UIImage imageNamed:@"daojishi"];
+        [self.timerImage mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(self.timerDetailLabel.mas_centerY);
+            make.centerX.mas_equalTo(self.timeLabel.mas_centerX);
+            make.width.mas_equalTo(30.0);
+            make.height.mas_equalTo(30.0);
+        }];
+        
         self.callNumberLabel = [[UILabel alloc] init];
         self.callNumberLabel.text = @"报修人电话:";
         self.callNumberLabel.textColor = [UIColor darkGrayColor];
@@ -128,7 +155,7 @@
         [self.callNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.houseLabel.mas_left);
             make.width.mas_equalTo(self.houseLabel.mas_width);
-            make.top.mas_equalTo(self.timeLabel.mas_bottom);
+            make.top.mas_equalTo(self.timerDetailLabel.mas_bottom);
         }];
         
         self.callNumberDetailLabel = [[UILabel alloc] init];
@@ -181,6 +208,7 @@
 }
 
 - (void)loadDataFromTaskVO:(TaskVO *)task{
+    _task = task;
     
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
     CGRect rect = [[NSString stringWithFormat:@"报修类型:"] boundingRectWithSize:CGSizeMake(0, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
@@ -234,12 +262,75 @@
         }
         
         self.callNumberDetailLabel.text = task.call_phone;
-        
+//        if (task.kb.intValue == 2){
+//            [self orderData:NO st:task.st];
+//        }else if (task.kb.intValue == 1){
+//            [self orderData:NO st:task.st];
+//        }else if(task.kb.intValue == 3){
+//            [self orderData:YES st:task.st];
+//        }
         [self layoutIfNeeded];
         
     }
     
 }
 
+- (void)orderData:(BOOL)isOrderData st:(NSString *)st{
+    if (!isOrderData) {
+        self.timerImage.hidden = YES;
+        [self.timerDetailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+        }];
+    }else{
+        CGFloat rowHeight = 40.0;
+        if ([st intValue] == 0) {
+            self.timerImage.hidden = NO;
+            [self.timerDetailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(rowHeight);
+            }];
+            //预约时间
+            self.timeDetailLabel.text = [NSString stringDateFromTimeInterval:[self.task.st_0_time integerValue] withFormat:nil];
+            //倒计时
+            //启动定时器
+            NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.task.st_0_time integerValue]];
+            NSTimeInterval timeinteval = [date timeIntervalSinceNow];
+            if (timeinteval <= 0) {
+                self.timerDetailLabel.text = [NSString stringWithFormat:@"已超时 %@", [NSDate countDownStringFromTimeInterval:timeinteval]];
+                self.timerDetailLabel.textColor = [UIColor redColor];
+            }else{
+                self.timerDetailLabel.text = [NSDate countDownStringFromTimeInterval:timeinteval];
+                self.timerDetailLabel.textColor = [UIColor darkGrayColor];
+            }
+            if (self.timer) {
+                [self.timer invalidate];
+            }
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(runCircle:) userInfo:nil repeats:YES];
+            [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+            
+        }else{
+            self.timerImage.hidden = YES;
+            [self.timerDetailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(0);
+            }];
+            //预约时间
+            self.timeDetailLabel.text = [NSString stringDateFromTimeInterval:0 withFormat:nil];
+        }
+    }
+    [self.contentView layoutIfNeeded];
+}
+
+- (void)runCircle:(NSTimer *)timer{
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.task.st_0_time integerValue]];
+    NSTimeInterval timeinteval = [date timeIntervalSinceNow];
+    if (timeinteval <= 0) {
+        self.timerDetailLabel.text = [NSString stringWithFormat:@"已超时 %@", [NSDate countDownStringFromTimeInterval:timeinteval]];
+        self.timerDetailLabel.textColor = [UIColor redColor];
+    }else{
+        self.timerDetailLabel.text = [NSDate countDownStringFromTimeInterval:timeinteval];
+        self.timerDetailLabel.textColor = [UIColor darkGrayColor];
+    }
+    
+}
 
 @end

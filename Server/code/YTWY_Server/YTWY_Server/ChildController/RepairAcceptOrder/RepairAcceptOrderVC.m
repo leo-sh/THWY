@@ -220,7 +220,12 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FontSize(CONTENT_FONT-1),NSFontAttributeName, nil];
     CGRect rect = [[self.dataArray[indexPath.row] classes_str] boundingRectWithSize:CGSizeMake(detailWidth, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     
-    return rect.size.height+80;
+//    if ([[self.dataArray[indexPath.row] kb] intValue] == 3) {
+//        return rect.size.height+80+30;
+//    }else{
+//        return rect.size.height+80;
+//    }
+    return rect.size.height+80+30;
     
 }
 
