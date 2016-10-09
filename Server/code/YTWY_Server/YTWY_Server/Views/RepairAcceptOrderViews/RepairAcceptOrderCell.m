@@ -13,14 +13,19 @@
 
 @property (strong, nonatomic) UIImageView *leftImageView;
 @property (strong, nonatomic) UILabel *houseLabel;
-@property (strong, nonatomic) UILabel *categoryLabel;
-@property (strong, nonatomic) UILabel *timeLabel;
-@property (strong, nonatomic) UILabel *callNumberLabel;
-
 @property (strong, nonatomic) RunSliderLabel *houseDetailLabel;
+
+@property (strong, nonatomic) UILabel *categoryLabel;
 @property (strong, nonatomic) UILabel *categoryDetailLabel;
+
+@property (strong, nonatomic) UILabel *timeLabel;
 @property (strong, nonatomic) UILabel *timeDetailLabel;
+
+@property (strong, nonatomic) UILabel *callNumberLabel;
 @property (strong, nonatomic) UILabel *callNumberDetailLabel;
+
+@property (strong, nonatomic) UILabel *orderTimeLabel;
+@property (strong, nonatomic) UILabel *orderTimeDetailLabel;
 
 @property (strong, nonatomic) UIImageView *timerImage;
 @property (strong, nonatomic) UILabel *timerDetailLabel;
@@ -124,14 +129,34 @@
             make.centerY.mas_equalTo(self.timeLabel.mas_centerY);
         }];
         
+        self.orderTimeLabel = [UILabel new];
+        self.orderTimeLabel.text = @"预约时间:";
+        [self setAttributesForLabel:self.orderTimeLabel];
+        [self.contentView addSubview:self.orderTimeLabel];
+        [self.orderTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.timeLabel.mas_left);
+            make.top.mas_equalTo(self.timeLabel.mas_bottom);
+            make.height.mas_equalTo(30.0);
+        }];
+        
+        self.orderTimeDetailLabel = [UILabel new];
+        self.orderTimeDetailLabel.text = @"";
+        [self setAttributesForLabel:self.orderTimeDetailLabel];
+        [self.contentView addSubview:self.orderTimeDetailLabel];
+        [self.orderTimeDetailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.houseDetailLabel.mas_left);
+            make.centerY.mas_equalTo(self.orderTimeLabel.mas_centerY);
+            make.height.mas_equalTo(self.orderTimeLabel.mas_height);
+        }];
+        
         self.timerDetailLabel = [UILabel new];
         self.timerDetailLabel.textColor = [UIColor darkGrayColor];
         self.timerDetailLabel.font = FontSize(CONTENT_FONT-1);
         [self.contentView addSubview:self.timerDetailLabel];
         [self.timerDetailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.timeDetailLabel.mas_left);
-            make.top.mas_equalTo(self.timeDetailLabel.mas_bottom);
-            make.height.mas_equalTo(30);
+            make.top.mas_equalTo(self.orderTimeDetailLabel.mas_bottom);
+            make.height.mas_equalTo(self.orderTimeLabel.mas_height);
         }];
         
         self.timerImage = [UIImageView new];
@@ -141,7 +166,7 @@
             make.centerY.mas_equalTo(self.timerDetailLabel.mas_centerY);
             make.centerX.mas_equalTo(self.timeLabel.mas_centerX);
             make.width.mas_equalTo(30.0);
-            make.height.mas_equalTo(30.0);
+            make.height.mas_equalTo(self.timerDetailLabel.mas_height);
         }];
         
         self.callNumberLabel = [[UILabel alloc] init];
@@ -155,7 +180,7 @@
         [self.callNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.houseLabel.mas_left);
             make.width.mas_equalTo(self.houseLabel.mas_width);
-            make.top.mas_equalTo(self.timerDetailLabel.mas_bottom);
+            make.top.mas_equalTo(self.timerDetailLabel.mas_bottom).offset(4);
         }];
         
         self.callNumberDetailLabel = [[UILabel alloc] init];
@@ -278,15 +303,23 @@
         [self.timerDetailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(0);
         }];
+        
     }else{
+        NSInteger time = [self.task.order_ts integerValue];
+        if (time == 0) {
+            self.orderTimeDetailLabel.text = @"";
+        }else{
+            self.orderTimeDetailLabel.text = [NSString stringDateFromTimeInterval:time withFormat:nil];
+        }
+    
         CGFloat rowHeight = 40.0;
         if ([st intValue] == 0) {
             self.timerImage.hidden = NO;
             [self.timerDetailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(rowHeight);
             }];
-            //预约时间
-            self.timeDetailLabel.text = [NSString stringDateFromTimeInterval:[self.task.order_ts integerValue] withFormat:nil];
+            //倒计时时间
+            self.timerDetailLabel.text = [NSString stringDateFromTimeInterval:[self.task.order_ts integerValue] withFormat:nil];
             //倒计时
             //启动定时器
             NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.task.order_ts integerValue]];
@@ -310,7 +343,7 @@
                 make.height.mas_equalTo(0);
             }];
             //预约时间
-            self.timeDetailLabel.text = [NSString stringDateFromTimeInterval:0 withFormat:nil];
+            self.timerDetailLabel.text = [NSString stringDateFromTimeInterval:0 withFormat:nil];
         }
     }
     [self.contentView layoutIfNeeded];
