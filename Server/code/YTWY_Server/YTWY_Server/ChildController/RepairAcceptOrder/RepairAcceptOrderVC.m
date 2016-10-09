@@ -223,7 +223,7 @@
     CGRect rect = [[self.dataArray[indexPath.row] classes_str] boundingRectWithSize:CGSizeMake(detailWidth, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     
     if ([[task kb] intValue] == 3) {
-        return rect.size.height+80+30;
+        return rect.size.height+80+45;
     }else{
         return rect.size.height+80;
     }
